@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.UFMPS.Library.TCustomTaskThread" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAACCAAABgAAEAAgAAAIAAAAAAAIAAIQCAAAAA=</HashCode>
+      <FileName>TCustomTaskThread.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.UFMPS.Library.TThreadFalgWatch" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>TThreadFalgWatch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.UFMPS.Library.TThreadNormalWatch" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>TThreadNormalWatch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

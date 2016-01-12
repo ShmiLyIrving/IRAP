@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.UFMPS.Library.TCustomDocumentProcess" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgEAAIAYCACAAAAAEABgAAAIAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>TCustomDocumentProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.UFMPS.Library.TThreadFtpFile">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>TThreadFtpFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.UFMPS.Library.TThreadInsertIntoTable">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>TThreadInsertIntoTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.UFMPS.Library.TThreadMoveTo">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>TThreadMoveTo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="IRAP.UFMPS.Library.InvokeAddLogs">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Delegates.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

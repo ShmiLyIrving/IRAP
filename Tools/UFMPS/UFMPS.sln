@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP-UFMPS", "IRAP-UFMPS\IRAP-UFMPS.csproj", "{472E0AA0-414F-482A-95AF-E00F365A1CDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.UFMPS.Library", "IRAP.UFMPS.Library\IRAP.UFMPS.Library.csproj", "{07627D5C-2016-4BC5-9AEA-B1F1CDD21286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Global", "..\..\Global\IRAP.Global\IRAP.Global.csproj", "{325FFD07-7491-45C3-86F3-85F7DEF4C726}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{472E0AA0-414F-482A-95AF-E00F365A1CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472E0AA0-414F-482A-95AF-E00F365A1CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472E0AA0-414F-482A-95AF-E00F365A1CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472E0AA0-414F-482A-95AF-E00F365A1CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07627D5C-2016-4BC5-9AEA-B1F1CDD21286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07627D5C-2016-4BC5-9AEA-B1F1CDD21286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07627D5C-2016-4BC5-9AEA-B1F1CDD21286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07627D5C-2016-4BC5-9AEA-B1F1CDD21286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
