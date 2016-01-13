@@ -113,6 +113,8 @@ namespace IRAP_UFMPS
             ucDealTypeInsertIntoTable.edtDBName.Text = task.DbName;
             ucDealTypeInsertIntoTable.edtTableName.Text = task.TbTableName;
 
+            ucDealTypeInsertIntoTable.cboThreadStartMark.EditValue = (int)task.ThreadStartMark;
+
             ucDealTypeInsertIntoTable.edtSplitter.Text = task.TbTxtFileSplitter;
             ucDealTypeInsertIntoTable.edtNumOfTextFields.Text = task.TbNumOfTxtFields.ToString();
             ucDealTypeInsertIntoTable.edtDataStartLineNo.Text = task.TbDataFirstRow.ToString();
@@ -172,6 +174,8 @@ namespace IRAP_UFMPS
             task.TbNumOfTxtFields = Convert.ToInt32(ucDealTypeInsertIntoTable.edtNumOfTextFields.Text.Trim());
             task.TbDataFirstRow = Convert.ToInt32(ucDealTypeInsertIntoTable.edtDataStartLineNo.Text.Trim());
             task.TbIncludeTxtFileName = ucDealTypeInsertIntoTable.chkSaveIncludeFileName.Checked;
+
+            task.ThreadStartMark = (TThreadStartMark)Convert.ToInt32(ucDealTypeInsertIntoTable.cboThreadStartMark.EditValue.ToString());
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -239,6 +243,15 @@ namespace IRAP_UFMPS
                         pnlDealTypeCallStoreProcedure.Visible = false;
                         pnlDealTypeInsertIntoTable.Visible = true;
                         ucDealTypeInsertIntoTable.tcDBParams.TabIndex = 0;
+                        ucDealTypeInsertIntoTable.tpThreadControl.PageVisible = false;
+                        break;
+                    case 4:
+                        pnlDealTypeFTP.Visible = false;
+                        pnlDealTypeMoveToFolder.Visible = true;
+                        pnlDealTypeCallStoreProcedure.Visible = false;
+                        pnlDealTypeInsertIntoTable.Visible = true;
+                        ucDealTypeInsertIntoTable.tcDBParams.TabIndex = 0;
+                        ucDealTypeInsertIntoTable.tpThreadControl.PageVisible = true;
                         break;
                     default:
                         pnlDealTypeFTP.Visible = false;

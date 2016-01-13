@@ -207,7 +207,7 @@
             this.tclmnDocProcessType.Name = "tclmnDocProcessType";
             this.tclmnDocProcessType.Visible = true;
             this.tclmnDocProcessType.VisibleIndex = 4;
-            this.tclmnDocProcessType.Width = 150;
+            this.tclmnDocProcessType.Width = 200;
             // 
             // contextMenu
             // 

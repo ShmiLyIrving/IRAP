@@ -151,6 +151,8 @@ namespace IRAP.UFMPS.Library
                             if (_thread != null)
                             {
                                 _thread.Stop();
+                                if (TThreadInsertIntoTableSingle.Instance.Running)
+                                    TThreadInsertIntoTableSingle.Instance.RequestStop();
                             }
 							break;
 						case TTaskStatus.taskRunning:

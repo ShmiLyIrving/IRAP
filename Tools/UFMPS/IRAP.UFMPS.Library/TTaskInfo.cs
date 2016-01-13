@@ -116,6 +116,8 @@ namespace IRAP.UFMPS.Library
                     reg.SetValue("tb_NumberOfTextFields", tbNumOfTxtFields, RegistryValueKind.DWord);
                     reg.SetValue("tb_DataFirstRow", tbDataFirstRow, RegistryValueKind.DWord);
                     reg.SetValue("tb_IncludeTextFileName", tbIncludeTxtFileName, RegistryValueKind.DWord);
+
+                    reg.SetValue("Thread_StartMark", (int)threadStartMark, RegistryValueKind.DWord);
 				}
 				finally
 				{
@@ -215,6 +217,9 @@ namespace IRAP.UFMPS.Library
                 tbNumOfTxtFields = Convert.ToInt32(reg.GetValue("tb_NumberOfTextFields", "0").ToString());
                 tbDataFirstRow = Convert.ToInt32(reg.GetValue("tb_DataFirstRow", "0").ToString());
                 tbIncludeTxtFileName = Convert.ToInt32(reg.GetValue("tb_IncludeTextFileName", "0").ToString()) == 1;
+
+                // 单线程执行处理方式时，每个线程开始执行的标志
+                threadStartMark = (TThreadStartMark)Convert.ToInt32(reg.GetValue("Thread_StartMark", "0").ToString());
 			}
 
             public bool BackupFileFlag
@@ -613,5 +618,17 @@ namespace IRAP.UFMPS.Library
                 set { tbIncludeTxtFileName = value; }
             }
             private bool tbIncludeTxtFileName = false;
+            /// <summary>
+            /// </summary>
+            private TThreadStartMark threadStartMark = 0;
+
+            /// <summary>
+            /// 线程开始标志
+            /// </summary>
+            public TThreadStartMark ThreadStartMark
+            {
+                get { return threadStartMark; }
+                set { threadStartMark = value; }
+            }
         }
 }

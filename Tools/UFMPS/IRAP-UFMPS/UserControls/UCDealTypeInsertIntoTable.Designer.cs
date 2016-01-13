@@ -48,6 +48,9 @@
             this.edtNumOfTextFields = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.edtSplitter = new DevExpress.XtraEditors.TextEdit();
+            this.tpThreadControl = new DevExpress.XtraTab.XtraTabPage();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cboThreadStartMark = new DevExpress.XtraEditors.ImageComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tcDBParams)).BeginInit();
             this.tcDBParams.SuspendLayout();
             this.tpDBParams.SuspendLayout();
@@ -61,6 +64,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtDataStartLineNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNumOfTextFields.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtSplitter.Properties)).BeginInit();
+            this.tpThreadControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboThreadStartMark.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tcDBParams
@@ -74,6 +79,7 @@
             this.tcDBParams.TabIndex = 0;
             this.tcDBParams.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpDBParams,
+            this.tpThreadControl,
             this.tpDataFormatParams});
             // 
             // tpDBParams
@@ -287,6 +293,34 @@
             this.edtSplitter.Size = new System.Drawing.Size(50, 20);
             this.edtSplitter.TabIndex = 24;
             // 
+            // tpThreadControl
+            // 
+            this.tpThreadControl.Controls.Add(this.cboThreadStartMark);
+            this.tpThreadControl.Controls.Add(this.labelControl4);
+            this.tpThreadControl.Name = "tpThreadControl";
+            this.tpThreadControl.Size = new System.Drawing.Size(615, 157);
+            this.tpThreadControl.Text = "线程控制";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl4.Location = new System.Drawing.Point(9, 6);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(169, 17);
+            this.labelControl4.TabIndex = 16;
+            this.labelControl4.Text = "线程开始标志：";
+            // 
+            // cboThreadStartMark
+            // 
+            this.cboThreadStartMark.EnterMoveNextControl = true;
+            this.cboThreadStartMark.Location = new System.Drawing.Point(184, 4);
+            this.cboThreadStartMark.Name = "cboThreadStartMark";
+            this.cboThreadStartMark.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboThreadStartMark.Size = new System.Drawing.Size(229, 20);
+            this.cboThreadStartMark.TabIndex = 17;
+            // 
             // UCDealTypeInsertIntoTable
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -306,6 +340,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtDataStartLineNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNumOfTextFields.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtSplitter.Properties)).EndInit();
+            this.tpThreadControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboThreadStartMark.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -332,5 +368,8 @@
         public DevExpress.XtraEditors.TextEdit edtDataStartLineNo;
         public DevExpress.XtraTab.XtraTabControl tcDBParams;
         public DevExpress.XtraEditors.CheckEdit chkSaveIncludeFileName;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        public DevExpress.XtraEditors.ImageComboBoxEdit cboThreadStartMark;
+        public DevExpress.XtraTab.XtraTabPage tpThreadControl;
     }
 }

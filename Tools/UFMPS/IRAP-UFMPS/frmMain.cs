@@ -361,6 +361,8 @@ namespace IRAP_UFMPS
 
         private void tmnQuit_Click(object sender, EventArgs e)
         {
+            tmnuStopAllTasks.PerformClick();
+
             this.notifyIcon.Visible = false;
             Application.Exit();
         }

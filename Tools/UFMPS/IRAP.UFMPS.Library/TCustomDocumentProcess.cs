@@ -10,10 +10,10 @@ namespace IRAP.UFMPS.Library
 {
     abstract class TCustomDocumentProcess
     {
-        private UserControls.UCMonitorLog showLog = null;
-        private TreeListNode nodeParentLog = null;
-        private Thread _thread;
-        private static List<string> processingFiles = new List<string>();
+        protected UserControls.UCMonitorLog showLog = null;
+        protected TreeListNode nodeParentLog = null;
+        protected Thread _thread;
+        protected static List<string> processingFiles = new List<string>();
 
         protected string dataFileName;
         protected TTaskInfo _task = null;
@@ -51,7 +51,7 @@ namespace IRAP.UFMPS.Library
 
         protected abstract bool DocumentProcessing();
 
-        private void AfterDocumentProcessing()
+        protected void AfterDocumentProcessing()
         {
             // 文件处理完成后
             if (_task.BackupFileFlag && _task.BackupFileFolder.Trim() != "")
@@ -103,7 +103,7 @@ namespace IRAP.UFMPS.Library
         /// <summary>
         /// 线程运行入口
         /// </summary>
-        public void RunProcessing()
+        public virtual void RunProcessing()
         {
             if (processingFiles.IndexOf(dataFileName) < 0)
             {
@@ -138,7 +138,7 @@ namespace IRAP.UFMPS.Library
         /// <summary>
         /// 记录日志
         /// </summary>
-        private void WriteLog(object sender, string message)
+        protected void WriteLog(object sender, string message)
         {
             if (nodeParentLog == null)
             {

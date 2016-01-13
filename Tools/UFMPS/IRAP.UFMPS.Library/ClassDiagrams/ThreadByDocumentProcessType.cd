@@ -1,40 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.UFMPS.Library.TCustomDocumentProcess" Collapsed="true">
-    <Position X="3.25" Y="0.5" Width="1.5" />
+    <Position X="3.75" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAgEAAIAYCACAAAAAEABgAAAIAAAAAAAAAAAAAACAAA=</HashCode>
+      <HashCode>QAgEAAIAYCACAAAAAEABgAAAIAAAAAAAQAAAAAACAAA=</HashCode>
       <FileName>TCustomDocumentProcess.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.UFMPS.Library.TThreadFtpFile">
-    <Position X="1.5" Y="1.75" Width="1.5" />
+    <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>TThreadFtpFile.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.UFMPS.Library.TThreadInsertIntoTable">
-    <Position X="5.5" Y="1.75" Width="1.5" />
+  <Class Name="IRAP.UFMPS.Library.TThreadInsertIntoTableThread">
+    <Position X="5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
-      <FileName>TThreadInsertIntoTable.cs</FileName>
+      <FileName>TThreadInsertIntoTableThread.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.UFMPS.Library.TThreadMoveTo">
-    <Position X="3.5" Y="1.75" Width="1.5" />
+    <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>TThreadMoveTo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Delegate Name="IRAP.UFMPS.Library.InvokeAddLogs">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="IRAP.UFMPS.Library.TThreadInsertIntoTableSingle">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAEACAAQAAAAAAAAAAgAAAAAAQAAAACQAAAAAACAAA=</HashCode>
+      <FileName>TThreadInsertIntoTableSingle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="IRAP.UFMPS.Library.InvokeAddLogs" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Delegates.cs</FileName>

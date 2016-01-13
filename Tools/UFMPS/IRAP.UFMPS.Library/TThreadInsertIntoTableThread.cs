@@ -10,11 +10,11 @@ using System.Data.SqlClient;
 
 namespace IRAP.UFMPS.Library
 {
-    internal class TThreadInsertIntoTable : TCustomDocumentProcess
+    internal class TThreadInsertIntoTableThread : TCustomDocumentProcess
     {
         private SqlConnection dbConn = null;
 
-        public TThreadInsertIntoTable(
+        public TThreadInsertIntoTableThread(
             string dataFileName, 
             TTaskInfo taskInfo, 
             UserControls.UCMonitorLog showLog = null,
@@ -34,7 +34,7 @@ namespace IRAP.UFMPS.Library
             dbConn.Open();
         }
 
-        ~TThreadInsertIntoTable()
+        ~TThreadInsertIntoTableThread()
         {
         }
 
