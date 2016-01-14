@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <!--1-MSSQL 2-Oracle 3-Mysql 4-PostgreSql -->
+    <add key="DBType" value="1"/>
+    <add key="SeqServerAddr" value="192.168.57.217"/>
+    <!--MES数据库地址-->
+    <add key="ConnectionString" value="Server=192.168.57.221;initial catalog=IRAP;UID=sa;Password=irap!209420;Min Pool Size=2;Max Pool Size=60;"/>
+  </appSettings>
+
+  <SetupValue>
+    <add key="NextTransactNo" value="1"/>
+  </SetupValue>
+
+  <SetupParam SaveInterval="5" logFileDir="F:\\" />
+
+</configuration>
