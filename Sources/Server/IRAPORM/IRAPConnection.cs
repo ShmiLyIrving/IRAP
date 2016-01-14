@@ -2408,5 +2408,10 @@ namespace IRAPORM
                 conn.Dispose();
             }
         }
+
+        public IList<T> List<T>(string querySql)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Entity.SSO.AgencyInfo" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAASAAAEABAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>AgencyInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.CMDString" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>CMDString.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.MenuInfo" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAIACAAgACAAAAAgBAABAAABgAAQARJAoAAAAIAQBU=</HashCode>
+      <FileName>MenuInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.PortalLink" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAIAAQAJQAAAAAAAAAAAIAAAAAQAAAABA=</HashCode>
+      <FileName>PortalLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.ProcessInfo" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAEABAAAAAAAAIIAAAAAABAVQEEAhA=</HashCode>
+      <FileName>ProcessInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.RoleInfo" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAIAAAAAAAAQAAAAAAAEAAAABA=</HashCode>
+      <FileName>RoleInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.StrParamInfo" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEACAAAAAAAAAAAAgAAAAAAACABAAAAAAAAAAABA=</HashCode>
+      <FileName>StrParamInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.SystemInfo" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgAgAAABqAQAADhMQQAQREAIABQQAQCgAAAAAAIBA=</HashCode>
+      <FileName>SystemInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.SystemMenuInfoButtonStyle" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>SystemMenuInfoButtonStyle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.SystemMenuInfoMenuStyle" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAgAAAAAIAQAAAAAAAAAABAQACAQBAABA=</HashCode>
+      <FileName>SystemMenuInfoMenuStyle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.UserInfo" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAACAAAAAAAAAAAAAAAAAAAAAQAAEAAAABA=</HashCode>
+      <FileName>UserInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

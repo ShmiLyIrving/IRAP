@@ -4,31 +4,28 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C52CA7A1-74B9-4883-BD88-F4C5797D4B55}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.Server.Host</RootNamespace>
-    <AssemblyName>IRAP.Server.Host</AssemblyName>
+    <RootNamespace>IRAP.Entity.SSO</RootNamespace>
+    <AssemblyName>IRAP.Entity.SSO</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Bin\Server\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Bin\Server\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,11 +42,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AgencyInfo.cs" />
+    <Compile Include="CMDString.cs" />
+    <Compile Include="MenuInfo.cs" />
+    <Compile Include="PortalLink.cs" />
+    <Compile Include="ProcessInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleInfo.cs" />
+    <Compile Include="StrParamInfo.cs" />
+    <Compile Include="SystemInfo.cs" />
+    <Compile Include="SystemMenuInfoButtonStyle.cs" />
+    <Compile Include="SystemMenuInfoMenuStyle.cs" />
+    <Compile Include="UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Diagrams\IRAP.Entity.SSO.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
+      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Global\IRAPShared\IRAPShared.csproj">
+      <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
+      <Name>IRAPShared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
