@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.SSO", "IRAP.Ent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPShared", "..\Global\IRAPShared\IRAPShared.csproj", "{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.SSO", "IRAP.BL\IRAP.BL.SSO\IRAP.BL.SSO.csproj", "{BC413C45-E8F4-44E0-9C00-AFBCE88E1176}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC413C45-E8F4-44E0-9C00-AFBCE88E1176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC413C45-E8F4-44E0-9C00-AFBCE88E1176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC413C45-E8F4-44E0-9C00-AFBCE88E1176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC413C45-E8F4-44E0-9C00-AFBCE88E1176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
