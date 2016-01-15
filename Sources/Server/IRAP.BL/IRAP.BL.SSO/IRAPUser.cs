@@ -300,7 +300,7 @@ namespace IRAP.BL.SSO
             catch (Exception error)
             {
                 errCode = 99000;
-                errText = string.Format("调用 IRAP..ssp_Logout 函数发生异常：{0}", error.Message);
+                errText = string.Format("调用 IRAP..ssp_Logout 时发生异常：{0}", error.Message);
                 return Json("");
             }
             finally
