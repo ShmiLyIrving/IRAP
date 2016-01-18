@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Client.User.BaseUser" Collapsed="true">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAQEAAAAgAAAAAAAAAIAAAAAAAAAAAAQAgAAAAA=</HashCode>
+      <FileName>BaseUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.User.StationUser" Collapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAICAAAAAgAAAAAAAAAAAAAAAAAAGAAA=</HashCode>
+      <FileName>StationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.User.IRAPUser" Collapsed="true">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAQEAoCAAgAAogAAEgBAIAsACCAAIAMGwQASAAIAAQA=</HashCode>
+      <FileName>IRAPUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

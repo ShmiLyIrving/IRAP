@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f0ebdea2-12d5-4302-854b-095ec89058f0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+      <CollectionMapping TypeName="System.Collections.Hashtable" Category="Dictionary" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://127.0.0.1:16910/IRAP" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="IRAP.xsd" MetadataType="Schema" ID="be77f758-7ff9-4950-b70c-6b0db7a94887" SourceId="1" SourceUrl="http://localhost:16910/IRAP?xsd=xsd2" />
+    <MetadataFile FileName="IRAP1.xsd" MetadataType="Schema" ID="a2259b88-d312-4438-97fc-3e2ac1445974" SourceId="1" SourceUrl="http://localhost:16910/IRAP?xsd=xsd0" />
+    <MetadataFile FileName="ServiceIRAPGeneral.wsdl" MetadataType="Wsdl" ID="0237a024-c007-450a-a40f-1779f5476560" SourceId="1" SourceUrl="http://localhost:16910/IRAP?wsdl" />
+    <MetadataFile FileName="IRAP2.xsd" MetadataType="Schema" ID="cce6c44a-eb51-400e-b047-65ef537ce085" SourceId="1" SourceUrl="http://localhost:16910/IRAP?xsd=xsd3" />
+    <MetadataFile FileName="IRAP3.xsd" MetadataType="Schema" ID="92c06fae-39e1-414b-a019-e8f7472e40e0" SourceId="1" SourceUrl="http://localhost:16910/IRAP?xsd=xsd1" />
+    <MetadataFile FileName="IRAP.disco" MetadataType="Disco" ID="03d033e6-f69a-4092-b3a2-bbce99bf707f" SourceId="1" SourceUrl="http://localhost:16910/IRAP?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
