@@ -34,9 +34,13 @@
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +53,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Global\IRAP.Global\IRAP.Global.csproj">
+      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRAP.General.Server.Library\IRAP.General.Server.Library.csproj">
+      <Project>{052951ca-1ccb-4430-b794-4d8e49fd853f}</Project>
+      <Name>IRAP.General.Server.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

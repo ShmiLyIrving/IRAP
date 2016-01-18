@@ -44,6 +44,14 @@
     <Compile Include="ServiceIRAPGeneral.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Global\IRAPShared\IRAPShared.csproj">
+      <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
+      <Name>IRAPShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DynamicLoad\DynamicLoad.csproj">
+      <Project>{d07f3170-7a52-493b-9a35-3875c2d834a9}</Project>
+      <Name>DynamicLoad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.Interface.Global\IRAP.Interface.Global.csproj">
       <Project>{b516b5f7-dbc0-4dee-9f86-3edd258e9b05}</Project>
       <Name>IRAP.Interface.Global</Name>
