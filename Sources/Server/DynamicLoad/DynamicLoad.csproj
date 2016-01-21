@@ -1,16 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D07F3170-7A52-493B-9A35-3875C2D834A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IRAP.DynamicLoad</RootNamespace>
-    <AssemblyName>DynamicLoad</AssemblyName>
+    <AssemblyName>IRAP.DynamicLoad</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,40 +35,45 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyLoader.cs" />
+    <Compile Include="framework.cs" />
     <Compile Include="InvokerInfo.cs" />
-    <Compile Include="IRAPDevFramework.cs" />
     <Compile Include="IRAPJsonSerializer.cs" />
-    <Compile Include="JsonSerializer.cs" />
-    <Compile Include="MethodInvoker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MethodInvoker.cs" />
+    <Compile Include="AssemblyLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="IRAPEntitySet.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Server\IRAP.Interface.Global\IRAP.Interface.Global.csproj">
+      <Project>{671e9ab2-c56d-4e04-884a-c69d83a773e5}</Project>
+      <Name>IRAP.Interface.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Global\IRAPShared\IRAPShared.csproj">
       <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
       <Name>IRAPShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IRAP.Interface.Global\IRAP.Interface.Global.csproj">
-      <Project>{b516b5f7-dbc0-4dee-9f86-3edd258e9b05}</Project>
-      <Name>IRAP.Interface.Global</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

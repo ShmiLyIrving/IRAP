@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Assembly>
-  <Row AssemblyName="IRAP.Entity.IRAPAdmin"></Row>
-  <Row AssemblyName="IRAP.MES.Entity"></Row>
+  <Row AssemblyName="IRAP.Entity.IRAPAdmin" ></Row>
+  <Row AssemblyName="IRAP.MES.Entity" ></Row>
 </Assembly>

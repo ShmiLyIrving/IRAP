@@ -43,14 +43,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.StrParamInfo" Collapsed="true">
-    <Position X="8.75" Y="1.5" Width="1.5" />
+    <Position X="5.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEACAAAAAAAAAAAAgAAAAAAACABAAAAAAAAAAABA=</HashCode>
       <FileName>StrParamInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.SystemInfo" Collapsed="true">
-    <Position X="5.25" Y="2.5" Width="1.5" />
+    <Position X="7" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAgAgAAABqAQAADhMQQAQREAIABQQAQCgAAAAAAIBA=</HashCode>
       <FileName>SystemInfo.cs</FileName>
@@ -71,10 +71,17 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.UserInfo" Collapsed="true">
-    <Position X="7" Y="2.5" Width="1.5" />
+    <Position X="8.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAACAAAAAAAAAAAAAAAAAAAAAQAAEAAAABA=</HashCode>
       <FileName>UserInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.StationLogin" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAAAACAAAAABBIAAAAAQAAAAIEAQAAEEACABA=</HashCode>
+      <FileName>StationLogin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

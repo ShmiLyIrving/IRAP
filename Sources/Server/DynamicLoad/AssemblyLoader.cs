@@ -2,168 +2,136 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
-using System.Diagnostics;
-using System.Runtime.Remoting.Lifetime;
 using System.Reflection;
-using System.Globalization;
+using System.Runtime.Remoting.Lifetime;
+using System.IO;
 
 namespace IRAP.DynamicLoad
 {
-    public class AssemblyLoader : MarshalByRefObject, IDisposable
+    public class AssemblyLoader : MarshalByRefObject,IDisposable
     {
         private readonly object _lockThis = new object();
         private Dictionary<string, Queue<InvokerInfo>> _caches =
             new Dictionary<string, Queue<InvokerInfo>>();
 
+        //加载所有可用的程序集
         /// <summary>
         /// 加载所有可用的程序集
         /// </summary>
         /// <param name="dlls"></param>
         public void LoadAssemblys(Dictionary<string, string> dlls)
         {
-            foreach(KeyValuePair<string, string> kvp in dlls)
+            foreach (KeyValuePair<string, string> kvp in dlls)
             {
                 Queue<InvokerInfo> result;
                 _caches.TryGetValue(kvp.Value, out result);
-                if (result == null)
+                if (result==null)
+                {
                     LoadAssembly(kvp.Value, kvp.Key);
+                } 
             }
+           // Assembly.Load("IRAP.Entity.IRAPAdmin");
         }
-
+        //卸载程序集
         /// <summary>
         /// 卸载程序集
         /// </summary>
-        /// <param name="typeName"></param>
+        /// <param name="dllName"></param>
         public void Unload(string typeName)
         {
             AppDomain domain = null;
-            while (_caches[typeName].Count !=0)
+            while (_caches[typeName].Count != 0)
             {
                 InvokerInfo info = _caches[typeName].Dequeue();
                 domain = info.Domain;
             }
-
-            if (domain != null)
+            if (domain!=null)
+            {
                 AppDomain.Unload(domain);
+            }  
         }
-
+        //调用指定程序集中的指定方法
         /// <summary>
-        /// 调用指定程序集中的指定方法
+        /// 调用指定程序集中指定的方法
         /// </summary>
         /// <param name="dllName">程序集名称</param>
-        /// <param name="className">类名称</param>
         /// <param name="methodName">方法名称</param>
         /// <param name="methodParams">参数数组</param>
-        /// <param name="errCode"></param>
-        /// <param name="errText"></param>
         /// <returns></returns>
-        public object InvokeMethod(
-            string dllName,
-            string className,
-            string methodName,
-            object[] methodParams,
-            out int errCode,
-            out string errText)
+        public object InvokeMethod(string dllName, string className,string methodName, object[] methodParams,
+             out int errCode, out string errText)
         {
-            Stopwatch stopwatch = new Stopwatch();
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
-
             object result;
             InvokerInfo info;
-            lock(_lockThis)
+            lock (_lockThis)
             {
                 info = GetInvoker(dllName, className);
                 info.Ref++;
             }
-
             try
             {
-                result = info.Invoker.InvokeMethod(
-                    methodName,
-                    methodParams,
-                    out errCode,
-                    out errText);
+                result = info.Invoker.InvokeMethod(methodName, methodParams, out errCode, out errText);
                 stopwatch.Stop();
-
                 TimeSpan timespan = stopwatch.Elapsed;
-                Console.WriteLine(
-                    string.Format("{0}:<{1}>{2}->{3}->耗时(ms):{4}",
-                        DateTime.Now.ToString(),
-                        info.Ref.ToString(),
-                        dllName,
-                        methodName,
-                        timespan.TotalMilliseconds.ToString()));
+                Console.WriteLine(DateTime.Now.ToString() 
+                    + ":<" + info.Ref.ToString() 
+                    + ">" + dllName + "->" 
+                    + methodName+"->耗时(ms):"+timespan.TotalMilliseconds.ToString());
             }
-            catch (Exception error)
+            catch (Exception err)
             {
-                throw error;
+                throw err;
             }
             finally
             {
                 lock (_lockThis)
                 {
                     info.Ref--;
-                    TryToUnload(dllName, className, info);
+                    TryToUnLoad(dllName,className, info);
                 }
             }
-
             return result;
         }
 
-        public object InvokeMethodEx(
-            string dllName,
-            string className,
-            string methodName,
-            object[] methodParams,
-            out int errCode,
-            out string errText)
+        public object InvokeMethodEx(string dllName, string className, string methodName, object[] methodParams,
+          out int errCode, out string errText)
         {
-            Stopwatch stopwatch = new Stopwatch();
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
-
             object result;
             InvokerInfo info;
-            lock(_lockThis)
+            lock (_lockThis)
             {
                 info = GetInvoker(dllName, className);
                 info.Ref++;
             }
-
             try
             {
-                result = info.Invoker.InvokeMethodEx(
-                    methodName,
-                    methodParams,
-                    out errCode,
-                    out errText);
+                result = info.Invoker.InvokeMethodEx(methodName, methodParams, out errCode, out errText);
                 stopwatch.Stop();
-
                 TimeSpan timespan = stopwatch.Elapsed;
-                Console.WriteLine(
-                    string.Format("{0}(RESTful):<{1}>{2}->{3}->耗时(ms):{4}",
-                        DateTime.Now.ToString(),
-                        info.Ref.ToString(),
-                        dllName,
-                        methodName,
-                        timespan.TotalMilliseconds.ToString()));
+                Console.WriteLine(DateTime.Now.ToString()
+                    + "(RESTful):<" + info.Ref.ToString()
+                    + ">" + dllName + "->"
+                    + methodName + "->耗时(ms):" + timespan.TotalMilliseconds.ToString());
             }
-            catch (Exception error)
+            catch (Exception err)
             {
-                throw error;
+                throw err;
             }
             finally
             {
                 lock (_lockThis)
                 {
                     info.Ref--;
-                    TryToUnload(dllName, className, info);
+                    TryToUnLoad(dllName, className, info);
                 }
             }
-
             return result;
         }
-
+        //加载指定的程序集
         /// <summary>
         /// 加载指定的程序集
         /// </summary>
@@ -171,48 +139,49 @@ namespace IRAP.DynamicLoad
         /// <param name="typeName"></param>
         public void LoadAssembly(string dllName, string typeName)
         {
+            //Get object from cache
             Queue<InvokerInfo> result;
             _caches.TryGetValue(typeName, out result);
 
-            if (result==null||result.Count==0)
+            if (result == null || result.Count == 0)
             {
-                string dllFileName = string.Format(@"{0}\ServiceDlls\{1}",
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    dllName);
-                Console.WriteLine(dllFileName);
+                Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory + @"ServiceDlls\" + dllName);
+                //Get TimeStamp of file
+                FileInfo info =
+                    new FileInfo(
+                        AppDomain.CurrentDomain.BaseDirectory + @"ServiceDlls\" + dllName);
 
-                FileInfo info = new FileInfo(dllFileName);
                 if (!info.Exists)
-                    throw new Exception(string.Format("没有找到程序集文件[{0}]", dllFileName));
+                    throw new Exception(AppDomain.CurrentDomain.BaseDirectory
+                        + @"ServiceDlls\" + dllName + " not exist");
 
                 CacheMethodInvoker(dllName, typeName, info.LastWriteTime);
             }
         }
-
+        //缓存指定的方法调用信息
         /// <summary>
         /// 缓存指定的方法调用信息
         /// </summary>
         /// <param name="dllName"></param>
         /// <param name="typeName"></param>
         /// <param name="lastWriteTime"></param>
-        private InvokerInfo CacheMethodInvoker(
-            string dllName, 
-            string typeName, 
-            DateTime lastWriteTime)
+        /// <returns></returns>
+        private InvokerInfo CacheMethodInvoker(string dllName, string typeName, DateTime lastWriteTime)
         {
-            MethodInvoker invoker = null;
+            MethodInvoker invoker;
 
             var invokerInfo = new InvokerInfo();
+
             var setup = new AppDomainSetup
             {
                 ShadowCopyFiles = "true",
-                ShadowCopyDirectories = string.Format(@"{0}ServiceDlls\",
-                  AppDomain.CurrentDomain.BaseDirectory),
+                ShadowCopyDirectories = AppDomain.CurrentDomain.BaseDirectory + @"ServiceDlls\",
                 ConfigurationFile = "IRAP.DynamicLoad.exe.config",
-                ApplicationBase = AppDomain.CurrentDomain.BaseDirectory,
+                ApplicationBase = AppDomain.CurrentDomain.BaseDirectory
             };
 
             AppDomain domain = AppDomain.CreateDomain(dllName, null, setup);
+
             domain.DoCallBack(delegate { LifetimeServices.LeaseTime = TimeSpan.Zero; });
 
             invokerInfo.Domain = domain;
@@ -221,55 +190,37 @@ namespace IRAP.DynamicLoad
 
             BindingFlags bindings =
                 BindingFlags.CreateInstance | BindingFlags.Instance | BindingFlags.Public;
-            object[] para = new object[]
-            {
-                string.Format(@"{0}\{1}", setup.ShadowCopyDirectories, dllName),
-                typeName,
-            };
-
+            object[] para = new object[] { setup.ShadowCopyDirectories + @"\" + dllName, typeName };
             try
             {
-                invoker = (MethodInvoker)domain.CreateInstanceAndUnwrap(
-                    Assembly.GetExecutingAssembly().CodeBase.Substring(8),
-                    typeof(MethodInvoker).FullName,
-                    true,
-                    bindings,
-                    null,
-                    para,
-                    CultureInfo.CurrentCulture,
-                    null);
+                invoker = (MethodInvoker)domain.CreateInstanceFromAndUnwrap(
+                                             Assembly.GetExecutingAssembly().CodeBase.Substring(8),
+                                             typeof(MethodInvoker).FullName,
+                                             true, bindings, null, para, 
+                                             System.Globalization.CultureInfo.CurrentCulture,
+                                             null);
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
                 throw new Exception(
-                    string.Format(
-                        "无法从程序集[{0}]中创建[{1}]类型的对象，原因：{2}",
-                        Assembly.GetExecutingAssembly().CodeBase,
-                        typeof(MethodInvoker).FullName,
-                        error.Message));
+                    "Can't create object which type is " + typeof(MethodInvoker).FullName + " from assembly " +
+                    Assembly.GetExecutingAssembly().CodeBase + ",Error Message: " + ex.Message);
             }
 
-            if (invoker==null)
-            {
+            if (invoker == null)
                 throw new Exception(
-                    string.Format(
-                        "在程序集[{0}]中没有找到[{1}]类型！",
-                        Assembly.GetExecutingAssembly().CodeBase,
-                        typeof(MethodInvoker).FullName));
-            }
+                    "Can't find type " + typeof(MethodInvoker).FullName + " from " +
+                    Assembly.GetExecutingAssembly().CodeBase);
 
             try
             {
                 invoker.LoadAllMethods();
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                throw new Exception(
-                    string.Format(
-                        "无法初始化程序集[{0}]中[{1}]类型的实例，原因：{2}",
-                        Assembly.GetExecutingAssembly().CodeBase,
-                        typeof(MethodInvoker).FullName,
-                        error.Message));
+                throw new Exception("Can't initialize object which type is " + typeof(MethodInvoker).FullName +
+                                    " from " +
+                                    Assembly.GetExecutingAssembly().CodeBase + ",Error Message: " + ex.Message);
             }
 
             invokerInfo.Invoker = invoker;
@@ -277,7 +228,7 @@ namespace IRAP.DynamicLoad
 
             if (_caches.Keys.Contains(typeName))
             {
-                // 如果此类缓存中已经存在方法了，说明是过期的，需要重新加载（？？？为毛？）
+                //如果此类缓存中已经存在方法了，说明是过期的，需要重新加载！
                 foreach (InvokerInfo y in _caches[typeName])
                 {
                     if (y.TypeName == typeName)
@@ -294,20 +245,15 @@ namespace IRAP.DynamicLoad
                 queue.Enqueue(invokerInfo);
                 _caches[typeName] = queue;
             }
-
             return invokerInfo;
         }
-
+        //尝试卸载程序集
         /// <summary>
         /// 尝试卸载程序集
         /// </summary>
         /// <param name="dllName"></param>
-        /// <param name="typeName"></param>
         /// <param name="currentInfo"></param>
-        private void TryToUnload(
-            string dllName,
-            string typeName,
-            InvokerInfo currentInfo)
+        private void TryToUnLoad(string dllName,string typeName, InvokerInfo currentInfo)
         {
             InvokerInfo info = _caches[typeName].Peek();
 
@@ -315,24 +261,26 @@ namespace IRAP.DynamicLoad
                 return;
 
             if (info.Ref == 0)
+            {
                 Unload(typeName);
+            }
         }
-
+        //获取指定程序集的调用信息
         /// <summary>
         /// 获取指定程序集的调用信息
         /// </summary>
         /// <param name="dllName"></param>
-        /// <param name="typeName"></param>
         /// <returns></returns>
-        private InvokerInfo GetInvoker(string dllName, string typeName)
+        private InvokerInfo GetInvoker(string dllName,string typeName)
         {
+            //Get object from cache
             Queue<InvokerInfo> result;
             InvokerInfo trueClass = null;
             _caches.TryGetValue(typeName, out result);
 
             foreach (InvokerInfo item in result)
             {
-                if (item.TypeName == typeName)
+                if (item.TypeName==typeName )
                 {
                     trueClass = item;
                     break;
@@ -340,31 +288,40 @@ namespace IRAP.DynamicLoad
             }
 
             if (trueClass == null)
-                throw new Exception(
-                    string.Format(
-                        "无法加载程序集[{0}]中的[{1}]类型",
-                        dllName,
-                        typeName));
+            {
+                throw new Exception(dllName + " not loaded "+typeName);
+            }
 
-            string dllFileName = string.Format(@"{0}ServiceDlls\",
-                AppDomain.CurrentDomain.BaseDirectory, dllName);
-            FileInfo info = new FileInfo(dllFileName);
+            //Get TimeStamp of file
+            FileInfo info =
+                new FileInfo(AppDomain.CurrentDomain.BaseDirectory + @"ServiceDlls\" + dllName);
 
             if (!info.Exists)
+            {
                 return trueClass;
+            }
 
             if (info.LastWriteTime > trueClass.LastWriteTime)
+            {
                 return CacheMethodInvoker(dllName, typeName, info.LastWriteTime);
+            }
 
+            //return result.ToArray()[result.Count - 1];
             return trueClass;
         }
+
+        #region IDisposable 成员
 
         public void Dispose()
         {
             _caches.Clear();
 
             foreach (var o in _caches.Keys)
+            {
                 Unload(o);
+            }
         }
+
+        #endregion
     }
 }

@@ -34,7 +34,7 @@ namespace IRAP.General.Server.Library
         {
             int errCode = -1;
             IRAPDevFramework irapfw = new IRAPDevFramework();
-            jsonContent = (string)irapfw.Exchange(
+            jsonContent = (string)irapfw.ExChange(
                 assemblyName,
                 className,
                 methodName,
