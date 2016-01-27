@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -7,6 +6,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 using IRAP.Global;
+using IRAP.Client.User;
 
 namespace IRAP
 {
@@ -19,7 +19,7 @@ namespace IRAP
         private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         /// <summary>
-        /// 应用程序的主入口点。
+        /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
@@ -35,11 +35,6 @@ namespace IRAP
 
             #endregion
 
-            DevExpress.UserSkins.BonusSkins.Register();
-            DevExpress.UserSkins.TouchSkins.Register();
-            DevExpress.Skins.SkinManager.EnableFormSkins();
-            DevExpress.Utils.AppearanceObject.DefaultFont = new System.Drawing.Font("微软雅黑", 10.25f);
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -53,6 +48,30 @@ namespace IRAP
             #endregion
 
             #region 用户登录
+            IRAPUser.Instance.UserLogin();
+            if (IRAPUser.Instance.IsLogon)
+            {
+                //while (true)
+                {
+                    Application.Run(new frmIRAPMain());
+                }
+
+                if (IRAPUser.Instance.IsLogon)
+                {
+                    try
+                    {
+                        IRAPUser.Instance.Logout();
+                    }
+                    catch (Exception error)
+                    {
+                        WriteLog.Instance.Write(
+                            string.Format(
+                                "登录用户注销时发生错误：{0}",
+                                error.Message),
+                            "IRAP");
+                    }
+                }
+            }
             #endregion
 
             WriteLog.Instance.Write("退出 IRAP 应用平台系统", "IRAP");

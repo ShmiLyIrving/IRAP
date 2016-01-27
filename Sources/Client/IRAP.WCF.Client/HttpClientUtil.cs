@@ -211,9 +211,29 @@ namespace IRAP.WCF.Client
             return JsonConvert.DeserializeObject<T>(json);
         }
 
+        /// <summary>
+        /// REST @DELETE 方法
+        /// </summary>
+        /// <param name="methodURL"></param>
+        /// <returns></returns>
         public static bool doDeleteMethod(string methodURL)
         {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(
+                string.Format("{0}{1}",
+                    restFulServer_URL,
+                    methodURL));
+            request.Method = "DELETE";
+            request.ContentType = "application/json;charset=UTF-8";
 
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+            {
+                string responseString = reader.ReadToEnd();
+                if (responseString.Equals("1"))
+                    return true;
+                else
+                    return false;
+            }
         }
     }
 }

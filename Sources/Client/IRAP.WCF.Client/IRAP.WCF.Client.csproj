@@ -48,18 +48,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HttpClientUtil.cs" />
+    <Compile Include="IRAPJsonSerializer.cs" />
+    <Compile Include="JsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RESTFulClient.cs" />
     <Compile Include="Service References\IRAPWCFClient\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="WCFClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Diagrams\IRAP.WCF.Client.cd" />
     <None Include="Service References\IRAPWCFClient\IRAP.xsd">
       <SubType>Designer</SubType>
     </None>

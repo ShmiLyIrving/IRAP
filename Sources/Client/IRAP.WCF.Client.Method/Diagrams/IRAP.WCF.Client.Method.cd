@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.WCF.Client.Method.IRAPUserClient" Collapsed="true">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAEAYgAAAAAAIAACAAAAACAAAAAAAAAQBAAAAAgAgE=</HashCode>
+      <FileName>IRAPUserClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPFVSClient" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPFVSClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPKanbanClient" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPKanbanClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPMDMClient" Collapsed="true">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPMDMClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPMESClient" Collapsed="true">
+    <Position X="1" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPMESClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPMESReportClient" Collapsed="true">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPMESReportClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPMESTSClient" Collapsed="true">
+    <Position X="6.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPMESTSClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPSCESClient" Collapsed="true">
+    <Position X="1" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPSCESClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPSystemClient" Collapsed="true">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAAAAAABAAAAAAEAAQIAAAAQgAAAAAAAAA=</HashCode>
+      <FileName>IRAPSystemClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPTreeClient" Collapsed="true">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPTreeClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPMESRMMClient" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPMESRMMClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.HashtableTools" Collapsed="true">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAIAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>HashtableTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
