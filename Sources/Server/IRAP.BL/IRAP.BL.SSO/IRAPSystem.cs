@@ -520,7 +520,8 @@ namespace IRAP.BL.SSO
                         "CommunityID={0}|SystemID={1}|ProgLanguageID={2}|" +
                         "IsBSMode={3}|SysLogID={4}",
                         communityID, systemID, progLanguageID, isBSMode,
-                        sysLogID));
+                        sysLogID),
+                    strProcedureName);
                 #endregion
 
                 #region 执行数据库函数或存储过程
