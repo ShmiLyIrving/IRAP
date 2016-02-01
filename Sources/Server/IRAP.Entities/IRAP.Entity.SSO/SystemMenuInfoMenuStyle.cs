@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 
 using IRAP.Global;
+using IRAPShared;
 
 namespace IRAP.Entity.SSO
 {
@@ -33,6 +34,7 @@ namespace IRAP.Entity.SSO
                 imageMenuIcon = Tools.BytesToImage(value);
             }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Image ImageMenuIcon
         {
             get { return imageMenuIcon; }

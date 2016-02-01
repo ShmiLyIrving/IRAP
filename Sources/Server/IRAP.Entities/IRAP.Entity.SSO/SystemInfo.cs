@@ -142,6 +142,11 @@ namespace IRAP.Entity.SSO
         /// </summary>
         public string Application { get; set; }
 
+        public override string ToString()
+        {
+            return SystemName;
+        }
+
         public SystemInfo Clone()
         {
             return MemberwiseClone() as SystemInfo;

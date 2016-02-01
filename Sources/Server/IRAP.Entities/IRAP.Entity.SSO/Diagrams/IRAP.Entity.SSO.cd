@@ -29,28 +29,28 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.ProcessInfo" Collapsed="true">
-    <Position X="5.25" Y="1.5" Width="1.5" />
+    <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAEABAAAAAAAAIIAAAAAABAVQEEAhA=</HashCode>
       <FileName>ProcessInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.RoleInfo" Collapsed="true">
-    <Position X="7" Y="1.5" Width="1.5" />
+    <Position X="5.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAIAAAAAAAAQAAAAAAAEAAAABA=</HashCode>
       <FileName>RoleInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.StrParamInfo" Collapsed="true">
-    <Position X="5.25" Y="2.5" Width="1.5" />
+    <Position X="8.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEACAAAAAAAAAAAAgAAAAAAACABAAAAAAAAAAABA=</HashCode>
       <FileName>StrParamInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.SystemInfo" Collapsed="true">
-    <Position X="7" Y="2.5" Width="1.5" />
+    <Position X="10.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAgAgAAABqAQAADhMQQAQREAIABQQAQCgAAAAAAIBA=</HashCode>
       <FileName>SystemInfo.cs</FileName>
@@ -71,17 +71,31 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.UserInfo" Collapsed="true">
-    <Position X="8.75" Y="2.5" Width="1.5" />
+    <Position X="5.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAACAAAAAAAAAAAAAAAAAAAAAQAAEAAAABA=</HashCode>
       <FileName>UserInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.SSO.StationLogin" Collapsed="true">
-    <Position X="8.75" Y="1.5" Width="1.5" />
+    <Position X="7" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAQAAAAAAAACAAAAABBIAAAAAQAAAAIEAQAAEEACABA=</HashCode>
       <FileName>StationLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.WorkUnitInfo" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAACAEABAAgACAAAAAAAAAAABAAgAKABA=</HashCode>
+      <FileName>WorkUnitInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.SSO.StationInfo">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAgAAAAAAAABACQAAABAAAgAAACAAAgQAAAAACAhA=</HashCode>
+      <FileName>StationInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
