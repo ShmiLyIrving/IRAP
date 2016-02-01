@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Client.SubSystems.AvailableProcesses" Collapsed="true">
+    <Position X="3.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAEAIAAAAIAAAAAAAAAAAAAABAAAAQBQAAAAABAAAA=</HashCode>
+      <FileName>AvailableProcesses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.SubSystems.AvailableSubSystems" Collapsed="true">
+    <Position X="5.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAQAAAA=</HashCode>
+      <FileName>AvailableSubSystems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.SubSystems.AvailableWorkUnits" Collapsed="true">
+    <Position X="7.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAEAIAAAAAIAAACAAAAABAAAAAQAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>AvailableWorkUnits.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.SubSystems.CurrentOptions" Collapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAoAAAAAAAAICAgACAgIAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>CurrentOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.SubSystems.CurrentStationInfo" Collapsed="true">
+    <Position X="5.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAQAAAAEAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>CurrentStationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.SubSystems.CurrentSubSystem" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAEACAAAAAAAAAAAAQgAAAAAAQAAAAAQAAAA=</HashCode>
+      <FileName>CurrentSubSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.SubSystems.ucOptions" Collapsed="true">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAiBIAEACCAAAAAgADIAAECAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>ucOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

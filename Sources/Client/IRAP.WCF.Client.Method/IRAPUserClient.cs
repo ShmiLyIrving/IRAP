@@ -46,7 +46,7 @@ namespace IRAP.WCF.Client.Method
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                #region 讲函数调用参数加入 Hashtable 中
+                #region 将函数调用参数加入 Hashtable 中
                 #endregion
 
                 errCode = 0;

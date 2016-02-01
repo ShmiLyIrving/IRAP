@@ -7,6 +7,7 @@ using System.Reflection;
 
 using IRAP.Global;
 using IRAP.Client.User;
+using IRAP.Client.SubSystems;
 
 namespace IRAP
 {
@@ -51,9 +52,36 @@ namespace IRAP
             IRAPUser.Instance.UserLogin();
             if (IRAPUser.Instance.IsLogon)
             {
-                //while (true)
+                while (true)
                 {
-                    Application.Run(new frmIRAPMain());
+                    using (frmSelectSubSystem formSelectSystem = new frmSelectSubSystem())
+                    {
+                        if (formSelectSystem.ShowDialog() == DialogResult.Cancel)
+                            break;
+
+                        frmIRAPMain main = null;
+                        try
+                        {
+                            main = new frmIRAPMain();
+                            main.ShowDialog();
+                        }
+                        catch (Exception error)
+                        {
+                            WriteLog.Instance.Write(error.Message, "IRAP");
+                            MessageBox.Show(
+                                error.Message,
+                                "系统信息",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            main.Dispose();
+                        }
+
+                        if (AvailableSubSystems.Instance.AvailableCount <= 1)
+                            break;
+                    }
                 }
 
                 if (IRAPUser.Instance.IsLogon)

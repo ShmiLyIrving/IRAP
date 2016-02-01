@@ -71,7 +71,6 @@
             this.edtUserCode.Name = "edtUserCode";
             this.edtUserCode.Size = new System.Drawing.Size(168, 27);
             this.edtUserCode.TabIndex = 1;
-            this.edtUserCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtUserCode_KeyDown);
             this.edtUserCode.Leave += new System.EventHandler(this.edtUserCode_Leave);
             // 
             // edtUserPWD
@@ -84,7 +83,8 @@
             this.edtUserPWD.Size = new System.Drawing.Size(168, 27);
             this.edtUserPWD.TabIndex = 3;
             this.edtUserPWD.UseSystemPasswordChar = true;
-            this.edtUserPWD.Leave += new System.EventHandler(this.edtUserPWD_Leave);
+            this.edtUserPWD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtUserPWD_KeyDown);
+            this.edtUserPWD.Validating += new System.ComponentModel.CancelEventHandler(this.edtUserPWD_Validating);
             // 
             // radLabel2
             // 

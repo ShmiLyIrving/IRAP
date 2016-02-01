@@ -59,7 +59,7 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPSystemClient" Collapsed="true">
     <Position X="2.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAIAAAAAAAAAABAAAAAAEAAQIAAAAQgAAAAAAAAA=</HashCode>
+      <HashCode>AAAEEIAACAABCAAABAAAAAAEBAQIAAAAQgAAAAAAAAA=</HashCode>
       <FileName>IRAPSystemClient.cs</FileName>
     </TypeIdentifier>
   </Class>

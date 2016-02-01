@@ -35,65 +35,6 @@ namespace IRAP.Client.User
 
         private void edtUserPWD_Leave(object sender, EventArgs e)
         {
-            if (edtUserPWD.Text != "")
-            {
-                string strProcedureName =
-                    string.Format(
-                        "{0}.{1}",
-                        className,
-                        MethodBase.GetCurrentMethod().Name);
-                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-                try
-                {
-                    IRAPUser.Instance.Password = edtUserPWD.Text;
-                    if (IRAPUser.Instance.IsPWDVerified)
-                    {
-                        cboAgencies.Items.Clear();
-                        cboAgencies.DataSource = IRAPUser.Instance.AvailableAgencies;
-                        cboAgencies.DisplayMember = "AgencyName";
-                        cboAgencies.ValueMember = "AgencyLeaf";
-                        if (cboAgencies.Items.Count > 0)
-                            cboAgencies.SelectedIndex = 0;
-                        cboAgencies.Enabled = cboAgencies.Items.Count > 1;
-
-                        cboRoles.DataSource = IRAPUser.Instance.AvailableRoles;
-                        cboRoles.DisplayMember = "RoleName";
-                        cboRoles.ValueMember = "RoleLeaf";
-                        if (cboRoles.Items.Count > 0)
-                            cboRoles.SelectedIndex = 0;
-                        cboRoles.Enabled = cboRoles.Items.Count > 1;
-
-                        btnLogin.Enabled = 
-                            ((cboAgencies.SelectedIndex >= 0) && 
-                            (cboRoles.SelectedIndex >= 0));
-                        if (btnLogin.Enabled)
-                            btnLogin.Focus();
-                    }
-                }
-                catch (Exception error)
-                {
-                    WriteLog.Instance.Write(error.Message, strProcedureName);
-                    MessageBox.Show(
-                        error.Message,
-                        "登录密码错误",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    edtUserPWD.Text = "";
-                    edtUserPWD.Focus();
-                }
-                finally
-                {
-                    chkChangePWD.Enabled = IRAPUser.Instance.IsPWDVerified;
-                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
-                }
-            }
-            else
-            {
-                cboAgencies.Items.Clear();
-                cboRoles.Items.Clear();
-                chkChangePWD.Enabled = false;
-                btnLogin.Enabled = false;
-            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -181,8 +122,84 @@ namespace IRAP.Client.User
                 formMove = false;
         }
 
-        private void edtUserCode_KeyDown(object sender, KeyEventArgs e)
+        private void edtUserPWD_Validating(object sender, CancelEventArgs e)
         {
+            if (edtUserPWD.Text != "")
+            {
+                string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                try
+                {
+                    IRAPUser.Instance.Password = edtUserPWD.Text;
+                    if (IRAPUser.Instance.IsPWDVerified)
+                    {
+                        cboAgencies.Items.Clear();
+                        cboAgencies.DataSource = IRAPUser.Instance.AvailableAgencies;
+                        cboAgencies.DisplayMember = "AgencyName";
+                        cboAgencies.ValueMember = "AgencyLeaf";
+                        if (cboAgencies.Items.Count > 0)
+                            cboAgencies.SelectedIndex = 0;
+                        cboAgencies.Enabled = cboAgencies.Items.Count > 1;
+
+                        cboRoles.DataSource = IRAPUser.Instance.AvailableRoles;
+                        cboRoles.DisplayMember = "RoleName";
+                        cboRoles.ValueMember = "RoleLeaf";
+                        if (cboRoles.Items.Count > 0)
+                            cboRoles.SelectedIndex = 0;
+                        cboRoles.Enabled = cboRoles.Items.Count > 1;
+
+                        btnLogin.Enabled =
+                            ((cboAgencies.SelectedIndex >= 0) &&
+                            (cboRoles.SelectedIndex >= 0));
+                        if (btnLogin.Enabled)
+                            btnLogin.Focus();
+
+                        e.Cancel = false;
+                    }
+                }
+                catch (Exception error)
+                {
+                    WriteLog.Instance.Write(error.Message, strProcedureName);
+                    MessageBox.Show(
+                        error.Message,
+                        "登录密码错误",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    edtUserPWD.Text = "";
+                    edtUserPWD.Focus();
+
+                    e.Cancel = true;
+                }
+                finally
+                {
+                    chkChangePWD.Enabled = IRAPUser.Instance.IsPWDVerified;
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
+            }
+            else
+            {
+                cboAgencies.Items.Clear();
+                cboRoles.Items.Clear();
+                chkChangePWD.Enabled = false;
+                btnLogin.Enabled = false;
+
+                e.Cancel = false;
+            }
+        }
+
+        private void edtUserPWD_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Return || e.KeyCode != Keys.Tab)
+            {
+                cboAgencies.Items.Clear();
+                cboRoles.Items.Clear();
+                chkChangePWD.Enabled = false;
+                btnLogin.Enabled = false;
+            }
         }
     }
 }

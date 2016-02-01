@@ -104,7 +104,7 @@ namespace IRAP.Client.User
         /// </summary>
         public bool IsGetLogoutDiary
         {
-            get { return IsGetLogoutDiary; }
+            get { return isGetLogoutDiary; }
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace IRAP.Client.User
         /// </summary>
         public string UserCode
         {
-            get { return UserCode; }
+            get { return userCode; }
             set
             {
                 if (!isLogon)
