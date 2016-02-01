@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.edtUserCode = new Telerik.WinControls.UI.RadTextBox();
-            this.edtUserPWD = new Telerik.WinControls.UI.RadTextBox();
+            this.edtUserCode = new IRAP.Client.Global.Controls.IRAPTextBox();
+            this.edtUserPWD = new IRAP.Client.Global.Controls.IRAPTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.cboAgencies = new Telerik.WinControls.UI.RadDropDownList();
@@ -65,15 +65,18 @@
             // 
             // edtUserCode
             // 
+            this.edtUserCode.EnterMoveNextControl = true;
             this.edtUserCode.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtUserCode.Location = new System.Drawing.Point(671, 227);
             this.edtUserCode.Name = "edtUserCode";
             this.edtUserCode.Size = new System.Drawing.Size(168, 27);
             this.edtUserCode.TabIndex = 1;
+            this.edtUserCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtUserCode_KeyDown);
             this.edtUserCode.Leave += new System.EventHandler(this.edtUserCode_Leave);
             // 
             // edtUserPWD
             // 
+            this.edtUserPWD.EnterMoveNextControl = true;
             this.edtUserPWD.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtUserPWD.Location = new System.Drawing.Point(671, 258);
             this.edtUserPWD.Name = "edtUserPWD";
@@ -132,6 +135,7 @@
             // chkChangePWD
             // 
             this.chkChangePWD.BackColor = System.Drawing.Color.Transparent;
+            this.chkChangePWD.Enabled = false;
             this.chkChangePWD.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkChangePWD.Location = new System.Drawing.Point(277, 380);
             this.chkChangePWD.Name = "chkChangePWD";
@@ -214,8 +218,8 @@
         #endregion
 
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadTextBox edtUserCode;
-        private Telerik.WinControls.UI.RadTextBox edtUserPWD;
+        private IRAP.Client.Global.Controls.IRAPTextBox edtUserCode;
+        private IRAP.Client.Global.Controls.IRAPTextBox edtUserPWD;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadDropDownList cboAgencies;

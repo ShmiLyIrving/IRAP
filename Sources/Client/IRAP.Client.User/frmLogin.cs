@@ -27,6 +27,10 @@ namespace IRAP.Client.User
         private void edtUserCode_Leave(object sender, EventArgs e)
         {
             IRAPUser.Instance.UserCode = edtUserCode.Text;
+
+            edtUserPWD.Text = "";
+            cboAgencies.Items.Clear();
+            cboRoles.Items.Clear();
         }
 
         private void edtUserPWD_Leave(object sender, EventArgs e)
@@ -79,8 +83,16 @@ namespace IRAP.Client.User
                 }
                 finally
                 {
+                    chkChangePWD.Enabled = IRAPUser.Instance.IsPWDVerified;
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
+            }
+            else
+            {
+                cboAgencies.Items.Clear();
+                cboRoles.Items.Clear();
+                chkChangePWD.Enabled = false;
+                btnLogin.Enabled = false;
             }
         }
 
@@ -133,7 +145,7 @@ namespace IRAP.Client.User
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-        }
+        }   
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)
         {
@@ -167,6 +179,10 @@ namespace IRAP.Client.User
         {
             if (e.Button == MouseButtons.Left)
                 formMove = false;
+        }
+
+        private void edtUserCode_KeyDown(object sender, KeyEventArgs e)
+        {
         }
     }
 }
