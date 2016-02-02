@@ -273,7 +273,7 @@ namespace IRAP.WCF.Client.Method
                     strProcedureName);
                 #endregion
 
-                #region
+                #region 调用应用服务过程，并解析返回值
                 using (WCFClient client = new WCFClient())
                 {
                     object rlt = client.WCFRESTFul(
@@ -664,8 +664,8 @@ namespace IRAP.WCF.Client.Method
                     #region 将函数参数加入 Hashtable 中
                     hashParams.Add("communityID", communityID);
                     hashParams.Add("userCode", userCode);
-                    hashParams.Add("oldPWD", oldPWD);
-                    hashParams.Add("newPWD", newPWD);
+                    hashParams.Add("oldPassword", oldPWD);
+                    hashParams.Add("newPassword", newPWD);
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行存储过程 ssp_ModiPWD，输入参数：" +

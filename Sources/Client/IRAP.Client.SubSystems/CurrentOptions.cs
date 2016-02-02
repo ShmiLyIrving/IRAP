@@ -140,7 +140,7 @@ namespace IRAP.Client.SubSystems
                 string errText = "";
                 workUnits.Clear();
 
-                IRAPSystemClient.Instance.ufn_GteKanban_WorkUnits(
+                IRAPSystemClient.Instance.ufn_GetKanban_WorkUnits(
                     IRAPUser.Instance.CommunityID,
                     IRAPUser.Instance.SysLogID,
                     process.T120LeafID,

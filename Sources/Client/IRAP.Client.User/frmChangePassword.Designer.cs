@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.edtPassword = new Telerik.WinControls.UI.RadTextBox();
-            this.edtConfPassword = new Telerik.WinControls.UI.RadTextBox();
+            this.edtPassword = new IRAP.Client.Global.Controls.IRAPTextBox();
+            this.edtConfPassword = new IRAP.Client.Global.Controls.IRAPTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnOK = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
@@ -56,6 +56,7 @@
             // 
             this.edtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.edtPassword.EnterMoveNextControl = true;
             this.edtPassword.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtPassword.Location = new System.Drawing.Point(116, 30);
             this.edtPassword.Name = "edtPassword";
@@ -68,6 +69,7 @@
             // 
             this.edtConfPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.edtConfPassword.EnterMoveNextControl = true;
             this.edtConfPassword.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtConfPassword.Location = new System.Drawing.Point(116, 63);
             this.edtConfPassword.Name = "edtConfPassword";
@@ -124,6 +126,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
+            this.ShowInTaskbar = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "设置登录新密码";
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -141,8 +144,8 @@
         #endregion
 
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadTextBox edtPassword;
-        private Telerik.WinControls.UI.RadTextBox edtConfPassword;
+        private IRAP.Client.Global.Controls.IRAPTextBox edtPassword;
+        private IRAP.Client.Global.Controls.IRAPTextBox edtConfPassword;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadButton btnOK;
         private Telerik.WinControls.UI.RadButton btnCancel;

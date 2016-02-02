@@ -126,6 +126,10 @@
       <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>
       <Name>IRAP.Entity.SSO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IRAP.Client.Global.GUI\IRAP.Client.Global.GUI.csproj">
+      <Project>{66ee090d-3d17-4cc0-9a7b-05ea2124a30b}</Project>
+      <Name>IRAP.Client.Global.GUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.Client.Global\IRAP.Client.Global.csproj">
       <Project>{a4b73531-9e93-4c64-aae2-a6cdf064c9f5}</Project>
       <Name>IRAP.Client.Global</Name>
@@ -159,6 +163,15 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ICON_Report.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\系统标志.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ball_yellow_p1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

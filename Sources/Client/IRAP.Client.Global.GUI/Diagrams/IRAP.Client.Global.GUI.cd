@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Client.Global.GUI.frmCustomFuncBase" Collapsed="true">
+    <Position X="3.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAIAAAiIAAAEAAACAAAACAAAAAIAACAACQABAAAA=</HashCode>
+      <FileName>frmCustomFuncBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.Global.GUI.frmCustomKanbanBase" Collapsed="true">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAEAAAAAAAAAQQ=</HashCode>
+      <FileName>frmCustomKanbanBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="IRAP.Client.Global.GUI.SwitchToNextFunctionHandler">
+    <Position X="9" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>frmCustomKanbanBase.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
