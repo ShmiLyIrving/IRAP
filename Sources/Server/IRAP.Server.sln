@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicLoad", "DynamicLoad\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.Kanban", "IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj", "{38588300-33DF-457A-936A-D0D0CA499E96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.Kanban", "IRAP.BL.Kanban\IRAP.BL.Kanban.csproj", "{D674DF1F-6438-48E3-82F3-B193E59396ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.Kanban", "IRAP.BL\IRAP.BL.Kanban\IRAP.BL.Kanban.csproj", "{D674DF1F-6438-48E3-82F3-B193E59396ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
