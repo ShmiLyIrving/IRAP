@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Server.Global", "IRAP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicLoad", "DynamicLoad\DynamicLoad.csproj", "{D07F3170-7A52-493B-9A35-3875C2D834A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.Kanban", "IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj", "{38588300-33DF-457A-936A-D0D0CA499E96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.Kanban", "IRAP.BL.Kanban\IRAP.BL.Kanban.csproj", "{D674DF1F-6438-48E3-82F3-B193E59396ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{D07F3170-7A52-493B-9A35-3875C2D834A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D07F3170-7A52-493B-9A35-3875C2D834A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D07F3170-7A52-493B-9A35-3875C2D834A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38588300-33DF-457A-936A-D0D0CA499E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38588300-33DF-457A-936A-D0D0CA499E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38588300-33DF-457A-936A-D0D0CA499E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38588300-33DF-457A-936A-D0D0CA499E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D674DF1F-6438-48E3-82F3-B193E59396ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D674DF1F-6438-48E3-82F3-B193E59396ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D674DF1F-6438-48E3-82F3-B193E59396ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D674DF1F-6438-48E3-82F3-B193E59396ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
