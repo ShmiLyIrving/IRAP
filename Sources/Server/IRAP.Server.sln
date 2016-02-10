@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.Kanban", "IRAP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.Kanban", "IRAP.BL\IRAP.BL.Kanban\IRAP.BL.Kanban.csproj", "{D674DF1F-6438-48E3-82F3-B193E59396ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.FVS", "IRAP.BL\IRAP.BL.FVS\IRAP.BL.FVS.csproj", "{84B4C496-6BA2-4044-8878-D4493402600C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{D674DF1F-6438-48E3-82F3-B193E59396ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D674DF1F-6438-48E3-82F3-B193E59396ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D674DF1F-6438-48E3-82F3-B193E59396ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B4C496-6BA2-4044-8878-D4493402600C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B4C496-6BA2-4044-8878-D4493402600C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B4C496-6BA2-4044-8878-D4493402600C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B4C496-6BA2-4044-8878-D4493402600C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
