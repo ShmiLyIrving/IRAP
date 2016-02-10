@@ -155,24 +155,27 @@ namespace IRAP.Client.SubSystems
 
         private void ucOptions_VisibleChanged(object sender, EventArgs e)
         {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
+            if (!this.DesignMode)
             {
-                if (Visible)
+                string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                try
                 {
-                    if (AvailableProcesses.Instance.Processes.Count == 0)
-                        RefreshOptions();
+                    if (Visible)
+                    {
+                        if (AvailableProcesses.Instance.Processes.Count == 0)
+                            RefreshOptions();
+                    }
                 }
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }            
+                finally
+                {
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
+            }           
         }
 
         private void btnSwitch_Click(object sender, EventArgs e)

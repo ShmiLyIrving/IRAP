@@ -45,6 +45,7 @@
     <Reference Include="TelerikCommon, Version=2016.1.112.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppOperationLog.cs" />
     <Compile Include="Controls\IRAPTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -62,6 +63,9 @@
       <DependentUpon>frmCustomBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Diagrams\IRAP.Client.Global.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

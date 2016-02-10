@@ -505,7 +505,26 @@ namespace IRAP
 
         private void PerformClickMenuWithItemID(int itemID)
         {
-            throw new System.NotImplementedException();
+            for (int i = 0; i < radRibbonBar.CommandTabs.Count; i++)
+            {
+                RibbonTab page = (RibbonTab) radRibbonBar.CommandTabs[i];
+                for (int j = 0; j < page.Items.Count; j++)
+                {
+                    if (page.Items[j] is RadButtonElement)
+                    {
+                        RadButtonElement menuItem = (RadButtonElement) page.Items[j];
+                        if (menuItem.Tag is MenuInfo)
+                        {
+                            MenuInfo menuInfo = (MenuInfo) menuItem.Tag;
+                            if (Math.Abs(menuInfo.ItemID) == Math.Abs(itemID))
+                            {
+                                menuButtonItemClick(menuItem, new EventArgs());
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void frmIRAPMain_Load(object sender, EventArgs e)
@@ -695,6 +714,33 @@ namespace IRAP
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        private void frmIRAPMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isQuitSilent)
+            {
+                if (MessageBox.Show(
+                    string.Format(
+                        "请确定是否要退出[{0}]？",
+                        CurrentSubSystem.Instance.SysInfo.SystemName),
+                    "退出子系统",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void cmdQuitSubSystem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

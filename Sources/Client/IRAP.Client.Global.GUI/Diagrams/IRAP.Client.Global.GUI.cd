@@ -8,14 +8,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Client.Global.GUI.frmCustomKanbanBase" Collapsed="true">
-    <Position X="6.25" Y="2" Width="1.5" />
+    <Position X="3.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAEAAAAAAAAAQQ=</HashCode>
+      <HashCode>AAAAAIAAACAAAAAAAACAAAACAAAABAAEAAAAAAABAQQ=</HashCode>
       <FileName>frmCustomKanbanBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Delegate Name="IRAP.Client.Global.GUI.SwitchToNextFunctionHandler">
-    <Position X="9" Y="3.25" Width="1.5" />
+  <Delegate Name="IRAP.Client.Global.GUI.SwitchToNextFunctionHandler" Collapsed="true">
+    <Position X="6.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>frmCustomKanbanBase.cs</FileName>

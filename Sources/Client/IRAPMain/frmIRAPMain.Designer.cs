@@ -87,6 +87,7 @@
             this.cmdQuitSubSystem.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdQuitSubSystem.Name = "cmdQuitSubSystem";
             this.cmdQuitSubSystem.Text = "";
+            this.cmdQuitSubSystem.Click += new System.EventHandler(this.cmdQuitSubSystem_Click);
             // 
             // frmIRAPMain
             // 
@@ -107,6 +108,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmIRAPMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmIRAPMain_FormClosing);
             this.Load += new System.EventHandler(this.frmIRAPMain_Load);
             this.Shown += new System.EventHandler(this.frmIRAPMain_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();

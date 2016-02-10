@@ -35,5 +35,10 @@ namespace IRAP.Entity.Kanban
         {
             return JumpToT3LeafID.ToString();
         }
+
+        public JumpToFunction Clone()
+        {
+            return MemberwiseClone() as JumpToFunction;
+        }
     }
 }

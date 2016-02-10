@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRAPFVSClient.cs" />
-    <Compile Include="IRAPKanbanClient.cs" />
+    <Compile Include="IRAPKBClient.cs" />
     <Compile Include="IRAPMDMClient.cs" />
     <Compile Include="IRAPMESClient.cs" />
     <Compile Include="IRAPMESReportClient.cs" />
@@ -62,6 +62,10 @@
     <ProjectReference Include="..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
       <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
+      <Project>{38588300-33df-457a-936a-d0d0ca499e96}</Project>
+      <Name>IRAP.Entity.Kanban</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
       <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>

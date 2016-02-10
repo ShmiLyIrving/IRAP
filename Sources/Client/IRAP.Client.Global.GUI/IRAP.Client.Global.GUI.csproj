@@ -41,7 +41,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls, Version=2016.1.112.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2016.1.112.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2016.1.112.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2016.1.112.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="frmCustomFuncBase.cs">
@@ -56,7 +58,18 @@
     <Compile Include="frmCustomKanbanBase.Designer.cs">
       <DependentUpon>frmCustomKanbanBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmShowErrorLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowErrorLogs.Designer.cs">
+      <DependentUpon>frmShowErrorLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.Global.GUI.cd" />
@@ -65,6 +78,14 @@
     <ProjectReference Include="..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
       <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
+      <Project>{38588300-33df-457a-936a-d0d0ca499e96}</Project>
+      <Name>IRAP.Entity.Kanban</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
+      <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>
+      <Name>IRAP.Entity.SSO</Name>
     </ProjectReference>
     <ProjectReference Include="..\IRAP.Client.Global\IRAP.Client.Global.csproj">
       <Project>{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}</Project>
@@ -78,12 +99,32 @@
       <Project>{9b2d1970-a6a8-4cc8-8e8e-8b6454b5bccf}</Project>
       <Name>IRAP.Client.User</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IRAP.WCF.Client.Method\IRAP.WCF.Client.Method.csproj">
+      <Project>{6f4ad952-871c-4594-bbe7-8c7ea61b63be}</Project>
+      <Name>IRAP.WCF.Client.Method</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmCustomFuncBase.resx">
       <DependentUpon>frmCustomFuncBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomKanbanBase.resx">
+      <DependentUpon>frmCustomKanbanBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowErrorLogs.resx">
+      <DependentUpon>frmShowErrorLogs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Connected.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Disconnected.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

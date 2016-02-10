@@ -14,11 +14,11 @@
       <FileName>IRAPFVSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.WCF.Client.Method.IRAPKanbanClient" Collapsed="true">
+  <Class Name="IRAP.WCF.Client.Method.IRAPKBClient" Collapsed="true">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IRAPKanbanClient.cs</FileName>
+      <HashCode>AAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAE=</HashCode>
+      <FileName>IRAPKBClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMDMClient" Collapsed="true">
@@ -59,7 +59,7 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPSystemClient" Collapsed="true">
     <Position X="2.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEEIAACAABCAAABAAAAAAEBAQIAAAAQgAAAAAAAAA=</HashCode>
+      <HashCode>AAAEEIAACAABAAAABAAAAAAEBAQIAAAAQgAAAAAAAAA=</HashCode>
       <FileName>IRAPSystemClient.cs</FileName>
     </TypeIdentifier>
   </Class>
