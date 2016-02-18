@@ -4,31 +4,31 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84B4C496-6BA2-4044-8878-D4493402600C}</ProjectGuid>
+    <ProjectGuid>{70F72616-3F21-401C-803B-C93FEC517D73}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.BL.FVS</RootNamespace>
-    <AssemblyName>IRAP.BL.FVS</AssemblyName>
+    <RootNamespace>IRAP.Entity.APS</RootNamespace>
+    <AssemblyName>IRAP.Entity.APS</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Bin\Server\Debug\ServiceDLLs\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\Bin\Server\Release\ServiceDLLs\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -37,32 +37,15 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRAPFVS.cs" />
+    <Compile Include="ManufacturingOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\IRAP.BL.FVS.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
-      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
-      <Name>IRAP.Global</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Global\IRAPShared\IRAPShared.csproj">
-      <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
-      <Name>IRAPShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entity.FVS\IRAP.Entity.FVS.csproj">
-      <Project>{08efff76-a5d1-4c39-972d-d9c85bded80f}</Project>
-      <Name>IRAP.Entity.FVS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\IRAPORM\IRAPORM.csproj">
-      <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
-      <Name>IRAPORM</Name>
-    </ProjectReference>
+    <None Include="Diagrams\IRAP.Entity.APS.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

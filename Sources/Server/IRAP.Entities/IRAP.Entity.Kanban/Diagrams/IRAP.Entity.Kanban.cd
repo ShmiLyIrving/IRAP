@@ -3,8 +3,15 @@
   <Class Name="IRAP.Entity.Kanban.JumpToFunction" Collapsed="true">
     <Position X="1.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAACAAAEABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAACAAAEABAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>JumpToFunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.LeafSetEx">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgACAAAAAEAEgAAgEAAAAAAAAAAAAAAAAAEAABA=</HashCode>
+      <FileName>LeafSetEx.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84B4C496-6BA2-4044-8878-D4493402600C}</ProjectGuid>
+    <ProjectGuid>{6DF64E82-CDD7-450F-B023-A90FA2C6ECD8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.BL.FVS</RootNamespace>
-    <AssemblyName>IRAP.BL.FVS</AssemblyName>
+    <RootNamespace>IRAP.BL.APS</RootNamespace>
+    <AssemblyName>IRAP.BL.APS</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,11 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRAPFVS.cs" />
+    <Compile Include="IRAPAPS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Diagrams\IRAP.BL.FVS.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -55,14 +53,13 @@
       <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
       <Name>IRAPShared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entity.FVS\IRAP.Entity.FVS.csproj">
-      <Project>{08efff76-a5d1-4c39-972d-d9c85bded80f}</Project>
-      <Name>IRAP.Entity.FVS</Name>
+    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entity.APS\IRAP.Entity.APS.csproj">
+      <Project>{70f72616-3f21-401c-803b-c93fec517d73}</Project>
+      <Name>IRAP.Entity.APS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IRAPORM\IRAPORM.csproj">
-      <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
-      <Name>IRAPORM</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Diagrams\IRAP.BL.APS.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

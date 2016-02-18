@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Entity.FVS.Dashboard_MOTrack" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACAgCACAAAACAABhRgAEAAQSIQAAAAAAgAAEAIIAFA=</HashCode>
+      <FileName>Dashboard_MOTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.Dashboard_WorkUnitProductionProgress" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgEAQAAAYAAAAABAAAABQKIYhACAEIAABEAEIEBA=</HashCode>
+      <FileName>Dashboard_WorkUnitProductionProgress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.LineQualityProblemInfo" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAIAAAAAhAEQAAAAAAAAAAAAAAAAAIAABA=</HashCode>
+      <FileName>LineQualityProblemInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEquipRepairEvent" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAJEAAABAABAAIAAAAiAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>AndonEquipRepairEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonRspEventInfo" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>AndonRspEventInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEventKanbanBMR" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAACAQAAAAAABBABAAAAAAACgAACAQAAAAABAAIBA=</HashCode>
+      <FileName>AndonEventKanbanBMR.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEventKanbanLSR" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAKAQAAAAAAABABBAAAAAAAAAACAQAAAAABAAABA=</HashCode>
+      <FileName>AndonEventKanbanLSR.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEventKanbanMDR" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAICAQAAAAAAABgBAAAAAAAEgAICAQAAAAABEAABA=</HashCode>
+      <FileName>AndonEventKanbanMDR.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEventKanbanQCR" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAACAQAAAAAAABABAAgAACAAgAACAQAAAAABAAABA=</HashCode>
+      <FileName>AndonEventKanbanQCR.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEventKanbanSPR" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAACAQAAAAAAABABAAAAAAAAgAACAUAAABABAAABA=</HashCode>
+      <FileName>AndonEventKanbanSPR.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEventKanbanTRR" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAACAQgAAAAAABABAAAAAAAAgAACAQAgAAABAAABA=</HashCode>
+      <FileName>AndonEventKanbanTRR.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEventToClose" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABQAIAAAAAAAACAAAAEAAAAAAAAQAAAgJAAABA=</HashCode>
+      <FileName>AndonEventToClose.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonFailureCallEvent" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAJEABAAAABAAIAAAAwAAAAAAAAAAIAAAABA=</HashCode>
+      <FileName>AndonFailureCallEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonLightStatus" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAABAACCBAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>AndonLightStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonMaterialEvent" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIIAAAAAgBAAIAEgAwAAAAAAAAAAEAEAABA=</HashCode>
+      <FileName>AndonMaterialEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonPrdtLine" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAAAAAAIAAAAAICAAAAAAAAJABAAAABE=</HashCode>
+      <FileName>AndonPrdtLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonSupportCallEvent" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAJEAAAAAABAAIAAAAwAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>AndonSupportCallEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.EntityProductLine" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAACAAAAAAABBABAAAABg=</HashCode>
+      <FileName>EntityProductLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.ProductionSurveillance" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAEAAAAAgEAAAIARIAAAAAAAAFIEAABE=</HashCode>
+      <FileName>ProductionSurveillance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.PWOSurveillance" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAoCCACAEAAAAIQCIAAAAQAIYIIAAAAAAAEgCKEBA=</HashCode>
+      <FileName>PWOSurveillance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.ResponsibleResponderInfo" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAACAAAAABAAAAAAAAAAAAAAAQAAEAAAABA=</HashCode>
+      <FileName>ResponsibleResponderInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.AndonEventInfo">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAIAAAAAAAACAAAAEAAAAAAAAQAAAgIAAABA=</HashCode>
+      <FileName>AndonEventInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

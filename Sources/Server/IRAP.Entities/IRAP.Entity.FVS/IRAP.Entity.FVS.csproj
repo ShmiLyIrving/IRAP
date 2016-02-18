@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84B4C496-6BA2-4044-8878-D4493402600C}</ProjectGuid>
+    <ProjectGuid>{08EFFF76-A5D1-4C39-972D-D9C85BDED80F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.BL.FVS</RootNamespace>
-    <AssemblyName>IRAP.BL.FVS</AssemblyName>
+    <RootNamespace>IRAP.Entity.FVS</RootNamespace>
+    <AssemblyName>IRAP.Entity.FVS</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Bin\Server\Debug\ServiceDLLs\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\Bin\Server\Release\ServiceDLLs\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,11 +40,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRAPFVS.cs" />
+    <Compile Include="AndonEquipRepairEvent.cs" />
+    <Compile Include="AndonEventInfo.cs" />
+    <Compile Include="AndonRspEventInfo.cs" />
+    <Compile Include="AndonEventKanbanBMR.cs" />
+    <Compile Include="AndonEventKanbanLSR.cs" />
+    <Compile Include="AndonEventKanbanMDR.cs" />
+    <Compile Include="AndonEventKanbanQCR.cs" />
+    <Compile Include="AndonEventKanbanSPR.cs" />
+    <Compile Include="AndonEventKanbanTRR.cs" />
+    <Compile Include="AndonEventToClose.cs" />
+    <Compile Include="AndonFailureCallEvent.cs" />
+    <Compile Include="AndonLightStatus.cs" />
+    <Compile Include="AndonMaterialEvent.cs" />
+    <Compile Include="AndonPrdtLine.cs" />
+    <Compile Include="AndonSupportCallEvent.cs" />
+    <Compile Include="Dashboard_MOTrack.cs" />
+    <Compile Include="Dashboard_WorkUnitProductionProgress.cs" />
+    <Compile Include="EntityProductLine.cs" />
+    <Compile Include="LineQualityProblemInfo.cs" />
+    <Compile Include="ProductionSurveillance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PWOSurveillance.cs" />
+    <Compile Include="ResponsibleResponderInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\IRAP.BL.FVS.cd" />
+    <None Include="Diagrams\IRAP.Entity.FVS.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -54,10 +75,6 @@
     <ProjectReference Include="..\..\..\Global\IRAPShared\IRAPShared.csproj">
       <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
       <Name>IRAPShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entity.FVS\IRAP.Entity.FVS.csproj">
-      <Project>{08efff76-a5d1-4c39-972d-d9c85bded80f}</Project>
-      <Name>IRAP.Entity.FVS</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\IRAPORM\IRAPORM.csproj">
       <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
