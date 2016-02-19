@@ -40,7 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis.cs" />
+    <Compile Include="Andon.cs" />
+    <Compile Include="AndonEventKanban.cs" />
+    <Compile Include="Dashboards.cs" />
     <Compile Include="IRAPFVS.cs" />
+    <Compile Include="Kanbans.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
