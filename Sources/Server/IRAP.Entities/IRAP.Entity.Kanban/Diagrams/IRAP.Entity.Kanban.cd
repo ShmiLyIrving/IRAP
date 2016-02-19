@@ -1,17 +1,164 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.Entity.Kanban.JumpToFunction" Collapsed="true">
-    <Position X="1.75" Y="0.75" Width="1.5" />
+    <Position X="8.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAACAAAEABAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>JumpToFunction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entity.Kanban.LeafSetEx">
-    <Position X="3" Y="2" Width="1.5" />
+  <Class Name="IRAP.Entity.Kanban.LeafSetEx" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgACAAAAAEAEgAAgEAAAAAAAAAAAAAAAAAEAABA=</HashCode>
       <FileName>LeafSetEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.EquipmentInfo" Collapsed="true">
+    <Position X="1.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAABAABAAAAAAACAAAAAAAIAAAAAAABA=</HashCode>
+      <FileName>EquipmentInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.FailureMode" Collapsed="true">
+    <Position X="3.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAABAAgAACAAAAAAAAAEAAAAAAABA=</HashCode>
+      <FileName>FailureMode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.InspectFailure" Collapsed="true">
+    <Position X="5.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAIAAAAAAAAAEQBIAgAACBggAAMAAAEAABQAgCBA=</HashCode>
+      <FileName>InspectFailure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.IRAPTreeViewNode" Collapsed="true">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAASAgACCAIAAACAAAQAAAICQAAAAEAQAAAAIAIBE=</HashCode>
+      <FileName>IRAPTreeViewNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.MessageToSend" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAEAAAAABAAAAAAIAAAAAAEAAAAAAAAABA=</HashCode>
+      <FileName>MessageToSend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.ProductMoveBack" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAAgBA=</HashCode>
+      <FileName>ProductMoveBack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.RepairMode" Collapsed="true">
+    <Position X="7" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAABAAAAAAAAAgAAAAAAAEAAEAABA=</HashCode>
+      <FileName>RepairMode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.RPTMOExecution" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAgCAAAAAACAAAgQAAAAAAAIQAAAAIAAEAAAAIgBA=</HashCode>
+      <FileName>RPTMOExecution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.SelectedLeaf" Collapsed="true">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAgBAgEAAAAAAAAAAAAAAAAAEAABA=</HashCode>
+      <FileName>SelectedLeaf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.SlotStorage" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAABABAYBAAAAAASAAAIoAAAEACQAAAABA=</HashCode>
+      <FileName>SlotStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.StationPortInfo" Collapsed="true">
+    <Position X="7" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAACBAAAAAAAAAgBEAgAQQBA=</HashCode>
+      <FileName>StationPortInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.SubTreeLeaf" Collapsed="true">
+    <Position X="8.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQACAAAAoEgAiAAAEAAAIAAAAAAEAQABAAMAABE=</HashCode>
+      <FileName>SubTreeLeaf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.SubTreeNode" Collapsed="true">
+    <Position X="1.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQACAAAAoEgACAAAAAAAICAAAAAEAQABAAIAABE=</HashCode>
+      <FileName>SubTreeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.SymbolInspecting" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAABAAAAABIAAAAQAAAAAAAAAAEAAAAgCBA=</HashCode>
+      <FileName>SymbolInspecting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.SysParam" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAIAAAAAAAAaAAAAAAABAAAAABA=</HashCode>
+      <FileName>SysParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.TestFailure" Collapsed="true">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAEBEAAgAAAAABAQCAAAAAQABAACHAAAAAAABhA=</HashCode>
+      <FileName>TestFailure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.TreeEntity" Collapsed="true">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgBAgEAAAAAAAAAABAAAAAAAAABA=</HashCode>
+      <FileName>TreeEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.TVCtrlParam" Collapsed="true">
+    <Position X="1.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAwAAAAIAACAAAAIAgoAAwAAAAAAAoIAAIAABA=</HashCode>
+      <FileName>TVCtrlParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.UncheckedMoveBack" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAACAAQgAAAABA=</HashCode>
+      <FileName>UncheckedMoveBack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.WIPBarCodeInfo" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAABAQhAAAAAAAAAAAAAEQAAAAAQCAAgACABA=</HashCode>
+      <FileName>WIPBarCodeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.Kanban.ScopeCriterionType" Collapsed="true">
+    <Position X="1.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAABAAAAAAAAAAAAAAAAAAAAAAABQ=</HashCode>
+      <FileName>ScopeCriterionType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
