@@ -164,5 +164,15 @@ namespace IRAP.BL.FVS
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        public IRAPJsonResult ufn_Dashboard_MoDelivery()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IRAPJsonResult ufn_Dashboard_WIPWaiting()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

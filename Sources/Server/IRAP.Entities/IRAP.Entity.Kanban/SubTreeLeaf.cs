@@ -40,7 +40,7 @@ namespace IRAP.Entity.Kanban
         /// </summary>
         public int EntityID { get; set; }
         /// <summary>
-        /// 叶状态
+        /// 叶状态（0-正常[翠绿]；1-过时[枯黄]）
         /// </summary>
         public int LeafStatus { get; set; }
         /// <summary>

@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.APS", "IRAP.BL\IRAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.FVS", "IRAP.Entities\IRAP.Entity.FVS\IRAP.Entity.FVS.csproj", "{08EFFF76-A5D1-4C39-972D-D9C85BDED80F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.MES", "IRAP.Entities\IRAP.Entity.MES\IRAP.Entity.MES.csproj", "{C78CDB3F-F78A-4C17-B5C8-E2E88A0A5947}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.MES", "IRAP.BL\IRAP.BL.MES\IRAP.BL.MES.csproj", "{44ED0964-B373-4EC6-8B56-FB286282AFCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +109,14 @@ Global
 		{08EFFF76-A5D1-4C39-972D-D9C85BDED80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08EFFF76-A5D1-4C39-972D-D9C85BDED80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08EFFF76-A5D1-4C39-972D-D9C85BDED80F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C78CDB3F-F78A-4C17-B5C8-E2E88A0A5947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C78CDB3F-F78A-4C17-B5C8-E2E88A0A5947}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C78CDB3F-F78A-4C17-B5C8-E2E88A0A5947}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C78CDB3F-F78A-4C17-B5C8-E2E88A0A5947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44ED0964-B373-4EC6-8B56-FB286282AFCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44ED0964-B373-4EC6-8B56-FB286282AFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44ED0964-B373-4EC6-8B56-FB286282AFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44ED0964-B373-4EC6-8B56-FB286282AFCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

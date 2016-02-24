@@ -155,7 +155,7 @@ namespace IRAP.BL.SSO
                 paramList.Add(new IRAPProcParameter("@StationID", DbType.String, stationID));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用函数 IRAP..sfn_UserPWDVerify，参数：UserCode={0}|"+
+                        "调用函数 IRAP.dbo.sfn_UserPWDVerify，参数：UserCode={0}|"+
                         "PlainPWD={1}|VeriCode={2}|StationID={3}",
                         userCode,
                         plainPWD,
