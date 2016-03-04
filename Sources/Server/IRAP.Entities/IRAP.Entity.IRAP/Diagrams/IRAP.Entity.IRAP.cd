@@ -14,5 +14,19 @@
       <FileName>Stb052.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="IRAP.Entity.IRAP.T215Info" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAACAAAABBA=</HashCode>
+      <FileName>T215Info.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.IRAP.Product">
+    <Position X="7.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEAEAABA=</HashCode>
+      <FileName>Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>

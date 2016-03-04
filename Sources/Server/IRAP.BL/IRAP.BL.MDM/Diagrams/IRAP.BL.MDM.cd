@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.BL.MDM.IRAPMDM" Collapsed="true">
-    <Position X="10.5" Y="1.75" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAJAAAAAAIBCgAFBIMYSaAAxIQAECACICQCAxBCA=</HashCode>
       <FileName>IRAPMDM.cs</FileName>

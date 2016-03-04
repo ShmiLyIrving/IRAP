@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,13 +42,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndonCallObject.cs" />
+    <Compile Include="AndonEventType.cs" />
+    <Compile Include="CustomStandard.cs" />
+    <Compile Include="DstDeliveryStoreSite.cs" />
+    <Compile Include="MethodStandard.cs" />
+    <Compile Include="ProcessOperation.cs" />
+    <Compile Include="ProcessSegment.cs" />
+    <Compile Include="ProductionLineForStationBound.cs" />
     <Compile Include="ProductProcess.cs" />
+    <Compile Include="ProductSeriesTreeNode.cs" />
+    <Compile Include="ProductTreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProductionLineOfProduct.cs" />
+    <Compile Include="QualityStandard.cs" />
+    <Compile Include="Stb058.cs" />
+    <Compile Include="TreeViewNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Entity.MDM.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
+      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Global\IRAPShared\IRAPShared.csproj">
       <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
       <Name>IRAPShared</Name>
