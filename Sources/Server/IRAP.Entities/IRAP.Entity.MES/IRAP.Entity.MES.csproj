@@ -40,14 +40,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Inspecting.cs" />
+    <Compile Include="InspectingFailureItem.cs" />
+    <Compile Include="OpenProductionWorkOrder.cs" />
+    <Compile Include="OpenReworkPWO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QCOperationForNG.cs" />
     <Compile Include="RepairMode.cs" />
     <Compile Include="Report_MOExecution.cs" />
+    <Compile Include="ReworkPWOUnloadingSheetItem.cs" />
+    <Compile Include="ReworkRouter.cs" />
+    <Compile Include="SubWIPIDCodeInfo.cs" />
+    <Compile Include="SubWIPIDCodeInfo_Inspecting.cs" />
     <Compile Include="SymbolInspecting.cs" />
     <Compile Include="WIPBarCodeInfo.cs" />
+    <Compile Include="WIPIDCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Entity.MES.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
+      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Global\IRAPShared\IRAPShared.csproj">
+      <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
+      <Name>IRAPShared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

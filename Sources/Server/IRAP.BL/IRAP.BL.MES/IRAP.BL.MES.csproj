@@ -42,7 +42,14 @@
   <ItemGroup>
     <Compile Include="IRAPMES.cs" />
     <Compile Include="IRAPMESReport.cs" />
+    <Compile Include="ManualInspecting.cs" />
+    <Compile Include="OperatorSkill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QC.cs" />
+    <Compile Include="TroubleShooting.cs" />
+    <Compile Include="WIP.cs" />
+    <Compile Include="WorkOrder.cs" />
+    <Compile Include="WorkUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.BL.MES.cd" />

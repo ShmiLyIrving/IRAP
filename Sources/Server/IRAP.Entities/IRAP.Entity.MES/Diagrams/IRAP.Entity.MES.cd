@@ -1,31 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.Entity.MES.WIPBarCodeInfo" Collapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
+    <Position X="6.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAABAQhAAAAAAAAAAAAAEQAAAAAQCAAgACABA=</HashCode>
       <FileName>WIPBarCodeInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MES.RepairMode" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="4.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAABAAAAAAAAAgAAAAAAAEAAEAABA=</HashCode>
       <FileName>RepairMode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MES.SymbolInspecting" Collapsed="true">
-    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Position X="4.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQQAAAAAAAAhAAAAgBIAAAAQAQAAAAAAAAEAAAAgCBA=</HashCode>
       <FileName>SymbolInspecting.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MES.Report_MOExecution" Collapsed="true">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="6.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAgCAAAAAACAAAgQAAAAAAAIQAAAAIAAEAAAAIgBA=</HashCode>
       <FileName>Report_MOExecution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.QCOperationForNG" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAABAAAAAAAAAAAAAAAAIAAAAEABA=</HashCode>
+      <FileName>QCOperationForNG.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.WIPIDCode" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgAAAhkBAAAyhhAAAAQQiQAQEGcRRQAgDAAAEkACBhg=</HashCode>
+      <FileName>WIPIDCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.SubWIPIDCodeInfo" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAgAAAAAAAAAAABAAAAQAAJAAEAAAAAAAEAAAABA=</HashCode>
+      <FileName>SubWIPIDCodeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.Inspecting" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAABAAAAAIAAAAIAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Inspecting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.SubWIPIDCodeInfo_Inspecting">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAIAAAAAAACAAAQAABAAAAAAAAAAAAAAABAAABAAA=</HashCode>
+      <FileName>SubWIPIDCodeInfo_Inspecting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.InspectingFailureItem" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAQAAAAAAAAAAACgAAAAAAABABAQAABA=</HashCode>
+      <FileName>InspectingFailureItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.OpenProductionWorkOrder" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAgAAAAAAAAAIAgBAgAAAQgIQAAAAAAABAEAACABA=</HashCode>
+      <FileName>OpenProductionWorkOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.OpenReworkPWO" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACAIAAgAQAAgAIABBAgAAAQgMAAAAAAAABBEBACABA=</HashCode>
+      <FileName>OpenReworkPWO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.ReworkPWOUnloadingSheetItem" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEIEAAAAAAAEAAgRAEAAAAAHoABAAAAIACFAQACBA=</HashCode>
+      <FileName>ReworkPWOUnloadingSheetItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MES.ReworkRouter" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAhAAAAAAAAAAAAAAAEAAEQAAABA=</HashCode>
+      <FileName>ReworkRouter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

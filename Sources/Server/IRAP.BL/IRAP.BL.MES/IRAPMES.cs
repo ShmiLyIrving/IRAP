@@ -141,7 +141,8 @@ namespace IRAP.BL.MES
                             "@CommunityID, @SysLogID, @ProductLeaf, @WorkUnitLeaf)" +
                             "ORDER BY Ordinal";
 
-                        IList<RepairMode> lstDatas = conn.CallTableFunc<RepairMode>(strSQL, paramList);
+                        IList<RepairMode> lstDatas = 
+                            conn.CallTableFunc<RepairMode>(strSQL, paramList);
                         datas = lstDatas.ToList<RepairMode>();
                         errCode = 0;
                         errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);

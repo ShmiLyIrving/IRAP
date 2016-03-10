@@ -1,17 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="IRAP.BL.MES.IRAPMES">
+  <Class Name="IRAP.BL.MES.IRAPMES" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAAAAAAAAAAACAAAAAAICAAAAAAAAAAA=</HashCode>
       <FileName>IRAPMES.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.BL.MES.IRAPMESReport">
+  <Class Name="IRAP.BL.MES.IRAPMESReport" Collapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IRAPMESReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.MES.TroubleShooting" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TroubleShooting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.MES.ManualInspecting" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>ManualInspecting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.MES.QC" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>QC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.MES.WorkOrder" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAEAAAAAABAAAAAIAAAAEEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorkOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.MES.WIP" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAgACAAAAAAAAAAAAAAAAAAAAACAAgAAAgAAAA=</HashCode>
+      <FileName>WIP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.MES.WorkUnit" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorkUnit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.MES.OperatorSkill" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAACAAA=</HashCode>
+      <FileName>OperatorSkill.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
