@@ -67,6 +67,10 @@
       <Project>{38588300-33df-457a-936a-d0d0ca499e96}</Project>
       <Name>IRAP.Entity.Kanban</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.MDM\IRAP.Entity.MDM.csproj">
+      <Project>{5feb6cb3-68c9-4e06-814b-c071743bf5a2}</Project>
+      <Name>IRAP.Entity.MDM</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
       <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>
       <Name>IRAP.Entity.SSO</Name>

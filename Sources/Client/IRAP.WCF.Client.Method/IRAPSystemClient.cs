@@ -45,7 +45,7 @@ namespace IRAP.WCF.Client.Method
                 Hashtable hashParams = new Hashtable();
                 hashParams.Add("communityID", communityID);
                 hashParams.Add("systemID", systemID);
-                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("menuCacheID", sysLogID);
                 hashParams.Add("progLanguageID", progLanguageID);
                 hashParams.Add("availableOnly", availableOnly);
                 WriteLog.Instance.Write(

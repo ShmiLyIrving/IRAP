@@ -58,6 +58,7 @@
     <Compile Include="FTPClient.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="LPTPrint.cs" />
+    <Compile Include="MyMath.cs" />
     <Compile Include="MessageAPI.cs" />
     <Compile Include="Quantity.cs" />
     <Compile Include="TimeParser.cs" />

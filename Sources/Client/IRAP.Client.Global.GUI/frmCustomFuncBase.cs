@@ -79,6 +79,7 @@ namespace IRAP.Client.Global.GUI
             }
             finally
             {
+                WindowState = FormWindowState.Maximized;
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }

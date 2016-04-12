@@ -3,7 +3,7 @@
   <Class Name="IRAP.Global.Tools" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AggAAIAAAoAAAAQABQAAgAkAAwAAIAgAwAAABAEFEAI=</HashCode>
+      <HashCode>AggAAIAAAoAAAAQABQAAgAgAAwAAIAgAwAAABAEFEAI=</HashCode>
       <FileName>Tools.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -46,7 +46,7 @@
   <Class Name="IRAP.Global.TimeParser">
     <Position X="7.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <HashCode>AAAAEAAAAAABAAAAAAAAAAAAAAAAAAAAEAAAAAAAAEA=</HashCode>
       <FileName>TimeParser.cs</FileName>
     </TypeIdentifier>
   </Class>

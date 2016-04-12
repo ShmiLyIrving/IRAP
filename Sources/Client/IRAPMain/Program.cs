@@ -59,10 +59,10 @@ namespace IRAP
                         if (formSelectSystem.ShowDialog() == DialogResult.Cancel)
                             break;
 
-                        frmIRAPMain main = null;
+                        frmIRAPMain1 main = null;
                         try
                         {
-                            main = new frmIRAPMain();
+                            main = new frmIRAPMain1();
                             main.ShowDialog();
                         }
                         catch (Exception error)

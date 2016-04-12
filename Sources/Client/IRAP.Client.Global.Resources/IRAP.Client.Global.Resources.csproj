@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64D9DD02-3DA4-4E11-B696-F13A4D178A63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IRAP.Client.Global.Resources</RootNamespace>
+    <AssemblyName>IRAP.Client.Global.Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\access.png" />
+    <Content Include="Resources\ALARM9.WAV" />
+    <None Include="Resources\空结点.png" />
+    <None Include="Resources\虚拟复合工序.png" />
+    <None Include="Resources\Begin.png" />
+    <Content Include="Resources\Computer0.png" />
+    <Content Include="Resources\Computer1.png" />
+    <Content Include="Resources\D0.bmp" />
+    <Content Include="Resources\D0_48.bmp" />
+    <Content Include="Resources\D1.bmp" />
+    <Content Include="Resources\D1_48.bmp" />
+    <Content Include="Resources\D2.bmp" />
+    <Content Include="Resources\D2_48.bmp" />
+    <Content Include="Resources\D2_R_48.bmp" />
+    <Content Include="Resources\D3.bmp" />
+    <Content Include="Resources\D3_48.bmp" />
+    <Content Include="Resources\D3_R_48.bmp" />
+    <None Include="Resources\End.png" />
+    <Content Include="Resources\F0.bmp" />
+    <Content Include="Resources\F0_48.bmp" />
+    <Content Include="Resources\F1.bmp" />
+    <Content Include="Resources\F1_48.bmp" />
+    <Content Include="Resources\F2.bmp" />
+    <Content Include="Resources\F2_48.bmp" />
+    <Content Include="Resources\F2_R_48.bmp" />
+    <Content Include="Resources\F3.bmp" />
+    <Content Include="Resources\F3_48.bmp" />
+    <Content Include="Resources\F3_R_48.bmp" />
+    <Content Include="Resources\ICON_Report_48.bmp" />
+    <Content Include="Resources\login.png" />
+    <Content Include="Resources\M0.bmp" />
+    <Content Include="Resources\M0_48.bmp" />
+    <Content Include="Resources\M1.bmp" />
+    <Content Include="Resources\M1_48.bmp" />
+    <Content Include="Resources\M2.bmp" />
+    <Content Include="Resources\M2_48.bmp" />
+    <Content Include="Resources\M2_R_48.bmp" />
+    <Content Include="Resources\M3.bmp" />
+    <Content Include="Resources\M3_48.bmp" />
+    <Content Include="Resources\M3_R_48.bmp" />
+    <Content Include="Resources\O0.bmp" />
+    <Content Include="Resources\O0_48.bmp" />
+    <Content Include="Resources\O1.bmp" />
+    <Content Include="Resources\O1_48.bmp" />
+    <Content Include="Resources\O2.bmp" />
+    <Content Include="Resources\O2_48.bmp" />
+    <Content Include="Resources\O2_R_48.bmp" />
+    <Content Include="Resources\O3.bmp" />
+    <Content Include="Resources\O3_48.bmp" />
+    <Content Include="Resources\O3_R_48.bmp" />
+    <Content Include="Resources\Q0.bmp" />
+    <Content Include="Resources\Q0_48.bmp" />
+    <Content Include="Resources\Q1.bmp" />
+    <Content Include="Resources\Q1_48.bmp" />
+    <Content Include="Resources\Q2.bmp" />
+    <Content Include="Resources\Q2_48.bmp" />
+    <Content Include="Resources\Q2_R_48.bmp" />
+    <Content Include="Resources\Q3.bmp" />
+    <Content Include="Resources\Q3_48.bmp" />
+    <Content Include="Resources\Q3_R_48.bmp" />
+    <Content Include="Resources\R0.bmp" />
+    <Content Include="Resources\R0_48.bmp" />
+    <Content Include="Resources\R1.bmp" />
+    <Content Include="Resources\R1_48.bmp" />
+    <Content Include="Resources\R2.bmp" />
+    <Content Include="Resources\R2_48.bmp" />
+    <Content Include="Resources\R2_R_48.bmp" />
+    <Content Include="Resources\R3.bmp" />
+    <Content Include="Resources\R3_48.bmp" />
+    <Content Include="Resources\R3_R_48.bmp" />
+    <Content Include="Resources\S0.bmp" />
+    <Content Include="Resources\S0_48.bmp" />
+    <Content Include="Resources\S1.bmp" />
+    <Content Include="Resources\S1_48.bmp" />
+    <Content Include="Resources\S2.bmp" />
+    <Content Include="Resources\S2_48.bmp" />
+    <Content Include="Resources\S2_R_48.bmp" />
+    <Content Include="Resources\S3.bmp" />
+    <Content Include="Resources\S3_48.bmp" />
+    <Content Include="Resources\S3_R_48.bmp" />
+    <Content Include="Resources\T0.bmp" />
+    <Content Include="Resources\T0_48.bmp" />
+    <Content Include="Resources\T1.bmp" />
+    <Content Include="Resources\T1_48.bmp" />
+    <Content Include="Resources\T2.bmp" />
+    <Content Include="Resources\T2_48.bmp" />
+    <Content Include="Resources\T2_R_48.bmp" />
+    <Content Include="Resources\T3.bmp" />
+    <Content Include="Resources\T3_48.bmp" />
+    <Content Include="Resources\T3_R_48.bmp" />
+    <Content Include="Resources\产品报废.png" />
+    <Content Include="Resources\产线签到.png" />
+    <Content Include="Resources\产线签退.png" />
+    <None Include="Resources\人工检查工序.png" />
+    <Content Include="Resources\停工登记.png" />
+    <Content Include="Resources\关于.png" />
+    <Content Include="Resources\帮助.png" />
+    <None Include="Resources\成品包装+附件配套工序.png" />
+    <None Include="Resources\成品包装工序.png" />
+    <None Include="Resources\故障维修工序.png" />
+    <None Include="Resources\机器测试工序.png" />
+    <None Include="Resources\无料加工+人工检查工序.png" />
+    <None Include="Resources\无料加工工序.png" />
+    <None Include="Resources\有料生产+机器测试工序.png" />
+    <None Include="Resources\有料生产+人工检查工序.png" />
+    <None Include="Resources\有料生产工序.png" />
+    <Content Include="Resources\生产换型.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
