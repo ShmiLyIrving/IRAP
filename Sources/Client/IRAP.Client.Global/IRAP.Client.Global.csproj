@@ -31,6 +31,10 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -55,6 +59,12 @@
     <Compile Include="frmCustomBase.Designer.cs">
       <DependentUpon>frmCustomBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCustomBase1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomBase1.Designer.cs">
+      <DependentUpon>frmCustomBase1.cs</DependentUpon>
+    </Compile>
     <Compile Include="IRAPConst.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,10 +72,23 @@
     <EmbeddedResource Include="frmCustomBase.resx">
       <DependentUpon>frmCustomBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomBase1.resx">
+      <DependentUpon>frmCustomBase1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.Global.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Global\IRAP.Global\IRAP.Global.csproj">
+      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRAP.Client.Global.Resources\IRAP.Client.Global.Resources.csproj">
+      <Project>{64d9dd02-3da4-4e11-b696-f13a4d178a63}</Project>
+      <Name>IRAP.Client.Global.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
