@@ -5,10 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
+
+using IRAP.Client.Global;
 
 namespace IRAP.Client.User
 {
-    public partial class frmChangePassword : IRAP.Client.Global.frmCustomBase
+    public partial class frmChangePassword : frmCustomBase
     {
         public frmChangePassword()
         {
@@ -28,7 +31,7 @@ namespace IRAP.Client.User
                     IRAPUser.Instance.Password,
                     edtPassword.Text,
                     edtConfPassword.Text);
-                MessageBox.Show(
+                XtraMessageBox.Show(
                     "登录密码修改完成，新的登录密码将在下次登录时生效。",
                     "登录密码修改",
                     MessageBoxButtons.OK,
@@ -37,7 +40,7 @@ namespace IRAP.Client.User
             }
             catch (Exception error)
             {
-                MessageBox.Show(
+                XtraMessageBox.Show(
                     string.Format(
                         "修改登录密码失败：{0}",
                         error.Message),

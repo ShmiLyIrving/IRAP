@@ -28,57 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblFuncName = new Telerik.WinControls.UI.RadLabel();
-            this.pnlTitle = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFuncName)).BeginInit();
-            this.pnlTitle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lblFuncName = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // toolTipController
+            // 
+            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Options.UseFont = true;
+            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Options.UseFont = true;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.lblFuncName);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(891, 56);
+            this.panelControl1.TabIndex = 0;
             // 
             // lblFuncName
             // 
-            this.lblFuncName.AutoSize = false;
+            this.lblFuncName.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblFuncName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblFuncName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFuncName.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.lblFuncName.ForeColor = System.Drawing.Color.Green;
             this.lblFuncName.Location = new System.Drawing.Point(0, 0);
             this.lblFuncName.Name = "lblFuncName";
-            this.lblFuncName.Size = new System.Drawing.Size(899, 56);
+            this.lblFuncName.Size = new System.Drawing.Size(891, 56);
             this.lblFuncName.TabIndex = 0;
             this.lblFuncName.Text = "lblFuncName";
-            this.lblFuncName.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnlTitle
-            // 
-            this.pnlTitle.Controls.Add(this.lblFuncName);
-            this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.Location = new System.Drawing.Point(0, 0);
-            this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(899, 56);
-            this.pnlTitle.TabIndex = 2;
             // 
             // frmCustomFuncBase
             // 
-            this.ClientSize = new System.Drawing.Size(899, 504);
-            this.Controls.Add(this.pnlTitle);
+            this.Appearance.Options.UseFont = true;
+            this.ClientSize = new System.Drawing.Size(891, 495);
+            this.Controls.Add(this.panelControl1);
             this.Name = "frmCustomFuncBase";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
             this.Activated += new System.EventHandler(this.frmCustomFuncBase_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCustomFuncBase_FormClosed);
             this.Shown += new System.EventHandler(this.frmCustomFuncBase_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.lblFuncName)).EndInit();
-            this.pnlTitle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        protected Telerik.WinControls.UI.RadLabel lblFuncName;
-        private System.Windows.Forms.Panel pnlTitle;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        protected DevExpress.XtraEditors.LabelControl lblFuncName;
     }
 }

@@ -117,7 +117,81 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="imageCollection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>187, 17</value>
+  </metadata>
+  <assembly alias="DevExpress.Utils.v15.2" name="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="imageCollection.ImageStream" type="DevExpress.Utils.ImageCollectionStreamer, DevExpress.Utils.v15.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLlV0aWxzLnYxNS4yLCBWZXJzaW9uPTE1LjIu
+        NC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAChE
+        ZXZFeHByZXNzLlV0aWxzLkltYWdlQ29sbGVjdGlvblN0cmVhbWVyAAAAAAIAAAAL
+</value>
+  </data>
   <metadata name="defaultLookAndFeel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>45</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAEAGACoDAAAFgAAACgAAAAgAAAAQAAAAAEAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAD////////////////////////////////////////////////////////////+///+/v7////+//7/
+        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////+/v75+Pj9+/r+//7/////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////9
+        /f359ff59fX9/v3///////7/////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////+/f369vj58vn59Pb+//3/////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        //////////////38+/r58/b69fn58/n5+Pf8/Pz/////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////49fP18Oz78/n69fn5
+        8vn69/j/////////////////////////////////////////////////////////////////////////
+        ///////////////////////////7+/vs5eTy7uf48u768/n58/j59vb5+Pj9/vz/////////////////
+        ///////////////////////////////////////////////////+//7+//7///////////////7j4Nfj
+        3trs5OPz7uf58+/58/j59/b69fj49PX+////////////////////////////////////////////////
+        ///////////////////////////////8+vjq5uHTzMXZ0cfh3dTm4dzu5eT28uj38u/39vf59vn59fn5
+        9fX9//7////////////////////////////////////////////////////t6+bDva6hloGDfGGHfGif
+        koK8sJ/Lxb3Ty8ba08jh3NTm4dnt4uTu6un9+vz58fj69fn59Pn59vX///7/////////////////////
+        ///////////////////59/bc1s/AtKiyp5mhloeUjHiUjXWakYGpn5LEuKbOxsHSy8bb1Mrk3tbf2tTu
+        7u759/H48e778/n79Pn59Pjz8Pn///3///7////////////////////////////7+fnh29TWzcTTy8XL
+        w7m7sKShmIeVi3eTjHWYkIKspJXFvKzPycLZz8fGwLXm5OX9/Pvt5eL17uf48+/79Pr//fjNyvaXk/b/
+        //3///////7////////////////+/v7w6Ojn4dzh2tXZ0sjRycTMwrq3rZ2imIqRh3KKgGeNhnCglISo
+        n4+7trLo5+f+/vvh3dfm4dzu5eT27+n59PH///fCwPYlHPqQh/T///3///7////////////////5+Pj2
+        7+zu5Ojn4d3h2tTZ0sfSycXDuq2ckomrpqHCwLvOzMzs7PD////5+fXe2tTUycDb18rh3NXo4t7u5+f1
+        7+j///ChnvUzLvwkHv6alfP///7///7////////9/v769vn68vb28Oru5Ofp4eDh3NLGwrvm6Or////y
+        7+vGv7OlnoeGfmCGeWejloi/tafNxsDUy8Xc1srh3NTn4dzu5+T9/ex+dv0vJ/09OP8mIPudl/X///z/
+        ///////9/P389fn79Pr58/T17uvu5OPd2tf////w7ObKwrm8saGypJaakIWVi3iVjHeelYOsopXIv7HP
+        ycLWzsbd18vj3tbm4dTY1PU9N/k5M/1CO/42L/9COvnY2Pn////////9+/z78vn78/n69Pn68fTu6Ob5
+        +vvz7u3b08vXz8jQycXKwbW1q5uflIeVjXaUjXick4WxqZvIv7LQycXOw73Lxrr5+e9xZfYPAPg1K/pC
+        PP04Mf9NR/nc2vv////////9/v369vj78fn88/n58vf39fX49fXq4eHm4dvh2NHZ0MfPycTJwLSyp5eb
+        kX6KgmaHfWGSh3Kiln63sJn28tT///hbWO4JAOsjFfYnHvk4Mfo0L/9oYvnz8/r////////////9//35
+        9fb88fn78/n5+fj59PX38Onp4uTm4drg2tHZ0MrOxsHAtqTCvK7W1srm6Nzk4+Tg4fTIyfdsa+IAANEA
+        AOEVDOgkEu0kGPcoH/onHPmOivj///3////////////+///+///59PT58/b5+fn68/r58vP37+ns5Obm
+        4dzb1Mvh3czW1v+Fh/EjILoAAIwAAHUAAHYAAIcAAKcRCccVDtEVDeQaDeglFO4cEfkrI/fk4Pf///7/
+        ///////////////+///+/v359vb7+fn78/n78/r48vP27erm4d7//uimpPkAAN0AAM4HAr0UDZ8VDYkV
+        D4IWDooUD5YUD7EVDswVDtYUDuMbDOwAAOyTk+3////+/v7////////////////9///+///8/f369/n6
+        8vj88/n79Pr37vD/++y1tPcAAOwNBuYWDuAUEdQSDb4VD5kUD4gWDoEWDowVDpQWDboRCdEAANoAANSX
+        mN////z///7////////////////////////8/Pz+///8/fv59Pb88vn78/n/+ffx8fMzNfkSAvgbDuwW
+        DugVDd0UDtIRCLoAAI8AAHwAAHAAAHgAAIIAAJ5DP7TU1Of///3///////7/////////////////////
+        ///////////////9//z59fX68fn///mLj/YAA/0fE/sfEfQYDukWDegAANocHMh3dLW5uMzg4Nr8/O7/
+        //n////////////////////////////////////////////////////////////+///8/fz79vX///Vu
+        bvkAAv4VGv0iEvkiD/QAAOs+PNfz8+j/////////////////////////////////////////////////
+        //////////////////////////////////////////zq6fVDRfoECP4VG/0YGPsHAPtTUej+/vL/////
+        ////////////////////////////////////////////////////////////////////////////////
+        ///////////29/tNTfcAAPwYHP4NE/4WFvfGxfX/////////////////////////////////////////
+        //////////////////////////////////////////////////////////////319vg5OfcABv0GB/5f
+        Xvn///n/////////////////////////////////////////////////////////////////////////
+        //////////////////////////////7//////fc1NPcAAPyHi/f/////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////+
+        /v7////w8PcwMfacnfj/////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////7h4fna2vn/////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////7/////////////////////////////////////////////
+        //////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+</value>
+  </data>
 </root>

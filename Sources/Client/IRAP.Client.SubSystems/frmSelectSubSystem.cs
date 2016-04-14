@@ -6,11 +6,10 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
-using Telerik.WinControls.UI;
 
 using IRAP.Global;
-using IRAP.Client.User;
 using IRAP.Client.Global;
+using IRAP.Client.User;
 using IRAP.Entity.SSO;
 
 namespace IRAP.Client.SubSystems
@@ -50,8 +49,7 @@ namespace IRAP.Client.SubSystems
                 foreach (SystemInfo system in AvailableSubSystems.Instance.SubSystems)
                 {
                     if (system.Accessible)
-                        lstSubSystems.Items.Add(
-                            new RadListDataItem(system.ToString(), system.Clone()));
+                        lstSubSystems.Items.Add(system.Clone());
                 }
 
                 if (lstSubSystems.Items.Count >= 1)
@@ -106,7 +104,7 @@ namespace IRAP.Client.SubSystems
                 if (lstSubSystems.SelectedIndex >= 0)
                 {
                     CurrentSubSystem.Instance.SetSystemInfo(
-                        (SystemInfo) lstSubSystems.SelectedValue);
+                        (SystemInfo)lstSubSystems.SelectedValue);
 
                     try
                     {

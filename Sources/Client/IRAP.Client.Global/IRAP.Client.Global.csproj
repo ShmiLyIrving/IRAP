@@ -31,10 +31,10 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -44,26 +44,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2016.1.112.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.WinControls.UI, Version=2016.1.112.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="TelerikCommon, Version=2016.1.112.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppOperationLog.cs" />
-    <Compile Include="Controls\IRAPTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="frmCustomBase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCustomBase.Designer.cs">
       <DependentUpon>frmCustomBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmCustomBase1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCustomBase1.Designer.cs">
-      <DependentUpon>frmCustomBase1.cs</DependentUpon>
     </Compile>
     <Compile Include="IRAPConst.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,10 +60,6 @@
     <EmbeddedResource Include="frmCustomBase.resx">
       <DependentUpon>frmCustomBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomBase1.resx">
-      <DependentUpon>frmCustomBase1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.Global.cd" />
@@ -89,6 +73,9 @@
       <Project>{64d9dd02-3da4-4e11-b696-f13a4d178a63}</Project>
       <Name>IRAP.Client.Global.Resources</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

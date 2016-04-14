@@ -28,77 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.edtUserDiary = new Telerik.WinControls.UI.RadTextBox();
-            this.btnOK = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtUserDiary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.edtUserDiary = new DevExpress.XtraEditors.TextEdit();
+            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.edtUserDiary.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // radLabel1
+            // toolTipController
             // 
-            this.radLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel1.AutoSize = false;
-            this.radLabel1.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(12, 12);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(535, 61);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "　　在退出系统前，你可以输入运行日志（或者投诉、建议等）：";
+            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Options.UseFont = true;
+            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Options.UseFont = true;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl1.Location = new System.Drawing.Point(12, 12);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(524, 61);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "　　在退出系统前，你可以输入运行日志（或者投诉、建议等）：";
             // 
             // edtUserDiary
             // 
             this.edtUserDiary.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtUserDiary.AutoSize = false;
-            this.edtUserDiary.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtUserDiary.Location = new System.Drawing.Point(12, 79);
-            this.edtUserDiary.Multiline = true;
             this.edtUserDiary.Name = "edtUserDiary";
-            this.edtUserDiary.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.edtUserDiary.Size = new System.Drawing.Size(535, 151);
+            this.edtUserDiary.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtUserDiary.Properties.Appearance.Options.UseFont = true;
+            this.edtUserDiary.Properties.Appearance.Options.UseTextOptions = true;
+            this.edtUserDiary.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.edtUserDiary.Properties.AutoHeight = false;
+            this.edtUserDiary.Size = new System.Drawing.Size(524, 153);
             this.edtUserDiary.TabIndex = 1;
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Location = new System.Drawing.Point(434, 241);
+            this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Appearance.Options.UseFont = true;
+            this.btnOK.Location = new System.Drawing.Point(456, 238);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(110, 36);
+            this.btnOK.Size = new System.Drawing.Size(80, 30);
             this.btnOK.TabIndex = 2;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // frmLogoutUserDiary
             // 
-            this.ClientSize = new System.Drawing.Size(556, 289);
+            this.Appearance.Options.UseFont = true;
+            this.ClientSize = new System.Drawing.Size(548, 280);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.edtUserDiary);
-            this.Controls.Add(this.radLabel1);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Controls.Add(this.labelControl1);
             this.Name = "frmLogoutUserDiary";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
-            this.Text = "请输入运行日志";
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtUserDiary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtUserDiary.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadTextBox edtUserDiary;
-        private Telerik.WinControls.UI.RadButton btnOK;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.TextEdit edtUserDiary;
+        private DevExpress.XtraEditors.SimpleButton btnOK;
     }
 }

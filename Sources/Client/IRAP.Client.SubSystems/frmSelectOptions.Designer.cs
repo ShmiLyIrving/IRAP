@@ -28,133 +28,124 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-            this.lstProcesses = new Telerik.WinControls.UI.RadListControl();
-            this.lstWorkUnits = new Telerik.WinControls.UI.RadListControl();
-            this.btnSelect = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.lstProcesses = new DevExpress.XtraEditors.ListBoxControl();
+            this.lstWorkUnits = new DevExpress.XtraEditors.ListBoxControl();
+            this.btnSelect = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lstProcesses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstWorkUnits)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // radGroupBox1
+            // toolTipController
             // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.lstProcesses);
-            this.radGroupBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radGroupBox1.HeaderText = "请选择：";
-            this.radGroupBox1.Location = new System.Drawing.Point(12, 12);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(311, 346);
-            this.radGroupBox1.TabIndex = 0;
-            this.radGroupBox1.Text = "请选择：";
+            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Options.UseFont = true;
+            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
-            // radGroupBox2
+            // groupControl1
             // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox2.Controls.Add(this.lstWorkUnits);
-            this.radGroupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGroupBox2.HeaderText = "请选择：";
-            this.radGroupBox2.Location = new System.Drawing.Point(329, 12);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(311, 346);
-            this.radGroupBox2.TabIndex = 1;
-            this.radGroupBox2.Text = "请选择：";
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.Controls.Add(this.lstProcesses);
+            this.groupControl1.Location = new System.Drawing.Point(12, 12);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
+            this.groupControl1.Size = new System.Drawing.Size(311, 346);
+            this.groupControl1.TabIndex = 0;
+            this.groupControl1.Text = "请选择：";
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
+            this.groupControl2.Controls.Add(this.lstWorkUnits);
+            this.groupControl2.Location = new System.Drawing.Point(329, 12);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Padding = new System.Windows.Forms.Padding(5);
+            this.groupControl2.Size = new System.Drawing.Size(311, 346);
+            this.groupControl2.TabIndex = 1;
+            this.groupControl2.Text = "请选择：";
             // 
             // lstProcesses
             // 
-            this.lstProcesses.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstProcesses.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstProcesses.Location = new System.Drawing.Point(5, 21);
+            this.lstProcesses.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstProcesses.Appearance.Options.UseFont = true;
+            this.lstProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstProcesses.Location = new System.Drawing.Point(7, 32);
             this.lstProcesses.Name = "lstProcesses";
-            this.lstProcesses.Size = new System.Drawing.Size(301, 320);
+            this.lstProcesses.Size = new System.Drawing.Size(297, 307);
             this.lstProcesses.TabIndex = 0;
-            this.lstProcesses.Text = "radListControl1";
-            this.lstProcesses.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.lstProcesses_SelectedIndexChanged);
+            this.lstProcesses.SelectedIndexChanged += new System.EventHandler(this.lstProcesses_SelectedIndexChanged);
             // 
             // lstWorkUnits
             // 
-            this.lstWorkUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstWorkUnits.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstWorkUnits.Location = new System.Drawing.Point(5, 21);
+            this.lstWorkUnits.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstWorkUnits.Appearance.Options.UseFont = true;
+            this.lstWorkUnits.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstWorkUnits.Location = new System.Drawing.Point(7, 32);
             this.lstWorkUnits.Name = "lstWorkUnits";
-            this.lstWorkUnits.Size = new System.Drawing.Size(301, 320);
-            this.lstWorkUnits.TabIndex = 1;
-            this.lstWorkUnits.Text = "radListControl2";
+            this.lstWorkUnits.Size = new System.Drawing.Size(297, 307);
+            this.lstWorkUnits.TabIndex = 0;
             this.lstWorkUnits.Click += new System.EventHandler(this.lstWorkUnits_Click);
             this.lstWorkUnits.DoubleClick += new System.EventHandler(this.lstWorkUnits_DoubleClick);
             // 
             // btnSelect
             // 
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelect.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelect.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelect.Appearance.Options.UseFont = true;
             this.btnSelect.Location = new System.Drawing.Point(646, 12);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(110, 32);
+            this.btnSelect.Size = new System.Drawing.Size(85, 32);
             this.btnSelect.TabIndex = 2;
             this.btnSelect.Text = "选择";
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.Location = new System.Drawing.Point(646, 50);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 32);
+            this.btnCancel.Size = new System.Drawing.Size(85, 32);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "取消";
             // 
             // frmSelectOptions
             // 
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(760, 379);
+            this.Appearance.Options.UseFont = true;
+            this.ClientSize = new System.Drawing.Size(744, 369);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSelect);
-            this.Controls.Add(this.radGroupBox2);
-            this.Controls.Add(this.radGroupBox1);
+            this.Controls.Add(this.groupControl2);
+            this.Controls.Add(this.groupControl1);
             this.Name = "frmSelectOptions";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "选择产品/流程和工位/工序";
             this.Load += new System.EventHandler(this.frmSelectOptions_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmSelectOptions_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lstProcesses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstWorkUnits)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
-        private Telerik.WinControls.UI.RadListControl lstProcesses;
-        private Telerik.WinControls.UI.RadListControl lstWorkUnits;
-        private Telerik.WinControls.UI.RadButton btnSelect;
-        private Telerik.WinControls.UI.RadButton btnCancel;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.ListBoxControl lstProcesses;
+        private DevExpress.XtraEditors.ListBoxControl lstWorkUnits;
+        private DevExpress.XtraEditors.SimpleButton btnSelect;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
     }
 }

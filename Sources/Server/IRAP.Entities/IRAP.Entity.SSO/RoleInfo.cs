@@ -15,6 +15,11 @@ namespace IRAP.Entity.SSO
         public int RoleLeaf { get; set; }
         public string RoleName { get; set; }
 
+        public override string ToString()
+        {
+            return RoleName;
+        }
+
         public RoleInfo Clone()
         {
             return MemberwiseClone() as RoleInfo;

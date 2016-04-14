@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
 using System.Text;
+using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using System.Reflection;
-using Telerik.WinControls.UI;
 
 using IRAP.Global;
 using IRAP.Client.User;
@@ -15,7 +15,7 @@ using IRAP.Entity.SSO;
 
 namespace IRAP.Client.SubSystems
 {
-    public partial class ucOptions : UserControl
+    public partial class ucOptions : DevExpress.XtraEditors.XtraUserControl
     {
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -34,8 +34,8 @@ namespace IRAP.Client.SubSystems
         {
             get
             {
-                if (cboProcesses.SelectedValue != null)
-                    return (ProcessInfo) cboProcesses.SelectedValue;
+                if (cboProcesses.SelectedItem != null)
+                    return (ProcessInfo)cboProcesses.SelectedItem;
                 else
                     return null;
             }
@@ -45,8 +45,8 @@ namespace IRAP.Client.SubSystems
         {
             get
             {
-                if (cboWorkUnits.SelectedValue != null)
-                    return (WorkUnitInfo) cboWorkUnits.SelectedValue;
+                if (cboWorkUnits.SelectedItem != null)
+                    return (WorkUnitInfo)cboWorkUnits.SelectedItem;
                 else
                     return null;
             }
@@ -82,28 +82,22 @@ namespace IRAP.Client.SubSystems
                 #endregion
 
                 #region 将获取的产品/流程列表加入下拉列表中
-                cboProcesses.Items.Clear();
+                cboProcesses.Properties.Items.Clear();
                 foreach (ProcessInfo process in AvailableProcesses.Instance.Processes)
-                    cboProcesses.Items.Add(
-                        new RadListDataItem(
-                            process.ToString(),
-                            process));
+                    cboProcesses.Properties.Items.Add(process);
 
-                if (cboProcesses.Items.Count > 0)
+                if (cboProcesses.Properties.Items.Count > 0)
                 {
                     cboProcesses.SelectedIndex = 0;
 
                     try
                     {
-                        CurrentOptions.Instance.Process = 
-                            (ProcessInfo) cboProcesses.SelectedItem.DataBoundItem;
+                        CurrentOptions.Instance.Process =
+                            (ProcessInfo)cboProcesses.SelectedItem;
 
-                        cboWorkUnits.Items.Clear();
+                        cboWorkUnits.Properties.Items.Clear();
                         foreach (WorkUnitInfo workUnit in CurrentOptions.Instance.WorkUnits)
-                            cboWorkUnits.Items.Add(
-                                new RadListDataItem(
-                                    workUnit.ToString(),
-                                    workUnit));
+                            cboWorkUnits.Properties.Items.Add(workUnit);
                         cboWorkUnits.SelectedIndex = CurrentOptions.Instance.IndexOfWorkUnit;
                     }
                     catch (Exception error)
@@ -133,19 +127,13 @@ namespace IRAP.Client.SubSystems
 
         private void ResetCurrentOptions()
         {
-            cboProcesses.Items.Clear();
-            cboProcesses.Items.Add(
-                new RadListDataItem(
-                    CurrentOptions.Instance.Process.ToString(),
-                    CurrentOptions.Instance.Process));
+            cboProcesses.Properties.Items.Clear();
+            cboProcesses.Properties.Items.Add(CurrentOptions.Instance.Process);
             cboProcesses.SelectedIndex = 0;
 
-            cboWorkUnits.Items.Clear();
+            cboWorkUnits.Properties.Items.Clear();
             foreach (WorkUnitInfo workUnit in CurrentOptions.Instance.WorkUnits)
-                cboWorkUnits.Items.Add(
-                    new RadListDataItem(
-                        workUnit.ToString(),
-                        workUnit));
+                cboWorkUnits.Properties.Items.Add(workUnit);
             if (CurrentOptions.Instance.WorkUnit.WorkUnitLeaf != 0)
                 cboWorkUnits.SelectedIndex = CurrentOptions.Instance.IndexOfWorkUnit;
 
@@ -175,7 +163,7 @@ namespace IRAP.Client.SubSystems
                 {
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
-            }           
+            }
         }
 
         private void btnSwitch_Click(object sender, EventArgs e)

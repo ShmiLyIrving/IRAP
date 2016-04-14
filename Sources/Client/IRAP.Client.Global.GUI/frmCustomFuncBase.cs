@@ -7,15 +7,16 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 
+using IRAP.Client.Global;
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Client.SubSystems;
 
 namespace IRAP.Client.Global.GUI
 {
-    public partial class frmCustomFuncBase : IRAP.Client.Global.frmCustomBase
+    public partial class frmCustomFuncBase : frmCustomBase
     {
-        private static string className =
+        protected static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
         private ucOptions barOptions = null;
         private bool refreshGUIOptions = false;

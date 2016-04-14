@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,7 +48,9 @@
     <Compile Include="ItemNode.cs" />
     <Compile Include="ItemStatus.cs" />
     <Compile Include="WFItem.cs" />
-    <Compile Include="WorkFlowPanel.cs" />
+    <Compile Include="WorkFlowPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="IPaintItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +61,10 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
+      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IRAP.Client.Global.Resources\IRAP.Client.Global.Resources.csproj">
       <Project>{64d9dd02-3da4-4e11-b696-f13a4d178a63}</Project>
       <Name>IRAP.Client.Global.Resources</Name>

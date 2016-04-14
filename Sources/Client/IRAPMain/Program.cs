@@ -4,6 +4,9 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Reflection;
+using DevExpress.XtraEditors;
+using System.Threading;
+using System.Globalization;
 
 using IRAP.Global;
 using IRAP.Client.User;
@@ -36,6 +39,25 @@ namespace IRAP
 
             #endregion
 
+            #region 设置默认字体、日期格式、汉化DEV
+            DevExpress.UserSkins.BonusSkins.Register();
+            DevExpress.Skins.SkinManager.EnableFormSkins();
+            DevExpress.Utils.AppearanceObject.DefaultFont =
+                new System.Drawing.Font("微软雅黑", 10.5f);
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CHS");
+            // 设置程序区域语言设置中日期格式
+            //CultureInfo ci = new CultureInfo("zh-CHS");
+            //DateTimeFormatInfo di =
+            //    (DateTimeFormatInfo)Thread.CurrentThread.CurrentCulture.DateTimeFormat.Clone();
+            //di.DateSeparator = "-";
+            //di.ShortDatePattern = "yyyy-MM-dd";
+            //di.LongDatePattern = "yyyy'年'M'月'd'日'";
+            //di.ShortTimePattern = "H:mm:ss";
+            //di.LongTimePattern = "H'时'mm'分'ss'秒'";
+            //ci.DateTimeFormat = di;
+            //Thread.CurrentThread.CurrentCulture = ci;
+            #endregion
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -59,16 +81,16 @@ namespace IRAP
                         if (formSelectSystem.ShowDialog() == DialogResult.Cancel)
                             break;
 
-                        frmIRAPMain1 main = null;
+                        frmIRAPMain main = null;
                         try
                         {
-                            main = new frmIRAPMain1();
+                            main = new frmIRAPMain();
                             main.ShowDialog();
                         }
                         catch (Exception error)
                         {
                             WriteLog.Instance.Write(error.Message, "IRAP");
-                            MessageBox.Show(
+                            XtraMessageBox.Show(
                                 error.Message,
                                 "系统信息",
                                 MessageBoxButtons.OK,

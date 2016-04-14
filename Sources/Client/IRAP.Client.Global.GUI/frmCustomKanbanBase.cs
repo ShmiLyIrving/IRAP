@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Telerik.WinControls.UI;
+using DevExpress.XtraBars.Ribbon;
 using System.Reflection;
 
 using IRAP.Global;
@@ -16,9 +16,10 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.Global.GUI
 {
+    public delegate void SwitchToNextFunctionHandler(int itemID);
+
     public partial class frmCustomKanbanBase : IRAP.Client.Global.GUI.frmCustomFuncBase
     {
-        private static string className;
         /// <summary>
         /// 数据刷新出错日志
         /// </summary>
@@ -52,10 +53,11 @@ namespace IRAP.Client.Global.GUI
             InitializeComponent();
         }
 
+
         /// <summary>
         /// 主框架菜单
         /// </summary>
-        public RadRibbonBar SystemMenu { get; set; }
+        public RibbonControl SystemMenu { get; set; }
 
         /// <summary>
         /// 系统登录标识
@@ -83,20 +85,12 @@ namespace IRAP.Client.Global.GUI
                 picConnectionStatus.Image = Properties.Resources.Disconnected;
         }
 
-        private void picConnectionStatus_Click(object sender, EventArgs e)
-        {
-            using (frmShowErrorLogs showErrorLogs = new frmShowErrorLogs(errorLogs))
-            {
-                showErrorLogs.ShowDialog();
-            }
-        }
-
         /// <summary>
         /// 获取下一次需要切换的功能号
         /// </summary>
         public void GetNextSwitchFunction()
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
                     "{0}.{1}",
                     className,
@@ -175,6 +169,14 @@ namespace IRAP.Client.Global.GUI
                 OnSwitch(nextFunction.JumpToT3LeafID);
         }
 
+        private void picConnectionStatus_Click(object sender, EventArgs e)
+        {
+            using (frmShowErrorLogs showErrorLogs = new frmShowErrorLogs(errorLogs))
+            {
+                showErrorLogs.ShowDialog();
+            }
+        }
+
         private void frmCustomKanbanBase_Activated(object sender, EventArgs e)
         {
             string strProcedureName = string.Format("{0}.{1}",
@@ -237,6 +239,4 @@ namespace IRAP.Client.Global.GUI
                             lblFuncName.Text));
         }
     }
-
-    public delegate void SwitchToNextFunctionHandler(int itemID);
 }

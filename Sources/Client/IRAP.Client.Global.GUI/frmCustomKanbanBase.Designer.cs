@@ -29,43 +29,43 @@
         private void InitializeComponent()
         {
             this.picConnectionStatus = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFuncName)).BeginInit();
-            this.lblFuncName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picConnectionStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
             // 
-            this.lblFuncName.Controls.Add(this.picConnectionStatus);
-            this.lblFuncName.Size = new System.Drawing.Size(907, 56);
+            this.lblFuncName.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblFuncName.Text = "frmCustomBase";
+            // 
+            // toolTipController
+            // 
+            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Options.UseFont = true;
+            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
             // picConnectionStatus
             // 
             this.picConnectionStatus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picConnectionStatus.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picConnectionStatus.Location = new System.Drawing.Point(847, 0);
+            this.picConnectionStatus.Location = new System.Drawing.Point(831, 0);
             this.picConnectionStatus.Name = "picConnectionStatus";
             this.picConnectionStatus.Size = new System.Drawing.Size(60, 56);
-            this.picConnectionStatus.TabIndex = 0;
+            this.picConnectionStatus.TabIndex = 1;
             this.picConnectionStatus.TabStop = false;
             this.picConnectionStatus.Click += new System.EventHandler(this.picConnectionStatus_Click);
             // 
             // frmCustomKanbanBase
             // 
-            this.ClientSize = new System.Drawing.Size(907, 513);
+            this.Appearance.Options.UseFont = true;
+            this.ClientSize = new System.Drawing.Size(891, 495);
             this.Name = "frmCustomKanbanBase";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
             this.Activated += new System.EventHandler(this.frmCustomKanbanBase_Activated);
             this.Shown += new System.EventHandler(this.frmCustomKanbanBase_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.lblFuncName)).EndInit();
-            this.lblFuncName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picConnectionStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
         }

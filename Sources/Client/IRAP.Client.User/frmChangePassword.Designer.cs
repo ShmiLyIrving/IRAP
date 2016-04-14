@@ -28,114 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.edtPassword = new IRAP.Client.Global.Controls.IRAPTextBox();
-            this.edtConfPassword = new IRAP.Client.Global.Controls.IRAPTextBox();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.btnOK = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtPassword)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtConfPassword)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.edtPassword = new DevExpress.XtraEditors.TextEdit();
+            this.edtConfPassword = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.edtPassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtConfPassword.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // radLabel1
+            // toolTipController
             // 
-            this.radLabel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(20, 30);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(74, 25);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "新密码：";
+            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Options.UseFont = true;
+            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Options.UseFont = true;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Location = new System.Drawing.Point(20, 30);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(64, 21);
+            this.labelControl2.TabIndex = 7;
+            this.labelControl2.Text = "新密码：";
             // 
             // edtPassword
             // 
             this.edtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtPassword.EnterMoveNextControl = true;
-            this.edtPassword.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edtPassword.Location = new System.Drawing.Point(116, 30);
+            this.edtPassword.Location = new System.Drawing.Point(106, 27);
             this.edtPassword.Name = "edtPassword";
-            this.edtPassword.PasswordChar = '●';
-            this.edtPassword.Size = new System.Drawing.Size(204, 27);
-            this.edtPassword.TabIndex = 1;
-            this.edtPassword.UseSystemPasswordChar = true;
+            this.edtPassword.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtPassword.Properties.Appearance.Options.UseFont = true;
+            this.edtPassword.Properties.UseSystemPasswordChar = true;
+            this.edtPassword.Size = new System.Drawing.Size(206, 28);
+            this.edtPassword.TabIndex = 6;
             // 
             // edtConfPassword
             // 
             this.edtConfPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtConfPassword.EnterMoveNextControl = true;
-            this.edtConfPassword.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edtConfPassword.Location = new System.Drawing.Point(116, 63);
+            this.edtConfPassword.Location = new System.Drawing.Point(106, 61);
             this.edtConfPassword.Name = "edtConfPassword";
-            this.edtConfPassword.PasswordChar = '●';
-            this.edtConfPassword.Size = new System.Drawing.Size(204, 27);
-            this.edtConfPassword.TabIndex = 3;
-            this.edtConfPassword.UseSystemPasswordChar = true;
+            this.edtConfPassword.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtConfPassword.Properties.Appearance.Options.UseFont = true;
+            this.edtConfPassword.Properties.UseSystemPasswordChar = true;
+            this.edtConfPassword.Size = new System.Drawing.Size(206, 28);
+            this.edtConfPassword.TabIndex = 8;
             // 
-            // radLabel2
+            // labelControl1
             // 
-            this.radLabel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(20, 63);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(90, 25);
-            this.radLabel2.TabIndex = 2;
-            this.radLabel2.Text = "再输一次：";
-            // 
-            // btnOK
-            // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Location = new System.Drawing.Point(160, 109);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 26);
-            this.btnOK.TabIndex = 4;
-            this.btnOK.Text = "确定";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(20, 64);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(80, 21);
+            this.labelControl1.TabIndex = 9;
+            this.labelControl1.Text = "再输一次：";
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(245, 109);
+            this.btnCancel.Location = new System.Drawing.Point(225, 103);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 26);
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Size = new System.Drawing.Size(85, 30);
+            this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnOK
+            // 
+            this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Appearance.Options.UseFont = true;
+            this.btnOK.Enabled = false;
+            this.btnOK.Location = new System.Drawing.Point(125, 103);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(85, 30);
+            this.btnOK.TabIndex = 11;
+            this.btnOK.Text = "确定";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
             // frmChangePassword
             // 
+            this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(332, 147);
+            this.ClientSize = new System.Drawing.Size(324, 145);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.edtConfPassword);
-            this.Controls.Add(this.radLabel2);
+            this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.edtPassword);
-            this.Controls.Add(this.radLabel1);
-            this.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "frmChangePassword";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
-            this.ShowInTaskbar = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "设置登录新密码";
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtPassword)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtConfPassword)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtPassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtConfPassword.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,11 +135,11 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private IRAP.Client.Global.Controls.IRAPTextBox edtPassword;
-        private IRAP.Client.Global.Controls.IRAPTextBox edtConfPassword;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadButton btnOK;
-        private Telerik.WinControls.UI.RadButton btnCancel;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.TextEdit edtPassword;
+        private DevExpress.XtraEditors.TextEdit edtConfPassword;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton btnOK;
     }
 }

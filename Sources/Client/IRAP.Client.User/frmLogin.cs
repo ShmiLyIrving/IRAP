@@ -5,17 +5,17 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Telerik.WinControls;
 using System.Reflection;
 
 using IRAP.Global;
+using IRAP.Entity.SSO;
 
 namespace IRAP.Client.User
 {
     public partial class frmLogin : IRAP.Client.Global.frmCustomBase
     {
-        private bool formMove = false;
-        private Point formPoint;
+        private bool formMove = false;  // 窗体是否移动
+        private Point formPoint;        // 记录窗体的位置
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
@@ -29,12 +29,8 @@ namespace IRAP.Client.User
             IRAPUser.Instance.UserCode = edtUserCode.Text;
 
             edtUserPWD.Text = "";
-            cboAgencies.Items.Clear();
-            cboRoles.Items.Clear();
-        }
-
-        private void edtUserPWD_Leave(object sender, EventArgs e)
-        {
+            cboAgencies.Properties.Items.Clear();
+            cboRoles.Properties.Items.Clear();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -72,7 +68,7 @@ namespace IRAP.Client.User
                     #region 登录成功后，如果用户选择了“修改登录密码”后，进入密码修改界面
                     if (chkChangePWD.Checked)
                     {
-                        using (frmChangePassword changePassword=new frmChangePassword())
+                        using (frmChangePassword changePassword = new frmChangePassword())
                         {
                             changePassword.ShowDialog();
                         }
@@ -85,24 +81,6 @@ namespace IRAP.Client.User
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }   
-
-        private void frmLogin_MouseDown(object sender, MouseEventArgs e)
-        {
-            formPoint = new Point();
-            int xOffset;
-            int yOffset;
-
-            if (e.Button == MouseButtons.Left)
-            {
-                xOffset = -e.X - SystemInformation.FrameBorderSize.Width;
-                yOffset = -e.Y
-                    - SystemInformation.CaptionHeight
-                    - SystemInformation.FrameBorderSize.Height;
-
-                formPoint = new Point(xOffset, yOffset);
-                formMove = true;
             }
         }
 
@@ -137,20 +115,23 @@ namespace IRAP.Client.User
                     IRAPUser.Instance.Password = edtUserPWD.Text;
                     if (IRAPUser.Instance.IsPWDVerified)
                     {
-                        cboAgencies.Items.Clear();
-                        cboAgencies.DataSource = IRAPUser.Instance.AvailableAgencies;
-                        cboAgencies.DisplayMember = "AgencyName";
-                        cboAgencies.ValueMember = "AgencyLeaf";
-                        if (cboAgencies.Items.Count > 0)
+                        cboAgencies.Properties.Items.Clear();
+                        foreach (AgencyInfo agency in IRAPUser.Instance.AvailableAgencies)
+                        {
+                            cboAgencies.Properties.Items.Add(agency);
+                        }
+                        if (cboAgencies.Properties.Items.Count > 0)
                             cboAgencies.SelectedIndex = 0;
-                        cboAgencies.Enabled = cboAgencies.Items.Count > 1;
+                        cboAgencies.Enabled = cboAgencies.Properties.Items.Count > 1;
 
-                        cboRoles.DataSource = IRAPUser.Instance.AvailableRoles;
-                        cboRoles.DisplayMember = "RoleName";
-                        cboRoles.ValueMember = "RoleLeaf";
-                        if (cboRoles.Items.Count > 0)
+                        cboRoles.Properties.Items.Clear();
+                        foreach (RoleInfo role in IRAPUser.Instance.AvailableRoles)
+                        {
+                            cboRoles.Properties.Items.Add(role);
+                        }
+                        if (cboRoles.Properties.Items.Count > 0)
                             cboRoles.SelectedIndex = 0;
-                        cboRoles.Enabled = cboRoles.Items.Count > 1;
+                        cboRoles.Enabled = cboRoles.Properties.Items.Count > 1;
 
                         btnLogin.Enabled =
                             ((cboAgencies.SelectedIndex >= 0) &&
@@ -182,8 +163,8 @@ namespace IRAP.Client.User
             }
             else
             {
-                cboAgencies.Items.Clear();
-                cboRoles.Items.Clear();
+                cboAgencies.Properties.Items.Clear();
+                cboRoles.Properties.Items.Clear();
                 chkChangePWD.Enabled = false;
                 btnLogin.Enabled = false;
 
@@ -195,10 +176,33 @@ namespace IRAP.Client.User
         {
             if (e.KeyCode != Keys.Return || e.KeyCode != Keys.Tab)
             {
-                cboAgencies.Items.Clear();
-                cboRoles.Items.Clear();
+                cboAgencies.Properties.Items.Clear();
+                cboRoles.Properties.Items.Clear();
                 chkChangePWD.Enabled = false;
                 btnLogin.Enabled = false;
+            }
+        }
+
+        private void frmLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            formPoint = new Point();
+            int xOffset;
+            int yOffset;
+
+            if (e.Button== MouseButtons.Left)
+            {
+                xOffset = -e.X;
+                yOffset = -e.Y;
+                if (FormBorderStyle != FormBorderStyle.None)
+                {
+                    xOffset -= SystemInformation.FrameBorderSize.Width;
+                    yOffset -= SystemInformation.FrameBorderSize.Height;
+                }
+                if (ControlBox)
+                    yOffset -= SystemInformation.CaptionHeight;
+
+                formPoint = new Point(xOffset, yOffset);
+                formMove = true;
             }
         }
     }
