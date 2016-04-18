@@ -79,4 +79,33 @@ namespace IRAP.Entity.Kanban
             return rlt;
         }
     }
+
+    public class SubTreeLeaf_CompareByCode : IComparer<SubTreeLeaf>
+    {
+        public int Compare(SubTreeLeaf x, SubTreeLeaf y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (y == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return x.NodeCode.CompareTo(y.NodeCode);
+                }
+            }
+        }
+    }
 }

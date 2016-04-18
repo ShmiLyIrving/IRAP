@@ -9,6 +9,7 @@ using System.Collections;
 using IRAP.Global;
 using IRAPShared;
 using IRAPORM;
+using IRAP.Server.Global;
 using IRAP.Entity.SSO;
 
 namespace IRAP.BL.SSO
@@ -598,7 +599,8 @@ namespace IRAP.BL.SSO
                     string.Format(
                         "调用 IRAP..ssp_RunAFunction，输入参数：" +
                         "CommunityID={0}|SysLogID={1}|MenuItemID={2}",
-                        communityID, sysLogID, menuItemID));
+                        communityID, sysLogID, menuItemID),
+                    strProcedureName);
                 #endregion
 
                 #region 执行数据库函数或存储过程
@@ -610,13 +612,7 @@ namespace IRAP.BL.SSO
                         errCode = error.ErrCode;
                         errText = error.ErrText;
 
-                        foreach (IRAPProcParameter param in paramList)
-                        {
-                            if (param.Direction == ParameterDirection.InputOutput || param.Direction == ParameterDirection.Output)
-                            {
-                                rlt.Add(param.ParameterName.Replace("@", ""), param.Value);
-                            }
-                        }
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
                     }
                 }
                 catch (Exception error)
@@ -624,6 +620,7 @@ namespace IRAP.BL.SSO
                     errCode = 99000;
                     errText = string.Format("调用 IRAP..ssp_RunAFunction 函数发生异常：{0}", error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }
                 #endregion
 

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Entity.MESRMM.UserOfSkillMatrix" Collapsed="true">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQCAACAABAIAgAAAABAAAAQAQAAEAAAABA=</HashCode>
+      <FileName>UserOfSkillMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MESRMM.SkillLevel">
+    <Position X="5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQABA=</HashCode>
+      <FileName>SkillLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MESRMM.PrivateRouterForAProduct">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAECAAgAAAAAAAhAAAAAAAAAAAAAAAEAAEAAAABA=</HashCode>
+      <FileName>PrivateRouterForAProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

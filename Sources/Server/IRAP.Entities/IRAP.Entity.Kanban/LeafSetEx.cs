@@ -44,7 +44,10 @@ namespace IRAP.Entity.Kanban
         {
             get
             {
-                return string.Format("[{0}]{1}", Code, LeafName);
+                if (Code.Trim() == "")
+                    return LeafName;
+                else
+                    return string.Format("[{0}]{1}", Code, LeafName);
             }
         }
 

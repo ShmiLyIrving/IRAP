@@ -172,6 +172,7 @@ namespace IRAP.BL.SSO
                         int rlt = (int)conn.CallScalarFunc("IRAP.dbo.sfn_UserPWDVerify", paramList);
                         errCode = 0;
                         errText = "调用成功！";
+                        WriteLog.Instance.Write(errText);
                         return Json(rlt);
                     }
                 }
@@ -179,6 +180,8 @@ namespace IRAP.BL.SSO
                 {
                     errCode = 99000;
                     errText = string.Format("调用 IRAP.dbo.sfn_UserPWDVerify 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                     return Json(0);
                 }
                 #endregion

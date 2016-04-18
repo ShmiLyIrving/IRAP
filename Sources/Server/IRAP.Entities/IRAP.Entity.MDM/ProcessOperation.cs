@@ -31,11 +31,7 @@ namespace IRAP.Entity.MDM
         /// </summary>
         public int T116Leaf { get; set; }
         /// <summary>
-        /// 工序类型
-        /// </summary>
-        public string T116Code { get; set; }
-        /// <summary>
-        /// 工序类型
+        /// 工序类型名称
         /// </summary>
         public string T116Name { get; set; }
         /// <summary>
@@ -54,6 +50,11 @@ namespace IRAP.Entity.MDM
         /// 生产在制品部位
         /// </summary>
         public string T123Name { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("[{0}]-{1}", T216Code, T216Name);
+        }
 
         public ProcessOperation Clone()
         {

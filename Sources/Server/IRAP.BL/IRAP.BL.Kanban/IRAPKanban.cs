@@ -867,11 +867,14 @@ namespace IRAP.BL.Kanban
                 {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
-                        string strSQL = "SELECT * " +
-                            "FROM IRAP..sfn_SubtreeLeaves(" +
-                            "@CommunityID, @TreeID, @NodeID)" +
-                            "WHERE NodeCode LIKE @FilterString OR NodeName LIKE @FilterString" +
-                            "ORDER BY NodeDepth, UDFOrdinal";
+                        string strSQL = 
+                            string.Format("SELECT * " +
+                                "FROM IRAP..sfn_SubtreeLeaves(" +
+                                "@CommunityID, @TreeID, @NodeID) " +
+                                "WHERE NodeCode LIKE '%{0}%' OR NodeName LIKE '%{0}%' " +
+                                "ORDER BY NodeDepth, UDFOrdinal",
+                                filterString);
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
 
                         IList<SubTreeLeaf> lstDatas =
                             conn.CallTableFunc<SubTreeLeaf>(strSQL, paramList);
@@ -1001,7 +1004,7 @@ namespace IRAP.BL.Kanban
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@TreeID", DbType.Int32, treeID));
                 paramList.Add(new IRAPProcParameter("@NodeID", DbType.Int32, nodeID));
-                paramList.Add(new IRAPProcParameter("@ScenarioINdex", DbType.Int32, scenarioIndex));
+                paramList.Add(new IRAPProcParameter("@ScenarioIndex", DbType.Int32, scenarioIndex));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(

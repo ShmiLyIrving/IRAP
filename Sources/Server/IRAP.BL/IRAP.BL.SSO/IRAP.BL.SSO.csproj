@@ -61,6 +61,10 @@
       <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>
       <Name>IRAP.Entity.SSO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Server.Global\IRAP.Server.Global.csproj">
+      <Project>{6cad9cb5-9549-4f44-a66c-5e8b1d55f22e}</Project>
+      <Name>IRAP.Server.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IRAPORM\IRAPORM.csproj">
       <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
       <Name>IRAPORM</Name>
