@@ -10,9 +10,10 @@ namespace IRAP.Components.WorkFlow
 {
     public class WFItem : IPaintItem
     {
+        private Image itemImage;
+
         protected Color itemColor = Color.Gray;
         protected Font itemFont = new Font("微软雅黑", 9f);
-        protected Image itemImage;
         protected Point itemLocate = new Point(10, 10);
         protected string itemName = "未命名";
         protected ItemStatus itemStatus;
@@ -27,7 +28,7 @@ namespace IRAP.Components.WorkFlow
         {
             this.graphics = graphics;
 
-            CalculateLocation(location);
+            SetItemImage(null, location);
         }
 
         public Color ItemColor
@@ -108,7 +109,7 @@ namespace IRAP.Components.WorkFlow
 
         protected void CalculateLocation(Point location)
         {
-            if (location != null)
+            if (location != null && itemImage != null)
             {
                 itemLocate.X = location.X - itemImage.Width / 2;
                 itemLocate.Y = location.Y - itemImage.Height / 2;
@@ -118,6 +119,12 @@ namespace IRAP.Components.WorkFlow
                 if (itemLocate.Y < 5)
                     itemLocate.Y = 5;
             }
+        }
+
+        protected virtual void SetItemImage(Image image, Point location)
+        {
+            itemImage = image;
+            CalculateLocation(location);
         }
 
         public virtual void DrawSelf(Graphics graphics, Pen pen = null)

@@ -20,6 +20,8 @@ namespace IRAP.Client.Global.GUI
 
     public partial class frmCustomKanbanBase : IRAP.Client.Global.GUI.frmCustomFuncBase
     {
+        private static string className =
+            MethodBase.GetCurrentMethod().DeclaringType.FullName;
         /// <summary>
         /// 数据刷新出错日志
         /// </summary>

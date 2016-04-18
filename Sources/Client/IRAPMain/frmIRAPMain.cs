@@ -38,6 +38,17 @@ namespace IRAP
         public frmIRAPMain()
         {
             InitializeComponent();
+
+            string skinName = "";
+            skinName = IniFile.ReadString(
+                "AppSetting",
+                "Skin",
+                "Blue",
+                string.Format(
+                    @"{0}\IRAP.ini",
+                    AppDomain.CurrentDomain.SetupInformation.ApplicationBase));
+
+            defaultLookAndFeel.LookAndFeel.SkinName = skinName;
         }
 
         private RibbonPage GetRibbonPageWithItemID(int itemID)

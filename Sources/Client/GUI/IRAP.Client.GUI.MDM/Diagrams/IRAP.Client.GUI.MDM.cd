@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Client.GUI.MDM.ProcessLine" Collapsed="true">
+    <Position X="36.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAACIAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\ProcessLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.ProductProcessPanel" Collapsed="true">
+    <Position X="38.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\ProductProcessPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.OperationNode" Collapsed="true">
+    <Position X="18.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.ProductionOfMaterial" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.NoMaterialProcessing" Collapsed="true">
+    <Position X="15" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.ManualInspection" Collapsed="true">
+    <Position X="3.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.frmProductProcessManager_30" Collapsed="true">
+    <Position X="36.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA4AZYKiFDEHf+UYCDC0RUJOssQiiBniRwBKiBJegKI=</HashCode>
+      <FileName>frmProductProcessManager_30.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.OperationNodeFactory" Collapsed="true">
+    <Position X="38.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNodeFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.MachineTesting" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.TroubleShooting" Collapsed="true">
+    <Position X="17.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.ProductPackaging" Collapsed="true">
+    <Position X="24" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.ProductionOfMaterialAndManualInspection" Collapsed="true">
+    <Position X="29.75" Y="2.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.NoMaterialProcessingAndManualInspection" Collapsed="true">
+    <Position X="11" Y="2.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.ProductionOfMaterialAndMachineTesting" Collapsed="true">
+    <Position X="20" Y="2.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.ProductPackagingAndAccessory" Collapsed="true">
+    <Position X="26.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.VirtualComposite" Collapsed="true">
+    <Position X="33.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductProcessWorkFlow\OperationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MDM.PropertiesFormFactory">
+    <Position X="14.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dialogs\PropertiesFormFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="IRAP.Client.GUI.MDM.SelectNodeType" Collapsed="true">
+    <Position X="36.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhAAAAAAAAQAAACQAIgAACEIAAIAAAAAEAAAAEgAABA=</HashCode>
+      <FileName>Enums\SelectNodeType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

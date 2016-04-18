@@ -16,7 +16,7 @@ namespace IRAP.Client.Global.GUI
 {
     public partial class frmCustomFuncBase : frmCustomBase
     {
-        protected static string className =
+        private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
         private ucOptions barOptions = null;
         private bool refreshGUIOptions = false;

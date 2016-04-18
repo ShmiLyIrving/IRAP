@@ -30,6 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -41,7 +46,80 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\frmEnvParamStandardProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmEnvParamStandardProperties.Designer.cs">
+      <DependentUpon>frmEnvParamStandardProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmMethodStandardProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmMethodStandardProperties.Designer.cs">
+      <DependentUpon>frmMethodStandardProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmProcessProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmProcessProperties.Designer.cs">
+      <DependentUpon>frmProcessProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmCustomProperites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmCustomProperites.Designer.cs">
+      <DependentUpon>frmCustomProperites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmProductionProgramProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmProductionProgramProperties.Designer.cs">
+      <DependentUpon>frmProductionProgramProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmOPStandardProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmOPStandardProperties.Designer.cs">
+      <DependentUpon>frmOPStandardProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInspectStandardProperites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInspectStandardProperites.Designer.cs">
+      <DependentUpon>frmInspectStandardProperites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductProcessManager_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductProcessManager_30.Designer.cs">
+      <DependentUpon>frmProductProcessManager_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\SelectNodeType.cs" />
+    <Compile Include="Dialogs\frmSelectOperation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmSelectOperation.Designer.cs">
+      <DependentUpon>frmSelectOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmToolingStandardProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmToolingStandardProperties.Designer.cs">
+      <DependentUpon>frmToolingStandardProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductProcessWorkFlow\OperationNodeFactory.cs" />
+    <Compile Include="ProductProcessWorkFlow\ProductProcessPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProductProcessWorkFlow\OperationNode.cs" />
+    <Compile Include="ProductProcessWorkFlow\ProcessLine.cs" />
+    <Compile Include="Dialogs\PropertiesFormFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -51,6 +129,10 @@
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
       <Project>{38588300-33DF-457A-936A-D0D0CA499E96}</Project>
       <Name>IRAP.Entity.Kanban</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.MDM\IRAP.Entity.MDM.csproj">
+      <Project>{5feb6cb3-68c9-4e06-814b-c071743bf5a2}</Project>
+      <Name>IRAP.Entity.MDM</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
       <Project>{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}</Project>
@@ -85,6 +167,87 @@
       <Name>IRAP.WCF.Client.Method</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frmCustomProperites.resx">
+      <DependentUpon>frmCustomProperites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmEnvParamStandardProperties.resx">
+      <DependentUpon>frmEnvParamStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmMethodStandardProperties.resx">
+      <DependentUpon>frmMethodStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmProcessProperties.resx">
+      <DependentUpon>frmProcessProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmProductionProgramProperties.resx">
+      <DependentUpon>frmProductionProgramProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmOPStandardProperties.resx">
+      <DependentUpon>frmOPStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInspectStandardProperites.resx">
+      <DependentUpon>frmInspectStandardProperites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductProcessManager_30.resx">
+      <DependentUpon>frmProductProcessManager_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmSelectOperation.resx">
+      <DependentUpon>frmSelectOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmToolingStandardProperties.resx">
+      <DependentUpon>frmToolingStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Diagrams\IRAP.Client.GUI.MDM.cd" />
+    <None Include="Resources\Begin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\End.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\成品包装+附件配套工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\成品包装工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\故障维修工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\机器测试工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\人工检查工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\无料加工+人工检查工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\无料加工工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\虚拟复合工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\有料生产+机器测试工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\有料生产+人工检查工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\有料生产工序.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line_arrow_end.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

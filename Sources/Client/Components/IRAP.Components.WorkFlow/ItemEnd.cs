@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
+using IRAP.Client.Global.Resources.Properties;
+
 namespace IRAP.Components.WorkFlow
 {
     public class ItemEnd : CustomItemNode
@@ -11,9 +13,7 @@ namespace IRAP.Components.WorkFlow
         public ItemEnd(Graphics graphics, Point location)
             :base(graphics, location)
         {
-            itemImage = IRAP.Client.Global.Resources.Properties.Resources.End;
-
-            CalculateLocation(location);
+            SetItemImage(Resources.End, location);
         }
 
         private new List<ItemLink> NextLinks

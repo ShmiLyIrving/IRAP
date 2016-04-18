@@ -14,9 +14,7 @@ namespace IRAP.Components.WorkFlow
         {
             this.level = level;
 
-            GenerateImage();
-
-            CalculateLocation(location);
+            SetItemImage(GenerateImage(), location);
         }
 
         public new string ItemName
@@ -40,22 +38,13 @@ namespace IRAP.Components.WorkFlow
             }
         }
 
-        protected virtual void GenerateImage()
+        protected virtual Image GenerateImage()
         {
             int imageWidth = defaultImageWidth;
             int imageHeight = defaultImageHeight;
             Graphics gp = null;
 
-            //itemImage = new Bitmap(defaultImageWidth, defaultImageHeight);
-            //gp = Graphics.FromImage(itemImage);
-            //SizeF sizeOfName = gp.MeasureString(itemName, itemFont);
-
-            //if (sizeOfName.Width > defaultImageWidth)
-            //    imageWidth = (int) sizeOfName.Width + 15;
-            //if (sizeOfName.Height > defaultImageHeight)
-            //    imageHeight = (int) sizeOfName.Height + 15;
-
-            itemImage = new Bitmap(imageWidth, imageHeight);
+            Image itemImage = new Bitmap(imageWidth, imageHeight);
             gp = Graphics.FromImage(itemImage);
 
             // 画阴影部分
@@ -86,18 +75,7 @@ namespace IRAP.Components.WorkFlow
 
             DrawOrdinal(gp);
 
-            // 写标题
-            //StringFormat sf = new StringFormat();
-            //sf.Alignment = StringAlignment.Center;
-            //sf.LineAlignment = StringAlignment.Center;
-            //gp.DrawString(
-            //    itemName,
-            //    itemFont,
-            //    new SolidBrush(Color.Blue),
-            //    new Rectangle(
-            //    new Point(1, 1),
-            //    new Size(imageWidth - 6, imageHeight - 6)),
-            //    sf);
+            return itemImage;
         }
 
         public override void DrawSelf(Graphics graphics, Pen pen = null)
@@ -118,8 +96,8 @@ namespace IRAP.Components.WorkFlow
                 new SolidBrush(Color.Blue),
                 new Rectangle(
                     new Point(
-                        itemLocate.X + (itemImage.Width - (int) size.Width) / 2,
-                        itemLocate.Y + itemImage.Height + 10),
+                        itemLocate.X + (ItemImage.Width - (int) size.Width) / 2,
+                        itemLocate.Y + ItemImage.Height + 10),
                     new Size(
                         (int) size.Width + 5,
                         (int) size.Height + 5)),
@@ -144,7 +122,7 @@ namespace IRAP.Components.WorkFlow
                 new SolidBrush(Color.Blue),
                 new Rectangle(
                     new Point(itemLocate.X, itemLocate.Y - (int) size.Height - 5),
-                    new Size(itemImage.Width - 2, (int) size.Height)),
+                    new Size(ItemImage.Width - 2, (int) size.Height)),
                 sf);
         }
 

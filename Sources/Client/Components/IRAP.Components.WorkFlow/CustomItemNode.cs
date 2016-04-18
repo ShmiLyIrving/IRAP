@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
+using IRAP.Client.Global.Resources.Properties;
+
 namespace IRAP.Components.WorkFlow
 {
     public class CustomItemNode : WFItem
@@ -12,9 +14,7 @@ namespace IRAP.Components.WorkFlow
 
         public CustomItemNode(Graphics graphics, Point locate) : base(graphics, locate)
         {
-            itemImage = IRAP.Client.Global.Resources.Properties.Resources.空结点;
-
-            CalculateLocation(locate);
+            SetItemImage(Resources.空结点, locate);
         }
 
         public List<ItemLink> PrevLinks
@@ -37,7 +37,7 @@ namespace IRAP.Components.WorkFlow
 
         public override void DrawSelf(Graphics graphics, Pen pen = null)
         {
-            graphics.DrawImage(itemImage, itemLocate);
+            graphics.DrawImage(ItemImage, itemLocate);
 
             if ((ItemStatus & ItemStatus.Pointed) == ItemStatus.Pointed)
             {
@@ -45,8 +45,8 @@ namespace IRAP.Components.WorkFlow
                     itemPen,
                     itemLocate.X - 3,
                     itemLocate.Y - 3,
-                    itemImage.Width + 6,
-                    itemImage.Height + 6);
+                    ItemImage.Width + 6,
+                    ItemImage.Height + 6);
             }
 
             foreach (ItemLink line in nextLinks)

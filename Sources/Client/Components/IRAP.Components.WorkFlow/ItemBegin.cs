@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
+using IRAP.Client.Global.Resources.Properties;
+
 namespace IRAP.Components.WorkFlow
 {
     public class ItemBegin : CustomItemNode
@@ -11,9 +13,7 @@ namespace IRAP.Components.WorkFlow
         public ItemBegin(Graphics graphics, Point location) 
             : base(graphics, location)
         {
-            itemImage = IRAP.Client.Global.Resources.Properties.Resources.Begin;
-
-            CalculateLocation(location);
+            SetItemImage(Resources.Begin, location);
         }
 
         private new List<ItemLink> PrevLinks

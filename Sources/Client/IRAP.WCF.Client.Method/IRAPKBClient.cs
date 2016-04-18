@@ -31,11 +31,11 @@ namespace IRAP.WCF.Client.Method
         }
 
         public void sfn_GetList_JumpToFunctions(
-            int communityID, 
-            int t3LeafID, 
-            long sysLogID, 
-            ref List<JumpToFunction> functions, 
-            out int errCode, 
+            int communityID,
+            int t3LeafID,
+            long sysLogID,
+            ref List<JumpToFunction> functions,
+            out int errCode,
             out string errText)
         {
             string strProcedureName = string.Format("{0}.{1}",
@@ -154,6 +154,222 @@ namespace IRAP.WCF.Client.Method
 
                     if (errCode == 0)
                         datas = rlt as List<LeafSetEx>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取过滤后的子树叶集
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="treeID">树标识</param>
+        /// <param name="nodeID">结点标识</param>
+        /// <param name="filterString">过滤字符串</param>
+        public void mfn_SubtreeLeaves(
+            int communityID,
+            int treeID,
+            int nodeID,
+            string filterString,
+            ref List<SubTreeLeaf> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("treeID", treeID);
+                hashParams.Add("nodeID", nodeID);
+                hashParams.Add("filterString", filterString);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 mfn_SubtreeLeaves，输入参数：" +
+                        "CommunityID={0}|TreeID={1}|NodeID={2}|FilterString={3}",
+                        communityID,
+                        treeID,
+                        nodeID,
+                        filterString),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.Kanban.dll",
+                        "IRAP.BL.Kanban.IRAPKanban",
+                        "mfn_SubtreeLeaves",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<SubTreeLeaf>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 拉出比较类型列表
+        /// </summary>
+        public void sfn_GetList_ScopeCriterionType(
+            long sysLogID,
+            ref List<ScopeCriterionType> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_GetList_ScopeCriterionType，输入参数：" +
+                        "SysLogID={0}",
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.Kanban.dll",
+                        "IRAP.BL.Kanban.IRAPKanban",
+                        "sfn_GetList_ScopeCriterionType",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<ScopeCriterionType>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取可访问子树叶集
+        /// </summary>
+        public void sfn_AccessibleSubtreeLeaves(
+            int communityID,
+            int treeID,
+            int nodeID,
+            int scenarioIndex,
+            long sysLogID,
+            ref List<SubTreeLeaf> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("treeID", treeID);
+                hashParams.Add("nodeID", nodeID);
+                hashParams.Add("scenarioIndex", scenarioIndex);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_AccessibleSubtreeLeaves，输入参数：" +
+                        "CommunityID={0}|TreeID={1}|NodeID={2}|ScenarioIndex={3}|"+
+                        "SysLogID={4}",
+                        communityID,
+                        treeID,
+                        nodeID,
+                        scenarioIndex,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.Kanban.dll",
+                        "IRAP.BL.Kanban.IRAPKanban",
+                        "sfn_AccessibleSubtreeLeaves",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<SubTreeLeaf>;
                 }
                 #endregion
             }
