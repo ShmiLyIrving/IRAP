@@ -6,20 +6,20 @@ using System.Text;
 namespace IRAP.Entity.MDM
 {
     /// <summary>
-    /// 工序生产环境参数标准
+    /// 工序生产能源质量标准
     /// </summary>
-    public class EnvParamStandard
+    public class EnergyStandard
     {
         /// <summary>
         /// 序号
         /// </summary>
         public int Ordinal { get; set; }
         /// <summary>
-        /// 环境参数叶标识
+        /// 能源参数叶标识
         /// </summary>
         public int T20LeafID { get; set; }
         /// <summary>
-        /// 环境参数名称
+        /// 能源参数名称
         /// </summary>
         public string ParameterName { get; set; }
         /// <summary>
@@ -55,9 +55,9 @@ namespace IRAP.Entity.MDM
         /// </summary>
         public bool Reference { get; set; }
 
-        public EnvParamStandard Clone()
+        public EnergyStandard Clone()
         {
-            return MemberwiseClone() as EnvParamStandard;
+            return MemberwiseClone() as EnergyStandard;
         }
     }
 }

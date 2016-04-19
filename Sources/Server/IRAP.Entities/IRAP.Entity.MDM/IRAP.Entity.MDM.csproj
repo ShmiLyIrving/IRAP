@@ -45,8 +45,11 @@
     <Compile Include="AndonEventType.cs" />
     <Compile Include="CustomStandard.cs" />
     <Compile Include="DstDeliveryStoreSite.cs" />
+    <Compile Include="EnergyStandard.cs" />
     <Compile Include="EnvParamStandard.cs" />
+    <Compile Include="FailureModeCore.cs" />
     <Compile Include="InspectionStandard.cs" />
+    <Compile Include="LoadingStandard.cs" />
     <Compile Include="MethodMMenu.cs" />
     <Compile Include="MethodStandard.cs" />
     <Compile Include="OPStandard.cs" />

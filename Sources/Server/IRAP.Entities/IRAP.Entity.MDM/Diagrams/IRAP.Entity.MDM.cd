@@ -1,143 +1,164 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.Entity.MDM.AndonCallObject" Collapsed="true">
-    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEgAgBAgEAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>AndonCallObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductProcess" Collapsed="true">
-    <Position X="15.75" Y="2.5" Width="1.5" />
+    <Position X="17.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACBAkAAAAAAADAAIAAAAAgACAAAAAAAAAAFBBA=</HashCode>
       <FileName>ProductProcess.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.TreeViewNode" Collapsed="true">
-    <Position X="7" Y="0.5" Width="1.5" />
+    <Position X="6.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAgASAgACCAIAAACAAAQAAAICQAAAAEAQAAACIAIBE=</HashCode>
       <FileName>TreeViewNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.Stb058" Collapsed="true">
-    <Position X="10.5" Y="3.5" Width="1.5" />
+    <Position X="10.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAACAAAAgEgAiAAgEAAAIAAAAAAAAQABAAEAABE=</HashCode>
       <FileName>Stb058.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductSeriesTreeNode">
-    <Position X="5.75" Y="1.75" Width="1.5" />
+    <Position X="5.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABE=</HashCode>
       <FileName>ProductSeriesTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductTreeNode">
-    <Position X="8" Y="1.75" Width="1.5" />
+    <Position X="7.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAABE=</HashCode>
       <FileName>ProductTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProcessOperation" Collapsed="true">
-    <Position X="15.75" Y="1.5" Width="1.5" />
+    <Position X="10.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAABABAAAIAAAEABAAAIAAAAAABAAAAAIAAEAEABA=</HashCode>
       <FileName>ProcessOperation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductionLineForStationBound" Collapsed="true">
-    <Position X="12.25" Y="2.5" Width="1.5" />
+    <Position X="13.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAABBABAAAABg=</HashCode>
       <FileName>ProductionLineForStationBound.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.QualityStandard">
-    <Position X="3" Y="4.25" Width="1.5" />
+    <Position X="2.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAACAAAAAACAAAAAAAAAAAAAAAAIAAIAAAAAAIBA=</HashCode>
       <FileName>QualityStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.MethodStandard">
-    <Position X="0.75" Y="4.25" Width="1.5" />
+    <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAACAAAAgAAAABAAABAAAAABA=</HashCode>
       <FileName>MethodStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.CustomStandard">
-    <Position X="2" Y="0.5" Width="1.5" />
+    <Position X="1.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAEBAAAAAAABIAAAAAAAAACBDAAAAAAAAAABA=</HashCode>
       <FileName>CustomStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProcessSegment" Collapsed="true">
-    <Position X="10.5" Y="2.5" Width="1.5" />
+    <Position X="12" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAABABAAAABg=</HashCode>
       <FileName>ProcessSegment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.DstDeliveryStoreSite" Collapsed="true">
-    <Position X="14" Y="0.5" Width="1.5" />
+    <Position X="13.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAARAAIAAAACAQBAIAAIAAAABAABA=</HashCode>
       <FileName>DstDeliveryStoreSite.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.AndonEventType" Collapsed="true">
-    <Position X="12.25" Y="0.5" Width="1.5" />
+    <Position X="12" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAEAAAAAAAAABIAAABAAgAAAAAAAAIAAAAAABA=</HashCode>
       <FileName>AndonEventType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.MethodMMenu" Collapsed="true">
-    <Position X="12.25" Y="1.5" Width="1.5" />
+    <Position X="15.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAEAAEABEBAQAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>MethodMMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ToolingStandard" Collapsed="true">
-    <Position X="12.25" Y="3.5" Width="1.5" />
+    <Position X="12" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAGAIAAAAAAEABAAAAAAAAACAAAAAAAAAAAAABI=</HashCode>
       <FileName>ToolingStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductionPrograms" Collapsed="true">
-    <Position X="14" Y="2.5" Width="1.5" />
+    <Position X="15.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAGBIAAAAEAEQBAAAAAAAAAAAAAAAAAAIAAAABA=</HashCode>
       <FileName>ProductionPrograms.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.OPStandard" Collapsed="true">
-    <Position X="14" Y="1.5" Width="1.5" />
+    <Position X="17.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAQKAAAEWBAAFABAAAQACAACAACAABAAQEAAAABE=</HashCode>
       <FileName>OPStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.EnvParamStandard" Collapsed="true">
-    <Position X="15.75" Y="0.5" Width="1.5" />
+    <Position X="17.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIACAEAAAAAAAABIAAAAACAAACBDCAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAIACAEAAAAAAAABIAAAgAAAAACBDCAAAAAAAAABA=</HashCode>
       <FileName>EnvParamStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.InspectionStandard" Collapsed="true">
-    <Position X="10.5" Y="1.5" Width="1.5" />
+    <Position X="12" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAIACAEAAAAAAAABIAAAAAAAAACBLAAIgAAAAAIBA=</HashCode>
       <FileName>InspectionStandard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MDM.LoadingStandard" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAoAKAAAAAAAAAgBogABAQYAgAAACAAAECECFAABA=</HashCode>
+      <FileName>LoadingStandard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MDM.FailureModeCore" Collapsed="true">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAIAAAAAAAACAAAAAAAQAABA=</HashCode>
+      <FileName>FailureModeCore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MDM.EnergyStandard" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIACAEAAAAAAAABIAAAgAAAAACBDCAAAAAAAAABA=</HashCode>
+      <FileName>EnergyStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
