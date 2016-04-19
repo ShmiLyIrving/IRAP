@@ -53,6 +53,7 @@
     <Compile Include="MethodMMenu.cs" />
     <Compile Include="MethodStandard.cs" />
     <Compile Include="OPStandard.cs" />
+    <Compile Include="PokaYokeRule.cs" />
     <Compile Include="ProcessOperation.cs" />
     <Compile Include="ProcessSegment.cs" />
     <Compile Include="ProductionLineForStationBound.cs" />

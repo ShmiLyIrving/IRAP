@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductProcess" Collapsed="true">
-    <Position X="17.25" Y="2.5" Width="1.5" />
+    <Position X="10.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACBAkAAAAAAADAAIAAAAAgACAAAAAAAAAAFBBA=</HashCode>
       <FileName>ProductProcess.cs</FileName>
@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.Stb058" Collapsed="true">
-    <Position X="10.25" Y="3.5" Width="1.5" />
+    <Position X="12" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAACAAAAgEgAiAAgEAAAIAAAAAAAAQABAAEAABE=</HashCode>
       <FileName>Stb058.cs</FileName>
@@ -43,14 +43,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProcessOperation" Collapsed="true">
-    <Position X="10.25" Y="2.5" Width="1.5" />
+    <Position X="12" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAABABAAAIAAAEABAAAIAAAAAABAAAAAIAAEAEABA=</HashCode>
       <FileName>ProcessOperation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductionLineForStationBound" Collapsed="true">
-    <Position X="13.75" Y="2.5" Width="1.5" />
+    <Position X="15.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAABBABAAAABg=</HashCode>
       <FileName>ProductionLineForStationBound.cs</FileName>
@@ -78,7 +78,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProcessSegment" Collapsed="true">
-    <Position X="12" Y="2.5" Width="1.5" />
+    <Position X="13.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAABABAAAABg=</HashCode>
       <FileName>ProcessSegment.cs</FileName>
@@ -106,14 +106,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ToolingStandard" Collapsed="true">
-    <Position X="12" Y="3.5" Width="1.5" />
+    <Position X="13.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAGAIAAAAAAEABAAAAAAAAACAAAAAAAAAAAAABI=</HashCode>
       <FileName>ToolingStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductionPrograms" Collapsed="true">
-    <Position X="15.5" Y="2.5" Width="1.5" />
+    <Position X="17.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAGBIAAAAEAEQBAAAAAAAAAAAAAAAAAAIAAAABA=</HashCode>
       <FileName>ProductionPrograms.cs</FileName>
@@ -159,6 +159,13 @@
     <TypeIdentifier>
       <HashCode>AAAAIACAEAAAAAAAABIAAAgAAAAACBDCAAAAAAAAABA=</HashCode>
       <FileName>EnergyStandard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MDM.PokaYokeRule" Collapsed="true">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIACBIAAIAAAAUBAAAAAAAQAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>PokaYokeRule.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
