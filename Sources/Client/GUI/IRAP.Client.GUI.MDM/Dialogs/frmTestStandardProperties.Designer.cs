@@ -1,6 +1,6 @@
 ﻿namespace IRAP.Client.GUI.MDM
 {
-    partial class frmEnvParamStandardProperties
+    partial class frmTestStandardProperties
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -31,27 +31,35 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.grdStandards = new DevExpress.XtraGrid.GridControl();
             this.grdvStandards = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.grdclmnOrdinal = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdclmnT20LeafID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.riluParameterName = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.grdclmnToolingOrdinal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnT128LeafID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.risluT128LeafID = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.grdvT128LeafIDView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdclmnLeafCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnLeafName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnLowLimit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnCriterion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.riluCriterion = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.grdclmnHighLimit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnScale = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnUnitOfMeasure = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdclmnCollectingMode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ciicCollectingMode = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.grdclmnCollectingCycle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnReference = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.riieSOPImage = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+            this.riicbManOrMachine = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.riicBackflushOnMR = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.riteNumericRate = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEffectiveType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStandards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvStandards)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.riluParameterName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluT128LeafID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvT128LeafIDView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluCriterion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ciicCollectingMode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riieSOPImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riicbManOrMachine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riicBackflushOnMR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riteNumericRate)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -62,7 +70,7 @@
             this.lblTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblTitle.Size = new System.Drawing.Size(652, 63);
-            this.lblTitle.Text = "环境参数标准";
+            this.lblTitle.Text = "机器测试标准";
             // 
             // btnSave
             // 
@@ -89,7 +97,7 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Padding = new System.Windows.Forms.Padding(5);
             this.panelControl1.Size = new System.Drawing.Size(652, 440);
-            this.panelControl1.TabIndex = 7;
+            this.panelControl1.TabIndex = 9;
             // 
             // grdStandards
             // 
@@ -98,9 +106,12 @@
             this.grdStandards.MainView = this.grdvStandards;
             this.grdStandards.Name = "grdStandards";
             this.grdStandards.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.riluParameterName,
+            this.risluT128LeafID,
+            this.riieSOPImage,
+            this.riicbManOrMachine,
             this.riluCriterion,
-            this.ciicCollectingMode});
+            this.riicBackflushOnMR,
+            this.riteNumericRate});
             this.grdStandards.Size = new System.Drawing.Size(638, 426);
             this.grdStandards.TabIndex = 2;
             this.grdStandards.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -116,15 +127,13 @@
             this.grdvStandards.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdvStandards.Appearance.Row.Options.UseFont = true;
             this.grdvStandards.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.grdclmnOrdinal,
-            this.grdclmnT20LeafID,
+            this.grdclmnToolingOrdinal,
+            this.grdclmnT128LeafID,
             this.grdclmnLowLimit,
             this.grdclmnCriterion,
             this.grdclmnHighLimit,
             this.grdclmnScale,
             this.grdclmnUnitOfMeasure,
-            this.grdclmnCollectingMode,
-            this.grdclmnCollectingCycle,
             this.grdclmnReference});
             this.grdvStandards.GridControl = this.grdStandards;
             this.grdvStandards.Name = "grdvStandards";
@@ -136,53 +145,75 @@
             this.grdvStandards.OptionsView.EnableAppearanceOddRow = true;
             this.grdvStandards.OptionsView.RowAutoHeight = true;
             this.grdvStandards.OptionsView.ShowGroupPanel = false;
-            this.grdvStandards.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grdvEnvParamStandards_InitNewRow);
-            this.grdvStandards.RowDeleted += new DevExpress.Data.RowDeletedEventHandler(this.grdvEnvParamStandards_RowDeleted);
-            this.grdvStandards.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.grdvEnvParamStandards_RowUpdated);
+            this.grdvStandards.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grdvStandards_InitNewRow);
+            this.grdvStandards.RowDeleted += new DevExpress.Data.RowDeletedEventHandler(this.grdvStandards_RowDeleted);
+            this.grdvStandards.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.grdvStandards_RowUpdated);
             // 
-            // grdclmnOrdinal
+            // grdclmnToolingOrdinal
             // 
-            this.grdclmnOrdinal.AppearanceCell.Options.UseTextOptions = true;
-            this.grdclmnOrdinal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnOrdinal.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnOrdinal.AppearanceHeader.Options.UseTextOptions = true;
-            this.grdclmnOrdinal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnOrdinal.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnOrdinal.Caption = "序号";
-            this.grdclmnOrdinal.FieldName = "Level";
-            this.grdclmnOrdinal.Name = "grdclmnOrdinal";
-            this.grdclmnOrdinal.Visible = true;
-            this.grdclmnOrdinal.VisibleIndex = 0;
-            this.grdclmnOrdinal.Width = 100;
+            this.grdclmnToolingOrdinal.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnToolingOrdinal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnToolingOrdinal.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnToolingOrdinal.AppearanceHeader.Options.UseTextOptions = true;
+            this.grdclmnToolingOrdinal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnToolingOrdinal.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnToolingOrdinal.Caption = "序号";
+            this.grdclmnToolingOrdinal.FieldName = "Level";
+            this.grdclmnToolingOrdinal.Name = "grdclmnToolingOrdinal";
+            this.grdclmnToolingOrdinal.Visible = true;
+            this.grdclmnToolingOrdinal.VisibleIndex = 0;
+            this.grdclmnToolingOrdinal.Width = 100;
             // 
-            // grdclmnT20LeafID
+            // grdclmnT128LeafID
             // 
-            this.grdclmnT20LeafID.AppearanceHeader.Options.UseTextOptions = true;
-            this.grdclmnT20LeafID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnT20LeafID.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnT20LeafID.Caption = "环境参数名称";
-            this.grdclmnT20LeafID.ColumnEdit = this.riluParameterName;
-            this.grdclmnT20LeafID.FieldName = "T20LeafID";
-            this.grdclmnT20LeafID.Name = "grdclmnT20LeafID";
-            this.grdclmnT20LeafID.Visible = true;
-            this.grdclmnT20LeafID.VisibleIndex = 1;
-            this.grdclmnT20LeafID.Width = 180;
+            this.grdclmnT128LeafID.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnT128LeafID.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnT128LeafID.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnT128LeafID.Caption = "测试项目";
+            this.grdclmnT128LeafID.ColumnEdit = this.risluT128LeafID;
+            this.grdclmnT128LeafID.FieldName = "T128LeafID";
+            this.grdclmnT128LeafID.Name = "grdclmnT128LeafID";
+            this.grdclmnT128LeafID.Visible = true;
+            this.grdclmnT128LeafID.VisibleIndex = 1;
             // 
-            // riluParameterName
+            // risluT128LeafID
             // 
-            this.riluParameterName.AutoHeight = false;
-            this.riluParameterName.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.riluParameterName.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.risluT128LeafID.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.risluT128LeafID.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.riluParameterName.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NodeName", "Name1")});
-            this.riluParameterName.Name = "riluParameterName";
-            this.riluParameterName.NullText = "";
-            this.riluParameterName.ShowFooter = false;
-            this.riluParameterName.ShowHeader = false;
+            this.risluT128LeafID.DisplayMember = "LeafName";
+            this.risluT128LeafID.Name = "risluT128LeafID";
+            this.risluT128LeafID.NullText = "";
+            this.risluT128LeafID.ValueMember = "LeafID";
+            this.risluT128LeafID.View = this.grdvT128LeafIDView;
+            // 
+            // grdvT128LeafIDView
+            // 
+            this.grdvT128LeafIDView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grdclmnLeafCode,
+            this.grdclmnLeafName});
+            this.grdvT128LeafIDView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.grdvT128LeafIDView.Name = "grdvT128LeafIDView";
+            this.grdvT128LeafIDView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.grdvT128LeafIDView.OptionsView.ShowGroupPanel = false;
+            // 
+            // grdclmnLeafCode
+            // 
+            this.grdclmnLeafCode.Caption = "测试项编号";
+            this.grdclmnLeafCode.FieldName = "Code";
+            this.grdclmnLeafCode.Name = "grdclmnLeafCode";
+            // 
+            // grdclmnLeafName
+            // 
+            this.grdclmnLeafName.Caption = "测试项名称";
+            this.grdclmnLeafName.FieldName = "LeafName";
+            this.grdclmnLeafName.Name = "grdclmnLeafName";
             // 
             // grdclmnLowLimit
             // 
+            this.grdclmnLowLimit.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnLowLimit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnLowLimit.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnLowLimit.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnLowLimit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnLowLimit.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -191,6 +222,7 @@
             this.grdclmnLowLimit.Name = "grdclmnLowLimit";
             this.grdclmnLowLimit.Visible = true;
             this.grdclmnLowLimit.VisibleIndex = 2;
+            this.grdclmnLowLimit.Width = 180;
             // 
             // grdclmnCriterion
             // 
@@ -206,6 +238,7 @@
             this.grdclmnCriterion.Name = "grdclmnCriterion";
             this.grdclmnCriterion.Visible = true;
             this.grdclmnCriterion.VisibleIndex = 3;
+            this.grdclmnCriterion.Width = 95;
             // 
             // riluCriterion
             // 
@@ -214,11 +247,13 @@
             this.riluCriterion.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.riluCriterion.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TypeHint", "Name2")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TypeHint", "标准")});
+            this.riluCriterion.DisplayMember = "TypeHint";
             this.riluCriterion.Name = "riluCriterion";
             this.riluCriterion.NullText = "";
             this.riluCriterion.ShowFooter = false;
             this.riluCriterion.ShowHeader = false;
+            this.riluCriterion.ValueMember = "TypeCode";
             // 
             // grdclmnHighLimit
             // 
@@ -233,9 +268,6 @@
             // 
             // grdclmnScale
             // 
-            this.grdclmnScale.AppearanceHeader.Options.UseTextOptions = true;
-            this.grdclmnScale.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnScale.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnScale.Caption = "放大数量级";
             this.grdclmnScale.FieldName = "Scale";
             this.grdclmnScale.Name = "grdclmnScale";
@@ -244,53 +276,11 @@
             // 
             // grdclmnUnitOfMeasure
             // 
-            this.grdclmnUnitOfMeasure.AppearanceCell.Options.UseTextOptions = true;
-            this.grdclmnUnitOfMeasure.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.grdclmnUnitOfMeasure.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnUnitOfMeasure.AppearanceHeader.Options.UseTextOptions = true;
-            this.grdclmnUnitOfMeasure.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnUnitOfMeasure.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnUnitOfMeasure.Caption = "计量单位";
             this.grdclmnUnitOfMeasure.FieldName = "UnitOfMeasure";
             this.grdclmnUnitOfMeasure.Name = "grdclmnUnitOfMeasure";
             this.grdclmnUnitOfMeasure.Visible = true;
             this.grdclmnUnitOfMeasure.VisibleIndex = 6;
-            // 
-            // grdclmnCollectingMode
-            // 
-            this.grdclmnCollectingMode.AppearanceCell.Options.UseTextOptions = true;
-            this.grdclmnCollectingMode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnCollectingMode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnCollectingMode.AppearanceHeader.Options.UseTextOptions = true;
-            this.grdclmnCollectingMode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnCollectingMode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnCollectingMode.Caption = "采集方式";
-            this.grdclmnCollectingMode.ColumnEdit = this.ciicCollectingMode;
-            this.grdclmnCollectingMode.FieldName = "RecordingMode";
-            this.grdclmnCollectingMode.Name = "grdclmnCollectingMode";
-            this.grdclmnCollectingMode.Visible = true;
-            this.grdclmnCollectingMode.VisibleIndex = 7;
-            // 
-            // ciicCollectingMode
-            // 
-            this.ciicCollectingMode.AutoHeight = false;
-            this.ciicCollectingMode.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ciicCollectingMode.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("不采集", 0, -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("定时采集", 1, -1)});
-            this.ciicCollectingMode.Name = "ciicCollectingMode";
-            // 
-            // grdclmnCollectingCycle
-            // 
-            this.grdclmnCollectingCycle.AppearanceHeader.Options.UseTextOptions = true;
-            this.grdclmnCollectingCycle.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnCollectingCycle.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnCollectingCycle.Caption = "采样周期";
-            this.grdclmnCollectingCycle.FieldName = "SamplingCycle";
-            this.grdclmnCollectingCycle.Name = "grdclmnCollectingCycle";
-            this.grdclmnCollectingCycle.Visible = true;
-            this.grdclmnCollectingCycle.VisibleIndex = 8;
             // 
             // grdclmnReference
             // 
@@ -301,15 +291,45 @@
             this.grdclmnReference.FieldName = "Reference";
             this.grdclmnReference.Name = "grdclmnReference";
             // 
-            // frmEnvParamStandardProperties
+            // riieSOPImage
+            // 
+            this.riieSOPImage.AutoHeight = false;
+            this.riieSOPImage.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.riieSOPImage.Name = "riieSOPImage";
+            // 
+            // riicbManOrMachine
+            // 
+            this.riicbManOrMachine.AutoHeight = false;
+            this.riicbManOrMachine.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.riicbManOrMachine.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("人", 1, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("设备", 2, -1)});
+            this.riicbManOrMachine.Name = "riicbManOrMachine";
+            // 
+            // riicBackflushOnMR
+            // 
+            this.riicBackflushOnMR.AutoHeight = false;
+            this.riicBackflushOnMR.Caption = "实时扣料";
+            this.riicBackflushOnMR.Name = "riicBackflushOnMR";
+            // 
+            // riteNumericRate
+            // 
+            this.riteNumericRate.AutoHeight = false;
+            this.riteNumericRate.EditFormat.FormatString = "##.####";
+            this.riteNumericRate.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.riteNumericRate.Name = "riteNumericRate";
+            // 
+            // frmTestStandardProperties
             // 
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(759, 503);
             this.Controls.Add(this.panelControl1);
-            this.Name = "frmEnvParamStandardProperties";
-            this.PropertiesType = "环境参数标准";
-            this.RowSetID = 11;
-            this.Text = "环境参数标准属性";
+            this.Name = "frmTestStandardProperties";
+            this.PropertiesType = "机器测试标准";
+            this.RowSetID = 3;
+            this.Text = "机器测试标准属性";
             this.Controls.SetChildIndex(this.lblTitle, 0);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.chkEffectiveType.Properties)).EndInit();
@@ -317,9 +337,13 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdStandards)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvStandards)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.riluParameterName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluT128LeafID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvT128LeafIDView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluCriterion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ciicCollectingMode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riieSOPImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riicbManOrMachine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riicBackflushOnMR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riteNumericRate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -329,18 +353,22 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl grdStandards;
         private DevExpress.XtraGrid.Views.Grid.GridView grdvStandards;
-        private DevExpress.XtraGrid.Columns.GridColumn grdclmnOrdinal;
-        private DevExpress.XtraGrid.Columns.GridColumn grdclmnT20LeafID;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit riluParameterName;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnToolingOrdinal;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnT128LeafID;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnLowLimit;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnCriterion;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit riluCriterion;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnHighLimit;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnScale;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnUnitOfMeasure;
-        private DevExpress.XtraGrid.Columns.GridColumn grdclmnCollectingMode;
-        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox ciicCollectingMode;
-        private DevExpress.XtraGrid.Columns.GridColumn grdclmnCollectingCycle;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit riicBackflushOnMR;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit riteNumericRate;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnReference;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit risluT128LeafID;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdvT128LeafIDView;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnLeafCode;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnLeafName;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit riieSOPImage;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox riicbManOrMachine;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit riluCriterion;
     }
 }

@@ -38,10 +38,10 @@
             this.grdclmnLeafCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnLeafName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnFlexibleLoaded = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.rilcFlexibleLoaded = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.grdclmnPokaYokeRequired = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rilcPokaYokeRequired = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.grdclmnReference = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.rilcFlexibleLoaded = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEffectiveType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -49,8 +49,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdvProductionPrograms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.risluPrograms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.risluProgramsView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rilcPokaYokeRequired)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rilcFlexibleLoaded)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rilcPokaYokeRequired)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -210,6 +210,12 @@
             this.grdclmnFlexibleLoaded.VisibleIndex = 2;
             this.grdclmnFlexibleLoaded.Width = 95;
             // 
+            // rilcFlexibleLoaded
+            // 
+            this.rilcFlexibleLoaded.AutoHeight = false;
+            this.rilcFlexibleLoaded.Caption = "支持";
+            this.rilcFlexibleLoaded.Name = "rilcFlexibleLoaded";
+            // 
             // grdclmnPokaYokeRequired
             // 
             this.grdclmnPokaYokeRequired.AppearanceHeader.Options.UseTextOptions = true;
@@ -237,12 +243,6 @@
             this.grdclmnReference.FieldName = "Reference";
             this.grdclmnReference.Name = "grdclmnReference";
             // 
-            // rilcFlexibleLoaded
-            // 
-            this.rilcFlexibleLoaded.AutoHeight = false;
-            this.rilcFlexibleLoaded.Caption = "支持";
-            this.rilcFlexibleLoaded.Name = "rilcFlexibleLoaded";
-            // 
             // frmProductionProgramProperties
             // 
             this.Appearance.Options.UseFont = true;
@@ -261,8 +261,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdvProductionPrograms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.risluPrograms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.risluProgramsView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rilcPokaYokeRequired)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rilcFlexibleLoaded)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rilcPokaYokeRequired)).EndInit();
             this.ResumeLayout(false);
 
         }

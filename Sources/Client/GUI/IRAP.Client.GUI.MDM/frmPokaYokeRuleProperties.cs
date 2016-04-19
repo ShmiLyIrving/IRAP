@@ -16,72 +16,28 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MDM
 {
-    public partial class frmEnvParamStandardProperties : IRAP.Client.GUI.MDM.frmCustomProperites
+    public partial class frmPokaYokeRuleProperties : IRAP.Client.GUI.MDM.frmCustomProperites
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private DataTable dtStandards = null;
 
-        public frmEnvParamStandardProperties()
+        public frmPokaYokeRuleProperties()
         {
             InitializeComponent();
 
             dtStandards = new DataTable();
             dtStandards.Columns.Add("Level", typeof(int));
-            dtStandards.Columns.Add("T20LeafID", typeof(int));
-            dtStandards.Columns.Add("LowLimit", typeof(int));
-            dtStandards.Columns.Add("Criterion", typeof(string));
-            dtStandards.Columns.Add("HighLimit", typeof(int));
-            dtStandards.Columns.Add("Scale", typeof(int));
+            dtStandards.Columns.Add("T230LeafID", typeof(int));
+            dtStandards.Columns.Add("ControlLevel", typeof(int));
+            dtStandards.Columns.Add("ControlLimit_Low", typeof(long));
+            dtStandards.Columns.Add("ControlLimit_High", typeof(long));
             dtStandards.Columns.Add("UnitOfMeasure", typeof(string));
-            dtStandards.Columns.Add("RecordingMode", typeof(int));
-            dtStandards.Columns.Add("SamplingCycle", typeof(int));
             dtStandards.Columns.Add("Reference", typeof(bool));
             grdStandards.DataSource = dtStandards;
 
             GetStandardList();
-            GetCriterionList();
-        }
-
-        private void GetCriterionList()
-        {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                int errCode = 0;
-                string errText = "";
-                List<ScopeCriterionType> criterionItems = new List<ScopeCriterionType>();
-
-                WriteLog.Instance.Write("获取比较标准项列表", strProcedureName);
-                IRAPKBClient.Instance.sfn_GetList_ScopeCriterionType(
-                    IRAPUser.Instance.SysLogID,
-                    ref criterionItems,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
-                if (errCode == 0)
-                {
-                    riluCriterion.DataSource = criterionItems;
-                }
-
-                riluCriterion.DisplayMember = "TypeHint";
-                riluCriterion.ValueMember = "TypeCode";
-                riluCriterion.NullText = "";
-            }
-            catch (Exception error)
-            {
-                WriteLog.Instance.Write(error.Message, strProcedureName);
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
         }
 
         /// <summary>
@@ -99,16 +55,15 @@ namespace IRAP.Client.GUI.MDM
             {
                 int errCode = 0;
                 string errText = "";
-                List<SubTreeLeaf> standardItems = new List<SubTreeLeaf>();
+                List<LeafSetEx> rules = new List<LeafSetEx>();
 
-                WriteLog.Instance.Write("获取生产环境项列表", strProcedureName);
-                IRAPKBClient.Instance.sfn_AccessibleSubtreeLeaves(
+                WriteLog.Instance.Write("获取防错规则列表", strProcedureName);
+                IRAPKBClient.Instance.sfn_AccessibleLeafSetEx(
                     IRAPUser.Instance.CommunityID,
-                    20,
-                    5418,   // 生产环境节点标识
+                    230,
                     IRAPUser.Instance.ScenarioIndex,
                     IRAPUser.Instance.SysLogID,
-                    ref standardItems,
+                    ref rules,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
@@ -116,15 +71,12 @@ namespace IRAP.Client.GUI.MDM
                     strProcedureName);
                 if (errCode == 0)
                 {
-                    for (int i = standardItems.Count - 1; i >= 0; i--)
-                        if (standardItems[i].LeafStatus != 0)
-                            standardItems.Remove(standardItems[i]);
-                    riluParameterName.DataSource = standardItems;
+                    riluT230Name.DataSource = rules;
                 }
-
-                riluParameterName.DisplayMember = "NodeName";
-                riluParameterName.ValueMember = "LeafID";
-                riluParameterName.NullText = "";
+                else
+                {
+                    riluT230Name.DataSource = null;
+                }
             }
             catch (Exception error)
             {
@@ -185,10 +137,10 @@ namespace IRAP.Client.GUI.MDM
                 }
                 else
                 {
-                    List<EnvParamStandard> standards = new List<EnvParamStandard>();
+                    List<PokaYokeRule> standards = new List<PokaYokeRule>();
 
                     #region 获取指定产品和工序所对应的生产环境参数
-                    IRAPMDMClient.Instance.ufn_GetList_EnvParamStandard(
+                    IRAPMDMClient.Instance.ufn_GetList_PokaYokeRules(
                         IRAPUser.Instance.CommunityID,
                         t102LeafID,
                         t216LeafID,
@@ -197,36 +149,33 @@ namespace IRAP.Client.GUI.MDM
                         ref standards,
                         out errCode,
                         out errText);
-                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText), 
+                        strProcedureName);
 
                     if (dtStandards != null)
                     {
-                        foreach (EnvParamStandard standard in standards)
+                        foreach (PokaYokeRule standard in standards)
                         {
                             dtStandards.Rows.Add(new object[]
                             {
                                 standard.Ordinal,
-                                standard.T20LeafID,
-                                standard.ParameterName,
-                                standard.LowLimit,
-                                standard.Criterion,
-                                standard.HighLimit,
-                                standard.Scale,
+                                standard.T230LeafID,
+                                standard.ControlLevel,
+                                standard.ControlLimit_Low,
+                                standard.ControlLimit_High,
                                 standard.UnitOfMeasure,
-                                standard.CollectingMode,
-                                standard.CollectingCycle,
                                 standard.Reference,
                             });
                         }
                     }
 
-                    //for (int i = 0; i < grdvMethodStandards.Columns.Count; i++)
-                    //    grdvMethodStandards.Columns[i].BestFit();
                     grdvStandards.BestFitColumns();
                     grdvStandards.LayoutChanged();
 
                     grdvStandards.OptionsBehavior.Editable = true;
-                    grdvStandards.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+                    grdvStandards.OptionsView.NewItemRowPosition = 
+                        DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
                     grdStandards.UseEmbeddedNavigator = true;
                     #endregion
 
@@ -262,55 +211,42 @@ namespace IRAP.Client.GUI.MDM
             foreach (DataRow dr in dt.Rows)
             {
                 strStandardXML = strStandardXML +
-                    string.Format("<Row RealOrdinal=\"{0}\" T20LeafID=\"{1}\" LowLimit=\"{2}\" " +
-                        "Criterion=\"{3}\" HighLimit=\"{4}\" Scale=\"{5}\" UnitOfMeasure=\"{6}\" " +
-                        "RecordingMode=\"{7}\" SamplingCycle=\"{8}\" RTDBDSLinkID=\"{9}\" " +
-                        "RTDBTagName=\"{10}\" />",
+                    string.Format("<Row RealOrdinal=\"{0}\" T230LeafID=\"{1}\" ControlLevel=\"{2}\" " +
+                        "ControlLimit_Low=\"{3}\" ControlLimit_High=\"{4}\" UnitOfMeasure=\"{5}\"/>",
                         i++,
-                        dr["T20LeafID"].ToString(),
-                        dr["LowLimit"].ToString(),
-                        dr["Criterion"].ToString(),
-                        dr["HighLimit"].ToString(),
-                        dr["Scale"].ToString(),
-                        dr["UnitOfMeasure"].ToString(),
-                        dr["RecordingMode"].ToString(),
-                        dr["SamplingCycle"].ToString(),
-                        0,
-                        "");
+                        dr["T230LeafID"].ToString(),
+                        dr["ControlLevel"].ToString(),
+                        dr["ControlLimit_Low"].ToString(),
+                        dr["ControlLimit_High"].ToString(),
+                        dr["UnitOfMeasure"].ToString());
             }
 
             return string.Format("<RSAttr>{0}</RSAttr>", strStandardXML);
         }
 
-        private void grdvEnvParamStandards_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        private void grdvStandards_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             DataRow dr = grdvStandards.GetDataRow(e.RowHandle);
             dr["Level"] = dtStandards.Rows.Count + 1;
-            dr["T20LeafID"] = 0;
-            dr["ParameterName"] = "";
-            dr["LowLimit"] = 0;
-            dr["Criterion"] = "GELE";
-            dr["HighLimit"] = 0;
-            dr["Scale"] = 0;
+            dr["T230LeafID"] = 0;
+            dr["ControlLevel"] = 0;
+            dr["ControlLimit_Low"] = 0;
+            dr["ControlLimit_High"] = 0;
             dr["UnitOfMeasure"] = "";
-            dr["RecordingMode"] = 0;
-            dr["SamplingCycle"] = 0;
             dr["Reference"] = false;
 
             SetEditorMode(true);
         }
 
-        private void grdvEnvParamStandards_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e)
+        private void grdvStandards_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e)
         {
             grdvStandards.BestFitColumns();
-
             SetEditorMode(true);
         }
 
-        private void grdvEnvParamStandards_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        private void grdvStandards_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
             grdvStandards.BestFitColumns();
-
             SetEditorMode(true);
         }
     }

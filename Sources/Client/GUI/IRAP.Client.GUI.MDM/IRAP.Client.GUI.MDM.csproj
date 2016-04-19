@@ -82,11 +82,35 @@
     <Compile Include="Dialogs\frmOPStandardProperties.Designer.cs">
       <DependentUpon>frmOPStandardProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInspectStandardProperites.cs">
+    <Compile Include="Dialogs\frmInspectStandardProperites.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInspectStandardProperites.Designer.cs">
+    <Compile Include="Dialogs\frmInspectStandardProperites.Designer.cs">
       <DependentUpon>frmInspectStandardProperites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmFailureModeProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmFailureModeProperties.Designer.cs">
+      <DependentUpon>frmFailureModeProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmLoadingStandardProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmLoadingStandardProperties.Designer.cs">
+      <DependentUpon>frmLoadingStandardProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmEnergyStandardProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmEnergyStandardProperties.Designer.cs">
+      <DependentUpon>frmEnergyStandardProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPokaYokeRuleProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPokaYokeRuleProperties.Designer.cs">
+      <DependentUpon>frmPokaYokeRuleProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="frmProductProcessManager_30.cs">
       <SubType>Form</SubType>
@@ -106,6 +130,12 @@
     </Compile>
     <Compile Include="Dialogs\frmToolingStandardProperties.Designer.cs">
       <DependentUpon>frmToolingStandardProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmTestStandardProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmTestStandardProperties.Designer.cs">
+      <DependentUpon>frmTestStandardProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductProcessWorkFlow\OperationNodeFactory.cs" />
     <Compile Include="ProductProcessWorkFlow\ProductProcessPanel.cs">
@@ -174,6 +204,9 @@
     <EmbeddedResource Include="Dialogs\frmEnvParamStandardProperties.resx">
       <DependentUpon>frmEnvParamStandardProperties.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmFailureModeProperties.resx">
+      <DependentUpon>frmFailureModeProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmMethodStandardProperties.resx">
       <DependentUpon>frmMethodStandardProperties.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,8 +219,17 @@
     <EmbeddedResource Include="Dialogs\frmOPStandardProperties.resx">
       <DependentUpon>frmOPStandardProperties.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInspectStandardProperites.resx">
+    <EmbeddedResource Include="Dialogs\frmInspectStandardProperites.resx">
       <DependentUpon>frmInspectStandardProperites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmLoadingStandardProperties.resx">
+      <DependentUpon>frmLoadingStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmEnergyStandardProperties.resx">
+      <DependentUpon>frmEnergyStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPokaYokeRuleProperties.resx">
+      <DependentUpon>frmPokaYokeRuleProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductProcessManager_30.resx">
       <DependentUpon>frmProductProcessManager_30.cs</DependentUpon>
@@ -197,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmToolingStandardProperties.resx">
       <DependentUpon>frmToolingStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmTestStandardProperties.resx">
+      <DependentUpon>frmTestStandardProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

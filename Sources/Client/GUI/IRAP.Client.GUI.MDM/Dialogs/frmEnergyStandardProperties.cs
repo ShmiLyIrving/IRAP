@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+
 using System.Reflection;
 using DevExpress.XtraEditors;
 
@@ -16,14 +17,14 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MDM
 {
-    public partial class frmEnvParamStandardProperties : IRAP.Client.GUI.MDM.frmCustomProperites
+    public partial class frmEnergyStandardProperties : IRAP.Client.GUI.MDM.frmCustomProperites
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private DataTable dtStandards = null;
 
-        public frmEnvParamStandardProperties()
+        public frmEnergyStandardProperties()
         {
             InitializeComponent();
 
@@ -39,6 +40,7 @@ namespace IRAP.Client.GUI.MDM
             dtStandards.Columns.Add("SamplingCycle", typeof(int));
             dtStandards.Columns.Add("Reference", typeof(bool));
             grdStandards.DataSource = dtStandards;
+
 
             GetStandardList();
             GetCriterionList();
@@ -101,11 +103,11 @@ namespace IRAP.Client.GUI.MDM
                 string errText = "";
                 List<SubTreeLeaf> standardItems = new List<SubTreeLeaf>();
 
-                WriteLog.Instance.Write("获取生产环境项列表", strProcedureName);
+                WriteLog.Instance.Write("获取能源质量参数项列表", strProcedureName);
                 IRAPKBClient.Instance.sfn_AccessibleSubtreeLeaves(
                     IRAPUser.Instance.CommunityID,
                     20,
-                    5418,   // 生产环境节点标识
+                    5419,   // 能源质量参数节点标识
                     IRAPUser.Instance.ScenarioIndex,
                     IRAPUser.Instance.SysLogID,
                     ref standardItems,
@@ -185,10 +187,10 @@ namespace IRAP.Client.GUI.MDM
                 }
                 else
                 {
-                    List<EnvParamStandard> standards = new List<EnvParamStandard>();
+                    List<EnergyStandard> standards = new List<EnergyStandard>();
 
-                    #region 获取指定产品和工序所对应的生产环境参数
-                    IRAPMDMClient.Instance.ufn_GetList_EnvParamStandard(
+                    #region 获取指定产品和工序所对应的能源质量参数
+                    IRAPMDMClient.Instance.ufn_GetList_EnergyStandard(
                         IRAPUser.Instance.CommunityID,
                         t102LeafID,
                         t216LeafID,
@@ -197,11 +199,13 @@ namespace IRAP.Client.GUI.MDM
                         ref standards,
                         out errCode,
                         out errText);
-                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText), 
+                        strProcedureName);
 
                     if (dtStandards != null)
                     {
-                        foreach (EnvParamStandard standard in standards)
+                        foreach (EnergyStandard standard in standards)
                         {
                             dtStandards.Rows.Add(new object[]
                             {
@@ -220,13 +224,12 @@ namespace IRAP.Client.GUI.MDM
                         }
                     }
 
-                    //for (int i = 0; i < grdvMethodStandards.Columns.Count; i++)
-                    //    grdvMethodStandards.Columns[i].BestFit();
                     grdvStandards.BestFitColumns();
                     grdvStandards.LayoutChanged();
 
                     grdvStandards.OptionsBehavior.Editable = true;
-                    grdvStandards.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+                    grdvStandards.OptionsView.NewItemRowPosition = 
+                        DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
                     grdStandards.UseEmbeddedNavigator = true;
                     #endregion
 
@@ -282,7 +285,7 @@ namespace IRAP.Client.GUI.MDM
             return string.Format("<RSAttr>{0}</RSAttr>", strStandardXML);
         }
 
-        private void grdvEnvParamStandards_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        private void grdvStandards_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             DataRow dr = grdvStandards.GetDataRow(e.RowHandle);
             dr["Level"] = dtStandards.Rows.Count + 1;
@@ -300,17 +303,15 @@ namespace IRAP.Client.GUI.MDM
             SetEditorMode(true);
         }
 
-        private void grdvEnvParamStandards_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e)
+        private void grdvStandards_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e)
         {
             grdvStandards.BestFitColumns();
-
             SetEditorMode(true);
         }
 
-        private void grdvEnvParamStandards_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        private void grdvStandards_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
             grdvStandards.BestFitColumns();
-
             SetEditorMode(true);
         }
     }

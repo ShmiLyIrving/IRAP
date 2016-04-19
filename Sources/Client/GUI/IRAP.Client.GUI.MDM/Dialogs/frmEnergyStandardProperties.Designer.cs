@@ -1,6 +1,6 @@
 ﻿namespace IRAP.Client.GUI.MDM
 {
-    partial class frmEnvParamStandardProperties
+    partial class frmEnergyStandardProperties
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -61,8 +61,7 @@
             this.lblTitle.Appearance.ForeColor = System.Drawing.Color.Green;
             this.lblTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblTitle.Size = new System.Drawing.Size(652, 63);
-            this.lblTitle.Text = "环境参数标准";
+            this.lblTitle.Text = "能源参数标准";
             // 
             // btnSave
             // 
@@ -89,7 +88,7 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Padding = new System.Windows.Forms.Padding(5);
             this.panelControl1.Size = new System.Drawing.Size(652, 440);
-            this.panelControl1.TabIndex = 7;
+            this.panelControl1.TabIndex = 8;
             // 
             // grdStandards
             // 
@@ -136,9 +135,9 @@
             this.grdvStandards.OptionsView.EnableAppearanceOddRow = true;
             this.grdvStandards.OptionsView.RowAutoHeight = true;
             this.grdvStandards.OptionsView.ShowGroupPanel = false;
-            this.grdvStandards.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grdvEnvParamStandards_InitNewRow);
-            this.grdvStandards.RowDeleted += new DevExpress.Data.RowDeletedEventHandler(this.grdvEnvParamStandards_RowDeleted);
-            this.grdvStandards.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.grdvEnvParamStandards_RowUpdated);
+            this.grdvStandards.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grdvStandards_InitNewRow);
+            this.grdvStandards.RowDeleted += new DevExpress.Data.RowDeletedEventHandler(this.grdvStandards_RowDeleted);
+            this.grdvStandards.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.grdvStandards_RowUpdated);
             // 
             // grdclmnOrdinal
             // 
@@ -160,7 +159,7 @@
             this.grdclmnT20LeafID.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnT20LeafID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnT20LeafID.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnT20LeafID.Caption = "环境参数名称";
+            this.grdclmnT20LeafID.Caption = "能源参数";
             this.grdclmnT20LeafID.ColumnEdit = this.riluParameterName;
             this.grdclmnT20LeafID.FieldName = "T20LeafID";
             this.grdclmnT20LeafID.Name = "grdclmnT20LeafID";
@@ -301,15 +300,15 @@
             this.grdclmnReference.FieldName = "Reference";
             this.grdclmnReference.Name = "grdclmnReference";
             // 
-            // frmEnvParamStandardProperties
+            // frmEnergyStandardProperties
             // 
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(759, 503);
             this.Controls.Add(this.panelControl1);
-            this.Name = "frmEnvParamStandardProperties";
-            this.PropertiesType = "环境参数标准";
-            this.RowSetID = 11;
-            this.Text = "环境参数标准属性";
+            this.Name = "frmEnergyStandardProperties";
+            this.PropertiesType = "能源参数标准";
+            this.RowSetID = 12;
+            this.Text = "能源参数标准行集属性";
             this.Controls.SetChildIndex(this.lblTitle, 0);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.chkEffectiveType.Properties)).EndInit();

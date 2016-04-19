@@ -204,6 +204,8 @@
             this.grdvProducts.OptionsBehavior.Editable = false;
             this.grdvProducts.OptionsSelection.InvertSelection = true;
             this.grdvProducts.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
+            this.grdvProducts.OptionsView.EnableAppearanceEvenRow = true;
+            this.grdvProducts.OptionsView.EnableAppearanceOddRow = true;
             this.grdvProducts.OptionsView.RowAutoHeight = true;
             this.grdvProducts.OptionsView.ShowGroupPanel = false;
             this.grdvProducts.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdvProducts_RowClick);
@@ -308,7 +310,7 @@
             this.pnlWorkFlow.Location = new System.Drawing.Point(0, 63);
             this.pnlWorkFlow.Name = "pnlWorkFlow";
             this.pnlWorkFlow.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlWorkFlow.Size = new System.Drawing.Size(410, 376);
+            this.pnlWorkFlow.Size = new System.Drawing.Size(411, 376);
             this.pnlWorkFlow.TabIndex = 1;
             // 
             // productProcessPanel
@@ -317,10 +319,10 @@
             this.productProcessPanel.AutoScrollMinSize = new System.Drawing.Size(5000, 5000);
             this.productProcessPanel.BackgroundColor = System.Drawing.Color.White;
             this.productProcessPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.productProcessPanel.Location = new System.Drawing.Point(5, 130);
+            this.productProcessPanel.Location = new System.Drawing.Point(5, 145);
             this.productProcessPanel.Name = "productProcessPanel";
             this.productProcessPanel.Root = null;
-            this.productProcessPanel.Size = new System.Drawing.Size(400, 241);
+            this.productProcessPanel.Size = new System.Drawing.Size(401, 226);
             this.productProcessPanel.TabIndex = 1;
             this.productProcessPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.productProcessPanel_MouseDown);
             this.productProcessPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.productProcessPanel_MouseMove);
@@ -332,7 +334,7 @@
             this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(5, 5);
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(400, 125);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(401, 140);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // pnlWorkFlowCommand
@@ -342,7 +344,7 @@
             this.pnlWorkFlowCommand.Controls.Add(this.chkEffectiveType);
             this.pnlWorkFlowCommand.Controls.Add(this.btnCancel);
             this.pnlWorkFlowCommand.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlWorkFlowCommand.Location = new System.Drawing.Point(410, 63);
+            this.pnlWorkFlowCommand.Location = new System.Drawing.Point(411, 63);
             this.pnlWorkFlowCommand.Name = "pnlWorkFlowCommand";
             this.pnlWorkFlowCommand.Padding = new System.Windows.Forms.Padding(5);
             this.pnlWorkFlowCommand.Size = new System.Drawing.Size(107, 376);
@@ -399,7 +401,7 @@
             this.lblProductName.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblProductName.Location = new System.Drawing.Point(0, 0);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(517, 63);
+            this.lblProductName.Size = new System.Drawing.Size(518, 63);
             this.lblProductName.TabIndex = 0;
             this.lblProductName.Text = "{0}的工艺流程";
             // 

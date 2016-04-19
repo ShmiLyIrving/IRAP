@@ -40,6 +40,7 @@ namespace IRAP.Client.GUI.MDM
             {
                 propertiesType = value;
                 lblTitle.Text = value;
+                Text = value + "行集属性";
             }
         }
 
