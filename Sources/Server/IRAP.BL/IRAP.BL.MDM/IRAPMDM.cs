@@ -2937,7 +2937,7 @@ namespace IRAP.BL.MDM
         }
 
         /// <summary>
-        /// 获取工序生产准备标准
+        /// 获取指定产品指定工序的操作工技能矩阵
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="t102LeafID">产品叶标识</param>
@@ -2963,7 +2963,7 @@ namespace IRAP.BL.MDM
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                List<PreparingStandard> datas = new List<PreparingStandard>();
+                List<SkillMatrixByMethod> datas = new List<SkillMatrixByMethod>();
 
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
@@ -2974,7 +2974,7 @@ namespace IRAP.BL.MDM
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用函数 IRAPMDM..ufn_GetList_PreparingStandard，参数：CommunityID={0}|" +
+                        "调用函数 IRAPMDM..ufn_GetSkillMatrix_ByMethod，参数：CommunityID={0}|" +
                         "T102LeafID={1}|T216LeafID={2}|ShotTime={3}|SysLogID={4}",
                         communityID, t102LeafID, t216LeafID, shotTime, sysLogID),
                     strProcedureName);
@@ -2986,13 +2986,13 @@ namespace IRAP.BL.MDM
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
                         string strSQL = "SELECT * " +
-                            "FROM IRAPMDM..ufn_GetList_PreparingStandard(" +
+                            "FROM IRAPMDM..ufn_GetSkillMatrix_ByMethod(" +
                             "@CommunityID, @T102LeafID, @T216LeafID, @ShotTime, " +
                             "@SysLogID)";
 
-                        IList<PreparingStandard> lstDatas =
-                            conn.CallTableFunc<PreparingStandard>(strSQL, paramList);
-                        datas = lstDatas.ToList<PreparingStandard>();
+                        IList<SkillMatrixByMethod> lstDatas =
+                            conn.CallTableFunc<SkillMatrixByMethod>(strSQL, paramList);
+                        datas = lstDatas.ToList<SkillMatrixByMethod>();
                         errCode = 0;
                         errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
                     }
@@ -3001,7 +3001,7 @@ namespace IRAP.BL.MDM
                 {
                     errCode = 99000;
                     errText = string.Format(
-                        "调用 IRAPMDM..ufn_GetList_PreparingStandard 函数发生异常：{0}",
+                        "调用 IRAPMDM..ufn_GetSkillMatrix_ByMethod 函数发生异常：{0}",
                         error.Message);
                 }
                 #endregion
