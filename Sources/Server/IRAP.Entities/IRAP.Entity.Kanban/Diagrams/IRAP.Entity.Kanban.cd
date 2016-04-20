@@ -154,10 +154,10 @@
       <FileName>Period.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entity.Kanban.CommunityUserInfo">
+  <Class Name="IRAP.Entity.Kanban.CommunityUserInfo" Collapsed="true">
     <Position X="5.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAQCAACAABAIAgAAAABAAAAQAQAAEAAAABA=</HashCode>
+      <HashCode>AAQAAAAAAAQCAECAABAIAgAAAABAAAAQAQAAEAAAABA=</HashCode>
       <FileName>CommunityUserInfo.cs</FileName>
     </TypeIdentifier>
   </Class>

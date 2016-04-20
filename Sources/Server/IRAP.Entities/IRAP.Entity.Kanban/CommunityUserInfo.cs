@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entity.Kanban
 {
     /// <summary>
@@ -54,6 +56,15 @@ namespace IRAP.Entity.Kanban
         /// 正在处理的异常事件标识
         /// </summary>
         public long LinkedToEventID { get; set; }
+
+        [IRAPORMMap(ORMMap =false)]
+        public string CodeAndName
+        {
+            get
+            {
+                return string.Format("[{0}]{1}", UserCode, UserName);
+            }
+        }
 
         public CommunityUserInfo Clone()
         {
