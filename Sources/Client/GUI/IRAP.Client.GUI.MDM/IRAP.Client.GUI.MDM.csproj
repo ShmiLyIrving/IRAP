@@ -143,6 +143,12 @@
     <Compile Include="Dialogs\frmTestStandardProperties.Designer.cs">
       <DependentUpon>frmTestStandardProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSkillMatrixProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSkillMatrixProperties.Designer.cs">
+      <DependentUpon>frmSkillMatrixProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductProcessWorkFlow\OperationNodeFactory.cs" />
     <Compile Include="ProductProcessWorkFlow\ProductProcessPanel.cs">
       <SubType>Component</SubType>
