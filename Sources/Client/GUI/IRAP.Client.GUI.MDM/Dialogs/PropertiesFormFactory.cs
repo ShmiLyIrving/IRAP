@@ -53,7 +53,7 @@ namespace IRAP.Client.GUI.MDM
                     instance = new frmEnergyStandardProperties();        // 能源参数标准
                     break;
                 case -373374:
-                    instance = null;        // 生产准备事项
+                    instance = new frmPrepareStandardProperties();        // 生产准备事项
                     break;
                 case -354016:
                     instance = new frmPokaYokeRuleProperties();        // 生产防错规则

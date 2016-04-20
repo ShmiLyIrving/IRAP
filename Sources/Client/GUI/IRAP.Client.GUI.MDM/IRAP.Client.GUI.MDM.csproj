@@ -106,11 +106,17 @@
     <Compile Include="Dialogs\frmEnergyStandardProperties.Designer.cs">
       <DependentUpon>frmEnergyStandardProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPokaYokeRuleProperties.cs">
+    <Compile Include="Dialogs\frmPokaYokeRuleProperties.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPokaYokeRuleProperties.Designer.cs">
+    <Compile Include="Dialogs\frmPokaYokeRuleProperties.Designer.cs">
       <DependentUpon>frmPokaYokeRuleProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmPrepareStandardProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmPrepareStandardProperties.Designer.cs">
+      <DependentUpon>frmPrepareStandardProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="frmProductProcessManager_30.cs">
       <SubType>Form</SubType>
@@ -228,8 +234,11 @@
     <EmbeddedResource Include="Dialogs\frmEnergyStandardProperties.resx">
       <DependentUpon>frmEnergyStandardProperties.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPokaYokeRuleProperties.resx">
+    <EmbeddedResource Include="Dialogs\frmPokaYokeRuleProperties.resx">
       <DependentUpon>frmPokaYokeRuleProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmPrepareStandardProperties.resx">
+      <DependentUpon>frmPrepareStandardProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductProcessManager_30.resx">
       <DependentUpon>frmProductProcessManager_30.cs</DependentUpon>
