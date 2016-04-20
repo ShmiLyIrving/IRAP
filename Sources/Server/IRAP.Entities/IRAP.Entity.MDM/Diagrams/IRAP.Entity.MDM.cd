@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.Stb058" Collapsed="true">
-    <Position X="8.75" Y="3.5" Width="1.5" />
+    <Position X="10.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAACAAAAgEgAiAAgEAAAIAAAAAAAAQABAAEAABE=</HashCode>
       <FileName>Stb058.cs</FileName>
@@ -106,7 +106,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ToolingStandard" Collapsed="true">
-    <Position X="10.5" Y="3.5" Width="1.5" />
+    <Position X="12.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAGAIAAAAAAEABAAAAAAAAACAAAAAAAAAAAAABI=</HashCode>
       <FileName>ToolingStandard.cs</FileName>
@@ -173,6 +173,13 @@
     <TypeIdentifier>
       <HashCode>AAAEIACAEAAAAAAAABIAAAAAAAAACADBAAAAAAAAABA=</HashCode>
       <FileName>PreparingStandard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MDM.SkillMatrixByMethod" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAGAAAABAAAAABAAAAAAAAAAgAAAQQAAgAAAABA=</HashCode>
+      <FileName>SkillMatrixByMethod.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

@@ -2935,5 +2935,83 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取工序生产准备标准
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="shotTime">时间点(空串=当前)</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[SkillMatrixByMethod]</returns>
+        public IRAPJsonResult ufn_GetSkillMatrix_ByMethod(
+            int communityID,
+            int t102LeafID,
+            int t216LeafID,
+            string shotTime,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<PreparingStandard> datas = new List<PreparingStandard>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@ShotTime", DbType.String, shotTime));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_PreparingStandard，参数：CommunityID={0}|" +
+                        "T102LeafID={1}|T216LeafID={2}|ShotTime={3}|SysLogID={4}",
+                        communityID, t102LeafID, t216LeafID, shotTime, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_PreparingStandard(" +
+                            "@CommunityID, @T102LeafID, @T216LeafID, @ShotTime, " +
+                            "@SysLogID)";
+
+                        IList<PreparingStandard> lstDatas =
+                            conn.CallTableFunc<PreparingStandard>(strSQL, paramList);
+                        datas = lstDatas.ToList<PreparingStandard>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPMDM..ufn_GetList_PreparingStandard 函数发生异常：{0}",
+                        error.Message);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
