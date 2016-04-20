@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunityUserInfo.cs" />
     <Compile Include="EquipmentInfo.cs" />
     <Compile Include="FailureMode.cs" />
     <Compile Include="InspectFailure.cs" />

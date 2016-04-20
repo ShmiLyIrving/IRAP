@@ -1359,5 +1359,74 @@ namespace IRAP.BL.Kanban
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取指定社区的所有用户清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <returns>List[CommunityUserInfo]</returns>
+        public IRAPJsonResult sfn_GetList_UsersOfACommunity(
+            int communityID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+        string.Format(
+            "{0}.{1}",
+            className,
+            MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<CommunityUserInfo> datas = new List<CommunityUserInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..sfn_GetList_UsersOfACommunity，参数：" +
+                        "CommunityID={0}",
+                        communityID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAP..sfn_GetList_UsersOfACommunity(" +
+                            "@CommunityID)";
+
+                        IList<CommunityUserInfo> lstDatas =
+                            conn.CallTableFunc<CommunityUserInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList<CommunityUserInfo>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAP..sfn_GetList_UsersOfACommunity 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
