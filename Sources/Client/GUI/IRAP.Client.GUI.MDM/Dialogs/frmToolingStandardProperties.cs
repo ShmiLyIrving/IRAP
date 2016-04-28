@@ -43,9 +43,9 @@ namespace IRAP.Client.GUI.MDM
             dtLifeControlMode.Rows.Add(new object[] { 1, "按时间" });
             dtLifeControlMode.Rows.Add(new object[] { 2, "按产量" });
 
-            risluToolingModelName.DisplayMember = "Name";
-            risluToolingModelName.ValueMember = "LeafID";
-            risluToolingModelName.NullText = "";
+            //risluToolingModelName.DisplayMember = "Name";
+            //risluToolingModelName.ValueMember = "LeafID";
+            //risluToolingModelName.NullText = "";
 
             riluLifeControlMode.DataSource = dtLifeControlMode;
             riluLifeControlMode.DisplayMember = "Name";
@@ -261,11 +261,13 @@ namespace IRAP.Client.GUI.MDM
 
         private void grdvToolingStandards_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e)
         {
+            grdvToolingStandards.BestFitColumns();
             SetEditorMode(true);
         }
 
         private void grdvToolingStandards_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
+            grdvToolingStandards.BestFitColumns();
             SetEditorMode(true);
         }
     }

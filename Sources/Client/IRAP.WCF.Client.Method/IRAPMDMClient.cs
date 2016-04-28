@@ -339,6 +339,7 @@ namespace IRAP.WCF.Client.Method
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
             }
@@ -1288,6 +1289,86 @@ namespace IRAP.WCF.Client.Method
 
                     if (errCode == 0)
                         datas = rlt as List<PreparingStandard>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定产品指定工序的操作工技能矩阵
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="shotTime">时间点(空串=当前)</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetSkillMatrix_ByMethod(
+            int communityID,
+            int t102LeafID,
+            int t216LeafID,
+            string shotTime,
+            long sysLogID,
+            ref List<SkillMatrixByMethod> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("t216LeafID", t216LeafID);
+                hashParams.Add("shotTime", shotTime);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetSkillMatrix_ByMethod，输入参数：" +
+                        "CommunityID={0}|T102LeafID={1}|T216LeafID={2}|" +
+                        "ShotTime={3}|SysLogID={4}",
+                        communityID,
+                        t102LeafID,
+                        t216LeafID,
+                        shotTime,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "ufn_GetSkillMatrix_ByMethod",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<SkillMatrixByMethod>;
                 }
                 #endregion
             }

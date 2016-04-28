@@ -37,7 +37,12 @@
             this.grdvT118LeafIDView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnLeafCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnLeafName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnT216LeafID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.risluSourceOperation = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.risluSourceOperationView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnReference = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.chkEffectiveType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -45,6 +50,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdvStandards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.risluT118LeafID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvT118LeafIDView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluSourceOperation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluSourceOperationView)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -91,7 +98,8 @@
             this.grdStandards.MainView = this.grdvStandards;
             this.grdStandards.Name = "grdStandards";
             this.grdStandards.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.risluT118LeafID});
+            this.risluT118LeafID,
+            this.risluSourceOperation});
             this.grdStandards.Size = new System.Drawing.Size(638, 426);
             this.grdStandards.TabIndex = 2;
             this.grdStandards.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -109,6 +117,7 @@
             this.grdvStandards.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdclmnToolingOrdinal,
             this.grdclmnT118LeafID,
+            this.grdclmnT216LeafID,
             this.grdclmnReference});
             this.grdvStandards.GridControl = this.grdStandards;
             this.grdvStandards.Name = "grdvStandards";
@@ -187,6 +196,36 @@
             this.grdclmnLeafName.Visible = true;
             this.grdclmnLeafName.VisibleIndex = 1;
             // 
+            // grdclmnT216LeafID
+            // 
+            this.grdclmnT216LeafID.Caption = "根源工序";
+            this.grdclmnT216LeafID.ColumnEdit = this.risluSourceOperation;
+            this.grdclmnT216LeafID.FieldName = "T216LeafID";
+            this.grdclmnT216LeafID.Name = "grdclmnT216LeafID";
+            this.grdclmnT216LeafID.Visible = true;
+            this.grdclmnT216LeafID.VisibleIndex = 2;
+            // 
+            // risluSourceOperation
+            // 
+            this.risluSourceOperation.AutoHeight = false;
+            this.risluSourceOperation.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.risluSourceOperation.DisplayMember = "T216Name";
+            this.risluSourceOperation.Name = "risluSourceOperation";
+            this.risluSourceOperation.NullText = "";
+            this.risluSourceOperation.ValueMember = "T216Leaf";
+            this.risluSourceOperation.View = this.risluSourceOperationView;
+            // 
+            // risluSourceOperationView
+            // 
+            this.risluSourceOperationView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.risluSourceOperationView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.risluSourceOperationView.Name = "risluSourceOperationView";
+            this.risluSourceOperationView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.risluSourceOperationView.OptionsView.ShowGroupPanel = false;
+            // 
             // grdclmnReference
             // 
             this.grdclmnReference.AppearanceHeader.Options.UseTextOptions = true;
@@ -195,6 +234,22 @@
             this.grdclmnReference.Caption = "是否模板数据";
             this.grdclmnReference.FieldName = "Reference";
             this.grdclmnReference.Name = "grdclmnReference";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "工序代码";
+            this.gridColumn1.FieldName = "T216Code";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "工序名称";
+            this.gridColumn2.FieldName = "T216Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
             // 
             // frmFailureModeProperties
             // 
@@ -214,6 +269,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdvStandards)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.risluT118LeafID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvT118LeafIDView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluSourceOperation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluSourceOperationView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -230,5 +287,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnLeafCode;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnLeafName;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnReference;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnT216LeafID;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit risluSourceOperation;
+        private DevExpress.XtraGrid.Views.Grid.GridView risluSourceOperationView;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

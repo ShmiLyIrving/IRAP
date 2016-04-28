@@ -59,10 +59,10 @@ namespace IRAP.Client.GUI.MDM
                     instance = new frmPokaYokeRuleProperties();        // 生产防错规则
                     break;
                 case -373389:
-                    instance = null;        // 工艺文档清单
+                    instance = new frmMethodDocumentProperties();        // 工艺文档清单
                     break;
                 case -372154:
-                    instance = null;        // 员工技能矩阵
+                    instance = new frmSkillMatrixProperties();        // 员工技能矩阵
                     break;
             }
 

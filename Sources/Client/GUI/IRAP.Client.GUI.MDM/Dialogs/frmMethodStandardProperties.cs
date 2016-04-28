@@ -136,12 +136,12 @@ namespace IRAP.Client.GUI.MDM
                     for (int i = standardItems.Count - 1; i >= 0; i--)
                         if (standardItems[i].LeafStatus != 0)
                             standardItems.Remove(standardItems[i]);
-                    riluStandardName.DataSource = standardItems;
+                    risluStandardName.DataSource = standardItems;
                 }
 
-                riluStandardName.DisplayMember = "NodeName";
-                riluStandardName.ValueMember = "LeafID";
-                riluStandardName.NullText = "";
+                //riluStandardName.DisplayMember = "NodeName";
+                //riluStandardName.ValueMember = "LeafID";
+                //riluStandardName.NullText = "";
             }
             catch (Exception error)
             {

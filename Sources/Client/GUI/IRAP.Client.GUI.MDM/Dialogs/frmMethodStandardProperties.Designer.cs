@@ -33,7 +33,9 @@
             this.grdvMethodStandards = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnStandardOrdinal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnStandardName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.riluStandardName = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.risluStandardName = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.risluStandardNameView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnLowLimit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnCriterion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.riluCriterion = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -46,14 +48,17 @@
             this.grdclmnRTDBDSLinkID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnRTDBTagName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnReference = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.riluStandardName = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEffectiveType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMethodStandards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMethodStandards)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.riluStandardName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluStandardName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluStandardNameView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluCriterion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluRecordingMode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riluStandardName)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -63,6 +68,7 @@
             this.lblTitle.Appearance.ForeColor = System.Drawing.Color.Green;
             this.lblTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblTitle.Size = new System.Drawing.Size(652, 63);
             this.lblTitle.Text = "工艺参数标准";
             // 
             // btnSave
@@ -101,7 +107,8 @@
             this.grdMethodStandards.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.riluStandardName,
             this.riluCriterion,
-            this.riluRecordingMode});
+            this.riluRecordingMode,
+            this.risluStandardName});
             this.grdMethodStandards.Size = new System.Drawing.Size(638, 426);
             this.grdMethodStandards.TabIndex = 2;
             this.grdMethodStandards.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -164,24 +171,41 @@
             this.grdclmnStandardName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnStandardName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnStandardName.Caption = "工艺参数名称";
-            this.grdclmnStandardName.ColumnEdit = this.riluStandardName;
+            this.grdclmnStandardName.ColumnEdit = this.risluStandardName;
             this.grdclmnStandardName.FieldName = "T20LeafID";
             this.grdclmnStandardName.Name = "grdclmnStandardName";
             this.grdclmnStandardName.Visible = true;
             this.grdclmnStandardName.VisibleIndex = 1;
             this.grdclmnStandardName.Width = 180;
             // 
-            // riluStandardName
+            // risluStandardName
             // 
-            this.riluStandardName.AutoHeight = false;
-            this.riluStandardName.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.riluStandardName.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.risluStandardName.AutoHeight = false;
+            this.risluStandardName.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.risluStandardName.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.riluStandardName.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NodeName", "Name1")});
-            this.riluStandardName.Name = "riluStandardName";
-            this.riluStandardName.ShowFooter = false;
-            this.riluStandardName.ShowHeader = false;
+            this.risluStandardName.DisplayMember = "CodeAndName";
+            this.risluStandardName.Name = "risluStandardName";
+            this.risluStandardName.NullText = "";
+            this.risluStandardName.ValueMember = "LeafID";
+            this.risluStandardName.View = this.risluStandardNameView;
+            // 
+            // risluStandardNameView
+            // 
+            this.risluStandardNameView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn2});
+            this.risluStandardNameView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.risluStandardNameView.Name = "risluStandardNameView";
+            this.risluStandardNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.risluStandardNameView.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "工艺参数名称";
+            this.gridColumn2.FieldName = "CodeAndName";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
             // 
             // grdclmnLowLimit
             // 
@@ -324,6 +348,18 @@
             this.grdclmnReference.FieldName = "Reference";
             this.grdclmnReference.Name = "grdclmnReference";
             // 
+            // riluStandardName
+            // 
+            this.riluStandardName.AutoHeight = false;
+            this.riluStandardName.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.riluStandardName.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.riluStandardName.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NodeName", "Name1")});
+            this.riluStandardName.Name = "riluStandardName";
+            this.riluStandardName.ShowFooter = false;
+            this.riluStandardName.ShowHeader = false;
+            // 
             // frmMethodStandardProperties
             // 
             this.Appearance.Options.UseFont = true;
@@ -340,9 +376,11 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdMethodStandards)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMethodStandards)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.riluStandardName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluStandardName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.risluStandardNameView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluCriterion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluRecordingMode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riluStandardName)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -367,5 +405,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnRTDBDSLinkID;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnRTDBTagName;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnReference;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit risluStandardName;
+        private DevExpress.XtraGrid.Views.Grid.GridView risluStandardNameView;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

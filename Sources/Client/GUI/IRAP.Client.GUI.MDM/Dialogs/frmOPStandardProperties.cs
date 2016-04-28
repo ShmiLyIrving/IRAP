@@ -172,7 +172,7 @@ namespace IRAP.Client.GUI.MDM
                                 data.ManOrMachine,
                                 data.T112LeafID,
                                 data.JobElementDesc,
-                                data.StartTimeOffset,
+                                data.StatTimeOffset,
                                 data.EndTimeOffset,
                                 data.ImageSOPImage,
                                 data.Reference,

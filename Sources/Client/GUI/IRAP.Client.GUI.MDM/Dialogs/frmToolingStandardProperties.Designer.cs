@@ -61,6 +61,7 @@
             this.lblTitle.Appearance.ForeColor = System.Drawing.Color.Green;
             this.lblTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblTitle.Size = new System.Drawing.Size(652, 63);
             this.lblTitle.Text = "工装使用标准";
             // 
             // btnSave
@@ -165,10 +166,10 @@
             // 
             // risluToolingModelName
             // 
-            this.risluToolingModelName.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit;
+            this.risluToolingModelName.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             this.risluToolingModelName.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.risluToolingModelName.DisplayMember = "Name";
+            this.risluToolingModelName.DisplayMember = "CodeAndName";
             this.risluToolingModelName.Name = "risluToolingModelName";
             this.risluToolingModelName.NullText = "";
             this.risluToolingModelName.ValueMember = "LeafID";

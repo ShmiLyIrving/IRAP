@@ -16,40 +16,28 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MDM
 {
-    public partial class frmFailureModeProperties : IRAP.Client.GUI.MDM.frmCustomProperites
+    public partial class frmSkillMatrixProperties : IRAP.Client.GUI.MDM.frmCustomProperites
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private DataTable dtStandards = null;
-        private int t216LeafID = 0;
-        private List<ProcessOperation> operations = new List<ProcessOperation>();
 
-        public frmFailureModeProperties()
+        public frmSkillMatrixProperties()
         {
             InitializeComponent();
 
             dtStandards = new DataTable();
             dtStandards.Columns.Add("Level", typeof(int));
-            dtStandards.Columns.Add("T118LeafID", typeof(int));
-            dtStandards.Columns.Add("T216LeafID", typeof(int));
+            dtStandards.Columns.Add("UserCode", typeof(string));
+            dtStandards.Columns.Add("QualificationLevel", typeof(int));
             dtStandards.Columns.Add("Reference", typeof(bool));
             grdStandards.DataSource = dtStandards;
 
-            GetT118List();
+            GetOperatorList();
         }
 
-        public List<ProcessOperation> Operations
-        {
-            get { return operations;     }
-            set
-            {
-                operations = value;
-                risluSourceOperation.DataSource = value;
-            }
-        }
-
-        private void GetT118List()
+        private void GetOperatorList()
         {
             string strProcedureName =
                 string.Format(
@@ -61,15 +49,12 @@ namespace IRAP.Client.GUI.MDM
             {
                 int errCode = 0;
                 string errText = "";
-                List<LeafSetEx> programItems = new List<LeafSetEx>();
+                List<CommunityUserInfo> users = new List<CommunityUserInfo>();
 
-                WriteLog.Instance.Write("获取产品失效模式列表", strProcedureName);
-                IRAPKBClient.Instance.sfn_AccessibleLeafSetEx(
+                WriteLog.Instance.Write("获取用户列表", strProcedureName);
+                IRAPKBClient.Instance.sfn_GetList_UsersOfACommunity(
                     IRAPUser.Instance.CommunityID,
-                    118,
-                    IRAPUser.Instance.ScenarioIndex,
-                    IRAPUser.Instance.SysLogID,
-                    ref programItems,
+                    ref users,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
@@ -77,11 +62,11 @@ namespace IRAP.Client.GUI.MDM
                     strProcedureName);
                 if (errCode == 0)
                 {
-                    risluT118LeafID.DataSource = programItems;
-                }
-                else
-                {
-                    risluT118LeafID.DataSource = null;
+                    for (int i = users.Count - 1; i >= 0; i--)
+                        if (users[i].RoleLeaf != 266 &&
+                            users[i].RoleLeaf != 268)
+                            users.Remove(users[i]);
+                    risluUserCode.DataSource = users;
                 }
             }
             catch (Exception error)
@@ -106,10 +91,12 @@ namespace IRAP.Client.GUI.MDM
             foreach (DataRow dr in dt.Rows)
             {
                 strStandardXML = strStandardXML +
-                    string.Format("<Row RealOrdinal=\"{0}\" T118LeafID=\"{1}\" T216LeafID=\"{2}\"/>",
+                    string.Format(
+                        "<Row RealOrdinal=\"{0}\" UserCode=\"{1}\" "+
+                        "QualificationLevel=\"{2}\"/>",
                         i++,
-                        dr["T118LeafID"].ToString(),
-                        dr["T216LeafID"].ToString());
+                        dr["UserCode"].ToString(),
+                        dr["QualificationLevel"].ToString());
             }
 
             return string.Format("<RSAttr>{0}</RSAttr>", strStandardXML);
@@ -122,7 +109,6 @@ namespace IRAP.Client.GUI.MDM
                     "{0}.{1}",
                     className,
                     MethodBase.GetCurrentMethod().Name);
-            this.t216LeafID = t216LeafID;
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -165,15 +151,14 @@ namespace IRAP.Client.GUI.MDM
                 }
                 else
                 {
-                    List<FailureModeCore> standards = new List<FailureModeCore>();
+                    List<SkillMatrixByMethod> standards = new List<SkillMatrixByMethod>();
 
-                    #region 获取指定产品和工序所对应的工艺标准
-                    IRAPMDMClient.Instance.ufn_GetList_FailureModes_Core(
+                    #region 获取指定产品和工序所对应的生产环境参数
+                    IRAPMDMClient.Instance.ufn_GetSkillMatrix_ByMethod(
                         IRAPUser.Instance.CommunityID,
-                        0,
-                        t216LeafID,
-                        0,
                         t102LeafID,
+                        t216LeafID,
+                        "",
                         IRAPUser.Instance.SysLogID,
                         ref standards,
                         out errCode,
@@ -182,13 +167,14 @@ namespace IRAP.Client.GUI.MDM
 
                     if (dtStandards != null)
                     {
-                        foreach (FailureModeCore standard in standards)
+                        foreach (SkillMatrixByMethod standard in standards)
                         {
                             dtStandards.Rows.Add(new object[]
                             {
                                 standard.Ordinal,
-                                standard.T118LeafID,
-                                false,
+                                standard.UserCode,
+                                standard.QualificationLevel,
+                                standard.Reference,
                             });
                         }
                     }
@@ -197,13 +183,21 @@ namespace IRAP.Client.GUI.MDM
                     grdvStandards.LayoutChanged();
 
                     grdvStandards.OptionsBehavior.Editable = true;
-                    grdvStandards.OptionsView.NewItemRowPosition = 
-                        DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+                    grdvStandards.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
                     grdStandards.UseEmbeddedNavigator = true;
                     #endregion
 
                     #region 如果当前显示的数据是模板数据
-                    btnSave.Enabled = false;
+                    if (standards.Count > 0 && standards[0].Reference)
+                    {
+                        lblTitle.Text += "（模板数据）";
+
+                        btnSave.Enabled = true;
+                    }
+                    else
+                    {
+                        btnSave.Enabled = false;
+                    }
                     #endregion
                 }
             }
@@ -217,7 +211,8 @@ namespace IRAP.Client.GUI.MDM
         {
             DataRow dr = grdvStandards.GetDataRow(e.RowHandle);
             dr["Level"] = dtStandards.Rows.Count + 1;
-            dr["T118LeafID"] = 0;
+            dr["UserCode"] = "";
+            dr["QualificationLevel"] = 4;
             dr["Reference"] = false;
 
             SetEditorMode(true);

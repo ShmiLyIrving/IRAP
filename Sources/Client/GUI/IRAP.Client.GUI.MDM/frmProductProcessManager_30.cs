@@ -1226,6 +1226,25 @@ namespace IRAP.Client.GUI.MDM
                         {
                             using (propertiesForm)
                             {
+                                if (propertiesForm is frmFailureModeProperties)
+                                {
+                                    int currentLevel = (itemRightClicked as OperationNode).Level;
+
+                                    List<ProcessOperation> prevOperations = new List<ProcessOperation>();
+                                    for (int i = 0; i < productProcessPanel.Items.Count; i++)
+                                    {
+                                        if (productProcessPanel.Items[i] is OperationNode)
+                                        {
+                                            OperationNode nodePrev
+                                                = productProcessPanel.Items[i] as OperationNode;
+                                            if (nodePrev.Level > 0 && nodePrev.Level < currentLevel)
+                                                prevOperations.Add((nodePrev.Tag as ProcessOperation).Clone());
+                                        }
+                                    }
+
+                                    ((frmFailureModeProperties)propertiesForm).Operations = prevOperations;
+                                }
+
                                 propertiesForm.SetCaption(
                                     prdts[grdvProducts.GetFocusedDataSourceRowIndex()].NodeName,
                                     (node.Tag as ProcessOperation).T216Name);

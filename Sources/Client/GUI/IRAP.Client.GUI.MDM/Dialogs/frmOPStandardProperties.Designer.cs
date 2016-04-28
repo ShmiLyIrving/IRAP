@@ -270,8 +270,6 @@
             this.grdclmnSOPImage.ColumnEdit = this.riieSOPImage;
             this.grdclmnSOPImage.FieldName = "SOPImage";
             this.grdclmnSOPImage.Name = "grdclmnSOPImage";
-            this.grdclmnSOPImage.Visible = true;
-            this.grdclmnSOPImage.VisibleIndex = 8;
             // 
             // riieSOPImage
             // 
