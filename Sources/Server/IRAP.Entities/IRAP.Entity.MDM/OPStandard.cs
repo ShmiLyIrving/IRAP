@@ -66,7 +66,7 @@ namespace IRAP.Entity.MDM
         /// <summary>
         /// 开始时间偏移量（ms）
         /// </summary>
-        public int StartTimeOffset { get; set; }
+        public int StatTimeOffset { get; set; }
         /// <summary>
         /// 截止时间偏移量（ms）
         /// </summary>
@@ -95,18 +95,20 @@ namespace IRAP.Entity.MDM
             set
             {
                 imageT112Icon = value;
-                t112Icon = Tools.ImageToBytes(value);
+                if (value != null)
+                    t112Icon = Tools.ImageToBytes(value);
             }
         }
 
-        [IRAPORMMap(ORMMap =false)]
+        [IRAPORMMap(ORMMap = false)]
         public Image ImageSOPImage
         {
             get { return imageSOPImage; }
             set
             {
                 imageSOPImage = value;
-                sopImage = Tools.ImageToBytes(value);
+                if (value != null)
+                    sopImage = Tools.ImageToBytes(value);
             }
         }
 

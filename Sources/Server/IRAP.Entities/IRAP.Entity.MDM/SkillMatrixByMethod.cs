@@ -57,7 +57,8 @@ namespace IRAP.Entity.MDM
             set
             {
                 qualificationFactImage = value;
-                qualificationFactIcon = Tools.ImageToBytes(value);
+                if (value != null)
+                    qualificationFactIcon = Tools.ImageToBytes(value);
             }
         }
 

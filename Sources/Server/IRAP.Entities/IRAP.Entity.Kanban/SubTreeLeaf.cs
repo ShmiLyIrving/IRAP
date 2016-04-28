@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entity.Kanban
 {
     public class SubTreeLeaf
@@ -71,6 +73,18 @@ namespace IRAP.Entity.Kanban
         /// 第二检索码
         /// </summary>
         public string SearchCode2 { get; set; }
+
+        [IRAPORMMap(ORMMap = false)]
+        public string CodeAndName
+        {
+            get
+            {
+                if (NodeCode.Trim() == "")
+                    return NodeName;
+                else
+                    return string.Format("[{0}]{1}", NodeCode, NodeName);
+            }
+        }
 
         public SubTreeLeaf Clone()
         {

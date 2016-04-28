@@ -2675,7 +2675,7 @@ namespace IRAP.BL.MDM
                     {
                         string strSQL = "SELECT * " +
                             "FROM IRAPMDM..ufn_GetList_FailureModes_Core(" +
-                            "@CommunityID, @134LeafID, @T216LeafID, @T132LeafID, " +
+                            "@CommunityID, @T134LeafID, @T216LeafID, @T132LeafID, " +
                             "@T102LeafID, @SysLogID)";
 
                         IList<FailureModeCore> lstDatas =
