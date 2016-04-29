@@ -162,7 +162,8 @@ namespace IRAP_UFMPS
             task.Db_RowTerminator = ucDealTypeCallStoreProcedure.edtRowTerminator.Text.Trim();
             task.Db_FormatFile = ucDealTypeCallStoreProcedure.edtFormatFileName.Text.Trim();
 
-            if (task.FileDealType == TDocumentProcessType.InsertIntoTableThread)
+            if (task.FileDealType == TDocumentProcessType.InsertIntoTableThread ||
+                task.FileDealType == TDocumentProcessType.InsertIntoTableWithSingle)
             {
                 task.DbServer = ucDealTypeInsertIntoTable.edtDBAddress.Text.Trim();
                 task.DbUserID = ucDealTypeInsertIntoTable.edtDBUserID.Text.Trim();
