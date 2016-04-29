@@ -1,6 +1,6 @@
 ﻿namespace IRAP.TPM.Services
 {
-    partial class Service1
+    partial class WinServIRAPTPM
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            // 
+            // WinServIRAPTPM
+            // 
+            this.ServiceName = "IRAP.TPM.Exchange.Services";
+
         }
 
         #endregion

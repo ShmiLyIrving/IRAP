@@ -2,36 +2,68 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
+using System.ServiceProcess;
 using System.Text;
-using System.Windows.Forms;
-using System.Xml;
 using System.Data.SqlClient;
+using System.Xml;
+using System.Configuration;
 
 using Apache.NMS;
 using Apache.NMS.ActiveMQ;
 using Apache.NMS.ActiveMQ.Commands;
 
-namespace IRAP.TPM.Services.Host
+namespace IRAP.TPM.Services
 {
-    public partial class Form1 : Form
+    public partial class WinServIRAPTPM : ServiceBase
     {
-        public delegate void DelegateRevMessage(ITextMessage message);
+        private IConnectionFactory factory = null;
+        private IConnection connection = null;
+        private ISession session = null;
+        private IMessageConsumer consumer = null;
+        private string brokerUri = "";
+        private string dbConnectionString = "";
 
-        public Form1()
+        public WinServIRAPTPM()
         {
             InitializeComponent();
+
+            foreach (string key in ConfigurationManager.AppSettings)
+            {
+                if (key.Contains("brokerUri"))
+                {
+                    brokerUri = ConfigurationManager.AppSettings[key].ToString();
+                }
+            }
+            dbConnectionString = ConfigurationManager.ConnectionStrings["IRAPTPM"].ToString();
+        }
+
+        protected override void OnStart(string[] args)
+        {
+            InitConsumer();
+        }
+
+        protected override void OnStop()
+        {
+            consumer.Close();
+            session.Close();
+            connection.Close();
+
+            consumer = null;
+            session = null;
+            connection = null;
+            factory = null;
         }
 
         private void InitConsumer()
         {
-            IConnectionFactory factory = new ConnectionFactory("tcp://192.168.57.208:61616");
-            IConnection connection = factory.CreateConnection();
+            factory = new ConnectionFactory(brokerUri);
+            connection = factory.CreateConnection();
             connection.ClientId = "irap.tpm.services.mes.listener";
             connection.Start();
-            ISession session = connection.CreateSession();
-            IMessageConsumer consumer = session.CreateConsumer(
+            session = connection.CreateSession();
+            consumer = session.CreateConsumer(
                 new ActiveMQQueue("IRAPTPM_InQueue"),
                 "filter='MES'");
             consumer.Listener += new MessageListener(consumer_Listener);
@@ -40,18 +72,7 @@ namespace IRAP.TPM.Services.Host
         private void consumer_Listener(IMessage message)
         {
             ITextMessage msg = (ITextMessage) message;
-            textBox1.Invoke(new DelegateRevMessage(RecvMessage), msg);
-        }
-
-        private void RecvMessage(ITextMessage message)
-        {
-            DoAction(message.Text);
-            textBox1.Text = message.Text;
-        }
-
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            InitConsumer();
+            DoAction(msg.Text);
         }
 
         private SqlParameter CreateParam(
@@ -100,8 +121,7 @@ namespace IRAP.TPM.Services.Host
                         string deviceCode = node.Attributes["DeviceCode"].Value.ToString().Trim();
                         if (deviceCode != "")
                         {
-                            string strConnection =
-                                "Data Source=192.168.57.210;Initial Catalog=IRAPTPM;Persist Security Info=True;User ID=sa;Password=irap!209420";
+                            string strConnection = dbConnectionString;
                             using (SqlConnection dbConnection = new SqlConnection(strConnection))
                             {
                                 try

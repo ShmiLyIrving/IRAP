@@ -16,7 +16,7 @@ namespace IRAP.TPM.Services
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new WinServIRAPTPM()
             };
             ServiceBase.Run(ServicesToRun);
         }
