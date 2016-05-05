@@ -126,7 +126,6 @@ namespace IRAP.BL.UTS
             string strParameter6, 
             string strParameter7, 
             string strParameter8, 
-            ref string outputStr, 
             out int errCode,
             out string errText)
         {
