@@ -172,7 +172,7 @@ namespace IRAP.BL.SSO
                         int rlt = (int)conn.CallScalarFunc("IRAP.dbo.sfn_UserPWDVerify", paramList);
                         errCode = 0;
                         errText = "调用成功！";
-                        WriteLog.Instance.Write(errText);
+                        WriteLog.Instance.Write(errText, strProcedureName);
                         return Json(rlt);
                     }
                 }
