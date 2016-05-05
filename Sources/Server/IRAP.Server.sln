@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.MESRMM", "IRAP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Server.Service", "IRAP.Server.Service\IRAP.Server.Service.csproj", "{9BA37B3B-3086-46CB-85EC-2683F35FF315}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.UTS", "IRAP.BL\IRAP.BL.UTS\IRAP.BL.UTS.csproj", "{47A46432-15CD-4697-A024-1ED7976B7481}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{9BA37B3B-3086-46CB-85EC-2683F35FF315}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BA37B3B-3086-46CB-85EC-2683F35FF315}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BA37B3B-3086-46CB-85EC-2683F35FF315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A46432-15CD-4697-A024-1ED7976B7481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A46432-15CD-4697-A024-1ED7976B7481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A46432-15CD-4697-A024-1ED7976B7481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A46432-15CD-4697-A024-1ED7976B7481}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
