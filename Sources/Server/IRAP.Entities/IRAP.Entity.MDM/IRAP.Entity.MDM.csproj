@@ -48,6 +48,7 @@
     <Compile Include="EnergyStandard.cs" />
     <Compile Include="EnvParamStandard.cs" />
     <Compile Include="FailureModeCore.cs" />
+    <Compile Include="FormCtrlInfo.cs" />
     <Compile Include="InspectionStandard.cs" />
     <Compile Include="LoadingStandard.cs" />
     <Compile Include="MethodMMenu.cs" />

@@ -3013,5 +3013,80 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取功能的表单控件信息
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="menuItemID">菜单项标识</param>
+        /// <param name="progLanguageID">编程语言标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[FormCtrlInfo]</returns>
+        public IRAPJsonResult sfn_FunctionFormCtrls(
+            int communityID, 
+            int menuItemID, 
+            int progLanguageID, 
+            long sysLogID, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<FormCtrlInfo> datas = new List<FormCtrlInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@MenuItemID", DbType.Int32, menuItemID));
+                paramList.Add(new IRAPProcParameter("@ProgLanguageID", DbType.Int32, progLanguageID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..sfn_FunctionFormCtrls，参数：CommunityID={0}|" +
+                        "MenuItemID={1}|ProgLanguageID={2}|SysLogID={3}",
+                        communityID, menuItemID, progLanguageID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAP..sfn_FunctionFormCtrls(" +
+                            "@CommunityID, @MenuItemID, @ProgLanguageID, " +
+                            "@SysLogID) ORDER BY Ordinal";
+
+                        IList<FormCtrlInfo> lstDatas =
+                            conn.CallTableFunc<FormCtrlInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList<FormCtrlInfo>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAP..sfn_FunctionFormCtrls 函数发生异常：{0}",
+                        error.Message);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
