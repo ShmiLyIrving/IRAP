@@ -3,8 +3,15 @@
   <Class Name="IRAP.BL.UTS.IRAPUTS" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IRAPUTS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.UTS.IRAPPDC">
+    <Position X="3.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>IRAPPDC.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
