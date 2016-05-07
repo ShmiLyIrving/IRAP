@@ -148,7 +148,7 @@
             this.ucOptions.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucOptions.Location = new System.Drawing.Point(0, 55);
             this.ucOptions.Name = "ucOptions";
-            this.ucOptions.Size = new System.Drawing.Size(734, 38);
+            this.ucOptions.Size = new System.Drawing.Size(734, 47);
             this.ucOptions.TabIndex = 2;
             this.ucOptions.Visible = false;
             // 

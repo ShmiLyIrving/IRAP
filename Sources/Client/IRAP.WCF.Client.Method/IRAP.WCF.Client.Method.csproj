@@ -51,6 +51,7 @@
     <Compile Include="IRAPSystemClient.cs" />
     <Compile Include="IRAPTreeClient.cs" />
     <Compile Include="IRAPUserClient.cs" />
+    <Compile Include="IRAPUTSClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HashtableTools.cs" />
   </ItemGroup>

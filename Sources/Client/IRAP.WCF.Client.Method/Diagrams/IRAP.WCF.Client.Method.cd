@@ -17,14 +17,14 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPKBClient" Collapsed="true">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAIAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAIAAAAE=</HashCode>
+      <HashCode>EAAEAJAAAAAAAAAAAAAAAAAAAACAgAAAQAAAAIAAAAE=</HashCode>
       <FileName>IRAPKBClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMDMClient" Collapsed="true">
     <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAIAAAAAAAAAAAAAIAAAQAABAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAFAMAAAAAAAAEACQBIAAQQAABAAAAAQDAAAAQYgAA=</HashCode>
       <FileName>IRAPMDMClient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -82,6 +82,13 @@
     <TypeIdentifier>
       <HashCode>AAAEAAAAIAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>HashtableTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPUTSClient" Collapsed="true">
+    <Position X="1" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAAIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>IRAPUTSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

@@ -40,6 +40,7 @@
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -77,6 +78,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="xucIRAPListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="xucIRAPListView.Designer.cs">
+      <DependentUpon>xucIRAPListView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.Global.GUI.cd" />
@@ -93,6 +100,10 @@
     <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
       <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>
       <Name>IRAP.Entity.SSO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRAP.Client.Global.Resources\IRAP.Client.Global.Resources.csproj">
+      <Project>{64d9dd02-3da4-4e11-b696-f13a4d178a63}</Project>
+      <Name>IRAP.Client.Global.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\IRAP.Client.Global\IRAP.Client.Global.csproj">
       <Project>{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}</Project>
@@ -121,9 +132,13 @@
     <EmbeddedResource Include="frmShowErrorLogs.resx">
       <DependentUpon>frmShowErrorLogs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xucIRAPListView.resx">
+      <DependentUpon>xucIRAPListView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

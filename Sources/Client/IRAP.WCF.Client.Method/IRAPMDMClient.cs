@@ -1384,5 +1384,80 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取功能的表单控件信息
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="menuItemID">菜单项标识</param>
+        /// <param name="progLanguageID">编程语言标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void sfn_FunctionFormCtrls(
+            int communityID,
+            int menuItemID,
+            int progLanguageID,
+            long sysLogID,
+            ref List<FormCtrlInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("menuItemID", menuItemID);
+                hashParams.Add("progLanguageID", progLanguageID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_FunctionFormCtrls，输入参数：" +
+                        "CommunityID={0}|MenuItemID={1}|ProgLanguageID={2}|SysLogID={3}",
+                        communityID,
+                        menuItemID,
+                        progLanguageID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "sfn_FunctionFormCtrls",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<FormCtrlInfo>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

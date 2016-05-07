@@ -17,9 +17,9 @@ namespace IRAP.Client.SubSystems
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
         private static CurrentOptions _instance = null;
         private int indexOfWorkUnit = -1;
-        private ProcessInfo process;
-        private WorkUnitInfo workUnit;
-        private List<WorkUnitInfo> workUnits;
+        private ProcessInfo process = new ProcessInfo();
+        private WorkUnitInfo workUnit = new WorkUnitInfo();
+        private List<WorkUnitInfo> workUnits = new List<WorkUnitInfo>();
 
         private CurrentOptions()
         {
@@ -72,25 +72,29 @@ namespace IRAP.Client.SubSystems
             get { return process; }
             set
             {
-                if (process.T120LeafID != value.T120LeafID ||
-                    process.T102LeafID != value.T102LeafID)
+                if (value != null)
                 {
-                    process = value.Clone();
-                    try
+                    if (process == null ||
+                        process.T120LeafID != value.T120LeafID ||
+                        process.T102LeafID != value.T102LeafID)
                     {
-                        GetWorkUnitsWithCurrentProcess();
-                    }
-                    catch
-                    {
-                        indexOfWorkUnit = -1;
-                        workUnit = null;
-                        return;
-                    }
+                        process = value.Clone();
+                        try
+                        {
+                            GetWorkUnitsWithCurrentProcess();
+                        }
+                        catch
+                        {
+                            indexOfWorkUnit = -1;
+                            workUnit = null;
+                            return;
+                        }
 
-                    if (WorkUnits.Count > 0)
-                    {
-                        indexOfWorkUnit = 0;
-                        workUnit = workUnits[0];
+                        if (WorkUnits.Count > 0)
+                        {
+                            indexOfWorkUnit = 0;
+                            workUnit = workUnits[0];
+                        }
                     }
                 }
             }
@@ -104,11 +108,12 @@ namespace IRAP.Client.SubSystems
             get { return workUnit; }
             set
             {
-                if (workUnit.WorkUnitLeaf !=value.WorkUnitLeaf)
+                if (workUnit == null ||
+                    workUnit.WorkUnitLeaf != value.WorkUnitLeaf)
                 {
-                    for (int i = 0; i< workUnits.Count; i++)
+                    for (int i = 0; i < workUnits.Count; i++)
                     {
-                        if (workUnits[i].WorkUnitLeaf==value.WorkUnitLeaf)
+                        if (workUnits[i].WorkUnitLeaf == value.WorkUnitLeaf)
                         {
                             workUnit = workUnits[i];
                             IndexOfWorkUnit = i;

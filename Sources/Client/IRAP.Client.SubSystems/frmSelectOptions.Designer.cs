@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.lstProcesses = new DevExpress.XtraEditors.ListBoxControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.lstWorkUnits = new DevExpress.XtraEditors.ListBoxControl();
             this.btnSelect = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstProcesses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lstProcesses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstWorkUnits)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,6 +61,17 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "请选择：";
             // 
+            // lstProcesses
+            // 
+            this.lstProcesses.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstProcesses.Appearance.Options.UseFont = true;
+            this.lstProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstProcesses.Location = new System.Drawing.Point(7, 32);
+            this.lstProcesses.Name = "lstProcesses";
+            this.lstProcesses.Size = new System.Drawing.Size(297, 307);
+            this.lstProcesses.TabIndex = 0;
+            this.lstProcesses.SelectedIndexChanged += new System.EventHandler(this.lstProcesses_SelectedIndexChanged);
+            // 
             // groupControl2
             // 
             this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -72,17 +83,6 @@
             this.groupControl2.Size = new System.Drawing.Size(311, 346);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "请选择：";
-            // 
-            // lstProcesses
-            // 
-            this.lstProcesses.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstProcesses.Appearance.Options.UseFont = true;
-            this.lstProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstProcesses.Location = new System.Drawing.Point(7, 32);
-            this.lstProcesses.Name = "lstProcesses";
-            this.lstProcesses.Size = new System.Drawing.Size(297, 307);
-            this.lstProcesses.TabIndex = 0;
-            this.lstProcesses.SelectedIndexChanged += new System.EventHandler(this.lstProcesses_SelectedIndexChanged);
             // 
             // lstWorkUnits
             // 
@@ -100,6 +100,7 @@
             // 
             this.btnSelect.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelect.Appearance.Options.UseFont = true;
+            this.btnSelect.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSelect.Location = new System.Drawing.Point(646, 12);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(85, 32);
@@ -111,6 +112,7 @@
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(646, 50);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(85, 32);
@@ -120,6 +122,7 @@
             // frmSelectOptions
             // 
             this.Appearance.Options.UseFont = true;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(744, 369);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSelect);
@@ -131,9 +134,9 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmSelectOptions_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lstProcesses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lstProcesses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstWorkUnits)).EndInit();
             this.ResumeLayout(false);
 

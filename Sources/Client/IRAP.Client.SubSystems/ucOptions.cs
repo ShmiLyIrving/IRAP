@@ -72,7 +72,7 @@ namespace IRAP.Client.SubSystems
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    MessageBox.Show(
+                    XtraMessageBox.Show(
                         error.Message,
                         "产品/流程选项",
                         MessageBoxButtons.OK,
@@ -178,6 +178,22 @@ namespace IRAP.Client.SubSystems
         public void ShowSwitchButton(bool boolShowSwtichButton = true)
         {
             btnSwitch.Visible = boolShowSwtichButton;
+        }
+
+        private void cboProcesses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboProcesses.SelectedIndex >= 0)
+                CurrentOptions.Instance.Process = cboProcesses.SelectedItem as ProcessInfo;
+            else
+                CurrentOptions.Instance.Process = null;
+        }
+
+        private void cboWorkUnits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboWorkUnits.SelectedItem == null)
+                CurrentOptions.Instance.WorkUnit = null;
+            else
+                CurrentOptions.Instance.WorkUnit = cboWorkUnits.SelectedItem as WorkUnitInfo;
         }
     }
 }
