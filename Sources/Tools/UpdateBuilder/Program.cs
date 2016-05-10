@@ -17,7 +17,7 @@ namespace UpdateBuilder
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.Skins.SkinManager.EnableFormSkins();
             DevExpress.Utils.AppearanceObject.DefaultFont =
-                new System.Drawing.Font("微软雅黑", 10.5f);
+                new System.Drawing.Font("宋体", 9f);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

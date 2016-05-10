@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 using DevExpress.XtraEditors;
 using DevExpress.XtraBars.Ribbon;
@@ -18,6 +19,8 @@ namespace UpdateBuilder
 {
     public partial class frmUpgradeBuilder : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private string firstProject = "";
+
         public frmUpgradeBuilder()
         {
             InitializeComponent();
@@ -25,16 +28,21 @@ namespace UpdateBuilder
 
         public frmUpgradeBuilder(string[] args) : this()
         {
-            foreach (string arg in args)
+            if (args.Length > 0 && File.Exists(args[0]))
             {
-                XtraMessageBox.Show(arg);
+                firstProject = args[0];
             }
         }
 
         #region 自定义函数
-        private void AddPageMdi()
+        private void AddPageMdi(string fileName)
         {
-            frmUpdateProjectFile childForm = new frmUpdateProjectFile();
+            frmUpdateProjectFile childForm = null;
+            if (fileName != "" && File.Exists(fileName))
+                childForm = new frmUpdateProjectFile(fileName);
+            else
+                childForm = new frmUpdateProjectFile();
+
             childForm.MdiParent = this;
             childForm.Show();
         }
@@ -59,9 +67,9 @@ namespace UpdateBuilder
             WindowState = FormWindowState.Maximized;
         }
 
-        private void btnNew_ItemClick(object sender, BackstageViewItemEventArgs e)
+        private void frmUpgradeBuilder_Shown(object sender, EventArgs e)
         {
-            AddPageMdi();
+            AddPageMdi(firstProject);
         }
 
         private void ribbonControl_Merge(object sender, RibbonMergeEventArgs e)
@@ -80,6 +88,73 @@ namespace UpdateBuilder
         private void btnQuit_ItemClick(object sender, BackstageViewItemEventArgs e)
         {
             Close();
+        }
+
+        private void btnGenerate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XtraMessageBox.Show(System.IO.Path.GetExtension(@"C:\IRAP.INI"));
+        }
+
+        private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (ActiveMdiChild != null)
+            {
+                frmUpdateProjectFile form = ActiveMdiChild as frmUpdateProjectFile;
+                form.Save();
+            }
+        }
+
+        private void btnNewProject_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AddPageMdi("");
+        }
+
+        private void btnOpenProject_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (MdiChildren.Length == 1 && 
+                    MdiChildren[0] is frmUpdateProjectFile &&
+                    (MdiChildren[0] as frmUpdateProjectFile).EmptyProject)
+                {
+                    MdiChildren[0].Close();
+                }
+
+                AddPageMdi(openFileDialog.FileName);
+            }
+        }
+
+        private void btnSaveAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            for (int i = 0; i< MdiChildren.Length; i++)
+            {
+                if (MdiChildren[i] is frmUpdateProjectFile)
+                {
+                    frmUpdateProjectFile form = MdiChildren[i] as frmUpdateProjectFile;
+                    form.Save();
+                }
+            }
+        }
+
+        private void btnSaveAs_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (ActiveMdiChild != null)
+            {
+                frmUpdateProjectFile form = ActiveMdiChild as frmUpdateProjectFile;
+                form.SaveAs();
+            }
+        }
+
+        private void btnRegisterApp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FileTypeRegInfo fileTypeRegInfo = new FileTypeRegInfo(".upb");
+
+            fileTypeRegInfo.Description = "IRAP 自动更新工程文件";
+            fileTypeRegInfo.ExePath = Application.ExecutablePath.Replace('/', '\\');
+            fileTypeRegInfo.ExtendName = ".upb";
+            fileTypeRegInfo.IcoPath = Application.ExecutablePath.Replace('/', '\\');
+
+            FileTypeRegister.RegisterFileType(fileTypeRegInfo);
         }
     }
 }

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Diagnostics;
+
+using IRAP.Global;
 
 namespace UpdateBuilder
 {
@@ -10,10 +14,10 @@ namespace UpdateBuilder
         private Version currentVerion = new Version("0.0.0.0");
         private bool fileExists = false;
         private string fileName = "";
-        private Version newVersion = new Version("0.0.0.0");
+        private Version oldVersion = new Version("0.0.0.0");
         private string currentMD5 = "";
-        private string newMD5 = "";
-        private bool checked=true;
+        private string oldMD5 = "";
+        private bool selected = true;
 
         /// <summary>
         /// 当前版本
@@ -21,7 +25,6 @@ namespace UpdateBuilder
         public Version CurrentVersion
         {
             get { return currentVerion; }
-            set { currentVerion = value; }
         }
 
         /// <summary>
@@ -38,7 +41,27 @@ namespace UpdateBuilder
         public string FileName
         {
             get { return fileName; }
-            set { fileName = value; }
+            set
+            {
+                fileName = value;
+                fileExists = File.Exists(value);
+
+                if (fileExists)
+                {
+                    FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(value);
+                    if (fvi.FileVersion != null)
+                        currentVerion = new Version(fvi.FileVersion);
+                    else
+                        currentVerion = new Version("0.0.0.0");
+
+                    currentMD5 = Tools.GetMD5HashFromFile(value);
+                }
+                else
+                {
+                    currentVerion = new Version("0.0.0.0");
+                    currentMD5 = "";
+                }
+            }
         }
 
         /// <summary>
@@ -46,16 +69,16 @@ namespace UpdateBuilder
         /// </summary>
         public bool NeedUpgraded
         {
-            get { return currentMD5 != newMD5; }
+            get { return currentMD5 != oldMD5; }
         }
 
         /// <summary>
         /// 新版本号
         /// </summary>
-        public Version NewVersion
+        public Version OldVersion
         {
-            get { return newVersion; }
-            set { newVersion = value; }
+            get { return oldVersion; }
+            set { oldVersion = value; }
         }
 
         /// <summary>
@@ -64,21 +87,21 @@ namespace UpdateBuilder
         public string CurrentMD5
         {
             get { return currentMD5; }
-            set { currentMD5 = value; }
         }
 
         /// <summary>
         /// 新的MD5值
         /// </summary>
-        public string NewMD5
+        public string OldMD5
         {
-            get { return newMD5; }
-            set { newMD5 = value; }
+            get { return oldMD5; }
+            set { oldMD5 = value; }
         }
 
-        public bool Checked
+        public bool Selected
         {
-            get { return checked; }
+            get { return selected; }
+            set { selected = value; }
         }
     }
 }
