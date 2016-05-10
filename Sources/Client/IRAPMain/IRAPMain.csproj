@@ -110,6 +110,10 @@
       <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>
       <Name>IRAP.Entity.SSO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IRAP.AutoUpgrade\IRAP.AutoUpgrade.csproj">
+      <Project>{036bc7f7-b2fc-4d50-a99f-326c112d8c19}</Project>
+      <Name>IRAP.AutoUpgrade</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.Client.Global.GUI\IRAP.Client.Global.GUI.csproj">
       <Project>{66ee090d-3d17-4cc0-9a7b-05ea2124a30b}</Project>
       <Name>IRAP.Client.Global.GUI</Name>

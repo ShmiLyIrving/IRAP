@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.MDM", "..\Serve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.GUI.MESPDC", "GUI\IRAP.Client.GUI.MESPDC\IRAP.Client.GUI.MESPDC.csproj", "{0D5F3A99-2460-482A-AA57-5A2BE82995D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.AutoUpgrade", "IRAP.AutoUpgrade\IRAP.AutoUpgrade.csproj", "{036BC7F7-B2FC-4D50-A99F-326C112D8C19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -191,6 +193,14 @@ Global
 		{0D5F3A99-2460-482A-AA57-5A2BE82995D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D5F3A99-2460-482A-AA57-5A2BE82995D4}.Release|x86.ActiveCfg = Release|Any CPU
 		{0D5F3A99-2460-482A-AA57-5A2BE82995D4}.Release|x86.Build.0 = Release|Any CPU
+		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Debug|x86.Build.0 = Debug|Any CPU
+		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|x86.ActiveCfg = Release|Any CPU
+		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

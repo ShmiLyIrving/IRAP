@@ -7,7 +7,9 @@ using System.Reflection;
 using DevExpress.XtraEditors;
 using System.Threading;
 using System.Globalization;
+using System.IO;
 
+using IRAP.AutoUpgrade;
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Client.SubSystems;
@@ -68,6 +70,18 @@ namespace IRAP
             #endregion
 
             #region 系统自动更新
+#if !DEBUG
+            Upgrade.Instance.UpgradeCFGFileName =
+                string.Format(
+                    @"{0}\IRAP.xml",
+                    Directory.GetCurrentDirectory());
+            if (Upgrade.Instance.CanUpgrade)
+                if (Upgrade.Instance.Do() == -1)
+                {
+                    Process.Start(Application.ExecutablePath);
+                    return;
+                }
+#endif
             #endregion
 
             #region 用户登录
@@ -122,7 +136,7 @@ namespace IRAP
                     }
                 }
             }
-            #endregion
+#endregion
 
             WriteLog.Instance.Write("退出 IRAP 应用平台系统", "IRAP");
             WriteLog.Instance.WriteEndSplitter("IRAP");

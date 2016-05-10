@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Management;
 using System.Net.NetworkInformation;
 using System.IO;
@@ -13,6 +12,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Media;
+using System.Security.Cryptography;
 
 namespace IRAP.Global
 {
@@ -412,6 +412,33 @@ namespace IRAP.Global
                     sp.Play();
                 }
                 catch { }
+            }
+        }
+
+        /// <summary>
+        /// 获取文件的MD5值
+        /// </summary>
+        /// <param name="fileName">传入的文件名（含路径与后缀名）</param>
+        /// <returns>MD5值</returns>
+        public static string GetMD5HashFromFile(string fileName)
+        {
+            try
+            {
+                FileStream fs = new FileStream(fileName, FileMode.Open);
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] retVal = md5.ComputeHash(fs);
+                fs.Close();
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+            catch (Exception error)
+            {
+                throw new Exception("GetMD5HashFromFile() fail, error: " + error.Message);
             }
         }
     }
