@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateBuilder", "UpdateBuilder\UpdateBuilder.csproj", "{FBC87F24-8AD2-4295-AFB5-3264B3C9B3B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Global", "..\Global\IRAP.Global\IRAP.Global.csproj", "{325FFD07-7491-45C3-86F3-85F7DEF4C726}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBC87F24-8AD2-4295-AFB5-3264B3C9B3B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC87F24-8AD2-4295-AFB5-3264B3C9B3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC87F24-8AD2-4295-AFB5-3264B3C9B3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC87F24-8AD2-4295-AFB5-3264B3C9B3B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
