@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Security.Principal;
 
 using DevExpress.XtraEditors;
 using DevExpress.XtraBars.Ribbon;
+using DevExpress.Utils;
 
 using IRAP.Global;
 
@@ -65,6 +67,19 @@ namespace UpdateBuilder
             #endregion
 
             WindowState = FormWindowState.Maximized;
+
+            #region 检查当前应用是否以管理员权限运行
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            bool isRunasAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            #endregion
+
+            btnRegisterApp.Enabled = isRunasAdmin;
+            if (!btnRegisterApp.Enabled)
+            {
+                btnRegisterApp.SuperTip = new SuperToolTip();
+                btnRegisterApp.SuperTip.Items.Add("当前功能需要程序具有管理员权限才能使用！");
+            }                    
         }
 
         private void frmUpgradeBuilder_Shown(object sender, EventArgs e)
