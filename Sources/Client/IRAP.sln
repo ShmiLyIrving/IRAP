@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Global", "..\Global\IRAP.Global\IRAP.Global.csproj", "{325FFD07-7491-45C3-86F3-85F7DEF4C726}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.User", "IRAP.Client.User\IRAP.Client.User.csproj", "{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.SSO", "..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj", "{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}"
@@ -41,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.GUI.MESPDC", "G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.AutoUpgrade", "IRAP.AutoUpgrade\IRAP.AutoUpgrade.csproj", "{036BC7F7-B2FC-4D50-A99F-326C112D8C19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Global", "..\Global\IRAP.Global\IRAP.Global.csproj", "{325FFD07-7491-45C3-86F3-85F7DEF4C726}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,14 +49,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|x86.Build.0 = Debug|Any CPU
-		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.Build.0 = Release|Any CPU
-		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|x86.ActiveCfg = Release|Any CPU
-		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|x86.Build.0 = Release|Any CPU
 		{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -201,6 +193,14 @@ Global
 		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|x86.ActiveCfg = Release|Any CPU
 		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|x86.Build.0 = Release|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|x86.Build.0 = Debug|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|x86.ActiveCfg = Release|Any CPU
+		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

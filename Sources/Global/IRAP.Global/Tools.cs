@@ -424,7 +424,7 @@ namespace IRAP.Global
         {
             try
             {
-                FileStream fs = new FileStream(fileName, FileMode.Open);
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
                 MD5 md5 = new MD5CryptoServiceProvider();
                 byte[] retVal = md5.ComputeHash(fs);
                 fs.Close();

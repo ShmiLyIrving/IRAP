@@ -36,9 +36,9 @@
             // 
             this.lblMessage.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblMessage.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblMessage.Location = new System.Drawing.Point(279, 367);
+            this.lblMessage.Location = new System.Drawing.Point(253, 392);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(533, 21);
+            this.lblMessage.Size = new System.Drawing.Size(594, 21);
             this.lblMessage.TabIndex = 0;
             this.lblMessage.Text = "labelControl1";
             // 
@@ -46,7 +46,9 @@
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(987, 532);
+            this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
+            this.BackgroundImageStore = global::IRAP.AutoUpgrade.Properties.Resources.login;
+            this.ClientSize = new System.Drawing.Size(1003, 571);
             this.ControlBox = false;
             this.Controls.Add(this.lblMessage);
             this.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

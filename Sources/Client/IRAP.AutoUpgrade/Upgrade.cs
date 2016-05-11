@@ -11,6 +11,8 @@ using System.Net;
 
 using DevExpress.XtraEditors;
 
+using IRAP.Global;
+
 namespace IRAP.AutoUpgrade
 {
     public class Upgrade
@@ -90,18 +92,29 @@ namespace IRAP.AutoUpgrade
             get { return upgradeCFGFileName; }
             set
             {
+                string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+
                 upgradeCFGFileName = value;
 
                 // 如果升级源没有配置，则不能升级
                 if (!File.Exists(upgradeCFGFileName))
                 {
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "升级配置文件 [{0}] 不存在！", value),
+                        strProcedureName);
                     canUpgrade = false;
                     return;
                 }
 
                 try
                 {
-                    using (FileStream fs = new FileStream(upgradeCFGFileName, FileMode.Open))
+                    using (FileStream fs =
+                        new FileStream(upgradeCFGFileName, FileMode.Open, FileAccess.Read))
                     {
                         XmlReaderSettings xmlSettings = new XmlReaderSettings()
                         {
@@ -160,6 +173,12 @@ namespace IRAP.AutoUpgrade
         /// <returns></returns>
         public int Do()
         {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
             string dstFileName =
                 string.Format(@"{0}\upgrade.xml", rootPath);
 
@@ -168,6 +187,9 @@ namespace IRAP.AutoUpgrade
                 try
                 {
                     frmShowUpgrade.Instance.Message = "正在下载升级配置文件......";
+                    WriteLog.Instance.Write(
+                        frmShowUpgrade.Instance.Message,
+                        strProcedureName);
                     if (File.Exists(dstFileName))
                         File.Delete(dstFileName);
 
@@ -176,11 +198,17 @@ namespace IRAP.AutoUpgrade
                     {
                         frmShowUpgrade.Instance.Message =
                             string.Format("升级配置文件下载失败：{0}", errText);
+                        WriteLog.Instance.Write(
+                            frmShowUpgrade.Instance.Message,
+                            strProcedureName);
                         Thread.Sleep(1000);
                         return 0;
                     }
 
                     frmShowUpgrade.Instance.Message = "升级配置文件下载完成，正在解析......";
+                    WriteLog.Instance.Write(
+                        frmShowUpgrade.Instance.Message,
+                        strProcedureName);
                     List<FileInfo> files = GetUpgradeFilesFromXML(dstFileName);
                     if (files == null)
                         return 0;
@@ -196,6 +224,9 @@ namespace IRAP.AutoUpgrade
                                     string.Format(
                                         "正在更新[{0}]...",
                                         Path.GetFileName(file.FileName));
+                                WriteLog.Instance.Write(
+                                    frmShowUpgrade.Instance.Message,
+                                    strProcedureName);
                                 if (DownloadFile(
                                     string.Format(
                                         @"{0}/{1}",
@@ -206,6 +237,7 @@ namespace IRAP.AutoUpgrade
                                     out errText) != 0)
                                 {
                                     upgradeFailureCount++;
+                                    WriteLog.Instance.Write(errText, strProcedureName);
                                 }
                                 else
                                 {
@@ -213,6 +245,14 @@ namespace IRAP.AutoUpgrade
                                 }
                             }
                         }
+
+                        frmShowUpgrade.Instance.Message =
+                            string.Format(
+                                "本次升级更新成功 [{0}] 个文件，更新失败 [{1}] 个文件",
+                                upgradeSuccessCount, upgradeFailureCount);
+                        WriteLog.Instance.Write(
+                            frmShowUpgrade.Instance.Message,
+                            strProcedureName);
 
                         if (upgradeFailureCount > 0)
                         {
@@ -241,8 +281,9 @@ namespace IRAP.AutoUpgrade
                         return 0;
                     }
                 }
-                catch
+                catch (Exception error)
                 {
+                    WriteLog.Instance.Write(error.Message, strProcedureName);
                     return -1;
                 }
             }
@@ -327,7 +368,8 @@ namespace IRAP.AutoUpgrade
                 return null;
             }
 
-            using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            using (FileStream fs = 
+                new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
                 XmlReaderSettings xmlSettings = new XmlReaderSettings()
                 {

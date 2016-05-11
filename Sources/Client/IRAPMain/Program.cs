@@ -66,81 +66,96 @@ namespace IRAP
             WriteLog.Instance.WriteBeginSplitter("IRAP");
             WriteLog.Instance.Write("运行 IRAP 应用平台系统", "IRAP");
 
-            #region 检测当前授权是否允许运行
-            #endregion
-
-            #region 系统自动更新
-#if !DEBUG
-            Upgrade.Instance.UpgradeCFGFileName =
-                string.Format(
-                    @"{0}\IRAP.xml",
-                    Directory.GetCurrentDirectory());
-            if (Upgrade.Instance.CanUpgrade)
-                if (Upgrade.Instance.Do() == -1)
-                {
-                    Process.Start(Application.ExecutablePath);
-                    return;
-                }
-#endif
-            #endregion
-
-            #region 用户登录
-            IRAPUser.Instance.UserLogin();
-            if (IRAPUser.Instance.IsLogon)
+            try
             {
-                while (true)
-                {
-                    using (frmSelectSubSystem formSelectSystem = new frmSelectSubSystem())
-                    {
-                        if (formSelectSystem.ShowDialog() == DialogResult.Cancel)
-                            break;
+                #region 检测当前授权是否允许运行
+                #endregion
 
-                        frmIRAPMain main = null;
+                #region 系统自动更新
+//#if !DEBUG
+                WriteLog.Instance.Write("系统自动更新", "IRAP");
+                Upgrade.Instance.UpgradeCFGFileName =
+                    string.Format(
+                        @"{0}\IRAP.xml",
+                        Directory.GetCurrentDirectory());
+                if (Upgrade.Instance.CanUpgrade)
+                {
+                    WriteLog.Instance.Write("系统开始更新...", "IRAP");
+                    if (Upgrade.Instance.Do() == -1)
+                    {
+                        Process.Start(Application.ExecutablePath);
+                        WriteLog.Instance.Write("重新启动系统", "IRAP");
+                        return;
+                    }
+                    WriteLog.Instance.Write("系统更新完成...", "IRAP");
+                }
+                else
+                {
+                    WriteLog.Instance.Write("系统无法自动更新", "IRAP");
+                }
+//#endif
+                #endregion
+
+                #region 用户登录
+                IRAPUser.Instance.UserLogin();
+                if (IRAPUser.Instance.IsLogon)
+                {
+                    while (true)
+                    {
+                        using (frmSelectSubSystem formSelectSystem = new frmSelectSubSystem())
+                        {
+                            if (formSelectSystem.ShowDialog() == DialogResult.Cancel)
+                                break;
+
+                            frmIRAPMain main = null;
+                            try
+                            {
+                                main = new frmIRAPMain();
+                                main.ShowDialog();
+                            }
+                            catch (Exception error)
+                            {
+                                WriteLog.Instance.Write(error.Message, "IRAP");
+                                XtraMessageBox.Show(
+                                    error.Message,
+                                    "系统信息",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                            finally
+                            {
+                                main.Dispose();
+                            }
+
+                            if (AvailableSubSystems.Instance.AvailableCount <= 1)
+                                break;
+                        }
+                    }
+
+                    if (IRAPUser.Instance.IsLogon)
+                    {
                         try
                         {
-                            main = new frmIRAPMain();
-                            main.ShowDialog();
+                            IRAPUser.Instance.Logout();
                         }
                         catch (Exception error)
                         {
-                            WriteLog.Instance.Write(error.Message, "IRAP");
-                            XtraMessageBox.Show(
-                                error.Message,
-                                "系统信息",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "登录用户注销时发生错误：{0}",
+                                    error.Message),
+                                "IRAP");
                         }
-                        finally
-                        {
-                            main.Dispose();
-                        }
-
-                        if (AvailableSubSystems.Instance.AvailableCount <= 1)
-                            break;
                     }
                 }
-
-                if (IRAPUser.Instance.IsLogon)
-                {
-                    try
-                    {
-                        IRAPUser.Instance.Logout();
-                    }
-                    catch (Exception error)
-                    {
-                        WriteLog.Instance.Write(
-                            string.Format(
-                                "登录用户注销时发生错误：{0}",
-                                error.Message),
-                            "IRAP");
-                    }
-                }
+                #endregion
             }
-#endregion
-
-            WriteLog.Instance.Write("退出 IRAP 应用平台系统", "IRAP");
-            WriteLog.Instance.WriteEndSplitter("IRAP");
-            WriteLog.Instance.Write("");
+            finally
+            {
+                WriteLog.Instance.Write("退出 IRAP 应用平台系统", "IRAP");
+                WriteLog.Instance.WriteEndSplitter("IRAP");
+                WriteLog.Instance.Write("");
+            }
         }
 
         /// <summary>
