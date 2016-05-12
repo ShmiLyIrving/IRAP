@@ -72,7 +72,7 @@ namespace IRAP
                 #endregion
 
                 #region 系统自动更新
-//#if !DEBUG
+#if !DEBUG
                 WriteLog.Instance.Write("系统自动更新", "IRAP");
                 Upgrade.Instance.UpgradeCFGFileName =
                     string.Format(
@@ -93,7 +93,7 @@ namespace IRAP
                 {
                     WriteLog.Instance.Write("系统无法自动更新", "IRAP");
                 }
-//#endif
+#endif
                 #endregion
 
                 #region 用户登录
@@ -148,7 +148,7 @@ namespace IRAP
                         }
                     }
                 }
-                #endregion
+#endregion
             }
             finally
             {
