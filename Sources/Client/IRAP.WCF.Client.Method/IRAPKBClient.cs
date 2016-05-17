@@ -449,5 +449,78 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 检查指定主机和指定刷新类型是否需要刷新数据
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="refreshingType">数据刷新类型</param>
+        /// <param name="hostName">主机名</param>
+        public void mfn_GetInfo_StationNeedRefreshed(
+            int communityID, 
+            string refreshingType, 
+            string hostName, 
+            ref bool needRefreshed, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                needRefreshed = false;
+ 
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("refreshingType", refreshingType);
+                hashParams.Add("hostName", hostName);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 mfn_GetInfo_StationNeedRefreshed，输入参数：" +
+                        "CommunityID={0}|RefreshingType={1}|HostName={2}",
+                        communityID,
+                        refreshingType,
+                        hostName),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = 
+                        client.WCFRESTFul(
+                            "IRAP.BL.Kanban.dll",
+                            "IRAP.BL.Kanban.IRAPKanban",
+                            "mfn_GetInfo_StationNeedRefreshed",
+                            hashParams,
+                            out errCode,
+                            out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}，NeedRefreshed={2}",
+                            errCode,
+                            errText,
+                            (bool)rlt),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        needRefreshed = (bool)rlt;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

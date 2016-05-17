@@ -35,7 +35,11 @@ namespace IRAP.WCF.Client.Method
         /// 返回指定信息站点的系统登录信息（适合无登录的展现系统）
         /// </summary>
         /// <param name="stationID">站点标识</param>
-        public void sfn_GetInfo_StationLogin(string stationID, ref StationLogin stationInfo, out int errCode, out string errText)
+        public void sfn_GetInfo_StationLogin(
+            string stationID, 
+            ref StationLogin stationInfo, 
+            out int errCode, 
+            out string errText)
         {
             string strProcedureName =
                 string.Format(
@@ -46,11 +50,47 @@ namespace IRAP.WCF.Client.Method
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                stationInfo = new StationLogin();
+
                 #region 将函数调用参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("stationID", stationID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_GetInfo_StationLogin，输入参数：" +
+                        "StationID={0}",
+                        stationID),
+                    strProcedureName);
                 #endregion
 
-                errCode = 0;
-                errText = "";
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = 
+                        client.WCFRESTFul(
+                            "IRAP.BL.SSO.dll",
+                            "IRAP.BL.SSO.IRAPUser",
+                            "sfn_GetInfo_StationLogin",
+                            hashParams,
+                            out errCode,
+                            out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        stationInfo = rlt as StationLogin;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
             }
             finally
             {
