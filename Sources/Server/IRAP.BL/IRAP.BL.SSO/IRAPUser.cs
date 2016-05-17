@@ -722,5 +722,77 @@ namespace IRAP.BL.SSO
         {
             throw new System.NotImplementedException();
         }
+
+        /// <summary>
+        /// 返回指定信息站点的系统登录信息（适合无登录的展现系统）
+        /// </summary>
+        /// <param name="stationID">站点标识</param>
+        /// <returns>StationLogin</returns>
+        public IRAPJsonResult sfn_GetInfo_StationLogin(
+            string stationID, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                StationLogin data = new StationLogin();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@StationID", DbType.String, stationID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..sfn_GetInfo_StationLogin，" +
+                        "参数：StationID={0}",
+                        stationID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * FROM IRAP..sfn_GetInfo_StationLogin(" +
+                            "@StationID)";
+
+                        IList<StationLogin> lstDatas = conn.CallTableFunc<StationLogin>(strSQL, paramList);
+                        if (lstDatas.Count > 0)
+                        {
+                            data = lstDatas[0].Clone();
+                            errCode = 0;
+                            errText = string.Format("调用成功！共获得 {0} 条记录", lstDatas.Count);
+                        }
+                        else
+                        {
+                            errCode = 99001;
+                            errText = string.Format("没有[{0}]站点的系统登录信息", stationID);
+                        }
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAP..sfn_GetInfo_StationLogin 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(data);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

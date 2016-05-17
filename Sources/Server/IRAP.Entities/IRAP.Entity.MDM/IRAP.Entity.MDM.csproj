@@ -67,9 +67,13 @@
     <Compile Include="ProductionLineOfProduct.cs" />
     <Compile Include="QualityStandard.cs" />
     <Compile Include="SkillMatrixByMethod.cs" />
-    <Compile Include="Stb058.cs" />
+    <Compile Include="StandardType.cs" />
+    <Compile Include="Tables\GenAttr_ProcessOperation.cs" />
+    <Compile Include="Tables\Stb058.cs" />
+    <Compile Include="Tables\GenAttr_Product.cs" />
     <Compile Include="ToolingStandard.cs" />
     <Compile Include="TreeViewNode.cs" />
+    <Compile Include="WIPStationProductionStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Entity.MDM.cd" />
@@ -84,9 +88,7 @@
       <Name>IRAPShared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tables\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

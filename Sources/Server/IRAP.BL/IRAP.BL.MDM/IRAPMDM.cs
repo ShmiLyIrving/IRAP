@@ -11,6 +11,7 @@ using IRAPORM;
 using IRAPShared;
 using IRAP.Server.Global;
 using IRAP.Entity.MDM;
+using IRAP.Entity.MDM.Tables;
 using IRAP.Entity.IRAP;
 
 namespace IRAP.BL.MDM
@@ -3086,6 +3087,416 @@ namespace IRAP.BL.MDM
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取工位生产状态(工艺呈现专用)
+        /// ⒈ 正在生产时呈现工单号、产品、容器号以及完工时目标库位；
+        /// ⒉ 未在生产时呈现应该执行的工单号、容器号以及滞在库位，并可呈现工艺信息；
+        /// ⒊ 正在生产时，点击进入可以呈现各种工艺信息。
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="filterT107LeafID">工位叶标识过滤：0-不过滤</param>
+        /// <returns>List[WIPStationProductionStatus]</returns>
+        public IRAPJsonResult ufn_GetList_WIPStationProductionStatus(
+            int communityID, 
+            long sysLogID, 
+            int filterT107LeafID,
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<WIPStationProductionStatus> datas = 
+                    new List<WIPStationProductionStatus>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_WIPStationProductionStatus，"+
+                        "参数：CommunityID={0}|SysLogID={1}|FilterT107LeafID={2}",
+                        communityID, sysLogID, filterT107LeafID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_WIPStationProductionStatus(" +
+                            "@CommunityID, @SysLogID)";
+                        if (filterT107LeafID != 0)
+                            strSQL += string.Format(" WHERE T107LeafID={0}", filterT107LeafID);
+
+                        IList<WIPStationProductionStatus> lstDatas =
+                            conn.CallTableFunc<WIPStationProductionStatus>(strSQL, paramList);
+                        datas = lstDatas.ToList<WIPStationProductionStatus>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPMDM..ufn_GetList_WIPStationProductionStatus 函数发生异常：{0}",
+                        error.Message);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取工位叶标识
+        /// </summary>
+        public IRAPJsonResult ufn_GetT216LeafID(
+            int communityID,
+            int t102LeafID,
+            int t107LeafID,
+            int unixTime,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}", 
+                    className, 
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@UnixTime", DbType.String, unixTime));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM.dbo.ufn_GetT216LeafID，参数：CommunityID={0}|" +
+                        "T102LeafID={1}|T107LeafID={2}|UnixTime={3}",
+                        communityID,
+                        t102LeafID,
+                        t107LeafID,
+                        unixTime),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        int rlt = 
+                            (int)conn.CallScalarFunc(
+                                "IRAPMDM.dbo.ufn_GetT216LeafID", 
+                                paramList);
+                        errCode = 0;
+                        errText = "调用成功！";
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                        return Json(rlt);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 IRAP.dbo.ufn_GetT216LeafID 函数发生异常：{0}", 
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                    return Json(0);
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <param name="communityID">社区标识</param>
+        /// <param name="methodID">工艺标识</param>
+        /// <param name="languageID">语言标识</param>
+        public IRAPJsonResult ufn_GetList_AvailableMethodStandards(
+            int communityID, 
+            int methodID, 
+            int languageID, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<StandardType> datas = new List<StandardType>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@MethodID", DbType.Int32, methodID));
+                paramList.Add(new IRAPProcParameter("@LanguageID", DbType.Int32, languageID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_AvailableMethodStandards，" +
+                        "参数：CommunityID={0}|MethodID={1}|LanguageID={2}",
+                        communityID, methodID, languageID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_AvailableMethodStandards(" +
+                            "@CommunityID, @MethodID, @LanguageID)";
+
+                        IList<StandardType> lstDatas =
+                            conn.CallTableFunc<StandardType>(strSQL, paramList);
+                        datas = lstDatas.ToList<StandardType>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPMDM..ufn_GetList_AvailableMethodStandards 函数发生异常：{0}",
+                        error.Message);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取产品一般属性
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>[GenAttr_Product]</returns>
+        public IRAPJsonResult ufn_GetProductSketch(
+            int communityID,
+            int t102LeafID,
+            long sysLogID, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}", 
+                    className, 
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                GenAttr_Product rlt = new GenAttr_Product();
+
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "获得产品的一般属性，调用参数：CommunityID={0}|T102LeafID={1}|SysLogID={1}",
+                        communityID,
+                        t102LeafID,
+                        sysLogID),
+                    strProcedureName);
+
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        long partitioningKey = communityID * 10000 + 102;
+
+                        // 从获取 T102LeafID 对应的 EntityID
+                        object tmpResult = null;
+                        Stb058 stb058Entity = null;
+
+                        tmpResult = conn.Get<Stb058>(new Stb058 { PartitioningKey = partitioningKey, LeafID = t102LeafID });
+                        if (tmpResult == null)
+                        {
+                            errCode = 98001;
+                            errText = string.Format("没有 LeafID = {0} 的产品信息", t102LeafID);
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return Json(rlt);
+                        }
+                        else
+                        {
+                            stb058Entity = tmpResult as Stb058;
+                        }
+
+                        tmpResult = conn.Get<GenAttr_Product>(new GenAttr_Product()
+                        {
+                            PartitioningKey = partitioningKey,
+                            EntityID = stb058Entity.EntityID
+                        });
+                        if (tmpResult == null)
+                        {
+                            errCode = 98001;
+                            errText = string.Format("没有 LeafID = {0} 的产品一般属性", t102LeafID);
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return Json(rlt);
+                        }
+                        else
+                        {
+                            rlt = ((GenAttr_Product)tmpResult);
+                        }
+
+                        errCode = 0;
+                        errText = string.Format("获得 LeafID = {0} 的产品一般属性", t102LeafID);
+                        return Json(rlt);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 ufn_GetProductSketch 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    return Json(rlt);
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                WriteLog.Instance.Write("");
+            }
+        }
+
+        /// <summary>
+        /// 获取工序的一般属性
+        /// </summary>
+        /// <remarks>
+        /// Sketch： 产品工序简图
+        /// </remarks>
+        /// <returns>[GenAttr_ProcessOperation]</returns>
+        public IRAPJsonResult ufn_GetProcessOperationGenAttr(
+            int communityID,
+            int t216LeafID,
+            long sysLogID,
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                GenAttr_ProcessOperation rlt = new GenAttr_ProcessOperation();
+
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "获得工序的一般属性，调用参数：CommunityID={0}|T216LeafID={1}|SysLogID={2}",
+                        communityID,
+                        t216LeafID,
+                        sysLogID),
+                    strProcedureName);
+
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        long partitioningKey = communityID * 10000 + 216;
+
+                        // 从获取 T216LeafID 对应的 EntityID
+                        object tmpResult = null;
+                        Stb058 stb058Entity = null;
+
+                        WriteLog.Instance.Write(
+                            string.Format("获取 LeafID={0} 的工序信息", t216LeafID), 
+                            strProcedureName);
+                        tmpResult = conn.Get<Stb058>(new Stb058
+                        {
+                            PartitioningKey = partitioningKey,
+                            LeafID = t216LeafID
+                        });
+                        if (tmpResult == null)
+                        {
+                            errCode = 98001;
+                            errText = string.Format("没有 LeafID = {0} 的工序信息", t216LeafID);
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return Json(rlt);
+                        }
+                        else
+                        {
+                            stb058Entity = tmpResult as Stb058;
+                        }
+
+                        WriteLog.Instance.Write(
+                            string.Format("获取 EntityID={0} 的工序一般信息", stb058Entity.EntityID), 
+                            strProcedureName);
+                        tmpResult = conn.Get<GenAttr_ProcessOperation>(new GenAttr_ProcessOperation()
+                        {
+                            PartitioningKey = partitioningKey,
+                            EntityID = stb058Entity.EntityID
+                        });
+                        if (tmpResult == null)
+                        {
+                            errCode = 98001;
+                            errText = string.Format("没有 LeafID = {0} 的工序一般属性", t216LeafID);
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return Json(rlt);
+                        }
+                        else
+                        {
+                            rlt = ((GenAttr_ProcessOperation)tmpResult);
+                        }
+
+                        errCode = 0;
+                        errText = string.Format("获得 LeafID = {0} 的工序一般属性", t216LeafID);
+                        return Json(rlt);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 ufn_GetProcessOperationGenAttr 函数发生异常：{0}\n{1}", 
+                            error.Message, 
+                            error.StackTrace);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    return Json(rlt);
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                WriteLog.Instance.Write("");
             }
         }
     }

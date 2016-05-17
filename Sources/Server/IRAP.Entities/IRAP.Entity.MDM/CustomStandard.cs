@@ -96,6 +96,40 @@ namespace IRAP.Entity.MDM
                 }
             }
         }
+        /// <summary>
+        /// 中值
+        /// </summary>
+        [IRAPORMMap(ORMMap = false)]
+        public string MiddleValue
+        {
+            get
+            {
+                switch (Criterion.ToUpper())
+                {
+                    case "GELE":
+                    case "GTLT":
+                    case "GTLE":
+                    case "GELT":
+                        double doubleLow = LowLimit / Math.Pow(10, Scale);
+                        double doubleHigh = HighLimit / Math.Pow(10, Scale);
+                        string middleValue = "";
+
+                        if (Scale > 0)
+                        {
+                            string strFormat = "";
+                            middleValue = ((doubleLow + doubleHigh) / 2).ToString("0." + strFormat.PadLeft(Scale, '0'));
+                        }
+                        else
+                        {
+                            middleValue = ((doubleLow + doubleHigh) / 2).ToString("0");
+                        }
+
+                        return string.Format("{0} {1}", middleValue, UnitOfMeasure);
+                    default:
+                        return "";
+                }
+            }
+        }
 
         public CustomStandard Clone()
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 using IRAPShared;
 
-namespace IRAP.Entity.MDM
+namespace IRAP.Entity.MDM.Tables
 {
     [Serializable()]
     [IRAPDB(TableName = "IRAPMDM..stb058")]
