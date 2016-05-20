@@ -561,9 +561,13 @@ namespace IRAP.Client.GUI.MDM
                                             "MinPercent=\"{4}\" MaxPercent=\"{5}\" " +
                                             "ProcessPercentage=\"{6}\" T121LeafID=\"{7}\"/>",
                                             i++,
-                                            line.Tag.T216LeafID1,
+                                            //line.Tag.T216LeafID1,
+                                            (line.ItemFrom.Tag as ProcessOperation).T216Leaf,
                                             0,
-                                            line.Tag.T216LeafID2,
+                                            //line.Tag.T216LeafID2,
+                                            line.ItemTo.Tag == null ? 
+                                                0:
+                                                (line.ItemTo.Tag as ProcessOperation).T216Leaf,
                                             line.Tag.MinPercent,
                                             line.Tag.MaxPercent,
                                             line.Tag.ProcessPercentage,
