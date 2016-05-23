@@ -6,6 +6,8 @@ using System.Data;
 using System.Text;
 using System.Linq;
 using System.Windows.Forms;
+using System.Configuration;
+
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList.Nodes;
 
@@ -60,7 +62,9 @@ namespace IRAP.Client.Global.GUI
 
             if (errCode != 0)
             {
-                IRAP.Global.Tools.Play(IRAP.Client.Global.Resources.Properties.Resources.ALARM9);
+                if (ConfigurationManager.AppSettings["SoundAlert"] != null &&
+                    ConfigurationManager.AppSettings["SoundAlert"].ToUpper() == "TRUE")
+                    IRAP.Global.Tools.Play(IRAP.Client.Global.Resources.Properties.Resources.ALARM9);
             }
         }
 
