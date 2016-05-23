@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.MDC.Service.StateObject" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACCAEAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>AsyncSocketServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.MDC.Service.AsynchronousSocketListener" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEACIBAACIIAAAAAEiAAAAAAIAEAAAAIAAAAAAAEIQ=</HashCode>
+      <FileName>AsyncSocketServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.MDC.Service.WriteLog">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAMIQAACAAIAACAAAAAADAgAgAAAAAAwAAAAAEAAAA=</HashCode>
+      <FileName>WriteLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.MDC.Service.RecordData">
+    <Position X="7" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAABAA=</HashCode>
+      <FileName>RecordData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
