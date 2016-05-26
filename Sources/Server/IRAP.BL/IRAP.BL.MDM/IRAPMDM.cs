@@ -32,8 +32,8 @@ namespace IRAP.BL.MDM
         /// </summary>
         /// <param name="parentID">父节点标识</param>
         public IRAPJsonResult mfn_GetList_Agencies(
-            int parentID, 
-            out int errCode, 
+            int parentID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -154,12 +154,12 @@ namespace IRAP.BL.MDM
         /// <param name="entryNode">入口节点</param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult sfn_TreeView(
-            int communityID, 
-            int treeID,  
-            bool includeLeaves, 
-            int entryNode, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            int treeID,
+            bool includeLeaves,
+            int entryNode,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -762,9 +762,9 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[ProcessSegment]</returns>
         public IRAPJsonResult ufn_GetList_ProcessSegmentsOfAProduct(
-            string productCode, 
-            long sysLogID, 
-            out int errCode, 
+            string productCode,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -918,8 +918,8 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">社区标识</param>
         /// <returns>List[IRAP.Entity.IRAP.T215Info]</returns>
         public IRAPJsonResult ufn_GetList_OptionCode(
-            long sysLogID, 
-            out int errCode, 
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -990,10 +990,10 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[ProductionLineOfProduct]</returns>
         public IRAPJsonResult ufn_GetList_ProductionLinesOfProduct(
-            int communityID, 
-            string productNo, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            string productNo,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1065,9 +1065,9 @@ namespace IRAP.BL.MDM
         /// <param name="communityID">社区标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult ufn_GetList_DstDeliveryStoreSites(
-            int communityID, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1142,12 +1142,12 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[MethodStandard]</returns>
         public IRAPJsonResult ufn_GetList_MethodStandard(
-            int communityID, 
-            int t102LeafID, 
-            int t216LeafID, 
-            string shotTime, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            int t102LeafID,
+            int t216LeafID,
+            string shotTime,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1257,7 +1257,7 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMDM..ufn_GetList_QualityStandard，" +
-                        "参数：CommunityID={0}|T102LeafID={1}|T216LeafID={2}"+
+                        "参数：CommunityID={0}|T102LeafID={1}|T216LeafID={2}" +
                         "ShotTime={3}||SysLogID={4}",
                         communityID, t102LeafID, t216LeafID, shotTime, sysLogID),
                     strProcedureName);
@@ -1309,9 +1309,9 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[AndonEventType]</returns>
         public IRAPJsonResult ufn_GetList_AndonEventTypes(
-            int communityID, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1388,9 +1388,9 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[ProductionLineForStationBound]</returns>
         public IRAPJsonResult ufn_GetList_StationBoundProductionLines(
-            int communityID, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1402,7 +1402,7 @@ namespace IRAP.BL.MDM
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                List<ProductionLineForStationBound> datas = 
+                List<ProductionLineForStationBound> datas =
                     new List<ProductionLineForStationBound>();
 
                 #region 创建数据库调用参数组，并赋值
@@ -1463,11 +1463,11 @@ namespace IRAP.BL.MDM
         /// <param name="t134LeafID">产线叶标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult usp_SwitchToProductionLine(
-            int communityID, 
-            string hostName, 
-            int t134LeafID, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            string hostName,
+            int t134LeafID,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1565,12 +1565,12 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[AndonCallObject]</returns>
         public IRAPJsonResult ufn_GetList_AndonCallObjects(
-            int communityID, 
-            int t179LeafID, 
-            int t107LeafID, 
-            int t133LeafID, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            int t179LeafID,
+            int t107LeafID,
+            int t133LeafID,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1646,9 +1646,9 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[ProcessOperation]</returns>
         public IRAPJsonResult ufn_GetList_ProcessOperations(
-            int communityID, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1684,7 +1684,7 @@ namespace IRAP.BL.MDM
                             "@CommunityID, @SysLogID) " +
                             "ORDER BY Ordinal";
 
-                        IList<ProcessOperation> lstDatas = 
+                        IList<ProcessOperation> lstDatas =
                             conn.CallTableFunc<ProcessOperation>(strSQL, paramList);
                         datas = lstDatas.ToList<ProcessOperation>();
                         errCode = 0;
@@ -1695,9 +1695,9 @@ namespace IRAP.BL.MDM
                 catch (Exception error)
                 {
                     errCode = 99000;
-                    errText = 
+                    errText =
                         string.Format(
-                            "调用 IRAPMDM..ufn_GetList_ProcessOperations 函数发生异常：{0}", 
+                            "调用 IRAPMDM..ufn_GetList_ProcessOperations 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
@@ -1720,11 +1720,11 @@ namespace IRAP.BL.MDM
         /// <param name="shotTime">关注的时间点(yyyy-mm-dd hh:mm)</param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult ufn_GetInfo_ProductProcess(
-            int communityID, 
-            int t102LeafID, 
-            string shotTime, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            int t102LeafID,
+            string shotTime,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1747,7 +1747,7 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMDM..ufn_GetInfo_ProductProcess，" +
-                        "参数：CommunityID={0}|T102LeafID={1}|ShotTime={2}|"+
+                        "参数：CommunityID={0}|T102LeafID={1}|ShotTime={2}|" +
                         "SysLogID={3}",
                         communityID, t102LeafID, shotTime, sysLogID),
                     strProcedureName);
@@ -1810,16 +1810,16 @@ namespace IRAP.BL.MDM
         /// </param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult ssp_SaveRSAttrChange(
-            int communityID, 
-            int treeID, 
-            int leafID, 
-            int rowSetID, 
-            string voucherNo, 
-            string effectiveTime, 
-            bool deleUnapplied, 
-            string rsAttrXML, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            int treeID,
+            int leafID,
+            int rowSetID,
+            string voucherNo,
+            string effectiveTime,
+            bool deleUnapplied,
+            string rsAttrXML,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -1857,9 +1857,9 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.Write(
                     string.Format("执行存储过程 IRAPMDM..ssp_SaveRSAttrChange，参数：" +
                         "CommunityID={0}|TreeID={1}|LeafID={2}|RowSetID={3}|" +
-                        "VoucherNo={4}|EffectiveTime={5}|DeleUnapplied={6}|"+
+                        "VoucherNo={4}|EffectiveTime={5}|DeleUnapplied={6}|" +
                         "RSAttrXML={7}|SysLogID={8}",
-                        communityID, treeID, leafID, rowSetID, voucherNo, effectiveTime, 
+                        communityID, treeID, leafID, rowSetID, voucherNo, effectiveTime,
                         deleUnapplied, rsAttrXML, sysLogID),
                     strProcedureName);
                 #endregion
@@ -2023,12 +2023,12 @@ namespace IRAP.BL.MDM
         /// </summary>
         /// <returns>[int]</returns>
         public IRAPJsonResult ufn_GetMethodID(
-            int communityID, 
-            int t102LeafID, 
-            int treeID, 
-            int leafID, 
-            long unixTime, 
-            out int errCode, 
+            int communityID,
+            int t102LeafID,
+            int treeID,
+            int leafID,
+            long unixTime,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -2062,7 +2062,7 @@ namespace IRAP.BL.MDM
                 {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
-                        data = (int) conn.CallScalarFunc("IRAPMDM.dbo.ufn_GetMethodID", paramList);
+                        data = (int)conn.CallScalarFunc("IRAPMDM.dbo.ufn_GetMethodID", paramList);
                         errCode = 0;
                         errText = string.Format("调用成功！返回值：[{0}]", data);
                     }
@@ -2162,12 +2162,12 @@ namespace IRAP.BL.MDM
         /// 获取指定产品和工序的工装标准清单
         /// </summary>
         public IRAPJsonResult ufn_GetList_ToolingStandard(
-            int communityID, 
-            int t102LeafID, 
-            int t216LeafID, 
-            string shotTime, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            int t102LeafID,
+            int t216LeafID,
+            string shotTime,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -2237,12 +2237,12 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[ProductionPrograms]</returns>
         public IRAPJsonResult ufn_GetList_ProductionPrograms(
-            int communityID, 
-            int t102LeafID, 
-            int t216LeafID, 
-            string shotTime, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            int t102LeafID,
+            int t216LeafID,
+            string shotTime,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -2281,7 +2281,7 @@ namespace IRAP.BL.MDM
                             "@CommunityID, @T102LeafID, @T216LeafID, @ShotTime, " +
                             "@SysLogID)";
 
-                        IList<ProductionPrograms> lstDatas = 
+                        IList<ProductionPrograms> lstDatas =
                             conn.CallTableFunc<ProductionPrograms>(strSQL, paramList);
                         datas = lstDatas.ToList<ProductionPrograms>();
                         errCode = 0;
@@ -2292,7 +2292,7 @@ namespace IRAP.BL.MDM
                 {
                     errCode = 99000;
                     errText = string.Format(
-                        "调用 IRAPMDM..ufn_GetList_ProductionPrograms 函数发生异常：{0}", 
+                        "调用 IRAPMDM..ufn_GetList_ProductionPrograms 函数发生异常：{0}",
                         error.Message);
                 }
                 #endregion
@@ -3024,11 +3024,11 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[FormCtrlInfo]</returns>
         public IRAPJsonResult sfn_FunctionFormCtrls(
-            int communityID, 
-            int menuItemID, 
-            int progLanguageID, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            int menuItemID,
+            int progLanguageID,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -3101,10 +3101,10 @@ namespace IRAP.BL.MDM
         /// <param name="filterT107LeafID">工位叶标识过滤：0-不过滤</param>
         /// <returns>List[WIPStationProductionStatus]</returns>
         public IRAPJsonResult ufn_GetList_WIPStationProductionStatus(
-            int communityID, 
-            long sysLogID, 
+            int communityID,
+            long sysLogID,
             int filterT107LeafID,
-            out int errCode, 
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -3116,7 +3116,7 @@ namespace IRAP.BL.MDM
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                List<WIPStationProductionStatus> datas = 
+                List<WIPStationProductionStatus> datas =
                     new List<WIPStationProductionStatus>();
 
                 #region 创建数据库调用参数组，并赋值
@@ -3125,7 +3125,7 @@ namespace IRAP.BL.MDM
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用函数 IRAPMDM..ufn_GetList_WIPStationProductionStatus，"+
+                        "调用函数 IRAPMDM..ufn_GetList_WIPStationProductionStatus，" +
                         "参数：CommunityID={0}|SysLogID={1}|FilterT107LeafID={2}",
                         communityID, sysLogID, filterT107LeafID),
                     strProcedureName);
@@ -3177,10 +3177,10 @@ namespace IRAP.BL.MDM
             out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
-                    "{0}.{1}", 
-                    className, 
+                    "{0}.{1}",
+                    className,
                     MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -3208,9 +3208,9 @@ namespace IRAP.BL.MDM
                 {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
-                        int rlt = 
+                        int rlt =
                             (int)conn.CallScalarFunc(
-                                "IRAPMDM.dbo.ufn_GetT216LeafID", 
+                                "IRAPMDM.dbo.ufn_GetT216LeafID",
                                 paramList);
                         errCode = 0;
                         errText = "调用成功！";
@@ -3221,9 +3221,9 @@ namespace IRAP.BL.MDM
                 catch (Exception error)
                 {
                     errCode = 99000;
-                    errText = 
+                    errText =
                         string.Format(
-                            "调用 IRAP.dbo.ufn_GetT216LeafID 函数发生异常：{0}", 
+                            "调用 IRAP.dbo.ufn_GetT216LeafID 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
@@ -3241,10 +3241,10 @@ namespace IRAP.BL.MDM
         /// <param name="methodID">工艺标识</param>
         /// <param name="languageID">语言标识</param>
         public IRAPJsonResult ufn_GetList_AvailableMethodStandards(
-            int communityID, 
-            int methodID, 
-            int languageID, 
-            out int errCode, 
+            int communityID,
+            int methodID,
+            int languageID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -3314,14 +3314,14 @@ namespace IRAP.BL.MDM
         public IRAPJsonResult ufn_GetProductSketch(
             int communityID,
             int t102LeafID,
-            long sysLogID, 
-            out int errCode, 
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
-                    "{0}.{1}", 
-                    className, 
+                    "{0}.{1}",
+                    className,
                     MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -3408,7 +3408,7 @@ namespace IRAP.BL.MDM
             int communityID,
             int t216LeafID,
             long sysLogID,
-            out int errCode, 
+            out int errCode,
             out string errText)
         {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
@@ -3437,7 +3437,7 @@ namespace IRAP.BL.MDM
                         Stb058 stb058Entity = null;
 
                         WriteLog.Instance.Write(
-                            string.Format("获取 LeafID={0} 的工序信息", t216LeafID), 
+                            string.Format("获取 LeafID={0} 的工序信息", t216LeafID),
                             strProcedureName);
                         tmpResult = conn.Get<Stb058>(new Stb058
                         {
@@ -3457,7 +3457,7 @@ namespace IRAP.BL.MDM
                         }
 
                         WriteLog.Instance.Write(
-                            string.Format("获取 EntityID={0} 的工序一般信息", stb058Entity.EntityID), 
+                            string.Format("获取 EntityID={0} 的工序一般信息", stb058Entity.EntityID),
                             strProcedureName);
                         tmpResult = conn.Get<GenAttr_ProcessOperation>(new GenAttr_ProcessOperation()
                         {
@@ -3484,10 +3484,10 @@ namespace IRAP.BL.MDM
                 catch (Exception error)
                 {
                     errCode = 99000;
-                    errText = 
+                    errText =
                         string.Format(
-                            "调用 ufn_GetProcessOperationGenAttr 函数发生异常：{0}\n{1}", 
-                            error.Message, 
+                            "调用 ufn_GetProcessOperationGenAttr 函数发生异常：{0}\n{1}",
+                            error.Message,
                             error.StackTrace);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     return Json(rlt);
@@ -3497,6 +3497,71 @@ namespace IRAP.BL.MDM
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 WriteLog.Instance.Write("");
+            }
+        }
+
+        /// <summary>
+        /// 获取注册测量仪表清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <returns>List[RegInstrument]</returns>
+        public IRAPJsonResult ufn_GetList_RegInstruments(
+            int communityID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<RegInstrument> datas = new List<RegInstrument>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_RegInstruments，" +
+                        "参数：CommunityID={0}",
+                        communityID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_RegInstruments(" +
+                            "@CommunityID) ORDER BY Ordinal";
+
+                        IList<RegInstrument> lstDatas =
+                            conn.CallTableFunc<RegInstrument>(strSQL, paramList);
+                        datas = lstDatas.ToList<RegInstrument>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPMDM..ufn_GetList_RegInstruments 函数发生异常：{0}",
+                        error.Message);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
     }
