@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="IRAPUES">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IRAPUESResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IRAPUESResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetXMLSchemas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetXMLSchemasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetXMLSchemasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IRAPUESSoapIn">
+    <wsdl:part name="parameters" element="tns:IRAPUES" />
+  </wsdl:message>
+  <wsdl:message name="IRAPUESSoapOut">
+    <wsdl:part name="parameters" element="tns:IRAPUESResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetXMLSchemasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetXMLSchemas" />
+  </wsdl:message>
+  <wsdl:message name="GetXMLSchemasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetXMLSchemasResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IRAPUESBaseSoap">
+    <wsdl:operation name="IRAPUES">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">江苏芍园通用WebService数据交换服务</wsdl:documentation>
+      <wsdl:input message="tns:IRAPUESSoapIn" />
+      <wsdl:output message="tns:IRAPUESSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetXMLSchemas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取WebService中XML数据的架构信息</wsdl:documentation>
+      <wsdl:input message="tns:GetXMLSchemasSoapIn" />
+      <wsdl:output message="tns:GetXMLSchemasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IRAPUESBaseSoap" type="tns:IRAPUESBaseSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IRAPUES">
+      <soap:operation soapAction="http://tempuri.org/IRAPUES" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXMLSchemas">
+      <soap:operation soapAction="http://tempuri.org/GetXMLSchemas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IRAPUESBaseSoap12" type="tns:IRAPUESBaseSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IRAPUES">
+      <soap12:operation soapAction="http://tempuri.org/IRAPUES" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXMLSchemas">
+      <soap12:operation soapAction="http://tempuri.org/GetXMLSchemas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IRAPUESBase">
+    <wsdl:port name="IRAPUESBaseSoap" binding="tns:IRAPUESBaseSoap">
+      <soap:address location="http://192.168.57.221:8015/IRAPUESWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IRAPUESBaseSoap12" binding="tns:IRAPUESBaseSoap12">
+      <soap12:address location="http://192.168.57.221:8015/IRAPUESWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

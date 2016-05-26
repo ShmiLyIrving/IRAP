@@ -72,6 +72,19 @@ namespace IRAP.MDC.Service
             this.data = data;
         }
 
+        public bool DataValid()
+        {
+            switch (data.Length)
+            {
+                case 10:
+                    return true;
+                case 11:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
         public void Record()
         {
             string strProcedureName =

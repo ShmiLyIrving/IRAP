@@ -238,14 +238,21 @@ namespace IRAP.MDC.Service
                         content),
                     strProcedureName);
 
-                #region 处理收到的数据
                 RecordData record = new RecordData(handler.RemoteEndPoint.ToString(), content);
-                Thread dataRecording = new Thread(new ThreadStart(record.Record));
-                dataRecording.Start();
-                #endregion
+                if (record.DataValid())
+                {
+                    #region 处理收到的数据
+                    Thread dataRecording = new Thread(new ThreadStart(record.Record));
+                    dataRecording.Start();
+                    #endregion
 
-                // Echo the data back to the client.
-                Send(handler, "OK");
+                    // Echo the data back to the client.
+                    Send(handler, "OK");
+                }
+                else
+                {
+                    Send(handler, "FALSE");
+                }
 
                 handler.BeginReceive(
                     state.buffer,
