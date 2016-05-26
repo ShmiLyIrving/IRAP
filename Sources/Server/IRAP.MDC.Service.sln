@@ -9,6 +9,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.WebService.Client", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Global", "..\Global\IRAP.Global\IRAP.Global.csproj", "{325FFD07-7491-45C3-86F3-85F7DEF4C726}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.WCF.Client", "..\Client\IRAP.WCF.Client\IRAP.WCF.Client.csproj", "{476669B5-14C9-4754-A83B-343783807749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.WCF.Client.Method", "..\Client\IRAP.WCF.Client.Method\IRAP.WCF.Client.Method.csproj", "{6F4AD952-871C-4594-BBE7-8C7EA61B63BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.Kanban", "IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj", "{38588300-33DF-457A-936A-D0D0CA499E96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.SSO", "IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj", "{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.MDM", "IRAP.Entities\IRAP.Entity.MDM\IRAP.Entity.MDM.csproj", "{5FEB6CB3-68C9-4E06-814B-C071743BF5A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPShared", "..\Global\IRAPShared\IRAPShared.csproj", "{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +39,30 @@ Global
 		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{476669B5-14C9-4754-A83B-343783807749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476669B5-14C9-4754-A83B-343783807749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476669B5-14C9-4754-A83B-343783807749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476669B5-14C9-4754-A83B-343783807749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F4AD952-871C-4594-BBE7-8C7EA61B63BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F4AD952-871C-4594-BBE7-8C7EA61B63BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F4AD952-871C-4594-BBE7-8C7EA61B63BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F4AD952-871C-4594-BBE7-8C7EA61B63BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38588300-33DF-457A-936A-D0D0CA499E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38588300-33DF-457A-936A-D0D0CA499E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38588300-33DF-457A-936A-D0D0CA499E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38588300-33DF-457A-936A-D0D0CA499E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FEB6CB3-68C9-4E06-814B-C071743BF5A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FEB6CB3-68C9-4E06-814B-C071743BF5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FEB6CB3-68C9-4E06-814B-C071743BF5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FEB6CB3-68C9-4E06-814B-C071743BF5A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,6 +5,11 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Configuration;
 using System.Reflection;
+using System.Collections.Generic;
+
+using IRAP.Global;
+using IRAP.Entity.MDM;
+using IRAP.WCF.Client.Method;
 
 namespace IRAP.MDC.Service
 {
@@ -31,6 +36,10 @@ namespace IRAP.MDC.Service
         /// </summary>
         private const int defaultMaxConnection = 10;
         /// <summary>
+        /// 社区标识
+        /// </summary>
+        private int communityID = 60010;
+        /// <summary>
         /// 通讯报文的最大长度默认值
         /// </summary>
         private const int defaultMaxBufferSize = 1024;
@@ -55,10 +64,13 @@ namespace IRAP.MDC.Service
         /// 是否继续在服务端口进行侦听
         /// </summary>
         private bool continueListen = true;
+        /// <summary>
+        /// 在册测量仪表清单
+        /// </summary>
+        private List<RegInstrument> instruments = new List<RegInstrument>();
 
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
-
 
         // Thread signal.
         public static ManualResetEvent allDone = new ManualResetEvent(false);
@@ -66,11 +78,23 @@ namespace IRAP.MDC.Service
         public AsynchronousSocketListener()
         {
             WriteLog.Instance.WriteBeginSplitter(className);
+            WriteLog.Instance.Write("启动 Socket 服务", className);
 
             string temp = "";
             Configuration config =
                 ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
+            #region 获取系统配置参数
+            if (config.AppSettings.Settings["CommunityID"] != null)
+            {
+                temp = config.AppSettings.Settings["CommunityID"].Value.ToString();
+                Int32.TryParse(temp, out communityID);
+                if (communityID == 0)
+                    communityID = 60010;
+            }
+            #endregion
+
+            #region 获取通讯配置参数
             temp = config.AppSettings.Settings["SocketListenPort"].Value;
             Int32.TryParse(temp, out listenPort);
             if (listenPort == 0)
@@ -88,6 +112,28 @@ namespace IRAP.MDC.Service
             }
             if (maxBufferSize == 0)
                 maxBufferSize = defaultMaxBufferSize;
+            #endregion
+
+            #region 获取系统中在册测量仪表清单
+            int errCode = 0;
+            string errText = "";
+
+            try
+            {
+                IRAPMDMClient.Instance.ufn_GetList_RegInstruments(
+                    communityID,
+                    ref instruments,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    className);
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, className);
+            }
+            #endregion
         }
 
         ~AsynchronousSocketListener()
@@ -100,6 +146,7 @@ namespace IRAP.MDC.Service
 
             if (listener != null)
             {
+                WriteLog.Instance.Write("终止 Socket 服务", className);
                 WriteLog.Instance.WriteEndSplitter(className);
                 WriteLog.Instance.Write("");
 
@@ -238,7 +285,11 @@ namespace IRAP.MDC.Service
                         content),
                     strProcedureName);
 
-                RecordData record = new RecordData(handler.RemoteEndPoint.ToString(), content);
+                RecordData record = 
+                    new RecordData(
+                        handler.RemoteEndPoint.ToString(), 
+                        content,
+                        instruments);
                 if (record.DataValid())
                 {
                     #region 处理收到的数据

@@ -7,6 +7,9 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+
+using IRAP.Global;
 
 namespace IRAP.MDC.Service
 {

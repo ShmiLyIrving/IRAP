@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomWSClient.cs" />
     <Compile Include="UES\EntityWIPIDInfo.cs" />
     <Compile Include="UES\IRAPUESClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

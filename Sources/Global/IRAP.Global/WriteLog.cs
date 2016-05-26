@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Configuration;
 
 using System.IO;
 
@@ -62,8 +63,28 @@ namespace IRAP.Global
 
         public bool IsWriteLog
         {
-            get { return IniFile.ReadBool("Logs", "Write Log", false, attributeFileName); }
-            set { IniFile.WriteBool("Logs", "Write Log", value, attributeFileName); }
+            //get { return IniFile.ReadBool("Logs", "Write Log", false, attributeFileName); }
+            //set { IniFile.WriteBool("Logs", "Write Log", value, attributeFileName); }
+            get
+            {
+                Configuration config =
+                    ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+                return config.AppSettings.Settings["WriteLog"].Value.ToString().ToUpper() == "TRUE";
+            }
+            set
+            {
+                Configuration config =
+                    ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+                if (config.AppSettings.Settings["WriteLog"].Value == null)
+                    config.AppSettings.Settings.Add("WriteLog", true.ToString());
+                else
+                    config.AppSettings.Settings["WriteLog"].Value = value.ToString();
+
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+            }
         }
 
         public string WriteLogFileName

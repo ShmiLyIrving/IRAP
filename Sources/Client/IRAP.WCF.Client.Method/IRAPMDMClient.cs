@@ -14,12 +14,12 @@ namespace IRAP.WCF.Client.Method
     public class IRAPMDMClient
     {
         private static IRAPMDMClient _instance = null;
-        private static string className=
+        private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private IRAPMDMClient()
         {
-            
+
         }
 
         public static IRAPMDMClient Instance
@@ -43,12 +43,12 @@ namespace IRAP.WCF.Client.Method
         /// </param>
         /// <param name="sysLogID">系统登录标识</param>
         public void ufn_GetInfo_ProductProcess(
-            int communityID, 
-            int t102LeafID, 
-            string shotTime, 
-            long sysLogID, 
-            ref List<ProductProcess> datas, 
-            out int errCode, 
+            int communityID,
+            int t102LeafID,
+            string shotTime,
+            long sysLogID,
+            ref List<ProductProcess> datas,
+            out int errCode,
             out string errText)
         {
             string strProcedureName = string.Format("{0}.{1}",
@@ -68,7 +68,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetInfo_ProductProcess，输入参数：" +
-                        "CommunityID={0}|T102LeafID={1}|ShotTime={2}|"+
+                        "CommunityID={0}|T102LeafID={1}|ShotTime={2}|" +
                         "SysLogID={3}",
                         communityID,
                         t102LeafID,
@@ -186,11 +186,11 @@ namespace IRAP.WCF.Client.Method
         /// <param name="t116LeafID">工序类型标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         public void ufn_GetList_MethodMMenu(
-            int communityID, 
-            int t116LeafID, 
-            long sysLogID, 
-            ref List<MethodMMenu> datas, 
-            out int errCode, 
+            int communityID,
+            int t116LeafID,
+            long sysLogID,
+            ref List<MethodMMenu> datas,
+            out int errCode,
             out string errText)
         {
             string strProcedureName = string.Format("{0}.{1}",
@@ -313,7 +313,7 @@ namespace IRAP.WCF.Client.Method
                         string.Format(
                             "执行存储过程 ssp_SaveRSAttrChange，输入参数：" +
                             "CommunityID={0}|TreeID={1}|LeafID={2}|" +
-                            "RowSetID={3}|VoucherNo={4}|EffectiveTime={5}|"+
+                            "RowSetID={3}|VoucherNo={4}|EffectiveTime={5}|" +
                             "DeleUnapplied={6}|RSAttrXML={7}|SysLogID={8}",
                             communityID, treeID, leafID, rowSetID, voucherNo,
                             effectiveTime, deleUnapplied, rsAttrXML, sysLogID),
@@ -379,7 +379,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetMethodID，输入参数：" +
-                        "CommunityID={0}|T102LeafID={1}|TreeID={2}|"+
+                        "CommunityID={0}|T102LeafID={1}|TreeID={2}|" +
                         "LeafID={3}|UnixTime={4}",
                         communityID,
                         t102LeafID,
@@ -463,7 +463,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetList_MethodStandard，输入参数：" +
-                        "CommunityID={0}|T102LeafID={1}|T216LeafID={2}|"+
+                        "CommunityID={0}|T102LeafID={1}|T216LeafID={2}|" +
                         "ShotTime={3}|SysLogID={4}",
                         communityID,
                         t102LeafID,
@@ -1021,7 +1021,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetList_FailureModes_Core，输入参数：" +
-                        "T134LeafID={1}|T216LeafID={2}|T132LeafID={1}|"+
+                        "T134LeafID={1}|T216LeafID={2}|T132LeafID={1}|" +
                         "T102LeafID={2}|SysLogID={4}",
                         communityID,
                         t134LeafID,
@@ -1402,7 +1402,7 @@ namespace IRAP.WCF.Client.Method
             out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
                     "{0}.{1}",
                     className,
@@ -1472,17 +1472,17 @@ namespace IRAP.WCF.Client.Method
         /// <param name="communityID">社区标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         public void ufn_GetList_WIPStationProductionStatus(
-            int communityID, 
-            long sysLogID, 
-            int filterT107LeafID, 
+            int communityID,
+            long sysLogID,
+            int filterT107LeafID,
             ref List<WIPStationProductionStatus> datas,
-            out int errCode, 
+            out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
-                    "{0}.{1}", 
-                    className, 
+                    "{0}.{1}",
+                    className,
                     MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -1510,7 +1510,7 @@ namespace IRAP.WCF.Client.Method
                 using (WCFClient client = new WCFClient())
                 {
 
-                    object rlt = 
+                    object rlt =
                         client.WCFRESTFul(
                             "IRAP.BL.MDM.dll",
                             "IRAP.BL.MDM.IRAPMDM",
@@ -1520,7 +1520,7 @@ namespace IRAP.WCF.Client.Method
                         out errText);
                     WriteLog.Instance.Write(
                         string.Format(
-                            "({0}){1}", errCode, errText), 
+                            "({0}){1}", errCode, errText),
                         strProcedureName);
 
                     if (errCode == 0)
@@ -1550,18 +1550,18 @@ namespace IRAP.WCF.Client.Method
         /// <param name="t107LeafID">工位叶标识</param>
         /// <param name="unixTime">时点Unix时间</param>
         public void ufn_GetT216LeafID(
-            int communityID, 
-            int t102LeafID, 
-            int t107LeafID, 
-            int unixTime, 
-            ref int t216LeafID, 
-            out int errCode, 
+            int communityID,
+            int t102LeafID,
+            int t107LeafID,
+            int unixTime,
+            ref int t216LeafID,
+            out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
-                    "{0}.{1}", 
-                    className, 
+                    "{0}.{1}",
+                    className,
                     MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -1599,7 +1599,7 @@ namespace IRAP.WCF.Client.Method
                                 out errCode,
                                 out errText);
                             WriteLog.Instance.Write(
-                                string.Format("({0}){1}", errCode, errText), 
+                                string.Format("({0}){1}", errCode, errText),
                                 strProcedureName);
 
                             if (errCode == 0)
@@ -1836,6 +1836,75 @@ namespace IRAP.WCF.Client.Method
                 errText = error.Message;
                 WriteLog.Instance.Write(errText, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取注册测量仪表清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        public void ufn_GetList_RegInstruments(
+        int communityID,
+        ref List<RegInstrument> datas,
+        out int errCode,
+        out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_RegInstruments 函数， " +
+                        "参数：CommunityID={0}",
+                        communityID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
+                            "ufn_GetList_RegInstruments",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<RegInstrument>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
             }
             finally
             {
