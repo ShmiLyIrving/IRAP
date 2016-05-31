@@ -25,6 +25,8 @@ namespace IRAP_FVS_SPCO
         private static extern bool ShowWindowAsync(IntPtr hWnd, int cmdShow);
         [DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
 
         private string brokerUri = "";
         private string queueName = "";
@@ -56,8 +58,12 @@ namespace IRAP_FVS_SPCO
         {
             Process current = Process.GetCurrentProcess();
 
-            ShowWindowAsync(current.MainWindowHandle, WS_SHOWMAXIMIZE);
-            SetForegroundWindow(current.MainWindowHandle);
+            IntPtr hWnd = GetForegroundWindow();
+            if (hWnd != current.MainWindowHandle)
+            {
+                ShowWindowAsync(current.MainWindowHandle, WS_SHOWMAXIMIZE);
+                SetForegroundWindow(current.MainWindowHandle);
+            }
         }
 
         private void InitConsumer()
@@ -71,7 +77,7 @@ namespace IRAP_FVS_SPCO
             IMessageConsumer consumer =
                 session.CreateConsumer(
                     new ActiveMQQueue(queueName),
-                    "filter='121.225.92.136'");
+                    "filter='122.234.10.131'");
             consumer.Listener += new MessageListener(consumer_Listener);
         }
 

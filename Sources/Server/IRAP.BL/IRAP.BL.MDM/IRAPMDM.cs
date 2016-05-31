@@ -3554,6 +3554,7 @@ namespace IRAP.BL.MDM
                     errText = string.Format(
                         "调用 IRAPMDM..ufn_GetList_RegInstruments 函数发生异常：{0}",
                         error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
                 }
                 #endregion
 

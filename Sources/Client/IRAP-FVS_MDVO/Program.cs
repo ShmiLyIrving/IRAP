@@ -30,7 +30,7 @@ namespace IRAP_FVS_MDVO
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.Skins.SkinManager.EnableFormSkins();
             DevExpress.Utils.AppearanceObject.DefaultFont = 
-                new System.Drawing.Font("微软雅黑", 9.75f);
+                new System.Drawing.Font("微软雅黑", 14.25f);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

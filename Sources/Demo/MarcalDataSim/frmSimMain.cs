@@ -22,13 +22,26 @@ namespace MarcalDataSim
         {
             InitializeComponent();
 
-            IPHostEntry hostInfo = Dns.GetHostEntry(@"irap.vicp.net");
-            IPAddress[] ips = hostInfo.AddressList;
-            ipep = new IPEndPoint(IPAddress.Parse(ips[0].ToString()), 40000);
+            //IPHostEntry hostInfo = Dns.GetHostEntry(@"irap.vicp.net");
+            IPHostEntry hostInfo = Dns.GetHostEntry(@"localhost");
+
+            foreach (IPAddress ip in hostInfo.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    ipep = new IPEndPoint(ip, 30000);
+                }
+            }
+            //ipep = new IPEndPoint(IPAddress.Parse(ips[0].ToString()), 40000);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
+            if (ipep == null)
+            {
+                WriteLog("初始化 Socket 服务地址失败");
+            }
+
             try
             {
                 string outBufferStr;

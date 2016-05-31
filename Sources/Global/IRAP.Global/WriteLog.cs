@@ -70,7 +70,10 @@ namespace IRAP.Global
                 Configuration config =
                     ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-                return config.AppSettings.Settings["WriteLog"].Value.ToString().ToUpper() == "TRUE";
+                if (config.AppSettings.Settings["WriteLog"] != null)
+                    return config.AppSettings.Settings["WriteLog"].Value.ToString().ToUpper() == "TRUE";
+                else
+                    return false;
             }
             set
             {
