@@ -67,13 +67,26 @@ namespace IRAP.Global
             //set { IniFile.WriteBool("Logs", "Write Log", value, attributeFileName); }
             get
             {
-                Configuration config =
-                    ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                return ConfigurationManager.AppSettings["WriteLog"].ToString().ToUpper() == "TRUE";
+                //if (ConfigurationManager.AppSettings["WriteLog"])
 
-                if (config.AppSettings.Settings["WriteLog"] != null)
-                    return config.AppSettings.Settings["WriteLog"].Value.ToString().ToUpper() == "TRUE";
-                else
-                    return false;
+                //Configuration config = null;
+                //try
+                //{
+                //    config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                //}
+                //catch
+                //{ }
+
+                //if (config == null)
+                //{
+                //    config = ConfigurationManager.ope
+                //}
+
+                //if (config.AppSettings.Settings["WriteLog"] != null)
+                //    return config.AppSettings.Settings["WriteLog"].Value.ToString().ToUpper() == "TRUE";
+                //else
+                //    return false;
             }
             set
             {
