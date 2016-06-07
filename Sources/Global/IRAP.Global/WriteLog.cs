@@ -182,6 +182,12 @@ namespace IRAP.Global
             }
         }
 
+        public void Write(string logFileName, string msg, string modeName = "COMM")
+        {
+            WriteLogFileName = logFileName;
+            Write(msg, modeName);
+        }
+
         public void WriteBeginSplitter(string modeName)
         {
             string msg = " BEGIN ";
@@ -191,6 +197,12 @@ namespace IRAP.Global
             Write(msg, modeName);
         }
 
+        public void WriteBeginSplitter(string logFileName, string modeName)
+        {
+            WriteLogFileName = logFileName;
+            WriteBeginSplitter(modeName);
+        }
+
         public void WriteEndSplitter(string modeName)
         {
             string msg = " END ";
@@ -198,6 +210,12 @@ namespace IRAP.Global
             msg = msg.PadRight(msg.Length + 15, '=');
 
             Write(msg, modeName);
+        }
+
+        public void WriteEndSplitter(string logFileName, string modeName)
+        {
+            WriteLogFileName = logFileName;
+            WriteEndSplitter(modeName);
         }
         #endregion
     }
