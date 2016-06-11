@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <Upgrade URL="http:127.0.0.1:80/Upgrade/IRAP-FVS_MDVO/Update.xml"/>
+  <Upgrade URL="http://127.0.0.1:80/Upgrade/IRAP-FVS_MDVO/Update.xml"/>
 </root>
