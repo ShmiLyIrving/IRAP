@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AgencyInfo.cs" />
     <Compile Include="CMDString.cs" />
+    <Compile Include="EntityCIDInfo.cs" />
     <Compile Include="MenuInfo.cs" />
     <Compile Include="PortalLink.cs" />
     <Compile Include="ProcessInfo.cs" />

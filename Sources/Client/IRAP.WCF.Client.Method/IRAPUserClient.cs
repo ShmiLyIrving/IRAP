@@ -805,5 +805,67 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        public void sfn_CIDInfo(
+            string idCardNo,
+            ref EntityCIDInfo idInfo,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                idInfo = new EntityCIDInfo();
+
+                #region 将函数调用参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("idCardNo", idCardNo);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_CIDInfo，输入参数：" +
+                        "idCardNo={0}",
+                        idCardNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.SSO.dll",
+                            "IRAP.BL.SSO.IRAPUser",
+                            "sfn_CIDInfo",
+                            hashParams,
+                            out errCode,
+                            out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        idInfo = rlt as EntityCIDInfo;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

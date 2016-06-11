@@ -148,9 +148,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="IRAP-FVS_MDVO.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="pad128x128_96x96.ico" />
     <Content Include="Resources\机床.jpg" />
     <Content Include="Resources\Background.jpg" />

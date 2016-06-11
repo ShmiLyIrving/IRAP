@@ -63,6 +63,17 @@ namespace IRAP_FVS_MDVO
             BackgroundImageLayout = ImageLayout.Stretch;
 
             needRefreshed = true;
+
+            {
+                int errCode = 0;
+                string errText = "";
+                EntityCIDInfo idInfo = new EntityCIDInfo();
+
+                IRAPUserClient.Instance.sfn_CIDInfo("310106197205182011", ref idInfo, out errCode, out errText);
+                WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText));
+                MessageBox.Show(idInfo.Birthday.ToString());
+            }
+
         }
 
         #region 自定义函数
