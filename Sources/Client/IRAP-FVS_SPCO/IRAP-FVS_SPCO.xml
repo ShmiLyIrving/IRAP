@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <Upgrade URL="http://192.168.57.202:80/IRAP/Upgrade/IRAP-FVS_SPCO/Upgrade.xml" />
+</root>

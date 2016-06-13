@@ -170,7 +170,11 @@ namespace IRAP.AutoUpgrade
         /// <summary>
         /// 开始自动升级应用程序
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///  0：无需升级
+        /// -1：升级完成，或者部分升级完成，需要重启程序
+        /// -2：升级失败，退出程序
+        /// </returns>
         public int Do()
         {
             string strProcedureName =
@@ -284,7 +288,14 @@ namespace IRAP.AutoUpgrade
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    return -1;
+                    XtraMessageBox.Show(
+                        string.Format(
+                            "程序升级失败，原因：{0}",
+                            error.Message),
+                        "自动升级",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return -2;
                 }
             }
             finally

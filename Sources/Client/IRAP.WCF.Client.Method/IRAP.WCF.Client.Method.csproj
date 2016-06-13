@@ -72,6 +72,10 @@
       <Project>{5feb6cb3-68c9-4e06-814b-c071743bf5a2}</Project>
       <Name>IRAP.Entity.MDM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.MES\IRAP.Entity.MES.csproj">
+      <Project>{c78cdb3f-f78a-4c17-b5c8-e2e88a0a5947}</Project>
+      <Name>IRAP.Entity.MES</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
       <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>
       <Name>IRAP.Entity.SSO</Name>

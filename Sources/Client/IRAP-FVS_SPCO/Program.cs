@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
 
 using IRAP.AutoUpgrade;
 
@@ -22,6 +24,30 @@ namespace IRAP_FVS_SPCO
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+#if !DEBUG
+            #region 系统自动更新
+            Upgrade.Instance.UpgradeCFGFileName =
+                string.Format(
+                    @"{0}\IRAP-FVS_SPCO.xml",
+                    Directory.GetCurrentDirectory());
+            if (Upgrade.Instance.CanUpgrade)
+            {
+                int upgradeRlt = Upgrade.Instance.Do();
+                switch (upgradeRlt)
+                {
+                    case 0:
+                        break;
+                    case -1:
+                        Process.Start(Application.ExecutablePath);
+                        return;
+                    case -2:
+                        return;
+                }
+            }
+            #endregion
+#endif
+
             Application.Run(new frmSPCOMain());
         }
     }
