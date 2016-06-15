@@ -131,6 +131,35 @@ namespace IRAP.Entity.MDM
         /// </summary>
         public string DstStoreLocCode { get; set; }
 
+        /// <summary>
+        /// 正在生产的工序叶标识
+        /// </summary>
+        public int T216LeafID { get; set; }
+        /// <summary>
+        /// 正在生产的设备叶标识
+        /// </summary>
+        public int T133LeafID { get; set; }
+        /// <summary>
+        /// SPC 控制图类型：0=不控制；373564=彩虹图；373565=XBar-R图
+        /// </summary>
+        public int T47LeafID { get; set; }
+        /// <summary>
+        /// SPC 控制的参数叶标识
+        /// </summary>
+        public int T20LeafID { get; set; }
+        /// <summary>
+        /// 控制线下限（XBar-R图有效）
+        /// </summary>
+        public long LCL { get; set; }
+        /// <summary>
+        /// 控制线上限（XBar-R图有效）
+        /// </summary>
+        public long UCL { get; set; }
+        /// <summary>
+        /// 控制线设置日期
+        /// </summary>
+        public string CLSetDate { get; set; }
+
         public WIPStationProductionStatus Clone()
         {
             WIPStationProductionStatus rlt = MemberwiseClone() as WIPStationProductionStatus;
