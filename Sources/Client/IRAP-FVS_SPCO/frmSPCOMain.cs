@@ -212,6 +212,12 @@ namespace IRAP_FVS_SPCO
                             chart.DrawChart(stationUser, workUnit, pwoNo, t20LeafID);
                             return;
                         }
+                        if (control is ucXBarRChart)
+                        {
+                            ucXBarRChart chart = control as ucXBarRChart;
+                            chart.DrawChart(stationUser, workUnit, pwoNo, t20LeafID);
+                            return;
+                        }
                     }
                 }
             }
@@ -395,16 +401,28 @@ namespace IRAP_FVS_SPCO
 
                                 foreach (WIPStationProductionStatus workUnit in workUnits)
                                 {
+                                    if (workUnit.T47LeafID == 0)
+                                        return;
+
                                     XtraTabPage page = tcMain.TabPages.Add();
                                     page.Text = workUnit.T107Name;
                                     page.Tag = workUnit;
 
-                                    ucRainBowChart chart = new ucRainBowChart();
-                                    chart.Dock = DockStyle.Fill;
-                                    chart.Parent = page;
-
-                                    //chart.DrawChart(stationUser, workUnit, "1C3PK1A7BA50422003", 352942);
-                                    InitConsumer(workUnit.T107Code);
+                                    switch (workUnit.T47LeafID)
+                                    {
+                                        case 373564:
+                                            ucRainBowChart chartRainBow = new ucRainBowChart();
+                                            chartRainBow.Dock = DockStyle.Fill;
+                                            chartRainBow.Parent = page;
+                                            InitConsumer(workUnit.T107Code);
+                                            break;
+                                        case 373565:
+                                            ucXBarRChart chartXBarR = new ucXBarRChart();
+                                            chartXBarR.Dock = DockStyle.Fill;
+                                            chartXBarR.Parent = page;
+                                            InitConsumer(workUnit.T107Code);
+                                            break;
+                                    }
                                 }
                             }
                             else

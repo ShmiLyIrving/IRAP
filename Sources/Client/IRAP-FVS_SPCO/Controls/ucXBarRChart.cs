@@ -20,15 +20,16 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP_FVS_SPCO
 {
-    public partial class ucRainBowChart : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucXBarRChart : DevExpress.XtraEditors.XtraUserControl
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        public ucRainBowChart()
+        public ucXBarRChart()
         {
             InitializeComponent();
         }
+
 
         public void DrawChart(
             StationLogin stationUser,
@@ -42,7 +43,7 @@ namespace IRAP_FVS_SPCO
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            #region 获取彩虹图数据
+            #region 获取 XBar-R 图数据
             EntitySPCChart data = new EntitySPCChart();
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -51,8 +52,8 @@ namespace IRAP_FVS_SPCO
                 string errText = "";
 
                 IRAPMESClient.Instance.ufn_GetInfo_SPCChart(
-                    stationUser.CommunityID, // 60010,
-                    pwoNo, // "1C3PK1A7BA50422003",
+                    stationUser.CommunityID, //60010,
+                    pwoNo, //"1C3PK1A7BA50422003",
                     workUnit.T47LeafID, // 373564,
                     workUnit.T216LeafID, // 2155621,
                     workUnit.T133LeafID, //2155684,
@@ -96,8 +97,8 @@ namespace IRAP_FVS_SPCO
             edtMeasuredDate.Text = data.MeasuredDate;
             #endregion
 
-            #region 绘制彩虹图
-            chartRainBow.Series.Clear();
+            #region 绘制 XBar-R 图
+            chartXBar.Series.Clear();
 
             Series pointMeasureData = new Series("测量值", ViewType.Point)
             {
@@ -116,7 +117,7 @@ namespace IRAP_FVS_SPCO
             List<SPCChartMeasureData> datas = data.XMLToList();
             foreach (SPCChartMeasureData pointData in datas)
             {
-                SeriesPoint point = 
+                SeriesPoint point =
                     new SeriesPoint(
                         pointData.MeasureTime,
                         pointData.Metric01.DoubleValue);
@@ -124,9 +125,9 @@ namespace IRAP_FVS_SPCO
                 pointMeasureData.Points.Add(point);
             }
 
-            chartRainBow.Series.Add(pointMeasureData);
+            chartXBar.Series.Add(pointMeasureData);
 
-            XYDiagram xyDiagram = chartRainBow.Diagram as XYDiagram;
+            XYDiagram xyDiagram = chartXBar.Diagram as XYDiagram;
             if (xyDiagram != null)
             {
                 double midValue =
@@ -188,15 +189,15 @@ namespace IRAP_FVS_SPCO
                 xyDiagram.AxisY.Strips.Add(strip);
             }
 
-            chartRainBow.Legend.Font = font;
+            chartXBar.Legend.Font = font;
             #endregion
 
             #region 如果有需要报警的消息，则弹出报警对话框
             switch (data.AnomalyType)
             {
                 case 0:
-                case 1:
                     break;
+                case 1:
                 case 2:
                 case 3:
                 case 4:

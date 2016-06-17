@@ -73,6 +73,12 @@
     <Compile Include="Controls\ucRainBowChart.Designer.cs">
       <DependentUpon>ucRainBowChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ucXBarRChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ucXBarRChart.Designer.cs">
+      <DependentUpon>ucXBarRChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSPCOMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\ucRainBowChart.resx">
       <DependentUpon>ucRainBowChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ucXBarRChart.resx">
+      <DependentUpon>ucXBarRChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSPCOMain.resx">
       <DependentUpon>frmSPCOMain.cs</DependentUpon>
