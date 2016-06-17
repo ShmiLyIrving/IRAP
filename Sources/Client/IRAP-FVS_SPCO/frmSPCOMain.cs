@@ -145,6 +145,7 @@ namespace IRAP_FVS_SPCO
                         string pwoNo = "";
                         string t107Code = "";
                         int t20LeafID = 0;
+                        DateTime sendTime = DateTime.Now;
 
                         if (node.Attributes["T107Code"] != null)
                             t107Code = node.Attributes["T107Code"].Value;
@@ -158,15 +159,22 @@ namespace IRAP_FVS_SPCO
                             t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
                         else
                             return;
+                        if (node.Attributes["SendDateTime"] != null)
+                            sendTime = DateTime.Parse(node.Attributes["SendDateTime"].Value);
+                        else
+                            return;
 
-                        // 切换到消息中指定工位的显示面板
-                        object[] parameters = new object[4];
-                        parameters[0] = tcMain;
-                        parameters[1] = t107Code;
-                        parameters[2] = pwoNo;
-                        parameters[3] = t20LeafID;
+                        if ((DateTime.Now - sendTime).TotalSeconds <= 180)
+                        {
+                            // 切换到消息中指定工位的显示面板
+                            object[] parameters = new object[4];
+                            parameters[0] = tcMain;
+                            parameters[1] = t107Code;
+                            parameters[2] = pwoNo;
+                            parameters[3] = t20LeafID;
 
-                        BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
+                            BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
+                        }
                     }
                 }
                 catch (Exception error)

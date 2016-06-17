@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSPCOMain));
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnClose = new System.Windows.Forms.Button();
@@ -178,7 +179,7 @@
             // xtraTabPage2
             // 
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(855, 244);
+            this.xtraTabPage2.Size = new System.Drawing.Size(855, 348);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // lblErrorMessage
@@ -213,6 +214,7 @@
             this.DoubleBuffered = true;
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSPCOMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Shown += new System.EventHandler(this.frmSPCOMain_Shown);

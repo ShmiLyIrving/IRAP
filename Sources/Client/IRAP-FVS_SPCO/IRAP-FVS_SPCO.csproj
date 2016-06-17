@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ch.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apache.NMS">
       <HintPath>..\..\..\Packages\Apache.NMS.1.6.0\net-4.0\release\Apache.NMS.dll</HintPath>
@@ -145,6 +148,8 @@
     <None Include="Resources\cancel_32x32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ch.ico" />
+    <Content Include="ch64.ico" />
     <Content Include="IRAP-FVS_SPCO.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
