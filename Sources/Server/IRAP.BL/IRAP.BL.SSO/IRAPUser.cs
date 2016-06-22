@@ -794,5 +794,69 @@ namespace IRAP.BL.SSO
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        public IRAPJsonResult sfn_CIDInfo(
+            string idCardNo,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                EntityCIDInfo data = new EntityCIDInfo();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@IDCardNo", DbType.String, idCardNo));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 sfn_CIDInfo，" +
+                        "参数：IDCardNo={0}",
+                        idCardNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPOracleConnection conn = new IRAPOracleConnection())
+                    {
+                        IList<EntityCIDInfo> lstDatas = conn.CallFunction<EntityCIDInfo>("sfn_CIDInfo", paramList);
+                        if (lstDatas.Count > 0)
+                        {
+                            data = lstDatas[0].Clone();
+                            errCode = 0;
+                            errText = string.Format("调用成功！共获得 {0} 条记录", lstDatas.Count);
+                        }
+                        else
+                        {
+                            errCode = 99001;
+                            errText = string.Format("身份证号[{0}]解析失败！", idCardNo);
+                        }
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 sfn_CIDInfo 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(data);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

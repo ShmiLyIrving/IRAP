@@ -75,6 +75,7 @@
     <Compile Include="ToolingStandard.cs" />
     <Compile Include="TreeViewNode.cs" />
     <Compile Include="WIPStationProductionStatus.cs" />
+    <Compile Include="WIPStationSPCMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Entity.MDM.cd" />
