@@ -3571,10 +3571,12 @@ namespace IRAP.BL.MDM
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="filterString">根据工位代码进行过滤</param>
         /// <returns>List[WIPStationSPCMonitor]</returns>
         public IRAPJsonResult ufn_GetList_WIPStationSPCMonitor(
             int communityID,
             long sysLogID,
+            string filterString,
             out int errCode,
             out string errText)
         {
@@ -3596,9 +3598,10 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMDM..ufn_GetList_WIPStationSPCMonitor，" +
-                        "参数：CommunityID={0}|SysLogID={1}",
+                        "参数：CommunityID={0}|SysLogID={1}|FilterString={2}",
                         communityID,
-                        sysLogID),
+                        sysLogID,
+                        filterString),
                     strProcedureName);
                 #endregion
 
@@ -3607,15 +3610,24 @@ namespace IRAP.BL.MDM
                 {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
-                        string strSQL = "SELECT * " +
-                            "FROM IRAPMDM..ufn_GetList_WIPStationSPCMonitor(" +
-                            "@CommunityID, @SysLogID) ORDER BY Ordinal";
+                        string filter = "";
+                        if (filterString != "")
+                            filter = string.Format("WHERE T107Code='{0}' ", filterString);
+
+                        string strSQL = 
+                            string.Format(
+                                "SELECT * " +
+                                "FROM IRAPMDM..ufn_GetList_WIPStationSPCMonitor(" +
+                                "@CommunityID, @SysLogID) {0}ORDER BY Ordinal",
+                                filter);
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
 
                         IList<WIPStationSPCMonitor> lstDatas =
                             conn.CallTableFunc<WIPStationSPCMonitor>(strSQL, paramList);
                         datas = lstDatas.ToList<WIPStationSPCMonitor>();
                         errCode = 0;
                         errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
                     }
                 }
                 catch (Exception error)
