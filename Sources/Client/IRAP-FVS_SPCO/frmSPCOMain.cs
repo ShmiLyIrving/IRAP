@@ -35,6 +35,9 @@ namespace IRAP_FVS_SPCO
             XtraTabControl tabControl, 
             string t107Code, 
             string pwoNo, 
+            int t47LeafID,
+            int t216LeafID,
+            int t133LeafID,
             int t20LeafID);
 
         private const int WS_SHOWMAXIMIZE = 3;
@@ -51,6 +54,7 @@ namespace IRAP_FVS_SPCO
         private string macAddress = "";
         private StationLogin stationUser = null;
         private List<WIPStationProductionStatus> workUnits = new List<WIPStationProductionStatus>();
+        private List<XtraUserControl> ucCharts = new List<XtraUserControl>();
 
         public frmSPCOMain()
         {
@@ -63,7 +67,7 @@ namespace IRAP_FVS_SPCO
             if (config.AppSettings.Settings["ActiveMQ_URI"] != null)
                 brokerUri = config.AppSettings.Settings["ActiveMQ_URI"].Value;
             if (brokerUri.Trim() == "")
-                brokerUri = "tcp://192.168.57.208:61616";
+                brokerUri = "failover:tcp://192.168.57.208:61616";
 
             if (config.AppSettings.Settings["ActiveMQ_QueueName"] != null)
                 queueName = config.AppSettings.Settings["ActiveMQ_QueueName"].Value;
@@ -103,17 +107,34 @@ namespace IRAP_FVS_SPCO
 
         private void InitConsumer(string filterString)
         {
-            IConnectionFactory factory = new ConnectionFactory(brokerUri);
-            IConnection connection = factory.CreateConnection();
-            connection.ClientId = Guid.NewGuid().ToString();
-            connection.Start();
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
 
-            ISession session = connection.CreateSession();
-            IMessageConsumer consumer =
-                session.CreateConsumer(
-                    new ActiveMQQueue(queueName),
-                    string.Format("filter='{0}'", filterString));
-            consumer.Listener += new MessageListener(consumer_Listener);
+            try
+            {
+                IConnectionFactory factory = new ConnectionFactory(brokerUri);
+                IConnection connection = factory.CreateConnection();
+                connection.ClientId = Guid.NewGuid().ToString();
+                connection.Start();
+
+                ISession session = connection.CreateSession();
+                IMessageConsumer consumer =
+                    session.CreateConsumer(
+                        new ActiveMQQueue(queueName),
+                        string.Format("filter='{0}'", filterString));
+                consumer.Listener += new MessageListener(consumer_Listener);
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "创建ActiveMQ侦听失败：{0}",
+                        error.Message), 
+                    strProcedureName);
+            }
         }
 
         private void consumer_Listener(IMessage message)
@@ -144,6 +165,9 @@ namespace IRAP_FVS_SPCO
                     {
                         string pwoNo = "";
                         string t107Code = "";
+                        int t47LeafID = 0;
+                        int t216LeafID = 0;
+                        int t133LeafID = 0;
                         int t20LeafID = 0;
                         DateTime sendTime = DateTime.Now;
 
@@ -153,6 +177,18 @@ namespace IRAP_FVS_SPCO
                             return;
                         if (node.Attributes["PWONo"] != null)
                             pwoNo = node.Attributes["PWONo"].Value;
+                        else
+                            return;
+                        if (node.Attributes["T47LeafID"] != null)
+                            t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
+                        else
+                            return;
+                        if (node.Attributes["T216LeafID"] != null)
+                            t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
+                        else
+                            return;
+                        if (node.Attributes["T133LeafID"] != null)
+                            t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
                         else
                             return;
                         if (node.Attributes["T20LeafID"] != null)
@@ -167,11 +203,14 @@ namespace IRAP_FVS_SPCO
                         if ((DateTime.Now - sendTime).TotalSeconds <= 180)
                         {
                             // 切换到消息中指定工位的显示面板
-                            object[] parameters = new object[4];
+                            object[] parameters = new object[7];
                             parameters[0] = tcMain;
                             parameters[1] = t107Code;
                             parameters[2] = pwoNo;
-                            parameters[3] = t20LeafID;
+                            parameters[3] = t47LeafID;
+                            parameters[4] = t216LeafID;
+                            parameters[5] = t133LeafID;
+                            parameters[6] = t20LeafID;
 
                             BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
                         }
@@ -192,33 +231,42 @@ namespace IRAP_FVS_SPCO
             XtraTabControl tabControl,
             string t107Code,
             string pwoNo,
+            int t47LeafID,
+            int t216LeafID,
+            int t133LeafID,
             int t20LeafID)
         {
             foreach (XtraTabPage page in tabControl.TabPages)
             {
                 if (page.Tag == null)
-                    return;
+                    continue;
 
                 WIPStationProductionStatus workUnit = page.Tag as WIPStationProductionStatus;
                 if (workUnit.T107Code == t107Code)
                 {
-
-                    tabControl.SelectedTabPage = page;
-                    foreach (Control control in page.Controls)
-                    {
-                        if (control is ucRainBowChart)
-                        {
-                            ucRainBowChart chart = control as ucRainBowChart;
-                            chart.DrawChart(stationUser, workUnit, pwoNo, t20LeafID);
-                            return;
-                        }
-                        if (control is ucXBarRChart)
-                        {
-                            ucXBarRChart chart = control as ucXBarRChart;
-                            chart.DrawChart(stationUser, workUnit, pwoNo, t20LeafID);
-                            return;
-                        }
-                    }
+                    if (tabControl.SelectedTabPage != page)
+                        tabControl.SelectedTabPage = page;
+                    else
+                        tcMain_SelectedPageChanged(
+                            tcMain,
+                            new TabPageChangedEventArgs(
+                                tabControl.SelectedTabPage,
+                                page));
+                    //foreach (Control control in page.Controls)
+                    //{
+                    //    if (control is ucRainBowChart)
+                    //    {
+                    //        ucRainBowChart chart = control as ucRainBowChart;
+                    //        chart.DrawChart(stationUser, workUnit, pwoNo, t216LeafID, t133LeafID, t20LeafID);
+                    //        return;
+                    //    }
+                    //    if (control is ucXBarRChart)
+                    //    {
+                    //        ucXBarRChart chart = control as ucXBarRChart;
+                    //        chart.DrawChart(stationUser, workUnit, pwoNo, t20LeafID);
+                    //        return;
+                    //    }
+                    //}
                 }
             }
         }
@@ -382,6 +430,7 @@ namespace IRAP_FVS_SPCO
 
             if (stationUser != null)
             {
+                #region 获取当前站点监管的工位列表，并根据工位列表生成控制图
                 if (stationUser.SysLogID > 0)
                 {
                     if (!xtraScrollableControl.Visible)
@@ -401,28 +450,29 @@ namespace IRAP_FVS_SPCO
 
                                 foreach (WIPStationProductionStatus workUnit in workUnits)
                                 {
-                                    if (workUnit.T47LeafID == 0)
-                                        return;
+#if DEBUG
+                                    //workUnit.T47LeafID = 373564;
+#endif
 
                                     XtraTabPage page = tcMain.TabPages.Add();
                                     page.Text = workUnit.T107Name;
                                     page.Tag = workUnit;
 
-                                    switch (workUnit.T47LeafID)
-                                    {
-                                        case 373564:
-                                            ucRainBowChart chartRainBow = new ucRainBowChart();
-                                            chartRainBow.Dock = DockStyle.Fill;
-                                            chartRainBow.Parent = page;
-                                            InitConsumer(workUnit.T107Code);
-                                            break;
-                                        case 373565:
-                                            ucXBarRChart chartXBarR = new ucXBarRChart();
-                                            chartXBarR.Dock = DockStyle.Fill;
-                                            chartXBarR.Parent = page;
-                                            InitConsumer(workUnit.T107Code);
-                                            break;
-                                    }
+                                    ucUncontrolChart chartNone = new ucUncontrolChart();
+                                    chartNone.Dock = DockStyle.Fill;
+                                    chartNone.Parent = page;
+                                    InitConsumer(workUnit.T107Code);
+
+                                    ucCharts.Add(chartNone);
+                                }
+
+                                if (tcMain.TabPages.Count > 0)
+                                {
+                                    tcMain_SelectedPageChanged(
+                                        tcMain,
+                                        new TabPageChangedEventArgs(
+                                            null,
+                                            tcMain.TabPages[0]));
                                 }
                             }
                             else
@@ -434,6 +484,131 @@ namespace IRAP_FVS_SPCO
                         {
                             btnClose.Visible = true;
                         }
+                    }
+                }
+                #endregion
+            }
+        }
+
+        private void tcMain_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
+        {
+            if (e.Page != null && e.Page.Tag != null && e.Page.Tag is WIPStationProductionStatus)
+            {
+                string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+
+                WIPStationProductionStatus workUnit = e.Page.Tag as WIPStationProductionStatus;
+                int pageIndex = tcMain.TabPages.IndexOf(e.Page);
+
+                int errCode = 0;
+                string errText = "";
+                List<WIPStationSPCMonitor> datas = new List<WIPStationSPCMonitor>();
+
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                try
+                {
+                    IRAPMDMClient.Instance.ufn_GetList_WIPStationSPCMonitor(
+                        stationUser.CommunityID,
+                        stationUser.SysLogID,
+                        workUnit.T107Code,
+                        ref datas,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText),
+                        strProcedureName);
+                    if (errCode != 0)
+                    {
+                        XtraMessageBox.Show(
+                            errText,
+                            "系统信息",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                finally
+                {
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
+
+                int t47LeafID = 0;
+                if (datas.Count > 0)
+                {
+                    t47LeafID = datas[0].T47LeafID;
+                }
+
+                if (t47LeafID == 0)
+                {
+                    if (!(ucCharts[pageIndex] is ucUncontrolChart))
+                    {
+                        tcMain.TabPages[pageIndex].Controls.Remove(ucCharts[pageIndex]);
+                        ucCharts[pageIndex] = null;
+
+                        ucCharts[pageIndex] =
+                            new ucUncontrolChart()
+                            {
+                                Dock = DockStyle.Fill,
+                                Parent = e.Page,
+                            };
+                    }
+                }
+                else
+                {
+                    switch (t47LeafID)
+                    {
+                        case 373564:
+                            if (!(ucCharts[pageIndex] is ucRainBowChart))
+                            {
+                                tcMain.TabPages[pageIndex].Controls.Remove(ucCharts[pageIndex]);
+                                ucCharts[pageIndex] = null;
+
+                                ucRainBowChart chartRainBow =
+                                    new ucRainBowChart()
+                                    {
+                                        Dock = DockStyle.Fill,
+                                        Parent = e.Page,
+                                    };
+
+                                ucCharts[pageIndex] = chartRainBow;
+                            }
+
+                            (ucCharts[pageIndex] as ucRainBowChart).DrawChart(
+                                stationUser,
+                                workUnit,
+                                datas[0].PWONo_InExecution,
+                                datas[0].T216LeafID,
+                                datas[0].T133LeafID,
+                                datas[0].T20LeafID);
+
+                            break;
+                        case 373565:
+                            if (!(ucCharts[pageIndex] is ucXBarRChart))
+                            {
+                                tcMain.TabPages[pageIndex].Controls.Remove(ucCharts[pageIndex]);
+                                ucCharts[pageIndex] = null;
+
+                                ucXBarRChart chartXbarR =
+                                    new ucXBarRChart()
+                                    {
+                                        Dock = DockStyle.Fill,
+                                        Parent = e.Page,
+                                    };
+
+                                ucCharts[pageIndex] = chartXbarR;
+                            }
+
+                            (ucCharts[pageIndex] as ucRainBowChart).DrawChart(
+                                stationUser,
+                                workUnit,
+                                datas[0].PWONo_InExecution,
+                                datas[0].T216LeafID,
+                                datas[0].T133LeafID,
+                                datas[0].T20LeafID);
+                            break;
                     }
                 }
             }

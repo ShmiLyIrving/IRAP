@@ -1848,10 +1848,10 @@ namespace IRAP.WCF.Client.Method
         /// </summary>
         /// <param name="communityID">社区标识</param>
         public void ufn_GetList_RegInstruments(
-        int communityID,
-        ref List<RegInstrument> datas,
-        out int errCode,
-        out string errText)
+            int communityID,
+            ref List<RegInstrument> datas,
+            out int errCode,
+            out string errText)
         {
             string strProcedureName =
                 string.Format(
@@ -1896,6 +1896,82 @@ namespace IRAP.WCF.Client.Method
                     if (errCode == 0)
                     {
                         datas = rlt as List<RegInstrument>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取工位SPC监控情况
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_WIPStationSPCMonitor(
+            int communityID,
+            long sysLogID,
+            string filterString,
+            ref List<WIPStationSPCMonitor> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("filterString", filterString);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_WIPStationSPCMonitor 函数， " +
+                        "参数：CommunityID={0}|SysLogID={1}|FilterString={2}",
+                        communityID,
+                        sysLogID,
+                        filterString),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
+                            "ufn_GetList_WIPStationSPCMonitor",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<WIPStationSPCMonitor>;
                     }
                 }
                 #endregion

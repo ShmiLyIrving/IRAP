@@ -158,6 +158,11 @@
             this.tcMain.Appearance.Options.UseFont = true;
             this.tcMain.AppearancePage.Header.Font = new System.Drawing.Font("新宋体", 14.25F);
             this.tcMain.AppearancePage.Header.Options.UseFont = true;
+            this.tcMain.AppearancePage.HeaderActive.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Bold);
+            this.tcMain.AppearancePage.HeaderActive.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.tcMain.AppearancePage.HeaderActive.ForeColor = System.Drawing.Color.Blue;
+            this.tcMain.AppearancePage.HeaderActive.Options.UseFont = true;
+            this.tcMain.AppearancePage.HeaderActive.Options.UseForeColor = true;
             this.tcMain.AppearancePage.PageClient.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcMain.AppearancePage.PageClient.Options.UseFont = true;
             this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -169,6 +174,7 @@
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2});
+            this.tcMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tcMain_SelectedPageChanged);
             // 
             // xtraTabPage1
             // 

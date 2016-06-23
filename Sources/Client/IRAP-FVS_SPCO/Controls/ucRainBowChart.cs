@@ -34,6 +34,8 @@ namespace IRAP_FVS_SPCO
             StationLogin stationUser,
             WIPStationProductionStatus workUnit,
             string pwoNo,
+            int t216LeafID,
+            int t133LeafID,
             int t20LeafID)
         {
             string strProcedureName =
@@ -54,8 +56,8 @@ namespace IRAP_FVS_SPCO
                     stationUser.CommunityID, // 60010,
                     pwoNo, // "1C3PK1A7BA50422003",
                     workUnit.T47LeafID, // 373564,
-                    workUnit.T216LeafID, // 2155621,
-                    workUnit.T133LeafID, //2155684,
+                    t216LeafID, // 2155621,
+                    t133LeafID, //2155684,
                     t20LeafID, //352942,
                     stationUser.SysLogID, //101,
                     ref data,
