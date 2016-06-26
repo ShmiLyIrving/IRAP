@@ -507,6 +507,18 @@ namespace IRAP_FVS_SPCO
                 string errText = "";
                 List<WIPStationSPCMonitor> datas = new List<WIPStationSPCMonitor>();
 
+#if DEBUG
+                datas.Add(
+                    new WIPStationSPCMonitor()
+                    {
+                        T47LeafID = 373564,
+                        PWONo_InExecution = "1C3P31BF7W60621003",
+                        T216LeafID = 2155621,
+                        T133LeafID = 2155684,
+                        T20LeafID = 352942,
+                    });
+#else
+
                 WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                 try
                 {
@@ -534,6 +546,7 @@ namespace IRAP_FVS_SPCO
                 {
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
+#endif
 
                 int t47LeafID = 0;
                 if (datas.Count > 0)
@@ -580,6 +593,7 @@ namespace IRAP_FVS_SPCO
                                 stationUser,
                                 workUnit,
                                 datas[0].PWONo_InExecution,
+                                t47LeafID,
                                 datas[0].T216LeafID,
                                 datas[0].T133LeafID,
                                 datas[0].T20LeafID);
@@ -601,12 +615,12 @@ namespace IRAP_FVS_SPCO
                                 ucCharts[pageIndex] = chartXbarR;
                             }
 
-                            (ucCharts[pageIndex] as ucRainBowChart).DrawChart(
+                            (ucCharts[pageIndex] as ucXBarRChart).DrawChart(
                                 stationUser,
                                 workUnit,
                                 datas[0].PWONo_InExecution,
-                                datas[0].T216LeafID,
-                                datas[0].T133LeafID,
+                                //datas[0].T216LeafID,
+                                //datas[0].T133LeafID,
                                 datas[0].T20LeafID);
                             break;
                     }

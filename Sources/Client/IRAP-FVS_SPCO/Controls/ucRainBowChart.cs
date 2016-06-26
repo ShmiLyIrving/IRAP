@@ -34,6 +34,7 @@ namespace IRAP_FVS_SPCO
             StationLogin stationUser,
             WIPStationProductionStatus workUnit,
             string pwoNo,
+            int t47LeafID,
             int t216LeafID,
             int t133LeafID,
             int t20LeafID)
@@ -55,7 +56,7 @@ namespace IRAP_FVS_SPCO
                 IRAPMESClient.Instance.ufn_GetInfo_SPCChart(
                     stationUser.CommunityID, // 60010,
                     pwoNo, // "1C3PK1A7BA50422003",
-                    workUnit.T47LeafID, // 373564,
+                    t47LeafID, // 373564,
                     t216LeafID, // 2155621,
                     t133LeafID, //2155684,
                     t20LeafID, //352942,
@@ -115,13 +116,21 @@ namespace IRAP_FVS_SPCO
             label.Font = font;
             label.TextColor = Color.Black;
 
+            double maxValue = 0;
+            double minValue = 0;
+
             List<SPCChartMeasureData> datas = data.XMLToList();
             foreach (SPCChartMeasureData pointData in datas)
             {
-                SeriesPoint point = 
-                    new SeriesPoint(
-                        pointData.MeasureTime,
-                        pointData.Metric01.DoubleValue);
+                if (maxValue == 0 || maxValue < pointData.Metric01.DoubleValue)
+                    maxValue = pointData.Metric01.DoubleValue;
+                if (minValue == 0 || minValue > pointData.Metric01.DoubleValue)
+                    minValue = pointData.Metric01.DoubleValue;
+
+                SeriesPoint point =
+                        new SeriesPoint(
+                            pointData.MeasureTime,
+                            pointData.Metric01.DoubleValue);
 
                 pointMeasureData.Points.Add(point);
             }
@@ -156,17 +165,25 @@ namespace IRAP_FVS_SPCO
                 WholeRange wholeRange = xyDiagram.AxisY.WholeRange;
                 wholeRange.AlwaysShowZeroLevel = false;
                 wholeRange.Auto = false;
-                wholeRange.MinValue = data.LSLData.DoubleValue;
-                wholeRange.MaxValue = data.USLData.DoubleValue;
+                if (minValue > data.LSLData.DoubleValue)
+                    wholeRange.MinValue = data.LSLData.DoubleValue;
+                else
+                    wholeRange.MinValue = minValue;
+                if (maxValue < data.USLData.DoubleValue)
+                    wholeRange.MaxValue = data.USLData.DoubleValue;
+                else
+                    wholeRange.MaxValue = maxValue;
+                //wholeRange.MinValue = data.LSLData.DoubleValue;
+                //wholeRange.MaxValue = data.USLData.DoubleValue;
                 wholeRange.SideMarginsValue = 1;
                 wholeRange.AutoSideMargins = false;
 
-                VisualRange visualRange = xyDiagram.AxisY.VisualRange;
-                visualRange.Auto = false;
-                visualRange.MinValue = data.LSLData.DoubleValue;
-                visualRange.MaxValue = data.USLData.DoubleValue;
-                visualRange.SideMarginsValue = 1;
-                visualRange.AutoSideMargins = true;
+                //VisualRange visualRange = xyDiagram.AxisY.VisualRange;
+                //visualRange.Auto = false;
+                //visualRange.MinValue = data.LSLData.DoubleValue;
+                //visualRange.MaxValue = data.USLData.DoubleValue;
+                //visualRange.SideMarginsValue = 1;
+                //visualRange.AutoSideMargins = true;
 
                 Strip strip = new Strip();
                 strip.Color = Color.Yellow;
