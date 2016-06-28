@@ -200,5 +200,75 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write("");
             }
         }
+
+        /// <summary>
+        /// 统计过程重置
+        /// ⒈ 更新工艺调整时间点为当前时间点，从此时点以后的数据计入SPC图；
+        /// ⒉ 写工艺调整日志。
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="c1ID">产品工位关联标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult usp_WriteLog_SPCReset(
+            int communityID,
+            int c1ID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@C1ID", DbType.Int32, c1ID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 IRAPMES..usp_WriteLog_SPCReset，参数：CommunityID={0}|" +
+                        "C1ID={1}|SysLogID={2}",
+                        communityID, c1ID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error =
+                        conn.CallProc("IRAPMES..usp_WriteLog_SPCReset", ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+                    return Json(error);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText =
+                    string.Format(
+                        "调用 IRAPMES..usp_WriteLog_SPCReset 函数发生异常：{0}",
+                        error.Message);
+                return Json(
+                    new IRAPError()
+                    {
+                        ErrCode = errCode,
+                        ErrText = errText,
+                    });
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

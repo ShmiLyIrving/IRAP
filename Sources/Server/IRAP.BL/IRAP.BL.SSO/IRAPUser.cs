@@ -718,6 +718,78 @@ namespace IRAP.BL.SSO
             }
         }
 
+        /// <summary>
+        /// 获取机构中用户角色清单用于登录时角色选择
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="userCode">用户代码</param>
+        /// <param name="agencyID">机构实体标识</param>
+        /// <returns>List[RoleInfo]</returns>
+        public IRAPJsonResult sfn_UserRolesInAgency(
+            int communityID,
+            string userCode,
+            int agencyID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<RoleInfo> datas = new List<RoleInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@UserCode", DbType.String, userCode));
+                paramList.Add(new IRAPProcParameter("@AgencyID", DbType.Int32, agencyID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..sfn_UserRolesInAgency，" +
+                        "参数：CommunityID={0}|UserCode={1}|AgencyID={2}",
+                        communityID, userCode, agencyID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAP..sfn_UserRolesInAgency(" +
+                            "@CommunityID, @UserCode, @AgencyID)";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<RoleInfo> lstDatas = conn.CallTableFunc<RoleInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList<RoleInfo>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAP..sfn_UserRolesInAgency 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         public void ssp_SetPWD(string userCode, string userPWD, out int errCode, out string errText)
         {
             throw new System.NotImplementedException();
