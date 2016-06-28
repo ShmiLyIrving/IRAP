@@ -45,14 +45,14 @@ namespace IRAP_FVS_SPCO
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
+            int errCode = 0;
+            string errText = "";
+
             #region 获取彩虹图数据
             EntitySPCChart data = new EntitySPCChart();
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                int errCode = 0;
-                string errText = "";
-
                 IRAPMESClient.Instance.ufn_GetInfo_SPCChart(
                     stationUser.CommunityID, // 60010,
                     pwoNo, // "1C3PK1A7BA50422003",
@@ -120,6 +120,9 @@ namespace IRAP_FVS_SPCO
             double minValue = 0;
 
             List<SPCChartMeasureData> datas = data.XMLToList();
+            List<ConstantLine> clineAxisXs = new List<ConstantLine>();
+            int opType = -1;
+
             foreach (SPCChartMeasureData pointData in datas)
             {
                 if (maxValue == 0 || maxValue < pointData.Metric01.DoubleValue)
@@ -129,10 +132,44 @@ namespace IRAP_FVS_SPCO
 
                 SeriesPoint point =
                         new SeriesPoint(
-                            pointData.MeasureTime,
+                            pointData.Ordinal,
                             pointData.Metric01.DoubleValue);
+                //point.Argument = 
+                //    string.Format(
+                //        "时间点：{0}；测量值：{1}", 
+                //        pointData.MeasureTime, 
+                //        pointData.Metric01.ToString());
 
                 pointMeasureData.Points.Add(point);
+
+                if (opType != pointData.OpType)
+                {
+                    opType = pointData.OpType;
+
+                    if (opType == 4 || opType == 5 || opType == 6)
+                    {
+                        ConstantLine clineX = new ConstantLine();
+                        clineX.ShowInLegend = false;
+                        clineX.AxisValueSerializable = pointData.MeasureTime;
+                        switch (opType)
+                        {
+                            case 4:
+                                clineX.Title.Text = "首检开始";
+                                break;
+                            case 5:
+                                clineX.Title.Text = "过程检开始";
+                                break;
+                            case 6:
+                                clineX.Title.Text = "末检开始";
+                                break;
+                        }
+                        clineX.Title.Alignment = ConstantLineTitleAlignment.Far;
+                        clineX.Title.TextColor = Color.Black;
+                        clineX.Title.Font = font;
+
+                        clineAxisXs.Add(clineX);
+                    }
+                }
             }
 
             chartRainBow.Series.Add(pointMeasureData);
@@ -162,19 +199,24 @@ namespace IRAP_FVS_SPCO
                 constantLine.Title.Visible = false;
                 xyDiagram.AxisY.ConstantLines.Add(constantLine);
 
+                foreach (ConstantLine lineX in clineAxisXs)
+                {
+                    xyDiagram.AxisX.ConstantLines.Add(lineX);
+                }
+
                 WholeRange wholeRange = xyDiagram.AxisY.WholeRange;
                 wholeRange.AlwaysShowZeroLevel = false;
                 wholeRange.Auto = false;
-                if (minValue > data.LSLData.DoubleValue)
-                    wholeRange.MinValue = data.LSLData.DoubleValue;
-                else
-                    wholeRange.MinValue = minValue;
-                if (maxValue < data.USLData.DoubleValue)
-                    wholeRange.MaxValue = data.USLData.DoubleValue;
-                else
-                    wholeRange.MaxValue = maxValue;
-                //wholeRange.MinValue = data.LSLData.DoubleValue;
-                //wholeRange.MaxValue = data.USLData.DoubleValue;
+                //if (minValue > data.LSLData.DoubleValue)
+                //    wholeRange.MinValue = data.LSLData.DoubleValue;
+                //else
+                //    wholeRange.MinValue = minValue;
+                //if (maxValue < data.USLData.DoubleValue)
+                //    wholeRange.MaxValue = data.USLData.DoubleValue;
+                //else
+                //    wholeRange.MaxValue = maxValue;
+                wholeRange.MinValue = data.LSLData.DoubleValue;
+                wholeRange.MaxValue = data.USLData.DoubleValue;
                 wholeRange.SideMarginsValue = 1;
                 wholeRange.AutoSideMargins = false;
 
@@ -214,8 +256,8 @@ namespace IRAP_FVS_SPCO
             switch (data.AnomalyType)
             {
                 case 0:
-                case 1:
                     break;
+                case 1:
                 case 2:
                 case 3:
                 case 4:
@@ -224,6 +266,32 @@ namespace IRAP_FVS_SPCO
                         "测量数据异常",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
+
+                    #region 重置统计过程
+                    if (data.C1ID != 0)
+                    {
+                        WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                        try
+                        {
+                            IRAPMESClient.Instance.usp_WriteLog_SPCReset(
+                                stationUser.CommunityID,
+                                data.C1ID,
+                                stationUser.SysLogID,
+                                out errCode,
+                                out errText);
+                            WriteLog.Instance.Write(
+                                string.Format("({0}){1}", errCode, errText),
+                                strProcedureName);
+                        }
+                        finally
+                        {
+                            WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                        }
+
+                        DrawChart(stationUser, workUnit, pwoNo, t47LeafID, t216LeafID, t133LeafID, t20LeafID);
+                    }
+                    #endregion
+
                     break;
             }
             #endregion

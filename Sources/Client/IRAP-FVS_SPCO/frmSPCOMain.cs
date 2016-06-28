@@ -175,30 +175,30 @@ namespace IRAP_FVS_SPCO
                             t107Code = node.Attributes["T107Code"].Value;
                         else
                             return;
-                        if (node.Attributes["PWONo"] != null)
-                            pwoNo = node.Attributes["PWONo"].Value;
-                        else
-                            return;
-                        if (node.Attributes["T47LeafID"] != null)
-                            t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
-                        else
-                            return;
-                        if (node.Attributes["T216LeafID"] != null)
-                            t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
-                        else
-                            return;
-                        if (node.Attributes["T133LeafID"] != null)
-                            t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
-                        else
-                            return;
-                        if (node.Attributes["T20LeafID"] != null)
-                            t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
-                        else
-                            return;
+                        //if (node.Attributes["PWONo"] != null)
+                        //    pwoNo = node.Attributes["PWONo"].Value;
+                        //else
+                        //    return;
+                        //if (node.Attributes["T47LeafID"] != null)
+                        //    t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
+                        //else
+                        //    return;
+                        //if (node.Attributes["T216LeafID"] != null)
+                        //    t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
+                        //else
+                        //    return;
+                        //if (node.Attributes["T133LeafID"] != null)
+                        //    t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
+                        //else
+                        //    return;
+                        //if (node.Attributes["T20LeafID"] != null)
+                        //    t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
+                        //else
+                        //    return;
                         if (node.Attributes["SendDateTime"] != null)
                             sendTime = DateTime.Parse(node.Attributes["SendDateTime"].Value);
                         else
-                            return;
+                            sendTime = DateTime.Now;
 
                         if ((DateTime.Now - sendTime).TotalSeconds <= 180)
                         {
@@ -507,17 +507,17 @@ namespace IRAP_FVS_SPCO
                 string errText = "";
                 List<WIPStationSPCMonitor> datas = new List<WIPStationSPCMonitor>();
 
-#if DEBUG
-                datas.Add(
-                    new WIPStationSPCMonitor()
-                    {
-                        T47LeafID = 373564,
-                        PWONo_InExecution = "1C3P31BF7W60621003",
-                        T216LeafID = 2155621,
-                        T133LeafID = 2155684,
-                        T20LeafID = 352942,
-                    });
-#else
+//#if DEBUG
+//                datas.Add(
+//                    new WIPStationSPCMonitor()
+//                    {
+//                        T47LeafID = 373564,
+//                        PWONo_InExecution = "1C3P31BF7W60621003",
+//                        T216LeafID = 2155621,
+//                        T133LeafID = 2155684,
+//                        T20LeafID = 352942,
+//                    });
+//#else
 
                 WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                 try
@@ -546,7 +546,7 @@ namespace IRAP_FVS_SPCO
                 {
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
-#endif
+//#endif
 
                 int t47LeafID = 0;
                 if (datas.Count > 0)
