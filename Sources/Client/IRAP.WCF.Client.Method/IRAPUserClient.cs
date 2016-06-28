@@ -376,7 +376,7 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("userCode", userCode);
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用 sfn_UserAgencies，输入参数：" +
+                        "调用 sfn_UserRoles，输入参数：" +
                         "CommunityID={0}|UserCode={1}",
                         communityID,
                         userCode),
@@ -390,6 +390,79 @@ namespace IRAP.WCF.Client.Method
                         "IRAP.BL.SSO.dll",
                         "IRAP.BL.SSO.IRAPUser",
                         "sfn_UserRoles",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        roles = rlt as List<RoleInfo>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取机构中用户角色清单用于登录时角色选择
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="userCode">用户代码</param>
+        /// <param name="agencyID">机构实体标识</param>
+        public void sfn_UserRolesInAgency(
+            int communityID,
+            string userCode,
+            int agencyID,
+            ref List<RoleInfo> roles,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                roles.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("userCode", userCode);
+                hashParams.Add("agencyID", agencyID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_UserAgencies，输入参数：" +
+                        "CommunityID={0}|UserCode={1}|AgencyID={2}",
+                        communityID,
+                        userCode,
+                        agencyID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.SSO.dll",
+                        "IRAP.BL.SSO.IRAPUser",
+                        "sfn_UserRolesInAgency",
                         hashParams,
                         out errCode,
                         out errText);

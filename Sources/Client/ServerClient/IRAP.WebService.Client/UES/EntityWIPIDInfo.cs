@@ -79,6 +79,12 @@ namespace IRAP.WebService.Client.UES
         /// 进入队列时间(yyyy-mm-dd hh:mm:ss.fff
         /// </summary>
         public string QueueInTime { get; set; }
+        public int T133LeafID { get; set; }
+        public int T216LeafID { get; set; }
+        public int T20LeafID { get; set; }
+        public int T47LeafID { get; set; }
+        public long LCL { get; set; }
+        public long UCL { get; set; } 
 
         public EntityWIPIDInfo Clone()
         {

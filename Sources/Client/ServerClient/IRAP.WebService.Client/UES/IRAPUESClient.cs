@@ -178,6 +178,18 @@ namespace IRAP.WebService.Client.UES
                                         wipInfo.MoveInTime = node.Attributes["MoveInTime"].Value;
                                     if (node.Attributes["QueueInTime"] != null)
                                         wipInfo.QueueInTime = node.Attributes["QueueInTime"].Value;
+                                    if (node.Attributes["T133LeafID"] != null)
+                                        wipInfo.T133LeafID = Tools.ConvertToInt32(node.Attributes["T133LeafID"].Value);
+                                    if (node.Attributes["T216LeafID"] != null)
+                                        wipInfo.T216LeafID = Tools.ConvertToInt32(node.Attributes["T216LeafID"].Value);
+                                    if (node.Attributes["T20LeafID"] != null)
+                                        wipInfo.T20LeafID = Tools.ConvertToInt32(node.Attributes["T20LeafID"].Value);
+                                    if (node.Attributes["T47LeafID"] != null)
+                                        wipInfo.T47LeafID = Tools.ConvertToInt32(node.Attributes["T47LeafID"].Value);
+                                    if (node.Attributes["LCL"] != null)
+                                        wipInfo.LCL = Tools.ConvertToInt64(node.Attributes["LCL"].Value);
+                                    if (node.Attributes["UCL"] != null)
+                                        wipInfo.UCL = Tools.ConvertToInt64(node.Attributes["UCL"].Value);
                                 }
 
                                 break;

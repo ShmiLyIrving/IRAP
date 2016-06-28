@@ -201,6 +201,11 @@ namespace IRAP.Entity.MES
         /// 异常描述
         /// </summary>
         public string AnomalyDesc { get; set; }
+        /// <summary>
+        /// 产品工位关联标识(发出调整指令或设置控
+        /// 制线调用存储过程用)
+        /// </summary>
+        public int C1ID { get; set; }
 
         [IRAPORMMap(ORMMap = false)]
         public Quantity LSLData

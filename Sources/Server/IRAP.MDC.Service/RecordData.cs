@@ -171,8 +171,15 @@ namespace IRAP.MDC.Service
                     MethodBase.GetCurrentMethod().Name,
                     source);
 
-            if (SaveData(metric01))
-                SendMessageToESB();
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                SaveData(metric01);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
 
         private bool SaveData(long metric01)
@@ -204,28 +211,40 @@ namespace IRAP.MDC.Service
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
 
-                if (errCode != 0)
+                if (errCode == 0)
+                {
+                    IRAPUESClient.Instance.DC_Measure(
+                        communityID,
+                        wipInfo.UserCode,
+                        wipInfo.SysLogID,
+                        wipInfo.ProductNo,
+                        wipInfo.WIPCode,
+                        wipInfo.PWONo,
+                        wipInfo.ContainerNo,
+                        wipInfo.WIPStationCode,
+                        wipInfo.WIPQty,
+                        wipInfo.T20LeafID,
+                        metric01,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    SendMessageToESB(
+                        wipInfo.WIPStationCode,
+                        wipInfo.PWONo,
+                        wipInfo.T47LeafID,
+                        wipInfo.T216LeafID,
+                        wipInfo.T133LeafID,
+                        wipInfo.T20LeafID);
+
+                    return errCode == 0;
+                }
+                else
+                {
                     return false;
-
-                IRAPUESClient.Instance.DC_Measure(
-                    communityID,
-                    wipInfo.UserCode,
-                    wipInfo.SysLogID,
-                    wipInfo.ProductNo,
-                    wipInfo.WIPCode,
-                    wipInfo.PWONo,
-                    wipInfo.ContainerNo,
-                    wipInfo.WIPStationCode,
-                    wipInfo.WIPQty,
-                    instrument.T20LeafID,
-                    metric01,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
-                    strProcedureName);
-
-                return errCode == 0;
+                }
             }
             catch (Exception error)
             {
@@ -238,28 +257,60 @@ namespace IRAP.MDC.Service
             }
         }
 
-        private void SendMessageToESB()
+        private void SendMessageToESB(
+            string wipStationCode,
+            string pwoNo,
+            int t47LeafID,
+            int t216LeafID,
+            int t133LeafID,
+            int t20LeafID)
         {
-            if (factory != null && 
-                activeMQ_QueueName.Trim() != "")
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
             {
-                using (IConnection connection = factory.CreateConnection())
+                if (factory != null &&
+                    activeMQ_QueueName.Trim() != "")
                 {
-                    using (ISession session = connection.CreateSession())
+                    using (IConnection connection = factory.CreateConnection())
                     {
-                        IMessageProducer prod =
-                            session.CreateProducer(
-                                new ActiveMQQueue(activeMQ_QueueName));
-                        ITextMessage message = prod.CreateTextMessage();
-                        message.Text = source;
-                        message.Properties.SetString("filter", source);
-                        prod.Send(
-                            message,
-                            MsgDeliveryMode.Persistent,
-                            MsgPriority.Normal,
-                            TimeSpan.MinValue);
+                        using (ISession session = connection.CreateSession())
+                        {
+                            IMessageProducer prod =
+                                session.CreateProducer(
+                                    new ActiveMQQueue(activeMQ_QueueName));
+                            ITextMessage message = prod.CreateTextMessage();
+                            message.Text =
+                                string.Format(
+                                    "<Content><Message T107Code=\"{0}\" " +
+                                    "PWONo=\"{1}\" T47LeafID=\"{2}\" "+
+                                    "T216LeafID=\"{3}\" T133LeafID=\"{4}\" "+
+                                    "T20LeafID=\"{5}\" " +
+                                    "SendDateTime=\"{6}\" /></Content>",
+                                    wipStationCode, pwoNo, t47LeafID, t216LeafID, t133LeafID, t20LeafID,
+                                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            message.Properties.SetString("filter", wipStationCode);
+                            prod.Send(
+                                message,
+                                MsgDeliveryMode.Persistent,
+                                MsgPriority.Normal,
+                                TimeSpan.MinValue);
+                        }
                     }
                 }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
     }
