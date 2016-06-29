@@ -3,7 +3,7 @@
   <Class Name="IRAP.Global.Tools" Collapsed="true">
     <Position X="4" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AggAAIAAAoAAAAQABQAAgAgAAwAAIAgAwAAABAEFEAI=</HashCode>
+      <HashCode>AggAAIAAAoAAAAQABQAAgAgACwAAIAgAwAAABAEFEAI=</HashCode>
       <FileName>Tools.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -23,13 +23,6 @@
   </Class>
   <Class Name="IRAP.Global.LPTPrint" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="2.25" Y="1.5" Width="1.5" />
-    <NestedTypes>
-      <Struct Name="IRAP.Global.LPTPrint.OVERLAPPED" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>LPTPrint.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Struct>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAACAAAACAAABAAAAQAACAABAAAAAAAAgAECAAAEAA=</HashCode>
       <FileName>LPTPrint.cs</FileName>
@@ -69,6 +62,13 @@
     <TypeIdentifier>
       <HashCode>ACAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAQEAAA=</HashCode>
       <FileName>SocketPrint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Global.SetSystemDateTime">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SetSystemDateTime.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="微软雅黑" Size="9" />

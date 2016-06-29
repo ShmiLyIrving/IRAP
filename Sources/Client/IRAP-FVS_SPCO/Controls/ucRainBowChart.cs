@@ -122,6 +122,7 @@ namespace IRAP_FVS_SPCO
             List<SPCChartMeasureData> datas = data.XMLToList();
             List<ConstantLine> clineAxisXs = new List<ConstantLine>();
             int opType = -1;
+            bool isFirstChecked = true;
 
             foreach (SPCChartMeasureData pointData in datas)
             {
@@ -134,11 +135,14 @@ namespace IRAP_FVS_SPCO
                         new SeriesPoint(
                             pointData.Ordinal,
                             pointData.Metric01.DoubleValue);
-                //point.Argument = 
-                //    string.Format(
-                //        "时间点：{0}；测量值：{1}", 
-                //        pointData.MeasureTime, 
-                //        pointData.Metric01.ToString());
+                if (pointData.OpType == 4 && isFirstChecked)
+                {
+                    point.Argument =
+                        string.Format(
+                            "{0}\n{1}",
+                            pointData.Ordinal,
+                            pointData.MeasureTime);
+                }
 
                 pointMeasureData.Points.Add(point);
 
@@ -150,16 +154,18 @@ namespace IRAP_FVS_SPCO
                     {
                         ConstantLine clineX = new ConstantLine();
                         clineX.ShowInLegend = false;
-                        clineX.AxisValueSerializable = pointData.MeasureTime;
+                        clineX.AxisValueSerializable = point.Argument;
                         switch (opType)
                         {
                             case 4:
                                 clineX.Title.Text = "首检开始";
                                 break;
                             case 5:
+                                isFirstChecked = false;
                                 clineX.Title.Text = "过程检开始";
                                 break;
                             case 6:
+                                isFirstChecked = false;
                                 clineX.Title.Text = "末检开始";
                                 break;
                         }
@@ -273,6 +279,7 @@ namespace IRAP_FVS_SPCO
                         WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                         try
                         {
+#if !DEBUG
                             IRAPMESClient.Instance.usp_WriteLog_SPCReset(
                                 stationUser.CommunityID,
                                 data.C1ID,
@@ -282,6 +289,7 @@ namespace IRAP_FVS_SPCO
                             WriteLog.Instance.Write(
                                 string.Format("({0}){1}", errCode, errText),
                                 strProcedureName);
+#endif
                         }
                         finally
                         {

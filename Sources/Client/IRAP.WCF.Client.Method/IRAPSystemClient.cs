@@ -26,6 +26,67 @@ namespace IRAP.WCF.Client.Method
             }
         }
 
+        /// <summary>
+        /// 获取服务器的时间
+        /// </summary>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void sfn_GetServerDateTime(
+            ref DateTime serverTime,
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                serverTime = DateTime.Now;
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                WriteLog.Instance.Write(
+                    "调用 sfn_GetServerDateTime。",
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.SSO.dll",
+                        "IRAP.BL.SSO.IRAPSystem",
+                        "sfn_GetServerDateTime",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        serverTime = (DateTime)rlt;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         /// <param name="communityID">社区标识</param>
         /// <param name="systemID">系统标识</param>
         /// <param name="sysLogID">系统登录标识或者菜单缓冲区标识的相反数</param>

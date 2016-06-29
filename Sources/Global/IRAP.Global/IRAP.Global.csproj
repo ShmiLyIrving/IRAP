@@ -62,6 +62,7 @@
     <Compile Include="MyMath.cs" />
     <Compile Include="MessageAPI.cs" />
     <Compile Include="Quantity.cs" />
+    <Compile Include="SetSystemDateTime.cs" />
     <Compile Include="SocketPrint.cs" />
     <Compile Include="TimeParser.cs" />
     <Compile Include="Tools.cs" />

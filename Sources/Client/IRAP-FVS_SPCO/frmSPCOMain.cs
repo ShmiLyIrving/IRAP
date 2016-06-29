@@ -55,6 +55,10 @@ namespace IRAP_FVS_SPCO
         private StationLogin stationUser = null;
         private List<WIPStationProductionStatus> workUnits = new List<WIPStationProductionStatus>();
         private List<XtraUserControl> ucCharts = new List<XtraUserControl>();
+        /// <summary>
+        /// 应用服务器的当前时间
+        /// </summary>
+        private DateTime serverTime = DateTime.Now;
 
         public frmSPCOMain()
         {
@@ -412,6 +416,17 @@ namespace IRAP_FVS_SPCO
             int errCode = 0;
             string errText = "";
 
+            #region 获取服务器的当前时间，并设置当前的系统时间
+            IRAPSystemClient.Instance.sfn_GetServerDateTime(
+                ref serverTime,
+                out errCode,
+                out errText);
+            if (errCode == 0)
+            {
+                SetSystemDateTime.SetSystemTime(serverTime);
+            }
+            #endregion
+
             if (stationUser == null || stationUser.SysLogID <= 0)
             {
                 #region 获取当前站点的登录信息
@@ -461,7 +476,10 @@ namespace IRAP_FVS_SPCO
                                     ucUncontrolChart chartNone = new ucUncontrolChart();
                                     chartNone.Dock = DockStyle.Fill;
                                     chartNone.Parent = page;
+
+#if !DEBUG
                                     InitConsumer(workUnit.T107Code);
+#endif
 
                                     ucCharts.Add(chartNone);
                                 }
@@ -486,7 +504,7 @@ namespace IRAP_FVS_SPCO
                         }
                     }
                 }
-                #endregion
+#endregion
             }
         }
 
