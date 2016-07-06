@@ -122,7 +122,7 @@ namespace IRAP_FVS_SPCO
             List<SPCChartMeasureData> datas = data.XMLToList();
             List<ConstantLine> clineAxisXs = new List<ConstantLine>();
             int opType = -1;
-            bool isFirstChecked = true;
+            int ocCount = 0;
 
             foreach (SPCChartMeasureData pointData in datas)
             {
@@ -133,21 +133,17 @@ namespace IRAP_FVS_SPCO
 
                 SeriesPoint point =
                         new SeriesPoint(
-                            pointData.Ordinal,
+                            string.Format(
+                                "{0}\n{1}",
+                                pointData.Ordinal,
+                                pointData.MeasureTime),
                             pointData.Metric01.DoubleValue);
-                if (pointData.OpType == 4 && isFirstChecked)
-                {
-                    point.Argument =
-                        string.Format(
-                            "{0}\n{1}",
-                            pointData.Ordinal,
-                            pointData.MeasureTime);
-                }
 
                 pointMeasureData.Points.Add(point);
 
                 if (opType != pointData.OpType)
                 {
+                    ocCount = 0;
                     opType = pointData.OpType;
 
                     if (opType == 4 || opType == 5 || opType == 6)
@@ -161,11 +157,9 @@ namespace IRAP_FVS_SPCO
                                 clineX.Title.Text = "首检开始";
                                 break;
                             case 5:
-                                isFirstChecked = false;
                                 clineX.Title.Text = "过程检开始";
                                 break;
                             case 6:
-                                isFirstChecked = false;
                                 clineX.Title.Text = "末检开始";
                                 break;
                         }
@@ -175,6 +169,24 @@ namespace IRAP_FVS_SPCO
 
                         clineAxisXs.Add(clineX);
                     }
+                }
+
+                if (pointData.OpType == 5)
+                {
+                    if (ocCount >= 2)
+                    {
+                        if (ocCount % 2 == 0)
+                        {
+                            clineAxisXs.Add(
+                                new ConstantLine()
+                                {
+                                    ShowInLegend = false,
+                                    AxisValueSerializable = point.Argument,
+                                });
+                        }
+                    }
+
+                    ocCount++;
                 }
             }
 
@@ -186,6 +198,11 @@ namespace IRAP_FVS_SPCO
                 double midValue =
                     (data.LCLData.DoubleValue +
                      data.UCLData.DoubleValue) / 2;
+                double splitData =
+                    (data.USLData.DoubleValue -
+                     data.LSLData.DoubleValue) / 4;
+                double ucl = data.USLData.DoubleValue - splitData;
+                double lcl = data.LSLData.DoubleValue + splitData;
 
                 xyDiagram.DefaultPane.BackColor = Color.Red;
 
@@ -198,11 +215,53 @@ namespace IRAP_FVS_SPCO
 
                 xyDiagram.AxisY.Strips.Clear();
                 xyDiagram.AxisY.ConstantLines.Clear();
+                xyDiagram.AxisX.ConstantLines.Clear();
 
+                #region 画中值线
                 ConstantLine constantLine = new ConstantLine();
                 constantLine.ShowInLegend = false;
                 constantLine.AxisValueSerializable = midValue.ToString();
-                constantLine.Title.Visible = false;
+                constantLine.Color = Color.Black;
+                constantLine.LineStyle.Thickness = 3;
+                constantLine.Title.Text = "M";
+                constantLine.Title.Font = font;
+                xyDiagram.AxisY.ConstantLines.Add(constantLine);
+                #endregion
+
+                constantLine = new ConstantLine();
+                constantLine.ShowInLegend = false;
+                constantLine.AxisValueSerializable = data.UCLData.DoubleValue.ToString();// ucl.ToString();
+                constantLine.Color = Color.Black;
+                constantLine.LineStyle.Thickness = 2;
+                constantLine.Title.Text = "P-C";
+                constantLine.Title.Font = font;
+                xyDiagram.AxisY.ConstantLines.Add(constantLine);
+
+                constantLine = new ConstantLine();
+                constantLine.ShowInLegend = false;
+                constantLine.AxisValueSerializable = data.LCLData.DoubleValue.ToString();// lcl.ToString();
+                constantLine.Color = Color.Black;
+                constantLine.LineStyle.Thickness = 2;
+                constantLine.Title.Text = "P-C";
+                constantLine.Title.Font = font;
+                xyDiagram.AxisY.ConstantLines.Add(constantLine);
+
+                constantLine = new ConstantLine();
+                constantLine.ShowInLegend = false;
+                constantLine.AxisValueSerializable = data.USLData.DoubleValue.ToString();
+                constantLine.Color = Color.Black;
+                constantLine.LineStyle.Thickness = 2;
+                constantLine.Title.Text = "Tu";
+                constantLine.Title.Font = font;
+                xyDiagram.AxisY.ConstantLines.Add(constantLine);
+
+                constantLine = new ConstantLine();
+                constantLine.ShowInLegend = false;
+                constantLine.AxisValueSerializable = data.LSLData.DoubleValue.ToString();
+                constantLine.Color = Color.Black;
+                constantLine.LineStyle.Thickness = 2;
+                constantLine.Title.Text = "Tl";
+                constantLine.Title.Font = font;
                 xyDiagram.AxisY.ConstantLines.Add(constantLine);
 
                 foreach (ConstantLine lineX in clineAxisXs)
@@ -223,7 +282,7 @@ namespace IRAP_FVS_SPCO
                 //    wholeRange.MaxValue = maxValue;
                 wholeRange.MinValue = data.LSLData.DoubleValue;
                 wholeRange.MaxValue = data.USLData.DoubleValue;
-                wholeRange.SideMarginsValue = 1;
+                wholeRange.SideMarginsValue = splitData;
                 wholeRange.AutoSideMargins = false;
 
                 //VisualRange visualRange = xyDiagram.AxisY.VisualRange;
@@ -236,7 +295,7 @@ namespace IRAP_FVS_SPCO
                 Strip strip = new Strip();
                 strip.Color = Color.Yellow;
                 strip.MinLimit.AxisValue = data.LSLData.DoubleValue;
-                strip.MaxLimit.AxisValue = data.LCLData.DoubleValue;
+                strip.MaxLimit.AxisValue = data.USLData.DoubleValue;
                 strip.ShowInLegend = false;
                 xyDiagram.AxisY.Strips.Add(strip);
 
@@ -247,12 +306,12 @@ namespace IRAP_FVS_SPCO
                 strip.ShowInLegend = false;
                 xyDiagram.AxisY.Strips.Add(strip);
 
-                strip = new Strip();
-                strip.Color = Color.Yellow;
-                strip.MinLimit.AxisValue = data.UCLData.DoubleValue;
-                strip.MaxLimit.AxisValue = data.USLData.DoubleValue;
-                strip.ShowInLegend = false;
-                xyDiagram.AxisY.Strips.Add(strip);
+                //strip = new Strip();
+                //strip.Color = Color.Yellow;
+                //strip.MinLimit.AxisValue = data.UCLData.DoubleValue;
+                //strip.MaxLimit.AxisValue = data.USLData.DoubleValue;
+                //strip.ShowInLegend = false;
+                //xyDiagram.AxisY.Strips.Add(strip);
             }
 
             chartRainBow.Legend.Font = font;
@@ -273,13 +332,13 @@ namespace IRAP_FVS_SPCO
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
 
+#if !DEBUG
                     #region 重置统计过程
                     if (data.C1ID != 0)
                     {
                         WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                         try
                         {
-#if !DEBUG
                             IRAPMESClient.Instance.usp_WriteLog_SPCReset(
                                 stationUser.CommunityID,
                                 data.C1ID,
@@ -289,16 +348,16 @@ namespace IRAP_FVS_SPCO
                             WriteLog.Instance.Write(
                                 string.Format("({0}){1}", errCode, errText),
                                 strProcedureName);
-#endif
                         }
                         finally
                         {
                             WriteLog.Instance.WriteEndSplitter(strProcedureName);
                         }
 
-                        DrawChart(stationUser, workUnit, pwoNo, t47LeafID, t216LeafID, t133LeafID, t20LeafID);
+                        //DrawChart(stationUser, workUnit, pwoNo, t47LeafID, t216LeafID, t133LeafID, t20LeafID);
                     }
                     #endregion
+#endif
 
                     break;
             }

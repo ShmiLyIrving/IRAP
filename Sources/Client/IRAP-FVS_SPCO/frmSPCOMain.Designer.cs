@@ -136,7 +136,7 @@
             this.lblCopyright.Name = "lblCopyright";
             this.lblCopyright.Size = new System.Drawing.Size(857, 29);
             this.lblCopyright.TabIndex = 4;
-            this.lblCopyright.Text = "江苏芍园科技有限责任公司 版权所有 2016";
+            this.lblCopyright.Text = "仪征亚新科双环活塞环有限公司";
             // 
             // xtraScrollableControl
             // 

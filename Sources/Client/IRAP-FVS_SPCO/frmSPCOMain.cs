@@ -530,8 +530,8 @@ namespace IRAP_FVS_SPCO
 //                    new WIPStationSPCMonitor()
 //                    {
 //                        T47LeafID = 373564,
-//                        PWONo_InExecution = "1C3P31BF7W60621003",
-//                        T216LeafID = 2155621,
+//                        PWONo_InExecution = "34PFF1CCQY60628003",
+//                        T216LeafID = 5258697,
 //                        T133LeafID = 2155684,
 //                        T20LeafID = 352942,
 //                    });
