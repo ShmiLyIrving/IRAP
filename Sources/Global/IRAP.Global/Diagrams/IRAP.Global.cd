@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Global.Encrypt" Collapsed="true">
-    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAIAAAAAAAAABABAAAQAAAACAAAEA=</HashCode>
       <FileName>Encrypt.cs</FileName>
@@ -64,11 +64,52 @@
       <FileName>SocketPrint.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Global.SetSystemDateTime">
-    <Position X="6.5" Y="1.75" Width="1.5" />
+  <Class Name="IRAP.Global.SetSystemDateTime" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAMAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SetSystemDateTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Global.IRAPMessageBox" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgEAAAAAAAAAAAAEAAAAAAAAAAEAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>frmMessageBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Global.RDPClientIP">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="IRAP.Global.RDPClientIP.WTSInfoClass" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>RDPClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="IRAP.Global.RDPClientIP.WTS_CONNECTSTATE_CLASS" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>RDPClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Struct Name="IRAP.Global.RDPClientIP.WTS_SESSION_INFO" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>RDPClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="IRAP.Global.RDPClientIP.WTS_CLIENT_ADDRESS" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>RDPClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="IRAP.Global.RDPClientIP.WTS_CLIENT_DISPLAY" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>RDPClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAABAAAFAAAABAEACAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RDPClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="微软雅黑" Size="9" />
