@@ -67,7 +67,10 @@ namespace IRAP.Global
             //set { IniFile.WriteBool("Logs", "Write Log", value, attributeFileName); }
             get
             {
-                return ConfigurationManager.AppSettings["WriteLog"].ToString().ToUpper() == "TRUE";
+                if (ConfigurationManager.AppSettings["WriteLog"] != null)
+                    return ConfigurationManager.AppSettings["WriteLog"].ToString().ToUpper() == "TRUE";
+                else
+                    return false;
                 //if (ConfigurationManager.AppSettings["WriteLog"])
 
                 //Configuration config = null;
