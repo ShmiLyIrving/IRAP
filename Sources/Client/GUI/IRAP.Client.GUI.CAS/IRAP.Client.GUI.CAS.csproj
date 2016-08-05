@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -137,6 +138,13 @@
     <EmbeddedResource Include="frmAndonEventCall_30.resx">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectFailureModesByDeviceToCall.en-US.resx">
+      <DependentUpon>frmSelectFailureModesByDeviceToCall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectFailureModesByDeviceToCall.resx">
+      <DependentUpon>frmSelectFailureModesByDeviceToCall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

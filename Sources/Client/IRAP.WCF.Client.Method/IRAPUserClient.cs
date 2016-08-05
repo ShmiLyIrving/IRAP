@@ -36,9 +36,9 @@ namespace IRAP.WCF.Client.Method
         /// </summary>
         /// <param name="stationID">站点标识</param>
         public void sfn_GetInfo_StationLogin(
-            string stationID, 
-            ref StationLogin stationInfo, 
-            out int errCode, 
+            string stationID,
+            ref StationLogin stationInfo,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -66,7 +66,7 @@ namespace IRAP.WCF.Client.Method
                 #region 执行存储过程或者函数
                 using (WCFClient client = new WCFClient())
                 {
-                    object rlt = 
+                    object rlt =
                         client.WCFRESTFul(
                             "IRAP.BL.SSO.dll",
                             "IRAP.BL.SSO.IRAPUser",
@@ -99,9 +99,9 @@ namespace IRAP.WCF.Client.Method
         }
 
         public void sfn_PostLoginCMDs(
-            long sysLogID, 
-            ref List<CMDString> datas, 
-            out int errCode, 
+            long sysLogID,
+            ref List<CMDString> datas,
+            out int errCode,
             out string errText)
         {
             string strProcedureName = string.Format("{0}.{1}",
@@ -360,7 +360,7 @@ namespace IRAP.WCF.Client.Method
             out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
                     "{0}.{1}",
                     className,
@@ -671,8 +671,8 @@ namespace IRAP.WCF.Client.Method
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行存储过程 ssp_Login，输入参数：" +
-                            "DBName={0}|UserCode={1}|PlainPWD={2}|"+
-                            "VeriCode={3}|StationID={4}|IPAddress={5}|"+
+                            "DBName={0}|UserCode={1}|PlainPWD={2}|" +
+                            "VeriCode={3}|StationID={4}|IPAddress={5}|" +
                             "AgencyLeaf={6}|RoleLeaf={7}|SysLogID={8}",
                             dbName, userCode, plainPWD, veriCode, stationID,
                             ipAddress, agencyLeaf, roleLeaf, sysLogID),
@@ -782,7 +782,7 @@ namespace IRAP.WCF.Client.Method
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行存储过程 ssp_ModiPWD，输入参数：" +
-                            "CommunityID={0}|UserCode={1}|OldPWD={2}|"+
+                            "CommunityID={0}|UserCode={1}|OldPWD={2}|" +
                             "NewPWD={3}",
                             communityID, userCode, oldPWD, newPWD),
                         strProcedureName);
@@ -928,6 +928,146 @@ namespace IRAP.WCF.Client.Method
                         idInfo = rlt as EntityCIDInfo;
                 }
                 #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据员工身份识别卡获取用户信息
+        /// </summary>
+        /// <param name="communityID">社区标识号</param>
+        /// <param name="cardNo">用户 ID 卡号</param>
+        public void sfn_GetInfo_UserFromIDCode(
+            int communityID,
+            string cardNo,
+            ref UserInfo userInfo,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                userInfo = new UserInfo();
+
+                #region 将函数调用参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("cardNo", cardNo);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_GetInfo_UserFromIDCode，输入参数：" +
+                        "CommunityID={0}|CardNo={1}",
+                        communityID, cardNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.SSO.dll",
+                            "IRAP.BL.SSO.IRAPUser",
+                            "sfn_GetInfo_UserFromIDCode",
+                            hashParams,
+                            out errCode,
+                            out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        userInfo = rlt as UserInfo;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 替换交易操作员
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">交易号</param>
+        /// <param name="operatorUserCode">替换后的交易操作员号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ssp_ReplaceTranOperator(
+            int communityID,
+            long transactNo,
+            string operatorUserCode,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("transactNo", transactNo);
+                    hashParams.Add("operatorUserCode", operatorUserCode);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 ssp_ReplaceTranOperator，输入参数：" +
+                            "CommunityID={0}|TransactNo={1}|OperatorUserCode={2}|"+
+                            "SysLogID={3}",
+                            communityID, transactNo, operatorUserCode, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.SSO.dll",
+                        "IRAP.BL.SSO.IRAPUser",
+                        "ssp_ReplaceTranOperator",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
             }
             catch (Exception error)
             {

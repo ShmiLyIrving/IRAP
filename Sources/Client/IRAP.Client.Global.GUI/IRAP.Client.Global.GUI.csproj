@@ -55,6 +55,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\frmMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmMessageBox.Designer.cs">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmReadUserIDCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmReadUserIDCard.Designer.cs">
+      <DependentUpon>frmReadUserIDCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReadUserIDCard.cs" />
+    <Compile Include="Dialogs\ShowMessageBox.cs" />
     <Compile Include="frmCustomFuncBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +138,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frmMessageBox.resx">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmReadUserIDCard.en-US.resx">
+      <DependentUpon>frmReadUserIDCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmReadUserIDCard.resx">
+      <DependentUpon>frmReadUserIDCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCustomFuncBase.resx">
       <DependentUpon>frmCustomFuncBase.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +173,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Disconnected.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AndonCall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Asterisk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exclamation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\keepassx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ALARM9.WAV" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
