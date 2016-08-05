@@ -3597,7 +3597,7 @@ namespace IRAP.BL.MDM
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用函数 IRAPMDM..ufn_GetList_WIPStationSPCMonitor，" +
+                        "调用函数 IRAPMDM..ufn_GetList_WIPStationSPCMonitor_N，" +
                         "参数：CommunityID={0}|SysLogID={1}|FilterString={2}",
                         communityID,
                         sysLogID,
@@ -3617,14 +3617,14 @@ namespace IRAP.BL.MDM
                         string strSQL = 
                             string.Format(
                                 "SELECT * " +
-                                "FROM IRAPMDM..ufn_GetList_WIPStationSPCMonitor(" +
+                                "FROM IRAPMDM..ufn_GetList_WIPStationSPCMonitor_N(" +
                                 "@CommunityID, @SysLogID) {0}ORDER BY Ordinal",
                                 filter);
                         WriteLog.Instance.Write(strSQL, strProcedureName);
 
                         IList<WIPStationSPCMonitor> lstDatas =
                             conn.CallTableFunc<WIPStationSPCMonitor>(strSQL, paramList);
-                        datas = lstDatas.ToList<WIPStationSPCMonitor>();
+                        datas = lstDatas.ToList();
                         errCode = 0;
                         errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
                         WriteLog.Instance.Write(errText, strProcedureName);

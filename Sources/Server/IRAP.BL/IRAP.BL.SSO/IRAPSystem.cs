@@ -24,6 +24,25 @@ namespace IRAP.BL.SSO
         }
 
         /// <summary>
+        ///  获取服务器的当前时间
+        /// </summary>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult sfn_GetServerDateTime(
+            out int errCode,
+            out string errText)
+        {
+            DateTime now = DateTime.Now;
+            errCode = 0;
+            errText =
+                string.Format(
+                    "获得当前服务器的时间：[{0}]",
+                    now);
+            return Json(now);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -593,6 +612,7 @@ namespace IRAP.BL.SSO
                 paramList.Add(new IRAPProcParameter("@MenuItemID", DbType.Int32, menuItemID));
                 paramList.Add(new IRAPProcParameter("@ScenarioIndex", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@RefreshGUIOptions", DbType.Boolean, ParameterDirection.Output, 1));
+                paramList.Add(new IRAPProcParameter("@UserDefinedGUI", DbType.String, ParameterDirection.Output, DBConfigParams.StringMaxLength));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
                 WriteLog.Instance.Write(

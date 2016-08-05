@@ -39,6 +39,8 @@ namespace IRAP.Server.Global
                 Encrypt.Instance.DecryptString(_dbUserPWD));
         }
 
+        public static int StringMaxLength { get { return 2147483647; } }
+
         public string DBConnectionString
         {
             get { return _dbConnectionString; }

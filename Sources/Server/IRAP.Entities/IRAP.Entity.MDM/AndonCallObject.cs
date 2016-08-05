@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entity.MDM
 {
     /// <summary>
@@ -34,6 +36,9 @@ namespace IRAP.Entity.MDM
         /// 呼叫对象名称
         /// </summary>
         public string ObjectDesc { get; set; }
+
+        [IRAPORMMap(ORMMap = false)]
+        public bool Choice { get; set; }
 
         public AndonCallObject Clone()
         {

@@ -7,6 +7,7 @@ using System.Data;
 using System.Reflection;
 
 using IRAP.Global;
+using IRAP.Server.Global;
 using IRAPShared;
 using IRAPORM;
 using IRAP.Entity.SSO;
@@ -924,6 +925,78 @@ namespace IRAP.BL.SSO
                 #endregion
 
                 return Json(data);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 替换交易操作员
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">交易号</param>
+        /// <param name="operatorUserCode">替换后的交易操作员号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult ssp_ReplaceTranOperator(
+            int communityID,
+            long transactNo,
+            string operatorUserCode,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                Hashtable rlt = new Hashtable();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@TransactNo", DbType.Int64, transactNo));
+                paramList.Add(new IRAPProcParameter("@OperatorUserCode", DbType.String, operatorUserCode));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 IRAP..ssp_ReplaceTranOperator，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|OperatorUserCode={2}"+
+                        "|SysLogID={3}",
+                        communityID, transactNo, operatorUserCode, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        IRAPError error = conn.CallProc("IRAP..ssp_ReplaceTranOperator", ref paramList);
+                        errCode = error.ErrCode;
+                        errText = error.ErrText;
+
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAP..ssp_OLTP_UDFForm 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(rlt);
             }
             finally
             {
