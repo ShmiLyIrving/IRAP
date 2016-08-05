@@ -86,6 +86,10 @@ namespace IRAP.Entity.MDM
         /// 控制线设置日期
         /// </summary>
         public string CLSetDate { get; set; }
+        /// <summary>
+        /// 过程检超时告警阀门值(ms)
+        /// </summary>
+        public long TimeOutThreshold { get; set; }
 
         public WIPStationSPCMonitor Clone()
         {

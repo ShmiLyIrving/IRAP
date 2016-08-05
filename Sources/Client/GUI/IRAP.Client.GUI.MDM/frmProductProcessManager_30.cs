@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
+
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 
@@ -636,11 +638,18 @@ namespace IRAP.Client.GUI.MDM
                         }
                         else
                         {
-                            XtraMessageBox.Show(
-                                "流程图中只允许一个 Begin 节点！",
-                                Text,
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                XtraMessageBox.Show(
+                                    "Only one BEGIN node is allowed in the flow chart!",
+                                    Text,
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                            else
+                                XtraMessageBox.Show(
+                                    "流程图中只允许一个 Begin 节点！",
+                                    Text,
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
                         }
                         break;
                     case SelectNodeType.sntEnd:     // 在流程图中添加一个结束节点
@@ -660,7 +669,14 @@ namespace IRAP.Client.GUI.MDM
                         }
                         else
                         {
-                            XtraMessageBox.Show(
+                            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                XtraMessageBox.Show(
+                                    "Only one END node is allowed in the flow chart!",
+                                    Text,
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                            else
+                                XtraMessageBox.Show(
                                 "流程图中只允许一个 End 节点！",
                                 Text,
                                 MessageBoxButtons.OK,
@@ -791,10 +807,17 @@ namespace IRAP.Client.GUI.MDM
         {
             if (edtFilter.Text.Trim() == "")
             {
+                string msgText = "";
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    msgText = "You do not enter the filter conditions, " +
+                        "when loading the {0} list, you need a longer time. " +
+                        "\n\nDo you want to continue?";
+                else
+                    msgText = "您没有输入过滤条件，在加载{0}列表的时候，" +
+                                "需要较长时间。\n\n请问：是否要继续？";
                 if (XtraMessageBox.Show(
                         string.Format(
-                            "您没有输入过滤条件，在加载{0}列表的时候，" +
-                            "需要较长时间。\n\n请问：是否要继续？",
+                            msgText,
                             cboProductType.SelectedText),
                         Text,
                         MessageBoxButtons.YesNo,
@@ -831,9 +854,16 @@ namespace IRAP.Client.GUI.MDM
                 WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                 try
                 {
+                    string msgText = "";
+
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        msgText = "Process flow of {0}\"{1}\"";
+                    else
+                        msgText = "{0}\"{1}\"的工艺流程";
+
                     lblProductName.Text =
                         string.Format(
-                            "{0}\"{1}\"的工艺流程",
+                            msgText,
                             cboProductType.SelectedItem.ToString(),
                             prdts[index].NodeName);
                     SetEditorMode(false);
@@ -1070,11 +1100,24 @@ namespace IRAP.Client.GUI.MDM
                     {
                         OperationNode node = iitem as OperationNode;
 
+                        string msgText = "";
+                        string msgTitle = "";
+                        if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0,2)=="en")
+                        {
+                            msgText = "There is no complete routing process in the processes";
+                            msgTitle = "Routing error";
+                        }
+                        else
+                        {
+                            msgText = "流程中存在未配置完整路由的工序";
+                            msgTitle = "路由错误";
+                        }
+
                         if (!node.CheckValid())
                         {
                             XtraMessageBox.Show(
-                                "流程中存在未配置完整路由的工序",
-                                "路由错误",
+                                msgText,
+                                msgTitle,
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                             return;
@@ -1087,9 +1130,20 @@ namespace IRAP.Client.GUI.MDM
                                 ProcessLine line = link as ProcessLine;
                                 if (line.Tag.T121LeafID == 0)
                                 {
+                                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                    {
+                                        msgText = "WIP identification type in the process must be set up!";
+                                        msgTitle = "System information";
+                                    }
+                                    else
+                                    {
+                                        msgText = "工艺流程中的在制品标识类型必须设置！";
+                                        msgTitle = "系统信息";
+                                    }
+
                                     XtraMessageBox.Show(
-                                        "工艺流程中的在制品标识类型必须设置！",
-                                        "系统信息",
+                                        msgText,
+                                        msgTitle,
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Asterisk);
                                     return;
@@ -1178,13 +1232,28 @@ namespace IRAP.Client.GUI.MDM
                     {
                         if ((item as ProcessLine).Tag != null)
                         {
-                            toolTip.ToolTipTitle = "流程属性";
-                            toolTip.Show(
-                                string.Format(
-                                    "分支流量低限值：{0}\n" +
+                            string msgText = "";
+
+                            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                            {
+                                toolTip.ToolTipTitle = "Properties";
+                                msgText = "Low value of branch flow: {0}\n" +
+                                    "High value of branch flow: {1}\n" +
+                                    "Process progress: {2}\n" +
+                                    "WIP identification type:{3}";
+                            }
+                            else
+                            {
+                                toolTip.ToolTipTitle = "流程属性";
+                                msgText = "分支流量低限值：{0}\n" +
                                     "分支流量高限值：{1}\n" +
                                     "制程进度：{2}\n" +
-                                    "在制品标识类型：{3}",
+                                    "在制品标识类型：{3}";
+                            }
+
+                            toolTip.Show(
+                                string.Format(
+                                    msgText,
                                     (item as ProcessLine).Tag.MinPercent,
                                     (item as ProcessLine).Tag.MaxPercent,
                                     (item as ProcessLine).Tag.ProcessPercentage,
@@ -1218,9 +1287,14 @@ namespace IRAP.Client.GUI.MDM
                         frmCustomProperites propertiesForm = PropertiesFormFactory.CreateInstance(itemID);
                         if (propertiesForm == null)
                         {
+                            string msgText = "";
+                            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                msgText = "Function [{0}] is being developed!";
+                            else
+                                msgText = "功能[{0}]正在紧张开发中！";
                             XtraMessageBox.Show(
                                 string.Format(
-                                    "功能[{0}]正在紧张开发中！",
+                                    msgText,
                                     e.Item.Caption),
                                 Text,
                                 MessageBoxButtons.OK,

@@ -74,7 +74,7 @@ namespace IRAP.Client.SubSystems
                     WriteLog.Instance.Write(error.Message, strProcedureName);
                     XtraMessageBox.Show(
                         error.Message,
-                        "产品/流程选项",
+                        "",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;

@@ -73,6 +73,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmShowUpgrade.en-US.resx">
+      <DependentUpon>frmShowUpgrade.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmShowUpgrade.resx">
       <DependentUpon>frmShowUpgrade.cs</DependentUpon>
     </EmbeddedResource>

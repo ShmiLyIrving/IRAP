@@ -216,11 +216,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frmCustomProperites.en-US.resx">
+      <DependentUpon>frmCustomProperites.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmCustomProperites.resx">
       <DependentUpon>frmCustomProperites.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmEnergyStandardProperties.en-US.resx">
+      <DependentUpon>frmEnergyStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmEnvParamStandardProperties.en-US.resx">
+      <DependentUpon>frmEnvParamStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmEnvParamStandardProperties.resx">
       <DependentUpon>frmEnvParamStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmFailureModeProperties.en-US.resx">
+      <DependentUpon>frmFailureModeProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmFailureModeProperties.resx">
       <DependentUpon>frmFailureModeProperties.cs</DependentUpon>
@@ -254,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPrepareStandardProperties.resx">
       <DependentUpon>frmPrepareStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductProcessManager_30.en-US.resx">
+      <DependentUpon>frmProductProcessManager_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductProcessManager_30.resx">
       <DependentUpon>frmProductProcessManager_30.cs</DependentUpon>

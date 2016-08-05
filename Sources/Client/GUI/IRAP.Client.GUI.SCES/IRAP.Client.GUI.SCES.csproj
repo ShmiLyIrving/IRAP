@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DBCBD6D5-AB96-4853-9286-AAA767BD1E60}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IRAP.Client.GUI.SCES</RootNamespace>
+    <AssemblyName>IRAP.Client.GUI.SCES</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\Bin\Client\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\Bin\Client\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmDeliveryMngmt_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeliveryMngmt_30.Designer.cs">
+      <DependentUpon>frmDeliveryMngmt_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
+      <Project>{325FFD07-7491-45C3-86F3-85F7DEF4C726}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
+      <Project>{38588300-33DF-457A-936A-D0D0CA499E96}</Project>
+      <Name>IRAP.Entity.Kanban</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
+      <Project>{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}</Project>
+      <Name>IRAP.Entity.SSO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.Global.GUI\IRAP.Client.Global.GUI.csproj">
+      <Project>{66EE090D-3D17-4CC0-9A7B-05EA2124A30B}</Project>
+      <Name>IRAP.Client.Global.GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.Global.Resources\IRAP.Client.Global.Resources.csproj">
+      <Project>{64D9DD02-3DA4-4E11-B696-F13A4D178A63}</Project>
+      <Name>IRAP.Client.Global.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.Global\IRAP.Client.Global.csproj">
+      <Project>{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}</Project>
+      <Name>IRAP.Client.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.SubSystems\IRAP.Client.SubSystems.csproj">
+      <Project>{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}</Project>
+      <Name>IRAP.Client.SubSystems</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.User\IRAP.Client.User.csproj">
+      <Project>{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}</Project>
+      <Name>IRAP.Client.User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.WCF.Client.Method\IRAP.WCF.Client.Method.csproj">
+      <Project>{6F4AD952-871C-4594-BBE7-8C7EA61B63BE}</Project>
+      <Name>IRAP.WCF.Client.Method</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmDeliveryMngmt_30.resx">
+      <DependentUpon>frmDeliveryMngmt_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

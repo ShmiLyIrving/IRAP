@@ -60,6 +60,11 @@ namespace IRAP
             //Thread.CurrentThread.CurrentCulture = ci;
             #endregion
 
+            if (Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2) == "en")
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            else
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

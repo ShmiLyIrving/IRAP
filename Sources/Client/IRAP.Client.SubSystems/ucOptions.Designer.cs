@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucOptions));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cboProcesses = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -39,80 +40,86 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            resources.ApplyResources(this.labelControl1, "labelControl1");
+            this.labelControl1.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl1.Appearance.Font")));
+            this.labelControl1.Appearance.FontSizeDelta = ((int)(resources.GetObject("labelControl1.Appearance.FontSizeDelta")));
+            this.labelControl1.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("labelControl1.Appearance.FontStyleDelta")));
+            this.labelControl1.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("labelControl1.Appearance.GradientMode")));
+            this.labelControl1.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("labelControl1.Appearance.Image")));
+            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelControl1.Location = new System.Drawing.Point(0, 0);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(128, 38);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "当前选项【一】";
             // 
             // cboProcesses
             // 
-            this.cboProcesses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboProcesses.Enabled = false;
-            this.cboProcesses.Location = new System.Drawing.Point(134, 6);
+            resources.ApplyResources(this.cboProcesses, "cboProcesses");
             this.cboProcesses.Name = "cboProcesses";
-            this.cboProcesses.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboProcesses.Properties.AccessibleDescription = resources.GetString("cboProcesses.Properties.AccessibleDescription");
+            this.cboProcesses.Properties.AccessibleName = resources.GetString("cboProcesses.Properties.AccessibleName");
+            this.cboProcesses.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("cboProcesses.Properties.Appearance.Font")));
+            this.cboProcesses.Properties.Appearance.FontSizeDelta = ((int)(resources.GetObject("cboProcesses.Properties.Appearance.FontSizeDelta")));
+            this.cboProcesses.Properties.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("cboProcesses.Properties.Appearance.FontStyleDelta")));
+            this.cboProcesses.Properties.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("cboProcesses.Properties.Appearance.GradientMode")));
+            this.cboProcesses.Properties.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("cboProcesses.Properties.Appearance.Image")));
             this.cboProcesses.Properties.Appearance.Options.UseFont = true;
+            this.cboProcesses.Properties.AutoHeight = ((bool)(resources.GetObject("cboProcesses.Properties.AutoHeight")));
             this.cboProcesses.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("cboProcesses.Properties.Buttons"))))});
+            this.cboProcesses.Properties.NullValuePrompt = resources.GetString("cboProcesses.Properties.NullValuePrompt");
+            this.cboProcesses.Properties.NullValuePromptShowForEmptyValue = ((bool)(resources.GetObject("cboProcesses.Properties.NullValuePromptShowForEmptyValue")));
             this.cboProcesses.Properties.ReadOnly = true;
             this.cboProcesses.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboProcesses.Size = new System.Drawing.Size(150, 26);
-            this.cboProcesses.TabIndex = 1;
             this.cboProcesses.SelectedIndexChanged += new System.EventHandler(this.cboProcesses_SelectedIndexChanged);
             // 
             // labelControl2
             // 
-            this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(290, 0);
+            resources.ApplyResources(this.labelControl2, "labelControl2");
+            this.labelControl2.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl2.Appearance.Font")));
+            this.labelControl2.Appearance.FontSizeDelta = ((int)(resources.GetObject("labelControl2.Appearance.FontSizeDelta")));
+            this.labelControl2.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("labelControl2.Appearance.FontStyleDelta")));
+            this.labelControl2.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("labelControl2.Appearance.GradientMode")));
+            this.labelControl2.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("labelControl2.Appearance.Image")));
+            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(128, 38);
-            this.labelControl2.TabIndex = 2;
-            this.labelControl2.Text = "当前选项【二】";
             // 
             // cboWorkUnits
             // 
-            this.cboWorkUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboWorkUnits.Enabled = false;
-            this.cboWorkUnits.Location = new System.Drawing.Point(424, 6);
+            resources.ApplyResources(this.cboWorkUnits, "cboWorkUnits");
             this.cboWorkUnits.Name = "cboWorkUnits";
-            this.cboWorkUnits.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboWorkUnits.Properties.AccessibleDescription = resources.GetString("cboWorkUnits.Properties.AccessibleDescription");
+            this.cboWorkUnits.Properties.AccessibleName = resources.GetString("cboWorkUnits.Properties.AccessibleName");
+            this.cboWorkUnits.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("cboWorkUnits.Properties.Appearance.Font")));
+            this.cboWorkUnits.Properties.Appearance.FontSizeDelta = ((int)(resources.GetObject("cboWorkUnits.Properties.Appearance.FontSizeDelta")));
+            this.cboWorkUnits.Properties.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("cboWorkUnits.Properties.Appearance.FontStyleDelta")));
+            this.cboWorkUnits.Properties.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("cboWorkUnits.Properties.Appearance.GradientMode")));
+            this.cboWorkUnits.Properties.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("cboWorkUnits.Properties.Appearance.Image")));
             this.cboWorkUnits.Properties.Appearance.Options.UseFont = true;
+            this.cboWorkUnits.Properties.AutoHeight = ((bool)(resources.GetObject("cboWorkUnits.Properties.AutoHeight")));
             this.cboWorkUnits.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("cboWorkUnits.Properties.Buttons"))))});
+            this.cboWorkUnits.Properties.NullValuePrompt = resources.GetString("cboWorkUnits.Properties.NullValuePrompt");
+            this.cboWorkUnits.Properties.NullValuePromptShowForEmptyValue = ((bool)(resources.GetObject("cboWorkUnits.Properties.NullValuePromptShowForEmptyValue")));
             this.cboWorkUnits.Properties.ReadOnly = true;
             this.cboWorkUnits.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboWorkUnits.Size = new System.Drawing.Size(240, 26);
-            this.cboWorkUnits.TabIndex = 3;
             this.cboWorkUnits.SelectedIndexChanged += new System.EventHandler(this.cboWorkUnits_SelectedIndexChanged);
             // 
             // btnSwitch
             // 
-            this.btnSwitch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSwitch.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnSwitch, "btnSwitch");
+            this.btnSwitch.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnSwitch.Appearance.Font")));
+            this.btnSwitch.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnSwitch.Appearance.FontSizeDelta")));
+            this.btnSwitch.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnSwitch.Appearance.FontStyleDelta")));
+            this.btnSwitch.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnSwitch.Appearance.GradientMode")));
+            this.btnSwitch.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnSwitch.Appearance.Image")));
             this.btnSwitch.Appearance.Options.UseFont = true;
-            this.btnSwitch.Location = new System.Drawing.Point(687, 3);
             this.btnSwitch.Name = "btnSwitch";
-            this.btnSwitch.Size = new System.Drawing.Size(85, 29);
-            this.btnSwitch.TabIndex = 4;
             this.btnSwitch.TabStop = false;
-            this.btnSwitch.Text = "切换";
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
             // ucOptions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnSwitch);
             this.Controls.Add(this.cboWorkUnits);
@@ -120,7 +127,6 @@
             this.Controls.Add(this.cboProcesses);
             this.Controls.Add(this.labelControl1);
             this.Name = "ucOptions";
-            this.Size = new System.Drawing.Size(778, 38);
             this.VisibleChanged += new System.EventHandler(this.ucOptions_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.cboProcesses.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboWorkUnits.Properties)).EndInit();

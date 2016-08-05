@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Threading;
+using System.Globalization;
 
 using IRAP.Global;
 using IRAP.Entity.SSO;
@@ -76,10 +78,17 @@ namespace IRAP.Client.SubSystems
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-                throw new Exception(
-                    string.Format(
-                        "无法获取产品/流程，原因：{0}",
-                        error.Message));
+
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    throw new Exception(
+                        string.Format(
+                            "Unable to get products/processes, reason: {0}",
+                            error.Message));
+                else
+                    throw new Exception(
+                        string.Format(
+                            "无法获取产品/流程，原因：{0}",
+                            error.Message));
             }
             finally
             {

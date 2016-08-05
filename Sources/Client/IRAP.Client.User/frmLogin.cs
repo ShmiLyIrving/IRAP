@@ -116,6 +116,8 @@ namespace IRAP.Client.User
                     if (IRAPUser.Instance.IsPWDVerified)
                     {
                         cboAgencies.Properties.Items.Clear();
+                        cboRoles.Properties.Items.Clear();
+
                         foreach (AgencyInfo agency in IRAPUser.Instance.AvailableAgencies)
                         {
                             cboAgencies.Properties.Items.Add(agency);
@@ -124,7 +126,6 @@ namespace IRAP.Client.User
                             cboAgencies.SelectedIndex = 0;
                         cboAgencies.Enabled = cboAgencies.Properties.Items.Count > 1;
 
-                        cboRoles.Properties.Items.Clear();
                         foreach (RoleInfo role in IRAPUser.Instance.AvailableRoles)
                         {
                             cboRoles.Properties.Items.Add(role);
@@ -204,6 +205,11 @@ namespace IRAP.Client.User
                 formPoint = new Point(xOffset, yOffset);
                 formMove = true;
             }
+        }
+
+        private void cboAgencies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IRAPUser.Instance.SelectAgency(cboAgencies.SelectedIndex);
         }
     }
 }

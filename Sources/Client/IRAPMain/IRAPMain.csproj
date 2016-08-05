@@ -83,6 +83,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmIRAPMain.en-US.resx">
+      <DependentUpon>frmIRAPMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmIRAPMain.resx">
       <DependentUpon>frmIRAPMain.cs</DependentUpon>
     </EmbeddedResource>

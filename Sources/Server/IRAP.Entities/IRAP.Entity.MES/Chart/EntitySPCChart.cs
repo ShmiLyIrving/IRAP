@@ -241,9 +241,9 @@ namespace IRAP.Entity.MES
             return rlt;
         }
 
-        public List<SPCChartMeasureData> XMLToList()
+        public List<RainbowChartMeasureData> XMLToRainbowChartDataList()
         {
-            List<SPCChartMeasureData> rlt = new List<SPCChartMeasureData>();
+            List<RainbowChartMeasureData> rlt = new List<RainbowChartMeasureData>();
 
             XmlDocument xmlDoc = new XmlDocument();
             try
@@ -252,7 +252,7 @@ namespace IRAP.Entity.MES
                 XmlNodeList nodes = xmlDoc.SelectNodes("ChartData/Row");
                 foreach (XmlNode node in nodes)
                 {
-                    SPCChartMeasureData data = new SPCChartMeasureData();
+                    RainbowChartMeasureData data = new RainbowChartMeasureData();
                     if (node.Attributes["Ordinal"] != null)
                         data.Ordinal = int.Parse(node.Attributes["Ordinal"].Value);
                     else
@@ -299,7 +299,7 @@ namespace IRAP.Entity.MES
                     rlt.Add(data);
                 }
             }
-            catch { rlt = new List<SPCChartMeasureData>(); }
+            catch { rlt = new List<RainbowChartMeasureData>(); }
             finally
             {
                 xmlDoc = null;
@@ -307,12 +307,19 @@ namespace IRAP.Entity.MES
 
             return rlt;
         }
+
+        public List<XbarChartMeasureData> XMLToXBarChartDataList()
+        {
+            List<XbarChartMeasureData> datas = new List<XbarChartMeasureData>();
+
+            return datas;
+        }
     }
 
     /// <summary>
-    /// SPC 控制图测量数据
+    /// SPC 彩虹图测量数据
     /// </summary>
-    public class SPCChartMeasureData
+    public class RainbowChartMeasureData
     {
         private Quantity lsl = new Quantity();
         private Quantity usl = new Quantity();
@@ -368,9 +375,9 @@ namespace IRAP.Entity.MES
             }
         }
 
-        public SPCChartMeasureData Clone()
+        public RainbowChartMeasureData Clone()
         {
-            SPCChartMeasureData rlt = MemberwiseClone() as SPCChartMeasureData;
+            RainbowChartMeasureData rlt = MemberwiseClone() as RainbowChartMeasureData;
             rlt.lsl = lsl.Clone();
             rlt.usl = usl.Clone();
             rlt.lcl = lcl.Clone();
@@ -379,5 +386,13 @@ namespace IRAP.Entity.MES
 
             return rlt;
         }
+    }
+
+    /// <summary>
+    /// SPC XBar-R图测量数据
+    /// </summary>
+    public class XbarChartMeasureData
+    {
+        public int Ordinal { get; set; }
     }
 }

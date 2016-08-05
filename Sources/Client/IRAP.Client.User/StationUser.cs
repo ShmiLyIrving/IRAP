@@ -41,7 +41,14 @@ namespace IRAP.Client.User
             }
 
             if (macAddress.Trim() == "")
-                GetMacAddress();
+            {
+                string macAddresses = RDPClientMAC.GetRDPMacAddress();
+                string[] arrMacAddress = macAddresses.Split(';');
+                if (arrMacAddress.Length > 0)
+                    macAddress = arrMacAddress[0];
+                else
+                    macAddress = "FFFFFFFFFFFF";
+            }
         }
 
         public string IPAddress

@@ -43,6 +43,11 @@ namespace IRAP.Entity.MDM
         /// </summary>
         public int Status { get; set; }
 
+        public override string ToString()
+        {
+            return EventTypeName;
+        }
+
         public AndonEventType Clone()
         {
             return MemberwiseClone() as AndonEventType;

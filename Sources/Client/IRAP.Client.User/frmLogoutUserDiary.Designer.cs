@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogoutUserDiary));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.edtUserDiary = new DevExpress.XtraEditors.TextEdit();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
@@ -36,57 +37,85 @@
             // 
             // toolTipController
             // 
-            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("toolTipController.Appearance.Font")));
+            this.toolTipController.Appearance.FontSizeDelta = ((int)(resources.GetObject("toolTipController.Appearance.FontSizeDelta")));
+            this.toolTipController.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("toolTipController.Appearance.FontStyleDelta")));
+            this.toolTipController.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("toolTipController.Appearance.GradientMode")));
+            this.toolTipController.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("toolTipController.Appearance.Image")));
             this.toolTipController.Appearance.Options.UseFont = true;
-            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Font = ((System.Drawing.Font)(resources.GetObject("toolTipController.AppearanceTitle.Font")));
+            this.toolTipController.AppearanceTitle.FontSizeDelta = ((int)(resources.GetObject("toolTipController.AppearanceTitle.FontSizeDelta")));
+            this.toolTipController.AppearanceTitle.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("toolTipController.AppearanceTitle.FontStyleDelta")));
+            this.toolTipController.AppearanceTitle.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("toolTipController.AppearanceTitle.GradientMode")));
+            this.toolTipController.AppearanceTitle.Image = ((System.Drawing.Image)(resources.GetObject("toolTipController.AppearanceTitle.Image")));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.labelControl1, "labelControl1");
+            this.labelControl1.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl1.Appearance.Font")));
+            this.labelControl1.Appearance.FontSizeDelta = ((int)(resources.GetObject("labelControl1.Appearance.FontSizeDelta")));
+            this.labelControl1.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("labelControl1.Appearance.FontStyleDelta")));
+            this.labelControl1.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("labelControl1.Appearance.GradientMode")));
+            this.labelControl1.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("labelControl1.Appearance.Image")));
             this.labelControl1.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(12, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(524, 61);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "　　在退出系统前，你可以输入运行日志（或者投诉、建议等）：";
             // 
             // edtUserDiary
             // 
-            this.edtUserDiary.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtUserDiary.Location = new System.Drawing.Point(12, 79);
+            resources.ApplyResources(this.edtUserDiary, "edtUserDiary");
             this.edtUserDiary.Name = "edtUserDiary";
-            this.edtUserDiary.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtUserDiary.Properties.AccessibleDescription = resources.GetString("edtUserDiary.Properties.AccessibleDescription");
+            this.edtUserDiary.Properties.AccessibleName = resources.GetString("edtUserDiary.Properties.AccessibleName");
+            this.edtUserDiary.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("edtUserDiary.Properties.Appearance.Font")));
+            this.edtUserDiary.Properties.Appearance.FontSizeDelta = ((int)(resources.GetObject("edtUserDiary.Properties.Appearance.FontSizeDelta")));
+            this.edtUserDiary.Properties.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("edtUserDiary.Properties.Appearance.FontStyleDelta")));
+            this.edtUserDiary.Properties.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("edtUserDiary.Properties.Appearance.GradientMode")));
+            this.edtUserDiary.Properties.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("edtUserDiary.Properties.Appearance.Image")));
             this.edtUserDiary.Properties.Appearance.Options.UseFont = true;
             this.edtUserDiary.Properties.Appearance.Options.UseTextOptions = true;
             this.edtUserDiary.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.edtUserDiary.Properties.AutoHeight = false;
-            this.edtUserDiary.Size = new System.Drawing.Size(524, 153);
-            this.edtUserDiary.TabIndex = 1;
+            this.edtUserDiary.Properties.AutoHeight = ((bool)(resources.GetObject("edtUserDiary.Properties.AutoHeight")));
+            this.edtUserDiary.Properties.Mask.AutoComplete = ((DevExpress.XtraEditors.Mask.AutoCompleteType)(resources.GetObject("edtUserDiary.Properties.Mask.AutoComplete")));
+            this.edtUserDiary.Properties.Mask.BeepOnError = ((bool)(resources.GetObject("edtUserDiary.Properties.Mask.BeepOnError")));
+            this.edtUserDiary.Properties.Mask.EditMask = resources.GetString("edtUserDiary.Properties.Mask.EditMask");
+            this.edtUserDiary.Properties.Mask.IgnoreMaskBlank = ((bool)(resources.GetObject("edtUserDiary.Properties.Mask.IgnoreMaskBlank")));
+            this.edtUserDiary.Properties.Mask.MaskType = ((DevExpress.XtraEditors.Mask.MaskType)(resources.GetObject("edtUserDiary.Properties.Mask.MaskType")));
+            this.edtUserDiary.Properties.Mask.PlaceHolder = ((char)(resources.GetObject("edtUserDiary.Properties.Mask.PlaceHolder")));
+            this.edtUserDiary.Properties.Mask.SaveLiteral = ((bool)(resources.GetObject("edtUserDiary.Properties.Mask.SaveLiteral")));
+            this.edtUserDiary.Properties.Mask.ShowPlaceHolders = ((bool)(resources.GetObject("edtUserDiary.Properties.Mask.ShowPlaceHolders")));
+            this.edtUserDiary.Properties.Mask.UseMaskAsDisplayFormat = ((bool)(resources.GetObject("edtUserDiary.Properties.Mask.UseMaskAsDisplayFormat")));
+            this.edtUserDiary.Properties.NullValuePrompt = resources.GetString("edtUserDiary.Properties.NullValuePrompt");
+            this.edtUserDiary.Properties.NullValuePromptShowForEmptyValue = ((bool)(resources.GetObject("edtUserDiary.Properties.NullValuePromptShowForEmptyValue")));
             // 
             // btnOK
             // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnOK, "btnOK");
+            this.btnOK.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnOK.Appearance.Font")));
+            this.btnOK.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnOK.Appearance.FontSizeDelta")));
+            this.btnOK.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnOK.Appearance.FontStyleDelta")));
+            this.btnOK.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnOK.Appearance.GradientMode")));
+            this.btnOK.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Appearance.Image")));
             this.btnOK.Appearance.Options.UseFont = true;
-            this.btnOK.Location = new System.Drawing.Point(456, 238);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(80, 30);
-            this.btnOK.TabIndex = 2;
-            this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // frmLogoutUserDiary
             // 
+            resources.ApplyResources(this, "$this");
+            this.toolTipController.SetAllowHtmlText(this, ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("$this.AllowHtmlText"))));
+            this.Appearance.FontSizeDelta = ((int)(resources.GetObject("frmLogoutUserDiary.Appearance.FontSizeDelta")));
+            this.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("frmLogoutUserDiary.Appearance.FontStyleDelta")));
+            this.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("frmLogoutUserDiary.Appearance.GradientMode")));
+            this.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("frmLogoutUserDiary.Appearance.Image")));
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(548, 280);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.edtUserDiary);
             this.Controls.Add(this.labelControl1);
             this.Name = "frmLogoutUserDiary";
+            this.toolTipController.SetTitle(this, resources.GetString("$this.Title"));
+            this.toolTipController.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.toolTipController.SetToolTipIconType(this, ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("$this.ToolTipIconType"))));
             ((System.ComponentModel.ISupportInitialize)(this.edtUserDiary.Properties)).EndInit();
             this.ResumeLayout(false);
 

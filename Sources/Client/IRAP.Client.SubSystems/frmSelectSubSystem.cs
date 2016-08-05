@@ -65,7 +65,7 @@ namespace IRAP.Client.SubSystems
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 MessageBox.Show(
                     error.Message,
-                    "选择子系统",
+                    this.Text,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -115,7 +115,7 @@ namespace IRAP.Client.SubSystems
                         WriteLog.Instance.Write(error.Message, strProcedureName);
                         MessageBox.Show(
                             error.Message,
-                            "获取当前站点信息时出错",
+                            this.Text,
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                     }

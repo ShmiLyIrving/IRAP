@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
+
 using DevExpress.XtraEditors;
 
 using IRAP.Global;
@@ -40,7 +42,11 @@ namespace IRAP.Client.GUI.MDM
             {
                 propertiesType = value;
                 lblTitle.Text = value;
-                Text = value + "行集属性";
+
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    Text = value + " row set properties";
+                else
+                    Text = value + "行集属性";
             }
         }
 
@@ -62,9 +68,15 @@ namespace IRAP.Client.GUI.MDM
         /// <param name="operationName">工序名称</param>
         public virtual void SetCaption(string productName, string operationName)
         {
+            string msgText = "";
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                msgText = "The {2} of [{0}] in [{1}]";
+            else
+                msgText = "[{0}]在工序[{1}]的{2}";
+
             lblTitle.Text =
                 string.Format(
-                    "[{0}]在工序[{1}]的{2}",
+                    msgText,
                     productName,
                     operationName,
                     propertiesType);
@@ -125,9 +137,14 @@ namespace IRAP.Client.GUI.MDM
                 }
                 else
                 {
+                    string msgText = "";
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        msgText = "{0} hsa been saved!";
+                    else
+                        msgText = "{0}保存成功！";
                     XtraMessageBox.Show(
                         string.Format(
-                            "{0}保存成功！",
+                            msgText,
                             lblTitle.Text),
                         Text,
                         MessageBoxButtons.OK,

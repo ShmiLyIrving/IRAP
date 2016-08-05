@@ -130,6 +130,9 @@
     <EmbeddedResource Include="frmCustomKanbanBase.resx">
       <DependentUpon>frmCustomKanbanBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmShowErrorLogs.en-US.resx">
+      <DependentUpon>frmShowErrorLogs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmShowErrorLogs.resx">
       <DependentUpon>frmShowErrorLogs.cs</DependentUpon>
     </EmbeddedResource>

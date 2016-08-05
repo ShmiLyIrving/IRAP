@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Threading;
 
 using IRAP.Global;
 using IRAP.Client.User;
@@ -45,7 +46,10 @@ namespace IRAP.Client.SubSystems
             {
                 if (value > workUnits.Count)
                 {
-                    throw new Exception("索引超出工位/工序列表的范围");
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        throw new Exception("Index is out of range.");
+                    else
+                        throw new Exception("索引超出工位/工序列表的范围");
                 }
 
                 if (indexOfWorkUnit != value)
@@ -121,7 +125,10 @@ namespace IRAP.Client.SubSystems
                         }
                     }
 
-                    throw new Exception("要切换的工位/工序不在当前产品/流程允许的列表中");
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        throw new Exception("The position/process to switch is not in the list of the current product / process");
+                    else
+                        throw new Exception("要切换的工位/工序不在当前产品/流程允许的列表中");
                 }
             }
         }

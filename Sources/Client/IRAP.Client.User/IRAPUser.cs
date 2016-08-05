@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Threading;
+using System.Globalization;
 
 using IRAP.Global;
 using IRAP.Entity.SSO;
@@ -198,14 +200,19 @@ namespace IRAP.Client.User
                                 password = value;
 
                                 GetAvailableAgencies();
-                                GetAvailableRoles();
+                                //GetAvailableRoles();
                             }
                             else
                             {
                                 password = "";
 
                                 if (errCode == 0)
-                                    throw new Exception("您输入的登录密码不正确！");
+                                {
+                                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                        throw new Exception("Login password is invalid!");
+                                    else
+                                        throw new Exception("您输入的登录密码不正确！");
+                                }
                                 else
                                     throw new Exception(errText);
                             }
@@ -217,7 +224,13 @@ namespace IRAP.Client.User
                             WriteLog.Instance.Write(error.Message, strProcedureName);
                             WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                             if (error.Message.IndexOf("没有终结点在侦听", 0) >= 0)
-                                throw new Exception("找不到应用服务器。可能：1、网络不通；2、应用服务已经停止。");
+                            {
+                                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                    throw new Exception("Can't find Application Server, because the network may shutdown " +
+                                        "or application server may shutdown");
+                                else
+                                    throw new Exception("找不到应用服务器。可能：1、网络不通；2、应用服务已经停止。");
+                            }
                             else
                                 throw error;
                         }
@@ -230,6 +243,8 @@ namespace IRAP.Client.User
                 else
                 {
                     string errText = "用户已经登录，不能设置登录密码";
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        errText = "Can't set password property while user has been logged in.";
                     WriteLog.Instance.Write(errText);
                     throw new Exception(errText);
                 }
@@ -295,7 +310,12 @@ namespace IRAP.Client.User
                     roles.Clear();
                 }
                 else
-                    throw new Exception("当前用户已经登录，不能更改登录用户号");
+                {
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        throw new Exception("Can't change UserCode while the user has been logged in.");
+                    else
+                        throw new Exception("当前用户已经登录，不能更改登录用户号");
+                }
             }
         }
 
@@ -336,9 +356,19 @@ namespace IRAP.Client.User
                     MethodBase.GetCurrentMethod().Name);
 
             if (!isLogon)
-                throw new Exception("用户还没有登录成功，不能修改密码！");
+            {
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    throw new Exception("Can't change password while user has not been logged in.");
+                else
+                    throw new Exception("用户还没有登录成功，不能修改密码！");
+            }
             if (newPwd != renewPwd)
-                throw new Exception("输入的新密码不一致，请重新输入新的密码，并且确保两次输入的密码一致！");
+            {
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    throw new Exception("The password must be kept consistent with the two input.");
+                else
+                    throw new Exception("输入的新密码不一致，请重新输入新的密码，并且确保两次输入的密码一致！");
+            }
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -360,7 +390,10 @@ namespace IRAP.Client.User
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-                throw new Exception(string.Format("登录密码修改失败，原因：{0}", error.Message));
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    throw new Exception(string.Format("Login password modification failed, {0}", error.Message));
+                else
+                    throw new Exception(string.Format("登录密码修改失败，原因：{0}", error.Message));
             }
             finally
             {
@@ -433,6 +466,20 @@ namespace IRAP.Client.User
                         throw new Exception(errText);
                     }
                     #endregion
+
+                    // 登录成功后，将当前语言切换到该用户在系统中配置的语言
+                    switch (languageID)
+                    {
+                        case 0:
+                            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                            break;
+                        case 28:
+                            Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CHT");
+                            break;
+                        default:
+                            Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+                            break;
+                    }
 
                     #region 登录成功后，获取当前站点的系统配置参数
                     List<StrParamInfo> strParams = new List<StrParamInfo>();
@@ -616,7 +663,7 @@ namespace IRAP.Client.User
         /// <summary>
         /// 获取当前用户的可用角色列表
         /// </summary>
-        private void GetAvailableRoles()
+        private void GetAvailableRoles(int agencyID)
         {
             string strProcedureName = string.Format(
                 "{0}.{1}",
@@ -631,10 +678,15 @@ namespace IRAP.Client.User
                 int errCode = 0;
                 string errText = "";
 
-                WriteLog.Instance.Write("获取当前用户的可用角色列表", strProcedureName);
-                IRAPUserClient.Instance.sfn_UserRoles(
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "获取当前用户的[{0}]的可用角色列表",
+                        agencyID), 
+                    strProcedureName);
+                IRAPUserClient.Instance.sfn_UserRolesInAgency(
                     communityID,
                     userCode,
+                    agencyID,
                     ref roles,
                     out errCode,
                     out errText);
@@ -684,10 +736,17 @@ namespace IRAP.Client.User
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-                throw new Exception(
-                    string.Format(
-                        "记录当前运行功能时发生错误：{0}",
-                        error.Message));
+
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    throw new Exception(
+                        string.Format(
+                            "Error occurred while recording the current running function. {0}",
+                            error.Message));
+                else
+                    throw new Exception(
+                        string.Format(
+                            "记录当前运行功能时发生错误：{0}",
+                            error.Message));
             }
             finally
             {
@@ -700,10 +759,21 @@ namespace IRAP.Client.User
         /// </summary>
         public void SelectAgency(int index)
         {
+            roles.Clear();
+
             if ((index < 0) || (index >= agencies.Count()))
-                throw new Exception("索引超出数组范围！");
+            {
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    throw new Exception("Index out of range");
+                else
+                    throw new Exception("索引超出数组范围！");
+            }
             else
+            {
                 currentAgencyInfo = agencies[index].Clone();
+
+                GetAvailableRoles(currentAgencyInfo.AgencyID);
+            }
         }
 
         /// <summary>
@@ -712,7 +782,12 @@ namespace IRAP.Client.User
         public void SelectRole(int index)
         {
             if ((index < 0) || (index >= roles.Count()))
-                throw new Exception("索引超出数组范围！");
+            {
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    throw new Exception("Index out of range");
+                else
+                    throw new Exception("索引超出数组范围！");
+            }
             else
                 currentRoleInfo = roles[index].Clone();
         }
@@ -723,7 +798,12 @@ namespace IRAP.Client.User
         public void UserLogin()
         {
             if (isLogon)
-                throw new Exception("当前用户已经登录，不需要再次登录！");
+            {
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    throw new Exception("The current user has logged in, do not need to log in again.");
+                else
+                    throw new Exception("当前用户已经登录，不需要再次登录！");
+            }
             else
             {
                 try

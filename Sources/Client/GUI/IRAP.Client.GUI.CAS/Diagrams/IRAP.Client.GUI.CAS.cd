@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Client.GUI.CAS.Entities.AndonProductionLineStatus" Collapsed="true">
+    <Position X="2.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAQBYoAxAAAgQoggGAEEAjJCAAhEQoBCBUBAAgUBM=</HashCode>
+      <FileName>Entities\AndonProductionLineStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="IRAP.Client.GUI.CAS.Enums.LightStatus">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAIA=</HashCode>
+      <FileName>Enums\LightStatus.cs</FileName>
+      <NewMemberFileName>Enums\LIghtStatus.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

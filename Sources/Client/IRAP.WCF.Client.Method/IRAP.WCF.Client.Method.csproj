@@ -64,6 +64,10 @@
       <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
       <Name>IRAP.Global</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.FVS\IRAP.Entity.FVS.csproj">
+      <Project>{08efff76-a5d1-4c39-972d-d9c85bded80f}</Project>
+      <Name>IRAP.Entity.FVS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
       <Project>{38588300-33df-457a-936a-d0d0ca499e96}</Project>
       <Name>IRAP.Entity.Kanban</Name>

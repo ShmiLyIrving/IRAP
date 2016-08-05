@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
+
 using DevExpress.XtraEditors;
 
 using IRAP.Global;
@@ -176,8 +178,13 @@ namespace IRAP.Client.GUI.MDM
 
                 if (c64ID == 0)
                 {
+                    string msgText = "";
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        msgText = "The relationship of current product and process are not generated!";
+                    else
+                        msgText = "当前产品和工序的关联未生成！";
                     XtraMessageBox.Show(
-                        "当前产品和工序的关联未生成！",
+                        msgText,
                         Text,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -233,7 +240,10 @@ namespace IRAP.Client.GUI.MDM
                     #region 如果当前显示的数据是模板数据
                     if (standards.Count > 0 && standards[0].Reference)
                     {
-                        lblTitle.Text += "（模板数据）";
+                        if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                            lblTitle.Text += "(Template)";
+                        else
+                            lblTitle.Text += "（模板数据）";
 
                         btnSave.Enabled = true;
                     }

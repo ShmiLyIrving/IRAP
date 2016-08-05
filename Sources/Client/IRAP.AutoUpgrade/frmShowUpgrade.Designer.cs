@@ -34,30 +34,30 @@
             // 
             // lblMessage
             // 
-            this.lblMessage.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblMessage.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblMessage.Location = new System.Drawing.Point(253, 392);
+            resources.ApplyResources(this.lblMessage, "lblMessage");
+            this.lblMessage.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lblMessage.Appearance.Font")));
+            this.lblMessage.Appearance.FontSizeDelta = ((int)(resources.GetObject("lblMessage.Appearance.FontSizeDelta")));
+            this.lblMessage.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("lblMessage.Appearance.FontStyleDelta")));
+            this.lblMessage.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("lblMessage.Appearance.GradientMode")));
+            this.lblMessage.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("lblMessage.Appearance.Image")));
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(594, 21);
-            this.lblMessage.TabIndex = 0;
-            this.lblMessage.Text = "labelControl1";
             // 
             // frmShowUpgrade
             // 
+            resources.ApplyResources(this, "$this");
+            this.Appearance.FontSizeDelta = ((int)(resources.GetObject("frmShowUpgrade.Appearance.FontSizeDelta")));
+            this.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("frmShowUpgrade.Appearance.FontStyleDelta")));
+            this.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("frmShowUpgrade.Appearance.GradientMode")));
+            this.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("frmShowUpgrade.Appearance.Image")));
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
             this.BackgroundImageStore = global::IRAP.AutoUpgrade.Properties.Resources.login;
-            this.ClientSize = new System.Drawing.Size(1003, 571);
             this.ControlBox = false;
             this.Controls.Add(this.lblMessage);
-            this.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmShowUpgrade";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "系统自动更新";
             this.ResumeLayout(false);
 
         }
