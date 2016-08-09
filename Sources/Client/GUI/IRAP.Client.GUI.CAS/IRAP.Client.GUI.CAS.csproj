@@ -138,6 +138,9 @@
     <EmbeddedResource Include="frmAndonEventCall_30.resx">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectAndonObjectsToCall.resx">
+      <DependentUpon>frmSelectAndonObjectsToCall.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSelectFailureModesByDeviceToCall.en-US.resx">
       <DependentUpon>frmSelectFailureModesByDeviceToCall.cs</DependentUpon>
     </EmbeddedResource>

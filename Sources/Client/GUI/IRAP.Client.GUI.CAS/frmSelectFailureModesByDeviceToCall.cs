@@ -363,9 +363,18 @@ namespace IRAP.Client.GUI.CAS
                 }
                 else
                 {
+                    string msgText = "";
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2)=="en")
+                    {
+                        msgText = "The Andon call {0} result: {1}";
+                    }
+                    else
+                    {
+                        msgText = "安灯呼叫【{0}】：{1}";
+                    }
                     ShowMessageBox.Show(
                         string.Format(
-                            "安灯呼叫【{0}】：{1}",
+                            msgText,
                             andonObject.ObjectDesc,
                             errText),
                         this.Text,
