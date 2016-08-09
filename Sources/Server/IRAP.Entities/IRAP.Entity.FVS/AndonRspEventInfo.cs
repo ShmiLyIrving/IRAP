@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entity.FVS
 {
     public class AndonRspEventInfo : AndonEventInfo
@@ -15,11 +17,19 @@ namespace IRAP.Entity.FVS
         /// </summary>
         public int AndonEventOwnership { get; set; }
 
-        public AndonRspEventInfo Clone()
+        [IRAPORMMap(ORMMap = false)]
+        public bool Choice { get; set; }
+
+        public new AndonRspEventInfo Clone()
         {
             AndonRspEventInfo rlt = MemberwiseClone() as AndonRspEventInfo;
 
             return rlt;
+        }
+
+        public override string ToString()
+        {
+            return EventDescription;
         }
     }
 }

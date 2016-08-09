@@ -81,8 +81,7 @@
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.PanelControl panelControl1;
         protected DevExpress.XtraEditors.LabelControl lblFuncName;
+        protected DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }

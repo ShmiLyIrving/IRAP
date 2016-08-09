@@ -59,6 +59,18 @@
     <Compile Include="frmAndonEventCall_30.Designer.cs">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAndonEventRespond_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventRespond_30.Designer.cs">
+      <DependentUpon>frmAndonEventRespond_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomAndonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomAndonForm.Designer.cs">
+      <DependentUpon>frmCustomAndonForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSelectAndonObjectsToCall.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +82,12 @@
     </Compile>
     <Compile Include="frmSelectFailureModesByDeviceToCall.Designer.cs">
       <DependentUpon>frmSelectFailureModesByDeviceToCall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSwitchToPLine_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSwitchToPLine_30.Designer.cs">
+      <DependentUpon>frmSwitchToPLine_30.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -87,7 +105,9 @@
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.GUI.CAS.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\AndonCall.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325FFD07-7491-45C3-86F3-85F7DEF4C726}</Project>
@@ -138,6 +158,15 @@
     <EmbeddedResource Include="frmAndonEventCall_30.resx">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventRespond_30.resx">
+      <DependentUpon>frmAndonEventRespond_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomAndonForm.en-US.resx">
+      <DependentUpon>frmCustomAndonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomAndonForm.resx">
+      <DependentUpon>frmCustomAndonForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSelectAndonObjectsToCall.resx">
       <DependentUpon>frmSelectAndonObjectsToCall.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSelectFailureModesByDeviceToCall.resx">
       <DependentUpon>frmSelectFailureModesByDeviceToCall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSwitchToPLine_30.resx">
+      <DependentUpon>frmSwitchToPLine_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

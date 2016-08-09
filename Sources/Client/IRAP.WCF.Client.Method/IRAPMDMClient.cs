@@ -2181,7 +2181,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetList_AndonCallObjects 函数， " +
-                        "参数：CommunityID={0}|T179LeafID={1}|T107LeafID={2}|"+
+                        "参数：CommunityID={0}|T179LeafID={1}|T107LeafID={2}|" +
                         "T133LeafID={3}|SysLogID={4}",
                         communityID,
                         t179LeafID,
@@ -2220,6 +2220,76 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 将信息站点组切换到指定生产线
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="hostName">待切换站点主机名</param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_SwitchToProductionLine(
+        int communityID,
+        string hostName,
+        int t134LeafID,
+        long sysLogID,
+        out int errCode,
+        out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("hostName", hostName);
+                hashParams.Add("t134LeafID", t134LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SwitchToProductionLine，输入参数：" +
+                        "CommunityID={0}|HostName={1}|T134LeafID={2}|"+
+                        "SysLogID={3}",
+                        communityID,
+                        hostName,
+                        t134LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "usp_SwitchToProductionLine",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
             }
             finally
             {

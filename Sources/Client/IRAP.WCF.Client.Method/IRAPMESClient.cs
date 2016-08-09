@@ -149,7 +149,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 usp_WriteLog_SPCReset，输入参数：" +
-                        "CommunityID={0}|C1ID={1}SysLogID={2}",
+                        "CommunityID={0}|C1ID={1}|SysLogID={2}",
                         communityID,
                         c1ID,
                         sysLogID),
