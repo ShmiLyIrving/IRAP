@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventCall_30));
-            this.lblProductionLine = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.tcAndon = new DevExpress.XtraTab.XtraTabControl();
@@ -49,6 +48,8 @@
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.tmrRefreshLight = new System.Windows.Forms.Timer(this.components);
             this.tmrGetAndonEventStatus = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
@@ -78,21 +79,6 @@
             this.toolTipController.Appearance.Options.UseFont = true;
             this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
-            // 
-            // lblProductionLine
-            // 
-            this.lblProductionLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblProductionLine.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.lblProductionLine.Appearance.Font = new System.Drawing.Font("新宋体", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblProductionLine.Appearance.ForeColor = System.Drawing.Color.Green;
-            this.lblProductionLine.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblProductionLine.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblProductionLine.Location = new System.Drawing.Point(5, 11);
-            this.lblProductionLine.Name = "lblProductionLine";
-            this.lblProductionLine.Size = new System.Drawing.Size(169, 24);
-            this.lblProductionLine.TabIndex = 1;
-            this.lblProductionLine.Text = "labelControl1";
             // 
             // panelControl2
             // 
@@ -247,14 +233,15 @@
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(891, 495);
             this.Controls.Add(this.panelControl2);
-            this.Controls.Add(this.lblProductionLine);
             this.Name = "frmAndonEventCall_30";
             this.Text = "安灯呼叫";
             this.Activated += new System.EventHandler(this.frmAndonEventCall_30_Activated);
             this.Shown += new System.EventHandler(this.frmAndonEventCall_30_Shown);
             this.Resize += new System.EventHandler(this.frmAndonEventCall_30_Resize);
-            this.Controls.SetChildIndex(this.lblProductionLine, 0);
+            this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.panelControl2, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
@@ -270,13 +257,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLights)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.LabelControl lblProductionLine;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.PanelControl panelControl4;
         private DevExpress.XtraEditors.PanelControl panelControl3;

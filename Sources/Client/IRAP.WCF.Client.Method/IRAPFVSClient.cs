@@ -411,6 +411,97 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 安灯事件关闭
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">申请到的交易号</param>
+        /// <param name="factID">申请到的事实编号</param>
+        /// <param name="eventFactID">安灯事件标识</param>
+        /// <param name="opID">业务操作标识</param>
+        /// <param name="userCode">关闭人用户代码</param>
+        /// <param name="satisfactoryLevel">
+        /// 满意度评价：
+        /// 1-非常满意；
+        /// 2-满意；
+        /// 3-一般；
+        /// 4-不满意
+        /// </param>
+        /// <param name="sysLogID">关闭站点系统登录标识</param>
+        public void usp_SaveFact_AndonEventClose(
+            int communityID,
+            long transactNo,
+            long factID,
+            long eventFactID,
+            int opID,
+            string userCode,
+            int satisfactoryLevel,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("transactNo", transactNo);
+                    hashParams.Add("factID", factID);
+                    hashParams.Add("eventFactID", eventFactID);
+                    hashParams.Add("opID", opID);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("satisfactoryLevel", satisfactoryLevel);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 usp_SaveFact_AndonEventOnSiteRespond，输入参数：" +
+                            "CommunityID={0}|TransactNo={1}|FactID={2}|" +
+                            "EventFactID={3}|OpID={4}|UserCode={5}|"+
+                            "SatisfactoryLevel={6}|SysLogID={7}",
+                            communityID, transactNo, factID, eventFactID, opID,
+                            userCode, satisfactoryLevel, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.Andon",
+                        "usp_SaveFact_AndonEventClose",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取待响应的安灯事件清单
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -449,20 +540,93 @@ namespace IRAP.WCF.Client.Method
                         strProcedureName);
                     #endregion
 
-                    #region 调用应用服务过程，并解析返回值
-                    object rlt = client.WCFRESTFul(
-                        "IRAP.BL.FVS.dll",
-                        "IRAP.BL.FVS.Andon",
-                        "ufn_GetList_AndonEventsToRespond",
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetList_AndonEventsToRespond",
                         hashParams,
                         out errCode,
                         out errText);
                     WriteLog.Instance.Write(
                         string.Format(
-                            "({0}){1}",
-                            errCode,
-                            errText),
+                            "({0}){1}", errCode, errText),
                         strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<AndonRspEventInfo>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取待关闭的安灯事件清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_AndonEventsToClose(
+            int communityID,
+            long sysLogID,
+            ref List<AndonEventToClose> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 ufn_GetList_AndonEventsToClose，输入参数：" +
+                            "CommunityID={0}|SysLogID={1}",
+                            communityID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetList_AndonEventsToClose",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<AndonEventToClose>;
+                    }
                     #endregion
                 }
             }

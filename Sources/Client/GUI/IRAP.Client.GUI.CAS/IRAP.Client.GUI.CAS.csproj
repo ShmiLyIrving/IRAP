@@ -59,6 +59,18 @@
     <Compile Include="frmAndonEventCall_30.Designer.cs">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAndonEventCloseProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventCloseProperties.Designer.cs">
+      <DependentUpon>frmAndonEventCloseProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAndonEventClose_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventClose_30.Designer.cs">
+      <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAndonEventRespond_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +169,12 @@
   <ItemGroup>
     <EmbeddedResource Include="frmAndonEventCall_30.resx">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventCloseProperties.resx">
+      <DependentUpon>frmAndonEventCloseProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventClose_30.resx">
+      <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventRespond_30.resx">
       <DependentUpon>frmAndonEventRespond_30.cs</DependentUpon>

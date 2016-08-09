@@ -21,7 +21,7 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.CAS
 {
-    public partial class frmAndonEventCall_30 : IRAP.Client.Global.GUI.frmCustomFuncBase
+    public partial class frmAndonEventCall_30 : IRAP.Client.GUI.CAS.frmCustomAndonForm
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -225,104 +225,6 @@ namespace IRAP.Client.GUI.CAS
         }
 
         /// <summary>
-        /// 当前站点所绑定的产线
-        /// </summary>
-        /// <returns></returns>
-        private ProductionLineForStationBound GetBoundAndonHost()
-        {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                int errCode = 0;
-                string errText = "";
-                List<ProductionLineForStationBound> lines =
-                    new List<ProductionLineForStationBound>();
-
-                IRAPMDMClient.Instance.ufn_GetList_StationBoundProductionLines(
-                    IRAPUser.Instance.CommunityID,
-                    IRAPUser.Instance.SysLogID,
-                    ref lines,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(
-                    string.Format(
-                        "({0}){1}",
-                        errCode,
-                        errText),
-                    strProcedureName);
-                if (errCode != 0)
-                {
-                    string msgTitle = "";
-                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                        msgTitle = "System Info";
-                    else
-                        msgTitle = "系统信息";
-
-                    XtraMessageBox.Show(
-                        errText, 
-                        msgTitle, 
-                        MessageBoxButtons.OK, 
-                        MessageBoxIcon.Error);
-
-                    return null;
-                }
-                else
-                {
-                    ProductionLineForStationBound line = null;
-                    foreach (ProductionLineForStationBound prdtLine in lines)
-                    {
-                        if (prdtLine.BoundToAndonHost)
-                        {
-                            line = prdtLine;
-                            break;
-                        }
-                    }
-
-                    if (line != null)
-                        WriteLog.Instance.Write(
-                            string.Format(
-                                "当前站点绑定产线：({0}){1}",
-                                line.T134LeafID,
-                                line.T134NodeName),
-                            strProcedureName);
-                    else
-                        WriteLog.Instance.Write(
-                            "当前站点没有绑定任何产线",
-                            strProcedureName);
-
-                    return line;
-                }
-            }
-            catch (Exception error)
-            {
-                WriteLog.Instance.Write(error.Message, strProcedureName);
-                string msgTitle = "";
-                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                    msgTitle = "System Info";
-                else
-                    msgTitle = "系统信息";
-
-                XtraMessageBox.Show(
-                    error.Message, 
-                    msgTitle, 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Error);
-
-                return null;
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
-        /// <summary>
         /// 获取当前产线的安灯告警灯状态
         /// </summary>
         private void GetAndonLightsStatus()
@@ -506,29 +408,6 @@ namespace IRAP.Client.GUI.CAS
 
         private void frmAndonEventCall_30_Activated(object sender, EventArgs e)
         {
-            currentProductionLine = GetBoundAndonHost();
-
-            if (currentProductionLine != null)
-            {
-                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                    lblProductionLine.Text =
-                        string.Format(
-                            "Current production line: {0}",
-                            currentProductionLine.T134NodeName);
-                else
-                    lblProductionLine.Text = 
-                        string.Format(
-                            "当前产线：{0}",
-                            currentProductionLine.T134NodeName);
-            }
-            else
-            {
-                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                    lblProductionLine.Text = "Current production line: none";
-                else
-                    lblProductionLine.Text = "当前产线：无";
-            }
-
             GetAndonLightsStatus();
         }
 
