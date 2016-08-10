@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entity.FVS
 {
     public class ResponsibleResponderInfo
@@ -12,6 +14,9 @@ namespace IRAP.Entity.FVS
         public string UserName { get; set; }
         public string AgencyName { get; set; }
         public string RoleName { get; set; }
+
+        [IRAPORMMap(ORMMap = false)]
+        public bool Choice { get; set; }
 
         public ResponsibleResponderInfo Clone()
         {

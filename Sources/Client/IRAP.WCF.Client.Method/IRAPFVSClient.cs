@@ -594,6 +594,8 @@ namespace IRAP.WCF.Client.Method
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                datas.Clear();
+
                 using (WCFClient client = new WCFClient())
                 {
                     Hashtable hashParams = new Hashtable();
@@ -627,6 +629,456 @@ namespace IRAP.WCF.Client.Method
                     {
                         datas = rlt as List<AndonEventToClose>;
                     }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取可撤销的安灯事件清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="userCode">用户代码</param>
+        /// <param name="sysLogID">响应站点系统登录标识</param>
+        public void ufn_GetList_AndonEventsToCancel(
+            int communityID,
+            string userCode,
+            long sysLogID,
+            ref List<AndonEventInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 ufn_GetList_AndonEventsToCancel，输入参数：" +
+                            "CommunityID={0}|UserCode={1}|SysLogID={2}",
+                            communityID, userCode, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetList_AndonEventsToCancel",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<AndonEventInfo>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 安灯事件撤销授权请求
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="eventID">申请授权事件标识(事实编号/交易号)</param>
+        /// <param name="userCode">申请授权人用户代码</param>
+        /// <param name="userName">申请授权人姓名</param>
+        /// <param name="menuItemID">当前菜单项标识</param>
+        /// <param name="t2LeafID">授权人角色叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_AuthorizationRequest(
+            int communityID,
+            long eventID,
+            string userCode,
+            string userName,
+            int menuItemID,
+            int t2LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("eventID", eventID);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("userName", userName);
+                    hashParams.Add("menuItemID", menuItemID);
+                    hashParams.Add("t2LeafID", t2LeafID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 usp_SaveFact_AndonEventOnSiteRespond，输入参数：" +
+                            "CommunityID={0}|EventID={1}|UserCode={2}|" +
+                            "UserName={3}|MenuItemID={4}|T2LeafID={5}|" +
+                            "SysLogID={6}",
+                            communityID, eventID, userCode, userName, menuItemID,
+                            t2LeafID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.Andon",
+                        "usp_AuthorizationRequest",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 安灯事件撤销
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="eventFactID">安灯事件标识</param>
+        /// <param name="opID">业务操作标识</param>
+        /// <param name="userCode">撤销人用户代码</param>
+        /// <param name="veriCode">撤销授权码(短信)</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_AndonEventCancel(
+            int communityID,
+            long eventFactID,
+            int opID,
+            string userCode,
+            string veriCode,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("eventFactID", eventFactID);
+                    hashParams.Add("opID", opID);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("veriCode", veriCode);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 usp_AndonEventCancel，输入参数：" +
+                            "CommunityID={0}|EventFactID={1}|OpID={2}|" +
+                            "UserCode={3}|VeriCode={4}|SysLogID={5}",
+                            communityID, eventFactID, opID, userCode,
+                            veriCode, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.Andon",
+                        "usp_AndonEventCancel",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取本人已响应未关闭的安灯事件清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="userCode">用户代码</param>
+        /// <param name="sysLogID">响应站点系统登录标识</param>
+        public void ufn_GetList_AndonEventsToForward(
+            int communityID,
+            string userCode,
+            long sysLogID,
+            ref List<AndonEventInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 ufn_GetList_AndonEventsToForward，输入参数：" +
+                            "CommunityID={0}|UserCode={1}|SysLogID={2}",
+                            communityID, userCode, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetList_AndonEventsToForward",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<AndonEventInfo>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void ufn_GetList_ResponsibleRespondersToInform(
+            int communityID,
+            long eventFactID,
+            int opID,
+            long sysLogID,
+            ref List<ResponsibleResponderInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("eventFactID", eventFactID);
+                    hashParams.Add("opID", opID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 ufn_GetList_ResponsibleRespondersToInform，输入参数：" +
+                            "CommunityID={0}|EventFactID={1}|OpID={2}|SysLogID={3}",
+                            communityID, eventFactID, opID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetList_ResponsibleRespondersToInform",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<ResponsibleResponderInfo>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 安灯事件追加呼叫
+        /// </summary>
+        public void usp_AndonEventForwarding(
+            int communityID,
+            long eventFactID,
+            int opID,
+            int ordinal,
+            string userCode,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("eventFactID", eventFactID);
+                    hashParams.Add("opID", opID);
+                    hashParams.Add("ordinal", ordinal);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 usp_AndonEventForwarding，输入参数：" +
+                            "CommunityID={0}|EventFactID={1}|OpID={2}|" +
+                            "Ordinal={3}|UserCode={4}|SysLogID={5}",
+                            communityID, eventFactID, opID, ordinal,
+                            userCode, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.Andon",
+                        "usp_AndonEventForwarding",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
                     #endregion
                 }
             }

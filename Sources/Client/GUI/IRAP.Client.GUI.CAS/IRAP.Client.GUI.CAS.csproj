@@ -59,6 +59,12 @@
     <Compile Include="frmAndonEventCall_30.Designer.cs">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAndonEventCancel_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventCancel_30.Designer.cs">
+      <DependentUpon>frmAndonEventCancel_30.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAndonEventCloseProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,12 @@
     </Compile>
     <Compile Include="frmAndonEventClose_30.Designer.cs">
       <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAndonEventForward_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventForward_30.Designer.cs">
+      <DependentUpon>frmAndonEventForward_30.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAndonEventRespond_30.cs">
       <SubType>Form</SubType>
@@ -170,11 +182,17 @@
     <EmbeddedResource Include="frmAndonEventCall_30.resx">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventCancel_30.resx">
+      <DependentUpon>frmAndonEventCancel_30.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventCloseProperties.resx">
       <DependentUpon>frmAndonEventCloseProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventClose_30.resx">
       <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventForward_30.resx">
+      <DependentUpon>frmAndonEventForward_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventRespond_30.resx">
       <DependentUpon>frmAndonEventRespond_30.cs</DependentUpon>
@@ -220,6 +238,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\绿色.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\02.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

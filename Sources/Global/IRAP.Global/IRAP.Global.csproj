@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimateImage.cs" />
     <Compile Include="COMPrint.cs" />
     <Compile Include="EMailClient.cs" />
     <Compile Include="Encrypt.cs" />
