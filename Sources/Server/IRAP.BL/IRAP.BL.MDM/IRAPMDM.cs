@@ -3597,7 +3597,7 @@ namespace IRAP.BL.MDM
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用函数 IRAPMDM..ufn_GetList_WIPStationSPCMonitor_N，" +
+                        "调用函数 IRAPMDM..ufn_GetList_WIPStationSPCMonitor，" +
                         "参数：CommunityID={0}|SysLogID={1}|FilterString={2}",
                         communityID,
                         sysLogID,
@@ -3617,7 +3617,7 @@ namespace IRAP.BL.MDM
                         string strSQL = 
                             string.Format(
                                 "SELECT * " +
-                                "FROM IRAPMDM..ufn_GetList_WIPStationSPCMonitor_N(" +
+                                "FROM IRAPMDM..ufn_GetList_WIPStationSPCMonitor(" +
                                 "@CommunityID, @SysLogID) {0}ORDER BY Ordinal",
                                 filter);
                         WriteLog.Instance.Write(strSQL, strProcedureName);
