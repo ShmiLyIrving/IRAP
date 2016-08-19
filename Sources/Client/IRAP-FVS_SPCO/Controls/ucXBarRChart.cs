@@ -114,8 +114,8 @@ namespace IRAP_FVS_SPCO
             label.Font = font;
             label.TextColor = Color.Black;
 
-            List<SPCChartMeasureData> datas = data.XMLToList();
-            foreach (SPCChartMeasureData pointData in datas)
+            List<RainbowChartMeasureData> datas = data.XMLToRainbowChartDataList();
+            foreach (RainbowChartMeasureData pointData in datas)
             {
                 SeriesPoint point =
                     new SeriesPoint(

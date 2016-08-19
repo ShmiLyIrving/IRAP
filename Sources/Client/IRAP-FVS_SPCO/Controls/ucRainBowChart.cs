@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
 
 using DevExpress.XtraEditors;
 using DevExpress.XtraCharts;
@@ -22,12 +23,33 @@ namespace IRAP_FVS_SPCO
 {
     public partial class ucRainBowChart : DevExpress.XtraEditors.XtraUserControl
     {
+        public enum XbarRChartType
+        {
+            Study = 0,
+            Control,
+        };
+
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
+
+        private XbarRChartType chartType = XbarRChartType.Study;
 
         public ucRainBowChart()
         {
             InitializeComponent();
+        }
+
+        public int TimeOutThreshold
+        {
+            get { return timerWarning.Interval; }
+            set
+            {
+//#if DEBUG
+                //timerWarning.Interval = 3000;
+//#else
+                timerWarning.Interval = value; 
+//#endif
+            }
         }
 
         public void DrawChart(
@@ -48,7 +70,8 @@ namespace IRAP_FVS_SPCO
             int errCode = 0;
             string errText = "";
 
-            #region 获取彩虹图数据
+
+#region 获取Xbar-R图数据
             EntitySPCChart data = new EntitySPCChart();
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -74,11 +97,14 @@ namespace IRAP_FVS_SPCO
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-            #endregion
+#endregion
+
+            if (data.UCL != 0 || data.LCL != 0)
+                chartType = XbarRChartType.Control;
 
             Font font = new Font("新宋体", 12f);
 
-            #region 填写表头
+#region 填写表头
             picLogo.Image = data.CompanyLogoImage;
             lblTitle.Text = data.ChartTitle;
             lblChartCode.Text = data.FormCode;
@@ -97,9 +123,9 @@ namespace IRAP_FVS_SPCO
             edtEngineeringSpec.Text = data.EngineeringSpec;
             edtSamplingInterval.Text = data.SamplingInterval;
             edtMeasuredDate.Text = data.MeasuredDate;
-            #endregion
+#endregion
 
-            #region 绘制彩虹图
+#region 绘制彩虹图
             chartRainBow.Series.Clear();
 
             Series pointMeasureData = new Series("测量值", ViewType.Point)
@@ -119,12 +145,12 @@ namespace IRAP_FVS_SPCO
             double maxValue = 0;
             double minValue = 0;
 
-            List<SPCChartMeasureData> datas = data.XMLToList();
+            List<RainbowChartMeasureData> datas = data.XMLToRainbowChartDataList();
             List<ConstantLine> clineAxisXs = new List<ConstantLine>();
             int opType = -1;
             int ocCount = 0;
 
-            foreach (SPCChartMeasureData pointData in datas)
+            foreach (RainbowChartMeasureData pointData in datas)
             {
                 if (maxValue == 0 || maxValue < pointData.Metric01.DoubleValue)
                     maxValue = pointData.Metric01.DoubleValue;
@@ -217,7 +243,7 @@ namespace IRAP_FVS_SPCO
                 xyDiagram.AxisY.ConstantLines.Clear();
                 xyDiagram.AxisX.ConstantLines.Clear();
 
-                #region 画中值线
+#region 画中值线
                 ConstantLine constantLine = new ConstantLine();
                 constantLine.ShowInLegend = false;
                 constantLine.AxisValueSerializable = midValue.ToString();
@@ -226,7 +252,7 @@ namespace IRAP_FVS_SPCO
                 constantLine.Title.Text = "M";
                 constantLine.Title.Font = font;
                 xyDiagram.AxisY.ConstantLines.Add(constantLine);
-                #endregion
+#endregion
 
                 constantLine = new ConstantLine();
                 constantLine.ShowInLegend = false;
@@ -315,25 +341,72 @@ namespace IRAP_FVS_SPCO
             }
 
             chartRainBow.Legend.Font = font;
-            #endregion
+#endregion
 
-            #region 如果有需要报警的消息，则弹出报警对话框
+#region 如果有需要报警的消息，则弹出报警对话框
             switch (data.AnomalyType)
             {
                 case 0:
+                    #region 如果是正常，则根据首检5片及过程检2片之后启动超时报警
+                    if (datas.Count > 0)
+                    {
+                        bool startCountdown = false;
+                        int lastOpType = 0;
+                        int numCheckPoint = 0;
+                        for (int i = 0; i < datas.Count; i++)
+                        {
+                            if (lastOpType != datas[i].OpType)
+                            {
+                                lastOpType = datas[i].OpType;
+                                numCheckPoint = 1;
+                                startCountdown = false;
+                                continue;
+                            }
+                            else
+                                numCheckPoint++;
+
+                            if (lastOpType == 4 && numCheckPoint % 5 == 0)
+                            {
+                                startCountdown = true;
+                            }
+                            if (lastOpType == 5 && numCheckPoint % 2 == 0)
+                            {
+                                startCountdown = true;
+                            }
+                        }
+
+                        IRAPMessageBox.Instance.Hide();
+
+                        if (startCountdown)
+                        {
+                            timerWarning.Enabled = false;
+                            Thread.Sleep(100);
+                            timerWarning.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        IRAPMessageBox.Instance.Hide();
+                        timerWarning.Enabled = false;
+                    }
+#endregion
                     break;
                 case 1:
                 case 2:
                 case 3:
                 case 4:
-                    XtraMessageBox.Show(
+                    IRAPMessageBox.Instance.Hide();
+                    timerWarning.Enabled = false;
+
+                    IRAPMessageBox.Instance.Show(
+                    //XtraMessageBox.Show(
                         data.AnomalyDesc,
                         "测量数据异常",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
 
 #if !DEBUG
-                    #region 重置统计过程
+#region 重置统计过程
                     if (data.C1ID != 0)
                     {
                         WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -356,12 +429,18 @@ namespace IRAP_FVS_SPCO
 
                         //DrawChart(stationUser, workUnit, pwoNo, t47LeafID, t216LeafID, t133LeafID, t20LeafID);
                     }
-                    #endregion
+#endregion
 #endif
 
                     break;
             }
-            #endregion
+#endregion
+        }
+
+        private void timerWarning_Tick(object sender, EventArgs e)
+        {
+            timerWarning.Enabled = false;
+            IRAPMessageBox.Instance.Show("请及时进行过程检！", "", MessageBoxIcon.Exclamation);
         }
     }
 }

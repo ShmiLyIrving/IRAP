@@ -59,6 +59,14 @@ namespace IRAP_FVS_SPCO
         /// 应用服务器的当前时间
         /// </summary>
         private DateTime serverTime = DateTime.Now;
+        /// <summary>
+        /// 彩虹图检测最大间隔时间(ms)
+        /// </summary>
+        private int timeoutThreshold = 0;
+        /// <summary>
+        /// 缺省的彩虹图检测最大间隔时间(ms)
+        /// </summary>
+        private const int DEFAULT_TIMEOUTTHRESHOLD = 210000;
 
         public frmSPCOMain()
         {
@@ -89,6 +97,28 @@ namespace IRAP_FVS_SPCO
                         macAddress = config.AppSettings.Settings["Virtual Station"].Value;
                     }
                 }
+            }
+            #endregion
+
+            #region
+            if (config.AppSettings.Settings["RainbowTimeout"] != null)
+            {
+                if (!int.TryParse(
+                    config.AppSettings.Settings["RainbowTimeout"].Value, 
+                    out timeoutThreshold))
+                {
+                    timeoutThreshold = DEFAULT_TIMEOUTTHRESHOLD;
+                    config.AppSettings.Settings["RainbowTimeout"].Value = timeoutThreshold.ToString();
+                    config.Save(ConfigurationSaveMode.Modified);
+                    ConfigurationManager.RefreshSection("appSettings");
+                }
+            }
+            else
+            {
+                timeoutThreshold = DEFAULT_TIMEOUTTHRESHOLD;
+                config.AppSettings.Settings.Add("RainbowTimeout", timeoutThreshold.ToString());
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
             }
             #endregion
 
@@ -603,6 +633,14 @@ namespace IRAP_FVS_SPCO
                                         Dock = DockStyle.Fill,
                                         Parent = e.Page,
                                     };
+                                if (datas[0].TimeOutThreshold == 0)
+                                {
+                                    chartRainBow.TimeOutThreshold = 60 * 1000;
+                                }
+                                else
+                                {
+                                    chartRainBow.TimeOutThreshold = Convert.ToInt32(datas[0].TimeOutThreshold);
+                                }
 
                                 ucCharts[pageIndex] = chartRainBow;
                             }

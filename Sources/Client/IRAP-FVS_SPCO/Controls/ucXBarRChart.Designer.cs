@@ -52,8 +52,8 @@
             this.edtT1002Name = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lblChartCode = new DevExpress.XtraEditors.LabelControl();
-            this.lblTitle = new DevExpress.XtraEditors.LabelControl();
             this.picLogo = new System.Windows.Forms.PictureBox();
+            this.lblTitle = new DevExpress.XtraEditors.LabelControl();
             this.chartXBar = new DevExpress.XtraCharts.ChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnlHead)).BeginInit();
             this.pnlHead.SuspendLayout();
@@ -378,6 +378,15 @@
             this.lblChartCode.Size = new System.Drawing.Size(158, 59);
             this.lblChartCode.TabIndex = 5;
             // 
+            // picLogo
+            // 
+            this.picLogo.Location = new System.Drawing.Point(3, 3);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(128, 59);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 1;
+            this.picLogo.TabStop = false;
+            // 
             // lblTitle
             // 
             this.lblTitle.Appearance.Font = new System.Drawing.Font("黑体", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -390,15 +399,6 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(1137, 62);
             this.lblTitle.TabIndex = 4;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Location = new System.Drawing.Point(3, 3);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(128, 59);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogo.TabIndex = 1;
-            this.picLogo.TabStop = false;
             // 
             // chartXBar
             // 

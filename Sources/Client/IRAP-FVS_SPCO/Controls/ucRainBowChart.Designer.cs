@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.chartRainBow = new DevExpress.XtraCharts.ChartControl();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlHead = new DevExpress.XtraEditors.PanelControl();
@@ -55,6 +56,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lblChartCode = new DevExpress.XtraEditors.LabelControl();
             this.lblTitle = new DevExpress.XtraEditors.LabelControl();
+            this.timerWarning = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartRainBow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlHead)).BeginInit();
@@ -177,7 +179,7 @@
             // edtEngineeringSpec
             // 
             this.edtEngineeringSpec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtEngineeringSpec.Location = new System.Drawing.Point(706, 92);
+            this.edtEngineeringSpec.Location = new System.Drawing.Point(667, 92);
             this.edtEngineeringSpec.Name = "edtEngineeringSpec";
             this.edtEngineeringSpec.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtEngineeringSpec.Properties.Appearance.Options.UseFont = true;
@@ -185,14 +187,14 @@
             this.edtEngineeringSpec.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.edtEngineeringSpec.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtEngineeringSpec.Properties.ReadOnly = true;
-            this.edtEngineeringSpec.Size = new System.Drawing.Size(130, 22);
+            this.edtEngineeringSpec.Size = new System.Drawing.Size(169, 22);
             this.edtEngineeringSpec.TabIndex = 23;
             // 
             // labelControl9
             // 
             this.labelControl9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl9.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl9.Location = new System.Drawing.Point(620, 95);
+            this.labelControl9.Location = new System.Drawing.Point(581, 95);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(80, 16);
             this.labelControl9.TabIndex = 22;
@@ -201,7 +203,7 @@
             // edtT20Name
             // 
             this.edtT20Name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtT20Name.Location = new System.Drawing.Point(532, 92);
+            this.edtT20Name.Location = new System.Drawing.Point(493, 92);
             this.edtT20Name.Name = "edtT20Name";
             this.edtT20Name.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtT20Name.Properties.Appearance.Options.UseFont = true;
@@ -216,7 +218,7 @@
             // 
             this.labelControl8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl8.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl8.Location = new System.Drawing.Point(478, 95);
+            this.labelControl8.Location = new System.Drawing.Point(439, 95);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(48, 16);
             this.labelControl8.TabIndex = 20;
@@ -225,7 +227,7 @@
             // edtT102Code
             // 
             this.edtT102Code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtT102Code.Location = new System.Drawing.Point(346, 92);
+            this.edtT102Code.Location = new System.Drawing.Point(307, 92);
             this.edtT102Code.Name = "edtT102Code";
             this.edtT102Code.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtT102Code.Properties.Appearance.Options.UseFont = true;
@@ -240,7 +242,7 @@
             // 
             this.labelControl7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl7.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Location = new System.Drawing.Point(276, 95);
+            this.labelControl7.Location = new System.Drawing.Point(237, 95);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(64, 16);
             this.labelControl7.TabIndex = 18;
@@ -255,7 +257,7 @@
             this.edtT102Name.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtT102Name.Properties.Appearance.Options.UseFont = true;
             this.edtT102Name.Properties.ReadOnly = true;
-            this.edtT102Name.Size = new System.Drawing.Size(170, 22);
+            this.edtT102Name.Size = new System.Drawing.Size(131, 22);
             this.edtT102Name.TabIndex = 17;
             // 
             // labelControl6
@@ -411,6 +413,10 @@
             this.lblTitle.Size = new System.Drawing.Size(1137, 62);
             this.lblTitle.TabIndex = 4;
             // 
+            // timerWarning
+            // 
+            this.timerWarning.Tick += new System.EventHandler(this.timerWarning_Tick);
+            // 
             // ucRainBowChart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -467,5 +473,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.TextEdit edtMeasuredDate;
         private DevExpress.XtraEditors.LabelControl labelControl11;
+        private System.Windows.Forms.Timer timerWarning;
     }
 }
