@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.picConnectionStatus = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picConnectionStatus)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,6 +41,12 @@
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblFuncName.Text = "frmCustomBase";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.picConnectionStatus);
+            this.panelControl1.Controls.SetChildIndex(this.lblFuncName, 0);
+            this.panelControl1.Controls.SetChildIndex(this.picConnectionStatus, 0);
             // 
             // toolTipController
             // 
@@ -56,7 +64,6 @@
             this.picConnectionStatus.Size = new System.Drawing.Size(60, 56);
             this.picConnectionStatus.TabIndex = 1;
             this.picConnectionStatus.TabStop = false;
-            this.picConnectionStatus.Click += new System.EventHandler(this.picConnectionStatus_Click);
             // 
             // frmCustomKanbanBase
             // 
@@ -65,6 +72,8 @@
             this.Name = "frmCustomKanbanBase";
             this.Activated += new System.EventHandler(this.frmCustomKanbanBase_Activated);
             this.Shown += new System.EventHandler(this.frmCustomKanbanBase_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picConnectionStatus)).EndInit();
             this.ResumeLayout(false);
 

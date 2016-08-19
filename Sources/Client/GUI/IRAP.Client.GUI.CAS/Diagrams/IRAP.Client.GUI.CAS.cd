@@ -1,14 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.Client.GUI.CAS.Entities.AndonProductionLineStatus" Collapsed="true">
-    <Position X="2.75" Y="1" Width="1.5" />
+    <Position X="1.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAQAQBYoAxAAAgQoggGAEEAjJCAAhEQoBCBUBAAgUBM=</HashCode>
       <FileName>Entities\AndonProductionLineStatus.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="IRAP.Client.GUI.CAS.Enums.LightStatus">
-    <Position X="6.25" Y="1.75" Width="1.5" />
+  <Class Name="IRAP.Client.GUI.CAS.CH375.CH375Control" Collapsed="true">
+    <Position X="3" Y="1" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="IRAP.Client.GUI.CAS.CH375.CH375Control.NotifyRoutine" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>CH375\CH375Control.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EBRAIAQgAoJAXArESAKQiAGJmAIAB0wQAgXDBEP4YgQ=</HashCode>
+      <FileName>CH375\CH375Control.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="IRAP.Client.GUI.CAS.CH375.USPValue" Collapsed="true">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>CH375\USPValue.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="IRAP.Client.GUI.CAS.CH375.USPIndex" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAA=</HashCode>
+      <FileName>CH375\USPIndex.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="IRAP.Client.GUI.CAS.CH375.USP_Setup_PKT" Collapsed="true">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAgAgA=</HashCode>
+      <FileName>CH375\USP_Setup_PKT.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="IRAP.Client.GUI.CAS.CH375.Win32_Command">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAgAAAAAAAQAA=</HashCode>
+      <FileName>Win32_Command.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="IRAP.Client.GUI.CAS.Enums.LightStatus" Collapsed="true">
+    <Position X="1.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAIA=</HashCode>
       <FileName>Enums\LightStatus.cs</FileName>

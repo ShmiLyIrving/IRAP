@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System.Configuration;
 
 namespace IRAP.Client.Global.GUI.Dialogs
 {
@@ -11,6 +12,11 @@ namespace IRAP.Client.Global.GUI.Dialogs
             MessageBoxIcon icon = MessageBoxIcon.Asterisk, 
             MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1)
         {
+            bool soundAlert = false;
+
+            if (ConfigurationManager.AppSettings["SoundAlert"] != null)
+                soundAlert = ConfigurationManager.AppSettings["SoundAlert"].ToString().ToUpper() == "TRUE";
+
             using (frmMessageBox messageBox = new frmMessageBox())
             {
                 messageBox.Text = caption;
@@ -90,11 +96,13 @@ namespace IRAP.Client.Global.GUI.Dialogs
                         messageBox.picIcon.Image = Properties.Resources.Asterisk;
                         break;
                     case MessageBoxIcon.Error:
-                        IRAP.Global.Tools.Play(Properties.Resources.ALARM9);
+                        if (soundAlert)
+                            IRAP.Global.Tools.Play(Properties.Resources.ALARM9);
                         messageBox.picIcon.Image = Properties.Resources.Error;
                         break;
                     case MessageBoxIcon.Exclamation:
-                        IRAP.Global.Tools.Play(Properties.Resources.ALARM9);
+                        if (soundAlert)
+                            IRAP.Global.Tools.Play(Properties.Resources.ALARM9);
                         messageBox.picIcon.Image = Properties.Resources.Exclamation;
                         break;
                     case MessageBoxIcon.Question:

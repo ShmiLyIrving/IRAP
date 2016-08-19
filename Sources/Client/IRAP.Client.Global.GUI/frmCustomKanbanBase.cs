@@ -16,8 +16,6 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.Global.GUI
 {
-    public delegate void SwitchToNextFunctionHandler(int itemID);
-
     public partial class frmCustomKanbanBase : IRAP.Client.Global.GUI.frmCustomFuncBase
     {
         private static string className =
@@ -236,9 +234,15 @@ namespace IRAP.Client.Global.GUI
                     string.IsNullOrEmpty(LineName) ?
                         "" :
                         string.Format(
-                            "{0}-{1}",
-                            LineName,
-                            lblFuncName.Text));
+                            "{0}-",
+                            LineName),
+                    lblFuncName.Text);
         }
     }
+
+    /// <summary>
+    /// 切换到下一个指定的功能界面
+    /// </summary>
+    /// <param name="itemID">需要切换的功能标识号</param>
+    public delegate void SwitchToNextFunctionHandler(int itemID);
 }

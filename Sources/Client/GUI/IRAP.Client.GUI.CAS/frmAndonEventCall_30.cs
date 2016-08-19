@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Globalization;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
@@ -53,6 +54,10 @@ namespace IRAP.Client.GUI.CAS
         /// 蜂鸣器状态
         /// </summary>
         private Enums.LightStatus buzzingStatus = Enums.LightStatus.Off;
+        /// <summary>
+        /// 是否打开了告警灯的 USB 端口
+        /// </summary>
+        private long usbOpen = -1;
         private MenuInfo menuInfo = null;
 
         public frmAndonEventCall_30()
@@ -483,6 +488,25 @@ namespace IRAP.Client.GUI.CAS
                         picGreen.Tag = (int)Enums.LightStatus.Off;
                     }
                     break;
+            }
+
+            try
+            {
+                int red = 0;
+                int yellow = 0;
+                int green = 0;
+
+                if ((int)picRed.Tag == (int)Enums.LightStatus.On)
+                    red = 1;
+                if ((int)picYellow.Tag == (int)Enums.LightStatus.On)
+                    yellow = 1;
+                if ((int)picGreen.Tag == (int)Enums.LightStatus.On)
+                    green = 1;
+                CH375.CH375Control.SetLightStatus(red, yellow, green);
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message);
             }
         }
 

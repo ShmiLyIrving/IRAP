@@ -37,26 +37,31 @@
             this.btnRetry = new DevExpress.XtraEditors.SimpleButton();
             this.btnIgnore = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // picIcon
             // 
+            this.picIcon.Image = global::IRAP.Global.Properties.Resources.故障;
             this.picIcon.Location = new System.Drawing.Point(12, 12);
             this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(128, 128);
-            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picIcon.Size = new System.Drawing.Size(96, 96);
+            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIcon.TabIndex = 0;
             this.picIcon.TabStop = false;
             // 
             // lblMessage
             // 
-            this.lblMessage.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
+            this.lblMessage.Appearance.Font = new System.Drawing.Font("新宋体", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblMessage.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblMessage.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.lblMessage.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblMessage.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblMessage.Location = new System.Drawing.Point(158, 28);
+            this.lblMessage.Location = new System.Drawing.Point(114, 12);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(439, 102);
+            this.lblMessage.Padding = new System.Windows.Forms.Padding(10);
+            this.lblMessage.Size = new System.Drawing.Size(439, 96);
             this.lblMessage.TabIndex = 1;
             this.lblMessage.Text = "labelControl1";
             // 
@@ -64,7 +69,8 @@
             // 
             this.btnOK.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Appearance.Options.UseFont = true;
-            this.btnOK.Location = new System.Drawing.Point(32, 170);
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(12, 126);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 30);
             this.btnOK.TabIndex = 2;
@@ -75,7 +81,8 @@
             // 
             this.btnYes.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYes.Appearance.Options.UseFont = true;
-            this.btnYes.Location = new System.Drawing.Point(113, 170);
+            this.btnYes.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btnYes.Location = new System.Drawing.Point(93, 126);
             this.btnYes.Name = "btnYes";
             this.btnYes.Size = new System.Drawing.Size(75, 30);
             this.btnYes.TabIndex = 3;
@@ -86,7 +93,8 @@
             // 
             this.btnNo.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNo.Appearance.Options.UseFont = true;
-            this.btnNo.Location = new System.Drawing.Point(194, 170);
+            this.btnNo.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.btnNo.Location = new System.Drawing.Point(174, 126);
             this.btnNo.Name = "btnNo";
             this.btnNo.Size = new System.Drawing.Size(75, 30);
             this.btnNo.TabIndex = 4;
@@ -97,7 +105,8 @@
             // 
             this.btnAbort.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbort.Appearance.Options.UseFont = true;
-            this.btnAbort.Location = new System.Drawing.Point(275, 170);
+            this.btnAbort.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnAbort.Location = new System.Drawing.Point(255, 126);
             this.btnAbort.Name = "btnAbort";
             this.btnAbort.Size = new System.Drawing.Size(75, 30);
             this.btnAbort.TabIndex = 5;
@@ -108,7 +117,8 @@
             // 
             this.btnRetry.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRetry.Appearance.Options.UseFont = true;
-            this.btnRetry.Location = new System.Drawing.Point(356, 170);
+            this.btnRetry.DialogResult = System.Windows.Forms.DialogResult.Retry;
+            this.btnRetry.Location = new System.Drawing.Point(336, 126);
             this.btnRetry.Name = "btnRetry";
             this.btnRetry.Size = new System.Drawing.Size(75, 30);
             this.btnRetry.TabIndex = 6;
@@ -119,7 +129,8 @@
             // 
             this.btnIgnore.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIgnore.Appearance.Options.UseFont = true;
-            this.btnIgnore.Location = new System.Drawing.Point(437, 170);
+            this.btnIgnore.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+            this.btnIgnore.Location = new System.Drawing.Point(417, 126);
             this.btnIgnore.Name = "btnIgnore";
             this.btnIgnore.Size = new System.Drawing.Size(75, 30);
             this.btnIgnore.TabIndex = 7;
@@ -130,18 +141,33 @@
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(518, 170);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(498, 126);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 30);
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "取消";
             this.btnCancel.Visible = false;
             // 
+            // btnClose
+            // 
+            this.btnClose.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Appearance.Options.UseFont = true;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.btnClose.Location = new System.Drawing.Point(287, 126);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 30);
+            this.btnClose.TabIndex = 9;
+            this.btnClose.Text = "确定";
+            this.btnClose.Visible = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmMessageBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 221);
+            this.ClientSize = new System.Drawing.Size(586, 170);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnIgnore);
             this.Controls.Add(this.btnRetry);
@@ -174,5 +200,6 @@
         public DevExpress.XtraEditors.SimpleButton btnRetry;
         public DevExpress.XtraEditors.SimpleButton btnIgnore;
         public DevExpress.XtraEditors.SimpleButton btnCancel;
+        public DevExpress.XtraEditors.SimpleButton btnClose;
     }
 }

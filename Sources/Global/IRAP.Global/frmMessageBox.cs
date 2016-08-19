@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using System.Configuration;
 
 namespace IRAP.Global
 {
@@ -15,6 +16,15 @@ namespace IRAP.Global
         public frmMessageBox()
         {
             InitializeComponent();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Hide();
         }
     }
 
@@ -47,13 +57,21 @@ namespace IRAP.Global
             messageBox.Text = caption;
             messageBox.lblMessage.Text = text;
 
+            bool soundAlert = true;
+            if (ConfigurationManager.AppSettings["SoundAlert"] != null)
+                soundAlert = ConfigurationManager.AppSettings["SoundAlert"].ToString().ToUpper() == "TRUE";
+
             switch (icon)
             {
                 case MessageBoxIcon.Asterisk:
                 case MessageBoxIcon.Exclamation:
+                    if (soundAlert)
+                        Tools.Play(Properties.Resources.ALARM9);
                     messageBox.picIcon.Image = Properties.Resources.故障;
                     break;
                 case MessageBoxIcon.Error:
+                    if (soundAlert)
+                        Tools.Play(Properties.Resources.ALARM9);
                     messageBox.picIcon.Image = Properties.Resources.报错;
                     break;
                 case MessageBoxIcon.Question:
@@ -61,7 +79,12 @@ namespace IRAP.Global
                     break;
             }
 
+            messageBox.btnClose.Visible = true;
+            messageBox.btnClose.Left = (messageBox.Width - messageBox.btnClose.Width) / 2;
+            messageBox.CancelButton = messageBox.btnClose;
+
             messageBox.TopMost = true;
+            messageBox.Show();
         }
 
         public void Hide()
