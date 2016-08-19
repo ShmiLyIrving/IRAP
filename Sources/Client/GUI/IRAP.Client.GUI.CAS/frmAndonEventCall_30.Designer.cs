@@ -236,6 +236,7 @@
             this.Name = "frmAndonEventCall_30";
             this.Text = "安灯呼叫";
             this.Activated += new System.EventHandler(this.frmAndonEventCall_30_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAndonEventCall_30_FormClosed);
             this.Shown += new System.EventHandler(this.frmAndonEventCall_30_Shown);
             this.Resize += new System.EventHandler(this.frmAndonEventCall_30_Resize);
             this.Controls.SetChildIndex(this.panelControl1, 0);

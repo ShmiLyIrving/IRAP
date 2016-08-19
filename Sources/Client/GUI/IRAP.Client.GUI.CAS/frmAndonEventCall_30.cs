@@ -529,5 +529,11 @@ namespace IRAP.Client.GUI.CAS
                 tmrGetAndonEventStatus.Enabled = true;
             }
         }
+
+        private void frmAndonEventCall_30_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // 窗体关闭的时候，同时关闭三色告警灯
+            CH375.CH375Control.SetLightStatus(0, 0, 0);
+        }
     }
 }
