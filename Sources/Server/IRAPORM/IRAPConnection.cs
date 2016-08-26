@@ -31,6 +31,7 @@ namespace IRAPORM
         private Dictionary<string, string> _paramList = new Dictionary<string, string>();
         private Assembly[] _LoadAssembly;
         private string _sequenceAddress;
+        private int _commandTimeout = 60;
         public IRAPSQLConnection()
         {
             ReadAssemblyXML();
@@ -38,6 +39,9 @@ namespace IRAPORM
             string dllPath = System.IO.Path.Combine(Environment.CurrentDirectory, "IRAPORM.dll");
             _connStr = _paramList["ConnectionString"];
             _sequenceAddress = _paramList["SeqServerAddr"];
+
+            int.TryParse(_paramList["CommandTimeout"], out _commandTimeout);
+
             conn = new SqlConnection(_connStr);
             System.AppDomain _Domain = System.AppDomain.CurrentDomain;
             _LoadAssembly = _Domain.GetAssemblies();
@@ -220,7 +224,7 @@ namespace IRAPORM
                 {
                     conn.Open();
                 }
-                SqlCommand command2 = new SqlCommand(sql, conn);
+                SqlCommand command2 = new SqlCommand(sql, conn) { CommandTimeout = _commandTimeout, };
                 SqlDataReader reader = command2.ExecuteReader();
                 List<T> pList = new List<T>();
                 //获取指定名称的类型
@@ -341,7 +345,7 @@ namespace IRAPORM
                 {
                     conn.Open();
                 }
-                SqlCommand command2 = new SqlCommand(sql, conn);
+                SqlCommand command2 = new SqlCommand(sql, conn) { CommandTimeout = _commandTimeout, };
                 SqlDataReader reader = command2.ExecuteReader();
                 List<T> pList = new List<T>();
                 //获取指定名称的类型
@@ -435,7 +439,7 @@ namespace IRAPORM
                 {
                     conn.Open();
                 }
-                SqlCommand command2 = new SqlCommand(querySql, conn);
+                SqlCommand command2 = new SqlCommand(querySql, conn) { CommandTimeout = _commandTimeout, };
                 foreach (IRAPProcParameter param in paramList)
                 {
                     SqlDbType sqlType = ConvertSqlType.ToSqlType(param.DbType);
@@ -549,7 +553,7 @@ namespace IRAPORM
                 {
                     conn.Open();
                 }
-                SqlCommand command2 = new SqlCommand(sql, conn);
+                SqlCommand command2 = new SqlCommand(sql, conn) { CommandTimeout = _commandTimeout, };
                 SqlDataReader reader = command2.ExecuteReader();
                 List<object> pList = new List<object>();
                 //获取指定名称的类型
@@ -656,7 +660,7 @@ namespace IRAPORM
                 {
                     conn.Open();
                 }
-                SqlCommand command2 = new SqlCommand(sql, conn);
+                SqlCommand command2 = new SqlCommand(sql, conn) { CommandTimeout = _commandTimeout, };
                 foreach (IRAPProcParameter param in paramList)
                 {
                     SqlDbType sqlType = ConvertSqlType.ToSqlType(param.DbType);
@@ -816,7 +820,7 @@ namespace IRAPORM
                 string saveSql = insertSql.ToString(0, insertSql.Length - 1) + ") \n" +
                     paramSql.ToString(0, paramSql.Length - 1);
 
-                SqlCommand command = new SqlCommand(saveSql, conn);
+                SqlCommand command = new SqlCommand(saveSql, conn) { CommandTimeout = _commandTimeout, };
                 if (_trans != null)
                 {
                     command.Transaction = _trans;
@@ -907,7 +911,7 @@ namespace IRAPORM
                 string saveSql = insertSql.ToString(0, insertSql.Length - 1) + ") \n" +
                     paramSql.ToString(0, paramSql.Length - 1);
 
-                SqlCommand command = new SqlCommand(saveSql, conn);
+                SqlCommand command = new SqlCommand(saveSql, conn) { CommandTimeout = _commandTimeout, };
                 if (_trans != null)
                 {
                     command.Transaction = _trans;
@@ -1019,7 +1023,7 @@ namespace IRAPORM
 
                 string saveSql = updateSql.ToString(0, updateSql.Length - 1) + " \n" + whereSql.ToString();
 
-                SqlCommand command = new SqlCommand(saveSql, conn);
+                SqlCommand command = new SqlCommand(saveSql, conn) { CommandTimeout = _commandTimeout, };
                 if (_trans != null)
                 {
                     command.Transaction = _trans;
@@ -1138,7 +1142,7 @@ namespace IRAPORM
 
                 string saveSql = updateSql.ToString(0, updateSql.Length - 1) + " \n" + whereSql.ToString();
 
-                SqlCommand command = new SqlCommand(saveSql, conn);
+                SqlCommand command = new SqlCommand(saveSql, conn) { CommandTimeout = _commandTimeout, };
                 if (_trans != null)
                 {
                     command.Transaction = _trans;
@@ -1170,7 +1174,7 @@ namespace IRAPORM
                 {
                     conn.Open();
                 }
-                SqlCommand command = new SqlCommand(updateSql, conn);
+                SqlCommand command = new SqlCommand(updateSql, conn) { CommandTimeout = _commandTimeout, };
                 foreach (IRAPProcParameter param in paramList)
                 {
                     SqlDbType sqlType = ConvertSqlType.ToSqlType(param.DbType);
@@ -1234,7 +1238,7 @@ namespace IRAPORM
                     conn.Open();
                 }
 
-                SqlCommand command = new SqlCommand(deleteSql.ToString(), conn);
+                SqlCommand command = new SqlCommand(deleteSql.ToString(), conn) { CommandTimeout = _commandTimeout, };
                 if (_trans != null)
                 {
                     command.Transaction = _trans;
@@ -1312,7 +1316,7 @@ namespace IRAPORM
 
                 string saveSql = deleteSql.ToString() + " \n" + whereSql.ToString();
 
-                SqlCommand command = new SqlCommand(saveSql, conn);
+                SqlCommand command = new SqlCommand(saveSql, conn) { CommandTimeout = _commandTimeout, };
                 if (_trans != null)
                 {
                     command.Transaction = _trans;
@@ -1402,7 +1406,7 @@ namespace IRAPORM
 
                 string saveSql = deleteSql.ToString() + " \n" + whereSql.ToString();
 
-                SqlCommand command = new SqlCommand(saveSql, conn);
+                SqlCommand command = new SqlCommand(saveSql, conn) { CommandTimeout = _commandTimeout, };
                 if (_trans != null)
                 {
                     command.Transaction = _trans;
@@ -1449,7 +1453,7 @@ namespace IRAPORM
         public DataSet CallProcEx(string procName, ref IList<IDataParameter> paramList)
         {
             bool IsOutputInfo = false;
-            SqlCommand command = new SqlCommand();
+            SqlCommand command = new SqlCommand() { CommandTimeout = _commandTimeout, };
             command.Connection = conn;
 
             command.CommandType = CommandType.StoredProcedure;
@@ -1538,7 +1542,7 @@ namespace IRAPORM
         public IRAPError CallProc(string procName, ref IList<IDataParameter> paramList)
         {
             bool IsOutputInfo = false;
-            SqlCommand command = new SqlCommand();
+            SqlCommand command = new SqlCommand() { CommandTimeout = _commandTimeout, };
             command.Connection = conn;
 
             command.CommandType = CommandType.StoredProcedure;
@@ -1649,7 +1653,7 @@ namespace IRAPORM
                     conn.Open();
                 }
                 string querySql = selectSql.ToString() + " \n" + whereSql.ToString();
-                SqlCommand command2 = new SqlCommand(querySql, conn);
+                SqlCommand command2 = new SqlCommand(querySql, conn) { CommandTimeout = _commandTimeout, };
 
                 SqlDataReader reader = command2.ExecuteReader();
                 object resobj = Activator.CreateInstance(tt2, null);
@@ -1771,7 +1775,7 @@ namespace IRAPORM
                     conn.Open();
                 }
                 string querySql = selectSql.ToString() + " \n" + whereSql.ToString();
-                SqlCommand command2 = new SqlCommand(querySql, conn);
+                SqlCommand command2 = new SqlCommand(querySql, conn) { CommandTimeout = _commandTimeout, };
                 foreach (SqlParameter param in paramList)
                 {
                     command2.Parameters.Add(param);
@@ -1904,7 +1908,7 @@ namespace IRAPORM
                     conn.Open();
                 }
                 string querySql = selectSql.ToString() + " \n" + whereSql.ToString();
-                SqlCommand command2 = new SqlCommand(querySql, conn);
+                SqlCommand command2 = new SqlCommand(querySql, conn) { CommandTimeout = _commandTimeout, };
                 foreach (SqlParameter param in paramList)
                 {
                     command2.Parameters.Add(param);
@@ -1998,7 +2002,7 @@ namespace IRAPORM
                 {
                     conn.Open();
                 }
-                SqlCommand command2 = new SqlCommand(querySql, conn);
+                SqlCommand command2 = new SqlCommand(querySql, conn) { CommandTimeout = _commandTimeout, };
                 foreach (IRAPProcParameter param in paramList)
                 {
                     SqlDbType sqlType = ConvertSqlType.ToSqlType(param.DbType);
@@ -2077,7 +2081,7 @@ namespace IRAPORM
 
         public Object CallScalar(string sql)
         {
-            SqlCommand command = new SqlCommand(sql, conn);
+            SqlCommand command = new SqlCommand(sql, conn) { CommandTimeout = _commandTimeout, };
             if (conn.State != ConnectionState.Open)
             {
                 conn.Open();
@@ -2098,7 +2102,7 @@ namespace IRAPORM
         }
         public Object CallScalar(string sql, IList<IDataParameter> paramList)
         {
-            SqlCommand command = new SqlCommand(sql, conn);
+            SqlCommand command = new SqlCommand(sql, conn) { CommandTimeout = _commandTimeout, };
             foreach (IRAPProcParameter param in paramList)
             {
                 SqlDbType sqlType = ConvertSqlType.ToSqlType(param.DbType);
@@ -2138,7 +2142,7 @@ namespace IRAPORM
             StringBuilder sql = new StringBuilder("SELECT " + funcName + "(");
             StringBuilder paramSql = new StringBuilder();
 
-            SqlCommand command = new SqlCommand();
+            SqlCommand command = new SqlCommand() { CommandTimeout = _commandTimeout, };
             command.Connection = conn;
             foreach (IRAPProcParameter param in paramList)
             {
@@ -2183,7 +2187,7 @@ namespace IRAPORM
 
         public IList<T> CallTableFunc<T>(string selectSql, IList<IDataParameter> paramList)
         {
-            SqlCommand command = new SqlCommand();
+            SqlCommand command = new SqlCommand() { CommandTimeout = _commandTimeout, };
             command.Connection = conn;
             // command.CommandType = CommandType.StoredProcedure;
             command.CommandText = selectSql;
@@ -2318,7 +2322,7 @@ namespace IRAPORM
 
         public DataTable QuerySQL(string sql)
         {
-            SqlCommand command = new SqlCommand(sql, conn);
+            SqlCommand command = new SqlCommand(sql, conn) { CommandTimeout = _commandTimeout, };
             if (conn.State != ConnectionState.Open)
             {
                 conn.Open();
@@ -2342,7 +2346,7 @@ namespace IRAPORM
 
         public DataTable QuerySQL(string sql, IList<IDataParameter> paramList)
         {
-            SqlCommand command = new SqlCommand(sql, conn);
+            SqlCommand command = new SqlCommand(sql, conn) { CommandTimeout = _commandTimeout, };
             foreach (IRAPProcParameter param in paramList)
             {
 

@@ -530,7 +530,7 @@ namespace IRAP.BL.SSO
         /// <param name="communityID">社区标识号</param>
         /// <param name="cardNo">用户 ID 卡号</param>
         /// <returns>UserInfo</returns>
-        public IRAPJsonResult sfn_GetInfo_UserFromIDCode(int communityID, string cardNo, out int errCode, out string errText)
+        public IRAPJsonResult sfn_GetInfo_UserFromIDCard(int communityID, string cardNo, out int errCode, out string errText)
         {
             string strProcedureName = 
                 string.Format(
@@ -549,7 +549,7 @@ namespace IRAP.BL.SSO
                 paramList.Add(new IRAPProcParameter("@CardNo", DbType.String, cardNo));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用函数 IRAP..sfn_GetInfo_UserFromIDCode，"+
+                        "调用函数 IRAP..sfn_GetInfo_UserFromIDCard，" +
                         "参数：CommunityID={0}|CardNo={1}",
                         communityID, cardNo),
                     strProcedureName);
@@ -560,7 +560,7 @@ namespace IRAP.BL.SSO
                 {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
-                        string strSQL = "SELECT * FROM IRAP..sfn_GetInfo_UserFromIDCode(" +
+                        string strSQL = "SELECT * FROM IRAP..sfn_GetInfo_UserFromIDCard(" +
                             "@CommunityID, @CardNo)";
 
                         IList<UserInfo> lstDatas = conn.CallTableFunc<UserInfo>(strSQL, paramList);
@@ -581,7 +581,7 @@ namespace IRAP.BL.SSO
                 catch (Exception error)
                 {
                     errCode = 99000;
-                    errText = string.Format("调用 IRAP..sfn_PostLoginCMDs 函数发生异常：{0}", error.Message);
+                    errText = string.Format("调用 IRAP..sfn_GetInfo_UserFromIDCard 函数发生异常：{0}", error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }

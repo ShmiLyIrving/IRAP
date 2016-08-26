@@ -44,5 +44,10 @@ namespace IRAP.Entity.MDM
         {
             return MemberwiseClone() as AndonCallObject;
         }
+
+        public override string ToString()
+        {
+            return ObjectDesc;
+        }
     }
 }
