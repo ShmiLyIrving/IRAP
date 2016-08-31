@@ -946,7 +946,7 @@ namespace IRAP.WCF.Client.Method
         /// </summary>
         /// <param name="communityID">社区标识号</param>
         /// <param name="cardNo">用户 ID 卡号</param>
-        public void sfn_GetInfo_UserFromIDCode(
+        public void sfn_GetInfo_UserFromIDCard(
             int communityID,
             string cardNo,
             ref UserInfo userInfo,
@@ -970,7 +970,7 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("cardNo", cardNo);
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用 sfn_GetInfo_UserFromIDCode，输入参数：" +
+                        "调用 sfn_GetInfo_UserFromIDCard，输入参数：" +
                         "CommunityID={0}|CardNo={1}",
                         communityID, cardNo),
                     strProcedureName);
@@ -983,7 +983,7 @@ namespace IRAP.WCF.Client.Method
                         client.WCFRESTFul(
                             "IRAP.BL.SSO.dll",
                             "IRAP.BL.SSO.IRAPUser",
-                            "sfn_GetInfo_UserFromIDCode",
+                            "sfn_GetInfo_UserFromIDCard",
                             hashParams,
                             out errCode,
                             out errText);

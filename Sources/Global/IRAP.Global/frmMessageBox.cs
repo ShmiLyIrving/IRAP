@@ -13,9 +13,20 @@ namespace IRAP.Global
 {
     internal partial class frmMessageBox : DevExpress.XtraEditors.XtraForm
     {
+        private int timeout = 0;
+
         public frmMessageBox()
         {
             InitializeComponent();
+        }
+
+        public int Timeout
+        {
+            set
+            {
+                timeout = value;
+                timer.Enabled = true;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -25,6 +36,20 @@ namespace IRAP.Global
         private void btnClose_Click(object sender, EventArgs e)
         {
             Hide();
+            if (timeout > 0)
+            {
+                timer.Enabled = false;
+                timeout = 0;
+            }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timeout--;
+            if (timeout <= 0)
+                btnClose.PerformClick();
+            else
+                btnClose.Text = string.Format("确定({0})", timeout);
         }
     }
 
@@ -82,6 +107,46 @@ namespace IRAP.Global
             messageBox.btnClose.Visible = true;
             messageBox.btnClose.Left = (messageBox.Width - messageBox.btnClose.Width) / 2;
             messageBox.CancelButton = messageBox.btnClose;
+
+            messageBox.TopMost = true;
+            messageBox.Show();
+        }
+
+        public void Show(
+            string text,
+            string caption,
+            MessageBoxIcon icon,
+            int timeout)
+        {
+            messageBox.Text = caption;
+            messageBox.lblMessage.Text = text;
+
+            bool soundAlert = true;
+            if (ConfigurationManager.AppSettings["SoundAlert"] != null)
+                soundAlert = ConfigurationManager.AppSettings["SoundAlert"].ToString().ToUpper() == "TRUE";
+
+            switch (icon) {
+                case MessageBoxIcon.Asterisk:
+                case MessageBoxIcon.Exclamation:
+                    if (soundAlert)
+                        Tools.Play(Properties.Resources.ALARM9);
+                    messageBox.picIcon.Image = Properties.Resources.故障;
+                    break;
+                case MessageBoxIcon.Error:
+                    if (soundAlert)
+                        Tools.Play(Properties.Resources.ALARM9);
+                    messageBox.picIcon.Image = Properties.Resources.报错;
+                    break;
+                default:
+                    messageBox.picIcon.Image = Properties.Resources.帮助;
+                    break;
+            }
+
+            messageBox.btnClose.Visible = true;
+            messageBox.btnClose.Left = (messageBox.Width - messageBox.btnClose.Width) / 2;
+            messageBox.CancelButton = messageBox.btnClose;
+
+            messageBox.Timeout = timeout;
 
             messageBox.TopMost = true;
             messageBox.Show();

@@ -19,6 +19,8 @@ namespace IRAP.Entity.MES
         private Quantity uslQuantity = new Quantity();
         private Quantity lclQuantity = new Quantity();
         private Quantity uclQuantity = new Quantity();
+        private Quantity rlclQuantity = new Quantity();
+        private Quantity ruclQuantity = new Quantity();
         private string chartDataXML = "";
         private byte[] companyLogo;
         private Image companyLogoImage = null;
@@ -312,6 +314,41 @@ namespace IRAP.Entity.MES
         {
             List<XbarChartMeasureData> datas = new List<XbarChartMeasureData>();
 
+            XmlDocument xmlDoc = new XmlDocument();
+            try
+            {
+                xmlDoc.LoadXml(chartDataXML);
+                XmlNodeList nodes = xmlDoc.SelectNodes("ChartData/Row");
+                foreach (XmlNode node in nodes)
+                {
+                    XbarChartMeasureData data = new XbarChartMeasureData();
+                    if (node.Attributes["Ordinal"] != null)
+                        data.Ordinal = int.Parse(node.Attributes["Ordinal"].Value);
+                    else
+                        continue;
+
+                    if (node.Attributes["XBar"] != null)
+                        data.XBar.IntValue = long.Parse(node.Attributes["XBar"].Value);
+                    else
+                        continue;
+
+                    if (node.Attributes["R"] != null)
+                        data.R.IntValue = long.Parse(node.Attributes["R"].Value);
+                    else
+                        continue;
+
+                    data.Scale = Scale;
+                    data.UnitOfMeasure = UnitOfMeasure;
+
+                    datas.Add(data);
+                }
+            }
+            catch { datas = new List<XbarChartMeasureData>(); }
+            finally
+            {
+                xmlDoc = null;
+            }
+
             return datas;
         }
     }
@@ -393,6 +430,44 @@ namespace IRAP.Entity.MES
     /// </summary>
     public class XbarChartMeasureData
     {
+        private Quantity xbarQuantity = new Quantity();
+        private Quantity rQuantity = new Quantity();
+
         public int Ordinal { get; set; }
+        public Quantity XBar
+        {
+            get { return xbarQuantity; }
+        }
+        public Quantity R
+        {
+            get { return rQuantity; }
+        }
+        public int Scale
+        {
+            get { return xbarQuantity.Scale; }
+            set
+            {
+                xbarQuantity.Scale = value;
+                rQuantity.Scale = value;
+            }
+        }
+        public string UnitOfMeasure
+        {
+            get { return xbarQuantity.UnitOfMeasure; }
+            set
+            {
+                xbarQuantity.UnitOfMeasure = value;
+                rQuantity.UnitOfMeasure = value;
+            }
+        }
+
+        public XbarChartMeasureData Clone()
+        {
+            XbarChartMeasureData rlt = MemberwiseClone() as XbarChartMeasureData;
+            xbarQuantity = xbarQuantity.Clone();
+            rQuantity = rQuantity.Clone();
+
+            return rlt;
+        }
     }
 }

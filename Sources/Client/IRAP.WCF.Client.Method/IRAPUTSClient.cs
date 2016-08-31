@@ -78,7 +78,7 @@ namespace IRAP.WCF.Client.Method
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行存储过程 ssp_GetSequenceNo，输入参数：" +
-                            "CommunityID={0}|SequenceCode={1}|Count={2}|SysLogID={3}" +
+                            "CommunityID={0}|SequenceCode={1}|Count={2}|SysLogID={3}|" +
                             "OpNode={4}|VoucherNo={5}",
                             communityID, sequenceCode, count, sysLogID, opNode, voucherNo),
                         strProcedureName);

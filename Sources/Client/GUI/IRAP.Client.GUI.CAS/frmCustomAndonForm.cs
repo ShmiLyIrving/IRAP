@@ -20,6 +20,7 @@ namespace IRAP.Client.GUI.CAS
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
+        protected static ProductionLineForStationBound currentProductionLine = null;
 
         public frmCustomAndonForm()
         {
@@ -97,19 +98,19 @@ namespace IRAP.Client.GUI.CAS
 
         private void frmCustomAndonForm_Activated(object sender, EventArgs e)
         {
-            ProductionLineForStationBound currentLine = GetBoundAndonHost();
-            if (currentLine != null)
+            currentProductionLine = GetBoundAndonHost();
+            if (currentProductionLine != null)
             {
                 if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                     lblProductionLine.Text = 
                         string.Format(
                             "Current production line: {0}",
-                            currentLine.T134NodeName);
+                            currentProductionLine.T134NodeName);
                 else
                     lblProductionLine.Text = 
                         string.Format(
                             "当前产线：{0}",
-                            currentLine.T134NodeName);
+                            currentProductionLine.T134NodeName);
             }
             else
             {

@@ -217,7 +217,7 @@ namespace IRAP.Client.GUI.CAS
                 {
                     try
                     {
-                        IRAPUserClient.Instance.sfn_GetInfo_UserFromIDCode(
+                        IRAPUserClient.Instance.sfn_GetInfo_UserFromIDCard(
                             IRAPUser.Instance.CommunityID,
                             userIDCardNo,
                             ref staff,

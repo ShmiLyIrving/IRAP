@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.picIcon = new System.Windows.Forms.PictureBox();
             this.lblMessage = new DevExpress.XtraEditors.LabelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
@@ -38,6 +39,7 @@
             this.btnIgnore = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,6 +164,11 @@
             this.btnClose.Visible = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // frmMessageBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -201,5 +208,6 @@
         public DevExpress.XtraEditors.SimpleButton btnIgnore;
         public DevExpress.XtraEditors.SimpleButton btnCancel;
         public DevExpress.XtraEditors.SimpleButton btnClose;
+        private System.Windows.Forms.Timer timer;
     }
 }

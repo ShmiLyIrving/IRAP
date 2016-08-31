@@ -65,7 +65,7 @@ namespace IRAP.Client.GUI.CAS
                         int errCode = 0;
                         string errText = "";
 
-                        IRAPUserClient.Instance.sfn_GetInfo_UserFromIDCode(
+                        IRAPUserClient.Instance.sfn_GetInfo_UserFromIDCard(
                             IRAPUser.Instance.CommunityID,
                             edtIDCardNo.Text.Trim(),
                             ref staffInfo,

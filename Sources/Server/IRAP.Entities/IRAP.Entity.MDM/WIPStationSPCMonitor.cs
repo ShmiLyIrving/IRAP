@@ -75,13 +75,25 @@ namespace IRAP.Entity.MDM
         /// </summary>
         public int T20LeafID { get; set; }
         /// <summary>
-        /// 控制线下限（XBar-R图有效）
+        /// XBar 控制线下限（XBar-R图有效）
         /// </summary>
         public long LCL { get; set; }
         /// <summary>
-        /// 控制线上限（XBar-R图有效）
+        /// XBar 控制线上限（XBar-R图有效）
         /// </summary>
         public long UCL { get; set; }
+        /// <summary>
+        /// R 控制线下限（XBar-R图有效）
+        /// </summary>
+        public long RLCL { get; set; }
+        /// <summary>
+        /// R 控制线上限（XBar-R图有效）
+        /// </summary>
+        public long RUCL { get; set; }
+        /// <summary>
+        /// SPC 判异规则控制值（低位到高位 8 项准则）
+        /// </summary>
+        public int SPCRule { get; set; }
         /// <summary>
         /// 控制线设置日期
         /// </summary>

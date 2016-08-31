@@ -29,7 +29,6 @@ namespace IRAP.Client.GUI.CAS
 
         private List<UserControls.ucAndonEventButton> buttons = new List<UserControls.ucAndonEventButton>();
         private List<AndonEventType> andonEventTypes = new List<AndonEventType>();
-        private ProductionLineForStationBound currentProductionLine = null;
         /// <summary>
         /// 红色告警灯状态
         /// </summary>
