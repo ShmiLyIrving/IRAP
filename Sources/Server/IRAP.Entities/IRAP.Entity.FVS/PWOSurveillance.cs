@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using IRAP.Global;
-using IRAPORM;
+﻿using IRAP.Global;
 
 namespace IRAP.Entity.FVS
 {
