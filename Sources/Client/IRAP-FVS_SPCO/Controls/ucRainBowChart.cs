@@ -369,9 +369,13 @@ namespace IRAP_FVS_SPCO
                             {
                                 startCountdown = true;
                             }
-                            if (lastOpType == 5 && numCheckPoint % 2 == 0)
+                            else if (lastOpType == 5 && numCheckPoint % 2 == 0)
                             {
                                 startCountdown = true;
+                            }
+                            else
+                            {
+                                startCountdown = false;
                             }
                         }
 

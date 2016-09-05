@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSimMain));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.edtSimData = new DevExpress.XtraEditors.TextEdit();
             this.mmeLogs = new DevExpress.XtraEditors.MemoEdit();
             this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.rgpUnifOfMeasure = new DevExpress.XtraEditors.RadioGroup();
             ((System.ComponentModel.ISupportInitialize)(this.edtSimData.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mmeLogs.Properties)).BeginInit();
@@ -58,6 +59,7 @@
             this.edtSimData.Properties.Appearance.Options.UseFont = true;
             this.edtSimData.Size = new System.Drawing.Size(96, 22);
             this.edtSimData.TabIndex = 1;
+            this.edtSimData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtSimData_KeyDown);
             // 
             // mmeLogs
             // 
@@ -132,6 +134,7 @@
             this.Name = "frmSimMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSimMain";
+            this.Activated += new System.EventHandler(this.frmSimMain_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.edtSimData.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mmeLogs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgpUnifOfMeasure.Properties)).EndInit();

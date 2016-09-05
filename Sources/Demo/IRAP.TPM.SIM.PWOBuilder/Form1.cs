@@ -15,6 +15,11 @@ namespace IRAP.TPM.SIM.PWOBuilder
     public partial class Form1 : Form
     {
         private IConnectionFactory factory = null;
+        string content = 
+            "<Content><Message T107Code=\"{0}\" "+
+            "PWONo=\"34PEP1CD6360615001\" T20LeafID=\"353207\" "+
+            "T216LeafID=\"2292530\" T133LeafID=\"2244450\" "+
+            "SendDateTime=\"{1}\" /></Content>";
 
         public Form1()
         {
@@ -25,7 +30,7 @@ namespace IRAP.TPM.SIM.PWOBuilder
         {
             try
             {
-                factory = new ConnectionFactory("tcp://192.168.57.208:61616/");
+                factory = new ConnectionFactory("tcp://192.168.1.2:61616/");
 
                 edtContent.Enabled = true;
                 btnSend.Enabled = true;
@@ -46,6 +51,8 @@ namespace IRAP.TPM.SIM.PWOBuilder
         private void Form1_Shown(object sender, EventArgs e)
         {
             InitActiveMQ();
+
+            edtContent.Text = "";
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -55,10 +62,15 @@ namespace IRAP.TPM.SIM.PWOBuilder
                 using (ISession session = connection.CreateSession())
                 {
                     IMessageProducer prod = session.CreateProducer(
-                        new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPTPM_InQueue"));
+                        new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPDCS_MEQ"));
+                        //new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPTPM_InQueue"));
                     ITextMessage message = prod.CreateTextMessage();
-                    message.Text = edtContent.Text;
-                    message.Properties.SetString("filter", "MES");
+                    message.Text = 
+                        string.Format(
+                            content, 
+                            edtContent.Text,
+                            DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    message.Properties.SetString("filter", edtContent.Text);
                     prod.Send(message, MsgDeliveryMode.Persistent, MsgPriority.Normal, TimeSpan.MinValue);
                     MessageBox.Show("发送成功!");
                 }

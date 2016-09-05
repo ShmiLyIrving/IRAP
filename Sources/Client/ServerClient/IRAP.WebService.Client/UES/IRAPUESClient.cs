@@ -296,7 +296,7 @@ namespace IRAP.WebService.Client.UES
                         #region 解析得到的输出参数
                         errCode = -1009;
                         errText = "输出参数空白！";
-                        if (rlt.Trim() == "")
+                        if (rlt.Trim() != "")
                         {
                             XmlDocument xml = new XmlDocument();
 

@@ -507,9 +507,7 @@ namespace IRAP_FVS_SPCO
                                     chartNone.Dock = DockStyle.Fill;
                                     chartNone.Parent = page;
 
-#if !DEBUG
                                     InitConsumer(workUnit.T107Code);
-#endif
 
                                     ucCharts.Add(chartNone);
                                 }
@@ -675,8 +673,10 @@ namespace IRAP_FVS_SPCO
                                 stationUser,
                                 workUnit,
                                 datas[0].PWONo_InExecution,
-                                //datas[0].T216LeafID,
-                                //datas[0].T133LeafID,
+                                datas[0].LCL,
+                                datas[0].UCL,
+                                datas[0].RLCL,
+                                datas[0].RUCL,
                                 datas[0].T20LeafID);
                             break;
                     }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.Configuration;
 
 using DevExpress.XtraEditors;
 
@@ -32,7 +33,11 @@ namespace MarcalDataSim
                     ipep = new IPEndPoint(ip, 30000);
                 }
             }
-            //ipep = new IPEndPoint(IPAddress.Parse(ips[0].ToString()), 40000);
+
+            if (ConfigurationManager.AppSettings["DCSAddress"] != null)
+                ipep = new IPEndPoint(IPAddress.Parse(ConfigurationManager.AppSettings["DCSAddress"]), 30000);
+            else
+                ipep = new IPEndPoint(IPAddress.Parse("192.168.1.2"), 30000);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -74,6 +79,8 @@ namespace MarcalDataSim
             {
                 WriteLog("服务未开启！");
             }
+
+            edtSimData.Focus();
         }
 
         private void WriteLog(string message)
@@ -94,6 +101,19 @@ namespace MarcalDataSim
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void edtSimData_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                btnSend.PerformClick();
+            }
+        }
+
+        private void frmSimMain_Activated(object sender, EventArgs e)
+        {
+            edtSimData.Focus();
         }
     }
 }

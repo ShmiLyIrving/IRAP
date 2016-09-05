@@ -327,13 +327,13 @@ namespace IRAP.Entity.MES
                     else
                         continue;
 
-                    if (node.Attributes["XBar"] != null)
-                        data.XBar.IntValue = long.Parse(node.Attributes["XBar"].Value);
+                    if (node.Attributes["Metric01"] != null)
+                        data.Metric01.IntValue = long.Parse(node.Attributes["Metric01"].Value);
                     else
                         continue;
 
-                    if (node.Attributes["R"] != null)
-                        data.R.IntValue = long.Parse(node.Attributes["R"].Value);
+                    if (node.Attributes["FactID"] != null)
+                        data.FactID = long.Parse(node.Attributes["FactID"].Value);
                     else
                         continue;
 
@@ -430,42 +430,35 @@ namespace IRAP.Entity.MES
     /// </summary>
     public class XbarChartMeasureData
     {
-        private Quantity xbarQuantity = new Quantity();
-        private Quantity rQuantity = new Quantity();
+        private Quantity metricQuantity = new Quantity();
 
         public int Ordinal { get; set; }
-        public Quantity XBar
+        public Quantity Metric01
         {
-            get { return xbarQuantity; }
+            get { return metricQuantity; }
         }
-        public Quantity R
-        {
-            get { return rQuantity; }
-        }
+        public long FactID { get; set; }
         public int Scale
         {
-            get { return xbarQuantity.Scale; }
+            get { return metricQuantity.Scale; }
             set
             {
-                xbarQuantity.Scale = value;
-                rQuantity.Scale = value;
+                metricQuantity.Scale = value;
             }
         }
         public string UnitOfMeasure
         {
-            get { return xbarQuantity.UnitOfMeasure; }
+            get { return metricQuantity.UnitOfMeasure; }
             set
             {
-                xbarQuantity.UnitOfMeasure = value;
-                rQuantity.UnitOfMeasure = value;
+                metricQuantity.UnitOfMeasure = value;
             }
         }
 
         public XbarChartMeasureData Clone()
         {
             XbarChartMeasureData rlt = MemberwiseClone() as XbarChartMeasureData;
-            xbarQuantity = xbarQuantity.Clone();
-            rQuantity = rQuantity.Clone();
+            metricQuantity = metricQuantity.Clone();
 
             return rlt;
         }

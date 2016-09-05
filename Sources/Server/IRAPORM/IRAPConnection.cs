@@ -52,6 +52,10 @@ namespace IRAPORM
         }
         public IRAPSQLConnection(string connectionStr)
         {
+            ReadAssemblyXML();
+
+            int.TryParse(_paramList["CommandTimeout"], out _commandTimeout);
+
             _connStr = connectionStr;
             conn = new SqlConnection(_connStr);
             System.AppDomain _Domain = System.AppDomain.CurrentDomain;
@@ -2279,6 +2283,10 @@ namespace IRAPORM
                                     else if (reader[ti.Name] == System.DBNull.Value && ti.PropertyType == typeof(System.String))
                                     {
                                         ti.SetValue(obj, "", null);
+                                        continue;
+                                    }
+                                    else if (reader[ti.Name] == System.DBNull.Value)
+                                    {
                                         continue;
                                     }
                                     else

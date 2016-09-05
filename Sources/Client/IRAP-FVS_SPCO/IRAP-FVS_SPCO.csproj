@@ -112,6 +112,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XBarR\XBarRConstant.cs" />
+    <Compile Include="XBarR\XBarRCriteria.cs" />
+    <Compile Include="XBarR\XBarRData.cs" />
     <EmbeddedResource Include="Controls\ucRainBowChart.resx">
       <DependentUpon>ucRainBowChart.cs</DependentUpon>
     </EmbeddedResource>

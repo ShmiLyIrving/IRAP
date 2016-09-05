@@ -64,6 +64,7 @@ namespace IRAP_FVS_MDVO
 
             needRefreshed = true;
 
+#if DEBUG
             {
                 int errCode = 0;
                 string errText = "";
@@ -73,7 +74,7 @@ namespace IRAP_FVS_MDVO
                 WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText));
                 MessageBox.Show(idInfo.Birthday.ToString());
             }
-
+#endif
         }
 
         #region 自定义函数
@@ -255,7 +256,7 @@ namespace IRAP_FVS_MDVO
                 }
             }
         }
-        #endregion
+#endregion
 
         private void frmIRAP_FVS_MDVO_Activated(object sender, EventArgs e)
         {
@@ -283,7 +284,7 @@ namespace IRAP_FVS_MDVO
 
                 if (stationUser == null || stationUser.SysLogID <= 0)
                 {
-                    #region 获取当前站点登录信息
+#region 获取当前站点登录信息
                     stationUser = PadLogin(ref errCode, ref errText);
                     if (errCode != 0)
                     {
@@ -303,7 +304,7 @@ namespace IRAP_FVS_MDVO
                         }
                         lblErrorMessage.Text = "";
                     }
-                    #endregion
+#endregion
                 }
 
                 if (stationUser != null)
