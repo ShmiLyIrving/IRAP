@@ -125,7 +125,8 @@ namespace IRAP.Global
             if (ConfigurationManager.AppSettings["SoundAlert"] != null)
                 soundAlert = ConfigurationManager.AppSettings["SoundAlert"].ToString().ToUpper() == "TRUE";
 
-            switch (icon) {
+            switch (icon)
+            {
                 case MessageBoxIcon.Asterisk:
                 case MessageBoxIcon.Exclamation:
                     if (soundAlert)
@@ -158,16 +159,20 @@ namespace IRAP.Global
         }
 
         public DialogResult Show(
-            string text, 
-            string caption = "", 
-            MessageBoxButtons buttons = MessageBoxButtons.OK, 
-            MessageBoxIcon icon = MessageBoxIcon.Asterisk, 
+            string text,
+            string caption = "",
+            MessageBoxButtons buttons = MessageBoxButtons.OK,
+            MessageBoxIcon icon = MessageBoxIcon.Asterisk,
             MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1)
         {
             using (frmMessageBox messageBox = new frmMessageBox())
             {
                 messageBox.Text = caption;
                 messageBox.lblMessage.Text = text;
+
+                bool soundAlert = true;
+                if (ConfigurationManager.AppSettings["SoundAlert"] != null)
+                    soundAlert = ConfigurationManager.AppSettings["SoundAlert"].ToString().ToUpper() == "TRUE";
 
                 int splitterWidth = 0;
                 switch (buttons)
@@ -239,11 +244,13 @@ namespace IRAP.Global
                         messageBox.picIcon.Image = Properties.Resources.故障;
                         break;
                     case MessageBoxIcon.Error:
-                        IRAP.Global.Tools.Play(Properties.Resources.ALARM9);
+                        if (soundAlert)
+                            Tools.Play(Properties.Resources.ALARM9);
                         messageBox.picIcon.Image = Properties.Resources.报错;
                         break;
                     case MessageBoxIcon.Exclamation:
-                        IRAP.Global.Tools.Play(Properties.Resources.ALARM9);
+                        if (soundAlert)
+                            Tools.Play(Properties.Resources.ALARM9);
                         messageBox.picIcon.Image = Properties.Resources.故障;
                         break;
                     case MessageBoxIcon.Question:
