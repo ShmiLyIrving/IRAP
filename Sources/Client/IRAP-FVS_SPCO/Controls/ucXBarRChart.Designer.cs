@@ -219,7 +219,7 @@
             this.pnlHead.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHead.Location = new System.Drawing.Point(0, 0);
             this.pnlHead.Name = "pnlHead";
-            this.pnlHead.Size = new System.Drawing.Size(1137, 123);
+            this.pnlHead.Size = new System.Drawing.Size(1137, 117);
             this.pnlHead.TabIndex = 3;
             // 
             // lblChartType
@@ -231,7 +231,7 @@
             this.lblChartType.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lblChartType.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblChartType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblChartType.Location = new System.Drawing.Point(137, 31);
+            this.lblChartType.Location = new System.Drawing.Point(137, 25);
             this.lblChartType.Name = "lblChartType";
             this.lblChartType.Size = new System.Drawing.Size(105, 28);
             this.lblChartType.TabIndex = 28;
@@ -543,7 +543,7 @@
             this.chartXBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartXBar.Legend.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chartXBar.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            this.chartXBar.Location = new System.Drawing.Point(0, 123);
+            this.chartXBar.Location = new System.Drawing.Point(0, 117);
             this.chartXBar.Name = "chartXBar";
             series1.Name = "Xbar.";
             series1.Points.AddRange(new DevExpress.XtraCharts.SeriesPoint[] {
@@ -575,7 +575,7 @@
             series1.View = lineSeriesView1;
             this.chartXBar.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
-            this.chartXBar.Size = new System.Drawing.Size(1137, 228);
+            this.chartXBar.Size = new System.Drawing.Size(1137, 295);
             this.chartXBar.TabIndex = 4;
             // 
             // chartR
@@ -590,7 +590,7 @@
             this.chartR.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.chartR.Legend.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chartR.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            this.chartR.Location = new System.Drawing.Point(0, 351);
+            this.chartR.Location = new System.Drawing.Point(0, 412);
             this.chartR.Name = "chartR";
             series2.Name = "R   .";
             series2.Points.AddRange(new DevExpress.XtraCharts.SeriesPoint[] {
@@ -624,7 +624,7 @@
             series2.View = lineSeriesView2;
             this.chartR.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series2};
-            this.chartR.Size = new System.Drawing.Size(1137, 255);
+            this.chartR.Size = new System.Drawing.Size(1137, 194);
             this.chartR.TabIndex = 5;
             // 
             // ucXBarRChart
@@ -636,6 +636,7 @@
             this.Controls.Add(this.pnlHead);
             this.Name = "ucXBarRChart";
             this.Size = new System.Drawing.Size(1137, 606);
+            this.Resize += new System.EventHandler(this.ucXBarRChart_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pnlHead)).EndInit();
             this.pnlHead.ResumeLayout(false);
             this.pnlHead.PerformLayout();

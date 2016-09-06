@@ -664,6 +664,7 @@ namespace IRAP_FVS_SPCO
                                     {
                                         Dock = DockStyle.Fill,
                                         Parent = e.Page,
+                                        SPCRule = datas[0].SPCRule,
                                     };
 
                                 ucCharts[pageIndex] = chartXbarR;

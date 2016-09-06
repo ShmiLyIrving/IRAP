@@ -419,6 +419,7 @@ namespace IRAP_FVS_SPCO
                             IRAPMESClient.Instance.usp_WriteLog_SPCReset(
                                 stationUser.CommunityID,
                                 data.C1ID,
+                                373564,
                                 stationUser.SysLogID,
                                 out errCode,
                                 out errText);

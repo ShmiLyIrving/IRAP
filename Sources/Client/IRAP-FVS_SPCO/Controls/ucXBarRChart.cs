@@ -28,14 +28,37 @@ namespace IRAP_FVS_SPCO
         /// <summary>
         /// XBar-R 图的类型：0-研究控制图；1-控制控制图
         /// </summary>
-        private int chartType = 0; 
+        private XBarR.XBarRChartType chartType = XBarR.XBarRChartType.Control;
+        /// <summary>
+        /// 统计过程判异规则
+        /// </summary>
+        private int spcRule = 0;
 
         public ucXBarRChart()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 判异准则规则
+        /// </summary>
+        public int SPCRule
+        {
+            get { return spcRule; }
+            set { spcRule = value; }
+        }
 
+        /// <summary>
+        /// 绘制 XBar-R 图
+        /// </summary>
+        /// <param name="stationUser"></param>
+        /// <param name="workUnit"></param>
+        /// <param name="pwoNo"></param>
+        /// <param name="lcl"></param>
+        /// <param name="ucl"></param>
+        /// <param name="rlcl"></param>
+        /// <param name="rucl"></param>
+        /// <param name="t20LeafID"></param>
         public void DrawChart(
             StationLogin stationUser,
             WIPStationProductionStatus workUnit,
@@ -53,13 +76,11 @@ namespace IRAP_FVS_SPCO
                     MethodBase.GetCurrentMethod().Name);
 
             #region 确定当前的 XBar-R 图是研究用图还是控制用图
-            if (lcl == 0 &&
-                ucl == 0 &&
-                rlcl == 0 &&
-                rucl == 0)
-                chartType = 0;
-            else
-                chartType = 1;
+            if (lcl != 0 ||
+                ucl != 0 ||
+                rlcl != 0 ||
+                rucl != 0)
+                chartType = XBarR.XBarRChartType.Study;
 
             lblChartType.Visible = chartType == 0;
             #endregion
@@ -124,6 +145,7 @@ namespace IRAP_FVS_SPCO
             edtMeasuredDate.Text = chartData.MeasuredDate;
             #endregion
 
+            #region 获取原始测量数据，根据每组测量数生成 XBar 和 R 图的点，并绘制图形
             List<XbarChartMeasureData> srcDatas = chartData.XMLToXBarChartDataList();
             List<XBarR.XBarRData> datas = new List<XBarR.XBarRData>();
 
@@ -142,6 +164,7 @@ namespace IRAP_FVS_SPCO
 
             DrawXBar(chartData, datas, font);
             DrawR(chartData, datas, font);
+            #endregion
 
             Quantity xbarLCL = new Quantity()
             {
@@ -154,13 +177,352 @@ namespace IRAP_FVS_SPCO
 
             switch (chartType)
             {
-                case 0:
+                case XBarR.XBarRChartType.Study:
+                    #region 研究用控制图在收集满 25 组数据后，计算控制用控制图所需要的上下限
                     if (datas.Count == 25)
                     {
-                        CalcLimitControlLine(datas, ref xbarLCL, ref xbarUCL);
+                        CalcLimitControlLine(
+                            datas, 
+                            ref xbarLCL, 
+                            ref xbarUCL,
+                            ref rLCL,
+                            ref rUCL);
+
+                        #region 对 8 项判异准则进行判异
+                        bool[] xbarCriteriaPassed = new bool[8];
+                        bool[] rCriteriaPassed = new bool[8];
+
+                        for (int i=0;i<8;i++)
+                        {
+                            xbarCriteriaPassed[i] = true;
+                            rCriteriaPassed[i] = true;
+                        }
+
+                        XBarR.XBarRCriteria xbarCriteria =
+                            new XBarR.XBarRCriteria(xbarLCL, xbarUCL, spcRule);
+                        XBarR.XBarRCriteria rCriteria =
+                            new XBarR.XBarRCriteria(rLCL, rUCL, spcRule);
+
+                        List<long> wait4CriteriaXBarPoints = new List<long>();
+                        List<long> wait4CriteriaRPoints = new List<long>();
+                        for (int i = 0; i < datas.Count; i++)
+                        {
+                            #region 判异准则 1
+                            xbarCriteriaPassed[0] = 
+                                xbarCriteriaPassed[0] && 
+                                xbarCriteria.Criteria1Passed(datas[i].XBar.IntValue);
+                            rCriteriaPassed[0] = 
+                                rCriteriaPassed[0] && 
+                                rCriteria.Criteria1Passed(datas[i].R.IntValue);
+                            #endregion
+
+                            #region 判异准则 2
+                            if (i + 6 < datas.Count)
+                            {
+                                wait4CriteriaXBarPoints.Clear();
+                                wait4CriteriaRPoints.Clear();
+
+                                for (int j = i; j < i + 6; j++)
+                                {
+                                    wait4CriteriaXBarPoints.Add(datas[j].XBar.IntValue);
+                                    wait4CriteriaRPoints.Add(datas[j].R.IntValue);
+                                }
+
+                                xbarCriteriaPassed[1] = 
+                                    xbarCriteriaPassed[1] && 
+                                    xbarCriteria.Criteria2Passed(wait4CriteriaXBarPoints);
+                                rCriteriaPassed[1] = 
+                                    rCriteriaPassed[1] && 
+                                    rCriteria.Criteria2Passed(wait4CriteriaRPoints);
+                            }
+                            #endregion
+
+                            #region 判异准则 3
+                            if (i + 7 < datas.Count)
+                            {
+                                wait4CriteriaXBarPoints.Clear();
+                                wait4CriteriaRPoints.Clear();
+
+                                for (int j = i; j < i + 7; j++)
+                                {
+                                    wait4CriteriaXBarPoints.Add(datas[j].XBar.IntValue);
+                                    wait4CriteriaRPoints.Add(datas[j].R.IntValue);
+                                }
+
+                                xbarCriteriaPassed[2] =
+                                    xbarCriteriaPassed[2] &&
+                                    xbarCriteria.Criteria3Passed(wait4CriteriaXBarPoints);
+                                rCriteriaPassed[2] = 
+                                    rCriteriaPassed[2] &&
+                                    rCriteria.Criteria3Passed(wait4CriteriaRPoints);
+                            }
+                            #endregion
+
+                            #region 判异准则 4
+                            if (i + 14 < datas.Count)
+                            {
+                                wait4CriteriaXBarPoints.Clear();
+                                wait4CriteriaRPoints.Clear();
+
+                                for (int j = i; j < i + 14; j++)
+                                {
+                                    wait4CriteriaXBarPoints.Add(datas[j].XBar.IntValue);
+                                    wait4CriteriaRPoints.Add(datas[j].R.IntValue);
+                                }
+
+                                xbarCriteriaPassed[3] = 
+                                    xbarCriteriaPassed[3] &&
+                                    xbarCriteria.Criteria4Passed(wait4CriteriaXBarPoints);
+                                rCriteriaPassed[3] = 
+                                    rCriteriaPassed[3] &&
+                                    rCriteria.Criteria4Passed(wait4CriteriaRPoints);
+                            }
+                            #endregion
+
+                            #region 判异准则 5
+                            if (i + 3 < datas.Count)
+                            {
+                                wait4CriteriaXBarPoints.Clear();
+                                wait4CriteriaRPoints.Clear();
+
+                                for (int j = i; j < i + 3; j++)
+                                {
+                                    wait4CriteriaXBarPoints.Add(datas[j].XBar.IntValue);
+                                    wait4CriteriaRPoints.Add(datas[j].R.IntValue);
+                                }
+
+                                xbarCriteriaPassed[4] =
+                                    xbarCriteriaPassed[4] &&
+                                    xbarCriteria.Criteria5Passed(wait4CriteriaXBarPoints);
+                                rCriteriaPassed[4] =
+                                    rCriteriaPassed[4] &&
+                                    rCriteria.Criteria5Passed(wait4CriteriaRPoints);
+                            }
+                            #endregion
+
+                            #region 判异准则 6
+                            if (i + 5 < datas.Count)
+                            {
+                                wait4CriteriaXBarPoints.Clear();
+                                wait4CriteriaRPoints.Clear();
+
+                                for (int j = i; j < i + 5; j++)
+                                {
+                                    wait4CriteriaXBarPoints.Add(datas[j].XBar.IntValue);
+                                    wait4CriteriaRPoints.Add(datas[j].R.IntValue);
+                                }
+
+                                xbarCriteriaPassed[5] =
+                                    xbarCriteriaPassed[5] &&
+                                    xbarCriteria.Criteria6Passed(wait4CriteriaXBarPoints);
+                                rCriteriaPassed[5] =
+                                    rCriteriaPassed[5] &&
+                                    rCriteria.Criteria6Passed(wait4CriteriaRPoints);
+                            }
+                            #endregion
+
+                            #region 判异准则 7
+                            if (i + 15 < datas.Count)
+                            {
+                                wait4CriteriaXBarPoints.Clear();
+                                wait4CriteriaRPoints.Clear();
+
+                                for (int j = i; j < i + 15; j++)
+                                {
+                                    wait4CriteriaXBarPoints.Add(datas[j].XBar.IntValue);
+                                    wait4CriteriaRPoints.Add(datas[j].R.IntValue);
+                                }
+
+                                xbarCriteriaPassed[6] =
+                                    xbarCriteriaPassed[6] &&
+                                    xbarCriteria.Criteria7Passed(wait4CriteriaXBarPoints);
+                                rCriteriaPassed[6] =
+                                    rCriteriaPassed[6] &&
+                                    rCriteria.Criteria7Passed(wait4CriteriaRPoints);
+                            }
+                            #endregion
+
+                            #region  判异准则 8
+                            if (i + 8 < datas.Count)
+                            {
+                                wait4CriteriaXBarPoints.Clear();
+                                wait4CriteriaRPoints.Clear();
+
+                                for (int j = i; j < i + 8; j++)
+                                {
+                                    wait4CriteriaXBarPoints.Add(datas[j].XBar.IntValue);
+                                    wait4CriteriaRPoints.Add(datas[j].R.IntValue);
+                                }
+
+                                xbarCriteriaPassed[7] =
+                                    xbarCriteriaPassed[7] &&
+                                    xbarCriteria.Criteria8Passed(wait4CriteriaXBarPoints);
+                                rCriteriaPassed[7] =
+                                    rCriteriaPassed[7] &&
+                                    rCriteria.Criteria8Passed(wait4CriteriaRPoints);
+                            }
+                            #endregion
+                        }
+                        #endregion
+
+                        bool criteriaPassed = true;
+                        for (int i = 0; i < 8; i++)
+                        {
+                            criteriaPassed =
+                                criteriaPassed &&
+                                xbarCriteriaPassed[i] &&
+                                rCriteriaPassed[i];
+                        }
+
+                        if (!criteriaPassed)
+                        {
+                            #region 判异未通过，显示判异结果，并调用存储过程标示重新开始采集数据
+                            using (XBarR.frmXBarRCriteriaMessage formMessage = new XBarR.frmXBarRCriteriaMessage())
+                            {
+                                formMessage.SetCriteriaResult(xbarCriteriaPassed, rCriteriaPassed);
+                                formMessage.ShowDialog();
+                            }
+
+                            if (chartData.C1ID != 0)
+                            {
+                                int errCode = 0;
+                                string errText = "";
+
+                                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                                try
+                                {
+                                    IRAPMESClient.Instance.usp_WriteLog_SPCReset(
+                                        stationUser.CommunityID,
+                                        chartData.C1ID,
+                                        373565,
+                                        stationUser.SysLogID,
+                                        out errCode,
+                                        out errText);
+                                    WriteLog.Instance.Write(
+                                        string.Format("({0}){1}", errCode, errText),
+                                        strProcedureName);
+                                    if (errCode != 0)
+                                        IRAPMessageBox.Instance.Show(
+                                            errText,
+                                            "XBar-R 图重置数据采集",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
+                                }
+                                finally
+                                {
+                                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                                }
+                            }
+                            #endregion
+
+                            #region 清除 XBar 图和 R 图中的内容
+                            chartXBar.Series[0].Points.Clear();
+                            chartR.Series[0].Points.Clear();
+                            #endregion
+                        }
+                        else
+                        {
+                            #region 判异通过，计算 Cpk 值，若大于 1.33 则保存 LCL, UCL, RLCL, RUCL，否则重新开始采集数据
+                            double cpk =
+                                CalcCpk(
+                                    chartData.LSLData,
+                                    chartData.USLData,
+                                    srcDatas,
+                                    datas);
+                            if (cpk >= 1.33)
+                            {
+                                // 以下调用存储过程，保存得到的 LCL, UCL, RLCL, RUCL
+                                int errCode = 0;
+                                string errText = "";
+
+                                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                                try
+                                {
+                                    IRAPMESClient.Instance.usp_WriteLog_SPCCtrlLineSet(
+                                        stationUser.CommunityID,
+                                        chartData.C1ID,
+                                        xbarLCL.IntValue,
+                                        xbarUCL.IntValue,
+                                        rLCL.IntValue,
+                                        rUCL.IntValue,
+                                        stationUser.SysLogID,
+                                        out errCode,
+                                        out errText);
+                                    WriteLog.Instance.Write(
+                                        string.Format("({0}){1}", errCode, errText),
+                                        strProcedureName);
+                                    if (errCode != 0)
+                                        IRAPMessageBox.Instance.Show(
+                                            errText,
+                                            "XBar-R 图重置数据采集",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
+                                    else
+                                        IRAPMessageBox.Instance.Show(
+                                            "XBar-R 图的控制线已经分析并保存完毕！",
+                                            "研究用控制图",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Information);
+                                }
+                                finally
+                                {
+                                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                                }
+                            }
+                            else
+                            {
+                                IRAPMessageBox.Instance.Show(
+                                    string.Format(
+                                        "当前 Cpk 值为 [{0}]，小于 1.33，请分析原因并采取措施后重新采集数据！",
+                                        cpk.ToString("0.00")),
+                                    "研究用控制图",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+
+                                // 以下调用存储过程，重新采集数据
+                                if (chartData.C1ID != 0)
+                                {
+                                    int errCode = 0;
+                                    string errText = "";
+
+                                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                                    try
+                                    {
+                                        IRAPMESClient.Instance.usp_WriteLog_SPCReset(
+                                            stationUser.CommunityID,
+                                            chartData.C1ID,
+                                            373565,
+                                            stationUser.SysLogID,
+                                            out errCode,
+                                            out errText);
+                                        WriteLog.Instance.Write(
+                                            string.Format("({0}){1}", errCode, errText),
+                                            strProcedureName);
+                                        if (errCode != 0)
+                                            IRAPMessageBox.Instance.Show(
+                                                errText,
+                                                "XBar-R 图重置数据采集",
+                                                MessageBoxButtons.OK,
+                                                MessageBoxIcon.Error);
+                                    }
+                                    finally
+                                    {
+                                        WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                                    }
+                                }
+
+                                // 清除 XBar 图和 R 图中的内容
+                                chartXBar.Series[0].Points.Clear();
+                                chartR.Series[0].Points.Clear();
+                            }
+                            #endregion
+                        }
                     }
+                    #endregion
                     break;
-                case 1:
+                case XBarR.XBarRChartType.Control:
+                    #region 控制用控制图直接绘制各上下限控制线，和 A/B/C 三个区域，并进行判异
+                    #endregion
                     break;
             }
 
@@ -183,19 +545,69 @@ namespace IRAP_FVS_SPCO
             #endregion
         }
 
-        private long Avg(List<long> datas)
+        /// <summary>
+        /// 计算平均值
+        /// </summary>
+        /// <param name="datas"></param>
+        /// <returns></returns>
+        private double Avg(List<double> datas)
         {
-            long rlt = 0;
+            double rlt = 0;
             for (int i = 0; i < datas.Count; i++)
                 rlt += datas[i];
             return rlt / datas.Count;
         }
 
         /// <summary>
-        /// 计算 XBar-R 上下限控制线
+        /// 计算 Cpk 值
+        /// </summary>
+        /// <param name="lsl"></param>
+        /// <param name="usl"></param>
+        /// <param name="xbarPoints"></param>
+        /// <returns></returns>
+        private double CalcCpk(
+            Quantity lsl, 
+            Quantity usl, 
+            List<XbarChartMeasureData> measureDatas,
+            List<XBarR.XBarRData> xbarPoints)
+        {
+            double t = usl.DoubleValue-lsl.DoubleValue;
+            double middle = (usl.DoubleValue + lsl.DoubleValue) / 2;
+            double xbarBar = 0;
+            double rBar = 0;
+            double cp = 0;
+            double cpk = 0;
+
+            List<double> avgXbarDatas = new List<double>();
+            for (int i = 0; i < measureDatas.Count; i++)
+            {
+                avgXbarDatas.Add(measureDatas[i].Metric01.DoubleValue);
+            }
+            xbarBar = Avg(avgXbarDatas);
+
+            List<double> avgRDatas = new List<double>();
+            for (int i = 0; i < xbarPoints.Count; i++)
+            {
+                avgRDatas.Add(xbarPoints[i].R.DoubleValue);
+            }
+            xbarBar = Avg(avgXbarDatas);
+            rBar = Avg(avgRDatas);
+
+            cp = t / (6 * (rBar / XBarR.XBarRConstant.Instance.D2));
+            cpk = (1 - (2 * Math.Abs(middle - xbarBar)) / t) * cp;
+            return cpk;
+        }
+
+        /// <summary>
+        /// 计算并绘制 XBar 图和 R 图的上下限控制线
         /// </summary>
         /// <param name="xbarPoints"></param>
-        private void CalcLimitControlLine(List<XBarR.XBarRData> xbarPoints, ref Quantity lcl, ref Quantity ucl)
+        private void CalcLimitControlLine(
+            List<XBarR.XBarRData> xbarPoints, 
+            ref Quantity lcl, 
+            ref Quantity ucl,
+            ref Quantity rlcl,
+            ref Quantity rucl)
         {
             lcl.IntValue = 0;
             ucl.IntValue = 0;
@@ -203,24 +615,22 @@ namespace IRAP_FVS_SPCO
             if (xbarPoints.Count < 25)
                 return;
 
-            List<long> xbarDatas = new List<long>();
-            List<long> rDatas = new List<long>();
+            List<double> xbarDatas = new List<double>();
+            List<double> rDatas = new List<double>();
             foreach (XBarR.XBarRData point in xbarPoints)
             {
-                xbarDatas.Add(point.XBar.IntValue);
-                rDatas.Add(point.R.IntValue);
+                xbarDatas.Add(point.XBar.DoubleValue);
+                rDatas.Add(point.R.DoubleValue);
             }
 
             #region 计算 XBarBar
             Quantity xbarbarLine = lcl.Clone();
-            lcl.IntValue = 0;
-            xbarbarLine.IntValue = Avg(xbarDatas);
+            xbarbarLine.DoubleValue = Avg(xbarDatas);
             #endregion
 
             #region 计算 RBar
             Quantity rbarLine = lcl.Clone();
-            rbarLine.IntValue = 0;
-            rbarLine.IntValue = Avg(rDatas);
+            rbarLine.DoubleValue = Avg(rDatas);
             #endregion
 
             #region 计算 XBar 图的 LCL 和 UCL
@@ -229,8 +639,8 @@ namespace IRAP_FVS_SPCO
             #endregion
 
             #region 计算 R 图的 LCL 和 UCL
-            Quantity rlcl = lcl.Clone();
-            Quantity rucl = lcl.Clone();
+            rlcl = lcl.Clone();
+            rucl = lcl.Clone();
             rlcl.DoubleValue = XBarR.XBarRConstant.Instance.D3 * rbarLine.DoubleValue;
             rucl.DoubleValue = XBarR.XBarRConstant.Instance.D4 * rbarLine.DoubleValue;
             #endregion
@@ -247,7 +657,10 @@ namespace IRAP_FVS_SPCO
             #endregion
 
             #region 绘制 R 图的中线
-            DrawAxisYConstantLine(chartR, rbarLine.DoubleValue, Color.Black);
+            DrawAxisYConstantLine(
+                chartR,
+                (rlcl.DoubleValue + rucl.DoubleValue) / 2,
+                Color.Black);
             #endregion
 
             #region 绘制 R 图的上下控制线
@@ -258,6 +671,12 @@ namespace IRAP_FVS_SPCO
             #endregion
         }
 
+        /// <summary>
+        /// 绘制 Y 轴的分割线
+        /// </summary>
+        /// <param name="chart"></param>
+        /// <param name="lineValue"></param>
+        /// <param name="lineColor"></param>
         private void DrawAxisYConstantLine(
             ChartControl chart,
             double lineValue,
@@ -276,6 +695,12 @@ namespace IRAP_FVS_SPCO
             }
         }
 
+        /// <summary>
+        /// 绘制 Y 轴的色块
+        /// </summary>
+        /// <param name="chart"></param>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
         private void DrawAsisYStrip(
             ChartControl chart,
             double minValue,
@@ -313,6 +738,12 @@ namespace IRAP_FVS_SPCO
             }
         }
 
+        /// <summary>
+        /// 设置图形 Y 轴坐标范围
+        /// </summary>
+        /// <param name="chart"></param>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
         private void SetDiagramWholeRanger(
             ChartControl chart,
             double minValue,
@@ -331,6 +762,12 @@ namespace IRAP_FVS_SPCO
             }
         }
 
+        /// <summary>
+        /// 绘制 XBar 图
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="datas"></param>
+        /// <param name="font"></param>
         private void DrawXBar(
             EntitySPCChart data,
             List<XBarR.XBarRData> datas, 
@@ -390,7 +827,7 @@ namespace IRAP_FVS_SPCO
                 xyDiagram.AxisX.Title.Visibility = DefaultBoolean.True;
                 xyDiagram.AxisX.Title.Text = "测量组";
 
-                if (chartType == 1)
+                if (chartType == XBarR.XBarRChartType.Control)
                 {
                     xyDiagram.DefaultPane.BackColor = Color.Red;
 
@@ -441,6 +878,9 @@ namespace IRAP_FVS_SPCO
                 }
                 else
                 {
+                    xyDiagram.AxisY.Strips.Clear();
+                    xyDiagram.AxisY.ConstantLines.Clear();
+
                     WholeRange wholeRange = xyDiagram.AxisY.WholeRange;
                     wholeRange.AlwaysShowZeroLevel = false;
                     wholeRange.Auto = false;
@@ -455,6 +895,12 @@ namespace IRAP_FVS_SPCO
             #endregion
         }
 
+        /// <summary>
+        /// 绘制 R 图
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="datas"></param>
+        /// <param name="font"></param>
         private void DrawR(
             EntitySPCChart data,
             List<XBarR.XBarRData> datas,
@@ -502,7 +948,7 @@ namespace IRAP_FVS_SPCO
                 xyDiagram.AxisX.Title.Visibility = DefaultBoolean.True;
                 xyDiagram.AxisX.Title.Text = "测量组";
 
-                if (chartType == 1)
+                if (chartType == XBarR.XBarRChartType.Control)
                 {
                     xyDiagram.DefaultPane.BackColor = Color.Red;
 
@@ -551,10 +997,20 @@ namespace IRAP_FVS_SPCO
                     strip.ShowInLegend = false;
                     xyDiagram.AxisY.Strips.Add(strip);
                 }
+                else
+                {
+                    xyDiagram.AxisY.Strips.Clear();
+                    xyDiagram.AxisY.ConstantLines.Clear();
+                }
             }
 
             chartR.Legend.Font = font;
             #endregion
+        }
+
+        private void ucXBarRChart_Resize(object sender, EventArgs e)
+        {
+            chartR.Height = Height / 3;
         }
     }
 }
