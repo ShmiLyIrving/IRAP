@@ -968,7 +968,6 @@ namespace IRAP_FVS_SPCO
             }
             rBar = Avg(avgRDatas);
 
-            //cp = t / (6 * (rBar / XBarR.XBarRConstant.Instance.D2));
             cp = CalcCp(lsl, usl, xbarPoints);
             cpk = (1 - (2 * Math.Abs(middle - xbarBar)) / t) * cp;
             return cpk;
