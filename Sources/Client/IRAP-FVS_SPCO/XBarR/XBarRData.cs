@@ -45,6 +45,20 @@ namespace IRAP_FVS_SPCO.XBarR
         {
             get { return r; }
         }
+        /// <summary>
+        /// 当前组中测量值的最大 FactID
+        /// </summary>
+        public long LastFactID
+        {
+            get
+            {
+                return srcData[srcDataCnt - 1].FactID;
+            }
+        }
+        public List<XbarChartMeasureData> Source
+        {
+            get { return srcData; }
+        }
 
         public void Add(XbarChartMeasureData measureData)
         {

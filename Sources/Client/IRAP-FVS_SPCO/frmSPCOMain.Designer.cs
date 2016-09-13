@@ -35,7 +35,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lblVersion = new DevExpress.XtraEditors.LabelControl();
             this.lblCopyright = new DevExpress.XtraEditors.LabelControl();
             this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
@@ -64,7 +63,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(895, 70);
+            this.panelControl1.Size = new System.Drawing.Size(895, 52);
             this.panelControl1.TabIndex = 0;
             // 
             // btnClose
@@ -72,7 +71,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::IRAP_FVS_SPCO.Properties.Resources.cancel_32x32;
-            this.btnClose.Location = new System.Drawing.Point(850, 18);
+            this.btnClose.Location = new System.Drawing.Point(850, 11);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(42, 38);
             this.btnClose.TabIndex = 3;
@@ -85,7 +84,7 @@
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Image = global::IRAP_FVS_SPCO.Properties.Resources.remove_32x32;
-            this.btnMinimize.Location = new System.Drawing.Point(802, 18);
+            this.btnMinimize.Location = new System.Drawing.Point(802, 11);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(42, 38);
             this.btnMinimize.TabIndex = 2;
@@ -104,24 +103,9 @@
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl1.Location = new System.Drawing.Point(20, 3);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(857, 64);
+            this.labelControl1.Size = new System.Drawing.Size(857, 46);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "IRAP－工厂可视化系统 - 统计过程控制选件";
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVersion.Appearance.Font = new System.Drawing.Font("微软雅黑", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.lblVersion.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.lblVersion.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblVersion.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblVersion.Location = new System.Drawing.Point(20, 76);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(857, 43);
-            this.lblVersion.TabIndex = 3;
-            this.lblVersion.Text = "IRAP-FVS SPCO V6.1.0";
             // 
             // lblCopyright
             // 
@@ -136,7 +120,7 @@
             this.lblCopyright.Name = "lblCopyright";
             this.lblCopyright.Size = new System.Drawing.Size(857, 29);
             this.lblCopyright.TabIndex = 4;
-            this.lblCopyright.Text = "仪征亚新科双环活塞环有限公司";
+            this.lblCopyright.Text = "IRAP-FVS SPCO V6.1.0(仪征亚新科双环活塞环有限公司)";
             // 
             // xtraScrollableControl
             // 
@@ -146,9 +130,9 @@
             this.xtraScrollableControl.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.xtraScrollableControl.Appearance.Options.UseBackColor = true;
             this.xtraScrollableControl.Controls.Add(this.tcMain);
-            this.xtraScrollableControl.Location = new System.Drawing.Point(21, 125);
+            this.xtraScrollableControl.Location = new System.Drawing.Point(21, 58);
             this.xtraScrollableControl.Name = "xtraScrollableControl";
-            this.xtraScrollableControl.Size = new System.Drawing.Size(857, 379);
+            this.xtraScrollableControl.Size = new System.Drawing.Size(857, 446);
             this.xtraScrollableControl.TabIndex = 5;
             this.xtraScrollableControl.Visible = false;
             // 
@@ -169,7 +153,7 @@
             this.tcMain.Location = new System.Drawing.Point(0, 0);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedTabPage = this.xtraTabPage1;
-            this.tcMain.Size = new System.Drawing.Size(857, 379);
+            this.tcMain.Size = new System.Drawing.Size(857, 446);
             this.tcMain.TabIndex = 0;
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -179,13 +163,13 @@
             // xtraTabPage1
             // 
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(855, 348);
+            this.xtraTabPage1.Size = new System.Drawing.Size(851, 412);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(855, 348);
+            this.xtraTabPage2.Size = new System.Drawing.Size(851, 345);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // lblErrorMessage
@@ -214,7 +198,6 @@
             this.ControlBox = false;
             this.Controls.Add(this.xtraScrollableControl);
             this.Controls.Add(this.lblCopyright);
-            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.lblErrorMessage);
             this.DoubleBuffered = true;
@@ -239,7 +222,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
-        private DevExpress.XtraEditors.LabelControl lblVersion;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl lblCopyright;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl;

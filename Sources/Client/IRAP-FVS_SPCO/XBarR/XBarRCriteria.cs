@@ -13,11 +13,11 @@ namespace IRAP_FVS_SPCO.XBarR
     public class XBarRCriteria
     {
         private Quantity ucl;
-        private Quantity highLimitA;
-        private Quantity highLimitB;
-        private Quantity middle;
-        private Quantity lowLimitB;
-        private Quantity lowLimitA;
+        private double highLimitA;
+        private double highLimitB;
+        private double middle;
+        private double lowLimitB;
+        private double lowLimitA;
         private Quantity lcl;
 
         private bool criteria1Judged = false;
@@ -32,23 +32,24 @@ namespace IRAP_FVS_SPCO.XBarR
         public XBarRCriteria(
             Quantity lcl,
             Quantity ucl,
+            double middle,
             int rule)
         {
             this.ucl = ucl;
             this.lcl = lcl;
-            highLimitA = ucl.Clone();
-            highLimitA.IntValue = 0;
-            highLimitB = highLimitA.Clone();
-            middle = highLimitA.Clone();
-            lowLimitB = highLimitA.Clone();
-            lowLimitA = highLimitA.Clone();
+            highLimitA = 0;
+            highLimitB = 0;
+            this.middle = middle;
+            lowLimitB = 0;
+            lowLimitA = 0;
 
-            double splitter = (ucl.DoubleValue - lcl.DoubleValue) / 6;
-            highLimitA.DoubleValue = ucl.DoubleValue - splitter;
-            highLimitB.DoubleValue = ucl.DoubleValue - splitter * 2;
-            lowLimitB.DoubleValue = lcl.DoubleValue + splitter * 2;
-            lowLimitA.DoubleValue = lcl.DoubleValue + splitter;
-            middle.DoubleValue = (ucl.DoubleValue + lcl.DoubleValue) / 2;
+            double splitter1 = (ucl.DoubleValue - middle) / 3;
+            double splitter2 = (middle - lcl.DoubleValue) / 3;
+            highLimitA = ucl.DoubleValue - splitter1;
+            highLimitB = ucl.DoubleValue - splitter1 * 2;
+            lowLimitB = lcl.DoubleValue + splitter2 * 2;
+            lowLimitA = lcl.DoubleValue + splitter2;
+            this.middle = middle;
 
             criteria1Judged = (rule & 1) == 1;
             criteria2Judged = (rule & 2) == 2;
@@ -98,12 +99,10 @@ namespace IRAP_FVS_SPCO.XBarR
                     equation++;
             }
 
-            if (increasing == 0 && decreasing == 0)
-                return true;
-            else if (increasing != 0 && decreasing != 0)
-                return true;
-            else
+            if (increasing == 6 || decreasing == 6)
                 return false;
+            else
+                return true;
         }
 
         /// <summary>
@@ -122,9 +121,9 @@ namespace IRAP_FVS_SPCO.XBarR
             int cntOfLowArea = 0;
             for (int i = 0; i < 7; i++)
             {
-                if (points[i] > middle.IntValue)
+                if (points[i] > middle)
                     cntOfHighArea++;
-                else if (points[i] < middle.IntValue)
+                else if (points[i] < middle)
                     cntOfLowArea++;
             }
 
@@ -172,16 +171,16 @@ namespace IRAP_FVS_SPCO.XBarR
             int cntOfLowAreaA = 0;
             for (int i = 0; i < 3; i++)
             {
-                if (points[i] > highLimitA.IntValue)
+                if (points[i] > highLimitA)
                     cntOfHighAreaA++;
-                if (points[i] < lowLimitA.IntValue)
+                if (points[i] < lowLimitA)
                     cntOfLowAreaA++;
             }
 
             if ((cntOfHighAreaA >= 2 ||
                 cntOfLowAreaA >= 2) &&
-                (points[2] > highLimitA.IntValue ||
-                points[2] < lowLimitA.IntValue))
+                (points[2] > highLimitA ||
+                points[2] < lowLimitA))
                 return false;
             else
                 return true;
@@ -203,9 +202,9 @@ namespace IRAP_FVS_SPCO.XBarR
             int cntOfLowArea = 0;
             for (int i = 0; i < 5; i++)
             {
-                if (points[i] > highLimitB.IntValue)
+                if (points[i] > highLimitB)
                     cntOfHighArea++;
-                if (points[i] < lowLimitB.IntValue)
+                if (points[i] < lowLimitB)
                     cntOfLowArea++;
             }
 
@@ -230,8 +229,8 @@ namespace IRAP_FVS_SPCO.XBarR
             int cntOfPerfectArea = 0;
             for (int i = 0; i < 15; i++)
             {
-                if (points[i] <= highLimitB.IntValue &&
-                    points[i] >= lowLimitB.IntValue)
+                if (points[i] <= highLimitB &&
+                    points[i] >= lowLimitB)
                     cntOfPerfectArea++;
             }
 
@@ -253,8 +252,8 @@ namespace IRAP_FVS_SPCO.XBarR
             int cntOfOutPerfectArea = 0;
             for (int i = 0; i < 8; i++)
             {
-                if (points[i] > highLimitB.IntValue ||
-                    points[i] < lowLimitB.IntValue)
+                if (points[i] > highLimitB ||
+                    points[i] < lowLimitB)
                     cntOfOutPerfectArea++;
             }
 

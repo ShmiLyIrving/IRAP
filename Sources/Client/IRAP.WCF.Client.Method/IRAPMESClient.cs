@@ -196,19 +196,23 @@ namespace IRAP.WCF.Client.Method
         /// 设置统计过程控制中 XBar-R 图的上下控制线
         /// </summary>
         /// <param name="communityID">社区标识</param>
-        /// <param name="c1ID">产品工位关联标识</param>
+        /// <param name="c1ID">产品工位关联标识</param>\
+        /// <param name="t47LeafID">SPC控制图标识号：373564-彩虹图；373565-XBarR图</param>
         /// <param name="lcl">XBar 控制线下限</param>
         /// <param name="ucl">XBar 控制线上限</param>
         /// <param name="rlcl">R 控制线下限</param>
         /// <param name="rucl">R 控制线上限</param>
+        /// <param name="rbar">R 的均值</param>
         /// <param name="sysLogID">系统登录标识</param>
         public void usp_WriteLog_SPCCtrlLineSet(
             int communityID,
             int c1ID,
+            int t47LeafID,
             long lcl,
             long ucl,
             long rlcl,
             long rucl,
+            long rbar,
             long sysLogID,
             out int errCode,
             out string errText)
@@ -223,22 +227,27 @@ namespace IRAP.WCF.Client.Method
                 Hashtable hashParams = new Hashtable();
                 hashParams.Add("communityID", communityID);
                 hashParams.Add("c1ID", c1ID);
+                hashParams.Add("t47LeafID", t47LeafID);
                 hashParams.Add("lcl", lcl);
                 hashParams.Add("ucl", ucl);
                 hashParams.Add("rlcl", rlcl);
                 hashParams.Add("rucl", rucl);
+                hashParams.Add("rbar", rbar);
                 hashParams.Add("sysLogID", sysLogID);
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 usp_WriteLog_SPCCtrlLineSet，输入参数：" +
-                        "CommunityID={0}|C1ID={1}|LCL={2}|" +
-                        "UCL={3}|RLCL={5}|RUCL={6}",
+                        "CommunityID={0}|C1ID={1}|T47LeafID={2}|"+
+                        "LCL={3}|UCL={4}|RLCL={5}|RUCL={6}|RBar={7}|"+
+                        "SysLogID={8}",
                         communityID,
                         c1ID,
+                        t47LeafID,
                         lcl,
                         ucl,
                         rlcl,
                         rucl,
+                        rbar,
                         sysLogID),
                     strProcedureName);
                 #endregion

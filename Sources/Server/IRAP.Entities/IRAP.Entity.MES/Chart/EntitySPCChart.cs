@@ -21,6 +21,7 @@ namespace IRAP.Entity.MES
         private Quantity uclQuantity = new Quantity();
         private Quantity rlclQuantity = new Quantity();
         private Quantity ruclQuantity = new Quantity();
+        private Quantity rbarQuantity = new Quantity();
         private string chartDataXML = "";
         private byte[] companyLogo;
         private Image companyLogoImage = null;
@@ -130,6 +131,27 @@ namespace IRAP.Entity.MES
             set { uclQuantity.IntValue = value; }
         }
         /// <summary>
+        /// 极差控制线下限
+        /// </summary>
+        public long RLCL
+        {
+            get { return rlclQuantity.IntValue; }
+            set { rlclQuantity.IntValue = value; }
+        }
+        /// <summary>
+        /// 极差控制线上限
+        /// </summary>
+        public long RUCL
+        {
+            get { return ruclQuantity.IntValue; }
+            set { ruclQuantity.IntValue = value; }
+        }
+        public long RBar
+        {
+            get { return rbarQuantity.IntValue; }
+            set { rbarQuantity.IntValue = value; }
+        }
+        /// <summary>
         /// 放大数量级
         /// </summary>
         public int Scale
@@ -141,6 +163,9 @@ namespace IRAP.Entity.MES
                 uslQuantity.Scale = value;
                 lclQuantity.Scale = value;
                 uclQuantity.Scale = value;
+                rlclQuantity.Scale = value;
+                ruclQuantity.Scale = value;
+                rbarQuantity.Scale = value;
             }
         }
         /// <summary>
@@ -155,6 +180,9 @@ namespace IRAP.Entity.MES
                 uslQuantity.UnitOfMeasure = value;
                 lclQuantity.UnitOfMeasure = value;
                 uclQuantity.UnitOfMeasure = value;
+                rlclQuantity.UnitOfMeasure = value;
+                ruclQuantity.UnitOfMeasure = value;
+                rbarQuantity.UnitOfMeasure = value;
             }
         }
         /// <summary>
@@ -230,6 +258,21 @@ namespace IRAP.Entity.MES
             get { return uclQuantity; }
         }
         [IRAPORMMap(ORMMap = false)]
+        public Quantity RLCLData
+        {
+            get { return rlclQuantity; }
+        }
+        [IRAPORMMap(ORMMap = false)]
+        public Quantity RUCLData
+        {
+            get { return ruclQuantity; }
+        }
+        [IRAPORMMap(ORMMap =false)]
+        public Quantity RBarData
+        {
+            get { return rbarQuantity; }
+        }
+        [IRAPORMMap(ORMMap = false)]
         public Image CompanyLogoImage { get { return companyLogoImage; } }
 
         public EntitySPCChart Clone()
@@ -239,6 +282,9 @@ namespace IRAP.Entity.MES
             rlt.uslQuantity = uslQuantity.Clone();
             rlt.lclQuantity = lclQuantity.Clone();
             rlt.uclQuantity = uclQuantity.Clone();
+            rlt.rlclQuantity = rlclQuantity.Clone();
+            rlt.ruclQuantity = ruclQuantity.Clone();
+            rlt.rbarQuantity = rbarQuantity.Clone();
 
             return rlt;
         }
@@ -324,18 +370,18 @@ namespace IRAP.Entity.MES
                     XbarChartMeasureData data = new XbarChartMeasureData();
                     if (node.Attributes["Ordinal"] != null)
                         data.Ordinal = int.Parse(node.Attributes["Ordinal"].Value);
-                    else
-                        continue;
 
                     if (node.Attributes["Metric01"] != null)
                         data.Metric01.IntValue = long.Parse(node.Attributes["Metric01"].Value);
-                    else
-                        continue;
 
                     if (node.Attributes["FactID"] != null)
                         data.FactID = long.Parse(node.Attributes["FactID"].Value);
-                    else
-                        continue;
+
+                    if (node.Attributes["WFInstanceID"] != null)
+                        data.WFInstanceID = node.Attributes["WFInstanceID"].Value;
+
+                    if (node.Attributes["BusinessDate"] != null)
+                        data.BusinessDate = node.Attributes["BusinessDate"].Value;
 
                     data.Scale = Scale;
                     data.UnitOfMeasure = UnitOfMeasure;
@@ -438,6 +484,8 @@ namespace IRAP.Entity.MES
             get { return metricQuantity; }
         }
         public long FactID { get; set; }
+        public string WFInstanceID { get; set; }
+        public string BusinessDate { get; set; }
         public int Scale
         {
             get { return metricQuantity.Scale; }
@@ -453,6 +501,14 @@ namespace IRAP.Entity.MES
             {
                 metricQuantity.UnitOfMeasure = value;
             }
+        }
+        public string BusinessDT
+        {
+            get { return BusinessDate.Substring(0, 10); }
+        }
+        public string BusinessTM
+        {
+            get { return BusinessDate.Substring(11, 8); }
         }
 
         public XbarChartMeasureData Clone()
