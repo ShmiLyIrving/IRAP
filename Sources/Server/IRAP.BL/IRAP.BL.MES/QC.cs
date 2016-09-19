@@ -284,6 +284,7 @@ namespace IRAP.BL.MES
         /// <param name="ucl">XBar 控制线上限</param>
         /// <param name="rlcl">R 控制线下限</param>
         /// <param name="rucl">R 控制线上限</param>
+        /// <param name="rbar">R 的均值</param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult usp_WriteLog_SPCCtrlLineSet(
             int communityID,
@@ -293,6 +294,7 @@ namespace IRAP.BL.MES
             long ucl,
             long rlcl,
             long rucl,
+            long rbar,
             long sysLogID,
             out int errCode,
             out string errText)
@@ -315,14 +317,15 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@UCL", DbType.Int64, ucl));
                 paramList.Add(new IRAPProcParameter("@RLCL", DbType.Int64, rlcl));
                 paramList.Add(new IRAPProcParameter("@RUCL", DbType.Int64, rucl));
+                paramList.Add(new IRAPProcParameter("@RBar", DbType.Int64, rbar));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
                 WriteLog.Instance.Write(
                     string.Format(
                         "执行存储过程 IRAPMES..usp_WriteLog_SPCCtrlLineSet，参数：CommunityID={0}|" +
-                        "C1ID={1}|T47LeafID={2}|LCL={3}|UCL={4}|RLCL={5}|RUCL={6}|SysLogID={7}",
-                        communityID, c1ID, t47LeafID, lcl, ucl, rlcl, rucl, sysLogID),
+                        "C1ID={1}|T47LeafID={2}|LCL={3}|UCL={4}|RLCL={5}|RUCL={6}|RBar={7}|SysLogID={8}",
+                        communityID, c1ID, t47LeafID, lcl, ucl, rlcl, rucl, rbar, sysLogID),
                     strProcedureName);
                 #endregion
 

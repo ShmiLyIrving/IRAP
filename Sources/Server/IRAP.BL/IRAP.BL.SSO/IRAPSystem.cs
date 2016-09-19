@@ -631,6 +631,7 @@ namespace IRAP.BL.SSO
                         IRAPError error = conn.CallProc("IRAP..ssp_RunAFunction", ref paramList);
                         errCode = error.ErrCode;
                         errText = error.ErrText;
+                        WriteLog.Instance.Write(errText, strProcedureName);
 
                         rlt = DBUtils.DBParamsToHashtable(paramList);
                     }

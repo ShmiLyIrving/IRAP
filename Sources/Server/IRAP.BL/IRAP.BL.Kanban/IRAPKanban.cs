@@ -292,9 +292,74 @@ namespace IRAP.BL.Kanban
         /// 未找到对应的数据库函数
         /// </summary>
         /// <returns></returns>
-        public IRAPJsonResult ufn_GetKanban_Station_Ports()
+        public IRAPJsonResult ufn_GetKanban_Station_Ports(
+            int communityID,
+            long sysLogID,
+            int processLeafID,
+            out int errCode,
+            out string errText)
         {
-            throw new System.NotImplementedException();
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<StationPortInfo> datas = new List<StationPortInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ProcessLeafID", DbType.Int32, processLeafID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..ufn_GetKanban_Station_Ports，" +
+                        "参数：CommunityID={0}|SysLogID={1}|ProcessLeafID={2}",
+                        communityID,
+                        sysLogID,
+                        processLeafID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAP..ufn_GetKanban_Station_Ports(" +
+                                "@CommunityID, @SysLogID) ORDER BY Ordinal";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<StationPortInfo> lstDatas =
+                            conn.CallTableFunc<StationPortInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAP..ufn_GetKanban_Station_Ports 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
 
         /// <summary>
