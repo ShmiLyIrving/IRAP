@@ -125,7 +125,7 @@ namespace IRAP.Client.SubSystems
             }
         }
 
-        private void ResetCurrentOptions()
+        public void ResetCurrentOptions()
         {
             cboProcesses.Properties.Items.Clear();
             cboProcesses.Properties.Items.Add(CurrentOptions.Instance.Process);

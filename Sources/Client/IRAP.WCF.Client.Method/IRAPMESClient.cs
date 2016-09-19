@@ -282,5 +282,143 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        public void ufn_GetInfo_WIPBarcode(
+            int communityID,
+            string barcode,
+            int processLeaf,
+            int workUnitLeaf,
+            ref WIPBarCodeInfo data,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("barcode", barcode);
+                hashParams.Add("processLeaf", processLeaf);
+                hashParams.Add("workUnitLeaf", workUnitLeaf);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetInfo_WIPBarcode，输入参数：" +
+                        "CommunityID={0}|Barcode={1}|ProcessLeaf={2}|" +
+                        "WorkUnitLeaf={3}",
+                        communityID,
+                        barcode,
+                        processLeaf,
+                        workUnitLeaf),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.IRAPMES",
+                        "ufn_GetInfo_WIPBarcode",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        data = rlt as WIPBarCodeInfo;
+                    else
+                        data = new WIPBarCodeInfo();
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void usp_ManufactureRecord(
+            int communityID,
+            long transactNo,
+            long factID,
+            int processLeaf,
+            int workUnitLeaf,
+            string wipBarcode,
+            string productSN,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("transactNo", transactNo);
+                hashParams.Add("factID", factID);
+                hashParams.Add("processLeaf", processLeaf);
+                hashParams.Add("workUnitLeaf", workUnitLeaf);
+                hashParams.Add("wipBarcode", wipBarcode);
+                hashParams.Add("productSN", productSN);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_ManufactureRecord，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|FactID={2}|ProcessLeaf={3}|" +
+                        "WorkUnitLeaf={4}|WIPBarcode={5}|ProductSN={6}|SysLogID={7}",
+                        communityID, transactNo, factID, productSN, workUnitLeaf,
+                        wipBarcode, productSN, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.IRAPMES",
+                        "usp_ManufactureRecord",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

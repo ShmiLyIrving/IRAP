@@ -451,6 +451,115 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="processLeafID">产品生产流程标识</param>
+        public void ufn_GetKanban_Station_Ports(
+            int communityID,
+            long sysLogID,
+            int processLeafID,
+            ref List<StationPortInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            datas.Add(
+                new StationPortInfo()
+                {
+                    Ordinal = 1,
+                    IsComm = true,
+                    CommPort = "COM8",
+                    BoudRate = 9600,
+                    Parity = 0,
+                    ByteSize = 8,
+                    StopBits = 1,
+                    WorkUnitCode = "1A2B3C",
+                    WorkUnitLeaf = 12345,
+                    WorkUnitName = "生产记载测试工位 1",
+                });
+            datas.Add(
+                new StationPortInfo()
+                {
+                    Ordinal = 1,
+                    IsComm = true,
+                    CommPort = "COM10",
+                    BoudRate = 9600,
+                    Parity = 0,
+                    ByteSize = 8,
+                    StopBits = 1,
+                    WorkUnitCode = "1A2B3C",
+                    WorkUnitLeaf = 12345,
+                    WorkUnitName = "生产记载测试工位 1",
+                });
+            errCode = 0;
+            errText = "模拟正常执行";
+            return;
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("processLeafID", processLeafID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetKanban_Station_Ports 函数， " +
+                        "参数：CommunityID={0}|SysLogID={1}|ProcessLeafID={2}",
+                        communityID,
+                        sysLogID,
+                        processLeafID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.Kanban.dll",
+                            "IRAP.BL.Kanban.IRAPKanban",
+                            "ufn_GetKanban_Station_Ports",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<StationPortInfo>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 检查指定主机和指定刷新类型是否需要刷新数据
         /// </summary>
         /// <param name="communityID">社区标识</param>

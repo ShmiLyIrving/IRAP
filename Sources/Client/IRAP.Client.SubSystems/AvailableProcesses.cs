@@ -106,5 +106,24 @@ namespace IRAP.Client.SubSystems
             }
             return -1;
         }
+
+        /// <summary>
+        /// 根据 T120LeafID 从当面的流程列表中获取流程
+        /// </summary>
+        /// <param name="leafID"></param>
+        /// <returns></returns>
+        public ProcessInfo GetProcessWithT120LeafID(int leafID)
+        {
+            ProcessInfo rlt = null;
+            foreach (ProcessInfo process in _processes)
+            {
+                if (process.T120LeafID == leafID)
+                {
+                    rlt = process;
+                    break;
+                }
+            }
+            return rlt;
+        }
     }
 }

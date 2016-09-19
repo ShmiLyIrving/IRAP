@@ -10,6 +10,13 @@ namespace IRAP.Entity.Kanban
         public string WorkUnitName { get; set; }
         public string WorkUnitCode { get; set; }
         public int WorkUnitLeaf { get; set; }
+        /// <summary>
+        /// 串口通讯中的停止位：
+        /// 0 - 不使用停止位（不支持）；
+        /// 1 - 使用 1 个停止位；
+        /// 2 - 使用 2 个停止位；
+        /// 3 - 使用1.5个停止位；
+        /// </summary>
         public int StopBits { get; set; }
         public int Parity { get; set; }
         public int ByteSize { get; set; }

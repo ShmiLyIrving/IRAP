@@ -119,7 +119,7 @@ namespace IRAP.Client.GUI.MESPDC
 
             rlt.Enabled = ctrlInfo.Enabled;
             rlt.Visible = ctrlInfo.Visible;
-            rlt.EnterMoveNextControl = true;
+            rlt.EnterMoveNextControl = false;
 
             rlt.Text = ctrlInfo.DefaultValueStr;
 
@@ -179,27 +179,53 @@ namespace IRAP.Client.GUI.MESPDC
         #region 自定义事件
         private void TextEditKeyDown(object sender, KeyEventArgs e)
         {
-            busUDFForm.ClearOutputStr();
-            RefreshTheButtonControl();
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (sender is TextEdit)
+                {
+                    TextEdit edit = sender as TextEdit;
+                    FormCtrlInfo ctrl = edit.Tag as FormCtrlInfo;
+
+                    busUDFForm.ClearOutputStr();
+
+                    if (edit.Text.Trim() != "")
+                    {
+                        int idxEdit = _edits.IndexOf(edit);
+                        busUDFForm.SetStrParameterValue(edit.Text.Trim(), idxEdit + 1);
+
+                        if (idxEdit == _edits.Count - 1)
+                        {
+                            mustAllInputButton.PerformClick();
+                        }
+                        else
+                        {
+                            _edits[idxEdit + 1].Focus();
+                        }
+                    }
+                }
+            }
         }
 
         private void TextEditLeave(object sender, EventArgs e)
         {
-            TextEdit edit = sender as TextEdit;
+            //busUDFForm.ClearOutputStr();
+            //RefreshTheButtonControl();
 
-            if (edit.Text.Trim() != "")
-            {
-                if (_edits.IndexOf(edit) == _edits.Count - 1)
-                {
-                    if (_buttons.Count == 1)
-                    {
-                        mustAllInputButton.PerformClick();
-                        _edits[0].Focus();
-                    }
-                    else
-                        mustAllInputButton.Focus();
-                }
-            }
+            //TextEdit edit = sender as TextEdit;
+
+            //if (edit.Text.Trim() != "")
+            //{
+            //    if (_edits.IndexOf(edit) == _edits.Count - 1)
+            //    {
+            //        if (_buttons.Count == 1)
+            //        {
+            //            mustAllInputButton.PerformClick();
+            //            _edits[0].Focus();
+            //        }
+            //        else
+            //            mustAllInputButton.Focus();
+            //    }
+            //}
         }
         #endregion
 
@@ -477,9 +503,9 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     for (int i = 0; i < _edits.Count; i++)
                     {
-                        if (_edits[i].Text.Trim() != "")
-                            busUDFForm.SetStrParameterValue(_edits[i].Text.Trim(), i + 1);
-                        else
+                        if (_edits[i].Text.Trim() == "")
+                        //    busUDFForm.SetStrParameterValue(_edits[i].Text.Trim(), i + 1);
+                        //else
                         {
                             _edits[i].Focus();
                             return;
@@ -680,7 +706,7 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void TextEditTextChanged(object sender, EventArgs e)
         {
-            RefreshTheButtonControl();
+            //RefreshTheButtonControl();
         }
 
         private void RefreshTheButtonControl()

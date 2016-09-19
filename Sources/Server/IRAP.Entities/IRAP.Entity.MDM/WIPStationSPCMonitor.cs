@@ -102,6 +102,10 @@ namespace IRAP.Entity.MDM
         /// 过程检超时告警阀门值(ms)
         /// </summary>
         public long TimeOutThreshold { get; set; }
+        /// <summary>
+        /// SPC控制每组统计次数
+        /// </summary>
+        public int PerQtyOfGroup { get; set; }
 
         public WIPStationSPCMonitor Clone()
         {

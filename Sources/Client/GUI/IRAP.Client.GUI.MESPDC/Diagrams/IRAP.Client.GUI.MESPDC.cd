@@ -129,6 +129,13 @@
       <FileName>Actions\UDFActions.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="IRAP.Client.GUI.MESPDC.ScannerForSerialPort">
+    <Position X="12.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAIAAAAAAIAAAAAAAAAAAEAAAgBAACgAAAAAAAAA=</HashCode>
+      <FileName>Businesses\ScannerForSerialPort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="IRAP.Client.GUI.MESPDC.Actions.IUDFAction" Collapsed="true">
     <Position X="12.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>

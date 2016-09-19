@@ -65,6 +65,12 @@
     <Compile Include="Actions\SelectChoice1.cs" />
     <Compile Include="Actions\UDFActions.cs" />
     <Compile Include="Actions\Upload.cs" />
+    <Compile Include="frmManufactureRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManufactureRecord.Designer.cs">
+      <DependentUpon>frmManufactureRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMethodStandards_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,7 @@
     <Compile Include="Actions\IUDFActionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Businesses\UDFForm1Ex_30.cs" />
+    <Compile Include="Businesses\ScannerForSerialPort.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -99,6 +106,10 @@
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.MDM\IRAP.Entity.MDM.csproj">
       <Project>{5feb6cb3-68c9-4e06-814b-c071743bf5a2}</Project>
       <Name>IRAP.Entity.MDM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.MES\IRAP.Entity.MES.csproj">
+      <Project>{c78cdb3f-f78a-4c17-b5c8-e2e88a0a5947}</Project>
+      <Name>IRAP.Entity.MES</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
       <Project>{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}</Project>
@@ -130,6 +141,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmManufactureRecord.resx">
+      <DependentUpon>frmManufactureRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMethodStandards_30.resx">
       <DependentUpon>frmMethodStandards_30.cs</DependentUpon>
     </EmbeddedResource>
