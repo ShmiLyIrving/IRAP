@@ -427,10 +427,14 @@ namespace IRAP
                         }
                     }
 
-                    if (ConfigurationManager.AppSettings["FileBuiltin"] != null)
+#if DEBUG
+                    if (ConfigurationManager.AppSettings["FileBuiltin"] != null &&
+                        ConfigurationManager.AppSettings["FileBuiltin"] != "")
                         ((MenuInfo)menuItem.Tag).FileBuiltin = ConfigurationManager.AppSettings["FileBuiltin"];
-                    if (ConfigurationManager.AppSettings["FormName"] != null)
+                    if (ConfigurationManager.AppSettings["FormName"] != null &&
+                        ConfigurationManager.AppSettings["FormName"] != "")
                         ((MenuInfo)menuItem.Tag).FormName = ConfigurationManager.AppSettings["FormName"];
+#endif
 
                     #region 加载类库，并创建 Form 对象
                     string fileBuiltin = 

@@ -6,9 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
-using System.IO.Ports;
-
-using DevExpress.XtraEditors;
 
 using IRAP.Global;
 using IRAP.Client.User;
@@ -71,16 +68,19 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     foreach (StationPortInfo port in ports)
                     {
-                        ScannerForSerialPort scanner = new ScannerForSerialPort(lstBarCodes, port);
-                        scanners.Add(scanner);
+                        if (port.IsComm)
+                        {
+                            ScannerForSerialPort scanner = new ScannerForSerialPort(lstBarCodes, port);
+                            scanners.Add(scanner);
 
-                        scannerViews.Add(
-                            new ScannerView()
-                            {
-                                PortName = port.CommPort,
-                                WorkUnitCode = port.WorkUnitCode,
-                                WorkUnitName = port.WorkUnitName,
-                            });
+                            scannerViews.Add(
+                                new ScannerView()
+                                {
+                                    PortName = port.CommPort,
+                                    WorkUnitCode = port.WorkUnitCode,
+                                    WorkUnitName = port.WorkUnitName,
+                                });
+                        }
                     }
                 }
                 catch (Exception error)

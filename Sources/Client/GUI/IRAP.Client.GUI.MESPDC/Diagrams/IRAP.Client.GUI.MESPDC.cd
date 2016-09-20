@@ -129,12 +129,20 @@
       <FileName>Actions\UDFActions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Client.GUI.MESPDC.ScannerForSerialPort">
+  <Class Name="IRAP.Client.GUI.MESPDC.ScannerForSerialPort" Collapsed="true">
     <Position X="12.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAIAAAAAAIAAAAAAAAAAAEAAAgBAACgAAAAAAAAA=</HashCode>
+      <HashCode>IAAAAIAAAAAAIAAAAAAAAAAAEAAAgBAACgAAAACAAAA=</HashCode>
       <FileName>Businesses\ScannerForSerialPort.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Client.GUI.MESPDC.Actions.SerialPortOutputAction">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAoCAAAAAAAAAAAAAAAAAAAAIAAQAAAAQAAAAAAA=</HashCode>
+      <FileName>Actions\SerialPortOutput.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="IRAP.Client.GUI.MESPDC.Actions.IUDFAction" Collapsed="true">
     <Position X="12.25" Y="1.75" Width="1.5" />

@@ -441,5 +441,19 @@ namespace IRAP.Global
                 throw new Exception("GetMD5HashFromFile() fail, error: " + error.Message);
             }
         }
+
+        /// <summary>
+        /// Convert a string of hex digits (ex: E4 CA B2) to a byte array.
+        /// </summary>
+        /// <param name="s">The string containing the hex digits (with or without spaces).</param>
+        /// <returns>Returns an arrray of bytes.</returns>
+        public static byte[] HexStringToByteArray(string s)
+        {
+            s = s.Replace(" ", "");
+            byte[] buffer = new byte[s.Length / 2];
+            for (int i = 0; i < s.Length; i += 2)
+                buffer[i / 2] = (byte)Convert.ToByte(s.Substring(i, 2), 16);
+            return buffer;
+        }
     }
 }

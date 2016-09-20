@@ -265,7 +265,7 @@ namespace IRAP.Client.GUI.MESPDC
                 ctrlParameter = parameters.Substring(1, parameters.Length - 1);
             }
 
-            string[] strAfterSplit = ctrlParameter.Split(new char[] { splitChar }, StringSplitOptions.RemoveEmptyEntries);
+            string[] strAfterSplit = ctrlParameter.Split(new char[] { splitChar }, StringSplitOptions.None);
             try { ctrlParameter1 = Convert.ToInt32(strAfterSplit[0]); }
             catch (Exception error)
             {
@@ -284,6 +284,15 @@ namespace IRAP.Client.GUI.MESPDC
                 WriteLog.Instance.Write(string.Format("转换第三个参数时发生错误：{0}", error.Message), strProcedureName);
                 ctrlParameter3 = -1;
             }
+
+            if (strAfterSplit.Length >= 4)
+                numFactsToApply = Tools.ConvertToInt32(strAfterSplit[3], 1);
+            else
+                NumFactsToApply = 1;
+            if (strAfterSplit.Length >= 5)
+                numTransToApply = Tools.ConvertToInt32(strAfterSplit[4], 1);
+            else
+                NumTransToApply = 1;
         }
 
         public void SetStrParameterValue(string value, int index)
