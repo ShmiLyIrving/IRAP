@@ -470,6 +470,7 @@ namespace IRAP.WCF.Client.Method
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
+#if DEBUG
             datas.Add(
                 new StationPortInfo()
                 {
@@ -501,13 +502,14 @@ namespace IRAP.WCF.Client.Method
             errCode = 0;
             errText = "模拟正常执行";
             return;
+#endif
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
                 datas.Clear();
 
-                #region 将函数调用参数加入 HashTable 中
+#region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
                 hashParams.Add("communityID", communityID);
@@ -521,9 +523,9 @@ namespace IRAP.WCF.Client.Method
                         sysLogID,
                         processLeafID),
                     strProcedureName);
-                #endregion
+#endregion
 
-                #region 执行存储过程或者函数
+#region 执行存储过程或者函数
                 using (WCFClient client = new WCFClient())
                 {
 
@@ -545,7 +547,7 @@ namespace IRAP.WCF.Client.Method
                         datas = rlt as List<StationPortInfo>;
                     }
                 }
-                #endregion
+#endregion
             }
             catch (Exception error)
             {
@@ -581,7 +583,7 @@ namespace IRAP.WCF.Client.Method
             {
                 needRefreshed = false;
  
-                #region 将函数调用参数加入 HashTable 中
+#region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
                 hashParams.Add("communityID", communityID);
                 hashParams.Add("refreshingType", refreshingType);
@@ -594,9 +596,9 @@ namespace IRAP.WCF.Client.Method
                         refreshingType,
                         hostName),
                     strProcedureName);
-                #endregion
+#endregion
 
-                #region 调用应用服务过程，并解析返回值
+#region 调用应用服务过程，并解析返回值
                 using (WCFClient client = new WCFClient())
                 {
                     object rlt = 
@@ -617,7 +619,7 @@ namespace IRAP.WCF.Client.Method
                     if (errCode == 0)
                         needRefreshed = (bool)rlt;
                 }
-                #endregion
+#endregion
             }
             catch (Exception error)
             {
