@@ -8,6 +8,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
+using System.Configuration;
+
 using DevExpress.XtraEditors;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
@@ -424,6 +426,11 @@ namespace IRAP
                             return;
                         }
                     }
+
+                    if (ConfigurationManager.AppSettings["FileBuiltin"] != null)
+                        ((MenuInfo)menuItem.Tag).FileBuiltin = ConfigurationManager.AppSettings["FileBuiltin"];
+                    if (ConfigurationManager.AppSettings["FormName"] != null)
+                        ((MenuInfo)menuItem.Tag).FormName = ConfigurationManager.AppSettings["FormName"];
 
                     #region 加载类库，并创建 Form 对象
                     string fileBuiltin = 
