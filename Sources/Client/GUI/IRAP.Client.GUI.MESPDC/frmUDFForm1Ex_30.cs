@@ -510,6 +510,10 @@ namespace IRAP.Client.GUI.MESPDC
                             _edits[i].Focus();
                             return;
                         }
+                        else
+                        {
+                            busUDFForm.SetStrParameterValue(_edits[i].Text.Trim(), i + 1);
+                        }
                     }
 
                     try
