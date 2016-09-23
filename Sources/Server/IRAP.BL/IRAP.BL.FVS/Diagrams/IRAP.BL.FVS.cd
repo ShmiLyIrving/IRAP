@@ -3,7 +3,7 @@
   <Class Name="IRAP.BL.FVS.IRAPFVS" Collapsed="true">
     <Position X="4.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAIIAAAAAAAAAAAIAAgAEAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAEAIIAAAAAAAAAAAIAAAAEAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>IRAPFVS.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="IRAP.BL.FVS.Dashboards" Collapsed="true">
     <Position X="3" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAAAA=</HashCode>
+      <HashCode>ABAAAIAAAAAAAAAAAAAAAAAAgAAAAAAAAADAAAAAAAA=</HashCode>
       <FileName>Dashboards.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,8 +38,15 @@
   <Class Name="IRAP.BL.FVS.Andon" Collapsed="true">
     <Position X="4.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAIAAACAASACEAAAAAAAQABAAAAAIAAAAAAAgIAA=</HashCode>
+      <HashCode>QAAAAIAAACAASACEAAAAAgAQABAAAAAIAAAAAAAgIAA=</HashCode>
       <FileName>Andon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.FVS.EWI" Collapsed="true">
+    <Position X="8.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAABA=</HashCode>
+      <FileName>EWI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

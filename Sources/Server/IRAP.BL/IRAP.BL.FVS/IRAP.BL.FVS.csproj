@@ -46,6 +46,7 @@
     <Compile Include="Andon.cs" />
     <Compile Include="AndonEventKanban.cs" />
     <Compile Include="Dashboards.cs" />
+    <Compile Include="EWI.cs" />
     <Compile Include="IRAPFVS.cs" />
     <Compile Include="Kanbans.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

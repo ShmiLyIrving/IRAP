@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.LineQualityProblemInfo" Collapsed="true">
-    <Position X="4.75" Y="3.5" Width="1.5" />
+    <Position X="8.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAIAAAAAhAEQAAAAAAAAAAAAAAAAAIAABA=</HashCode>
       <FileName>LineQualityProblemInfo.cs</FileName>
@@ -31,7 +31,7 @@
   <Class Name="IRAP.Entity.FVS.AndonRspEventInfo" Collapsed="true">
     <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAABAAAAACAAAAAAAAAAAABA=</HashCode>
       <FileName>AndonRspEventInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -127,23 +127,23 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.ProductionSurveillance" Collapsed="true">
-    <Position X="6.5" Y="3.5" Width="1.5" />
+    <Position X="10" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAAAEAAAAAgEAAAIARIAAAAAAAAFIEAABE=</HashCode>
       <FileName>ProductionSurveillance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.PWOSurveillance" Collapsed="true">
-    <Position X="8.25" Y="3.5" Width="1.5" />
+    <Position X="3" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAoCCACAEAAAAIQCIAAAAQAIYIIAAAAAAAEgCKEBA=</HashCode>
+      <HashCode>AAAAoCCACAEAAAAIQDIAAAAQAIYIIAAAAEAAEgCKEBA=</HashCode>
       <FileName>PWOSurveillance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.ResponsibleResponderInfo" Collapsed="true">
-    <Position X="10" Y="3.5" Width="1.5" />
+    <Position X="4.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAACAAAAABAAAAAAAAAAAAAAAQAAEAAAABA=</HashCode>
+      <HashCode>AAQAAAAAAAACAAAAABAAAAAAAAAACAAAAQAAEAAAABA=</HashCode>
       <FileName>ResponsibleResponderInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -152,6 +152,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAQAIAAAAAAAACAAAAEAAAAAAAAQAAAgIAAABA=</HashCode>
       <FileName>AndonEventInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.EWIShowPaperInfo" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACQIAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>EWIFileInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.EWIPSShowPaperInfo" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACEIAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>EWIFileInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

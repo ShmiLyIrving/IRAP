@@ -60,6 +60,7 @@
     <Compile Include="Dashboard_MOTrack.cs" />
     <Compile Include="Dashboard_WorkUnitProductionProgress.cs" />
     <Compile Include="EntityProductLine.cs" />
+    <Compile Include="EWIFileInfo.cs" />
     <Compile Include="LineQualityProblemInfo.cs" />
     <Compile Include="ProductionSurveillance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
