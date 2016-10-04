@@ -1093,5 +1093,141 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        public void ufn_EWI_GetInfo_ShowPaper(
+            int communityID,
+            int processLeaf,
+            int workUnitLeaf,
+            long sysLogID,
+            ref EWIShowPaperInfo data,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                data = new EWIShowPaperInfo();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("processLeaf", processLeaf);
+                hashParams.Add("workUnitLeaf", workUnitLeaf);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_EWI_GetInfo_ShowPaper，输入参数：" +
+                        "CommunityID={0}|ProcessLeaf={1}|WorkUnitLeaf={2}|SysLogID={3}",
+                        communityID,
+                        processLeaf,
+                        workUnitLeaf,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.EWI",
+                        "ufn_EWI_GetInfo_ShowPaper",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        data = rlt as EWIShowPaperInfo;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void ufn_EWI_GetInfo_PSShowPaper(
+            int communityID,
+            int processLeaf,
+            int workUnitLeaf,
+            long sysLogID,
+            ref EWIPSShowPaperInfo data,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                data = new EWIPSShowPaperInfo();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("processLeaf", processLeaf);
+                hashParams.Add("workUnitLeaf", workUnitLeaf);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_EWI_GetInfo_PSShowPaper，输入参数：" +
+                        "CommunityID={0}|ProcessLeaf={1}|WorkUnitLeaf={2}|SysLogID={3}",
+                        communityID,
+                        processLeaf,
+                        workUnitLeaf,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.EWI",
+                        "ufn_EWI_GetInfo_PSShowPaper",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        data = rlt as EWIPSShowPaperInfo;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
