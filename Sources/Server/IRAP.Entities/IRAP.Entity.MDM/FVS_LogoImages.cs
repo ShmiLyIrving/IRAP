@@ -32,12 +32,12 @@ namespace IRAP.Entity.MDM
         {
             get { return Base64ToImage(CompanyLogoImage); }
         }
-        [IRAPORMMap(ORMMap =false)]
+        [IRAPORMMap(ORMMap = false)]
         public Image CustomerLogo
         {
             get { return Base64ToImage(CustomerLogoImage); }
         }
-        [IRAPORMMap(ORMMap =false)]
+        [IRAPORMMap(ORMMap = false)]
         public Image CustomerProduct
         {
             get { return Base64ToImage(CustomerProductImage); }
@@ -51,7 +51,7 @@ namespace IRAP.Entity.MDM
                 imageBytes = Convert.FromBase64String(stringBase64);
                 return Tools.BytesToImage(imageBytes);
             }
-            catch 
+            catch
             {
                 return null;
             }
