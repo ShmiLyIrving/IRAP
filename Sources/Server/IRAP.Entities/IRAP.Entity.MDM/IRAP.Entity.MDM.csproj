@@ -51,6 +51,7 @@
     <Compile Include="EnvParamStandard.cs" />
     <Compile Include="FailureModeCore.cs" />
     <Compile Include="FormCtrlInfo.cs" />
+    <Compile Include="FVS_LogoImages.cs" />
     <Compile Include="InspectionStandard.cs" />
     <Compile Include="LoadingStandard.cs" />
     <Compile Include="MethodMMenu.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="ProcessOperation.cs" />
     <Compile Include="ProcessSegment.cs" />
     <Compile Include="ProductionLineForStationBound.cs" />
+    <Compile Include="ProductionLineInfo.cs" />
     <Compile Include="ProductionPrograms.cs" />
     <Compile Include="ProductProcess.cs" />
     <Compile Include="ProductSeriesTreeNode.cs" />
