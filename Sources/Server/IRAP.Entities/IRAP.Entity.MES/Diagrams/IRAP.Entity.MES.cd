@@ -98,5 +98,12 @@
       <FileName>ReworkRouter.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="IRAP.Entity.MES.OpenPWO">
+    <Position X="4.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAgEAAAAAACAIAgBggAAAQhIQAgAAgAADAEyAKBBA=</HashCode>
+      <FileName>OpenPWO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>
