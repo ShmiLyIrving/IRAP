@@ -57,6 +57,7 @@
     <Compile Include="MethodMMenu.cs" />
     <Compile Include="MethodStandard.cs" />
     <Compile Include="OnePointLesson.cs" />
+    <Compile Include="OperatorSkillMatrix.cs" />
     <Compile Include="OPLTrainee.cs" />
     <Compile Include="OPStandard.cs" />
     <Compile Include="PokaYokeRule.cs" />

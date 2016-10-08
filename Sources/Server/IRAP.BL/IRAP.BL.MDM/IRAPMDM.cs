@@ -3972,5 +3972,92 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取操作工技能矩阵
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="shotTime">日期时间，空串表示最新</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[OperatorSkillMatrix]</returns>
+        public IRAPJsonResult ufn_GetSkillMatrix_Operators(
+            int communityID,
+            int t102LeafID,
+            int t134LeafID,
+            string shotTime,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<OperatorSkillMatrix> datas = new List<OperatorSkillMatrix>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@T134LeafID", DbType.Int32, t134LeafID));
+                paramList.Add(new IRAPProcParameter("@ShotTime", DbType.String, shotTime));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetSkillMatrix_Operators，" +
+                        "参数：CommunityID={0}|T102LeafID={1}|T134LeafID={2}|" +
+                        "ShotTime={3}|SysLogID={4}",
+                        communityID,
+                        t102LeafID,
+                        t134LeafID,
+                        shotTime,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAPMDM..ufn_GetSkillMatrix_Operators(" +
+                                "@CommunityID, @T102LeafID, @T134LeafID, " +
+                                "@ShotTime, @SysLogID)";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<OperatorSkillMatrix> lstDatas =
+                            conn.CallTableFunc<OperatorSkillMatrix>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPMDM..ufn_GetSkillMatrix_Operators 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

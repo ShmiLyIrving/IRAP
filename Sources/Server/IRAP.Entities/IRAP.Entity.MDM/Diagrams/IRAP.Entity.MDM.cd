@@ -259,5 +259,12 @@
       <FileName>OPLTrainee.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="IRAP.Entity.MDM.OperatorSkillMatrix">
+    <Position X="4.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABCAAAAAAAABAAAAAAAAAAAAACAQAAgAAEEBA=</HashCode>
+      <FileName>OperatorSkillMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>
