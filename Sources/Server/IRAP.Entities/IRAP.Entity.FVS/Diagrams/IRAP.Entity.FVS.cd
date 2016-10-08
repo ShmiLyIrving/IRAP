@@ -168,5 +168,12 @@
       <FileName>EWIFileInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="IRAP.Entity.FVS.AnomalyCauseType">
+    <Position X="7.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAAIBAAAAAABA=</HashCode>
+      <FileName>AnomalyCauseType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>

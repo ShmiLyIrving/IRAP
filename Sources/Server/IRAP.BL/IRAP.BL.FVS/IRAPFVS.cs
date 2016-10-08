@@ -222,5 +222,83 @@ namespace IRAP.BL.FVS
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取生产异常问题根源类型列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[AnomalyCauseType]</returns>
+        public IRAPJsonResult ufn_GetList_AnomalyCauseTypes(
+            int communityID,
+            int t134LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<AnomalyCauseType> datas = new List<AnomalyCauseType>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T134LeafID", DbType.Int32, t134LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPFVS..ufn_GetList_AnomalyCauseTypes，" +
+                        "参数：CommunityID={0}|T134LeafID={1}|SysLogID={2}",
+                        communityID,
+                        t134LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAPFVS..ufn_GetList_AnomalyCauseTypes(" +
+                                "@CommunityID, @T134LeafID, @SysLogID) " +
+                                "ORDER BY Ordinal";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<AnomalyCauseType> lstDatas =
+                            conn.CallTableFunc<AnomalyCauseType>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPFVS..ufn_GetList_AnomalyCauseTypes 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
