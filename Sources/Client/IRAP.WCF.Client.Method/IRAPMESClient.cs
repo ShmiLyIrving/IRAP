@@ -352,6 +352,88 @@ namespace IRAP.WCF.Client.Method
             }
         }
 
+        /// <summary>
+        /// 获取指定产线未结工单清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="resourceTreeID">菜单参数(134)</param>
+        /// <param name="leafID">产线的叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_OpenPWOsOfALine(
+            int communityID,
+            int resourceTreeID,
+            int leafID,
+            long sysLogID,
+            ref List<OpenPWO> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("resourceTreeID", resourceTreeID);
+                hashParams.Add("leafID", leafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_OpenPWOsOfALine 函数， " +
+                        "参数：CommunityID={0}|ResourceTreeID={1}|" +
+                        "LeafID={2}|SysLogID={3}",
+                        communityID,
+                        resourceTreeID,
+                        leafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WorkOrder",
+                            "ufn_GetList_OpenPWOsOfALine",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<OpenPWO>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         public void usp_ManufactureRecord(
             int communityID,
             long transactNo,

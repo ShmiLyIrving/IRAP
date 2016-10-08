@@ -158,6 +158,7 @@ namespace IRAP.AutoUpgrade
         public string URLAddress
         {
             get { return urlAddress; }
+            set { urlAddress = value; }
         }
 
         /// <summary>

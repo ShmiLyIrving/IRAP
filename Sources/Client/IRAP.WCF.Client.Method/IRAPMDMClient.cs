@@ -112,6 +112,144 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 根据系统登录标识获取产线信息
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识param>
+        public void ufn_GetInfo_ProductionLine(
+            int communityID,
+            long sysLogID,
+            ref ProductionLineInfo data,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetInfo_ProductionLine，输入参数：" +
+                        "CommunityID={0}|SysLogID={1}",
+                        communityID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "ufn_GetInfo_ProductionLine",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        data = rlt as ProductionLineInfo;
+                    else
+                        data = null;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定产线指定产品相关的Logo图片信息
+        /// </summary>
+        /// <param name="communityID">社区标识 </param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        public void ufn_GetInfo_LogoImages(
+            int communityID,
+            int t134LeafID,
+            int t102LeafID,
+            ref FVS_LogoImages data,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t134LeafID", t134LeafID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetInfo_LogoImages，输入参数：" +
+                        "CommunityID={0}|T134LeafID={1}|T102LeafID={2}",
+                        communityID,
+                        t134LeafID,
+                        t102LeafID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "ufn_GetInfo_LogoImages",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        data = rlt as FVS_LogoImages;
+                    else
+                        data = null;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取工序清单
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -1972,6 +2110,260 @@ namespace IRAP.WCF.Client.Method
                     if (errCode == 0)
                     {
                         datas = rlt as List<WIPStationSPCMonitor>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取产品质量问题一点课资料
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="shotTime">时间(空串表示最新版本)</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_OnePointLessons(
+            int communityID,
+            int t102LeafID,
+            string shotTime,
+            long sysLogID,
+            ref List<OnePointLesson> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("shotTime", shotTime);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_OnePointLessons 函数， " +
+                        "参数：CommunityID={0}|T102LeafID={1}|"+
+                        "ShotTime={2}|SysLogID={3}",
+                        communityID,
+                        t102LeafID,
+                        shotTime,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
+                            "ufn_GetList_OnePointLessons",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<OnePointLesson>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取质量问题一点课受训者名录
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="issueNo">问题编号</param>
+        /// <param name="shotTime">时间（空串标识最新版本）</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_OPLTrainees(
+            int communityID,
+            int t102LeafID,
+            int issueNo,
+            string shotTime,
+            long sysLogID,
+            ref List<OPLTrainee> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("issueNo", issueNo);
+                hashParams.Add("shotTime", shotTime);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_OPLTrainees 函数， " +
+                        "参数：CommunityID={0}|T102LeafID={1}|" +
+                        "IssueNo={2}|ShotTime={3}|SysLogID={4}",
+                        communityID,
+                        t102LeafID,
+                        issueNo,
+                        shotTime,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
+                            "ufn_GetList_OPLTrainees",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<OPLTrainee>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取操作工技能矩阵
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="shotTime">日期时间，空串表示最新</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetSkillMatrix_Operators(
+            int communityID,
+            int t102LeafID,
+            int t134LeafID,
+            string shotTime,
+            long sysLogID,
+            ref List<OperatorSkillMatrix> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("t134LeafID", t134LeafID);
+                hashParams.Add("shotTime", shotTime);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetSkillMatrix_Operators 函数， " +
+                        "参数：CommunityID={0}|T102LeafID={1}|" +
+                        "T134LeafID={2}|ShotTime={3}|SysLogID={4}",
+                        communityID,
+                        t102LeafID,
+                        t134LeafID,
+                        shotTime,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
+                            "ufn_GetSkillMatrix_Operators",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<OperatorSkillMatrix>;
                     }
                 }
                 #endregion
