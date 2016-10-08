@@ -161,5 +161,12 @@
       <FileName>CommunityUserInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="IRAP.Entity.Kanban.ProductProcessInfo">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAVAEAABA=</HashCode>
+      <FileName>ProductProcessInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>

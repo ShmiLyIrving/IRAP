@@ -1436,10 +1436,10 @@ namespace IRAP.BL.Kanban
             out string errText)
         {
             string strProcedureName =
-        string.Format(
-            "{0}.{1}",
-            className,
-            MethodBase.GetCurrentMethod().Name);
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -1480,6 +1480,72 @@ namespace IRAP.BL.Kanban
                     errText =
                         string.Format(
                             "调用 IRAP..sfn_GetList_UsersOfACommunity 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public IRAPJsonResult ufn_GetList_GoToProduct(
+            int communityID,
+            string input,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<ProductProcessInfo> datas = new List<ProductProcessInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@Input", DbType.String, input));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..ufn_GetList_GoToProduct，参数：" +
+                        "CommunityID={0}|Input={1}",
+                        communityID, input),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAP..ufn_GetList_GoToProduct(" +
+                            "@CommunityID, @Input)";
+
+                        IList<ProductProcessInfo> lstDatas =
+                            conn.CallTableFunc<ProductProcessInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList<ProductProcessInfo>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAP..ufn_GetList_GoToProduct 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
