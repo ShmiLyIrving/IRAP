@@ -46,6 +46,8 @@
     <Compile Include="Chart\EntitySPCChart.cs" />
     <Compile Include="Inspecting.cs" />
     <Compile Include="InspectingFailureItem.cs" />
+    <Compile Include="OpenChangeInfo.cs" />
+    <Compile Include="OpenChangeSummary.cs" />
     <Compile Include="OpenProductionWorkOrder.cs" />
     <Compile Include="OpenPWO.cs" />
     <Compile Include="OpenReworkPWO.cs" />
