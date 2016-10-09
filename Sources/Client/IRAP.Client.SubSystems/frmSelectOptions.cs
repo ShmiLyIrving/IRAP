@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Entity.SSO;
+using IRAP.Entity.Kanban;
+using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.SubSystems
 {
@@ -186,6 +188,92 @@ namespace IRAP.Client.SubSystems
             Refresh();
             if (btnSelect.Enabled)
                 btnSelect.PerformClick();
+        }
+
+        private void btnShowAll_Click(object sender, EventArgs e)
+        {
+            lstProcesses.DataSource = AvailableProcesses.Instance.Processes;
+            lstProcesses.DisplayMember = "T120NodeName";
+            lstProcesses.SelectedIndex =
+                AvailableProcesses.Instance.IndexOf(
+                    CurrentOptions.Instance.Process);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                lstProcesses.Items.Clear();
+
+                lstWorkUnits.DataSource = null;
+                lstWorkUnits.Items.Clear();
+
+                int errCode = 0;
+                string errText = "";
+                List<ProcessInfo> processes = new List<ProcessInfo>();
+                List<ProductProcessInfo> datas = new List<ProductProcessInfo>();
+
+                IRAPKBClient.Instance.ufn_GetList_GoToProduct(
+                    IRAPUser.Instance.CommunityID,
+                    edtSearchCondition.Text.Trim(),
+                    ref datas,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    foreach (ProductProcessInfo data in datas)
+                    {
+                        foreach (ProcessInfo process in AvailableProcesses.Instance.Processes)
+                        {
+                            if (process.T102LeafID == data.T102LeafID &&
+                                process.T120LeafID == data.T120LeafID)
+                            {
+                                processes.Add(process);
+                                break;
+                            }
+                        }
+                    }
+
+                    lstProcesses.DataSource = processes;
+                    lstProcesses.DisplayMember = "T120NodeName";
+                    if (processes.Count > 0)
+                        lstProcesses.SelectedIndex = 0;
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                XtraMessageBox.Show(
+                    error.Message,
+                    Text,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void edtSearchCondition_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+                btnSearch.PerformClick();
         }
     }
 }

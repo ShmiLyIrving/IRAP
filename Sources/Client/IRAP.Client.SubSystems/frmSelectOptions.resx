@@ -117,59 +117,122 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="toolTipController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolTipController.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="toolTipController.AppearanceTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
   <data name="groupControl1.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="frmSelectOptions.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolTipController.Type" xml:space="preserve">
-    <value>DevExpress.Utils.ToolTipController, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="lstProcesses.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="toolTipController.AppearanceTitle.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lstWorkUnits.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="lstProcesses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="lstProcesses.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 32</value>
+  </data>
+  <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
+    <value>297, 255</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lstProcesses.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lstProcesses.Name" xml:space="preserve">
+    <value>lstProcesses</value>
+  </data>
+  <data name="&gt;&gt;lstProcesses.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;lstProcesses.Parent" xml:space="preserve">
+    <value>groupControl1</value>
+  </data>
+  <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
   </data>
   <data name="groupControl1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
-    <value>btnCancel</value>
+  <data name="groupControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 294</value>
   </data>
-  <data name="groupControl2.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
+  <data name="groupControl1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;lstWorkUnits.ZOrder" xml:space="preserve">
+  <data name="groupControl1.Text" xml:space="preserve">
+    <value>请选择：</value>
+  </data>
+  <data name="&gt;&gt;groupControl1.Name" xml:space="preserve">
+    <value>groupControl1</value>
+  </data>
+  <data name="&gt;&gt;groupControl1.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;groupControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupControl1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="groupControl2.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="lstWorkUnits.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="lstWorkUnits.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lstWorkUnits.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 32</value>
+  </data>
+  <data name="lstWorkUnits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>297, 255</value>
+  </data>
+  <data name="lstWorkUnits.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="lstProcesses.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="&gt;&gt;groupControl2.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="&gt;&gt;lstWorkUnits.Name" xml:space="preserve">
     <value>lstWorkUnits</value>
   </data>
-  <data name="lstWorkUnits.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;lstWorkUnits.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;lstWorkUnits.Parent" xml:space="preserve">
+    <value>groupControl2</value>
+  </data>
+  <data name="&gt;&gt;lstWorkUnits.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="groupControl2.Location" type="System.Drawing.Point, System.Drawing">
     <value>329, 12</value>
   </data>
-  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="groupControl2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
   </data>
-  <data name="lstWorkUnits.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
+  <data name="groupControl2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 294</value>
+  </data>
+  <data name="groupControl2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="groupControl2.Text" xml:space="preserve">
+    <value>请选择：</value>
+  </data>
+  <data name="&gt;&gt;groupControl2.Name" xml:space="preserve">
+    <value>groupControl2</value>
   </data>
   <data name="&gt;&gt;groupControl2.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
@@ -177,270 +240,190 @@
   <data name="&gt;&gt;groupControl2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnCancel.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btnSelect.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="lstProcesses.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 32</value>
-  </data>
-  <data name="&gt;&gt;btnSelect.Name" xml:space="preserve">
-    <value>btnSelect</value>
-  </data>
-  <data name="&gt;&gt;groupControl2.Name" xml:space="preserve">
-    <value>groupControl2</value>
-  </data>
-  <data name="frmSelectOptions.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="groupControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>311, 346</value>
-  </data>
-  <data name="btnSelect.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btnCancel.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="lstWorkUnits.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 32</value>
-  </data>
-  <data name="btnCancel.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="lstWorkUnits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 307</value>
-  </data>
-  <data name="&gt;&gt;lstWorkUnits.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="groupControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>311, 346</value>
-  </data>
-  <data name="toolTipController.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="groupControl2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="groupControl1.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="groupControl1.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btnSelect.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="lstWorkUnits.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnSelect.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnCancel.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="lstProcesses.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btnSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 32</value>
-  </data>
-  <data name="btnSelect.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnSelect.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="lstWorkUnits.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnSelect.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lstProcesses.Parent" xml:space="preserve">
-    <value>groupControl1</value>
-  </data>
-  <data name="&gt;&gt;btnSelect.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="groupControl2.AppearanceCaption.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="frmSelectOptions.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="btnCancel.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="groupControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="toolTipController.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="toolTipController.AppearanceTitle.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>646, 50</value>
-  </data>
-  <data name="lstWorkUnits.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="lstProcesses.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="&gt;&gt;groupControl1.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="toolTipController.AppearanceTitle.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 32</value>
-  </data>
-  <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 307</value>
-  </data>
-  <data name="toolTipController.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="toolTipController.AppearanceTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="groupControl1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="toolTipController.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;groupControl1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;groupControl2.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="lstProcesses.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolTipController.Name" xml:space="preserve">
-    <value>toolTipController</value>
-  </data>
-  <data name="&gt;&gt;lstProcesses.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="lstWorkUnits.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="btnSelect.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
   </data>
   <data name="btnSelect.Location" type="System.Drawing.Point, System.Drawing">
     <value>646, 12</value>
   </data>
-  <data name="toolTipController.AppearanceTitle.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="btnSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 32</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6047.28543, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="lstProcesses.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="toolTipController.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>frmSelectOptions</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>选择产品/流程和工位/工序</value>
-  </data>
-  <data name="&gt;&gt;groupControl1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lstProcesses.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <assembly alias="DevExpress.Utils.v15.2" name="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="$this.ToolTipIconType" type="DevExpress.Utils.ToolTipIconType, DevExpress.Utils.v15.2">
-    <value>None</value>
-  </data>
-  <data name="groupControl1.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="btnSelect.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="&gt;&gt;groupControl1.Name" xml:space="preserve">
-    <value>groupControl1</value>
+  <data name="btnSelect.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="btnSelect.Text" xml:space="preserve">
     <value>选择</value>
   </data>
+  <data name="&gt;&gt;btnSelect.Name" xml:space="preserve">
+    <value>btnSelect</value>
+  </data>
+  <data name="&gt;&gt;btnSelect.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnSelect.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSelect.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnCancel.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>646, 50</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 32</value>
+  </data>
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="groupControl2.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="frmSelectOptions.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="lstProcesses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="groupControl2.Text" xml:space="preserve">
-    <value>请选择：</value>
-  </data>
-  <data name="&gt;&gt;lstWorkUnits.Parent" xml:space="preserve">
-    <value>groupControl2</value>
-  </data>
-  <data name="groupControl2.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="groupControl1.Text" xml:space="preserve">
-    <value>请选择：</value>
-  </data>
-  <data name="$this.Title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lstProcesses.Name" xml:space="preserve">
-    <value>lstProcesses</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>744, 369</value>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
   </data>
   <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="groupControl1.AppearanceCaption.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <assembly alias="DevExpress.Data.v15.2" name="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="$this.AllowHtmlText" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
-  </data>
-  <data name="groupControl2.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="groupControl2.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
+  <data name="groupControl3.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="simpleButton2.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="btnShowAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>544, 31</value>
+  </data>
+  <data name="btnShowAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 32</value>
+  </data>
+  <data name="btnShowAll.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnShowAll.Text" xml:space="preserve">
+    <value>显示全部</value>
+  </data>
+  <data name="&gt;&gt;btnShowAll.Name" xml:space="preserve">
+    <value>btnShowAll</value>
+  </data>
+  <data name="&gt;&gt;btnShowAll.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnShowAll.Parent" xml:space="preserve">
+    <value>groupControl3</value>
+  </data>
+  <data name="&gt;&gt;btnShowAll.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="simpleButton1.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>461, 31</value>
+  </data>
+  <data name="btnSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 32</value>
+  </data>
+  <data name="btnSearch.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnSearch.Text" xml:space="preserve">
+    <value>查找</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Name" xml:space="preserve">
+    <value>btnSearch</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
+    <value>groupControl3</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="edtSearchCondition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 35</value>
+  </data>
+  <data name="textEdit1.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="edtSearchCondition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>448, 26</value>
+  </data>
+  <data name="edtSearchCondition.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;edtSearchCondition.Name" xml:space="preserve">
+    <value>edtSearchCondition</value>
+  </data>
+  <data name="&gt;&gt;edtSearchCondition.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;edtSearchCondition.Parent" xml:space="preserve">
+    <value>groupControl3</value>
+  </data>
+  <data name="&gt;&gt;edtSearchCondition.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupControl3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 312</value>
+  </data>
+  <data name="groupControl3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="groupControl3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>628, 69</value>
+  </data>
+  <data name="groupControl3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupControl3.Text" xml:space="preserve">
+    <value>根据输入的产品名称或者工单号查找生产流程</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.Name" xml:space="preserve">
+    <value>groupControl3</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="toolTipController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en-US</value>
-  </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>744, 392</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>选择产品/流程和工位/工序</value>
+  </data>
+  <data name="&gt;&gt;toolTipController.Name" xml:space="preserve">
+    <value>toolTipController</value>
+  </data>
+  <data name="&gt;&gt;toolTipController.Type" xml:space="preserve">
+    <value>DevExpress.Utils.ToolTipController, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmSelectOptions</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6125.20011, Culture=neutral, PublicKeyToken=null</value>
+  </data>
 </root>

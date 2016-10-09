@@ -509,7 +509,7 @@ namespace IRAP.WCF.Client.Method
             {
                 datas.Clear();
 
-#region 将函数调用参数加入 HashTable 中
+                #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
                 hashParams.Add("communityID", communityID);
@@ -523,9 +523,9 @@ namespace IRAP.WCF.Client.Method
                         sysLogID,
                         processLeafID),
                     strProcedureName);
-#endregion
+                #endregion
 
-#region 执行存储过程或者函数
+                #region 执行存储过程或者函数
                 using (WCFClient client = new WCFClient())
                 {
 
@@ -547,7 +547,7 @@ namespace IRAP.WCF.Client.Method
                         datas = rlt as List<StationPortInfo>;
                     }
                 }
-#endregion
+                #endregion
             }
             catch (Exception error)
             {
@@ -583,7 +583,7 @@ namespace IRAP.WCF.Client.Method
             {
                 needRefreshed = false;
  
-#region 将函数调用参数加入 HashTable 中
+                #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
                 hashParams.Add("communityID", communityID);
                 hashParams.Add("refreshingType", refreshingType);
@@ -596,9 +596,9 @@ namespace IRAP.WCF.Client.Method
                         refreshingType,
                         hostName),
                     strProcedureName);
-#endregion
+                #endregion
 
-#region 调用应用服务过程，并解析返回值
+                #region 调用应用服务过程，并解析返回值
                 using (WCFClient client = new WCFClient())
                 {
                     object rlt = 
@@ -619,7 +619,70 @@ namespace IRAP.WCF.Client.Method
                     if (errCode == 0)
                         needRefreshed = (bool)rlt;
                 }
-#endregion
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void ufn_GetList_GoToProduct(
+            int communityID,
+            string input,
+            ref List<ProductProcessInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("input", input);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_GoToProduct，输入参数：" +
+                        "CommunityID={0}|Input={1}",
+                        communityID, input),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.Kanban.dll",
+                        "IRAP.BL.Kanban.IRAPKanban",
+                        "ufn_GetList_GoToProduct",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<ProductProcessInfo>;
+                }
+                #endregion
             }
             catch (Exception error)
             {

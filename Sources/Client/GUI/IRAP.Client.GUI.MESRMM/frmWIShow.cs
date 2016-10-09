@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Reflection;
 
+using DevExpress.XtraEditors;
+
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Client.SubSystems;
@@ -32,11 +34,18 @@ namespace IRAP.Client.GUI.MESRMM
         private int lastProcessLeaf = 0;
         private int lastWorkUnitLeaf = 0;
 
+        private EventHandler onOptionChanged = null;
+
         public frmWIShow()
         {
             InitializeComponent();
 
             tcMain.SelectedTabPage = tpProductWI;
+        }
+
+        private void OptionChanged(object sender, EventArgs e)
+        {
+            frmWIShow_Activated(this, null);
         }
 
         private void ShowProductWI(int t120LeafID, int workUnitLeafID)
@@ -299,6 +308,9 @@ namespace IRAP.Client.GUI.MESRMM
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
+            onOptionChanged = new EventHandler(OptionChanged);
+            Options.OptionChanged += onOptionChanged;
+
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
@@ -353,6 +365,11 @@ namespace IRAP.Client.GUI.MESRMM
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        private void frmWIShow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Options.OptionChanged -= onOptionChanged;
         }
     }
 }

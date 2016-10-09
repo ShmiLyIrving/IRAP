@@ -30,10 +30,10 @@
         {
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
             this.tpProductWI = new DevExpress.XtraTab.XtraTabPage();
-            this.tpProductSerialWI = new DevExpress.XtraTab.XtraTabPage();
-            this.tpGeneralWI = new DevExpress.XtraTab.XtraTabPage();
             this.wbProductWIShow = new System.Windows.Forms.WebBrowser();
+            this.tpProductSerialWI = new DevExpress.XtraTab.XtraTabPage();
             this.wbProductSerialWIShow = new System.Windows.Forms.WebBrowser();
+            this.tpGeneralWI = new DevExpress.XtraTab.XtraTabPage();
             this.wbGeneralWIShow = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -83,20 +83,6 @@
             this.tpProductWI.Size = new System.Drawing.Size(885, 408);
             this.tpProductWI.Text = "产品作业指导书";
             // 
-            // tpProductSerialWI
-            // 
-            this.tpProductSerialWI.Controls.Add(this.wbProductSerialWIShow);
-            this.tpProductSerialWI.Name = "tpProductSerialWI";
-            this.tpProductSerialWI.Size = new System.Drawing.Size(885, 408);
-            this.tpProductSerialWI.Text = "产品系列作业指导书";
-            // 
-            // tpGeneralWI
-            // 
-            this.tpGeneralWI.Controls.Add(this.wbGeneralWIShow);
-            this.tpGeneralWI.Name = "tpGeneralWI";
-            this.tpGeneralWI.Size = new System.Drawing.Size(885, 408);
-            this.tpGeneralWI.Text = "通用作业指导书";
-            // 
             // wbProductWIShow
             // 
             this.wbProductWIShow.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -106,6 +92,13 @@
             this.wbProductWIShow.Size = new System.Drawing.Size(885, 408);
             this.wbProductWIShow.TabIndex = 0;
             // 
+            // tpProductSerialWI
+            // 
+            this.tpProductSerialWI.Controls.Add(this.wbProductSerialWIShow);
+            this.tpProductSerialWI.Name = "tpProductSerialWI";
+            this.tpProductSerialWI.Size = new System.Drawing.Size(885, 408);
+            this.tpProductSerialWI.Text = "产品系列作业指导书";
+            // 
             // wbProductSerialWIShow
             // 
             this.wbProductSerialWIShow.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -114,6 +107,13 @@
             this.wbProductSerialWIShow.Name = "wbProductSerialWIShow";
             this.wbProductSerialWIShow.Size = new System.Drawing.Size(885, 408);
             this.wbProductSerialWIShow.TabIndex = 0;
+            // 
+            // tpGeneralWI
+            // 
+            this.tpGeneralWI.Controls.Add(this.wbGeneralWIShow);
+            this.tpGeneralWI.Name = "tpGeneralWI";
+            this.tpGeneralWI.Size = new System.Drawing.Size(885, 408);
+            this.tpGeneralWI.Text = "通用作业指导书";
             // 
             // wbGeneralWIShow
             // 
@@ -132,6 +132,7 @@
             this.Name = "frmWIShow";
             this.Text = "作业指导书";
             this.Activated += new System.EventHandler(this.frmWIShow_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmWIShow_FormClosed);
             this.Shown += new System.EventHandler(this.frmWIShow_Shown);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.tcMain, 0);
