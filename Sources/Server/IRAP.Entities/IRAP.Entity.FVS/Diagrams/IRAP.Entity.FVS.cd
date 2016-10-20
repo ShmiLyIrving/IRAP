@@ -175,5 +175,12 @@
       <FileName>AnomalyCauseType.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="IRAP.Entity.FVS.Dashboard_FTT">
+    <Position X="4.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAIBBAgAABAAAQAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Dashboard_FTT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>

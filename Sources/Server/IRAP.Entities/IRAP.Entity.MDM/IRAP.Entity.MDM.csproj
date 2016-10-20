@@ -53,6 +53,7 @@
     <Compile Include="FormCtrlInfo.cs" />
     <Compile Include="FVS_LogoImages.cs" />
     <Compile Include="InspectionStandard.cs" />
+    <Compile Include="KPIToMonitor.cs" />
     <Compile Include="LoadingStandard.cs" />
     <Compile Include="MethodMMenu.cs" />
     <Compile Include="MethodStandard.cs" />

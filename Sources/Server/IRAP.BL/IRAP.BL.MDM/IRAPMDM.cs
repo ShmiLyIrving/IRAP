@@ -4059,5 +4059,197 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 从系统登录标识获取公司名称
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>string</returns>
+        public IRAPJsonResult sfn_GetCompanyName(
+            int communityID, 
+            long sysLogID, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                string rlt = "";
+
+                try
+                {
+                    #region 创建数据库调用参数组，并赋值
+                    IList<IDataParameter> paramList = new List<IDataParameter>();
+                    paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                    paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                    WriteLog.Instance.Write(string.Format("执行函数 IRAPMDM..sfn_GetCompanyName，参数：" +
+                            "CommunityID={0}|SysLogID={1}",
+                            communityID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行数据库函数或存储过程
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        rlt = (string)conn.CallScalarFunc("IRAPMDM.dbo.sfn_GetCompanyName", paramList);
+
+                        errCode = 0;
+                        errText = string.Format("调用成功，获得值： [{0}]", rlt);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                    #endregion
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAPMDM.dbo.sfn_GetCompanyName 时发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+
+                return Json(rlt);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取公司Logo图像的Base64编码
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult sfn_GetImage_CompanyLogo(
+            int communityID, 
+            long sysLogID, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                string rlt = "";
+
+                try
+                {
+                    #region 创建数据库调用参数组，并赋值
+                    IList<IDataParameter> paramList = new List<IDataParameter>();
+                    paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                    paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                    WriteLog.Instance.Write(string.Format("执行函数 IRAPMDM..sfn_GetImage_CompanyLogo，参数：" +
+                            "CommunityID={0}|SysLogID={1}",
+                            communityID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行数据库函数或存储过程
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        rlt = (string)conn.CallScalarFunc("IRAPMDM.dbo.sfn_GetImage_CompanyLogo", paramList);
+
+                        errCode = 0;
+                        errText = string.Format("调用成功，获得值： [{0}]", rlt);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                    #endregion
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAPMDM.dbo.sfn_GetImage_CompanyLogo 时发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+
+                return Json(rlt);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult ufn_GetList_KPIsToMonitor(
+            int communityID, 
+            long sysLogID, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<KPIToMonitor> datas = new List<KPIToMonitor>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_KPIsToMonitor，" +
+                        "参数：CommunityID={0}|SysLogID={1}",
+                        communityID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAPMDM..ufn_GetList_KPIsToMonitor(" +
+                                "@CommunityID, @SysLogID)";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<KPIToMonitor> lstDatas =
+                            conn.CallTableFunc<KPIToMonitor>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPMDM..ufn_GetList_KPIsToMonitor 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

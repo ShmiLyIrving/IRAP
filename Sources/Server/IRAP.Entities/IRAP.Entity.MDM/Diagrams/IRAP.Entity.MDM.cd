@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductProcess" Collapsed="true">
-    <Position X="13" Y="3.5" Width="1.5" />
+    <Position X="6" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACBAkAAAAAAADAAIAAAAAgACAAAAAAAAAAFBBA=</HashCode>
       <FileName>ProductProcess.cs</FileName>
@@ -36,14 +36,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProcessOperation" Collapsed="true">
-    <Position X="14.75" Y="2.5" Width="1.5" />
+    <Position X="7.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAABABAAAIAAAEABAAAIAAAAAABAAAAAIAAEAEABA=</HashCode>
       <FileName>ProcessOperation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductionLineForStationBound" Collapsed="true">
-    <Position X="7.75" Y="3.5" Width="1.5" />
+    <Position X="11.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAAAAEABIAAAAAAAAAAAAAABBABAAAABg=</HashCode>
       <FileName>ProductionLineForStationBound.cs</FileName>
@@ -71,7 +71,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProcessSegment" Collapsed="true">
-    <Position X="6" Y="3.5" Width="1.5" />
+    <Position X="9.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAABABAAAABg=</HashCode>
       <FileName>ProcessSegment.cs</FileName>
@@ -99,21 +99,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ToolingStandard" Collapsed="true">
-    <Position X="11.25" Y="4.5" Width="1.5" />
+    <Position X="14.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAGAIAAAAAAEABAAAAAAAAACAAAAAAAAAAAAABI=</HashCode>
       <FileName>ToolingStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductionPrograms" Collapsed="true">
-    <Position X="11.25" Y="3.5" Width="1.5" />
+    <Position X="14.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAGBIAAAAEAEQBAAAAAAAAAAAAAAAAAAIAAAABA=</HashCode>
       <FileName>ProductionPrograms.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.OPStandard" Collapsed="true">
-    <Position X="9.5" Y="2.5" Width="1.5" />
+    <Position X="13" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAQKAAAEWBAAFABAAAAACAACAACAABAAQFAAAABE=</HashCode>
       <FileName>OPStandard.cs</FileName>
@@ -155,21 +155,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.PokaYokeRule" Collapsed="true">
-    <Position X="11.25" Y="2.5" Width="1.5" />
+    <Position X="14.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIACBIAAIAAAAUBAAAAAAAQAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>PokaYokeRule.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.PreparingStandard" Collapsed="true">
-    <Position X="13" Y="2.5" Width="1.5" />
+    <Position X="6" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEIACAEAAAAAAAABIAAAAAAAAACADBAAAAAAAAABA=</HashCode>
       <FileName>PreparingStandard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.SkillMatrixByMethod" Collapsed="true">
-    <Position X="6" Y="4.5" Width="1.5" />
+    <Position X="9.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAGAAAABAAAAABAAAAAAAAAAgAAAQQAAgAAAABA=</HashCode>
       <FileName>SkillMatrixByMethod.cs</FileName>
@@ -183,21 +183,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.WIPStationProductionStatus" Collapsed="true">
-    <Position X="13" Y="4.5" Width="1.5" />
+    <Position X="6" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQJQAEFQCBgBFgYCARAAAEgEACoIBgRIAQAAEEACEBI=</HashCode>
       <FileName>WIPStationProductionStatus.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.StandardType" Collapsed="true">
-    <Position X="7.75" Y="4.5" Width="1.5" />
+    <Position X="11.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>StandardType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.Tables.Stb058" Collapsed="true">
-    <Position X="9.5" Y="4.5" Width="1.5" />
+    <Position X="13" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAACAAAAgEgAiAAgEAAAIAAAAAAAAQABAAEAABE=</HashCode>
       <FileName>Tables\Stb058.cs</FileName>
@@ -218,21 +218,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.RegInstrument" Collapsed="true">
-    <Position X="14.75" Y="3.5" Width="1.5" />
+    <Position X="7.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAABAAAABIAAAAAAAAAABBAAAAAAIACABA=</HashCode>
       <FileName>RegInstrument.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.WIPStationSPCMonitor" Collapsed="true">
-    <Position X="14.75" Y="4.5" Width="1.5" />
+    <Position X="7.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAECACAgADgYCAhAAAQAAACoBAARAAAAAEEACEBA=</HashCode>
       <FileName>WIPStationSPCMonitor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.MDM.ProductionLineInfo" Collapsed="true">
-    <Position X="9.5" Y="3.5" Width="1.5" />
+    <Position X="13" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAABAAAAAAAAAAAACAAAAAAABBABAAAABg=</HashCode>
       <FileName>ProductionLineInfo.cs</FileName>
@@ -252,18 +252,25 @@
       <FileName>OnePointLesson.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entity.MDM.OPLTrainee">
-    <Position X="7.5" Y="5.75" Width="1.5" />
+  <Class Name="IRAP.Entity.MDM.OPLTrainee" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAABA=</HashCode>
       <FileName>OPLTrainee.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entity.MDM.OperatorSkillMatrix">
-    <Position X="4.5" Y="3.25" Width="1.5" />
+  <Class Name="IRAP.Entity.MDM.OperatorSkillMatrix" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAABCAAAAAAAABAAAAAAAAAAAAACAQAAgAAEEBA=</HashCode>
       <FileName>OperatorSkillMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.MDM.KPIToMonitor">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>KPIToMonitor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
