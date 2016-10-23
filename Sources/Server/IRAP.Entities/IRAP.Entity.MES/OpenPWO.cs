@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entity.MES
 {
     /// <summary>
@@ -114,6 +116,14 @@ namespace IRAP.Entity.MES
         /// 工单控制属性(1-正常 2-插单 3-补单)
         /// </summary>
         public int PWOCtrlAttr { get; set; }
+
+        /// <summary>
+        /// 实际完成数量
+        /// </summary>
+        [IRAPORMMap(ORMMap = false)]
+        public double ActualQuantity { get; set; }
+        [IRAPORMMap(ORMMap = false)]
+        public int BTSStatus { get; set; }
 
         public OpenPWO Clone()
         {

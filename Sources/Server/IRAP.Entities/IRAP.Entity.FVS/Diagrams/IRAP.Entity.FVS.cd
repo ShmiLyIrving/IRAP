@@ -64,63 +64,63 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.AndonEventKanbanSPR" Collapsed="true">
-    <Position X="3" Y="1.5" Width="1.5" />
+    <Position X="11.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAACAQAAAAAAABABAAAAAAAAgAACAUAAABABAAABA=</HashCode>
       <FileName>AndonEventKanbanSPR.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.AndonEventKanbanTRR" Collapsed="true">
-    <Position X="4.75" Y="1.5" Width="1.5" />
+    <Position X="3" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAACAQgAAAAAABABAAAAAAAAgAACAQAgAAABAAABA=</HashCode>
       <FileName>AndonEventKanbanTRR.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.AndonEventToClose" Collapsed="true">
-    <Position X="6.5" Y="1.5" Width="1.5" />
+    <Position X="4.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABQAIAAAAAAAACAAAAEAAAAAAAAQAAAgJAAABA=</HashCode>
       <FileName>AndonEventToClose.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.AndonFailureCallEvent" Collapsed="true">
-    <Position X="8.25" Y="1.5" Width="1.5" />
+    <Position X="6.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAJEABAAAABAAIAAAAwAAAAAAAAAAIAAAABA=</HashCode>
       <FileName>AndonFailureCallEvent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.AndonLightStatus" Collapsed="true">
-    <Position X="10" Y="1.5" Width="1.5" />
+    <Position X="8.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABAAAAAAAAAABAACCBAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>AndonLightStatus.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.AndonMaterialEvent" Collapsed="true">
-    <Position X="3" Y="2.5" Width="1.5" />
+    <Position X="10" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIIAAAAAgBAAIAEgAwAAAAAAAAAAEAEAABA=</HashCode>
       <FileName>AndonMaterialEvent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.AndonPrdtLine" Collapsed="true">
-    <Position X="4.75" Y="2.5" Width="1.5" />
+    <Position X="11.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAEAAAAAAAAAAIAAAAAICAAAAAAAAJABAAAABE=</HashCode>
       <FileName>AndonPrdtLine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.AndonSupportCallEvent" Collapsed="true">
-    <Position X="6.5" Y="2.5" Width="1.5" />
+    <Position X="3" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAJEAAAAAABAAIAAAAwAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>AndonSupportCallEvent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.EntityProductLine" Collapsed="true">
-    <Position X="3" Y="3.5" Width="1.5" />
+    <Position X="11.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAAAAAAAACAAAAAAABBABAAAABg=</HashCode>
       <FileName>EntityProductLine.cs</FileName>
@@ -134,14 +134,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.PWOSurveillance" Collapsed="true">
-    <Position X="3" Y="4.5" Width="1.5" />
+    <Position X="11.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAoCCACAEAAAAIQDIAAAAQAIYIIAAAAEAAEgCKEBA=</HashCode>
       <FileName>PWOSurveillance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.ResponsibleResponderInfo" Collapsed="true">
-    <Position X="4.75" Y="4.5" Width="1.5" />
+    <Position X="3" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAACAAAAABAAAAAAAAAACAAAAQAAEAAAABA=</HashCode>
       <FileName>ResponsibleResponderInfo.cs</FileName>
@@ -155,31 +155,52 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.EWIShowPaperInfo" Collapsed="true">
-    <Position X="6.5" Y="3.5" Width="1.5" />
+    <Position X="4.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACQIAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>EWIFileInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entity.FVS.EWIPSShowPaperInfo" Collapsed="true">
-    <Position X="4.75" Y="3.5" Width="1.5" />
+    <Position X="3" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACEIAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>EWIFileInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entity.FVS.AnomalyCauseType">
-    <Position X="7.25" Y="5.25" Width="1.5" />
+  <Class Name="IRAP.Entity.FVS.AnomalyCauseType" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAAIBAAAAAABA=</HashCode>
       <FileName>AnomalyCauseType.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entity.FVS.Dashboard_FTT">
-    <Position X="4.5" Y="7.25" Width="1.5" />
+  <Class Name="IRAP.Entity.FVS.Dashboard_KPI" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAIBBAgAABAAAQAAAAAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>Dashboard_FTT.cs</FileName>
+      <FileName>Dashboard_KPI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.LineKPI_BTS" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAgAJEKAAAAIgBAAAQAMIIAAAAiAwAAAAAAJA=</HashCode>
+      <FileName>LineKPI_BTS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.TrendFTTofAPWO" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAIEAAAAAAAAQABAAABAAAAAAAICAAAAAAAAAABA=</HashCode>
+      <FileName>TrendFTTofAPWO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entity.FVS.Structure_FFTofAPWO">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAABCAAAgAAAABAAAAAAAEAAAAAAAAAAAAAEABA=</HashCode>
+      <FileName>Structure_FFTofAPWO.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

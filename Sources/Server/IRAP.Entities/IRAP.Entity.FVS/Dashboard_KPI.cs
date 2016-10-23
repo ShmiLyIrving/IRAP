@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IRAP.Entity.FVS
 {
-    public class Dashboard_FTT
+    public class Dashboard_KPI
     {
         /// <summary>
         /// 序号
@@ -40,9 +40,9 @@ namespace IRAP.Entity.FVS
         /// </summary>
         public int KPIStatus { get; set; }
 
-        public Dashboard_FTT Clone()
+        public Dashboard_KPI Clone()
         {
-            return MemberwiseClone() as Dashboard_FTT;
+            return MemberwiseClone() as Dashboard_KPI;
         }
     }
 }

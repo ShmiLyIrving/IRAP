@@ -192,7 +192,7 @@ namespace IRAP.BL.FVS
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                List<Dashboard_FTT> datas = new List<Dashboard_FTT>();
+                List<Dashboard_KPI> datas = new List<Dashboard_KPI>();
 
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
@@ -216,8 +216,8 @@ namespace IRAP.BL.FVS
                             "@CommunityID, @SysLogID)" +
                             "ORDER BY Ordinal";
 
-                        IList<Dashboard_FTT> lstDatas =
-                            conn.CallTableFunc<Dashboard_FTT>(strSQL, paramList);
+                        IList<Dashboard_KPI> lstDatas =
+                            conn.CallTableFunc<Dashboard_KPI>(strSQL, paramList);
                         datas = lstDatas.ToList();
                         errCode = 0;
                         errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
@@ -228,6 +228,138 @@ namespace IRAP.BL.FVS
                 {
                     errCode = 99000;
                     errText = string.Format("调用 IRAPFVS..ufn_GetDashboard_FTT 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult ufn_GetDashboard_OEE(
+            int communityID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<Dashboard_KPI> datas = new List<Dashboard_KPI>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPFVS..ufn_GetDashboard_OEE，" +
+                        "参数：CommunityID={0}|SysLogID={1}",
+                        communityID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPFVS..ufn_GetDashboard_OEE(" +
+                            "@CommunityID, @SysLogID)" +
+                            "ORDER BY Ordinal";
+
+                        IList<Dashboard_KPI> lstDatas =
+                            conn.CallTableFunc<Dashboard_KPI>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAPFVS..ufn_GetDashboard_OEE 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult ufn_GetDashboard_BTS(
+            int communityID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<Dashboard_KPI> datas = new List<Dashboard_KPI>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPFVS..ufn_GetDashboard_BTS，" +
+                        "参数：CommunityID={0}|SysLogID={1}",
+                        communityID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPFVS..ufn_GetDashboard_BTS(" +
+                            "@CommunityID, @SysLogID)" +
+                            "ORDER BY Ordinal";
+
+                        IList<Dashboard_KPI> lstDatas =
+                            conn.CallTableFunc<Dashboard_KPI>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAPFVS..ufn_GetDashboard_BTS 函数发生异常：{0}", error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }

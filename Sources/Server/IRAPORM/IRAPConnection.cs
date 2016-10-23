@@ -2285,12 +2285,25 @@ namespace IRAPORM
                                         ti.SetValue(obj, "", null);
                                         continue;
                                     }
+                                    else if (reader[ti.Name] == System.DBNull.Value &&
+                                        (ti.PropertyType == typeof(System.Int16) ||
+                                        ti.PropertyType == typeof(System.Int32) ||
+                                        ti.PropertyType == typeof(System.Int64)))
+                                    {
+                                        ti.SetValue(obj, 0, null);
+                                    }
                                     else if (reader[ti.Name] == System.DBNull.Value)
                                     {
                                         continue;
                                     }
                                     else
-                                        ti.SetValue(obj, reader[ti.Name], null);//给对象赋值
+                                    {
+                                        try
+                                        {
+                                            ti.SetValue(obj, reader[ti.Name], null);//给对象赋值
+                                        }
+                                        catch { }
+                                    }
                                 }
                             }
                             catch (IndexOutOfRangeException outErr)
@@ -2323,7 +2336,7 @@ namespace IRAPORM
             catch (Exception err)
             {
                 WriteLocalMsg(err.StackTrace, MsgType.error);
-                throw new IRAPException(9999, "调用表值函数出现错误，可能是输出参数长度设置不正确。", err);
+                throw new IRAPException(9999, err.Message/*"调用表值函数出现错误，可能是输出参数长度设置不正确。"*/, err);
 
             }
         }

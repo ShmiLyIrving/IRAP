@@ -58,16 +58,19 @@
     <Compile Include="AndonPrdtLine.cs" />
     <Compile Include="AndonSupportCallEvent.cs" />
     <Compile Include="AnomalyCauseType.cs" />
-    <Compile Include="Dashboard_FTT.cs" />
+    <Compile Include="Dashboard_KPI.cs" />
     <Compile Include="Dashboard_MOTrack.cs" />
     <Compile Include="Dashboard_WorkUnitProductionProgress.cs" />
     <Compile Include="EntityProductLine.cs" />
     <Compile Include="EWIFileInfo.cs" />
+    <Compile Include="LineKPI_BTS.cs" />
     <Compile Include="LineQualityProblemInfo.cs" />
     <Compile Include="ProductionSurveillance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PWOSurveillance.cs" />
     <Compile Include="ResponsibleResponderInfo.cs" />
+    <Compile Include="Structure_FFTofAPWO.cs" />
+    <Compile Include="TrendFTTofAPWO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Entity.FVS.cd" />
