@@ -1,0 +1,174 @@
+﻿namespace IRAP_FVS_LSSIVO.UserControls
+{
+    partial class ucFTT
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SeriesPoint seriesPoint1 = new DevExpress.XtraCharts.SeriesPoint(1D, new object[] {
+            ((object)(99.5D))});
+            DevExpress.XtraCharts.SeriesPoint seriesPoint2 = new DevExpress.XtraCharts.SeriesPoint(2D, new object[] {
+            ((object)(99.4D))});
+            DevExpress.XtraCharts.SeriesPoint seriesPoint3 = new DevExpress.XtraCharts.SeriesPoint(3D, new object[] {
+            ((object)(99.45D))});
+            DevExpress.XtraCharts.SeriesPoint seriesPoint4 = new DevExpress.XtraCharts.SeriesPoint(4D, new object[] {
+            ((object)(99.6D))});
+            DevExpress.XtraCharts.SeriesPoint seriesPoint5 = new DevExpress.XtraCharts.SeriesPoint(5D, new object[] {
+            ((object)(99.36D))});
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
+            this.pnlTop = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.lblStructFTTofAPWO = new DevExpress.XtraEditors.LabelControl();
+            this.chartFTT = new DevExpress.XtraCharts.ChartControl();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
+            this.pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
+            this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFTT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // pnlTop
+            // 
+            this.pnlTop.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTop.Appearance.Options.UseBackColor = true;
+            this.pnlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnlTop.Controls.Add(this.labelControl2);
+            this.pnlTop.Controls.Add(this.labelControl1);
+            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTop.Location = new System.Drawing.Point(5, 5);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(449, 38);
+            this.pnlTop.TabIndex = 0;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelControl2.Location = new System.Drawing.Point(48, 0);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Padding = new System.Windows.Forms.Padding(5);
+            this.labelControl2.Size = new System.Drawing.Size(401, 38);
+            this.labelControl2.TabIndex = 1;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelControl1.Location = new System.Drawing.Point(0, 0);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.labelControl1.Size = new System.Drawing.Size(48, 38);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "FTT";
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBottom.Appearance.Options.UseBackColor = true;
+            this.pnlBottom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnlBottom.Controls.Add(this.lblStructFTTofAPWO);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(5, 268);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(449, 37);
+            this.pnlBottom.TabIndex = 1;
+            // 
+            // lblStructFTTofAPWO
+            // 
+            this.lblStructFTTofAPWO.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblStructFTTofAPWO.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStructFTTofAPWO.Location = new System.Drawing.Point(0, 0);
+            this.lblStructFTTofAPWO.Name = "lblStructFTTofAPWO";
+            this.lblStructFTTofAPWO.Size = new System.Drawing.Size(449, 37);
+            this.lblStructFTTofAPWO.TabIndex = 0;
+            // 
+            // chartFTT
+            // 
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
+            this.chartFTT.Diagram = xyDiagram1;
+            this.chartFTT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartFTT.Location = new System.Drawing.Point(5, 43);
+            this.chartFTT.Name = "chartFTT";
+            series1.Name = "Series 1";
+            series1.Points.AddRange(new DevExpress.XtraCharts.SeriesPoint[] {
+            seriesPoint1,
+            seriesPoint2,
+            seriesPoint3,
+            seriesPoint4,
+            seriesPoint5});
+            series1.ShowInLegend = false;
+            series1.View = lineSeriesView1;
+            this.chartFTT.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series1};
+            this.chartFTT.Size = new System.Drawing.Size(449, 225);
+            this.chartFTT.TabIndex = 2;
+            // 
+            // ucFTT
+            // 
+            this.Appearance.BackColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.chartFTT);
+            this.Controls.Add(this.pnlBottom);
+            this.Controls.Add(this.pnlTop);
+            this.Name = "ucFTT";
+            this.Padding = new System.Windows.Forms.Padding(5);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
+            this.pnlTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
+            this.pnlBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFTT)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraEditors.PanelControl pnlTop;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.PanelControl pnlBottom;
+        private DevExpress.XtraCharts.ChartControl chartFTT;
+        private DevExpress.XtraEditors.LabelControl lblStructFTTofAPWO;
+    }
+}

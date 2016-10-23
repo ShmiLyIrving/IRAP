@@ -9,12 +9,14 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
 using IRAP.Entity.MDM;
+using IRAP.WCF.Client.Method;
 
 namespace IRAP_FVS_LSSIVO.UserControls
 {
     public partial class ucOnePointLesson : DevExpress.XtraEditors.XtraUserControl
     {
         private OnePointLesson data = null;
+        private List<OPLTrainee> trainee = null;
 
         public ucOnePointLesson()
         {
@@ -51,9 +53,29 @@ namespace IRAP_FVS_LSSIVO.UserControls
                         string.Format(
                             "失效原因：{0}",
                             data.T144Name);
-                    string temp = string.Format("操作要求：{0}", data.OperationReq);
-                    lblOperationRequirement.Text = temp;
+                    lblOperationRequirement.Text =
+                        string.Format(
+                            "操作要求：{0}",
+                            data.OperationReq);
+                    lblTrainer.Text =
+                        string.Format(
+                            "班长：{0}",
+                            data.TrainerName);
+                    lblTrainingDate.Text =
+                        string.Format(
+                            "培训日期：{0}",
+                            data.TrainingDate);
                 }
+            }
+        }
+
+        public List<OPLTrainee> Trainee
+        {
+            get { return trainee; }
+            set
+            {
+                trainee = value;
+                vgrdTrainees.DataSource = trainee;
             }
         }
 
@@ -64,11 +86,6 @@ namespace IRAP_FVS_LSSIVO.UserControls
             picCorrect.Width = picWidth;
             picIncorrect.Width = picWidth;
             picIncorrect.Left = picCorrect.Left * 2 + picCorrect.Width;
-        }
-
-        private void ucOnePointLesson_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(lblOperationRequirement.Text);
         }
     }
 }

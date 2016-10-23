@@ -158,7 +158,6 @@ namespace IRAP.AutoUpgrade
         public string URLAddress
         {
             get { return urlAddress; }
-            set { urlAddress = value; }
         }
 
         /// <summary>
@@ -167,6 +166,19 @@ namespace IRAP.AutoUpgrade
         public string URLCFGFileName
         {
             get { return urlCFGFileName; }
+            set
+            {
+                urlCFGFileName = value;
+
+                string[] paths = urlCFGFileName.Split('/');
+                urlAddress = "";
+                for (int i = 0; i < paths.Length - 1; i++)
+                {
+                    urlAddress += paths[i] + "/";
+                }
+
+                canUpgrade = true;
+            }
         }
 
         /// <summary>

@@ -23,6 +23,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.MES", "..\Serve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.AutoUpgrade", "IRAP.AutoUpgrade\IRAP.AutoUpgrade.csproj", "{036BC7F7-B2FC-4D50-A99F-326C112D8C19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.Global.Resources", "IRAP.Client.Global.Resources\IRAP.Client.Global.Resources.csproj", "{64D9DD02-3DA4-4E11-B696-F13A4D178A63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.Global", "IRAP.Client.Global\IRAP.Client.Global.csproj", "{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPShared", "..\Global\IRAPShared\IRAPShared.csproj", "{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +75,18 @@ Global
 		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{036BC7F7-B2FC-4D50-A99F-326C112D8C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D9DD02-3DA4-4E11-B696-F13A4D178A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D9DD02-3DA4-4E11-B696-F13A4D178A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D9DD02-3DA4-4E11-B696-F13A4D178A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D9DD02-3DA4-4E11-B696-F13A4D178A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

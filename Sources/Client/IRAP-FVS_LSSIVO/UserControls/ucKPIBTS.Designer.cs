@@ -33,7 +33,7 @@
             this.picActualBar = new System.Windows.Forms.PictureBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.lblQuato = new DevExpress.XtraEditors.LabelControl();
+            this.lblKPI = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.picPlanBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVernier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picActualBar)).BeginInit();
@@ -74,36 +74,38 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl1.Location = new System.Drawing.Point(12, 26);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(32, 21);
+            this.labelControl1.Size = new System.Drawing.Size(32, 17);
             this.labelControl1.TabIndex = 3;
             this.labelControl1.Text = "计划";
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl2.Location = new System.Drawing.Point(12, 58);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(32, 21);
+            this.labelControl2.Size = new System.Drawing.Size(32, 17);
             this.labelControl2.TabIndex = 4;
             this.labelControl2.Text = "实际";
             // 
-            // lblQuato
+            // lblKPI
             // 
-            this.lblQuato.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.lblQuato.Appearance.Font = new System.Drawing.Font("Tahoma", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuato.Location = new System.Drawing.Point(374, 4);
-            this.lblQuato.Name = "lblQuato";
-            this.lblQuato.Size = new System.Drawing.Size(67, 17);
-            this.lblQuato.TabIndex = 5;
-            this.lblQuato.Text = "BTS 70%";
+            this.lblKPI.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.lblKPI.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblKPI.Location = new System.Drawing.Point(374, 4);
+            this.lblKPI.Name = "lblKPI";
+            this.lblKPI.Size = new System.Drawing.Size(51, 14);
+            this.lblKPI.TabIndex = 5;
+            this.lblKPI.Text = "BTS 70%";
             // 
             // ucKPIBTS
             // 
+            this.Appearance.BackColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.lblQuato);
+            this.Controls.Add(this.lblKPI);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.picActualBar);
@@ -127,6 +129,6 @@
         private System.Windows.Forms.PictureBox picActualBar;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl lblQuato;
+        private DevExpress.XtraEditors.LabelControl lblKPI;
     }
 }

@@ -28,7 +28,7 @@ namespace IRAP_FVS_LSSIVO
         static void Main()
         {
             DevExpress.Utils.AppearanceObject.DefaultFont =
-                new System.Drawing.Font("新宋体", 12f);
+                new System.Drawing.Font("等线", 10.5f);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -64,7 +64,7 @@ namespace IRAP_FVS_LSSIVO
                 if (upgradeURL != "")
                 {
                     WriteLog.Instance.Write("系统自动更新", strProcedureName);
-                    Upgrade.Instance.URLAddress = upgradeURL;
+                    Upgrade.Instance.URLCFGFileName = upgradeURL;
                     if (Upgrade.Instance.CanUpgrade)
                     {
                         WriteLog.Instance.Write("系统开始更新...", strProcedureName);
@@ -83,11 +83,28 @@ namespace IRAP_FVS_LSSIVO
                 }
                 #endregion
 
+                string environment = "";
+                if (ConfigurationManager.AppSettings["Environment"] != null)
+                    environment = ConfigurationManager.AppSettings["Environment"];
+
+                switch (environment)
+                {
+                    case "":
+                    case "FVSCell":
 #if VISTEON_SJ
-                Application.Run(new frmFVSCell_Visteon());
+                        Application.Run(new frmFVSCell_Visteon());
 #else
-                Application.Run(new frmLSSIVOMain());
+                        Application.Run(new frmLSSIVOMain());
 #endif
+                        break;
+                    case "KPIDashboard":
+                        Application.Run(new frmKPIDashboard());
+                        break;
+                    default:
+                        Application.Run(new frmLSSIVOMain());
+                        break;
+                }
+
             }
             catch (Exception error)
             {

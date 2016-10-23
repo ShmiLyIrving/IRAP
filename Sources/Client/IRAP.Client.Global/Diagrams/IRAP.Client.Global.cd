@@ -7,5 +7,12 @@
       <FileName>AppOperationLog.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Enum Name="IRAP.Client.Global.Enums.KPIStatus">
+    <Position X="6.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAIAAAAAACAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\KPIStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>

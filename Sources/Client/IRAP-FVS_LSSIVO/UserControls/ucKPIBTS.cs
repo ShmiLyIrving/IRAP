@@ -14,17 +14,18 @@ namespace IRAP_FVS_LSSIVO.UserControls
     {
         private double minimumValue = 0;
         private double maximumValue = 100;
-        private TrackBarStyle trackBar = TrackBarStyle.Gray;
+        private TrackBarStyle trackBar = TrackBarStyle.tbsNormal;
         private bool showVernier = false;
         private double actualOutputQuantity = 0;
-        private double quota = 0;
-        private string quotaName = "BTS";
+        private double kpiValue = 0;
+        private string kpiName = "BTS";
+        private double kpiProgress = 0;
 
         public ucKPIBTS()
         {
             InitializeComponent();
 
-            TrackBarStyle = TrackBarStyle.Gray;
+            TrackBarStyle = TrackBarStyle.tbsNormal;
             ActualOutputQuantity = 0;
         }
 
@@ -50,7 +51,7 @@ namespace IRAP_FVS_LSSIVO.UserControls
 
         [Browsable(true)]
         [Category("Appearance")]
-        [DefaultValue(TrackBarStyle.Gray)]
+        [DefaultValue(TrackBarStyle.tbsNormal)]
         [Description("进度条颜色")]
         public TrackBarStyle TrackBarStyle
         {
@@ -61,17 +62,19 @@ namespace IRAP_FVS_LSSIVO.UserControls
 
                 switch (trackBar)
                 {
-                    case TrackBarStyle.Gray:
-                        picActualBar.BackgroundImage = Properties.Resources.gray;
-                        break;
-                    case TrackBarStyle.Green:
+                    case TrackBarStyle.tbsNormal:
                         picActualBar.BackgroundImage = Properties.Resources.green;
                         break;
-                    case TrackBarStyle.Yellow:
+                    case TrackBarStyle.tbsFaster:
+                    case TrackBarStyle.tbsTooFast:
                         picActualBar.BackgroundImage = Properties.Resources.yellow;
                         break;
-                    case TrackBarStyle.Red:
+                    case TrackBarStyle.tbsSlower:
+                    case TrackBarStyle.tbsTooSlow:
                         picActualBar.BackgroundImage = Properties.Resources.red;
+                        break;
+                    case TrackBarStyle.tbsNone:
+                        picActualBar.BackgroundImage = Properties.Resources.gray;
                         break;
                 }
             }
@@ -97,22 +100,19 @@ namespace IRAP_FVS_LSSIVO.UserControls
         [Category("Data")]
         [DefaultValue(0.00)]
         [Description("KPI/BTS 指标值")]
-        public double Quota
+        public double KPIValue
         {
-            get { return quota; }
+            get { return kpiValue; }
             set
             {
-                quota = value;
+                kpiValue = value;
 
-                double locateX = Convert.ToDouble(picPlanBar.Width) / 100 * Quota;
-                picVernier.Left = picPlanBar.Left + Convert.ToInt32(locateX) - picVernier.Width / 2;
-
-                lblQuato.Text = string.Format("{0} {1}%", quotaName, quota);
-                int left = picVernier.Left - (lblQuato.Width - picVernier.Width) / 2;
-                if (left + lblQuato.Width > Width)
-                    lblQuato.Left = Width - lblQuato.Width;
+                lblKPI.Text = string.Format("{0} {1}%", kpiName, kpiValue);
+                int left = picVernier.Left - (lblKPI.Width - picVernier.Width) / 2;
+                if (left + lblKPI.Width > Width)
+                    lblKPI.Left = Width - lblKPI.Width;
                 else
-                    lblQuato.Left = left;
+                    lblKPI.Left = left;
             }
         }
 
@@ -120,27 +120,56 @@ namespace IRAP_FVS_LSSIVO.UserControls
         [Category("Data")]
         [DefaultValue("BTS")]
         [Description("指标名称")]
-        public string QuotaName
+        public string KPIName
         {
-            get { return quotaName; }
+            get { return kpiName; }
             set
             {
-                quotaName = value;
+                kpiName = value;
+            }
+        }
+
+        [Browsable(true)]
+        [Category("Data")]
+        [DefaultValue(0.00)]
+        [Description("应完成百分比")]
+        public double KPIProgress
+        {
+            get { return kpiProgress; }
+            set
+            {
+                kpiProgress = value;
+
+                double locateX = Convert.ToDouble(picPlanBar.Width) / 100 * kpiProgress;
+                picVernier.Left = picPlanBar.Left + Convert.ToInt32(locateX) - picVernier.Width / 2;
+                int left = picVernier.Left - (lblKPI.Width - picVernier.Width) / 2;
+                if (left + lblKPI.Width > Width)
+                    lblKPI.Left = Width - lblKPI.Width;
+                else
+                    lblKPI.Left = left;
             }
         }
 
         private void ucKPIBTS_SizeChanged(object sender, EventArgs e)
         {
-            Quota = quota;
+            KPIValue = kpiValue;
             ActualOutputQuantity = actualOutputQuantity;
         }
     }
 
     public enum TrackBarStyle
     {
-        Gray,
-        Green,
-        Yellow,
-        Red,
+        [Description("正常")]
+        tbsNormal=0,
+        [Description("偏快")]
+        tbsFaster,
+        [Description("太快")]
+        tbsTooFast,
+        [Description("偏慢")]
+        tbsSlower,
+        [Description("太慢")]
+        tbsTooSlow,
+        [Description("未定义")]
+        tbsNone,
     };
 }

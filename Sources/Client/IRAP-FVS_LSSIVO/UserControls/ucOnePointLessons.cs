@@ -74,9 +74,26 @@ namespace IRAP_FVS_LSSIVO.UserControls
                     foreach (OnePointLesson data in datas)
                     {
                         XtraTabPage tabPage = xtraTabControl1.TabPages.Add();
+                        tabPage.Text = string.Format("NO.{0}", data.IssueNo.ToString("D2"));
+
+                        List<OPLTrainee> trainees = new List<OPLTrainee>();
+                        IRAPMDMClient.Instance.ufn_GetList_OPLTrainees(
+                            communityID,
+                            t102LeafID,
+                            data.IssueNo,
+                            "",
+                            sysLogID,
+                            ref trainees,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            string.Format("({0}){1}", errCode, errText),
+                            strProcedureName);
+
                         ucOnePointLesson opl = new ucOnePointLesson();
                         opl.Parent = tabPage;
                         opl.OnePointLesson = data.Clone();
+                        opl.Trainee = trainees;
                         opl.Dock = DockStyle.Fill;
                         pages.Add(opl);
                     }

@@ -15,6 +15,7 @@ using DevExpress.XtraEditors;
 using IRAP.Global;
 using IRAP.Entity.SSO;
 using IRAP.Entity.MDM;
+using IRAP.Entity.FVS;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP_FVS_LSSIVO
@@ -36,6 +37,10 @@ namespace IRAP_FVS_LSSIVO
         /// 当前站点的登录信息
         /// </summary>
         private StationLogin stationUser = null;
+        /// <summary>
+        /// 最近一次更新
+        /// </summary>
+        private DateTime LastUpdatedTime = DateTime.Now;
 
         public frmFVSCell_Visteon()
         {
@@ -130,18 +135,30 @@ namespace IRAP_FVS_LSSIVO
         /// </summary>
         private void RefreshProductionLineInfo()
         {
-            if (stationUser != null && stationUser.SysLogID != 0)
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
             {
-                string strProcedureName =
-                    string.Format(
-                        "{0}.{1}",
-                        className,
-                        MethodBase.GetCurrentMethod().Name);
-                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-                try
+                int errCode = 0;
+                string errText = "";
+
+                if (stationUser == null || stationUser.SysLogID <= 0)
                 {
-                    int errCode = 0;
-                    string errText = "";
+                    #region 获取当前站点的登录信息
+                    stationUser = PadLogin(ref errCode, ref errText);
+                    if (errCode != 0)
+                    {
+                        return;
+                    }
+                    #endregion
+                }
+
+                if (stationUser != null && stationUser.SysLogID != 0)
+                {
                     ProductionLineInfo line = new ProductionLineInfo();
 
                     IRAPMDMClient.Instance.ufn_GetInfo_ProductionLine(
@@ -156,7 +173,7 @@ namespace IRAP_FVS_LSSIVO
 
                     if (errCode == 0)
                     {
-                        lblLineName.Text = 
+                        lblLineName.Text =
                             string.Format(
                                 "[{0}] {1}",
                                 line.T134Code,
@@ -182,33 +199,137 @@ namespace IRAP_FVS_LSSIVO
 
                     if (errCode == 0 && images != null)
                     {
-                        picProduction.Image = images.CompanyLogo;
+                        string pwoNo = "";
 
+                        picCompanyLogo.Image = images.CompanyLogo;
+                        picCustomLogo.Image = images.CustomerLogo;
+                        picProduction.Image = images.CustomerProduct;
+
+                        // 当前工单执行的瞬时达成率
+                        RefreshExecutePWOInfo(line);
+
+                        // 安灯状态
+                        ucAndonStatus.SetSearchCondition(
+                            stationUser.CommunityID,
+                            line.T134LeafID,
+                            stationUser.SysLogID);
+
+                        // 未关闭工单
+                        ucOpenPWOs.SetSearchCondition(
+                            stationUser.CommunityID,
+                            134,
+                            line.T134LeafID,
+                            stationUser.SysLogID,
+                            ucKPIBTS,
+                            ref pwoNo);
+
+                        // FTT
+                        ucFTT.SetSearchCondition(
+                            stationUser.CommunityID,
+                            pwoNo,
+                            stationUser.SysLogID);
+
+                        // 技能矩阵
+                        ucOperatorSkillsMatrix.SetSearchCondition(
+                            stationUser.CommunityID,
+                            line.T102LeafID_InProduction,
+                            line.T134LeafID,
+                            "",
+                            stationUser.SysLogID);
+
+                        // 一点课
                         ucOnePointLessons.SetSearchCondition(
                             stationUser.CommunityID,
                             line.T102LeafID_InProduction,
                             "",
                             stationUser.SysLogID);
+
+                        // 未关闭的变更事项
+                        ucECNtoLine.SetSearchCondition(
+                            stationUser.CommunityID,
+                            line.T102LeafID_InProduction,
+                            stationUser.SysLogID);
                     }
                 }
-                catch (Exception error)
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void RefreshExecutePWOInfo(ProductionLineInfo line)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                LineKPI_BTS pwoBTS = new LineKPI_BTS();
+
+                IRAPFVSClient.Instance.ufn_GetInfo_LineKPI_BTS(
+                    stationUser.CommunityID,
+                    134,
+                    line.T134LeafID,
+                    "",
+                    stationUser.SysLogID,
+                    ref pwoBTS,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+
+                if (errCode != 0)
                 {
-                    WriteLog.Instance.Write(error.Message, strProcedureName);
+                    pwoBTS.BTSStatus = (int)UserControls.TrackBarStyle.tbsNone;
                 }
-                finally
-                {
-                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
-                }
+
+                ucKPIBTS.Minimum = 0;
+                ucKPIBTS.Maximum = pwoBTS.PlanQuantity.DoubleValue;
+                ucKPIBTS.KPIName = pwoBTS.KPIName;
+                ucKPIBTS.KPIValue = Convert.ToDouble(pwoBTS.KPIValue);
+                ucKPIBTS.KPIProgress = Convert.ToDouble(pwoBTS.BTSProgress);
+                ucKPIBTS.TrackBarStyle = (UserControls.TrackBarStyle)pwoBTS.BTSStatus;
+                ucKPIBTS.ActualOutputQuantity = pwoBTS.ActualQuantity.DoubleValue;
+
+                ucKPIBTS.Tag = pwoBTS;
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
 
         private void frmFVSCell_Visteon_Shown(object sender, EventArgs e)
         {
+        }
+
+        private void lblLineName_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void frmFVSCell_Visteon_Load(object sender, EventArgs e)
+        {
             WindowState = FormWindowState.Maximized;
 
             pnlTop.Height = Height / 2;
             pnlFirstQuadrant.Width = pnlTop.Width / 100 * 48;
-            pnlThirdQuadrant.Width = pnlBotton.Width / 100 * 40;
+            pnlThirdQuadrant.Width = pnlBotton.Width / 100 * 45;
 
             int errCode = 0;
             string errText = "";
@@ -224,33 +345,18 @@ namespace IRAP_FVS_LSSIVO
             }
             #endregion
 
-
-            if (stationUser == null || stationUser.SysLogID <= 0)
-            {
-                #region 获取当前站点的登录信息
-                stationUser = PadLogin(ref errCode, ref errText);
-                if (errCode != 0)
-                {
-                    
-                    //ShowErrorMessage(errText);
-                    return;
-                }
-                else
-                {
-                    //HideErrorMessage();
-                }
-                #endregion
-            }
-
-            if (stationUser != null && stationUser.SysLogID != 0)
-            {
-                RefreshProductionLineInfo();
-            }
+            RefreshProductionLineInfo();
         }
 
-        private void lblLineName_Click(object sender, EventArgs e)
+        private void timerRefresh_Tick(object sender, EventArgs e)
         {
-            Close();
+            TimeSpan span = DateTime.Now - LastUpdatedTime;
+            if (span.TotalMinutes > 10)
+            {
+                LastUpdatedTime = DateTime.Now;
+
+                RefreshProductionLineInfo();
+            }
         }
     }
 }

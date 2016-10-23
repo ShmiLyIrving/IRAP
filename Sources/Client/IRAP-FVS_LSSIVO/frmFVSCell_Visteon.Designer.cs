@@ -28,39 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFVSCell_Visteon));
             this.pnlFirstQuadrant = new DevExpress.XtraEditors.PanelControl();
+            this.picCustomLogo = new System.Windows.Forms.PictureBox();
+            this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.picProduction = new System.Windows.Forms.PictureBox();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.lblLineName = new DevExpress.XtraEditors.LabelControl();
             this.picLineName = new System.Windows.Forms.PictureBox();
             this.pnlBTS = new DevExpress.XtraEditors.PanelControl();
-            this.ucOpenPWOs1 = new IRAP_FVS_LSSIVO.UserControls.ucOpenPWOs();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.ucFTT = new IRAP_FVS_LSSIVO.UserControls.ucFTT();
+            this.ucOperatorSkillsMatrix = new IRAP_FVS_LSSIVO.UserControls.ucOperatorSkillsMatrix();
+            this.ucOpenPWOs = new IRAP_FVS_LSSIVO.UserControls.ucOpenPWOs();
             this.ucAndonStatus = new IRAP_FVS_LSSIVO.UserControls.ucAndonStatus();
-            this.ucKPIBTS1 = new IRAP_FVS_LSSIVO.UserControls.ucKPIBTS();
+            this.ucKPIBTS = new IRAP_FVS_LSSIVO.UserControls.ucKPIBTS();
             this.pnlThirdQuadrant = new DevExpress.XtraEditors.PanelControl();
             this.ucOnePointLessons = new IRAP_FVS_LSSIVO.UserControls.ucOnePointLessons();
             this.pnlECNtoLine = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.tpECNtoline = new DevExpress.XtraTab.XtraTabPage();
+            this.ucECNtoLine = new IRAP_FVS_LSSIVO.UserControls.ucECNtoLine();
+            this.tpControlPlan = new DevExpress.XtraTab.XtraTabPage();
+            this.tpFlowChart = new DevExpress.XtraTab.XtraTabPage();
+            this.tpOpenWork = new DevExpress.XtraTab.XtraTabPage();
+            this.tpLayout = new DevExpress.XtraTab.XtraTabPage();
+            this.tpPCChart = new DevExpress.XtraTab.XtraTabPage();
+            this.tpManningLoop = new DevExpress.XtraTab.XtraTabPage();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.pnlBotton = new DevExpress.XtraEditors.PanelControl();
-            this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pnlFirstQuadrant)).BeginInit();
             this.pnlFirstQuadrant.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCustomLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProduction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLineName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBTS)).BeginInit();
             this.pnlBTS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlThirdQuadrant)).BeginInit();
             this.pnlThirdQuadrant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlECNtoLine)).BeginInit();
             this.pnlECNtoLine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
+            this.tpECNtoline.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBotton)).BeginInit();
@@ -72,6 +89,8 @@
             this.pnlFirstQuadrant.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pnlFirstQuadrant.Appearance.Options.UseBackColor = true;
             this.pnlFirstQuadrant.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnlFirstQuadrant.Controls.Add(this.picCustomLogo);
+            this.pnlFirstQuadrant.Controls.Add(this.picCompanyLogo);
             this.pnlFirstQuadrant.Controls.Add(this.picProduction);
             this.pnlFirstQuadrant.Controls.Add(this.panelControl2);
             this.pnlFirstQuadrant.Dock = System.Windows.Forms.DockStyle.Left;
@@ -80,10 +99,27 @@
             this.pnlFirstQuadrant.Size = new System.Drawing.Size(554, 394);
             this.pnlFirstQuadrant.TabIndex = 0;
             // 
+            // picCustomLogo
+            // 
+            this.picCustomLogo.Location = new System.Drawing.Point(126, 75);
+            this.picCustomLogo.Name = "picCustomLogo";
+            this.picCustomLogo.Size = new System.Drawing.Size(120, 120);
+            this.picCustomLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCustomLogo.TabIndex = 4;
+            this.picCustomLogo.TabStop = false;
+            // 
+            // picCompanyLogo
+            // 
+            this.picCompanyLogo.Location = new System.Drawing.Point(0, 75);
+            this.picCompanyLogo.Name = "picCompanyLogo";
+            this.picCompanyLogo.Size = new System.Drawing.Size(120, 120);
+            this.picCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCompanyLogo.TabIndex = 3;
+            this.picCompanyLogo.TabStop = false;
+            // 
             // picProduction
             // 
             this.picProduction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picProduction.Image = ((System.Drawing.Image)(resources.GetObject("picProduction.Image")));
             this.picProduction.Location = new System.Drawing.Point(0, 74);
             this.picProduction.Name = "picProduction";
             this.picProduction.Size = new System.Drawing.Size(554, 320);
@@ -106,7 +142,7 @@
             // lblLineName
             // 
             this.lblLineName.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.lblLineName.Appearance.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLineName.Appearance.Font = new System.Drawing.Font("等线", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLineName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblLineName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblLineName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -136,9 +172,10 @@
             this.pnlBTS.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pnlBTS.Appearance.Options.UseBackColor = true;
             this.pnlBTS.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnlBTS.Controls.Add(this.ucOpenPWOs1);
+            this.pnlBTS.Controls.Add(this.panelControl1);
+            this.pnlBTS.Controls.Add(this.ucOpenPWOs);
             this.pnlBTS.Controls.Add(this.ucAndonStatus);
-            this.pnlBTS.Controls.Add(this.ucKPIBTS1);
+            this.pnlBTS.Controls.Add(this.ucKPIBTS);
             this.pnlBTS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBTS.Location = new System.Drawing.Point(554, 0);
             this.pnlBTS.Name = "pnlBTS";
@@ -146,16 +183,50 @@
             this.pnlBTS.Size = new System.Drawing.Size(522, 394);
             this.pnlBTS.TabIndex = 1;
             // 
-            // ucOpenPWOs1
+            // panelControl1
             // 
-            this.ucOpenPWOs1.Appearance.BackColor = System.Drawing.Color.White;
-            this.ucOpenPWOs1.Appearance.Options.UseBackColor = true;
-            this.ucOpenPWOs1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucOpenPWOs1.Location = new System.Drawing.Point(5, 141);
-            this.ucOpenPWOs1.Name = "ucOpenPWOs1";
-            this.ucOpenPWOs1.Padding = new System.Windows.Forms.Padding(5);
-            this.ucOpenPWOs1.Size = new System.Drawing.Size(512, 108);
-            this.ucOpenPWOs1.TabIndex = 2;
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.ucFTT);
+            this.panelControl1.Controls.Add(this.ucOperatorSkillsMatrix);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(5, 224);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(512, 165);
+            this.panelControl1.TabIndex = 3;
+            // 
+            // ucFTT
+            // 
+            this.ucFTT.Appearance.BackColor = System.Drawing.Color.White;
+            this.ucFTT.Appearance.Options.UseBackColor = true;
+            this.ucFTT.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucFTT.BackgroundImage")));
+            this.ucFTT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ucFTT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucFTT.Location = new System.Drawing.Point(0, 0);
+            this.ucFTT.Name = "ucFTT";
+            this.ucFTT.Padding = new System.Windows.Forms.Padding(5);
+            this.ucFTT.Size = new System.Drawing.Size(192, 165);
+            this.ucFTT.TabIndex = 1;
+            // 
+            // ucOperatorSkillsMatrix
+            // 
+            this.ucOperatorSkillsMatrix.Appearance.BackColor = System.Drawing.Color.White;
+            this.ucOperatorSkillsMatrix.Appearance.Options.UseBackColor = true;
+            this.ucOperatorSkillsMatrix.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ucOperatorSkillsMatrix.Location = new System.Drawing.Point(192, 0);
+            this.ucOperatorSkillsMatrix.Name = "ucOperatorSkillsMatrix";
+            this.ucOperatorSkillsMatrix.Size = new System.Drawing.Size(320, 165);
+            this.ucOperatorSkillsMatrix.TabIndex = 0;
+            // 
+            // ucOpenPWOs
+            // 
+            this.ucOpenPWOs.Appearance.BackColor = System.Drawing.Color.White;
+            this.ucOpenPWOs.Appearance.Options.UseBackColor = true;
+            this.ucOpenPWOs.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucOpenPWOs.Location = new System.Drawing.Point(5, 141);
+            this.ucOpenPWOs.Name = "ucOpenPWOs";
+            this.ucOpenPWOs.Padding = new System.Windows.Forms.Padding(5);
+            this.ucOpenPWOs.Size = new System.Drawing.Size(512, 83);
+            this.ucOpenPWOs.TabIndex = 2;
             // 
             // ucAndonStatus
             // 
@@ -167,17 +238,13 @@
             this.ucAndonStatus.Size = new System.Drawing.Size(512, 50);
             this.ucAndonStatus.TabIndex = 1;
             // 
-            // ucKPIBTS1
+            // ucKPIBTS
             // 
-            this.ucKPIBTS1.ActualOutputQuantity = 1456D;
-            this.ucKPIBTS1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucKPIBTS1.Location = new System.Drawing.Point(5, 5);
-            this.ucKPIBTS1.Maximum = 2345D;
-            this.ucKPIBTS1.Name = "ucKPIBTS1";
-            this.ucKPIBTS1.Quota = 80D;
-            this.ucKPIBTS1.Size = new System.Drawing.Size(512, 86);
-            this.ucKPIBTS1.TabIndex = 0;
-            this.ucKPIBTS1.TrackBarStyle = IRAP_FVS_LSSIVO.UserControls.TrackBarStyle.Red;
+            this.ucKPIBTS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucKPIBTS.Location = new System.Drawing.Point(5, 5);
+            this.ucKPIBTS.Name = "ucKPIBTS";
+            this.ucKPIBTS.Size = new System.Drawing.Size(512, 86);
+            this.ucKPIBTS.TabIndex = 0;
             // 
             // pnlThirdQuadrant
             // 
@@ -189,7 +256,7 @@
             this.pnlThirdQuadrant.Location = new System.Drawing.Point(0, 0);
             this.pnlThirdQuadrant.Name = "pnlThirdQuadrant";
             this.pnlThirdQuadrant.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlThirdQuadrant.Size = new System.Drawing.Size(488, 331);
+            this.pnlThirdQuadrant.Size = new System.Drawing.Size(488, 351);
             this.pnlThirdQuadrant.TabIndex = 2;
             // 
             // ucOnePointLessons
@@ -199,44 +266,96 @@
             this.ucOnePointLessons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucOnePointLessons.Location = new System.Drawing.Point(5, 5);
             this.ucOnePointLessons.Name = "ucOnePointLessons";
-            this.ucOnePointLessons.Size = new System.Drawing.Size(478, 321);
+            this.ucOnePointLessons.Size = new System.Drawing.Size(478, 341);
             this.ucOnePointLessons.TabIndex = 0;
             // 
             // pnlECNtoLine
             // 
             this.pnlECNtoLine.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pnlECNtoLine.Appearance.Options.UseBackColor = true;
+            this.pnlECNtoLine.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlECNtoLine.Controls.Add(this.xtraTabControl1);
             this.pnlECNtoLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlECNtoLine.Location = new System.Drawing.Point(488, 0);
             this.pnlECNtoLine.Name = "pnlECNtoLine";
             this.pnlECNtoLine.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlECNtoLine.Size = new System.Drawing.Size(588, 331);
+            this.pnlECNtoLine.Size = new System.Drawing.Size(588, 351);
             this.pnlECNtoLine.TabIndex = 3;
             // 
             // xtraTabControl1
             // 
-            this.xtraTabControl1.Location = new System.Drawing.Point(154, 25);
+            this.xtraTabControl1.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.xtraTabControl1.Appearance.Options.UseFont = true;
+            this.xtraTabControl1.AppearancePage.Header.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.xtraTabControl1.AppearancePage.Header.Options.UseFont = true;
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(5, 5);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(300, 300);
+            this.xtraTabControl1.SelectedTabPage = this.tpECNtoline;
+            this.xtraTabControl1.Size = new System.Drawing.Size(578, 341);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
-            this.xtraTabPage2});
+            this.tpECNtoline,
+            this.tpControlPlan,
+            this.tpFlowChart,
+            this.tpOpenWork,
+            this.tpLayout,
+            this.tpPCChart,
+            this.tpManningLoop});
             // 
-            // xtraTabPage1
+            // tpECNtoline
             // 
-            this.xtraTabPage1.InvertTouchScroll = true;
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(294, 271);
-            this.xtraTabPage1.Text = "xtraTabPage1";
+            this.tpECNtoline.Controls.Add(this.ucECNtoLine);
+            this.tpECNtoline.InvertTouchScroll = true;
+            this.tpECNtoline.Name = "tpECNtoline";
+            this.tpECNtoline.Size = new System.Drawing.Size(572, 312);
+            this.tpECNtoline.Text = "ECN to line";
             // 
-            // xtraTabPage2
+            // ucECNtoLine
             // 
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(294, 271);
-            this.xtraTabPage2.Text = "xtraTabPage2";
+            this.ucECNtoLine.Appearance.BackColor = System.Drawing.Color.White;
+            this.ucECNtoLine.Appearance.Options.UseBackColor = true;
+            this.ucECNtoLine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucECNtoLine.Location = new System.Drawing.Point(0, 0);
+            this.ucECNtoLine.Name = "ucECNtoLine";
+            this.ucECNtoLine.Size = new System.Drawing.Size(572, 312);
+            this.ucECNtoLine.TabIndex = 0;
+            // 
+            // tpControlPlan
+            // 
+            this.tpControlPlan.Name = "tpControlPlan";
+            this.tpControlPlan.Size = new System.Drawing.Size(572, 312);
+            this.tpControlPlan.Text = "Control Plan";
+            // 
+            // tpFlowChart
+            // 
+            this.tpFlowChart.Name = "tpFlowChart";
+            this.tpFlowChart.Size = new System.Drawing.Size(572, 312);
+            this.tpFlowChart.Text = "Flow Chart";
+            // 
+            // tpOpenWork
+            // 
+            this.tpOpenWork.Name = "tpOpenWork";
+            this.tpOpenWork.Size = new System.Drawing.Size(572, 312);
+            this.tpOpenWork.Text = "开班单";
+            // 
+            // tpLayout
+            // 
+            this.tpLayout.Name = "tpLayout";
+            this.tpLayout.Size = new System.Drawing.Size(572, 312);
+            this.tpLayout.Text = "Layout";
+            // 
+            // tpPCChart
+            // 
+            this.tpPCChart.Name = "tpPCChart";
+            this.tpPCChart.Size = new System.Drawing.Size(572, 312);
+            this.tpPCChart.Text = "P/C-Chart";
+            // 
+            // tpManningLoop
+            // 
+            this.tpManningLoop.Name = "tpManningLoop";
+            this.tpManningLoop.Size = new System.Drawing.Size(572, 312);
+            this.tpManningLoop.Text = "Manning Loop";
             // 
             // pnlTop
             // 
@@ -261,15 +380,14 @@
             this.pnlBotton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBotton.Location = new System.Drawing.Point(5, 399);
             this.pnlBotton.Name = "pnlBotton";
-            this.pnlBotton.Size = new System.Drawing.Size(1076, 331);
+            this.pnlBotton.Size = new System.Drawing.Size(1076, 351);
             this.pnlBotton.TabIndex = 5;
             // 
-            // ribbonStatusBar1
+            // timerRefresh
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(5, 730);
-            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
-            this.ribbonStatusBar1.Ribbon = null;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1076, 20);
+            this.timerRefresh.Enabled = true;
+            this.timerRefresh.Interval = 1000;
+            this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
             // frmFVSCell_Visteon
             // 
@@ -280,26 +398,34 @@
             this.ControlBox = false;
             this.Controls.Add(this.pnlBotton);
             this.Controls.Add(this.pnlTop);
-            this.Controls.Add(this.ribbonStatusBar1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.DoubleBuffered = true;
+            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmFVSCell_Visteon";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmFVSCell_Visteon_Load);
             this.Shown += new System.EventHandler(this.frmFVSCell_Visteon_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pnlFirstQuadrant)).EndInit();
             this.pnlFirstQuadrant.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCustomLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProduction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLineName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBTS)).EndInit();
             this.pnlBTS.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlThirdQuadrant)).EndInit();
             this.pnlThirdQuadrant.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlECNtoLine)).EndInit();
             this.pnlECNtoLine.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
+            this.tpECNtoline.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBotton)).EndInit();
@@ -319,14 +445,25 @@
         private System.Windows.Forms.PictureBox picProduction;
         private DevExpress.XtraEditors.LabelControl lblLineName;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private DevExpress.XtraTab.XtraTabPage tpECNtoline;
+        private DevExpress.XtraTab.XtraTabPage tpControlPlan;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.PictureBox picLineName;
-        private UserControls.ucKPIBTS ucKPIBTS1;
+        private UserControls.ucKPIBTS ucKPIBTS;
         private UserControls.ucAndonStatus ucAndonStatus;
-        private UserControls.ucOpenPWOs ucOpenPWOs1;
+        private UserControls.ucOpenPWOs ucOpenPWOs;
         private UserControls.ucOnePointLessons ucOnePointLessons;
-        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
+        private DevExpress.XtraTab.XtraTabPage tpFlowChart;
+        private DevExpress.XtraTab.XtraTabPage tpOpenWork;
+        private DevExpress.XtraTab.XtraTabPage tpLayout;
+        private DevExpress.XtraTab.XtraTabPage tpPCChart;
+        private DevExpress.XtraTab.XtraTabPage tpManningLoop;
+        private UserControls.ucECNtoLine ucECNtoLine;
+        private System.Windows.Forms.PictureBox picCustomLogo;
+        private System.Windows.Forms.PictureBox picCompanyLogo;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private UserControls.ucOperatorSkillsMatrix ucOperatorSkillsMatrix;
+        private UserControls.ucFTT ucFTT;
+        private System.Windows.Forms.Timer timerRefresh;
     }
 }
