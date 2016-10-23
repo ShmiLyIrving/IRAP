@@ -52,7 +52,7 @@
   <Class Name="IRAP.BL.FVS.WorkOrder">
     <Position X="8.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAAgAAAAABACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>WorkOrder.cs</FileName>
     </TypeIdentifier>
   </Class>
