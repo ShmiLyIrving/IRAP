@@ -18,10 +18,12 @@ namespace IRAP_FVS_SPCO.XBarR
         private Quantity r = new Quantity();
         private List<XbarChartMeasureData> srcData = new List<XbarChartMeasureData>();
         private int srcDataCnt = 0;
+        private int perQtyOfGroup = 0;
 
-        public XBarRData(int ordinal)
+        public XBarRData(int ordinal, int perQtyOfGroup)
         {
             this.ordinal = ordinal;
+            this.perQtyOfGroup = perQtyOfGroup;
         }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace IRAP_FVS_SPCO.XBarR
 
         public void Add(XbarChartMeasureData measureData)
         {
-            if (srcDataCnt >= XBarRConstant.Instance.CntOfPerGroup)
+            if (srcDataCnt >= perQtyOfGroup)
             {
                 throw new Exception(string.Format("已经获得 {0} 个测量值！", srcDataCnt));
             }
@@ -71,7 +73,7 @@ namespace IRAP_FVS_SPCO.XBarR
                 srcData.Add(measureData);
                 srcDataCnt++;
 
-                if (srcDataCnt == XBarRConstant.Instance.CntOfPerGroup)
+                if (srcDataCnt == perQtyOfGroup)
                 {
                     long sum = 0;
                     long minValue = srcData[0].Metric01.IntValue;
@@ -86,7 +88,7 @@ namespace IRAP_FVS_SPCO.XBarR
                             maxValue = srcData[i].Metric01.IntValue;
                     }
 
-                    xbar.IntValue = sum / XBarRConstant.Instance.CntOfPerGroup;
+                    xbar.IntValue = sum / perQtyOfGroup;
                     r.IntValue = maxValue - minValue;
 
                     xbar.Scale = measureData.Metric01.Scale;

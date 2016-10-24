@@ -678,7 +678,8 @@ namespace IRAP_FVS_SPCO
                                 datas[0].UCL,
                                 datas[0].RLCL,
                                 datas[0].RUCL,
-                                datas[0].T20LeafID);
+                                datas[0].T20LeafID,
+                                datas[0].PerQtyOfGroup);
                             break;
                     }
                 }

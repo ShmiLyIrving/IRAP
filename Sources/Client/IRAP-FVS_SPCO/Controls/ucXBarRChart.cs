@@ -36,6 +36,7 @@ namespace IRAP_FVS_SPCO
         private int spcRule = 0;
         private long lastFactID = 0;
         private List<XBarSourceData> measureDatas = new List<XBarSourceData>();
+        private int perQtyOfGroup = 4;
 
         public ucXBarRChart()
         {
@@ -64,6 +65,7 @@ namespace IRAP_FVS_SPCO
         /// <param name="rlcl"></param>
         /// <param name="rucl"></param>
         /// <param name="t20LeafID"></param>
+        /// <param name="perQtyOfGroup">当前特性每组需要测量的样本个数</param>
         public void DrawChart(
             StationLogin stationUser,
             WIPStationProductionStatus workUnit,
@@ -72,13 +74,16 @@ namespace IRAP_FVS_SPCO
             long ucl,
             long rlcl,
             long rucl,
-            int t20LeafID)
+            int t20LeafID,
+            int perQtyOfGroup)
         {
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
                     className,
                     MethodBase.GetCurrentMethod().Name);
+
+            this.perQtyOfGroup = perQtyOfGroup;
 
             chartXBar.Series.Clear();
             chartR.Series.Clear();
@@ -127,7 +132,7 @@ namespace IRAP_FVS_SPCO
             lblChartType.Visible = chartType == 0;
             #endregion
 
-            Font font = new Font("新宋体", 12f);
+            Font font = new Font("微软雅黑", 9.0f);
 
             #region 填写表头
             picLogo.Image = chartData.CompanyLogoImage;
@@ -155,31 +160,51 @@ namespace IRAP_FVS_SPCO
             List<XBarR.XBarRData> datas = new List<XBarR.XBarRData>();
 
             int ordinal = 1;
-            XBarR.XBarRData pointData = new XBarR.XBarRData(ordinal++);
+            XBarR.XBarRData pointData = new XBarR.XBarRData(ordinal++, perQtyOfGroup);
             measureDatas.Clear();
+            int srcDataIdx = 0;
+            XBarSourceData grdData = new XBarSourceData();
+            grdData.Ordinal = srcDataIdx / perQtyOfGroup + 1;
             for (int i = 1; i <= srcDatas.Count; i++)
             {
                 pointData.Add(srcDatas[i - 1]);
 
-                if (i % XBarR.XBarRConstant.Instance.CntOfPerGroup == 0)
+                #region 将原始测量数据插入表格中
+                if (srcDataIdx >= perQtyOfGroup)
+                {
+                    measureDatas.Add(grdData);
+
+                    grdData = new XBarSourceData();
+                    grdData.Ordinal = i / perQtyOfGroup + 1;
+
+                    srcDataIdx = 0;
+                }
+
+                if (srcDataIdx == 0)
+                    grdData.Metric01 = srcDatas[i - 1].Metric01.DoubleValue.ToString();
+                else if (srcDataIdx == 1)
+                    grdData.Metric02 = srcDatas[i - 1].Metric01.DoubleValue.ToString();
+                else if (srcDataIdx == 2)
+                    grdData.Metric03 = srcDatas[i - 1].Metric01.DoubleValue.ToString();
+                else if (srcDataIdx == 3)
+                    grdData.Metric04 = srcDatas[i - 1].Metric01.DoubleValue.ToString();
+                else if (srcDataIdx == 4)
+                    grdData.Metric05 = srcDatas[i - 1].Metric01.DoubleValue.ToString();
+
+                grdData.MeasureDate = srcDatas[i - 1].BusinessDT;
+                grdData.MeasureTime = srcDatas[i - 1].BusinessTM;
+
+                srcDataIdx++;
+                #endregion
+
+                if (i % perQtyOfGroup == 0)
                 {
                     datas.Add(pointData);
 
-                    // 将每组的原始测量值数据插入表格中
-                    measureDatas.Add(new XBarSourceData()
-                    {
-                        Ordinal = pointData.Ordinal,
-                        Metric01 = pointData.Source[0].Metric01.DoubleValue,
-                        Metric02 = pointData.Source[1].Metric01.DoubleValue,
-                        Metric03 = pointData.Source[2].Metric01.DoubleValue,
-                        Metric04 = pointData.Source[3].Metric01.DoubleValue,
-                        MeasureDate = pointData.Source[3].BusinessDT,
-                        MeasureTime = pointData.Source[3].BusinessTM,
-                    });
-
-                    pointData = new XBarR.XBarRData(ordinal++);
+                    pointData = new XBarR.XBarRData(ordinal++, perQtyOfGroup);
                 }
             }
+            measureDatas.Add(grdData);
             vgrdMeasureDatas.RefreshDataSource();
 
             DrawXBar(chartData, datas, font);
@@ -444,13 +469,33 @@ namespace IRAP_FVS_SPCO
 
 #if !DEBUG
                             #region 清除 XBar 图和 R 图中的内容
-                            chartXBar.Series[0].Points.Clear();
-                            chartR.Series[0].Points.Clear();
+                            //chartXBar.Series[0].Points.Clear();
+                            //chartR.Series[0].Points.Clear();
                             #endregion
 #endif
                         }
                         else
                         {
+
+                            #region 计算并显示 Cp/Cpk/Pp/Ppk
+                            lblCp.Text =
+                                string.Format(
+                                    "Cp : {0}",
+                                    CalcCp(chartData.LSLData, chartData.USLData, datas).ToString("0.00"));
+                            lblCpk.Text =
+                                string.Format(
+                                    "Cpk: {0}",
+                                    CalcCpk(chartData.LSLData, chartData.USLData, srcDatas, datas).ToString("0.00"));
+                            lblPp.Text =
+                                string.Format(
+                                    "Pp : {0}",
+                                    CalcPp(chartData.LSLData, chartData.USLData, srcDatas).ToString("0.00"));
+                            lblPpk.Text =
+                                string.Format(
+                                    "Ppk: {0}",
+                                    CalcPpk(chartData.LSLData, chartData.USLData, srcDatas, datas).ToString("0.00"));
+                            #endregion
+
                             #region 判异通过，计算 Cpk 值，若大于 1.33 则保存 LCL, UCL, RLCL, RUCL，否则重新开始采集数据
                             double currentCpk =
                                 CalcCpk(
@@ -550,8 +595,8 @@ namespace IRAP_FVS_SPCO
                                 }
 
                                 // 清除 XBar 图和 R 图中的内容
-                                chartXBar.Series[0].Points.Clear();
-                                chartR.Series[0].Points.Clear();
+                                //chartXBar.Series[0].Points.Clear();
+                                //chartR.Series[0].Points.Clear();
 #endif
                             }
                             #endregion
@@ -855,15 +900,17 @@ namespace IRAP_FVS_SPCO
                     }
                     #endregion
 
+                    #region 计算并显示 Cp/Cpk/Pp/Ppk
                     double cp = CalcCp(chartData.LSLData, chartData.USLData, datas);
                     double cpk = CalcCpk(chartData.LSLData, chartData.USLData, srcDatas, datas);
                     double pp = CalcPp(chartData.LSLData, chartData.USLData, srcDatas);
                     double ppk = CalcPpk(chartData.LSLData, chartData.USLData, srcDatas, datas);
 
-                    lblCp.Text = string.Format("Cp : {0}", cp.ToString("0.0000"));
-                    lblCpk.Text = string.Format("Cpk: {0}", cpk.ToString("0.0000"));
-                    lblPp.Text = string.Format("Pp : {0}", pp.ToString("0.0000"));
-                    lblPpk.Text = string.Format("Ppk: {0}", ppk.ToString("0.0000"));
+                    lblCp.Text = string.Format("Cp : {0}", cp.ToString("0.00"));
+                    lblCpk.Text = string.Format("Cpk: {0}", cpk.ToString("0.00"));
+                    lblPp.Text = string.Format("Pp : {0}", pp.ToString("0.00"));
+                    lblPpk.Text = string.Format("Ppk: {0}", ppk.ToString("0.00"));
+                    #endregion
 
                     #endregion
                     break; 
@@ -931,7 +978,7 @@ namespace IRAP_FVS_SPCO
             }
             rBar = Avg(avgRDatas);
 
-            cp = t / (6 * (rBar / XBarR.XBarRConstant.Instance.D2));
+            cp = t / (6 * (rBar / XBarR.XBarRConstant.Instance.D2(perQtyOfGroup)));
             return cp;
         }
         /// <summary>
@@ -1083,15 +1130,24 @@ namespace IRAP_FVS_SPCO
             #endregion
 
             #region 计算 XBar 图的 LCL 和 UCL
-            lcl.DoubleValue = xbarbarLine.DoubleValue - XBarR.XBarRConstant.Instance.A2 * rBar.DoubleValue;
-            ucl.DoubleValue = xbarbarLine.DoubleValue + XBarR.XBarRConstant.Instance.A2 * rBar.DoubleValue;
+            lcl.DoubleValue =
+                xbarbarLine.DoubleValue
+                - XBarR.XBarRConstant.Instance.A2(perQtyOfGroup)
+                * rBar.DoubleValue;
+            ucl.DoubleValue = xbarbarLine.DoubleValue
+                + XBarR.XBarRConstant.Instance.A2(perQtyOfGroup)
+                * rBar.DoubleValue;
             #endregion
 
             #region 计算 R 图的 LCL 和 UCL
             rlcl = lcl.Clone();
             rucl = lcl.Clone();
-            rlcl.DoubleValue = XBarR.XBarRConstant.Instance.D3 * rBar.DoubleValue;
-            rucl.DoubleValue = XBarR.XBarRConstant.Instance.D4 * rBar.DoubleValue;
+            rlcl.DoubleValue = 
+                XBarR.XBarRConstant.Instance.D3(perQtyOfGroup) 
+                * rBar.DoubleValue;
+            rucl.DoubleValue = 
+                XBarR.XBarRConstant.Instance.D4(perQtyOfGroup)
+                * rBar.DoubleValue;
             #endregion
 
             if (maxXBar < ucl.DoubleValue)
@@ -1318,6 +1374,7 @@ namespace IRAP_FVS_SPCO
                 xyDiagram.AxisX.Label.Font = font;
                 xyDiagram.AxisY.Label.Font = font;
                 xyDiagram.AxisX.Title.Font = font;
+                xyDiagram.AxisY.Title.Font = font;
 
                 xyDiagram.AxisX.Title.Visibility = DefaultBoolean.True;
                 xyDiagram.AxisX.Title.Text = "子组";
@@ -1359,6 +1416,7 @@ namespace IRAP_FVS_SPCO
                 LabelsVisibility = DefaultBoolean.True,
                 ShowInLegend = false,
             };
+
             LineSeriesView view = new LineSeriesView();
             view.Color = Color.Red;
             view.PointMarkerOptions.BorderColor = Color.Red;
@@ -1392,6 +1450,7 @@ namespace IRAP_FVS_SPCO
                 xyDiagram.AxisX.Label.Font = font;
                 xyDiagram.AxisY.Label.Font = font;
                 xyDiagram.AxisX.Title.Font = font;
+                xyDiagram.AxisY.Title.Font = font;
 
                 xyDiagram.AxisX.Title.Visibility = DefaultBoolean.True;
                 xyDiagram.AxisX.Title.Text = "子组";
@@ -1409,17 +1468,18 @@ namespace IRAP_FVS_SPCO
 
         private void ucXBarRChart_Resize(object sender, EventArgs e)
         {
-            chartR.Height = pnlCharts.Height / 3;
+            chartR.Height = pnlCharts.Height * 3 / 7;
         }
     }
 
     internal class XBarSourceData
     {
         public int Ordinal { get; set; }
-        public double Metric01 { get; set; }
-        public double Metric02 { get; set; }
-        public double Metric03 { get; set; }
-        public double Metric04 { get; set; }
+        public string Metric01 { get; set; }
+        public string Metric02 { get; set; }
+        public string Metric03 { get; set; }
+        public string Metric04 { get; set; }
+        public string Metric05 { get; set; }
         public string MeasureDate { get; set; }
         public string MeasureTime { get; set; }
     }
