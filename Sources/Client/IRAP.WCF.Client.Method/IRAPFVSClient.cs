@@ -1717,19 +1717,6 @@ namespace IRAP.WCF.Client.Method
                     }
                     #endregion
                 }
-
-                datas.Add(
-                    new Structure_FFTofAPWO()
-                    {
-                        T216Name = "检测1",
-                        FTT = 99.5M,
-                    });
-                datas.Add(
-                    new Structure_FFTofAPWO()
-                    {
-                        T216Name = "检测2",
-                        FTT = 99.4M,
-                    });
             }
             catch (Exception error)
             {
