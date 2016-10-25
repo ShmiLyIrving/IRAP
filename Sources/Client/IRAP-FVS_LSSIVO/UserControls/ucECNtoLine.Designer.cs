@@ -127,6 +127,10 @@
             this.grdclmnToCloseDate});
             this.grdvOpenPWOs.GridControl = this.grdOpenPWOs;
             this.grdvOpenPWOs.Name = "grdvOpenPWOs";
+            this.grdvOpenPWOs.OptionsBehavior.Editable = false;
+            this.grdvOpenPWOs.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.grdvOpenPWOs.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.grdvOpenPWOs.OptionsSelection.EnableAppearanceHideSelection = false;
             this.grdvOpenPWOs.OptionsView.ShowGroupPanel = false;
             this.grdvOpenPWOs.OptionsView.ShowIndicator = false;
             this.grdvOpenPWOs.OptionsView.ShowVerticalLines = DevExpress.Utils.DefaultBoolean.True;

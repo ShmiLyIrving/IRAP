@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Reflection;
 using System.Management;
+using System.Diagnostics;
 
 using DevExpress.XtraEditors;
 
@@ -18,6 +19,7 @@ using IRAP.Entity.MDM;
 using IRAP.Entity.FVS;
 using IRAP.WCF.Client.Method;
 using IRAP.Client.Global.Enums;
+using IRAP.AutoUpgrade;
 
 using IRAP_FVS_LSSIVO.UserControls;
 
@@ -51,7 +53,11 @@ namespace IRAP_FVS_LSSIVO
         /// <summary>
         /// 上次更新指标值时间
         /// </summary>
-        private DateTime lastUpdated = DateTime.Now;
+        private DateTime lastRefreshData = DateTime.Now;
+        /// <summary>
+        /// 上次程序更新检查时间
+        /// </summary>
+        private DateTime lastUpgrade = DateTime.Now;
 
         public frmKPIDashboard()
         {
@@ -218,6 +224,21 @@ namespace IRAP_FVS_LSSIVO
             }
         }
 
+        private void FillDashboards(ref List<ucInstrumentPanel> panels)
+        {
+            int pnlEmptyCount = panels.Count % 5;
+            if (pnlEmptyCount > 0)
+                for (int i = 1; i <= 5 - pnlEmptyCount; i++)
+                {
+                    panels.Add(
+                        new ucInstrumentPanel()
+                        {
+                            Status = KPIStatus.ksNotProduced,
+                            Value = 0,
+                        });
+                }
+        }
+
         private void ShowOEEDashboard()
         {
             string strProcedureName =
@@ -242,16 +263,36 @@ namespace IRAP_FVS_LSSIVO
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
 
-                dashboards.Clear();
-                foreach (Dashboard_KPI data in datas)
-                {
-                    ucInstrumentPanel panel = new ucInstrumentPanel();
-                    panel.Title = data.ResourceName;
-                    panel.Status = (KPIStatus)data.KPIStatus;
-                    panel.Value = data.CurrentKPIValue;
+                Dashboard_KPI_OrderByResourceName compare = new Dashboard_KPI_OrderByResourceName();
+                datas.Sort(compare);
 
-                    dashboards.Add(panel);
+                for (int i = 0; i < datas.Count; i++)
+                {
+                    if (dashboards.Count < i + 1)
+                    {
+                        dashboards.Add(
+                            new ucInstrumentPanel()
+                            {
+                                Title = datas[i].ResourceName,
+                                Status = (KPIStatus)datas[i].KPIStatus,
+                                Value = datas[i].CurrentKPIValue,
+                            });
+                    }
+                    else
+                    {
+                        dashboards[i].Title = datas[i].ResourceName;
+                        dashboards[i].Status = (KPIStatus)datas[i].KPIStatus;
+                        dashboards[i].Value = datas[i].CurrentKPIValue;
+                    }
                 }
+                for (int i = datas.Count; i < dashboards.Count; i++)
+                {
+                    dashboards[i].Title = "";
+                    dashboards[i].Status = KPIStatus.ksNotProduced;
+                    dashboards[i].Value = 0;
+                }
+
+                FillDashboards(ref dashboards);
 
                 ResetDashboardPosition(dashboards);
             }
@@ -285,17 +326,48 @@ namespace IRAP_FVS_LSSIVO
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
 
-                dashboards.Clear();
-                foreach (Dashboard_KPI data in datas)
-                {
-                    ucInstrumentPanel panel = new ucInstrumentPanel();
-                    panel.Title = data.ResourceName;
-                    panel.Status = (KPIStatus)data.KPIStatus;
-                    panel.Value = data.CurrentKPIValue;
-                    panel.Formatter = "0.0";
+                Dashboard_KPI_OrderByResourceName compare = new Dashboard_KPI_OrderByResourceName();
+                datas.Sort(compare);
 
-                    dashboards.Add(panel);
+                for (int i = 0; i < datas.Count; i++)
+                {
+                    if (dashboards.Count < i + 1)
+                    {
+                        dashboards.Add(
+                            new ucInstrumentPanel()
+                            {
+                                Title = datas[i].ResourceName,
+                                Status = (KPIStatus)datas[i].KPIStatus,
+                                Value = datas[i].CurrentKPIValue,
+                                Formatter = "0.0",
+                            });
+                    }
+                    else
+                    {
+                        dashboards[i].Title = datas[i].ResourceName;
+                        dashboards[i].Status = (KPIStatus)datas[i].KPIStatus;
+                        dashboards[i].Value = datas[i].CurrentKPIValue;
+                    }
                 }
+                for (int i = datas.Count; i < dashboards.Count; i++)
+                {
+                    dashboards[i].Title = "";
+                    dashboards[i].Status = KPIStatus.ksNotProduced;
+                    dashboards[i].Value = 0;
+                }
+                //dashboards.Clear();
+                //foreach (Dashboard_KPI data in datas)
+                //{
+                //    ucInstrumentPanel panel = new ucInstrumentPanel();
+                //    panel.Title = data.ResourceName;
+                //    panel.Status = (KPIStatus)data.KPIStatus;
+                //    panel.Value = data.CurrentKPIValue;
+                //    panel.Formatter = "0.0";
+
+                //    dashboards.Add(panel);
+                //}
+
+                FillDashboards(ref dashboards);
 
                 ResetDashboardPosition(dashboards);
             }
@@ -329,16 +401,46 @@ namespace IRAP_FVS_LSSIVO
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
 
-                dashboards.Clear();
-                foreach (Dashboard_KPI data in datas)
-                {
-                    ucInstrumentPanel panel = new ucInstrumentPanel();
-                    panel.Title = data.ResourceName;
-                    panel.Status = (KPIStatus)data.KPIStatus;
-                    panel.Value = data.CurrentKPIValue;
+                Dashboard_KPI_OrderByResourceName compare = new Dashboard_KPI_OrderByResourceName();
+                datas.Sort(compare);
 
-                    dashboards.Add(panel);
+                for (int i = 0; i < datas.Count; i++)
+                {
+                    if (dashboards.Count < i + 1)
+                    {
+                        dashboards.Add(
+                            new ucInstrumentPanel()
+                            {
+                                Title = datas[i].ResourceName,
+                                Status = (KPIStatus)datas[i].KPIStatus,
+                                Value = datas[i].CurrentKPIValue,
+                            });
+                    }
+                    else
+                    {
+                        dashboards[i].Title = datas[i].ResourceName;
+                        dashboards[i].Status = (KPIStatus)datas[i].KPIStatus;
+                        dashboards[i].Value = datas[i].CurrentKPIValue;
+                    }
                 }
+                for (int i = datas.Count; i < dashboards.Count; i++)
+                {
+                    dashboards[i].Title = "";
+                    dashboards[i].Status = KPIStatus.ksNotProduced;
+                    dashboards[i].Value = 0;
+                }
+                //dashboards.Clear();
+                //foreach (Dashboard_KPI data in datas)
+                //{
+                //    ucInstrumentPanel panel = new ucInstrumentPanel();
+                //    panel.Title = data.ResourceName;
+                //    panel.Status = (KPIStatus)data.KPIStatus;
+                //    panel.Value = data.CurrentKPIValue;
+
+                //    dashboards.Add(panel);
+                //}
+
+                FillDashboards(ref dashboards);
 
                 ResetDashboardPosition(dashboards);
             }
@@ -379,6 +481,8 @@ namespace IRAP_FVS_LSSIVO
 
                     pnlPosX += panels[i].Width;
                 }
+
+
             }
         }
 
@@ -404,18 +508,18 @@ namespace IRAP_FVS_LSSIVO
                         break;
                 }
 
-                lastUpdated = DateTime.Now;
+                lastRefreshData = DateTime.Now;
             }
         }
 
         private void timerServerTime_Tick(object sender, EventArgs e)
         {
-            lblServerTime.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            lblServerTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            TimeSpan span = DateTime.Now - lastUpdated;
-            if (span.TotalMinutes >= 10)
+            TimeSpan span = DateTime.Now - lastRefreshData;
+            if (span.TotalMinutes >= 2)
             {
-                lastUpdated = DateTime.Now;
+                lastRefreshData = DateTime.Now;
 
                 SetTitle();
                 if (kpis.Count > 0)
@@ -433,6 +537,35 @@ namespace IRAP_FVS_LSSIVO
                             break;
                     }
                 }
+            }
+
+            span = DateTime.Now - lastUpgrade;
+            if (span.TotalMinutes >= 60)
+            {
+                string upgradeURL = "";
+                if (ConfigurationManager.AppSettings["UpgradeURL"] != null)
+                {
+                    upgradeURL = ConfigurationManager.AppSettings["UpgradeURL"].Trim();
+                }
+
+                if (upgradeURL != "")
+                {
+                    Upgrade.Instance.URLCFGFileName = upgradeURL;
+                    Upgrade.Instance.Silent = true;
+                    if (Upgrade.Instance.CanUpgrade)
+                    {
+                        if (Upgrade.Instance.Do() == -1)
+                        {
+                            Process.Start(Application.ExecutablePath);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                    }
+                }
+
+                lastUpgrade = DateTime.Now;
             }
         }
 

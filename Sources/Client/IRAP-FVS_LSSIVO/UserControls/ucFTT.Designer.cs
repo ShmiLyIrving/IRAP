@@ -28,19 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SeriesPoint seriesPoint1 = new DevExpress.XtraCharts.SeriesPoint(1D, new object[] {
-            ((object)(99.5D))});
-            DevExpress.XtraCharts.SeriesPoint seriesPoint2 = new DevExpress.XtraCharts.SeriesPoint(2D, new object[] {
-            ((object)(99.4D))});
-            DevExpress.XtraCharts.SeriesPoint seriesPoint3 = new DevExpress.XtraCharts.SeriesPoint(3D, new object[] {
-            ((object)(99.45D))});
-            DevExpress.XtraCharts.SeriesPoint seriesPoint4 = new DevExpress.XtraCharts.SeriesPoint(4D, new object[] {
-            ((object)(99.6D))});
-            DevExpress.XtraCharts.SeriesPoint seriesPoint5 = new DevExpress.XtraCharts.SeriesPoint(5D, new object[] {
-            ((object)(99.36D))});
-            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -52,9 +39,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartFTT)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -67,7 +51,7 @@
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(5, 5);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(449, 38);
+            this.pnlTop.Size = new System.Drawing.Size(449, 21);
             this.pnlTop.TabIndex = 0;
             // 
             // labelControl2
@@ -79,7 +63,7 @@
             this.labelControl2.Location = new System.Drawing.Point(48, 0);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Padding = new System.Windows.Forms.Padding(5);
-            this.labelControl2.Size = new System.Drawing.Size(401, 38);
+            this.labelControl2.Size = new System.Drawing.Size(401, 21);
             this.labelControl2.TabIndex = 1;
             // 
             // labelControl1
@@ -90,7 +74,7 @@
             this.labelControl1.Location = new System.Drawing.Point(0, 0);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.labelControl1.Size = new System.Drawing.Size(48, 38);
+            this.labelControl1.Size = new System.Drawing.Size(48, 21);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "FTT";
             // 
@@ -101,9 +85,9 @@
             this.pnlBottom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlBottom.Controls.Add(this.lblStructFTTofAPWO);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(5, 268);
+            this.pnlBottom.Location = new System.Drawing.Point(5, 285);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(449, 37);
+            this.pnlBottom.Size = new System.Drawing.Size(449, 20);
             this.pnlBottom.TabIndex = 1;
             // 
             // lblStructFTTofAPWO
@@ -112,30 +96,16 @@
             this.lblStructFTTofAPWO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStructFTTofAPWO.Location = new System.Drawing.Point(0, 0);
             this.lblStructFTTofAPWO.Name = "lblStructFTTofAPWO";
-            this.lblStructFTTofAPWO.Size = new System.Drawing.Size(449, 37);
+            this.lblStructFTTofAPWO.Size = new System.Drawing.Size(449, 20);
             this.lblStructFTTofAPWO.TabIndex = 0;
             // 
             // chartFTT
             // 
-            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
-            this.chartFTT.Diagram = xyDiagram1;
             this.chartFTT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chartFTT.Location = new System.Drawing.Point(5, 43);
+            this.chartFTT.Location = new System.Drawing.Point(5, 26);
             this.chartFTT.Name = "chartFTT";
-            series1.Name = "Series 1";
-            series1.Points.AddRange(new DevExpress.XtraCharts.SeriesPoint[] {
-            seriesPoint1,
-            seriesPoint2,
-            seriesPoint3,
-            seriesPoint4,
-            seriesPoint5});
-            series1.ShowInLegend = false;
-            series1.View = lineSeriesView1;
-            this.chartFTT.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
-            this.chartFTT.Size = new System.Drawing.Size(449, 225);
+            this.chartFTT.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
+            this.chartFTT.Size = new System.Drawing.Size(449, 259);
             this.chartFTT.TabIndex = 2;
             // 
             // ucFTT
@@ -154,9 +124,6 @@
             this.pnlTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartFTT)).EndInit();
             this.ResumeLayout(false);
 

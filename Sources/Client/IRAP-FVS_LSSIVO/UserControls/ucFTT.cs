@@ -73,7 +73,7 @@ namespace IRAP_FVS_LSSIVO.UserControls
                     ArgumentScaleType = ScaleType.Qualitative,
                     LabelsVisibility = DefaultBoolean.False,
                 };
-                PointSeriesView view = new PointSeriesView();
+                LineSeriesView view = new LineSeriesView();
                 view.Color = Color.Blue;
                 view.PointMarkerOptions.BorderColor = Color.Blue;
                 pointMeasureData.View = view;

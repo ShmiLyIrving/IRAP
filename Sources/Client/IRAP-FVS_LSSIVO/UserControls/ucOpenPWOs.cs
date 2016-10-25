@@ -66,21 +66,42 @@ namespace IRAP_FVS_LSSIVO.UserControls
                     strProcedureName);
                 if (errCode == 0)
                 {
-                    for (int i = 0; i < pwos.Count; i++)
+                    List<OpenPWO> openPWOs = new List<OpenPWO>();
+
+                    int i = 0;
+                    foreach (OpenPWO pwo in pwos)
                     {
-                        pwos[i].BTSStatus = -1;
+                        if (i > 1)
+                            break;
+
+                        if (i == 0 && pwo.PWOStatus == 5)
+                        {
+                            if (kpi.Tag is LineKPI_BTS)
+                            {
+                                LineKPI_BTS kpiData = (LineKPI_BTS)kpi.Tag;
+                                OpenPWO openPWO = pwo.Clone();
+
+                                openPWO.ActualQuantity = kpiData.ActualQuantity.DoubleValue;
+                                openPWO.ActualStartTime = kpiData.ActualStartTime;
+                                openPWO.BTSStatus = kpiData.BTSStatus;
+                                pwoNo = kpiData.PWONo;
+
+                                openPWOs.Add(openPWO);
+
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            pwo.BTSStatus = -1;
+                            openPWOs.Add(pwo.Clone());
+
+                            i += 2;
+                        }
+
                     }
 
-                    if (pwos.Count > 0 && kpi.Tag is LineKPI_BTS)
-                    {
-                        LineKPI_BTS kpiData = (LineKPI_BTS)kpi.Tag;
-                        pwos[0].ActualQuantity = kpiData.ActualQuantity.DoubleValue;
-                        pwos[0].ActualStartTime = kpiData.ActualStartTime;
-                        pwos[0].BTSStatus = kpiData.BTSStatus;
-                        pwoNo = kpiData.PWONo;
-                    }
-
-                    grdOpenPWOs.DataSource = pwos;
+                    grdOpenPWOs.DataSource = openPWOs;
                     grdvOpenPWOs.BestFitColumns();
                 }
                 else

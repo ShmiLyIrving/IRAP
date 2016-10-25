@@ -42,6 +42,7 @@
             this.grdOpenPWOs = new DevExpress.XtraGrid.GridControl();
             this.grdvOpenPWOs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnPWOStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.grdclmnProductNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnPWONo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnOrderQty = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,6 +50,7 @@
             this.grdclmnActualQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdOpenPWOs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOpenPWOs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // grdclmnBTSStatus
@@ -63,6 +65,8 @@
             this.grdOpenPWOs.Location = new System.Drawing.Point(5, 5);
             this.grdOpenPWOs.MainView = this.grdvOpenPWOs;
             this.grdOpenPWOs.Name = "grdOpenPWOs";
+            this.grdOpenPWOs.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemImageComboBox1});
             this.grdOpenPWOs.Size = new System.Drawing.Size(449, 300);
             this.grdOpenPWOs.TabIndex = 0;
             this.grdOpenPWOs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -134,6 +138,7 @@
             this.grdvOpenPWOs.FormatRules.Add(gridFormatRule5);
             this.grdvOpenPWOs.GridControl = this.grdOpenPWOs;
             this.grdvOpenPWOs.Name = "grdvOpenPWOs";
+            this.grdvOpenPWOs.OptionsBehavior.Editable = false;
             this.grdvOpenPWOs.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.grdvOpenPWOs.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.grdvOpenPWOs.OptionsSelection.EnableAppearanceHideSelection = false;
@@ -143,15 +148,29 @@
             // 
             // grdclmnPWOStatus
             // 
+            this.grdclmnPWOStatus.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnPWOStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnPWOStatus.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnPWOStatus.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnPWOStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnPWOStatus.Caption = "工单";
+            this.grdclmnPWOStatus.ColumnEdit = this.repositoryItemImageComboBox1;
             this.grdclmnPWOStatus.FieldName = "PWOStatus";
             this.grdclmnPWOStatus.Name = "grdclmnPWOStatus";
             this.grdclmnPWOStatus.OptionsFilter.AllowAutoFilter = false;
             this.grdclmnPWOStatus.OptionsFilter.AllowFilter = false;
             this.grdclmnPWOStatus.Visible = true;
             this.grdclmnPWOStatus.VisibleIndex = 0;
+            // 
+            // repositoryItemImageComboBox1
+            // 
+            this.repositoryItemImageComboBox1.AutoHeight = false;
+            this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageComboBox1.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("下张工单", 1, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("当前工单", 5, -1)});
+            this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
             // 
             // grdclmnProductNo
             // 
@@ -233,6 +252,7 @@
             this.Padding = new System.Windows.Forms.Padding(5);
             ((System.ComponentModel.ISupportInitialize)(this.grdOpenPWOs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOpenPWOs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -248,5 +268,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnActualStartTime;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnActualQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnBTSStatus;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFVSCell_Visteon));
             this.pnlFirstQuadrant = new DevExpress.XtraEditors.PanelControl();
             this.picCustomLogo = new System.Windows.Forms.PictureBox();
             this.picCompanyLogo = new System.Windows.Forms.PictureBox();
@@ -198,7 +197,6 @@
             // 
             this.ucFTT.Appearance.BackColor = System.Drawing.Color.White;
             this.ucFTT.Appearance.Options.UseBackColor = true;
-            this.ucFTT.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucFTT.BackgroundImage")));
             this.ucFTT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ucFTT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFTT.Location = new System.Drawing.Point(0, 0);

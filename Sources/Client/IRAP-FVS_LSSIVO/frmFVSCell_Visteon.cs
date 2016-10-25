@@ -351,7 +351,7 @@ namespace IRAP_FVS_LSSIVO
         private void timerRefresh_Tick(object sender, EventArgs e)
         {
             TimeSpan span = DateTime.Now - LastUpdatedTime;
-            if (span.TotalMinutes > 10)
+            if (span.TotalMinutes > 2)
             {
                 LastUpdatedTime = DateTime.Now;
 

@@ -73,7 +73,7 @@
             this.lblServerTime.Name = "lblServerTime";
             this.lblServerTime.Size = new System.Drawing.Size(211, 47);
             this.lblServerTime.TabIndex = 3;
-            this.lblServerTime.Text = "labelControl1";
+            this.lblServerTime.Text = "当前时间";
             // 
             // lblCompanyName
             // 
@@ -87,7 +87,7 @@
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(635, 47);
             this.lblCompanyName.TabIndex = 2;
-            this.lblCompanyName.Text = "labelControl1";
+            this.lblCompanyName.Text = "标题";
             // 
             // picLogo
             // 
@@ -146,7 +146,7 @@
             this.timerServerTime.Interval = 1000;
             this.timerServerTime.Tick += new System.EventHandler(this.timerServerTime_Tick);
             // 
-            // frmOEEDashboard
+            // frmKPIDashboard
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -158,7 +158,7 @@
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "frmOEEDashboard";
+            this.Name = "frmKPIDashboard";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmOEEDashboard_Load);

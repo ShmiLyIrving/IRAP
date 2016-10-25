@@ -57,30 +57,35 @@ namespace IRAP_FVS_LSSIVO.UserControls
                 {
                     case KPIStatus.ksNotProduced:
                         picTitle.BackgroundImage = Properties.Resources.rectangle_gray;
+                        picTitle.BackgroundImageLayout = ImageLayout.Stretch;
                         picKPI.BackgroundImage = Properties.Resources.circular_gray;
                         pnlBody.Appearance.BorderColor = Color.Gray;
 
                         break;
                     case KPIStatus.ksRegular:
                         picTitle.BackgroundImage = Properties.Resources.rectangle_green;
+                        picTitle.BackgroundImageLayout = ImageLayout.Stretch;
                         picKPI.BackgroundImage = Properties.Resources.circular_green;
                         pnlBody.Appearance.BorderColor = Color.Green;
 
                         break;
                     case KPIStatus.ksWarning:
                         picTitle.BackgroundImage = Properties.Resources.rectangle_yellow;
+                        picTitle.BackgroundImageLayout = ImageLayout.Stretch;
                         picKPI.BackgroundImage = Properties.Resources.circular_yellow;
                         pnlBody.Appearance.BorderColor = Color.Brown;
 
                         break;
                     case KPIStatus.ksAbnormal:
                         picTitle.BackgroundImage = Properties.Resources.rectangle_red;
+                        picTitle.BackgroundImageLayout = ImageLayout.Stretch;
                         picKPI.BackgroundImage = Properties.Resources.circular_red;
                         pnlBody.Appearance.BorderColor = Color.Red;
 
                         break;
                     default:
                         picTitle.BackgroundImage = Properties.Resources.rectangle_gray;
+                        picTitle.BackgroundImageLayout = ImageLayout.Stretch;
                         picKPI.BackgroundImage = Properties.Resources.circular_gray;
                         pnlBody.Appearance.BorderColor = Color.Gray;
 
@@ -132,6 +137,11 @@ namespace IRAP_FVS_LSSIVO.UserControls
                 valueFormatter = value;
                 lblValue.Text = kpiValue.ToString(valueFormatter) + "%";
             }
+        }
+
+        private void ucInstrumentPanel_Resize(object sender, EventArgs e)
+        {
+            pnlTitle.Height = Height * 30 / 100;
         }
     }
 }

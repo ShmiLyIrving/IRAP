@@ -45,4 +45,33 @@ namespace IRAP.Entity.FVS
             return MemberwiseClone() as Dashboard_KPI;
         }
     }
+
+    public class Dashboard_KPI_OrderByResourceName : IComparer<Dashboard_KPI>
+    {
+        public int Compare(Dashboard_KPI x, Dashboard_KPI y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (y == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return x.ResourceName.CompareTo(y.ResourceName);
+                }
+            }
+        }
+    }
 }

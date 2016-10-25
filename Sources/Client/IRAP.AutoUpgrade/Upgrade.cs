@@ -42,6 +42,10 @@ namespace IRAP.AutoUpgrade
         /// 升级配置文件 URL
         /// </summary>
         private string urlCFGFileName = "";
+        /// <summary>
+        /// 是否静默升级
+        /// </summary>
+        private bool silent = false;
 
         protected Upgrade()
         {
@@ -182,6 +186,15 @@ namespace IRAP.AutoUpgrade
         }
 
         /// <summary>
+        /// 是否静默升级
+        /// </summary>
+        public bool Silent
+        {
+            get { return silent; }
+            set { silent = value; }
+        }
+
+        /// <summary>
         /// 开始自动升级应用程序
         /// </summary>
         /// <returns>
@@ -235,7 +248,7 @@ namespace IRAP.AutoUpgrade
                     }
 
                     if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                        frmShowUpgrade.Instance.Message = 
+                        frmShowUpgrade.Instance.Message =
                             "Parsing upgrade configuration file...";
                     else
                         frmShowUpgrade.Instance.Message = "升级配置文件下载完成，正在解析......";
@@ -301,7 +314,7 @@ namespace IRAP.AutoUpgrade
                             frmShowUpgrade.Instance.Message,
                             strProcedureName);
 
-                        if (upgradeFailureCount > 0)
+                        if (upgradeFailureCount > 0 && !silent)
                         {
                             if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                                 XtraMessageBox.Show(
@@ -323,13 +336,14 @@ namespace IRAP.AutoUpgrade
                             return -1;
                         }
 
-                        if (upgradeSuccessCount > 0)
+                        if (upgradeSuccessCount > 0 && !silent)
                         {
                             if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                                 XtraMessageBox.Show(
                                     string.Format(
                                         "There are {0} files to upgrade successfully, " +
-                                        "the program will be automatically closed. Please re run!"),
+                                        "the program will be automatically closed. Please re run!",
+                                        upgradeSuccessCount),
                                     "Auto upgrade",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
@@ -350,22 +364,23 @@ namespace IRAP.AutoUpgrade
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                        XtraMessageBox.Show(
-                            string.Format(
-                                "Program upgrade failed because of {0}",
-                                error.Message),
-                            "Auto upgrade",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation);
-                    else
-                        XtraMessageBox.Show(
-                            string.Format(
-                                "程序升级失败，原因：{0}",
-                                error.Message),
-                            "自动升级",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation);
+                    if (!silent)
+                        if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                            XtraMessageBox.Show(
+                                string.Format(
+                                    "Program upgrade failed because of {0}",
+                                    error.Message),
+                                "Auto upgrade",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation);
+                        else
+                            XtraMessageBox.Show(
+                                string.Format(
+                                    "程序升级失败，原因：{0}",
+                                    error.Message),
+                                "自动升级",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation);
                     return -2;
                 }
             }
