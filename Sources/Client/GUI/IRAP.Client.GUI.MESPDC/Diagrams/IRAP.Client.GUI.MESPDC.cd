@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.Client.GUI.MESPDC.Actions.CustomAction" Collapsed="true">
-    <Position X="6.5" Y="0.5" Width="1.5" />
+    <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAABAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
       <FileName>Actions\CustomAction.cs</FileName>
@@ -70,7 +70,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Client.GUI.MESPDC.Actions.CustomPrintFactory" Collapsed="true">
-    <Position X="10" Y="2.75" Width="1.5" />
+    <Position X="17" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Actions\PrintASCII.cs</FileName>
@@ -123,14 +123,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="IRAP.Client.GUI.MESPDC.Actions.UDFActions" Collapsed="true">
-    <Position X="7.75" Y="2.75" Width="1.5" />
+    <Position X="17" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Actions\UDFActions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Client.GUI.MESPDC.ScannerForSerialPort" Collapsed="true">
-    <Position X="16.5" Y="0.5" Width="1.5" />
+    <Position X="18.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAIAAAAAAIAAAAAAAAAAAEAAAgBAACgAAAACAAAA=</HashCode>
       <FileName>Businesses\ScannerForSerialPort.cs</FileName>
@@ -144,22 +144,30 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="IRAP.Client.GUI.MESPDC.Actions.ActionsInTable" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\ActionsInTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="IRAP.Client.GUI.MESPDC.Actions.IUDFAction" Collapsed="true">
-    <Position X="7.75" Y="3.5" Width="1.5" />
+    <Position X="17" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Actions\IUDFAction.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="IRAP.Client.GUI.MESPDC.Actions.IUDFActionFactory" Collapsed="true">
-    <Position X="10" Y="3.5" Width="1.5" />
+    <Position X="18.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Actions\IUDFActionFactory.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Delegate Name="IRAP.Client.GUI.MESPDC.Actions.ExtendEventHandler" Collapsed="true">
-    <Position X="12.25" Y="2.75" Width="1.5" />
+    <Position X="17" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Actions\ExtendEventHandler.cs</FileName>
