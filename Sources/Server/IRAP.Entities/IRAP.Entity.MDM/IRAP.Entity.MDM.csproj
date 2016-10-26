@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="AndonCallObject.cs" />
     <Compile Include="AndonEventType.cs" />
+    <Compile Include="AvailableSite.cs" />
+    <Compile Include="CustomerOfAProduction.cs" />
     <Compile Include="CustomStandard.cs" />
     <Compile Include="DstDeliveryStoreSite.cs" />
     <Compile Include="EnergyStandard.cs" />

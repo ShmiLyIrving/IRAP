@@ -67,6 +67,12 @@
     <Compile Include="Actions\SelectChoice1.cs" />
     <Compile Include="Actions\UDFActions.cs" />
     <Compile Include="Actions\Upload.cs" />
+    <Compile Include="frmCargoTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCargoTransfer.Designer.cs">
+      <DependentUpon>frmCargoTransfer.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmManufactureRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmCargoTransfer.resx">
+      <DependentUpon>frmCargoTransfer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmManufactureRecord.resx">
       <DependentUpon>frmManufactureRecord.cs</DependentUpon>
     </EmbeddedResource>
