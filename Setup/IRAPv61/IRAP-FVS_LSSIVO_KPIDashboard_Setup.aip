@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="12.7.2" version="12.7.2" Modules="architect" RootPath="." Language="zh" Id="{8727FE24-58AF-4824-94FF-B89E9703E6F6}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="MsiJavaComponent;MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;ActSyncAppComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_FINDEXE_TITLE" Value="选择 [|ProductName] 安装包" ValueLocId="AI.Property.FindExeTitle"/>
+    <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION"/>
+    <ROW Property="AI_REQUIRED_DOTNET_DISPLAY" MultiBuildValue="DefaultBuild:4.0" ValueLocId="-"/>
+    <ROW Property="AI_REQUIRED_DOTNET_VERSION" MultiBuildValue="DefaultBuild:4.0.1" ValueLocId="-"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="此 Installer 数据库包含了安装 [|ProductName] 所需的逻辑和数据。" ValueLocId="*"/>
+    <ROW Property="Manufacturer" Value="江苏芍园科技有限责任公司"/>
+    <ROW Property="ProductCode" Value="2052:{FB7B0BC4-7AB1-4780-9CFA-7E27D285373D} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="2052"/>
+    <ROW Property="ProductName" Value="IRAP-FVS"/>
+    <ROW Property="ProductVersion" Value="6.1.0" Type="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="UpgradeCode" Value="{F256B86A-C031-4027-A456-92B5B9E85E27}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows XP x86, Windows XP x86 Service Pack 1, Windows XP x86 Service Pack 2, Windows XP x86 Service Pack 3, Windows Server 2003 x86, Windows Server 2003 x86 Service Pack 1, Windows Server 2003 x86 Service Pack 2" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT64" MultiBuildValue="DefaultBuild:Windows XP x64, Windows XP x64 Service Pack 1, Windows XP x64 Service Pack 2, Windows Server 2003 x64, Windows Server 2003 x64 Service Pack 1, Windows Server 2003 x64 Service Pack 2" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT64Display" MultiBuildValue="DefaultBuild:Windows XP x64, Windows Server 2003 x64" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:Windows XP x86, Windows Server 2003 x86" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="de_Dir" Directory_Parent="APPDIR" DefaultDir="de"/>
+    <ROW Directory="enUS_Dir" Directory_Parent="APPDIR" DefaultDir="en-US"/>
+    <ROW Directory="es_Dir" Directory_Parent="APPDIR" DefaultDir="es"/>
+    <ROW Directory="ja_Dir" Directory_Parent="APPDIR" DefaultDir="ja"/>
+    <ROW Directory="ru_Dir" Directory_Parent="APPDIR" DefaultDir="ru"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_ExePath" ComponentId="{6ACDC6E8-77F2-4453-890D-196FC88F6C57}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
+    <ROW Component="DevExpress.Charts.v15.2.Core.dll" ComponentId="{45D04A77-E5B4-4810-BBFD-0724A8735DDB}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Charts.v15.2.Core.dll"/>
+    <ROW Component="DevExpress.Data.v15.2.dll" ComponentId="{B8228E5F-B22B-4D2C-B8EB-AB8AE8492B12}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Data.v15.2.dll"/>
+    <ROW Component="DevExpress.Data.v15.2.resources.dll" ComponentId="{54FFF735-A05E-4A10-AD79-676CD000C312}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.Data.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.Data.v15.2.resources.dll_1" ComponentId="{54D8EC8C-18C7-417A-B77B-8FCDC0A55B0A}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.Data.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.Data.v15.2.resources.dll_2" ComponentId="{3A4B573A-2C17-48E4-BEEE-DCF8F7CD0C00}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.Data.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.Data.v15.2.resources.dll_3" ComponentId="{87A6D8EA-BC3F-4C2E-88C8-0A7FAB07DBB0}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.Data.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.Data.v15.2.xml" ComponentId="{9BA4D95A-D265-4FF8-8999-D855841C8A6D}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Data.v15.2.xml" Type="0"/>
+    <ROW Component="DevExpress.Office.v15.2.Core.dll" ComponentId="{80999BEC-9122-407A-AA9F-8E16650402E6}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Office.v15.2.Core.dll"/>
+    <ROW Component="DevExpress.Office.v15.2.Core.resources.d" ComponentId="{D813D983-294B-452B-A443-79CB18AA5F35}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.Office.v15.2.Core.resources.dll"/>
+    <ROW Component="DevExpress.Office.v15.2.Core.resources_1" ComponentId="{3E32E108-DAFA-4324-89E8-69089838C963}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.Office.v15.2.Core.resources.dll_1"/>
+    <ROW Component="DevExpress.Office.v15.2.Core.resources_2" ComponentId="{9F7F073C-7E86-43B3-978D-4543F343C446}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.Office.v15.2.Core.resources.dll_2"/>
+    <ROW Component="DevExpress.Office.v15.2.Core.resources_3" ComponentId="{043B3F39-95B5-4CDA-AD44-6DDB9F218CC3}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.Office.v15.2.Core.resources.dll_3"/>
+    <ROW Component="DevExpress.Pdf.v15.2.Core.dll" ComponentId="{9CCB6590-EE72-4ACA-9A56-95E457B68F18}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Pdf.v15.2.Core.dll"/>
+    <ROW Component="DevExpress.Pdf.v15.2.Core.resources.dl_1" ComponentId="{2F8E1226-2332-458B-9540-E8ED0D67406B}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.Pdf.v15.2.Core.resources.dll_1"/>
+    <ROW Component="DevExpress.Pdf.v15.2.Core.resources.dl_2" ComponentId="{D09335E5-8795-435E-9A76-EA90E9A55CEE}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.Pdf.v15.2.Core.resources.dll_2"/>
+    <ROW Component="DevExpress.Pdf.v15.2.Core.resources.dl_3" ComponentId="{A16FBAE6-22AE-4413-A35B-6E6B7B62642C}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.Pdf.v15.2.Core.resources.dll_3"/>
+    <ROW Component="DevExpress.Pdf.v15.2.Core.resources.dll" ComponentId="{4CFE04BE-53A4-4237-BF4B-45BEDA000E63}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.Pdf.v15.2.Core.resources.dll"/>
+    <ROW Component="DevExpress.Pdf.v15.2.Drawing.dll" ComponentId="{1880FA7E-E4D6-4F52-B02F-2CA3D5A495F4}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Pdf.v15.2.Drawing.dll"/>
+    <ROW Component="DevExpress.Printing.v15.2.Core.dll" ComponentId="{07CECFE9-9C4E-4F31-8DB3-B549E2F2E932}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Printing.v15.2.Core.dll"/>
+    <ROW Component="DevExpress.Printing.v15.2.Core.resourc_1" ComponentId="{4A4A2DEB-A943-47BA-999F-03CA31F228E3}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.Printing.v15.2.Core.resources.dll_1"/>
+    <ROW Component="DevExpress.Printing.v15.2.Core.resourc_2" ComponentId="{3F401363-449E-4861-909F-5C19EAC53C12}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.Printing.v15.2.Core.resources.dll_2"/>
+    <ROW Component="DevExpress.Printing.v15.2.Core.resourc_3" ComponentId="{DB5B5779-DF8F-4B6D-98EC-05F225D8A206}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.Printing.v15.2.Core.resources.dll_3"/>
+    <ROW Component="DevExpress.Printing.v15.2.Core.resources" ComponentId="{AA448376-E66B-44AF-92FB-948AB454EE6A}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.Printing.v15.2.Core.resources.dll"/>
+    <ROW Component="DevExpress.RichEdit.v15.2.Core.dll" ComponentId="{D44FFA5A-33E7-4060-9DEC-9F8D4E1F6D52}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.RichEdit.v15.2.Core.dll"/>
+    <ROW Component="DevExpress.RichEdit.v15.2.Core.resourc_1" ComponentId="{55304872-9E1B-4952-88AE-89C94B7599C8}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.RichEdit.v15.2.Core.resources.dll_1"/>
+    <ROW Component="DevExpress.RichEdit.v15.2.Core.resourc_2" ComponentId="{AC959A65-B1F5-4357-BD04-A4A982F7111B}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.RichEdit.v15.2.Core.resources.dll_2"/>
+    <ROW Component="DevExpress.RichEdit.v15.2.Core.resourc_3" ComponentId="{CEE9DEB3-C538-4125-8C4D-E00230974BCF}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.RichEdit.v15.2.Core.resources.dll_3"/>
+    <ROW Component="DevExpress.RichEdit.v15.2.Core.resources" ComponentId="{E45E9B97-FCB5-4B7D-90AE-9394599A2CC5}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.RichEdit.v15.2.Core.resources.dll"/>
+    <ROW Component="DevExpress.Sparkline.v15.2.Core.dll" ComponentId="{F73F8705-F5A4-46B1-AA1F-6BE6F03DC504}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Sparkline.v15.2.Core.dll"/>
+    <ROW Component="DevExpress.Sparkline.v15.2.Core.resour_1" ComponentId="{A084E210-732A-413D-861F-CD7844F97A94}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.Sparkline.v15.2.Core.resources.dll_1"/>
+    <ROW Component="DevExpress.Sparkline.v15.2.Core.resour_2" ComponentId="{EABEDC2F-C81A-41A9-B34A-EC883011B72B}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.Sparkline.v15.2.Core.resources.dll_2"/>
+    <ROW Component="DevExpress.Sparkline.v15.2.Core.resour_3" ComponentId="{653BE263-B98E-43B3-9473-09C5F35008AC}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.Sparkline.v15.2.Core.resources.dll_3"/>
+    <ROW Component="DevExpress.Sparkline.v15.2.Core.resource" ComponentId="{A7405619-6569-4356-BC73-7EA47B78E126}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.Sparkline.v15.2.Core.resources.dll"/>
+    <ROW Component="DevExpress.Utils.v15.2.UI.dll" ComponentId="{9A85232A-0846-431D-AE52-204B31517190}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Utils.v15.2.UI.dll"/>
+    <ROW Component="DevExpress.Utils.v15.2.UI.resources.dl_1" ComponentId="{C9E177D4-8318-40F1-815F-4EBA7D656B57}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.Utils.v15.2.UI.resources.dll_1"/>
+    <ROW Component="DevExpress.Utils.v15.2.UI.resources.dl_2" ComponentId="{B901DF45-D899-4347-B603-7591EEE709B0}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.Utils.v15.2.UI.resources.dll_2"/>
+    <ROW Component="DevExpress.Utils.v15.2.UI.resources.dl_3" ComponentId="{6973510B-4803-4515-8964-BC6030CF4FDA}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.Utils.v15.2.UI.resources.dll_3"/>
+    <ROW Component="DevExpress.Utils.v15.2.UI.resources.dll" ComponentId="{6A0AE298-4644-4FDC-A5CE-71FC24139F39}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.Utils.v15.2.UI.resources.dll"/>
+    <ROW Component="DevExpress.Utils.v15.2.dll" ComponentId="{39A3ADBC-C03A-427B-BE92-9336E9469EC9}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Utils.v15.2.dll"/>
+    <ROW Component="DevExpress.Utils.v15.2.resources.dll" ComponentId="{5E454E74-DC4D-4292-BB99-DB1144725B83}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.Utils.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.Utils.v15.2.resources.dll_1" ComponentId="{FAB32277-684A-4D18-BAFF-CADCA40E8450}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.Utils.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.Utils.v15.2.resources.dll_2" ComponentId="{B5AA4F2B-31AE-4032-A45E-44D4FCA39439}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.Utils.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.Utils.v15.2.resources.dll_3" ComponentId="{82C24D59-9C0F-46CB-B53E-E1688E2FE1E5}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.Utils.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraBars.v15.2.dll" ComponentId="{DCE1B931-C0BF-4AF2-AC8F-5FE2564845B5}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraBars.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraBars.v15.2.resources.dl_1" ComponentId="{7E27DF18-484D-4254-A105-3C8B52FDF9FD}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraBars.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraBars.v15.2.resources.dl_2" ComponentId="{B8E0B613-E6BB-4080-988D-51144889BC0D}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraBars.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraBars.v15.2.resources.dl_3" ComponentId="{C74B925B-4AD8-489D-8959-A9BDA66DFFF1}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraBars.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraBars.v15.2.resources.dll" ComponentId="{75EFC90C-DE97-43BA-9EEC-9E58344D8156}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraBars.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.UI.dll" ComponentId="{B4C3A1B4-9B67-4B5D-B64C-506AA1D16D01}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.UI.dll"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.Wizard.dll" ComponentId="{CF1FA3A4-5FAE-4E70-BDFE-79B4C292858F}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.Wizard.dll"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.Wizard.res_1" ComponentId="{CC1585BF-FE96-4D48-A917-7297374A00F8}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.Wizard.res_2" ComponentId="{AE003AE3-CE7F-439D-98A8-0527F1EB9BBD}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.Wizard.res_3" ComponentId="{5557BDA6-27DD-4B90-8AB0-3EFA9E1EDFD2}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.Wizard.resou" ComponentId="{585FB067-96B5-4D8F-A0D3-A3B6E1980852}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.Wizard.resources.dll"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.dll" ComponentId="{C28CA950-E2C1-4729-BCA0-9174A5A044F2}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.resources._1" ComponentId="{58139E53-1FB7-44E1-A3D8-6DCB84066723}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.resources._2" ComponentId="{5A7DD74A-74AA-402F-9DCD-3E6AE29AF59D}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.resources._3" ComponentId="{6D988670-D1D4-4A63-8A31-EC8BFFB61307}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraCharts.v15.2.resources.dl" ComponentId="{D9CB6DBD-4424-49F7-B2C4-6C26D1E04F20}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraCharts.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraEditors.v15.2.dll" ComponentId="{5E79506E-11A4-415D-A8BD-49177801F414}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraEditors.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraEditors.v15.2.resources.d" ComponentId="{09C9ECCD-52D5-4753-8903-EC589F39587B}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraEditors.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraEditors.v15.2.resources_1" ComponentId="{616DFE31-C72D-4FBE-B050-0602EE3AB35A}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraEditors.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraEditors.v15.2.resources_2" ComponentId="{8980C202-FA6D-4D90-9045-58B9109C2AA0}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraEditors.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraEditors.v15.2.resources_3" ComponentId="{E987FEE0-0EA9-4932-A58C-33B043B9C6B3}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraEditors.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraGrid.v15.2.dll" ComponentId="{7ED7842C-734B-40F8-A352-3A2BE52F54FF}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraGrid.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraGrid.v15.2.resources.dl_1" ComponentId="{112C2905-E3EE-461E-9E02-D62085BE8E9D}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraGrid.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraGrid.v15.2.resources.dl_2" ComponentId="{293E7970-381A-4E71-A51D-0A9DBD275821}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraGrid.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraGrid.v15.2.resources.dl_3" ComponentId="{7AB4BA24-A6EB-45F4-9612-A532492C87B5}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraGrid.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraGrid.v15.2.resources.dll" ComponentId="{2124ED84-DFDB-4925-9F3F-59E8C4A1E21F}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraGrid.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraLayout.v15.2.dll" ComponentId="{EF3BFF3C-4616-4D13-BF57-4CD1EB9D6455}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraLayout.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraLayout.v15.2.resources._1" ComponentId="{C54D7D35-6724-4B6B-A02D-37100B54BC0B}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraLayout.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraLayout.v15.2.resources._2" ComponentId="{9BFB7B8E-61DA-4286-B2E9-F7568644C7F0}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraLayout.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraLayout.v15.2.resources._3" ComponentId="{12D9D361-EEFB-470A-B890-FD2794590B7C}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraLayout.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraLayout.v15.2.resources.dl" ComponentId="{199C4294-A9B8-4E87-8F27-4B706C7E15E2}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraLayout.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraNavBar.v15.2.dll" ComponentId="{D0E13F06-B827-4512-A7FF-8C2370567E7C}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraNavBar.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraNavBar.v15.2.resources._1" ComponentId="{C91A65FC-2C17-4800-AA48-CC43006B8103}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraNavBar.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraNavBar.v15.2.resources._2" ComponentId="{A006B783-99A1-4D06-BFAE-89487233CADC}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraNavBar.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraNavBar.v15.2.resources._3" ComponentId="{DF5AA4FA-7DDB-426E-B284-7A092DFD4E64}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraNavBar.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraNavBar.v15.2.resources.dl" ComponentId="{6D1AE656-B493-4E05-94E3-5E2C5E6E7AE4}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraNavBar.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraPrinting.v15.2.dll" ComponentId="{928BCF8A-F8B1-4C9A-B21C-402B33B4B72C}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraPrinting.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraPrinting.v15.2.resource_1" ComponentId="{DBE27604-9C4A-491C-8618-75F364C2382C}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraPrinting.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraPrinting.v15.2.resource_2" ComponentId="{8F777AC8-1D7E-4312-AA28-A280DF30B384}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraPrinting.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraPrinting.v15.2.resource_3" ComponentId="{119BE57C-8742-4387-A440-A027520D33AE}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraPrinting.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraPrinting.v15.2.resources." ComponentId="{3615A5B5-24E3-463F-9181-E7DD507AE272}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraPrinting.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraRichEdit.v15.2.dll" ComponentId="{E7E9F83D-4311-4BDD-9543-20ACB9A76954}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraRichEdit.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraRichEdit.v15.2.resource_1" ComponentId="{AB7B5267-7B6D-454B-93C7-9F22E52C64A3}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraRichEdit.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraRichEdit.v15.2.resource_2" ComponentId="{62BF9046-776E-4892-A10D-37E0243799E7}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraRichEdit.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraRichEdit.v15.2.resource_3" ComponentId="{315999C7-0A8B-41F8-85F0-392F55CC1FA8}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraRichEdit.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraRichEdit.v15.2.resources." ComponentId="{AAB0B83A-C691-4BC8-B2E5-2AC8126003BD}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraRichEdit.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraTreeList.v15.2.dll" ComponentId="{C070E40B-69C5-4E3D-B245-9A2C3CF5F28F}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraTreeList.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraTreeList.v15.2.resource_1" ComponentId="{9083AF35-5E54-4D87-B044-19BAABF4DD92}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraTreeList.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraTreeList.v15.2.resource_2" ComponentId="{2FE22B57-4F6B-4FDA-AFD9-DDF0AA841999}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraTreeList.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraTreeList.v15.2.resource_3" ComponentId="{562EA49F-D44A-4BAB-92CE-70584463577A}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraTreeList.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraTreeList.v15.2.resources." ComponentId="{75886162-48F8-4A5E-9705-E44657EB4B76}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraTreeList.v15.2.resources.dll"/>
+    <ROW Component="DevExpress.XtraVerticalGrid.v15.2.dll" ComponentId="{DF818FD9-81B8-4A84-95E9-D234F35E6CAF}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraVerticalGrid.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraVerticalGrid.v15.2.reso_1" ComponentId="{9E4E4704-6E42-47D8-B878-3C35B23384E6}" Directory_="es_Dir" Attributes="0" KeyPath="DevExpress.XtraVerticalGrid.v15.2.resources.dll_1"/>
+    <ROW Component="DevExpress.XtraVerticalGrid.v15.2.reso_2" ComponentId="{D237D967-A795-4867-83ED-653282672B72}" Directory_="ja_Dir" Attributes="0" KeyPath="DevExpress.XtraVerticalGrid.v15.2.resources.dll_2"/>
+    <ROW Component="DevExpress.XtraVerticalGrid.v15.2.reso_3" ComponentId="{73BEFDC5-265D-4AE5-BABE-26C15791B6B3}" Directory_="ru_Dir" Attributes="0" KeyPath="DevExpress.XtraVerticalGrid.v15.2.resources.dll_3"/>
+    <ROW Component="DevExpress.XtraVerticalGrid.v15.2.resour" ComponentId="{C3D1A65A-FD94-4A86-8FD8-A1A18D135AAA}" Directory_="de_Dir" Attributes="0" KeyPath="DevExpress.XtraVerticalGrid.v15.2.resources.dll"/>
+    <ROW Component="IRAP.AutoUpgrade.dll" ComponentId="{ADC1F39F-D39B-4AB3-810A-1C7112CF506A}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.AutoUpgrade.dll"/>
+    <ROW Component="IRAP.AutoUpgrade.resources.dll" ComponentId="{257E4DB5-AAE2-457D-A733-245E0781EED1}" Directory_="enUS_Dir" Attributes="0" KeyPath="IRAP.AutoUpgrade.resources.dll"/>
+    <ROW Component="IRAP.Client.Global.Resources.dll" ComponentId="{819BDA1A-6B4D-4E92-BA8F-C44803A040DE}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Client.Global.Resources.dll"/>
+    <ROW Component="IRAP.Client.Global.dll" ComponentId="{C429FEFD-EEF0-40A7-B67C-2B45716B5768}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Client.Global.dll"/>
+    <ROW Component="IRAP.Entity.FVS.dll" ComponentId="{9E164DBD-8459-430D-8C49-FC4BD761179F}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Entity.FVS.dll"/>
+    <ROW Component="IRAP.Entity.Kanban.dll" ComponentId="{9CDCDAA9-F686-4942-B2F4-A18A5140F827}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Entity.Kanban.dll"/>
+    <ROW Component="IRAP.Entity.MDM.dll" ComponentId="{DCEC77A1-15C9-4216-B100-8137F169BD10}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Entity.MDM.dll"/>
+    <ROW Component="IRAP.Entity.MES.dll" ComponentId="{BA10A34B-2AC8-452D-9031-0B25B0F754C8}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Entity.MES.dll"/>
+    <ROW Component="IRAP.Entity.SSO.dll" ComponentId="{0897228B-9866-4CC5-82AD-8C7C04468342}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Entity.SSO.dll"/>
+    <ROW Component="IRAP.Global.dll" ComponentId="{AD9CAC5D-554E-4E16-8DD6-42A677F7776C}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Global.dll"/>
+    <ROW Component="IRAP.WCF.Client.Method.dll" ComponentId="{47B1B707-FEFA-4A72-898E-02C9966E3584}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.WCF.Client.Method.dll"/>
+    <ROW Component="IRAP.WCF.Client.dll" ComponentId="{6C367A70-9518-4A32-AD90-CFF27F8B5128}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.WCF.Client.dll"/>
+    <ROW Component="IRAPFVS_LSSIVO.exe" ComponentId="{E45EC0E6-79DC-4E43-BAA7-963C02CA5C17}" Directory_="APPDIR" Attributes="0" KeyPath="IRAPFVS_LSSIVO.exe"/>
+    <ROW Component="IRAPShared.dll" ComponentId="{C5A6747A-265D-468E-BBAD-80CFF2787DD9}" Directory_="APPDIR" Attributes="0" KeyPath="IRAPShared.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{3DDB4567-34F7-4962-BD2D-A347BA594237}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="Oracle.DataAccess.dll" ComponentId="{029E535D-3850-452E-A688-BA584107B727}" Directory_="APPDIR" Attributes="256" KeyPath="Oracle.DataAccess.dll"/>
+    <ROW Component="ProductInformation" ComponentId="{B2D5872A-62BB-4F47-B534-E06D889C1278}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{71DDF8D0-7D19-4964-A59A-575C2B93C148}" Directory_="SHORTCUTDIR" Attributes="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_ExePath DevExpress.Charts.v15.2.Core.dll DevExpress.Data.v15.2.dll DevExpress.Data.v15.2.resources.dll DevExpress.Data.v15.2.resources.dll_1 DevExpress.Data.v15.2.resources.dll_2 DevExpress.Data.v15.2.resources.dll_3 DevExpress.Data.v15.2.xml DevExpress.Office.v15.2.Core.dll DevExpress.Office.v15.2.Core.resources.d DevExpress.Office.v15.2.Core.resources_1 DevExpress.Office.v15.2.Core.resources_2 DevExpress.Office.v15.2.Core.resources_3 DevExpress.Pdf.v15.2.Core.dll DevExpress.Pdf.v15.2.Core.resources.dl_1 DevExpress.Pdf.v15.2.Core.resources.dl_2 DevExpress.Pdf.v15.2.Core.resources.dl_3 DevExpress.Pdf.v15.2.Core.resources.dll DevExpress.Pdf.v15.2.Drawing.dll DevExpress.Printing.v15.2.Core.dll DevExpress.Printing.v15.2.Core.resourc_1 DevExpress.Printing.v15.2.Core.resourc_2 DevExpress.Printing.v15.2.Core.resourc_3 DevExpress.Printing.v15.2.Core.resources DevExpress.RichEdit.v15.2.Core.dll DevExpress.RichEdit.v15.2.Core.resourc_1 DevExpress.RichEdit.v15.2.Core.resourc_2 DevExpress.RichEdit.v15.2.Core.resourc_3 DevExpress.RichEdit.v15.2.Core.resources DevExpress.Sparkline.v15.2.Core.dll DevExpress.Sparkline.v15.2.Core.resour_1 DevExpress.Sparkline.v15.2.Core.resour_2 DevExpress.Sparkline.v15.2.Core.resour_3 DevExpress.Sparkline.v15.2.Core.resource DevExpress.Utils.v15.2.UI.dll DevExpress.Utils.v15.2.UI.resources.dl_1 DevExpress.Utils.v15.2.UI.resources.dl_2 DevExpress.Utils.v15.2.UI.resources.dl_3 DevExpress.Utils.v15.2.UI.resources.dll DevExpress.Utils.v15.2.dll DevExpress.Utils.v15.2.resources.dll DevExpress.Utils.v15.2.resources.dll_1 DevExpress.Utils.v15.2.resources.dll_2 DevExpress.Utils.v15.2.resources.dll_3 DevExpress.XtraBars.v15.2.dll DevExpress.XtraBars.v15.2.resources.dl_1 DevExpress.XtraBars.v15.2.resources.dl_2 DevExpress.XtraBars.v15.2.resources.dl_3 DevExpress.XtraBars.v15.2.resources.dll DevExpress.XtraCharts.v15.2.UI.dll DevExpress.XtraCharts.v15.2.Wizard.dll DevExpress.XtraCharts.v15.2.Wizard.res_1 DevExpress.XtraCharts.v15.2.Wizard.res_2 DevExpress.XtraCharts.v15.2.Wizard.res_3 DevExpress.XtraCharts.v15.2.Wizard.resou DevExpress.XtraCharts.v15.2.dll DevExpress.XtraCharts.v15.2.resources._1 DevExpress.XtraCharts.v15.2.resources._2 DevExpress.XtraCharts.v15.2.resources._3 DevExpress.XtraCharts.v15.2.resources.dl DevExpress.XtraEditors.v15.2.dll DevExpress.XtraEditors.v15.2.resources.d DevExpress.XtraEditors.v15.2.resources_1 DevExpress.XtraEditors.v15.2.resources_2 DevExpress.XtraEditors.v15.2.resources_3 DevExpress.XtraGrid.v15.2.dll DevExpress.XtraGrid.v15.2.resources.dl_1 DevExpress.XtraGrid.v15.2.resources.dl_2 DevExpress.XtraGrid.v15.2.resources.dl_3 DevExpress.XtraGrid.v15.2.resources.dll DevExpress.XtraLayout.v15.2.dll DevExpress.XtraLayout.v15.2.resources._1 DevExpress.XtraLayout.v15.2.resources._2 DevExpress.XtraLayout.v15.2.resources._3 DevExpress.XtraLayout.v15.2.resources.dl DevExpress.XtraNavBar.v15.2.dll DevExpress.XtraNavBar.v15.2.resources._1 DevExpress.XtraNavBar.v15.2.resources._2 DevExpress.XtraNavBar.v15.2.resources._3 DevExpress.XtraNavBar.v15.2.resources.dl DevExpress.XtraPrinting.v15.2.dll DevExpress.XtraPrinting.v15.2.resource_1 DevExpress.XtraPrinting.v15.2.resource_2 DevExpress.XtraPrinting.v15.2.resource_3 DevExpress.XtraPrinting.v15.2.resources. DevExpress.XtraRichEdit.v15.2.dll DevExpress.XtraRichEdit.v15.2.resource_1 DevExpress.XtraRichEdit.v15.2.resource_2 DevExpress.XtraRichEdit.v15.2.resource_3 DevExpress.XtraRichEdit.v15.2.resources. DevExpress.XtraTreeList.v15.2.dll DevExpress.XtraTreeList.v15.2.resource_1 DevExpress.XtraTreeList.v15.2.resource_2 DevExpress.XtraTreeList.v15.2.resource_3 DevExpress.XtraTreeList.v15.2.resources. DevExpress.XtraVerticalGrid.v15.2.dll DevExpress.XtraVerticalGrid.v15.2.reso_1 DevExpress.XtraVerticalGrid.v15.2.reso_2 DevExpress.XtraVerticalGrid.v15.2.reso_3 DevExpress.XtraVerticalGrid.v15.2.resour IRAP.AutoUpgrade.dll IRAP.AutoUpgrade.resources.dll IRAP.Client.Global.Resources.dll IRAP.Client.Global.dll IRAP.Entity.FVS.dll IRAP.Entity.Kanban.dll IRAP.Entity.MDM.dll IRAP.Entity.MES.dll IRAP.Entity.SSO.dll IRAP.Global.dll IRAP.WCF.Client.Method.dll IRAP.WCF.Client.dll IRAPFVS_LSSIVO.exe IRAPShared.dll Newtonsoft.Json.dll Oracle.DataAccess.dll ProductInformation SHORTCUTDIR"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="DevExpress.Charts.v15.2.Core.dll" Component_="DevExpress.Charts.v15.2.Core.dll" FileName="DEVEXP~1.DLL|DevExpress.Charts.v15.2.Core.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Charts.v15.2.Core.dll" SelfReg="false" NextFile="DevExpress.Data.v15.2.dll"/>
+    <ROW File="DevExpress.Data.v15.2.dll" Component_="DevExpress.Data.v15.2.dll" FileName="DEVEXP~2.DLL|DevExpress.Data.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Data.v15.2.dll" SelfReg="false" NextFile="DevExpress.Data.v15.2.xml"/>
+    <ROW File="DevExpress.Data.v15.2.resources.dll" Component_="DevExpress.Data.v15.2.resources.dll" FileName="DEVEXP~1.DLL|DevExpress.Data.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.Data.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Office.v15.2.Core.resources.dll"/>
+    <ROW File="DevExpress.Data.v15.2.resources.dll_1" Component_="DevExpress.Data.v15.2.resources.dll_1" FileName="DEVEXP~1.DLL|DevExpress.Data.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.Data.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Office.v15.2.Core.resources.dll_1"/>
+    <ROW File="DevExpress.Data.v15.2.resources.dll_2" Component_="DevExpress.Data.v15.2.resources.dll_2" FileName="DEVEXP~1.DLL|DevExpress.Data.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.Data.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Office.v15.2.Core.resources.dll_2"/>
+    <ROW File="DevExpress.Data.v15.2.resources.dll_3" Component_="DevExpress.Data.v15.2.resources.dll_3" FileName="DEVEXP~1.DLL|DevExpress.Data.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.Data.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Office.v15.2.Core.resources.dll_3"/>
+    <ROW File="DevExpress.Data.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~1.XML|DevExpress.Data.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Data.v15.2.xml" SelfReg="false" NextFile="DevExpress.Office.v15.2.Core.dll"/>
+    <ROW File="DevExpress.Office.v15.2.Core.dll" Component_="DevExpress.Office.v15.2.Core.dll" FileName="DEVEXP~3.DLL|DevExpress.Office.v15.2.Core.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Office.v15.2.Core.dll" SelfReg="false" NextFile="DevExpress.Office.v15.2.Core.xml"/>
+    <ROW File="DevExpress.Office.v15.2.Core.resources.dll" Component_="DevExpress.Office.v15.2.Core.resources.d" FileName="DEVEXP~2.DLL|DevExpress.Office.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.Office.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Pdf.v15.2.Core.resources.dll"/>
+    <ROW File="DevExpress.Office.v15.2.Core.resources.dll_1" Component_="DevExpress.Office.v15.2.Core.resources_1" FileName="DEVEXP~2.DLL|DevExpress.Office.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.Office.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Pdf.v15.2.Core.resources.dll_1"/>
+    <ROW File="DevExpress.Office.v15.2.Core.resources.dll_2" Component_="DevExpress.Office.v15.2.Core.resources_2" FileName="DEVEXP~2.DLL|DevExpress.Office.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.Office.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Pdf.v15.2.Core.resources.dll_2"/>
+    <ROW File="DevExpress.Office.v15.2.Core.resources.dll_3" Component_="DevExpress.Office.v15.2.Core.resources_3" FileName="DEVEXP~2.DLL|DevExpress.Office.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.Office.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Pdf.v15.2.Core.resources.dll_3"/>
+    <ROW File="DevExpress.Office.v15.2.Core.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~2.XML|DevExpress.Office.v15.2.Core.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Office.v15.2.Core.xml" SelfReg="false" NextFile="DevExpress.Pdf.v15.2.Core.dll"/>
+    <ROW File="DevExpress.Pdf.v15.2.Core.dll" Component_="DevExpress.Pdf.v15.2.Core.dll" FileName="DEVEXP~4.DLL|DevExpress.Pdf.v15.2.Core.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Pdf.v15.2.Core.dll" SelfReg="false" NextFile="DevExpress.Pdf.v15.2.Core.xml"/>
+    <ROW File="DevExpress.Pdf.v15.2.Core.resources.dll" Component_="DevExpress.Pdf.v15.2.Core.resources.dll" FileName="DEVEXP~3.DLL|DevExpress.Pdf.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.Pdf.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Printing.v15.2.Core.resources.dll"/>
+    <ROW File="DevExpress.Pdf.v15.2.Core.resources.dll_1" Component_="DevExpress.Pdf.v15.2.Core.resources.dl_1" FileName="DEVEXP~3.DLL|DevExpress.Pdf.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.Pdf.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Printing.v15.2.Core.resources.dll_1"/>
+    <ROW File="DevExpress.Pdf.v15.2.Core.resources.dll_2" Component_="DevExpress.Pdf.v15.2.Core.resources.dl_2" FileName="DEVEXP~3.DLL|DevExpress.Pdf.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.Pdf.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Printing.v15.2.Core.resources.dll_2"/>
+    <ROW File="DevExpress.Pdf.v15.2.Core.resources.dll_3" Component_="DevExpress.Pdf.v15.2.Core.resources.dl_3" FileName="DEVEXP~3.DLL|DevExpress.Pdf.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.Pdf.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Printing.v15.2.Core.resources.dll_3"/>
+    <ROW File="DevExpress.Pdf.v15.2.Core.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~3.XML|DevExpress.Pdf.v15.2.Core.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Pdf.v15.2.Core.xml" SelfReg="false" NextFile="DevExpress.Pdf.v15.2.Drawing.dll"/>
+    <ROW File="DevExpress.Pdf.v15.2.Drawing.dll" Component_="DevExpress.Pdf.v15.2.Drawing.dll" FileName="DEVEXP~5.DLL|DevExpress.Pdf.v15.2.Drawing.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Pdf.v15.2.Drawing.dll" SelfReg="false" NextFile="DevExpress.Pdf.v15.2.Drawing.xml"/>
+    <ROW File="DevExpress.Pdf.v15.2.Drawing.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~4.XML|DevExpress.Pdf.v15.2.Drawing.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Pdf.v15.2.Drawing.xml" SelfReg="false" NextFile="DevExpress.Printing.v15.2.Core.dll"/>
+    <ROW File="DevExpress.Printing.v15.2.Core.dll" Component_="DevExpress.Printing.v15.2.Core.dll" FileName="DEVEXP~6.DLL|DevExpress.Printing.v15.2.Core.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Printing.v15.2.Core.dll" SelfReg="false" NextFile="DevExpress.Printing.v15.2.Core.xml"/>
+    <ROW File="DevExpress.Printing.v15.2.Core.resources.dll" Component_="DevExpress.Printing.v15.2.Core.resources" FileName="DEVEXP~4.DLL|DevExpress.Printing.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.Printing.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.RichEdit.v15.2.Core.resources.dll"/>
+    <ROW File="DevExpress.Printing.v15.2.Core.resources.dll_1" Component_="DevExpress.Printing.v15.2.Core.resourc_1" FileName="DEVEXP~4.DLL|DevExpress.Printing.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.Printing.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.RichEdit.v15.2.Core.resources.dll_1"/>
+    <ROW File="DevExpress.Printing.v15.2.Core.resources.dll_2" Component_="DevExpress.Printing.v15.2.Core.resourc_2" FileName="DEVEXP~4.DLL|DevExpress.Printing.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.Printing.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.RichEdit.v15.2.Core.resources.dll_2"/>
+    <ROW File="DevExpress.Printing.v15.2.Core.resources.dll_3" Component_="DevExpress.Printing.v15.2.Core.resourc_3" FileName="DEVEXP~4.DLL|DevExpress.Printing.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.Printing.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.RichEdit.v15.2.Core.resources.dll_3"/>
+    <ROW File="DevExpress.Printing.v15.2.Core.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~5.XML|DevExpress.Printing.v15.2.Core.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Printing.v15.2.Core.xml" SelfReg="false" NextFile="DevExpress.RichEdit.v15.2.Core.dll"/>
+    <ROW File="DevExpress.RichEdit.v15.2.Core.dll" Component_="DevExpress.RichEdit.v15.2.Core.dll" FileName="DEVEXP~7.DLL|DevExpress.RichEdit.v15.2.Core.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.RichEdit.v15.2.Core.dll" SelfReg="false" NextFile="DevExpress.RichEdit.v15.2.Core.xml"/>
+    <ROW File="DevExpress.RichEdit.v15.2.Core.resources.dll" Component_="DevExpress.RichEdit.v15.2.Core.resources" FileName="DEVEXP~5.DLL|DevExpress.RichEdit.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.RichEdit.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Sparkline.v15.2.Core.resources.dll"/>
+    <ROW File="DevExpress.RichEdit.v15.2.Core.resources.dll_1" Component_="DevExpress.RichEdit.v15.2.Core.resourc_1" FileName="DEVEXP~5.DLL|DevExpress.RichEdit.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.RichEdit.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Sparkline.v15.2.Core.resources.dll_1"/>
+    <ROW File="DevExpress.RichEdit.v15.2.Core.resources.dll_2" Component_="DevExpress.RichEdit.v15.2.Core.resourc_2" FileName="DEVEXP~5.DLL|DevExpress.RichEdit.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.RichEdit.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Sparkline.v15.2.Core.resources.dll_2"/>
+    <ROW File="DevExpress.RichEdit.v15.2.Core.resources.dll_3" Component_="DevExpress.RichEdit.v15.2.Core.resourc_3" FileName="DEVEXP~5.DLL|DevExpress.RichEdit.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.RichEdit.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Sparkline.v15.2.Core.resources.dll_3"/>
+    <ROW File="DevExpress.RichEdit.v15.2.Core.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~6.XML|DevExpress.RichEdit.v15.2.Core.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.RichEdit.v15.2.Core.xml" SelfReg="false" NextFile="DevExpress.Sparkline.v15.2.Core.dll"/>
+    <ROW File="DevExpress.Sparkline.v15.2.Core.dll" Component_="DevExpress.Sparkline.v15.2.Core.dll" FileName="DEVEXP~8.DLL|DevExpress.Sparkline.v15.2.Core.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Sparkline.v15.2.Core.dll" SelfReg="false" NextFile="DevExpress.Sparkline.v15.2.Core.xml"/>
+    <ROW File="DevExpress.Sparkline.v15.2.Core.resources.dll" Component_="DevExpress.Sparkline.v15.2.Core.resource" FileName="DEVEXP~6.DLL|DevExpress.Sparkline.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.Sparkline.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.resources.dll"/>
+    <ROW File="DevExpress.Sparkline.v15.2.Core.resources.dll_1" Component_="DevExpress.Sparkline.v15.2.Core.resour_1" FileName="DEVEXP~6.DLL|DevExpress.Sparkline.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.Sparkline.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.Sparkline.v15.2.Core.resources.dll_2" Component_="DevExpress.Sparkline.v15.2.Core.resour_2" FileName="DEVEXP~6.DLL|DevExpress.Sparkline.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.Sparkline.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.Sparkline.v15.2.Core.resources.dll_3" Component_="DevExpress.Sparkline.v15.2.Core.resour_3" FileName="DEVEXP~6.DLL|DevExpress.Sparkline.v15.2.Core.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.Sparkline.v15.2.Core.resources.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.Sparkline.v15.2.Core.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~7.XML|DevExpress.Sparkline.v15.2.Core.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Sparkline.v15.2.Core.xml" SelfReg="false" NextFile="DevExpress.Utils.v15.2.dll"/>
+    <ROW File="DevExpress.Utils.v15.2.UI.dll" Component_="DevExpress.Utils.v15.2.UI.dll" FileName="DEVEX~10.DLL|DevExpress.Utils.v15.2.UI.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Utils.v15.2.UI.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.UI.xml"/>
+    <ROW File="DevExpress.Utils.v15.2.UI.resources.dll" Component_="DevExpress.Utils.v15.2.UI.resources.dll" FileName="DEVEXP~8.DLL|DevExpress.Utils.v15.2.UI.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.Utils.v15.2.UI.resources.dll" SelfReg="false" NextFile="DevExpress.XtraBars.v15.2.resources.dll"/>
+    <ROW File="DevExpress.Utils.v15.2.UI.resources.dll_1" Component_="DevExpress.Utils.v15.2.UI.resources.dl_1" FileName="DEVEXP~8.DLL|DevExpress.Utils.v15.2.UI.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.Utils.v15.2.UI.resources.dll" SelfReg="false" NextFile="DevExpress.XtraBars.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.Utils.v15.2.UI.resources.dll_2" Component_="DevExpress.Utils.v15.2.UI.resources.dl_2" FileName="DEVEXP~8.DLL|DevExpress.Utils.v15.2.UI.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.Utils.v15.2.UI.resources.dll" SelfReg="false" NextFile="DevExpress.XtraBars.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.Utils.v15.2.UI.resources.dll_3" Component_="DevExpress.Utils.v15.2.UI.resources.dl_3" FileName="DEVEXP~8.DLL|DevExpress.Utils.v15.2.UI.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.Utils.v15.2.UI.resources.dll" SelfReg="false" NextFile="DevExpress.XtraBars.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.Utils.v15.2.UI.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~8.XML|DevExpress.Utils.v15.2.UI.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Utils.v15.2.UI.xml" SelfReg="false" NextFile="DevExpress.Utils.v15.2.xml"/>
+    <ROW File="DevExpress.Utils.v15.2.dll" Component_="DevExpress.Utils.v15.2.dll" FileName="DEVEXP~9.DLL|DevExpress.Utils.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Utils.v15.2.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.UI.dll"/>
+    <ROW File="DevExpress.Utils.v15.2.resources.dll" Component_="DevExpress.Utils.v15.2.resources.dll" FileName="DEVEXP~7.DLL|DevExpress.Utils.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.Utils.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.UI.resources.dll"/>
+    <ROW File="DevExpress.Utils.v15.2.resources.dll_1" Component_="DevExpress.Utils.v15.2.resources.dll_1" FileName="DEVEXP~7.DLL|DevExpress.Utils.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.Utils.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.UI.resources.dll_1"/>
+    <ROW File="DevExpress.Utils.v15.2.resources.dll_2" Component_="DevExpress.Utils.v15.2.resources.dll_2" FileName="DEVEXP~7.DLL|DevExpress.Utils.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.Utils.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.UI.resources.dll_2"/>
+    <ROW File="DevExpress.Utils.v15.2.resources.dll_3" Component_="DevExpress.Utils.v15.2.resources.dll_3" FileName="DEVEXP~7.DLL|DevExpress.Utils.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.Utils.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.UI.resources.dll_3"/>
+    <ROW File="DevExpress.Utils.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~9.XML|DevExpress.Utils.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Utils.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraBars.v15.2.dll"/>
+    <ROW File="DevExpress.XtraBars.v15.2.dll" Component_="DevExpress.XtraBars.v15.2.dll" FileName="DEVEX~11.DLL|DevExpress.XtraBars.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraBars.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraBars.v15.2.xml"/>
+    <ROW File="DevExpress.XtraBars.v15.2.resources.dll" Component_="DevExpress.XtraBars.v15.2.resources.dll" FileName="DEVEXP~9.DLL|DevExpress.XtraBars.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraBars.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraBars.v15.2.resources.dll_1" Component_="DevExpress.XtraBars.v15.2.resources.dl_1" FileName="DEVEXP~9.DLL|DevExpress.XtraBars.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraBars.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraBars.v15.2.resources.dll_2" Component_="DevExpress.XtraBars.v15.2.resources.dl_2" FileName="DEVEXP~9.DLL|DevExpress.XtraBars.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraBars.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraBars.v15.2.resources.dll_3" Component_="DevExpress.XtraBars.v15.2.resources.dl_3" FileName="DEVEXP~9.DLL|DevExpress.XtraBars.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraBars.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraBars.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~10.XML|DevExpress.XtraBars.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraBars.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.dll"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.UI.dll" Component_="DevExpress.XtraCharts.v15.2.UI.dll" FileName="DEVEX~13.DLL|DevExpress.XtraCharts.v15.2.UI.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraCharts.v15.2.UI.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.UI.xml"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.UI.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~11.XML|DevExpress.XtraCharts.v15.2.UI.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraCharts.v15.2.UI.xml" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.Wizard.dll"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.Wizard.dll" Component_="DevExpress.XtraCharts.v15.2.Wizard.dll" FileName="DEVEX~14.DLL|DevExpress.XtraCharts.v15.2.Wizard.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraCharts.v15.2.Wizard.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.Wizard.xml"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.Wizard.resources.dll" Component_="DevExpress.XtraCharts.v15.2.Wizard.resou" FileName="DEVEX~11.DLL|DevExpress.XtraCharts.v15.2.Wizard.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraCharts.v15.2.Wizard.resources.dll" SelfReg="false" NextFile="DevExpress.XtraEditors.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_1" Component_="DevExpress.XtraCharts.v15.2.Wizard.res_1" FileName="DEVEX~11.DLL|DevExpress.XtraCharts.v15.2.Wizard.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraCharts.v15.2.Wizard.resources.dll" SelfReg="false" NextFile="DevExpress.XtraEditors.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_2" Component_="DevExpress.XtraCharts.v15.2.Wizard.res_2" FileName="DEVEX~11.DLL|DevExpress.XtraCharts.v15.2.Wizard.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraCharts.v15.2.Wizard.resources.dll" SelfReg="false" NextFile="DevExpress.XtraEditors.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_3" Component_="DevExpress.XtraCharts.v15.2.Wizard.res_3" FileName="DEVEX~11.DLL|DevExpress.XtraCharts.v15.2.Wizard.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraCharts.v15.2.Wizard.resources.dll" SelfReg="false" NextFile="DevExpress.XtraEditors.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.Wizard.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~12.XML|DevExpress.XtraCharts.v15.2.Wizard.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraCharts.v15.2.Wizard.xml" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.xml"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.dll" Component_="DevExpress.XtraCharts.v15.2.dll" FileName="DEVEX~12.DLL|DevExpress.XtraCharts.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraCharts.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.UI.dll"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.resources.dll" Component_="DevExpress.XtraCharts.v15.2.resources.dl" FileName="DEVEX~10.DLL|DevExpress.XtraCharts.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraCharts.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.Wizard.resources.dll"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.resources.dll_1" Component_="DevExpress.XtraCharts.v15.2.resources._1" FileName="DEVEX~10.DLL|DevExpress.XtraCharts.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraCharts.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_1"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.resources.dll_2" Component_="DevExpress.XtraCharts.v15.2.resources._2" FileName="DEVEX~10.DLL|DevExpress.XtraCharts.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraCharts.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_2"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.resources.dll_3" Component_="DevExpress.XtraCharts.v15.2.resources._3" FileName="DEVEX~10.DLL|DevExpress.XtraCharts.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraCharts.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraCharts.v15.2.Wizard.resources.dll_3"/>
+    <ROW File="DevExpress.XtraCharts.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~13.XML|DevExpress.XtraCharts.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraCharts.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraEditors.v15.2.dll"/>
+    <ROW File="DevExpress.XtraEditors.v15.2.dll" Component_="DevExpress.XtraEditors.v15.2.dll" FileName="DEVEX~15.DLL|DevExpress.XtraEditors.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraEditors.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraEditors.v15.2.xml"/>
+    <ROW File="DevExpress.XtraEditors.v15.2.resources.dll" Component_="DevExpress.XtraEditors.v15.2.resources.d" FileName="DEVEX~12.DLL|DevExpress.XtraEditors.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraEditors.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraGrid.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraEditors.v15.2.resources.dll_1" Component_="DevExpress.XtraEditors.v15.2.resources_1" FileName="DEVEX~12.DLL|DevExpress.XtraEditors.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraEditors.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraGrid.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraEditors.v15.2.resources.dll_2" Component_="DevExpress.XtraEditors.v15.2.resources_2" FileName="DEVEX~12.DLL|DevExpress.XtraEditors.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraEditors.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraGrid.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraEditors.v15.2.resources.dll_3" Component_="DevExpress.XtraEditors.v15.2.resources_3" FileName="DEVEX~12.DLL|DevExpress.XtraEditors.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraEditors.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraGrid.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraEditors.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~14.XML|DevExpress.XtraEditors.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraEditors.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraGrid.v15.2.dll"/>
+    <ROW File="DevExpress.XtraGrid.v15.2.dll" Component_="DevExpress.XtraGrid.v15.2.dll" FileName="DEVEX~16.DLL|DevExpress.XtraGrid.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraGrid.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraGrid.v15.2.xml"/>
+    <ROW File="DevExpress.XtraGrid.v15.2.resources.dll" Component_="DevExpress.XtraGrid.v15.2.resources.dll" FileName="DEVEX~13.DLL|DevExpress.XtraGrid.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraGrid.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraLayout.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraGrid.v15.2.resources.dll_1" Component_="DevExpress.XtraGrid.v15.2.resources.dl_1" FileName="DEVEX~13.DLL|DevExpress.XtraGrid.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraGrid.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraLayout.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraGrid.v15.2.resources.dll_2" Component_="DevExpress.XtraGrid.v15.2.resources.dl_2" FileName="DEVEX~13.DLL|DevExpress.XtraGrid.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraGrid.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraLayout.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraGrid.v15.2.resources.dll_3" Component_="DevExpress.XtraGrid.v15.2.resources.dl_3" FileName="DEVEX~13.DLL|DevExpress.XtraGrid.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraGrid.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraLayout.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraGrid.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~15.XML|DevExpress.XtraGrid.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraGrid.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraLayout.v15.2.dll"/>
+    <ROW File="DevExpress.XtraLayout.v15.2.dll" Component_="DevExpress.XtraLayout.v15.2.dll" FileName="DEVEX~17.DLL|DevExpress.XtraLayout.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraLayout.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraLayout.v15.2.xml"/>
+    <ROW File="DevExpress.XtraLayout.v15.2.resources.dll" Component_="DevExpress.XtraLayout.v15.2.resources.dl" FileName="DEVEX~14.DLL|DevExpress.XtraLayout.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraLayout.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraNavBar.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraLayout.v15.2.resources.dll_1" Component_="DevExpress.XtraLayout.v15.2.resources._1" FileName="DEVEX~14.DLL|DevExpress.XtraLayout.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraLayout.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraNavBar.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraLayout.v15.2.resources.dll_2" Component_="DevExpress.XtraLayout.v15.2.resources._2" FileName="DEVEX~14.DLL|DevExpress.XtraLayout.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraLayout.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraNavBar.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraLayout.v15.2.resources.dll_3" Component_="DevExpress.XtraLayout.v15.2.resources._3" FileName="DEVEX~14.DLL|DevExpress.XtraLayout.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraLayout.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraNavBar.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraLayout.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~16.XML|DevExpress.XtraLayout.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraLayout.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraNavBar.v15.2.dll"/>
+    <ROW File="DevExpress.XtraNavBar.v15.2.dll" Component_="DevExpress.XtraNavBar.v15.2.dll" FileName="DEVEX~18.DLL|DevExpress.XtraNavBar.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraNavBar.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraNavBar.v15.2.xml"/>
+    <ROW File="DevExpress.XtraNavBar.v15.2.resources.dll" Component_="DevExpress.XtraNavBar.v15.2.resources.dl" FileName="DEVEX~15.DLL|DevExpress.XtraNavBar.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraNavBar.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraPrinting.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraNavBar.v15.2.resources.dll_1" Component_="DevExpress.XtraNavBar.v15.2.resources._1" FileName="DEVEX~15.DLL|DevExpress.XtraNavBar.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraNavBar.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraPrinting.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraNavBar.v15.2.resources.dll_2" Component_="DevExpress.XtraNavBar.v15.2.resources._2" FileName="DEVEX~15.DLL|DevExpress.XtraNavBar.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraNavBar.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraPrinting.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraNavBar.v15.2.resources.dll_3" Component_="DevExpress.XtraNavBar.v15.2.resources._3" FileName="DEVEX~15.DLL|DevExpress.XtraNavBar.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraNavBar.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraPrinting.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraNavBar.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~17.XML|DevExpress.XtraNavBar.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraNavBar.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraPrinting.v15.2.dll"/>
+    <ROW File="DevExpress.XtraPrinting.v15.2.dll" Component_="DevExpress.XtraPrinting.v15.2.dll" FileName="DEVEX~19.DLL|DevExpress.XtraPrinting.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraPrinting.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraPrinting.v15.2.xml"/>
+    <ROW File="DevExpress.XtraPrinting.v15.2.resources.dll" Component_="DevExpress.XtraPrinting.v15.2.resources." FileName="DEVEX~16.DLL|DevExpress.XtraPrinting.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraPrinting.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraRichEdit.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraPrinting.v15.2.resources.dll_1" Component_="DevExpress.XtraPrinting.v15.2.resource_1" FileName="DEVEX~16.DLL|DevExpress.XtraPrinting.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraPrinting.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraRichEdit.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraPrinting.v15.2.resources.dll_2" Component_="DevExpress.XtraPrinting.v15.2.resource_2" FileName="DEVEX~16.DLL|DevExpress.XtraPrinting.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraPrinting.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraRichEdit.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraPrinting.v15.2.resources.dll_3" Component_="DevExpress.XtraPrinting.v15.2.resource_3" FileName="DEVEX~16.DLL|DevExpress.XtraPrinting.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraPrinting.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraRichEdit.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraPrinting.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~18.XML|DevExpress.XtraPrinting.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraPrinting.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraRichEdit.v15.2.dll"/>
+    <ROW File="DevExpress.XtraRichEdit.v15.2.dll" Component_="DevExpress.XtraRichEdit.v15.2.dll" FileName="DEVEX~20.DLL|DevExpress.XtraRichEdit.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraRichEdit.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraRichEdit.v15.2.xml"/>
+    <ROW File="DevExpress.XtraRichEdit.v15.2.resources.dll" Component_="DevExpress.XtraRichEdit.v15.2.resources." FileName="DEVEX~17.DLL|DevExpress.XtraRichEdit.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraRichEdit.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraTreeList.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraRichEdit.v15.2.resources.dll_1" Component_="DevExpress.XtraRichEdit.v15.2.resource_1" FileName="DEVEX~17.DLL|DevExpress.XtraRichEdit.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraRichEdit.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraTreeList.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraRichEdit.v15.2.resources.dll_2" Component_="DevExpress.XtraRichEdit.v15.2.resource_2" FileName="DEVEX~17.DLL|DevExpress.XtraRichEdit.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraRichEdit.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraTreeList.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraRichEdit.v15.2.resources.dll_3" Component_="DevExpress.XtraRichEdit.v15.2.resource_3" FileName="DEVEX~17.DLL|DevExpress.XtraRichEdit.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraRichEdit.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraTreeList.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraRichEdit.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~19.XML|DevExpress.XtraRichEdit.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraRichEdit.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraTreeList.v15.2.dll"/>
+    <ROW File="DevExpress.XtraTreeList.v15.2.dll" Component_="DevExpress.XtraTreeList.v15.2.dll" FileName="DEVEX~21.DLL|DevExpress.XtraTreeList.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraTreeList.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraTreeList.v15.2.xml"/>
+    <ROW File="DevExpress.XtraTreeList.v15.2.resources.dll" Component_="DevExpress.XtraTreeList.v15.2.resources." FileName="DEVEX~18.DLL|DevExpress.XtraTreeList.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraTreeList.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraVerticalGrid.v15.2.resources.dll"/>
+    <ROW File="DevExpress.XtraTreeList.v15.2.resources.dll_1" Component_="DevExpress.XtraTreeList.v15.2.resource_1" FileName="DEVEX~18.DLL|DevExpress.XtraTreeList.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraTreeList.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraVerticalGrid.v15.2.resources.dll_1"/>
+    <ROW File="DevExpress.XtraTreeList.v15.2.resources.dll_2" Component_="DevExpress.XtraTreeList.v15.2.resource_2" FileName="DEVEX~18.DLL|DevExpress.XtraTreeList.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraTreeList.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraVerticalGrid.v15.2.resources.dll_2"/>
+    <ROW File="DevExpress.XtraTreeList.v15.2.resources.dll_3" Component_="DevExpress.XtraTreeList.v15.2.resource_3" FileName="DEVEX~18.DLL|DevExpress.XtraTreeList.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraTreeList.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.XtraVerticalGrid.v15.2.resources.dll_3"/>
+    <ROW File="DevExpress.XtraTreeList.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~20.XML|DevExpress.XtraTreeList.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraTreeList.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraVerticalGrid.v15.2.dll"/>
+    <ROW File="DevExpress.XtraVerticalGrid.v15.2.dll" Component_="DevExpress.XtraVerticalGrid.v15.2.dll" FileName="DEVEX~22.DLL|DevExpress.XtraVerticalGrid.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraVerticalGrid.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraVerticalGrid.v15.2.xml"/>
+    <ROW File="DevExpress.XtraVerticalGrid.v15.2.resources.dll" Component_="DevExpress.XtraVerticalGrid.v15.2.resour" FileName="DEVEX~19.DLL|DevExpress.XtraVerticalGrid.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\de\DevExpress.XtraVerticalGrid.v15.2.resources.dll" SelfReg="false" NextFile="DevExpress.Charts.v15.2.Core.dll"/>
+    <ROW File="DevExpress.XtraVerticalGrid.v15.2.resources.dll_1" Component_="DevExpress.XtraVerticalGrid.v15.2.reso_1" FileName="DEVEX~19.DLL|DevExpress.XtraVerticalGrid.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\es\DevExpress.XtraVerticalGrid.v15.2.resources.dll" SelfReg="false" NextFile="IRAPFVS_LSSIVO.exe"/>
+    <ROW File="DevExpress.XtraVerticalGrid.v15.2.resources.dll_2" Component_="DevExpress.XtraVerticalGrid.v15.2.reso_2" FileName="DEVEX~19.DLL|DevExpress.XtraVerticalGrid.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ja\DevExpress.XtraVerticalGrid.v15.2.resources.dll" SelfReg="false" NextFile="Newtonsoft.Json.dll"/>
+    <ROW File="DevExpress.XtraVerticalGrid.v15.2.resources.dll_3" Component_="DevExpress.XtraVerticalGrid.v15.2.reso_3" FileName="DEVEX~19.DLL|DevExpress.XtraVerticalGrid.v15.2.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\ru\DevExpress.XtraVerticalGrid.v15.2.resources.dll" SelfReg="false"/>
+    <ROW File="DevExpress.XtraVerticalGrid.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEX~21.XML|DevExpress.XtraVerticalGrid.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraVerticalGrid.v15.2.xml" SelfReg="false" NextFile="IRAP.AutoUpgrade.resources.dll"/>
+    <ROW File="IRAP.AutoUpgrade.dll" Component_="IRAP.AutoUpgrade.dll" FileName="IRAPAU~1.DLL|IRAP.AutoUpgrade.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.AutoUpgrade.dll" SelfReg="false" NextFile="IRAP.Client.Global.dll"/>
+    <ROW File="IRAP.AutoUpgrade.resources.dll" Component_="IRAP.AutoUpgrade.resources.dll" FileName="IRAPAU~1.DLL|IRAP.AutoUpgrade.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\en-US\IRAP.AutoUpgrade.resources.dll" SelfReg="false" NextFile="DevExpress.Data.v15.2.resources.dll_1"/>
+    <ROW File="IRAP.Client.Global.Resources.dll" Component_="IRAP.Client.Global.Resources.dll" FileName="IRAPCL~2.DLL|IRAP.Client.Global.Resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Client.Global.Resources.dll" SelfReg="false" NextFile="IRAP.Entity.FVS.dll"/>
+    <ROW File="IRAP.Client.Global.dll" Component_="IRAP.Client.Global.dll" FileName="IRAPCL~1.DLL|IRAP.Client.Global.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Client.Global.dll" SelfReg="false" NextFile="IRAP.Client.Global.Resources.dll"/>
+    <ROW File="IRAP.Entity.FVS.dll" Component_="IRAP.Entity.FVS.dll" FileName="IRAPEN~1.DLL|IRAP.Entity.FVS.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.FVS.dll" SelfReg="false" NextFile="IRAP.Entity.Kanban.dll"/>
+    <ROW File="IRAP.Entity.Kanban.dll" Component_="IRAP.Entity.Kanban.dll" FileName="IRAPEN~2.DLL|IRAP.Entity.Kanban.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.Kanban.dll" SelfReg="false" NextFile="IRAP.Entity.MDM.dll"/>
+    <ROW File="IRAP.Entity.MDM.dll" Component_="IRAP.Entity.MDM.dll" FileName="IRAPEN~3.DLL|IRAP.Entity.MDM.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.MDM.dll" SelfReg="false" NextFile="IRAP.Entity.MES.dll"/>
+    <ROW File="IRAP.Entity.MES.dll" Component_="IRAP.Entity.MES.dll" FileName="IRAPEN~4.DLL|IRAP.Entity.MES.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.MES.dll" SelfReg="false" NextFile="IRAP.Entity.SSO.dll"/>
+    <ROW File="IRAP.Entity.SSO.dll" Component_="IRAP.Entity.SSO.dll" FileName="IRAPEN~5.DLL|IRAP.Entity.SSO.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.SSO.dll" SelfReg="false" NextFile="IRAP.Global.dll"/>
+    <ROW File="IRAP.Global.dll" Component_="IRAP.Global.dll" FileName="IRAPGL~1.DLL|IRAP.Global.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Global.dll" SelfReg="false" NextFile="IRAP.WCF.Client.dll"/>
+    <ROW File="IRAP.WCF.Client.Method.dll" Component_="IRAP.WCF.Client.Method.dll" FileName="IRAPWC~2.DLL|IRAP.WCF.Client.Method.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.WCF.Client.Method.dll" SelfReg="false" NextFile="IRAPShared.dll"/>
+    <ROW File="IRAP.WCF.Client.dll" Component_="IRAP.WCF.Client.dll" FileName="IRAPWC~1.DLL|IRAP.WCF.Client.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.WCF.Client.dll" SelfReg="false" NextFile="IRAP.WCF.Client.Method.dll"/>
+    <ROW File="IRAPFVS_LSSIVO.exe" Component_="IRAPFVS_LSSIVO.exe" FileName="IRAP-F~1.EXE|IRAP-FVS_LSSIVO.exe" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP-FVS_LSSIVO.exe" SelfReg="false" NextFile="IRAP.AutoUpgrade.dll" DigSign="true"/>
+    <ROW File="IRAPShared.dll" Component_="IRAPShared.dll" FileName="IRAPSH~1.DLL|IRAPShared.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAPShared.dll" SelfReg="false" NextFile="DevExpress.Data.v15.2.resources.dll_2"/>
+    <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\Newtonsoft.Json.dll" SelfReg="false" NextFile="Newtonsoft.Json.xml"/>
+    <ROW File="Newtonsoft.Json.xml" Component_="DevExpress.Data.v15.2.xml" FileName="NEWTON~1.XML|Newtonsoft.Json.xml" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\Newtonsoft.Json.xml" SelfReg="false" NextFile="Oracle.DataAccess.dll"/>
+    <ROW File="Oracle.DataAccess.dll" Component_="Oracle.DataAccess.dll" FileName="ORACLE~1.DLL|Oracle.DataAccess.dll" Attributes="0" SourcePath="..\..\Bin\Client\IRAP-FVS_LSSIVO\Release\Oracle.DataAccess.dll" SelfReg="false" NextFile="DevExpress.Data.v15.2.resources.dll_3"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" GeneralOptions="b" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" EulaPathLocId="*" IntroTextPathLocId="*"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="." Languages="zh" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" UseLargeSchema="true"/>
+    <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_zh.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_DeleteLzma" Description="正在删除从档案中提取的文件" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_DeleteRLzma" Description="正在删除从档案中提取的文件" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractFiles" Description="正在从档案中提取文件" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractLzma" Description="正在从档案中提取文件" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+    <ROW Action="AI_XmlCommit" Description="Committing XML file configurations." Template="Committing XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlCommit" TemplateLocId="ActionText.Template.AI_XmlCommit"/>
+    <ROW Action="AI_XmlConfig" Description="正在执行 XML 文件配置" Template="正在配置 XML 文件: &quot;[1]&quot;" DescriptionLocId="ActionText.Description.AI_XmlConfig" TemplateLocId="ActionText.Template.AI_XmlConfig"/>
+    <ROW Action="AI_XmlInstall" Description="正在生成配置 XML 文件操作" DescriptionLocId="ActionText.Description.AI_XmlInstall"/>
+    <ROW Action="AI_XmlRemove" Description="正在执行 XML 文件配置" Template="正在配置 XML 文件: &quot;[1]&quot;" DescriptionLocId="ActionText.Description.AI_XmlRemove" TemplateLocId="ActionText.Template.AI_XmlRemove"/>
+    <ROW Action="AI_XmlRollback" Description="正在回滚 XML 文件配置" Template="正在回滚 XML 文件配置" DescriptionLocId="ActionText.Description.AI_XmlRollback" TemplateLocId="ActionText.Template.AI_XmlRollback"/>
+    <ROW Action="AI_XmlUninstall" Description="正在生成配置 XML 文件操作" DescriptionLocId="ActionText.Description.AI_XmlUninstall"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+    <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_ExtractFiles" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="[~]"/>
+    <ROW Action="AI_DATA_SETTER_2" Type="51" Source="CustomActionData" Target="[~]"/>
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DetectSoftware" Type="257" Source="SoftwareDetector.dll" Target="OnDetectSoftware"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EstimateExtractFiles" Type="1" Source="Prereq.dll" Target="EstimateExtractFiles"/>
+    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ExtractFiles" Type="1025" Source="Prereq.dll" Target="ExtractSourceFiles" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="AI_XmlCommit" Type="11777" Source="xmlCfg.dll" Target="OnXmlCommit" WithoutSeq="true"/>
+    <ROW Action="AI_XmlConfig" Type="11265" Source="xmlCfg.dll" Target="OnXmlConfig" WithoutSeq="true"/>
+    <ROW Action="AI_XmlInstall" Type="1" Source="xmlCfg.dll" Target="OnXmlInstall" AdditionalSeq="AI_DATA_SETTER_1"/>
+    <ROW Action="AI_XmlRemove" Type="11265" Source="xmlCfg.dll" Target="OnXmlRemove" WithoutSeq="true"/>
+    <ROW Action="AI_XmlRollback" Type="11521" Source="xmlCfg.dll" Target="OnXmlRollback" WithoutSeq="true"/>
+    <ROW Action="AI_XmlUninstall" Type="1" Source="xmlCfg.dll" Target="OnXmlUninstall" AdditionalSeq="AI_DATA_SETTER_2"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIniFileComponent">
+    <ROW IniFile="WriteLog" FileName="IRAP.ini" DirProperty="APPDIR" Section="Logs" Key="Write Log" Value="0" Action="0" Component_="IRAPFVS_LSSIVO.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="103" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="DefaultBuild"/>
+    <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
+    <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>
+    <ROW Action="AI_DetectSoftware" Sequence="102"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
+    <ROW Action="AI_XmlInstall" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5102"/>
+    <ROW Action="AI_DATA_SETTER_1" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5101"/>
+    <ROW Action="AI_XmlUninstall" Condition="(REMOVE)" Sequence="3102"/>
+    <ROW Action="AI_DATA_SETTER_2" Condition="(REMOVE)" Sequence="3101"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_DpiContentScale" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="103"/>
+    <ROW Action="AI_DetectSoftware" Sequence="102"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="( Version9X OR ( NOT VersionNT64 ) OR ( VersionNT64 AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &gt;= 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &lt;&gt; 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &lt;&gt; 2)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &gt;= 1)))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &lt;&gt; 1)))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &lt;&gt; 2)))) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT64Display]." DescriptionLocId="AI.LaunchCondition.NoSpecificNT64" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="( Version9X OR VersionNT64 OR ( VersionNT AND (((VersionNT &lt;&gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &gt;= 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &lt;&gt; 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &lt;&gt; 2))) OR VersionNT64) AND (((VersionNT &lt;&gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &lt;&gt; 3))) OR VersionNT64) AND (((VersionNT &lt;&gt; 502) OR ((VersionNT = 502) AND (ServicePackLevel &gt;= 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 502) OR ((VersionNT = 502) AND (ServicePackLevel &lt;&gt; 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 502) OR ((VersionNT = 502) AND (ServicePackLevel &lt;&gt; 2))) OR VersionNT64) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoSpecificNT" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] 无法安装在 [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] 无法安装在 [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="AI_DETECTED_DOTNET_VERSION &gt;= AI_REQUIRED_DOTNET_VERSION" Description="[ProductName] 无法安装在 .NET Framework 版本低于 [AI_REQUIRED_DOTNET_DISPLAY] 的系统上。" DescriptionLocId="AI.LaunchCondition.DotNET" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="This package can only be run from a bootstrapper." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] 无法安装在 [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="IRAPFVS_LSSIVO.exe" Directory_="SHORTCUTDIR" Name="IRAP-F~1.EXE|IRAP-FVS_LSSIVO.exe" Component_="IRAPFVS_LSSIVO.exe" Target="[#IRAPFVS_LSSIVO.exe]" Description="IRAP-FVS_LSSIVO.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="IRAPFVS_LSSIVO.exe_1" Directory_="DesktopFolder" Name="IRAP-F~1.EXE|IRAP-FVS_LSSIVO.exe" Component_="IRAPFVS_LSSIVO.exe" Target="[#IRAPFVS_LSSIVO.exe]" Description="IRAP-FVS_LSSIVO.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
+    <ROW PrereqKey="C673FE9433B49AFAC9592AB26B8F8E4" DisplayName=".NET Framework 4.0" SetupFileUrl="http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe" Location="1" ExactSize="50449456" WinNTVersions="Windows XP x86, Windows XP x86 Service Pack 1, Windows Server 2003 x86, Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows XP x64, Windows Server 2003 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64" Operator="1" ComLine="/qb" BasicUiComLine="/qb" NoUiComLine="/qb" Options="x" MD5="251743dfd3fda414570524bac9e55381" TargetName=".NET Framework 4.0"/>
+    <ATTRIBUTE name="PrereqsOrder" value="C673FE9433B49AFAC9592AB26B8F8E4"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
+    <ROW SearchKey="C673FE9433B49AFAC9592AB26B8F8E4Install" Prereq="C673FE9433B49AFAC9592AB26B8F8E4" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Install" RefContent="M1" Order="1" Property="PreReqSearch_C673FE9433B49AFAC9592AB26B8F8E4"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlAttributeComponent">
+    <ROW XmlAttribute="URL" XmlElement="UpgradeXXX" Name="URL" Flags="14" Order="0" Value="http://192.168.97.197:30000/IRAP/Upgrade/6.1/PC/LSSIVO/upgrade.xml"/>
+    <ROW XmlAttribute="address" XmlElement="endpoint" Name="address" Flags="14" Order="0" Value="net.tcp://192.168.97.197:16011/IRAP"/>
+    <ROW XmlAttribute="binding" XmlElement="endpoint" Name="binding" Flags="14" Order="1" Value="netTcpBinding"/>
+    <ROW XmlAttribute="bindingConfiguration" XmlElement="endpoint" Name="bindingConfiguration" Flags="14" Order="2" Value="NetTcpBinding_IServiceIRAPGlobal"/>
+    <ROW XmlAttribute="contract" XmlElement="endpoint" Name="contract" Flags="14" Order="3" Value="IRAPWCFClient.IServiceIRAPGlobal"/>
+    <ROW XmlAttribute="key" XmlElement="add" Name="key" Flags="15" Order="0" Value="Virtual Station Used"/>
+    <ROW XmlAttribute="key_1" XmlElement="add_1" Name="key" Flags="15" Order="0" Value="Virtual Station"/>
+    <ROW XmlAttribute="key_2" XmlElement="add_2" Name="key" Flags="15" Order="0" Value="Environment"/>
+    <ROW XmlAttribute="maxBufferPoolSize" XmlElement="binding" Name="maxBufferPoolSize" Flags="14" Order="1" Value="2147483647"/>
+    <ROW XmlAttribute="maxBufferSize" XmlElement="binding" Name="maxBufferSize" Flags="14" Order="2" Value="2147483647"/>
+    <ROW XmlAttribute="maxReceivedMessageSize" XmlElement="binding" Name="maxReceivedMessageSize" Flags="14" Order="3" Value="2147483647"/>
+    <ROW XmlAttribute="mode" XmlElement="security" Name="mode" Flags="14" Order="0" Value="None"/>
+    <ROW XmlAttribute="name" XmlElement="binding" Name="name" Flags="15" Order="0" Value="NetTcpBinding_IServiceIRAPGlobal"/>
+    <ROW XmlAttribute="name_1" XmlElement="endpoint" Name="name" Flags="15" Order="4" Value="NetTcpBinding_IServiceIRAPGlobal"/>
+    <ROW XmlAttribute="value" XmlElement="add" Name="value" Flags="14" Order="1" Value="false"/>
+    <ROW XmlAttribute="value_1" XmlElement="add_1" Name="value" Flags="14" Order="1" Value="C8FF28B5AD91"/>
+    <ROW XmlAttribute="value_2" XmlElement="add_2" Name="value" Flags="14" Order="1" Value="KPIDashboard"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
+    <ROW XmlElement="UpgradeXXX" ParentElement="root" Name="Upgrade" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="add" ParentElement="appSettings" Name="add" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="add_1" ParentElement="appSettings" Name="add" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="add_2" ParentElement="appSettings" Name="add" Condition="1" Order="2" Flags="14"/>
+    <ROW XmlElement="appSettings" ParentElement="configuration" Name="appSettings" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="binding" ParentElement="netTcpBinding" Name="binding" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="bindings" ParentElement="system.serviceModel" Name="bindings" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="client" ParentElement="system.serviceModel" Name="client" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="configuration" Name="configuration" Condition="1" Order="0" Flags="30"/>
+    <ROW XmlElement="endpoint" ParentElement="client" Name="endpoint" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="netTcpBinding" ParentElement="bindings" Name="netTcpBinding" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="root" Name="root" Condition="1" Order="0" Flags="30"/>
+    <ROW XmlElement="security" ParentElement="binding" Name="security" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="system.serviceModel" ParentElement="configuration" Name="system.serviceModel" Condition="1" Order="1" Flags="14"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlFileComponent">
+    <ROW XmlFile="IRAP.xml" FileName="IRAP.xml" DirProperty="APPDIR" Component="AI_ExePath" RootElement="root" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+    <ROW XmlFile="IRAPFVS_LSSIVO.exe.config" FileName="IRAP-F~1.CON|IRAP-FVS_LSSIVO.exe.config" DirProperty="APPDIR" Component="AI_ExePath" RootElement="configuration" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+  </COMPONENT>
+</DOCUMENT>

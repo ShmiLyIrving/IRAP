@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="12.7.2" version="12.7.2" Modules="enterprise" RootPath="." Language="zh" Id="{1ABB9A6E-E7BF-432A-9A56-D727C1215FFA}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="SccmComponent;ActSyncAppComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
+    <ROW Property="AI_PRODUCTNAME_ARP" Value="IRAP应用服务"/>
+    <ROW Property="AI_ThemeStyle" Value="default" MultiBuildValue="DefaultBuild:style4" MsiKey="AI_ThemeStyle"/>
+    <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="此 Installer 数据库包含了安装 [|ProductName] 所需的逻辑和数据。" ValueLocId="*"/>
+    <ROW Property="ARPNOREPAIR" Value="1"/>
+    <ROW Property="ARPPRODUCTICON" Value="mainicon.exe" Type="8"/>
+    <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
+    <ROW Property="DBAddress" Value="192.168.57.221"/>
+    <ROW Property="DBName" Value="IRAP"/>
+    <ROW Property="DBPassword" Value="irap!209420"/>
+    <ROW Property="DBUserID" Value="sa"/>
+    <ROW Property="LocalIPAddress" Value="127.0.0.1"/>
+    <ROW Property="Manufacturer" Value="江苏芍园科技有限责任公司"/>
+    <ROW Property="Port" Value="09"/>
+    <ROW Property="ProductCode" Value="2052:{A144F3C0-B392-4ED5-A57C-53584BBCAA58} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="2052"/>
+    <ROW Property="ProductName" Value="IRAP应用服务"/>
+    <ROW Property="ProductVersion" Value="6.1" Type="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{C1E7D2AF-91F6-4019-B45C-49DE6AECAFC5}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="ServiceDLLs_Dir" Directory_Parent="APPDIR" DefaultDir="SERVIC~1|ServiceDLLs"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_CustomARPName" ComponentId="{88D8B39B-4A5E-4480-BF2F-E2B5EA076DF6}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="IRAP.BL.APS.dll" ComponentId="{13C2F281-5D04-41A7-AAC7-E8DC45244EEC}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.BL.APS.dll"/>
+    <ROW Component="IRAP.BL.FVS.dll" ComponentId="{9F2697C8-22D8-4B2B-9173-B130ED815687}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.BL.FVS.dll"/>
+    <ROW Component="IRAP.BL.Kanban.dll" ComponentId="{D9AC9CBF-9019-49C5-A074-5FC9A013E195}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.BL.Kanban.dll"/>
+    <ROW Component="IRAP.BL.MDM.dll" ComponentId="{D2D0ECE5-6C53-4E63-9F03-71D73F6D686D}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.BL.MDM.dll"/>
+    <ROW Component="IRAP.BL.MES.dll" ComponentId="{8853AE3D-18BC-4B4A-98F2-24E28A2D1BFD}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.BL.MES.dll"/>
+    <ROW Component="IRAP.BL.MESRMM.dll" ComponentId="{5DF2255F-F088-4703-B1C0-F95D22E9AA0E}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.BL.MESRMM.dll"/>
+    <ROW Component="IRAP.BL.SSO.dll" ComponentId="{11AC251E-55EA-4901-8CA7-EEF7412A76B7}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.BL.SSO.dll"/>
+    <ROW Component="IRAP.BL.UTS.dll" ComponentId="{E091CC0F-0AE1-4B16-96D6-3EB044A4E9A8}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.BL.UTS.dll"/>
+    <ROW Component="IRAP.DynamicLoad.dll" ComponentId="{918E0132-CB03-4B35-9E48-1EE82FE8BEDD}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.DynamicLoad.dll"/>
+    <ROW Component="IRAP.Entity.APS.dll" ComponentId="{B3A857BB-4341-46FB-9DB0-09D40BF8F431}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Entity.APS.dll"/>
+    <ROW Component="IRAP.Entity.FVS.dll" ComponentId="{E9CEA6B1-FFDA-4931-A31F-50A210148B72}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Entity.FVS.dll"/>
+    <ROW Component="IRAP.Entity.IRAP.dll" ComponentId="{C9F7CDA5-D5F9-4357-B62F-6C1E974BBCDC}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Entity.IRAP.dll"/>
+    <ROW Component="IRAP.Entity.Kanban.dll" ComponentId="{6266AD2E-E0A8-4CA7-9AA0-14DD80DA6C84}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Entity.Kanban.dll"/>
+    <ROW Component="IRAP.Entity.MDM.dll" ComponentId="{900E1F04-DAC5-47BA-ACA7-5D8ECAFF32C5}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Entity.MDM.dll"/>
+    <ROW Component="IRAP.Entity.MES.dll" ComponentId="{76601478-4438-4D11-B435-5840189CD924}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Entity.MES.dll"/>
+    <ROW Component="IRAP.Entity.MESRMM.dll" ComponentId="{83998946-97E1-48D3-AA78-4835FCE94A7F}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Entity.MESRMM.dll"/>
+    <ROW Component="IRAP.Entity.SSO.dll" ComponentId="{746E1820-5CE0-4A17-BC50-F6227D9A2FEB}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Entity.SSO.dll"/>
+    <ROW Component="IRAP.General.Server.Library.dll" ComponentId="{9D4E1255-7FBC-4100-A178-E3DA4EBCD591}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.General.Server.Library.dll"/>
+    <ROW Component="IRAP.Global.dll" ComponentId="{AC7613B1-30D0-49FB-B5D4-ACB37CC21635}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Global.dll"/>
+    <ROW Component="IRAP.Global.dll_1" ComponentId="{0134FFAA-8A6F-43F6-9648-16AECCD69B86}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Global.dll_1"/>
+    <ROW Component="IRAP.Interface.Global.dll" ComponentId="{50557717-574A-4749-957C-77203F27FA19}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Interface.Global.dll"/>
+    <ROW Component="IRAP.Server.Global.dll" ComponentId="{1503F3AC-5114-4F3A-99ED-EBE32613BD9F}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Server.Global.dll"/>
+    <ROW Component="IRAP.Server.Global.dll_1" ComponentId="{7CC0FF00-2B8B-4AAC-AFD7-37ABAB9EF6ED}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAP.Server.Global.dll_1"/>
+    <ROW Component="IRAP.Server.Service.exe" ComponentId="{EB45E2AC-A27F-4986-855D-B6DFDD1FFAE1}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Server.Service.exe"/>
+    <ROW Component="IRAPORM.dll" ComponentId="{DF543342-FDFB-40D8-BDDC-718040EEE5C6}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAPORM.dll"/>
+    <ROW Component="IRAPShared.dll" ComponentId="{DDB15A65-09D0-42E9-A7A9-D5EFD892EADA}" Directory_="APPDIR" Attributes="0" KeyPath="IRAPShared.dll"/>
+    <ROW Component="IRAPShared.dll_1" ComponentId="{025D32BA-8059-4CA3-9D68-E43404B56C7E}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="IRAPShared.dll_1"/>
+    <ROW Component="ProductInformation" ComponentId="{0ABBE59D-0E99-4696-9140-0EE0B004088E}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="log4net.config" ComponentId="{44DCCB3B-9C4B-43AA-A1E6-355BCC6D7F55}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="log4net.config" Type="0"/>
+    <ROW Component="log4net.dll" ComponentId="{8F2FB380-835F-4E8D-B068-7FBFA794BC13}" Directory_="ServiceDLLs_Dir" Attributes="0" KeyPath="log4net.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName IRAP.BL.APS.dll IRAP.BL.FVS.dll IRAP.BL.Kanban.dll IRAP.BL.MDM.dll IRAP.BL.MES.dll IRAP.BL.MESRMM.dll IRAP.BL.SSO.dll IRAP.BL.UTS.dll IRAP.DynamicLoad.dll IRAP.Entity.APS.dll IRAP.Entity.FVS.dll IRAP.Entity.IRAP.dll IRAP.Entity.Kanban.dll IRAP.Entity.MDM.dll IRAP.Entity.MES.dll IRAP.Entity.MESRMM.dll IRAP.Entity.SSO.dll IRAP.General.Server.Library.dll IRAP.Global.dll IRAP.Global.dll_1 IRAP.Interface.Global.dll IRAP.Server.Global.dll IRAP.Server.Global.dll_1 IRAP.Server.Service.exe IRAPORM.dll IRAPShared.dll IRAPShared.dll_1 ProductInformation log4net.config log4net.dll"/>
+    <ROW Feature="Microsoft.NETFrame" Title="Microsoft .NET Framework 4 (x86 and x64) and Update for .NET Framework 4 (KB2468871)" Description="Microsoft .NET Framework 4 (x86 and x64) and Update for .NET Framework 4 (KB2468871)" Display="3" Level="1" Attributes="0" Components="AI_CustomARPName"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="IRAP.BL.APS.dll" Component_="IRAP.BL.APS.dll" FileName="IRAPBL~1.DLL|IRAP.BL.APS.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.APS.dll" SelfReg="false" NextFile="IRAP.BL.FVS.dll"/>
+    <ROW File="IRAP.BL.FVS.dll" Component_="IRAP.BL.FVS.dll" FileName="IRAPBL~2.DLL|IRAP.BL.FVS.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.FVS.dll" SelfReg="false" NextFile="IRAP.BL.Kanban.dll"/>
+    <ROW File="IRAP.BL.Kanban.dll" Component_="IRAP.BL.Kanban.dll" FileName="IRAPBL~3.DLL|IRAP.BL.Kanban.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.Kanban.dll" SelfReg="false" NextFile="IRAP.BL.Kanban.pdb"/>
+    <ROW File="IRAP.BL.Kanban.pdb" Component_="IRAP.BL.Kanban.dll" FileName="IRAPBL~1.PDB|IRAP.BL.Kanban.pdb" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.Kanban.pdb" SelfReg="false" NextFile="IRAP.BL.MDM.dll"/>
+    <ROW File="IRAP.BL.MDM.dll" Component_="IRAP.BL.MDM.dll" FileName="IRAPBL~4.DLL|IRAP.BL.MDM.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.MDM.dll" SelfReg="false" NextFile="IRAP.BL.MES.dll"/>
+    <ROW File="IRAP.BL.MES.dll" Component_="IRAP.BL.MES.dll" FileName="IRAPBL~5.DLL|IRAP.BL.MES.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.MES.dll" SelfReg="false" NextFile="IRAP.BL.MESRMM.dll"/>
+    <ROW File="IRAP.BL.MESRMM.dll" Component_="IRAP.BL.MESRMM.dll" FileName="IRAPBL~6.DLL|IRAP.BL.MESRMM.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.MESRMM.dll" SelfReg="false" NextFile="IRAP.BL.SSO.dll"/>
+    <ROW File="IRAP.BL.SSO.dll" Component_="IRAP.BL.SSO.dll" FileName="IRAPBL~7.DLL|IRAP.BL.SSO.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.SSO.dll" SelfReg="false" NextFile="IRAP.BL.UTS.dll"/>
+    <ROW File="IRAP.BL.UTS.dll" Component_="IRAP.BL.UTS.dll" FileName="IRAPBL~8.DLL|IRAP.BL.UTS.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.BL.UTS.dll" SelfReg="false" NextFile="IRAP.Entity.APS.dll"/>
+    <ROW File="IRAP.DynamicLoad.dll" Component_="IRAP.DynamicLoad.dll" FileName="IRAPDY~1.DLL|IRAP.DynamicLoad.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.DynamicLoad.dll" SelfReg="false" NextFile="IRAP.General.Server.Library.dll"/>
+    <ROW File="IRAP.Entity.APS.dll" Component_="IRAP.Entity.APS.dll" FileName="IRAPEN~1.DLL|IRAP.Entity.APS.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Entity.APS.dll" SelfReg="false" NextFile="IRAP.Entity.FVS.dll"/>
+    <ROW File="IRAP.Entity.FVS.dll" Component_="IRAP.Entity.FVS.dll" FileName="IRAPEN~2.DLL|IRAP.Entity.FVS.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Entity.FVS.dll" SelfReg="false" NextFile="IRAP.Entity.IRAP.dll"/>
+    <ROW File="IRAP.Entity.IRAP.dll" Component_="IRAP.Entity.IRAP.dll" FileName="IRAPEN~3.DLL|IRAP.Entity.IRAP.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Entity.IRAP.dll" SelfReg="false" NextFile="IRAP.Entity.Kanban.dll"/>
+    <ROW File="IRAP.Entity.Kanban.dll" Component_="IRAP.Entity.Kanban.dll" FileName="IRAPEN~4.DLL|IRAP.Entity.Kanban.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Entity.Kanban.dll" SelfReg="false" NextFile="IRAP.Entity.MDM.dll"/>
+    <ROW File="IRAP.Entity.MDM.dll" Component_="IRAP.Entity.MDM.dll" FileName="IRAPEN~5.DLL|IRAP.Entity.MDM.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Entity.MDM.dll" SelfReg="false" NextFile="IRAP.Entity.MES.dll"/>
+    <ROW File="IRAP.Entity.MES.dll" Component_="IRAP.Entity.MES.dll" FileName="IRAPEN~6.DLL|IRAP.Entity.MES.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Entity.MES.dll" SelfReg="false" NextFile="IRAP.Entity.MESRMM.dll"/>
+    <ROW File="IRAP.Entity.MESRMM.dll" Component_="IRAP.Entity.MESRMM.dll" FileName="IRAPEN~7.DLL|IRAP.Entity.MESRMM.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Entity.MESRMM.dll" SelfReg="false" NextFile="IRAP.Entity.SSO.dll"/>
+    <ROW File="IRAP.Entity.SSO.dll" Component_="IRAP.Entity.SSO.dll" FileName="IRAPEN~8.DLL|IRAP.Entity.SSO.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Entity.SSO.dll" SelfReg="false" NextFile="IRAP.Global.dll_1"/>
+    <ROW File="IRAP.General.Server.Library.dll" Component_="IRAP.General.Server.Library.dll" FileName="IRAPGE~1.DLL|IRAP.General.Server.Library.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.General.Server.Library.dll" SelfReg="false" NextFile="IRAP.Global.dll"/>
+    <ROW File="IRAP.Global.dll" Component_="IRAP.Global.dll" FileName="IRAPGL~1.DLL|IRAP.Global.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.Global.dll" SelfReg="false" NextFile="IRAP.Interface.Global.dll"/>
+    <ROW File="IRAP.Global.dll_1" Component_="IRAP.Global.dll_1" FileName="IRAPGL~1.DLL|IRAP.Global.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Global.dll" SelfReg="false" NextFile="IRAP.Server.Global.dll_1"/>
+    <ROW File="IRAP.Interface.Global.dll" Component_="IRAP.Interface.Global.dll" FileName="IRAPIN~1.DLL|IRAP.Interface.Global.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.Interface.Global.dll" SelfReg="false" NextFile="IRAP.Server.Global.dll"/>
+    <ROW File="IRAP.Server.Global.dll" Component_="IRAP.Server.Global.dll" FileName="IRAPSE~1.DLL|IRAP.Server.Global.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.Server.Global.dll" SelfReg="false" NextFile="IRAP.Server.Service.exe"/>
+    <ROW File="IRAP.Server.Global.dll_1" Component_="IRAP.Server.Global.dll_1" FileName="IRAPSE~1.DLL|IRAP.Server.Global.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAP.Server.Global.dll" SelfReg="false" NextFile="IRAPORM.dll"/>
+    <ROW File="IRAP.Server.Service.exe" Component_="IRAP.Server.Service.exe" FileName="IRAPSE~1.EXE|IRAP.Server.Service.exe" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.Server.Service.exe" SelfReg="false" NextFile="IRAPShared.dll" DigSign="true"/>
+    <ROW File="IRAPORM.dll" Component_="IRAPORM.dll" FileName="IRAPORM.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAPORM.dll" SelfReg="false" NextFile="IRAPShared.dll_1"/>
+    <ROW File="IRAPShared.dll" Component_="IRAPShared.dll" FileName="IRAPSH~1.DLL|IRAPShared.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAPShared.dll" SelfReg="false" NextFile="IRAP.BL.APS.dll"/>
+    <ROW File="IRAPShared.dll_1" Component_="IRAPShared.dll_1" FileName="IRAPSH~1.DLL|IRAPShared.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\IRAPShared.dll" SelfReg="false" NextFile="log4net.dll"/>
+    <ROW File="log4net.config" Component_="log4net.config" FileName="LOG4NE~1.CON|log4net.config" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\log4net.config" SelfReg="false" NextFile="log4net.xml"/>
+    <ROW File="log4net.dll" Component_="log4net.dll" FileName="log4net.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\log4net.dll" SelfReg="false" NextFile="log4net.config"/>
+    <ROW File="log4net.xml" Component_="log4net.config" FileName="log4net.xml" Attributes="0" SourcePath="..\..\Bin\Server\Release\ServiceDLLs\log4net.xml" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="..\..\Bin\Server" Languages="zh" InstallationType="4" PackageType="1" ExeIconPath="..\..\Res\mainicon.ico" ExtUI="true" UseLargeSchema="true" ExeName="IRAPServerSetup"/>
+    <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_zh.ail"/>
+    <ROW Path="&lt;AI_REPOSITORY&gt;Dialogs\ServiceParamDlg\ServiceParamDlg_zh.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="ServiceParamDlg.aip" Path="&lt;AI_REPOSITORY&gt;Dialogs\ServiceParamDlg\ServiceParamDlg.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_XmlCommit" Description="Committing XML file configurations." Template="Committing XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlCommit" TemplateLocId="ActionText.Template.AI_XmlCommit"/>
+    <ROW Action="AI_XmlConfig" Description="正在执行 XML 文件配置" Template="正在配置 XML 文件: &quot;[1]&quot;" DescriptionLocId="ActionText.Description.AI_XmlConfig" TemplateLocId="ActionText.Template.AI_XmlConfig"/>
+    <ROW Action="AI_XmlInstall" Description="正在生成配置 XML 文件操作" DescriptionLocId="ActionText.Description.AI_XmlInstall"/>
+    <ROW Action="AI_XmlRemove" Description="正在执行 XML 文件配置" Template="正在配置 XML 文件: &quot;[1]&quot;" DescriptionLocId="ActionText.Description.AI_XmlRemove" TemplateLocId="ActionText.Template.AI_XmlRemove"/>
+    <ROW Action="AI_XmlRollback" Description="正在回滚 XML 文件配置" Template="正在回滚 XML 文件配置" DescriptionLocId="ActionText.Description.AI_XmlRollback" TemplateLocId="ActionText.Template.AI_XmlRollback"/>
+    <ROW Action="AI_XmlUninstall" Description="正在生成配置 XML 文件操作" DescriptionLocId="ActionText.Description.AI_XmlUninstall"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="ServiceParamDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ServiceParamDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="ServiceParamDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="ServiceParamDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[~]"/>
+    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="[~]"/>
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DoRemoveExternalUIStub" Type="3585" Source="ExternalUICleaner.dll" Target="DoRemoveExternalUIStub" WithoutSeq="true"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_RemoveExternalUIStub" Type="1" Source="ExternalUICleaner.dll" Target="RemoveExternalUIStub"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="AI_XmlCommit" Type="11777" Source="xmlCfg.dll" Target="OnXmlCommit" WithoutSeq="true"/>
+    <ROW Action="AI_XmlConfig" Type="11265" Source="xmlCfg.dll" Target="OnXmlConfig" WithoutSeq="true"/>
+    <ROW Action="AI_XmlInstall" Type="1" Source="xmlCfg.dll" Target="OnXmlInstall" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_XmlRemove" Type="11265" Source="xmlCfg.dll" Target="OnXmlRemove" WithoutSeq="true"/>
+    <ROW Action="AI_XmlRollback" Type="11521" Source="xmlCfg.dll" Target="OnXmlRollback" WithoutSeq="true"/>
+    <ROW Action="AI_XmlUninstall" Type="1" Source="xmlCfg.dll" Target="OnXmlUninstall" AdditionalSeq="AI_DATA_SETTER_1"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="mainicon.exe" SourcePath="..\..\Res\mainicon.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIniFileComponent">
+    <ROW IniFile="WriteLog" FileName="IRAP.ini" DirProperty="APPDIR" Section="Logs" Key="Write Log" Value="1" Action="0" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="51"/>
+    <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
+    <ROW Action="AI_XmlInstall" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5102"/>
+    <ROW Action="AI_DATA_SETTER" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5101"/>
+    <ROW Action="AI_XmlUninstall" Condition="(REMOVE)" Sequence="3102"/>
+    <ROW Action="AI_DATA_SETTER_1" Condition="(REMOVE)" Sequence="3101"/>
+    <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_DpiContentScale" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] 无法安装在 [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] 无法安装在 [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="This package can only be run from a bootstrapper." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] 无法安装在 [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
+    <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName"/>
+    <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
+    <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
+    <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
+    <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
+    <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+    <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#1" Component_="AI_CustomARPName"/>
+    <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
+    <ROW ServiceControl="IRAP.Server.Service.exe" Name="IRAP.Server.Service.exe" Event="161" Wait="1" Component_="IRAP.Server.Service.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiServInstComponent">
+    <ROW ServiceInstall="IRAP.Server.Service.exe" Name="IRAP.Server.Service.exe" DisplayName="IRAP Application Service" ServiceType="16" StartType="2" ErrorControl="1" Component_="IRAP.Server.Service.exe" Description="信息资源应用平台(IRAP) 应用服务"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlAttributeComponent">
+    <ROW XmlAttribute="SaveInterval" XmlElement="SetupParam" Name="SaveInterval" Flags="14" Order="0" Value="5"/>
+    <ROW XmlAttribute="address" XmlElement="endpoint" Name="address" Flags="14" Order="0"/>
+    <ROW XmlAttribute="address_1" XmlElement="endpoint_1" Name="address" Flags="14" Order="0" Value="mex"/>
+    <ROW XmlAttribute="baseAddress" XmlElement="add" Name="baseAddress" Flags="14" Order="0" Value="http://[LocalIPAddress]:169[Port]/IRAP"/>
+    <ROW XmlAttribute="baseAddress_1" XmlElement="add_1" Name="baseAddress" Flags="14" Order="0" Value="net.tcp://[LocalIPAddress]:160[Port]/IRAP"/>
+    <ROW XmlAttribute="behaviorConfiguration" XmlElement="service" Name="behaviorConfiguration" Flags="14" Order="1" Value="GetMetaData"/>
+    <ROW XmlAttribute="binding" XmlElement="endpoint" Name="binding" Flags="14" Order="2" Value="netTcpBinding"/>
+    <ROW XmlAttribute="bindingConfiguration" XmlElement="endpoint" Name="bindingConfiguration" Flags="14" Order="1" Value="WCFBinding"/>
+    <ROW XmlAttribute="binding_1" XmlElement="endpoint_1" Name="binding" Flags="14" Order="1" Value="mexHttpBinding"/>
+    <ROW XmlAttribute="contract" XmlElement="endpoint" Name="contract" Flags="14" Order="3" Value="IRAP.Interface.Global.IServiceIRAPGlobal"/>
+    <ROW XmlAttribute="contract_1" XmlElement="endpoint_1" Name="contract" Flags="14" Order="2" Value="IMetadataExchange"/>
+    <ROW XmlAttribute="httpGetEnabled" XmlElement="serviceMetadata" Name="httpGetEnabled" Flags="14" Order="0" Value="true"/>
+    <ROW XmlAttribute="includeExceptionDetailInFaults" XmlElement="serviceDebug" Name="includeExceptionDetailInFaults" Flags="14" Order="0" Value="true"/>
+    <ROW XmlAttribute="key" XmlElement="add_2" Name="key" Flags="15" Order="0" Value="DBType"/>
+    <ROW XmlAttribute="key_1" XmlElement="add_3" Name="key" Flags="15" Order="0" Value="SeqServerAddr"/>
+    <ROW XmlAttribute="key_2" XmlElement="add_4" Name="key" Flags="15" Order="0" Value="ConnectionString"/>
+    <ROW XmlAttribute="key_3" XmlElement="add_5" Name="key" Flags="15" Order="0" Value="NextTransactNo"/>
+    <ROW XmlAttribute="logFileDir" XmlElement="SetupParam" Name="logFileDir" Flags="14" Order="1" Value="F:\\"/>
+    <ROW XmlAttribute="maxBufferPoolSize" XmlElement="binding" Name="maxBufferPoolSize" Flags="14" Order="4" Value="2147483647"/>
+    <ROW XmlAttribute="maxBufferSize" XmlElement="binding" Name="maxBufferSize" Flags="14" Order="5" Value="2147483647"/>
+    <ROW XmlAttribute="maxConcurrentCalls" XmlElement="serviceThrottling" Name="maxConcurrentCalls" Flags="14" Order="0" Value="500"/>
+    <ROW XmlAttribute="maxConcurrentSessions" XmlElement="serviceThrottling" Name="maxConcurrentSessions" Flags="14" Order="1" Value="500"/>
+    <ROW XmlAttribute="maxConnections" XmlElement="binding" Name="maxConnections" Flags="14" Order="6" Value="100"/>
+    <ROW XmlAttribute="maxReceivedMessageSize" XmlElement="binding" Name="maxReceivedMessageSize" Flags="14" Order="7" Value="2147483647"/>
+    <ROW XmlAttribute="mode" XmlElement="security" Name="mode" Flags="14" Order="0" Value="None"/>
+    <ROW XmlAttribute="name" XmlElement="binding" Name="name" Flags="15" Order="0" Value="WCFBinding"/>
+    <ROW XmlAttribute="name_1" XmlElement="service" Name="name" Flags="15" Order="0" Value="IRAP.General.Server.Library.ServiceIRAPGeneral"/>
+    <ROW XmlAttribute="name_2" XmlElement="behavior" Name="name" Flags="15" Order="0" Value="GetMetaData"/>
+    <ROW XmlAttribute="openTimeout" XmlElement="binding" Name="openTimeout" Flags="14" Order="1" Value="00:02:00"/>
+    <ROW XmlAttribute="receiveTimeout" XmlElement="binding" Name="receiveTimeout" Flags="14" Order="2" Value="00:03:00"/>
+    <ROW XmlAttribute="sendTimeout" XmlElement="binding" Name="sendTimeout" Flags="14" Order="3" Value="00:03:00"/>
+    <ROW XmlAttribute="sku" XmlElement="supportedRuntime" Name="sku" Flags="14" Order="1" Value=".NETFramework,Version=v4.0"/>
+    <ROW XmlAttribute="value" XmlElement="add_2" Name="value" Flags="14" Order="1" Value="1"/>
+    <ROW XmlAttribute="value_1" XmlElement="add_3" Name="value" Flags="14" Order="1" Value="192.168.57.217"/>
+    <ROW XmlAttribute="value_2" XmlElement="add_4" Name="value" Flags="14" Order="1" Value="Server=[DBAddress];initial catalog=[DBName];UID=[DBUserID];Password=[DBPassword];Min Pool Size=2;Max Pool Size=60;"/>
+    <ROW XmlAttribute="value_3" XmlElement="add_5" Name="value" Flags="14" Order="1" Value="1"/>
+    <ROW XmlAttribute="version" XmlElement="supportedRuntime" Name="version" Flags="14" Order="0" Value="v4.0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
+    <ROW XmlElement="Comment" ParentElement="appSettings" Name="Comment" Condition="1" Order="0" Flags="1" Text="1-MSSQL 2-Oracle 3-Mysql 4-PostgreSql "/>
+    <ROW XmlElement="Comment_1" ParentElement="appSettings" Name="Comment" Condition="1" Order="3" Flags="1" Text="MES数据库地址"/>
+    <ROW XmlElement="SetupParam" ParentElement="configuration_1" Name="SetupParam" Condition="1" Order="2" Flags="14"/>
+    <ROW XmlElement="SetupValue" ParentElement="configuration_1" Name="SetupValue" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="add" ParentElement="baseAddresses" Name="add" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="add_1" ParentElement="baseAddresses" Name="add" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="add_2" ParentElement="appSettings" Name="add" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="add_3" ParentElement="appSettings" Name="add" Condition="1" Order="2" Flags="14"/>
+    <ROW XmlElement="add_4" ParentElement="appSettings" Name="add" Condition="1" Order="4" Flags="14"/>
+    <ROW XmlElement="add_5" ParentElement="SetupValue" Name="add" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="appSettings" ParentElement="configuration_1" Name="appSettings" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="baseAddresses" ParentElement="host" Name="baseAddresses" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="behavior" ParentElement="serviceBehaviors" Name="behavior" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="behaviors" ParentElement="system.serviceModel" Name="behaviors" Condition="1" Order="2" Flags="14"/>
+    <ROW XmlElement="binding" ParentElement="netTcpBinding" Name="binding" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="bindings" ParentElement="system.serviceModel" Name="bindings" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="configuration" Name="configuration" Condition="1" Order="0" Flags="30"/>
+    <ROW XmlElement="configuration_1" Name="configuration" Condition="1" Order="0" Flags="30"/>
+    <ROW XmlElement="endpoint" ParentElement="service" Name="endpoint" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="endpoint_1" ParentElement="service" Name="endpoint" Condition="1" Order="2" Flags="14"/>
+    <ROW XmlElement="host" ParentElement="service" Name="host" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="netTcpBinding" ParentElement="bindings" Name="netTcpBinding" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="security" ParentElement="binding" Name="security" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="service" ParentElement="services" Name="service" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="serviceBehaviors" ParentElement="behaviors" Name="serviceBehaviors" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="serviceDebug" ParentElement="behavior" Name="serviceDebug" Condition="1" Order="2" Flags="14"/>
+    <ROW XmlElement="serviceMetadata" ParentElement="behavior" Name="serviceMetadata" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="serviceThrottling" ParentElement="behavior" Name="serviceThrottling" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="services" ParentElement="system.serviceModel" Name="services" Condition="1" Order="1" Flags="14"/>
+    <ROW XmlElement="startup" ParentElement="configuration" Name="startup" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="supportedRuntime" ParentElement="startup" Name="supportedRuntime" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="system.serviceModel" ParentElement="configuration" Name="system.serviceModel" Condition="1" Order="1" Flags="14"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlFileComponent">
+    <ROW XmlFile="IRAP.Server.Service.exe.config" FileName="IRAPSE~1.CON|IRAP.Server.Service.exe.config" DirProperty="APPDIR" Component="ProductInformation" RootElement="configuration" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+    <ROW XmlFile="IRAPORM.xml" FileName="IRAPORM.xml" DirProperty="ServiceDLLs_Dir" Component="log4net.dll" RootElement="configuration_1" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+  </COMPONENT>
+</DOCUMENT>
