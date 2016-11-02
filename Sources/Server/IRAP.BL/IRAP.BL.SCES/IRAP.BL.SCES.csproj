@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B27EF7EF-6F4B-462F-96CC-A64EA0E82AD2}</ProjectGuid>
+    <ProjectGuid>{C9B634F0-22D3-4C11-A0B8-C6E5F6CD080B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.BL.MDM</RootNamespace>
-    <AssemblyName>IRAP.BL.MDM</AssemblyName>
+    <RootNamespace>IRAP.BL.SCES</RootNamespace>
+    <AssemblyName>IRAP.BL.SCES</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -30,7 +29,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRAPMDM.cs" />
+    <Compile Include="IRAPSCES.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\IRAP.BL.MDM.cd" />
+    <None Include="Diagrams\IRAP.BL.SCES.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -60,18 +58,6 @@
     <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
       <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
       <Name>IRAP.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entity.IRAP\IRAP.Entity.IRAP.csproj">
-      <Project>{62f00cf1-9edc-4597-b902-8bbacbe5d625}</Project>
-      <Name>IRAP.Entity.IRAP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entity.MDM\IRAP.Entity.MDM.csproj">
-      <Project>{5feb6cb3-68c9-4e06-814b-c071743bf5a2}</Project>
-      <Name>IRAP.Entity.MDM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Server.Global\IRAP.Server.Global.csproj">
-      <Project>{6cad9cb5-9549-4f44-a66c-5e8b1d55f22e}</Project>
-      <Name>IRAP.Server.Global</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\IRAPORM\IRAPORM.csproj">
       <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>

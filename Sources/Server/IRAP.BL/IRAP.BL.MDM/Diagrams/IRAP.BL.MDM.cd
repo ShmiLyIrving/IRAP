@@ -3,7 +3,7 @@
   <Class Name="IRAP.BL.MDM.IRAPMDM" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABANAAAAAAIBGgCVBIMYSaAAxIQAECEDICQCQ5hCA=</HashCode>
+      <HashCode>AAAFAdAAIAAAOBWgCVhIMbyeAAxIQAEKEHKKQKQ5pCA=</HashCode>
       <FileName>IRAPMDM.cs</FileName>
     </TypeIdentifier>
   </Class>

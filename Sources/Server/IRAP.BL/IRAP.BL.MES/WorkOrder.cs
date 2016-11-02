@@ -217,7 +217,7 @@ namespace IRAP.BL.MES
                         string strSQL = "SELECT * " +
                             "FROM IRAPMES..ufn_GetList_OpenPWOsOfALine(" +
                             "@CommunityID, @ResourceTreeID, @LeafID, @SysLogID) " +
-                            "ORDER BY Ordinal";
+                            "ORDER BY PWOStatus DESC, ScheduledStartTime ASC";
 
                         IList<OpenPWO> lstDatas =
                             conn.CallTableFunc<OpenPWO>(strSQL, paramList);
