@@ -37,10 +37,16 @@
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="FastReport.Editor, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -126,6 +132,12 @@
     <Compile Include="Dialogs\frmMethodDocumentProperties.Designer.cs">
       <DependentUpon>frmMethodDocumentProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLabelTemplateManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLabelTemplateManager.Designer.cs">
+      <DependentUpon>frmLabelTemplateManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProductProcessManager_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +169,12 @@
     <Compile Include="Dialogs\frmSkillMatrixProperties.Designer.cs">
       <DependentUpon>frmSkillMatrixProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTemplateManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTemplateManager.Designer.cs">
+      <DependentUpon>frmTemplateManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductProcessWorkFlow\OperationNodeFactory.cs" />
     <Compile Include="ProductProcessWorkFlow\ProductProcessPanel.cs">
       <SubType>Component</SubType>
@@ -175,6 +193,10 @@
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325FFD07-7491-45C3-86F3-85F7DEF4C726}</Project>
       <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
       <Project>{38588300-33DF-457A-936A-D0D0CA499E96}</Project>
@@ -269,6 +291,9 @@
     <EmbeddedResource Include="Dialogs\frmPrepareStandardProperties.resx">
       <DependentUpon>frmPrepareStandardProperties.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLabelTemplateManager.resx">
+      <DependentUpon>frmLabelTemplateManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProductProcessManager_30.en-US.resx">
       <DependentUpon>frmProductProcessManager_30.cs</DependentUpon>
     </EmbeddedResource>
@@ -286,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmSkillMatrixProperties.resx">
       <DependentUpon>frmSkillMatrixProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTemplateManager.resx">
+      <DependentUpon>frmTemplateManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

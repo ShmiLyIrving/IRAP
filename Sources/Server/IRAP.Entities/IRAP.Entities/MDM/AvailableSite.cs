@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IRAP.Entity.MDM
+namespace IRAP.Entities.MDM
 {
     public class AvailableSite
     {
@@ -11,6 +11,19 @@ namespace IRAP.Entity.MDM
         /// 序号
         /// </summary>
         public int Ordinal { get; set; }
+        /// <summary>
+        /// 产品叶标识
+        /// </summary>
+
+        public int T102LeafID { get; set; }
+        /// <summary>
+        /// 产品代码
+        /// </summary>
+        public string T102Code { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string T102Name { get; set; }
         /// <summary>
         /// 客户叶标识
         /// </summary>
@@ -35,6 +48,10 @@ namespace IRAP.Entity.MDM
         /// 地点名称
         /// </summary>
         public string T172Name { get; set; }
+        /// <summary>
+        /// 标签关联信息
+        /// </summary>
+        public long CorrelationID { get; set; }
         /// <summary>
         /// 地址
         /// </summary>
@@ -67,6 +84,18 @@ namespace IRAP.Entity.MDM
         /// 纬度坐标(±dd°ff′mm″)
         /// </summary>
         public string Latitude { get; set; }
+        /// <summary>
+        /// 标签模板叶标识
+        /// </summary>
+        public int T117LeafID { get; set; }
+        /// <summary>
+        /// 标签模板代码
+        /// </summary>
+        public string T117Code { get; set; }
+        /// <summary>
+        /// 标签模板名称
+        /// </summary>
+        public string T117Name { get; set; }
 
         public AvailableSite Clone()
         {
@@ -76,12 +105,9 @@ namespace IRAP.Entity.MDM
         public override string ToString()
         {
             return string.Format(
-                "[{0}]{1} 地址：{2} 联系人：{3} 办公电话：{4}", 
+                "[{0}]{1}", 
                 T172Code, 
-                T172Name.Trim(), 
-                Address.Trim(),
-                ToContact.Trim(),
-                OPhoneNo.Trim());
+                Address.Trim());
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IRAP.Entity.MDM
+namespace IRAP.Entities.MDM
 {
     /// <summary>
     /// 产品供给客户信息

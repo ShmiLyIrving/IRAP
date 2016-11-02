@@ -27,7 +27,17 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         private StringBuilder var6 = new StringBuilder();
         private StringBuilder var7 = new StringBuilder();
         private StringBuilder var8 = new StringBuilder();
-
+        private StringBuilder var9 = new StringBuilder();
+        private StringBuilder var10 = new StringBuilder();
+        private StringBuilder var11 = new StringBuilder();
+        private StringBuilder var12 = new StringBuilder();
+        private StringBuilder var13 = new StringBuilder();
+        private StringBuilder var14 = new StringBuilder();
+        private StringBuilder var15 = new StringBuilder();
+        private StringBuilder var16 = new StringBuilder();
+        private StringBuilder var17 = new StringBuilder();
+        private StringBuilder var18 = new StringBuilder();
+        private StringBuilder var19 = new StringBuilder();
 
         [DllImport(
             "PrintLabel.dll",
@@ -45,7 +55,24 @@ namespace IRAP.Client.GUI.MESPDC.Actions
             StringBuilder var5,
             StringBuilder var6,
             StringBuilder var7,
-            StringBuilder var8);
+            StringBuilder var8,
+            StringBuilder var9,
+            StringBuilder var10,
+            StringBuilder var11,
+            StringBuilder var12,
+            StringBuilder var13,
+            StringBuilder var14,
+            StringBuilder var15,
+            StringBuilder var16,
+            StringBuilder var17,
+            StringBuilder var18,
+            StringBuilder var19);
+        [DllImport(
+            "PrintLabel.dll",
+            CharSet = CharSet.Ansi,
+            PreserveSig = false,
+            CallingConvention = CallingConvention.StdCall)]
+        private static extern void ClearApp();
 
         public PrintWithLabAction(XmlNode actionParams, ExtendEventHandler extendAction)
             : base(actionParams, extendAction)
@@ -72,6 +99,28 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                 var7.Append(actionParams.Attributes["Var7"].Value);
             if (actionParams.Attributes["Var8"] != null)
                 var8.Append(actionParams.Attributes["Var8"].Value);
+            if (actionParams.Attributes["Var9"] != null)
+                var9.Append(actionParams.Attributes["Var9"].Value);
+            if (actionParams.Attributes["Var10"] != null)
+                var10.Append(actionParams.Attributes["Var10"].Value);
+            if (actionParams.Attributes["Var11"] != null)
+                var11.Append(actionParams.Attributes["Var11"].Value);
+            if (actionParams.Attributes["Var12"] != null)
+                var12.Append(actionParams.Attributes["Var12"].Value);
+            if (actionParams.Attributes["Var13"] != null)
+                var13.Append(actionParams.Attributes["Var13"].Value);
+            if (actionParams.Attributes["Var14"] != null)
+                var14.Append(actionParams.Attributes["Var14"].Value);
+            if (actionParams.Attributes["Var15"] != null)
+                var15.Append(actionParams.Attributes["Var15"].Value);
+            if (actionParams.Attributes["Var16"] != null)
+                var16.Append(actionParams.Attributes["Var16"].Value);
+            if (actionParams.Attributes["Var17"] != null)
+                var17.Append(actionParams.Attributes["Var17"].Value);
+            if (actionParams.Attributes["Var18"] != null)
+                var18.Append(actionParams.Attributes["Var18"].Value);
+            if (actionParams.Attributes["Var19"] != null)
+                var19.Append(actionParams.Attributes["Var19"].Value);
         }
 
         public void DoAction()
@@ -88,18 +137,13 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                     string.Format(
                         "调用打印动态链接库 PrintLabel.dll，输入参数：" +
                         "Template={0}|Cnt={1}|Ver0={2}|Var1={3}|Var2={4}" +
-                        "Var3={5}|Var4={6}|Var5={7}|Var6={8}|Var7={9}|Var8={10}",
-                        labFileName,
-                        cnt,
-                        var0,
-                        var1,
-                        var2,
-                        var3,
-                        var4,
-                        var5,
-                        var6,
-                        var7,
-                        var8),
+                        "Var3={5}|Var4={6}|Var5={7}|Var6={8}|Var7={9}|Var8={10}|"+
+                        "Var9={11}|Var10={12}|Var11={13}|Var12={14}|Var13={15}|"+
+                        "Var14={16}|Var15={17}|Var16={18}|Var17={19}|Var18={20|"+
+                        "Var19={21}",
+                        labFileName, cnt, var0, var1, var2, var3, var4,
+                        var5, var6, var7, var8, var9, var10, var11, var12,
+                        var13, var14, var15, var16, var17, var18, var19),
                     strProcedureName);
 
                 PrintLabel(
@@ -113,7 +157,20 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                     var5, 
                     var6, 
                     var7, 
-                    var8);
+                    var8,
+                    var9,
+                    var10,
+                    var11,
+                    var12,
+                    var13,
+                    var14,
+                    var15,
+                    var16,
+                    var17,
+                    var18,
+                    var19);
+
+                ClearApp();
             }
             catch (Exception error)
             {

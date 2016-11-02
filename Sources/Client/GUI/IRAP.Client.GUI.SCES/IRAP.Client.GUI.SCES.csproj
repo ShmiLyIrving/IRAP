@@ -60,12 +60,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmDeliveryMngmt_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeliveryMngmt_30.designer.cs">
+      <DependentUpon>frmDeliveryMngmt_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaterialsToDeliver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaterialsToDeliver.designer.cs">
+      <DependentUpon>frmMaterialsToDeliver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325FFD07-7491-45C3-86F3-85F7DEF4C726}</Project>
       <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
       <Project>{38588300-33DF-457A-936A-D0D0CA499E96}</Project>
@@ -101,7 +122,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmDeliveryMngmt_30.resx">
+      <DependentUpon>frmDeliveryMngmt_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaterialsToDeliver.resx">
+      <DependentUpon>frmMaterialsToDeliver.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WIPTransferTrackSheet.frx" />
+    <None Include="Resources\WIPTransferTrackSheet_60023.frx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

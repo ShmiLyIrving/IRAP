@@ -40,6 +40,9 @@
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="FastReport.Editor, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="ftplib">
       <HintPath>..\..\..\Global\3rdPartyAssembly\ftplib.dll</HintPath>
     </Reference>
@@ -48,6 +51,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\ActionsInTable.cs" />
     <Compile Include="Actions\MultiPrint.cs" />
     <Compile Include="Actions\PrintASCII.cs" />
     <Compile Include="Actions\ExtendEventHandler.cs" />
@@ -105,6 +108,8 @@
       <DependentUpon>frmUDFFormWithCOMScanner.cs</DependentUpon>
     </Compile>
     <Compile Include="Actions\PrintWithLab.cs" />
+    <Compile Include="Actions\MultipleCommandAction.cs" />
+    <Compile Include="Actions\PrintWithFastReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Businesses\UDFForm1Ex_30.cs" />
     <Compile Include="Businesses\ScannerForSerialPort.cs" />
@@ -114,6 +119,10 @@
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325FFD07-7491-45C3-86F3-85F7DEF4C726}</Project>
       <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
       <Project>{38588300-33DF-457A-936A-D0D0CA499E96}</Project>

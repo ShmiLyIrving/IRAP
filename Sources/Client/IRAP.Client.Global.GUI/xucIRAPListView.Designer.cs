@@ -40,6 +40,10 @@
             // 
             // gpcLogs
             // 
+            this.gpcLogs.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpcLogs.Appearance.Options.UseFont = true;
+            this.gpcLogs.AppearanceCaption.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpcLogs.AppearanceCaption.Options.UseFont = true;
             this.gpcLogs.Controls.Add(this.tlLogs);
             this.gpcLogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpcLogs.Location = new System.Drawing.Point(5, 5);
@@ -55,18 +59,22 @@
             this.tclmnErrCode,
             this.tclmnErrText});
             this.tlLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlLogs.Location = new System.Drawing.Point(7, 26);
+            this.tlLogs.Location = new System.Drawing.Point(7, 29);
             this.tlLogs.Name = "tlLogs";
             this.tlLogs.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.tlLogs.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
             this.tlLogs.OptionsView.AutoWidth = false;
             this.tlLogs.OptionsView.ShowRoot = false;
-            this.tlLogs.Size = new System.Drawing.Size(627, 319);
+            this.tlLogs.Size = new System.Drawing.Size(627, 316);
             this.tlLogs.TabIndex = 0;
             this.tlLogs.CustomDrawNodeCell += new DevExpress.XtraTreeList.CustomDrawNodeCellEventHandler(this.tlLogs_CustomDrawNodeCell);
             // 
             // tclmnTime
             // 
+            this.tclmnTime.AppearanceCell.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tclmnTime.AppearanceCell.Options.UseFont = true;
+            this.tclmnTime.AppearanceHeader.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tclmnTime.AppearanceHeader.Options.UseFont = true;
             this.tclmnTime.AppearanceHeader.Options.UseTextOptions = true;
             this.tclmnTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.tclmnTime.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -94,6 +102,10 @@
             // 
             // tclmnErrText
             // 
+            this.tclmnErrText.AppearanceCell.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tclmnErrText.AppearanceCell.Options.UseFont = true;
+            this.tclmnErrText.AppearanceHeader.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tclmnErrText.AppearanceHeader.Options.UseFont = true;
             this.tclmnErrText.AppearanceHeader.Options.UseTextOptions = true;
             this.tclmnErrText.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.tclmnErrText.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;

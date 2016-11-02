@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRAPAPSClient.cs" />
     <Compile Include="IRAPFVSClient.cs" />
     <Compile Include="IRAPKBClient.cs" />
     <Compile Include="IRAPMDMClient.cs" />
@@ -65,6 +66,10 @@
     <ProjectReference Include="..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
       <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.FVS\IRAP.Entity.FVS.csproj">
       <Project>{08efff76-a5d1-4c39-972d-d9c85bded80f}</Project>

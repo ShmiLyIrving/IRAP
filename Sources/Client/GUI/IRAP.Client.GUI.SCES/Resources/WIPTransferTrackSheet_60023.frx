@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/27/2016 15:50:55" ReportInfo.Modified="10/28/2016 10:05:52" ReportInfo.CreatorVersion="2013.2.5.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="IRAPSCES" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8VxMkLCqCdnvGXNLQX3NC6wFV6BoGqKT+bGnRxD+pFaKSTvaaUfw3w/2jXZP1CYqXAZNU3jgyqBpaOp+hBfdLBO9qvPnDbgXR7DRKMzlCdZhXTbmqO/fvvwlAxatYZsGh/1okskIdNqXOvqWlz154gXv4Oq3s6Fiaf5Gz39O7wvDnGZMA0qHSD/XazISTkdx0w==">
+      <TableDataSource Name="Table" Alias="ProductionFlowCard" DataType="System.Int32" Enabled="true" SelectCommand="SELECT * FROM IRAPSCES..ufn_GetList_ProductionFlowCard(60023, 264829, 736785)">
+        <Column Name="Ordinal" DataType="System.Int32"/>
+        <Column Name="T102LeafID" DataType="System.Int32"/>
+        <Column Name="T102Code" DataType="System.String"/>
+        <Column Name="T102NodeName" DataType="System.String"/>
+        <Column Name="PWONo" DataType="System.String"/>
+        <Column Name="PWOIssuingFactID" DataType="System.Int64"/>
+        <Column Name="MONumber" DataType="System.String"/>
+        <Column Name="MOLineNo" DataType="System.String"/>
+        <Column Name="OrderQty" DataType="System.Int32"/>
+        <Column Name="StartTime" DataType="System.String"/>
+        <Column Name="MaterialList" DataType="System.String"/>
+        <Column Name="T134LeafID" DataType="System.Int32"/>
+        <Column Name="T134Code" DataType="System.String"/>
+        <Column Name="T134NodeName" DataType="System.String"/>
+        <Column Name="T211LeafID" DataType="System.Int32"/>
+        <Column Name="T211Code" DataType="System.String"/>
+        <Column Name="T211NodeName" DataType="System.String"/>
+        <Column Name="T216LeafID" DataType="System.Int32"/>
+        <Column Name="T216Name" DataType="System.String"/>
+        <Column Name="T133Name" DataType="System.String"/>
+        <Column Name="T106Name" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2"/>
+    <PageHeaderBand Name="PageHeader1" Top="2.5" Width="718.2" Height="185.22">
+      <TextObject Name="Text4" Left="453.6" Top="71.82" Width="260.82" Height="60.48" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text1" Left="3.78" Top="3.78" Width="710.64" Height="37.8" Border.Lines="Left, Right, Top" Text="生产流转卡" HorzAlign="Center" VertAlign="Center" Font="黑体, 15pt, style=Bold"/>
+      <TextObject Name="Text2" Left="3.78" Top="41.58" Width="60.48" Height="30.24" Border.Lines="All" Text="存货编码" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text5" Left="162.54" Top="41.58" Width="60.48" Height="30.24" Border.Lines="All" Text="投入时间" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text7" Left="393.12" Top="41.58" Width="60.48" Height="30.24" Border.Lines="All" Text="投入数量" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text8" Left="548.1" Top="41.58" Width="71.82" Height="15.12" Border.Lines="All" Text="流转卡号" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text9" Left="619.92" Top="41.58" Width="94.5" Height="15.12" Border.Lines="All" Text="[ProductionFlowCard.PWOIssuingFactID]" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text10" Left="619.92" Top="56.7" Width="94.5" Height="15.12" Border.Lines="All" Text="[ProductionFlowCard.MONumber]" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text11" Left="548.1" Top="56.7" Width="71.82" Height="15.12" Border.Lines="All" Text="生产订单号" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text12" Left="453.6" Top="41.58" Width="94.5" Height="30.24" Border.Lines="All" Text="[ProductionFlowCard.OrderQty]" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text13" Left="223.02" Top="41.58" Width="170.1" Height="30.24" Border.Lines="All" Text="[ProductionFlowCard.StartTime]" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text3" Left="64.26" Top="41.58" Width="98.28" Height="30.24" Border.Lines="All" Text="[ProductionFlowCard.T102Code]" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <BarcodeObject Name="Barcode1" Left="461.16" Top="75.6" Width="250" Height="52.92" AutoSize="false" DataColumn="ProductionFlowCard.PWONo" Text="1AQ0T1APCM61025004" Barcode="Code128" Barcode.AutoEncode="true"/>
+      <TextObject Name="Text14" Left="393.12" Top="71.82" Width="60.48" Height="60.48" Border.Lines="All" Text="生产工单" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text6" Left="223.02" Top="71.82" Width="170.1" Height="60.48" Border.Lines="All" Text="[ProductionFlowCard.T211NodeName]" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text15" Left="162.54" Top="71.82" Width="60.48" Height="60.48" Border.Lines="All" Text="生产区域" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text16" Left="64.26" Top="71.82" Width="98.28" Height="60.48" Border.Lines="All" Text="[ProductionFlowCard.T102NodeName]" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text17" Left="3.78" Top="71.82" Width="60.48" Height="60.48" Border.Lines="All" Text="产品规格" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text18" Left="64.26" Top="132.3" Width="650.16" Height="30.24" Border.Lines="Left, Right, Top" Text="[ProductionFlowCard.MaterialList]" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text19" Left="3.78" Top="132.3" Width="60.48" Height="30.24" Border.Lines="Left, Right, Top" Text="子项物料" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text20" Left="3.78" Top="162.54" Width="60.48" Height="22.68" Border.Lines="All" Border.TopLine.Style="Double" Text="序号" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text21" Left="64.26" Top="162.54" Width="158.76" Height="22.68" Border.Lines="All" Border.TopLine.Style="Double" Text="工序" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text22" Left="223.02" Top="162.54" Width="170.1" Height="22.68" Border.Lines="All" Border.TopLine.Style="Double" Text="设备型号" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text23" Left="393.12" Top="162.54" Width="158.76" Height="22.68" Border.Lines="All" Border.TopLine.Style="Double" Text="存放区域" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+      <TextObject Name="Text24" Left="551.88" Top="162.54" Width="162.54" Height="22.68" Border.Lines="All" Border.TopLine.Style="Double" Text="备注" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="190.22" Width="718.2" Height="17.38" CanGrow="true" CanShrink="true" DataSource="Table">
+      <TableObject Name="Table1" Left="3.78" Width="710.94" Height="17.38" Border.Lines="All">
+        <TableColumn Name="Column1" Width="58.74"/>
+        <TableColumn Name="Column2" Width="160.8"/>
+        <TableColumn Name="Column3" Width="170.1"/>
+        <TableColumn Name="Column4" Width="158.76"/>
+        <TableColumn Name="Column5" Width="162.54"/>
+        <TableRow Name="Row1" Height="17.38" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Text="[ProductionFlowCard.Ordinal]" HorzAlign="Center" VertAlign="Center" Font="等线, 9pt"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="[ProductionFlowCard.T216Name]" VertAlign="Center" Font="等线, 9pt"/>
+          <TableCell Name="Cell3" Border.Lines="All" Text="[ProductionFlowCard.T133Name]" VertAlign="Center" Font="等线, 9pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="[ProductionFlowCard.T106Name]" VertAlign="Center" Font="等线, 9pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Text="[ProductionFlowCard.Remark]" VertAlign="Center" Font="等线, 9pt"/>
+        </TableRow>
+      </TableObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="210.1" Width="718.2" Height="15.12"/>
+  </ReportPage>
+</Report>

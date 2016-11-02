@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IRAP.Entity.MDM
+namespace IRAP.Entities.MDM
 {
     /// <summary>
-    /// 目标仓储地点信息
+    /// 
     /// </summary>
     public class DstDeliveryStoreSite
     {
@@ -27,7 +27,7 @@ namespace IRAP.Entity.MDM
         /// </summary>
         public string T173Code { get; set; }
         /// <summary>
-        /// 目标仓储地点 ERP 代码
+        /// 目标仓储地点ERP代码
         /// </summary>
         public string T173AltCode { get; set; }
         /// <summary>
@@ -50,6 +50,11 @@ namespace IRAP.Entity.MDM
         public DstDeliveryStoreSite Clone()
         {
             return MemberwiseClone() as DstDeliveryStoreSite;
+        }
+
+        public override string ToString()
+        {
+            return T173Name;
         }
     }
 }

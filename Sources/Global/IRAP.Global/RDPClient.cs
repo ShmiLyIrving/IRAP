@@ -337,7 +337,7 @@ namespace IRAP.Global
                 moc = null;
                 mc = null;
             }
-            catch (Exception err)
+            catch
             {
                 return "FFFFFFFFFFFF";
             }

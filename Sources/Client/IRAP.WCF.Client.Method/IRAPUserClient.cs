@@ -733,7 +733,7 @@ namespace IRAP.WCF.Client.Method
                         else
                         {
                             errCode = -1002;
-                            errText = "应用服务 ssp_GetSysLogID 返回的不是 Hashtable！";
+                            errText = "应用服务 ssp_Login 返回的不是 Hashtable！";
                             WriteLog.Instance.Write(errText, strProcedureName);
                         }
                     }

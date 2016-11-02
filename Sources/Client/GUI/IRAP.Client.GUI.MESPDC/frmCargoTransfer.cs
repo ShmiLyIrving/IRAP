@@ -14,7 +14,9 @@ using IRAP.Client.User;
 using IRAP.Client.SubSystems;
 using IRAP.Entity.MDM;
 using IRAP.Entity.SSO;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
+using IRAP.Client.Global.GUI.Dialogs;
 
 namespace IRAP.Client.GUI.MESPDC
 {
@@ -116,6 +118,7 @@ namespace IRAP.Client.GUI.MESPDC
                     cboAddresses.Properties.Items.Clear();
                     IRAPMDMClient.Instance.ufn_GetList_AvaiableSite(
                         IRAPUser.Instance.CommunityID,
+                        customer.T102LeafID,
                         customer.T105LeafID,
                         IRAPUser.Instance.SysLogID,
                         ref sites,
@@ -166,11 +169,45 @@ namespace IRAP.Client.GUI.MESPDC
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                #region 数据校验
+                int errCode = 0;
+                string errText = "";
+                IRAPSCESClient.Instance.usp_PokaYoke_PallPrint(
+                    IRAPUser.Instance.CommunityID,
+                    edtPartNumber.Text.Trim(),
+                    ((CustomerOfAProduction)cboCustomers.SelectedItem).T105Code,
+                    ((AvailableSite)cboAddresses.SelectedItem).T172Code,
+                    edtTransferQuantity.Text.Trim(),
+                    edtProductDate.DateTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                    IRAPUser.Instance.SysLogID,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+
+                if (errCode != 0)
+                    if (
+                        ShowMessageBox.Show(
+                            errText, 
+                            "数据校验时发现问题", 
+                            MessageBoxButtons.OKCancel, 
+                            MessageBoxIcon.Question, 
+                            MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+                    {
+                        edtTransferQuantity.Focus();
+                        return;
+                    }
+
+                #endregion
+
+                #region 保存
                 busUDFForm.SetStrParameterValue(edtPartNumber.Text, 1);
                 busUDFForm.SetStrParameterValue(((CustomerOfAProduction)cboCustomers.SelectedItem).T105Code, 2);
                 busUDFForm.SetStrParameterValue(((AvailableSite)cboAddresses.SelectedItem).T172Code, 3);
                 busUDFForm.SetStrParameterValue(edtTransferQuantity.Text, 4);
                 busUDFForm.SetStrParameterValue(edtProductDate.DateTime.ToString("yyyy-MM-dd HH:mm:ss"), 5);
+                busUDFForm.SetStrParameterValue(edtCopies.Value.ToString(), 6);
 
                 busUDFForm.SaveOLTPUDFFormData(0, 0);
                 WriteLog.Instance.Write(
@@ -227,6 +264,7 @@ namespace IRAP.Client.GUI.MESPDC
 
                     edtTransferQuantity.Focus();
                 }
+                #endregion
             }
             catch (Exception error)
             {
@@ -295,7 +333,6 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void frmCargoTransfer_Activated(object sender, EventArgs e)
         {
-            Options.Visible = true;
         }
     }
 }
