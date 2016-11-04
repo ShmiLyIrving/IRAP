@@ -9,7 +9,7 @@ using System.Reflection;
 
 using IRAP.Global;
 using IRAP.Client.User;
-using IRAP.Client.SubSystems;
+using IRAP.Client.SubSystem;
 using IRAP.Entity.Kanban;
 using IRAP.Entity.MES;
 using IRAP.Entity.SSO;

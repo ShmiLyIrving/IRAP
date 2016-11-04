@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IRAP.Entity.SSO
+namespace IRAP.Entities.SSO
 {
     /// <summary>
     /// 根据员工身份识别卡获取用户信息

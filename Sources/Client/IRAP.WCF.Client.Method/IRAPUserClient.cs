@@ -5,9 +5,9 @@ using System.Text;
 using System.Reflection;
 using System.Collections;
 
-using IRAP.Entity.SSO;
 using IRAP.Global;
-using IRAP.WCF.Client;
+using IRAP.Entity.SSO;
+using IRAP.Entities.SSO;
 
 namespace IRAP.WCF.Client.Method
 {

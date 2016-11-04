@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 using DevExpress.XtraEditors;
 
-using IRAP.Client.SubSystems;
+using IRAP.Client.SubSystem;
 
 namespace IRAP.Client.GUI.MESPDC.Actions
 {

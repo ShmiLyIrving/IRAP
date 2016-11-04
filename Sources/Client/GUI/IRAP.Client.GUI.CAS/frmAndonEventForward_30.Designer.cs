@@ -32,7 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventForward_30));
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
+            this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
+            this.pnlIDCardNoRead = new DevExpress.XtraEditors.PanelControl();
+            this.edtIDCardNo = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tpAndonEvents = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.cboAndonEvents = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnReturn = new DevExpress.XtraEditors.SimpleButton();
             this.btnForward = new DevExpress.XtraEditors.SimpleButton();
             this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
@@ -44,30 +50,24 @@
             this.grdclmnUserName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnRoleName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnAgencyName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
-            this.pnlIDCardNoRead = new DevExpress.XtraEditors.PanelControl();
-            this.edtIDCardNo = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.cboAndonEvents = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
             this.tcMain.SuspendLayout();
+            this.tpIDCardnoRead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).BeginInit();
+            this.pnlIDCardNoRead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).BeginInit();
             this.tpAndonEvents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvents.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
             this.gpcAndonEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStaffs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvStaffs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).BeginInit();
-            this.tpIDCardnoRead.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).BeginInit();
-            this.pnlIDCardNoRead.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvents.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -77,6 +77,7 @@
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblFuncName.Size = new System.Drawing.Size(914, 56);
+            this.lblFuncName.Text = "安灯追加呼叫";
             // 
             // panelControl1
             // 
@@ -103,13 +104,57 @@
             this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcMain.Location = new System.Drawing.Point(0, 56);
             this.tcMain.Name = "tcMain";
-            this.tcMain.SelectedTabPage = this.tpIDCardnoRead;
+            this.tcMain.SelectedTabPage = this.tpAndonEvents;
             this.tcMain.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
             this.tcMain.Size = new System.Drawing.Size(914, 628);
             this.tcMain.TabIndex = 3;
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpIDCardnoRead,
             this.tpAndonEvents});
+            // 
+            // tpIDCardnoRead
+            // 
+            this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
+            this.tpIDCardnoRead.Name = "tpIDCardnoRead";
+            this.tpIDCardnoRead.Size = new System.Drawing.Size(908, 622);
+            // 
+            // pnlIDCardNoRead
+            // 
+            this.pnlIDCardNoRead.ContentImage = global::IRAP.Client.GUI.CAS.Properties.Resources.AndonCall;
+            this.pnlIDCardNoRead.Controls.Add(this.edtIDCardNo);
+            this.pnlIDCardNoRead.Controls.Add(this.labelControl1);
+            this.pnlIDCardNoRead.Location = new System.Drawing.Point(22, 26);
+            this.pnlIDCardNoRead.Name = "pnlIDCardNoRead";
+            this.pnlIDCardNoRead.Size = new System.Drawing.Size(800, 600);
+            this.pnlIDCardNoRead.TabIndex = 0;
+            // 
+            // edtIDCardNo
+            // 
+            this.edtIDCardNo.EditValue = "";
+            this.edtIDCardNo.Location = new System.Drawing.Point(465, 316);
+            this.edtIDCardNo.Name = "edtIDCardNo";
+            this.edtIDCardNo.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtIDCardNo.Properties.Appearance.Options.UseFont = true;
+            this.edtIDCardNo.Properties.Appearance.Options.UseTextOptions = true;
+            this.edtIDCardNo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.edtIDCardNo.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.edtIDCardNo.Properties.UseSystemPasswordChar = true;
+            this.edtIDCardNo.Size = new System.Drawing.Size(300, 26);
+            this.edtIDCardNo.TabIndex = 1;
+            this.edtIDCardNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtIDCardNo_KeyDown);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl1.Location = new System.Drawing.Point(465, 272);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(300, 38);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "请刷卡，获取呼叫您的安灯事件";
             // 
             // tpAndonEvents
             // 
@@ -119,6 +164,36 @@
             this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
             this.tpAndonEvents.Name = "tpAndonEvents";
             this.tpAndonEvents.Size = new System.Drawing.Size(908, 622);
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl1.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.Appearance.Options.UseFont = true;
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.Controls.Add(this.cboAndonEvents);
+            this.groupControl1.Location = new System.Drawing.Point(22, 17);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
+            this.groupControl1.Size = new System.Drawing.Size(731, 60);
+            this.groupControl1.TabIndex = 0;
+            this.groupControl1.Text = "呼叫您的安灯事件";
+            // 
+            // cboAndonEvents
+            // 
+            this.cboAndonEvents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cboAndonEvents.Location = new System.Drawing.Point(7, 31);
+            this.cboAndonEvents.Name = "cboAndonEvents";
+            this.cboAndonEvents.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cboAndonEvents.Properties.Appearance.Options.UseFont = true;
+            this.cboAndonEvents.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboAndonEvents.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboAndonEvents.Size = new System.Drawing.Size(717, 22);
+            this.cboAndonEvents.TabIndex = 0;
+            this.cboAndonEvents.SelectedIndexChanged += new System.EventHandler(this.cboAndonEvents_SelectedIndexChanged);
             // 
             // btnReturn
             // 
@@ -265,80 +340,6 @@
             this.grdclmnAgencyName.VisibleIndex = 4;
             this.grdclmnAgencyName.Width = 145;
             // 
-            // tpIDCardnoRead
-            // 
-            this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
-            this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(908, 622);
-            // 
-            // pnlIDCardNoRead
-            // 
-            this.pnlIDCardNoRead.ContentImage = global::IRAP.Client.GUI.CAS.Properties.Resources.AndonCall;
-            this.pnlIDCardNoRead.Controls.Add(this.edtIDCardNo);
-            this.pnlIDCardNoRead.Controls.Add(this.labelControl1);
-            this.pnlIDCardNoRead.Location = new System.Drawing.Point(22, 26);
-            this.pnlIDCardNoRead.Name = "pnlIDCardNoRead";
-            this.pnlIDCardNoRead.Size = new System.Drawing.Size(800, 600);
-            this.pnlIDCardNoRead.TabIndex = 0;
-            // 
-            // edtIDCardNo
-            // 
-            this.edtIDCardNo.EditValue = "";
-            this.edtIDCardNo.Location = new System.Drawing.Point(465, 316);
-            this.edtIDCardNo.Name = "edtIDCardNo";
-            this.edtIDCardNo.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edtIDCardNo.Properties.Appearance.Options.UseFont = true;
-            this.edtIDCardNo.Properties.Appearance.Options.UseTextOptions = true;
-            this.edtIDCardNo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.edtIDCardNo.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.edtIDCardNo.Properties.UseSystemPasswordChar = true;
-            this.edtIDCardNo.Size = new System.Drawing.Size(300, 26);
-            this.edtIDCardNo.TabIndex = 1;
-            this.edtIDCardNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtIDCardNo_KeyDown);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(465, 272);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(300, 38);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "请刷卡，获取呼叫您的安灯事件";
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl1.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupControl1.Appearance.Options.UseFont = true;
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.cboAndonEvents);
-            this.groupControl1.Location = new System.Drawing.Point(22, 17);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl1.Size = new System.Drawing.Size(731, 60);
-            this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "呼叫您的安灯事件";
-            // 
-            // cboAndonEvents
-            // 
-            this.cboAndonEvents.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cboAndonEvents.Location = new System.Drawing.Point(7, 31);
-            this.cboAndonEvents.Name = "cboAndonEvents";
-            this.cboAndonEvents.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cboAndonEvents.Properties.Appearance.Options.UseFont = true;
-            this.cboAndonEvents.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboAndonEvents.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboAndonEvents.Size = new System.Drawing.Size(717, 22);
-            this.cboAndonEvents.TabIndex = 0;
-            this.cboAndonEvents.SelectedIndexChanged += new System.EventHandler(this.cboAndonEvents_SelectedIndexChanged);
-            // 
             // frmAndonEventForward_30
             // 
             this.Appearance.Options.UseFont = true;
@@ -355,19 +356,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
             this.tcMain.ResumeLayout(false);
+            this.tpIDCardnoRead.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).EndInit();
+            this.pnlIDCardNoRead.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).EndInit();
             this.tpAndonEvents.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvents.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).EndInit();
             this.gpcAndonEvents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdStaffs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvStaffs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).EndInit();
-            this.tpIDCardnoRead.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).EndInit();
-            this.pnlIDCardNoRead.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvents.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

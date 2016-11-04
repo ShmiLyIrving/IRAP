@@ -10,7 +10,7 @@ using System.Reflection;
 using IRAP.Client.Global;
 using IRAP.Global;
 using IRAP.Client.User;
-using IRAP.Client.SubSystems;
+using IRAP.Client.SubSystem;
 
 namespace IRAP.Client.Global.GUI
 {

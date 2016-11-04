@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPMain", "IRAPMain\IRAPMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.Global", "IRAP.Client.Global\IRAP.Client.Global.csproj", "{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.SubSystems", "IRAP.Client.SubSystems\IRAP.Client.SubSystems.csproj", "{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.Global.GUI", "IRAP.Client.Global.GUI\IRAP.Client.Global.GUI.csproj", "{66EE090D-3D17-4CC0-9A7B-05EA2124A30B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.Kanban", "..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj", "{38588300-33DF-457A-936A-D0D0CA499E96}"
@@ -52,6 +50,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.GUI.MESRMM", "GUI\IRAP.Client.GUI.MESRMM\IRAP.Client.GUI.MESRMM.csproj", "{A9CA1211-B841-4A5C-BBCA-AAC80D865F9E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entities", "..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj", "{A10EB27E-6444-44AD-B5FB-2C8F96C04225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.SubSystem", "IRAP.Client.SubSystem\IRAP.Client.SubSystem.csproj", "{6CB866DC-64BF-4B72-A5D8-81767B077AA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,14 +117,6 @@ Global
 		{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}.Release|x86.ActiveCfg = Release|Any CPU
 		{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}.Release|x86.Build.0 = Release|Any CPU
-		{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}.Debug|x86.Build.0 = Debug|Any CPU
-		{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}.Release|x86.ActiveCfg = Release|Any CPU
-		{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}.Release|x86.Build.0 = Release|Any CPU
 		{66EE090D-3D17-4CC0-9A7B-05EA2124A30B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66EE090D-3D17-4CC0-9A7B-05EA2124A30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66EE090D-3D17-4CC0-9A7B-05EA2124A30B}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -261,6 +253,14 @@ Global
 		{A10EB27E-6444-44AD-B5FB-2C8F96C04225}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A10EB27E-6444-44AD-B5FB-2C8F96C04225}.Release|x86.ActiveCfg = Release|Any CPU
 		{A10EB27E-6444-44AD-B5FB-2C8F96C04225}.Release|x86.Build.0 = Release|Any CPU
+		{6CB866DC-64BF-4B72-A5D8-81767B077AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB866DC-64BF-4B72-A5D8-81767B077AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB866DC-64BF-4B72-A5D8-81767B077AA2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6CB866DC-64BF-4B72-A5D8-81767B077AA2}.Debug|x86.Build.0 = Debug|Any CPU
+		{6CB866DC-64BF-4B72-A5D8-81767B077AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB866DC-64BF-4B72-A5D8-81767B077AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CB866DC-64BF-4B72-A5D8-81767B077AA2}.Release|x86.ActiveCfg = Release|Any CPU
+		{6CB866DC-64BF-4B72-A5D8-81767B077AA2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

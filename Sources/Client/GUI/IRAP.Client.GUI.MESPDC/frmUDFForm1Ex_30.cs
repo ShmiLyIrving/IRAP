@@ -15,7 +15,7 @@ using DevExpress.Utils;
 using IRAP.Global;
 using IRAP.Client.Global;
 using IRAP.Client.User;
-using IRAP.Client.SubSystems;
+using IRAP.Client.SubSystem;
 using IRAP.Client.GUI.MESPDC.Actions;
 using IRAP.Entity.SSO;
 using IRAP.Entity.MDM;

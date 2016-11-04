@@ -54,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CH375\CH375Control.cs" />
+    <Compile Include="Dialogs\frmAndonEventCauseConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmAndonEventCauseConfirm.Designer.cs">
+      <DependentUpon>frmAndonEventCauseConfirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\AndonProductionLineStatus.cs" />
     <Compile Include="Enums\LightStatus.cs" />
     <Compile Include="frmAndonEventCall_30.cs">
@@ -79,6 +85,18 @@
     </Compile>
     <Compile Include="frmAndonEventClose_30.Designer.cs">
       <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAndonEventConsultationCall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventConsultationCall.Designer.cs">
+      <DependentUpon>frmAndonEventConsultationCall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAndonEventConsultationConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventConsultationConfirm.Designer.cs">
+      <DependentUpon>frmAndonEventConsultationConfirm.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAndonEventForward_30.cs">
       <SubType>Form</SubType>
@@ -146,6 +164,10 @@
       <Project>{325FFD07-7491-45C3-86F3-85F7DEF4C726}</Project>
       <Name>IRAP.Global</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.FVS\IRAP.Entity.FVS.csproj">
       <Project>{08efff76-a5d1-4c39-972d-d9c85bded80f}</Project>
       <Name>IRAP.Entity.FVS</Name>
@@ -174,10 +196,6 @@
       <Project>{a4b73531-9e93-4c64-aae2-a6cdf064c9f5}</Project>
       <Name>IRAP.Client.Global</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Client.SubSystems\IRAP.Client.SubSystems.csproj">
-      <Project>{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}</Project>
-      <Name>IRAP.Client.SubSystems</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\IRAP.Client.User\IRAP.Client.User.csproj">
       <Project>{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}</Project>
       <Name>IRAP.Client.User</Name>
@@ -188,6 +206,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frmAndonEventCauseConfirm.resx">
+      <DependentUpon>frmAndonEventCauseConfirm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventCall_30.resx">
       <DependentUpon>frmAndonEventCall_30.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +220,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventClose_30.resx">
       <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventConsultationCall.resx">
+      <DependentUpon>frmAndonEventConsultationCall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventConsultationConfirm.resx">
+      <DependentUpon>frmAndonEventConsultationConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventForward_30.resx">
       <DependentUpon>frmAndonEventForward_30.cs</DependentUpon>

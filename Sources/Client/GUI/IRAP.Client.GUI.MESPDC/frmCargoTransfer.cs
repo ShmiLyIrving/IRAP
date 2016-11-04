@@ -11,7 +11,7 @@ using DevExpress.XtraEditors;
 
 using IRAP.Global;
 using IRAP.Client.User;
-using IRAP.Client.SubSystems;
+using IRAP.Client.SubSystem;
 using IRAP.Entity.MDM;
 using IRAP.Entity.SSO;
 using IRAP.Entities.MDM;

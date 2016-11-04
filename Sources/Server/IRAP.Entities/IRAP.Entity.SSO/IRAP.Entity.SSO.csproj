@@ -58,7 +58,6 @@
     <Compile Include="SystemInfo.cs" />
     <Compile Include="SystemMenuInfoButtonStyle.cs" />
     <Compile Include="SystemMenuInfoMenuStyle.cs" />
-    <Compile Include="UserInfo.cs" />
     <Compile Include="WorkUnitInfo.cs" />
   </ItemGroup>
   <ItemGroup>

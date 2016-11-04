@@ -152,9 +152,9 @@
       <Project>{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}</Project>
       <Name>IRAP.Client.Global</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Client.SubSystems\IRAP.Client.SubSystems.csproj">
-      <Project>{CC16754D-DD9D-4AD5-A006-0C7C95F94DB3}</Project>
-      <Name>IRAP.Client.SubSystems</Name>
+    <ProjectReference Include="..\..\IRAP.Client.SubSystem\IRAP.Client.SubSystem.csproj">
+      <Project>{6cb866dc-64bf-4b72-a5d8-81767b077aa2}</Project>
+      <Name>IRAP.Client.SubSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\IRAP.Client.User\IRAP.Client.User.csproj">
       <Project>{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}</Project>

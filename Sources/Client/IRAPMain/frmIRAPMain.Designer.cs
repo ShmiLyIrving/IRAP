@@ -39,7 +39,7 @@
             this.skinBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.ucOptions = new IRAP.Client.SubSystems.ucOptions();
+            this.ucOptions = new IRAP.Client.SubSystem.ucOptions();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             this.backstageViewControl1.SuspendLayout();
@@ -218,6 +218,6 @@
         private DevExpress.Utils.ImageCollection imageCollection;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinBarItem;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
-        private Client.SubSystems.ucOptions ucOptions;
+        private Client.SubSystem.ucOptions ucOptions;
     }
 }
