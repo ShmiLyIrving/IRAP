@@ -11,6 +11,7 @@ using IRAP.Server.Global;
 using IRAPShared;
 using IRAPORM;
 using IRAP.Entity.SSO;
+using IRAP.Entities.SSO;
 
 namespace IRAP.BL.SSO
 {

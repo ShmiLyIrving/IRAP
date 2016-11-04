@@ -9,6 +9,7 @@ using IRAP.Global;
 using IRAPShared;
 using IRAPORM;
 using IRAP.Entity.FVS;
+using IRAP.Entities.FVS;
 
 namespace IRAP.BL.FVS
 {
@@ -963,6 +964,160 @@ namespace IRAP.BL.FVS
                 {
                     errCode = 99000;
                     errText = string.Format("调用 IRAPFVS..ufn_GetList_ResponsibleRespondersToInform 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据安灯事件事实编号，获取相关干系人列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="eventFactID">安灯事件事实编号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List[EventStakeholder]</returns>
+        public IRAPJsonResult ufn_GetList_EventStakeholders(
+            int communityID,
+            long eventFactID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<EventStakeholder> datas = new List<EventStakeholder>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@EventFactID", DbType.Int64, eventFactID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPFVS..ufn_GetList_EventStakeholders，" +
+                        "参数：CommunityID={0}|EventFactID={1}|SysLogID={2}",
+                        communityID, eventFactID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPFVS..ufn_GetList_EventStakeholders(" +
+                            "@CommunityID, @EventFactID, @SysLogID)";
+
+                        IList<EventStakeholder> lstDatas =
+                            conn.CallTableFunc<EventStakeholder>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 IRAPFVS..ufn_GetList_EventStakeholders 函数发生异常：{0}", 
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取待响应的安灯事件清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="userCode">用户代码</param>
+        /// <param name="sysLogID">响应站点系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetList_AndonEventsResponded(
+            int communityID,
+            string userCode,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<AndonRspedEventInfo> datas = new List<AndonRspedEventInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@UserCode", DbType.String, userCode));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPFVS..ufn_GetList_AndonEventsResponded，" +
+                        "参数：CommunityID={0}|UserCode={1}|SysLogID={2}",
+                        communityID, userCode, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPFVS..ufn_GetList_AndonEventsResponded(" +
+                            "@CommunityID, @UserCode, @SysLogID)";
+
+                        IList<AndonRspedEventInfo> lstDatas = 
+                            conn.CallTableFunc<AndonRspedEventInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 IRAPFVS..ufn_GetList_AndonEventsResponded 函数发生异常：{0}", 
+                            error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }
