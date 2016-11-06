@@ -54,6 +54,7 @@ namespace IRAP_FVS_LSSIVO
 
             try
             {
+#if !DEBUG
                 #region 系统自动更新
                 string upgradeURL = "";
                 if (ConfigurationManager.AppSettings["UpgradeURL"] != null)
@@ -82,6 +83,7 @@ namespace IRAP_FVS_LSSIVO
                     }
                 }
                 #endregion
+#endif
 
                 string environment = "";
                 if (ConfigurationManager.AppSettings["Environment"] != null)

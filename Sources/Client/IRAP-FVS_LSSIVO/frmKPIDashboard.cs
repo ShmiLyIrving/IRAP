@@ -58,6 +58,10 @@ namespace IRAP_FVS_LSSIVO
         /// 上次程序更新检查时间
         /// </summary>
         private DateTime lastUpgrade = DateTime.Now;
+        /// <summary>
+        /// Dashboard 上至少显示的图标数量
+        /// </summary>
+        private int minShowCount = 20;
 
         public frmKPIDashboard()
         {
@@ -79,6 +83,19 @@ namespace IRAP_FVS_LSSIVO
             }
             if (macAddress.Trim() == "")
                 GetMacAddress();
+            #endregion
+
+            #region 初始化 Dashboards
+            for (int i = 0; i < minShowCount; i++)
+            {
+                dashboards.Add(
+                    new ucInstrumentPanel()
+                    {
+                        Title = "",
+                        Status = 0,
+                        Value = 0,
+                    });
+            }
             #endregion
 
             lblCompanyName.Parent = picBackground;
