@@ -15,6 +15,7 @@ using IRAP.Client.User;
 using IRAP.Client.Global.GUI.Dialogs;
 using IRAP.Entity.MDM;
 using IRAP.Entity.SSO;
+using IRAP.Entities.SSO;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.CAS
@@ -154,6 +155,10 @@ namespace IRAP.Client.GUI.CAS
                         grdAndonCallObjects.DataSource = null;
                         return;
                     }
+
+                    // 自动选择第一项
+                    if (failureModeList.Count > 0)
+                        failureModeList[0].Choice = true;
 
                     grdAndonCallObjects.DataSource = failureModeList;
                     for (int i = 0; i < grdvAndonCallObjects.Columns.Count; i++)

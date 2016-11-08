@@ -6,10 +6,12 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
 
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Entities.SSO;
+using IRAP.Entities.FVS;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.CAS
@@ -20,6 +22,9 @@ namespace IRAP.Client.GUI.CAS
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private UserInfo staffInfo = new UserInfo();
+        private List<AndonRspedEventInfo> andonEventsRepsonded = 
+            new List<AndonRspedEventInfo>();
+        List<EventStakeholder> staffs = new List<EventStakeholder>();
 
         public frmAndonEventConsultationCall()
         {
@@ -28,10 +33,20 @@ namespace IRAP.Client.GUI.CAS
             switch (IRAPUser.Instance.CommunityID)
             {
                 case 60006:
-                    lblGetIDNo.Text = "    请刷卡或输入工号，获取呼叫您的安灯事件：";
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        lblGetIDNo.Text = "Please swipe your card or enter a number "+
+                            "to obtain a call to your andon event";
+                    else
+                        lblGetIDNo.Text = "    请刷卡或输入工号，获取呼叫您的安灯事件：";
+                    edtIDCardNo.Properties.UseSystemPasswordChar = false;
                     break;
                 default:
-                    lblGetIDNo.Text = "请刷卡，获取呼叫您的安灯事件：";
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        lblGetIDNo.Text = "Please swipe your card to obtain a "+
+                            "call to your andon event";
+                    else
+                        lblGetIDNo.Text = "请刷卡，获取呼叫您的安灯事件：";
+                    edtIDCardNo.Properties.UseSystemPasswordChar = true;
                     break;
             }
         }
@@ -71,71 +86,101 @@ namespace IRAP.Client.GUI.CAS
                         int errCode = 0;
                         string errText = "";
 
-                        IRAPUserClient.Instance.sfn_GetInfo_UserFromIDCard(
-                            IRAPUser.Instance.CommunityID,
-                            edtIDCardNo.Text.Trim(),
-                            ref staffInfo,
-                            out errCode,
-                            out errText);
-                        WriteLog.Instance.Write(
-                            string.Format("({0}){1}", errCode, errText),
-                            strProcedureName);
-
-                        if (errCode != 0)
+                        switch (IRAPUser.Instance.CommunityID)
                         {
-                            IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            case 60006:
+                                staffInfo = new UserInfo()
+                                {
+                                    UserCode = edtIDCardNo.Text.Trim(),
+                                };
+                                break;
+                            default:
+                                IRAPUserClient.Instance.sfn_GetInfo_UserFromIDCard(
+                                    IRAPUser.Instance.CommunityID,
+                                    edtIDCardNo.Text.Trim(),
+                                    ref staffInfo,
+                                    out errCode,
+                                    out errText);
+                                WriteLog.Instance.Write(
+                                    string.Format("({0}){1}", errCode, errText),
+                                    strProcedureName);
+
+                                if (errCode != 0)
+                                {
+                                    IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    edtIDCardNo.Text = "";
+                                    edtIDCardNo.Focus();
+                                    return;
+                                }
+                                break;
+                        }
+
+                        cboAndonEvent.SelectedItem = null;
+                        cboAndonEvent.Properties.Items.Clear();
+
+                        // 获取该用户需要响应的安灯事件列表
+                        andonEventsRepsonded.Clear();
+                        try
+                        {
+                            IRAPFVSClient.Instance.ufn_GetList_AndonEventsResponded(
+                                IRAPUser.Instance.CommunityID,
+                                staffInfo.UserCode,
+                                IRAPUser.Instance.SysLogID,
+                                ref andonEventsRepsonded,
+                                out errCode,
+                                out errText);
+                            WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+
+                            if (errCode == 0)
+                            {
+                                if (andonEventsRepsonded.Count <= 0)
+                                {
+                                    IRAPMessageBox.Instance.Show(
+                                        "当前站点没有呼叫您的安灯事件！",
+                                        Text,
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Exclamation);
+                                    edtIDCardNo.Text = "";
+                                    edtIDCardNo.Focus();
+                                }
+                                else
+                                {
+                                    tcMain.SelectedTabPage = tpAndonEvents;
+                                    Application.DoEvents();
+
+                                    foreach (AndonRspedEventInfo data in andonEventsRepsonded)
+                                    {
+                                        cboAndonEvent.Properties.Items.Add(data);
+                                    }
+                                    if (cboAndonEvent.Properties.Items.Count > 0)
+                                        cboAndonEvent.SelectedIndex = 0;
+
+                                }
+                            }
+                            else
+                            {
+                                IRAPMessageBox.Instance.Show(
+                                    errText,
+                                    Text,
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                edtIDCardNo.Text = "";
+                                edtIDCardNo.Focus();
+                                return;
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            WriteLog.Instance.Write(error.Message, strProcedureName);
+                            WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                            IRAPMessageBox.Instance.Show(
+                                error.Message,
+                                Text,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
                             edtIDCardNo.Text = "";
                             edtIDCardNo.Focus();
-                            return;
-                        }
-                        else
-                        {
-                            // 获取该用户需要响应的安灯事件列表
-                            //andonEventsToRespond.Clear();
-                            //try
-                            //{
-                            //    IRAPFVSClient.Instance.ufn_GetList_AndonEventsToRespond(
-                            //        IRAPUser.Instance.CommunityID,
-                            //        staffInfo.UserCode,
-                            //        IRAPUser.Instance.SysLogID,
-                            //        ref andonEventsToRespond,
-                            //        out errCode,
-                            //        out errText);
-                            //    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
-
-                            //    if (errCode == 0)
-                            //    {
-                            //        if (andonEventsToRespond.Count > 0)
-                            //        {
-                            //            chkCallOtherOneAndonEvents.Checked = false;
-                            //            chkCallOtherOneAndonEvents_CheckedChanged(chkCallOtherOneAndonEvents, new EventArgs());
-
-                            //            tcMain.SelectedTabPage = tpAndonEvents;
-                            //        }
-                            //        else
-                            //        {
-                            //            ShowMessageBox.Show("当前站点没有呼叫您的安灯事件！", Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            //            edtIDCardNo.Text = "";
-                            //            edtIDCardNo.Focus();
-                            //        }
-                            //    }
-                            //    else
-                            //    {
-                            //        ShowMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //        edtIDCardNo.Text = "";
-                            //        edtIDCardNo.Focus();
-                            //        return;
-                            //    }
-                            //}
-                            //catch (Exception error)
-                            //{
-                            //    WriteLog.Instance.Write(error.Message, strProcedureName);
-                            //    ShowMessageBox.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //    grdAndonEvents.DataSource = null;
-
-                            //    edtIDCardNo.Text = "";
-                            //    edtIDCardNo.Focus();
-                            //}
                         }
                     }
                     finally
@@ -143,6 +188,190 @@ namespace IRAP.Client.GUI.CAS
                         WriteLog.Instance.WriteEndSplitter(strProcedureName);
                     }
                 }
+            }
+        }
+
+        private void cboAndonEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            if (cboAndonEvent.SelectedItem == null)
+            {
+                grdStaffs.DataSource = null;
+                grdvStaffs.BestFitColumns();
+
+                return;
+            }
+
+            AndonRspedEventInfo eventAndon = (AndonRspedEventInfo)cboAndonEvent.SelectedItem;
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPFVSClient.Instance.ufn_GetList_EventStakeholders(
+                    IRAPUser.Instance.CommunityID,
+                    eventAndon.EventFactID,
+                    IRAPUser.Instance.SysLogID,
+                    ref staffs,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+
+                if (errCode == 0)
+                {
+                    grdStaffs.DataSource = staffs;
+                    grdvStaffs.BestFitColumns();
+                }
+                else
+                {
+                    grdStaffs.DataSource = null;
+                    grdvStaffs.BestFitColumns();
+
+                    IRAPMessageBox.Instance.Show(errText, Text, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception error)
+            {
+                grdStaffs.DataSource = null;
+                grdvStaffs.BestFitColumns();
+
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                IRAPMessageBox.Instance.Show(error.Message, Text, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void btnConsultationCall_Click(object sender, EventArgs e)
+        {
+            if (cboAndonEvent.SelectedItem == null)
+            {
+                return;
+            }
+
+            int intSelectedCount = 0;
+            foreach (EventStakeholder staff in staffs)
+            {
+                if (staff.Choice)
+                    intSelectedCount++;
+            }
+            if (intSelectedCount <= 0)
+            {
+                IRAPMessageBox.Instance.Show("至少要选择一个人员！", Text, MessageBoxIcon.Error);
+                grdStaffs.Focus();
+                return;
+            }
+
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                AndonRspedEventInfo andonEvent = cboAndonEvent.SelectedItem as AndonRspedEventInfo;
+
+                string strSuccess = "";
+                string strFailures = "";
+                foreach (EventStakeholder staff in staffs)
+                {
+                    if (staff.Choice)
+                    {
+                        try
+                        {
+                            long transactNo = 
+                                IRAPUTSClient.Instance.mfn_GetTransactNo(
+                                    IRAPUser.Instance.CommunityID, 
+                                    1, 
+                                    IRAPUser.Instance.SysLogID, 
+                                    "");
+                            long factID =
+                                IRAPUTSClient.Instance.mfn_GetFactID(
+                                    IRAPUser.Instance.CommunityID,
+                                    1,
+                                    IRAPUser.Instance.SysLogID,
+                                    "");
+
+                            IRAPFVSClient.Instance.usp_SaveFact_AndonEventConsultation(
+                                IRAPUser.Instance.CommunityID,
+                                transactNo,
+                                factID,
+                                andonEvent.EventFactID,
+                                andonEvent.OpID,
+                                staff.UserCode,
+                                IRAPUser.Instance.SysLogID,
+                                out errCode,
+                                out errText);
+                            WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+
+                            if (errCode != 0)
+                            {
+                                strFailures += string.Format("[{0}]", staff.UserName);
+                                IRAPMessageBox.Instance.Show(errText, Text, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                strSuccess += string.Format("[{0}]", staff.UserName);
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            WriteLog.Instance.Write(error.Message, strProcedureName);
+                            WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
+                            IRAPMessageBox.Instance.Show(
+                                error.Message,
+                                Text,
+                                MessageBoxIcon.Error);
+                        }
+                    }
+                }
+
+                string msg = "";
+                if (strSuccess != "")
+                    msg += string.Format("已经成功呼叫{0}前来参与会诊\n", strSuccess);
+                if (strFailures != "")
+                    msg += string.Format("{0}呼叫失败，你可以再次重新呼叫！", strFailures);
+
+                if (msg != "")
+                    IRAPMessageBox.Instance.Show(msg, Text, MessageBoxIcon.Asterisk);
+
+                btnReturn.PerformClick();
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            tcMain.SelectedTabPage = tpIDCardnoRead;
+
+            edtIDCardNo.Text = "";
+            edtIDCardNo.Focus();
+        }
+
+        private void tcMain_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            if (e.Page== tpIDCardnoRead)
+            {
+                edtIDCardNo.Focus();
             }
         }
     }

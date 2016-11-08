@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.picIcon = new System.Windows.Forms.PictureBox();
             this.lblMessage = new DevExpress.XtraEditors.LabelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
@@ -39,7 +38,7 @@
             this.btnIgnore = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +54,7 @@
             // 
             // lblMessage
             // 
-            this.lblMessage.Appearance.Font = new System.Drawing.Font("新宋体", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblMessage.Appearance.Font = new System.Drawing.Font("等线", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblMessage.Appearance.ForeColor = System.Drawing.Color.Red;
             this.lblMessage.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblMessage.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -70,7 +69,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnOK.Appearance.Options.UseFont = true;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(12, 126);
@@ -82,7 +81,7 @@
             // 
             // btnYes
             // 
-            this.btnYes.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYes.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnYes.Appearance.Options.UseFont = true;
             this.btnYes.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.btnYes.Location = new System.Drawing.Point(93, 126);
@@ -94,7 +93,7 @@
             // 
             // btnNo
             // 
-            this.btnNo.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNo.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnNo.Appearance.Options.UseFont = true;
             this.btnNo.DialogResult = System.Windows.Forms.DialogResult.No;
             this.btnNo.Location = new System.Drawing.Point(174, 126);
@@ -106,7 +105,7 @@
             // 
             // btnAbort
             // 
-            this.btnAbort.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAbort.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAbort.Appearance.Options.UseFont = true;
             this.btnAbort.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.btnAbort.Location = new System.Drawing.Point(255, 126);
@@ -118,7 +117,7 @@
             // 
             // btnRetry
             // 
-            this.btnRetry.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRetry.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnRetry.Appearance.Options.UseFont = true;
             this.btnRetry.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this.btnRetry.Location = new System.Drawing.Point(336, 126);
@@ -130,7 +129,7 @@
             // 
             // btnIgnore
             // 
-            this.btnIgnore.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIgnore.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnIgnore.Appearance.Options.UseFont = true;
             this.btnIgnore.DialogResult = System.Windows.Forms.DialogResult.Ignore;
             this.btnIgnore.Location = new System.Drawing.Point(417, 126);
@@ -142,7 +141,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(498, 126);
@@ -154,7 +153,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.No;
             this.btnClose.Location = new System.Drawing.Point(287, 126);

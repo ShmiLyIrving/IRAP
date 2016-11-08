@@ -2621,6 +2621,93 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 获取上下文敏感的产线其他支持人员清单。
+        /// </summary>
+        /// <remarks>从产线安灯事件采集固定客户端调用时，工位及设备叶标识传入0</remarks>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t179LeafID">安灯事件类型叶标识</param>
+        /// <param name="t107LeafID">触发呼叫工位叶标识</param>
+        /// <param name="t133LeafID">触发呼叫设备叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_AndonCallPersons(
+            int communityID,
+            int t179LeafID,
+            int t107LeafID,
+            int t133LeafID,
+            long sysLogID,
+            ref List<AndonCallPerson> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t179LeafID", t179LeafID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("t133LeafID", t133LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_AndonCallPersons 函数， " +
+                        "参数：CommunityID={0}|T179LeafID={1}|T107LeafID={2}|" +
+                        "T133LeafID={3}|SysLogID={4}",
+                        communityID,
+                        t179LeafID,
+                        t107LeafID,
+                        t133LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
+                            "ufn_GetList_AndonCallPersons",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<AndonCallPerson>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 将信息站点组切换到指定生产线
         /// </summary>
         /// <param name="communityID">社区标识</param>

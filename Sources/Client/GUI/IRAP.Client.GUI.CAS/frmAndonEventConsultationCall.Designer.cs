@@ -28,247 +28,265 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventConsultationCall));
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
-            this.tpAndonEvents = new DevExpress.XtraTab.XtraTabPage();
-            this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.lstWaitingforCall = new DevExpress.XtraEditors.ListBoxControl();
-            this.cboType = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.lstReadyToCall = new DevExpress.XtraEditors.ListBoxControl();
-            this.btnConsultationCall = new DevExpress.XtraEditors.SimpleButton();
-            this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
-            this.cboAndonEvent = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
             this.pnlIDCardNoRead = new DevExpress.XtraEditors.PanelControl();
             this.edtIDCardNo = new DevExpress.XtraEditors.TextEdit();
             this.lblGetIDNo = new DevExpress.XtraEditors.LabelControl();
+            this.tpAndonEvents = new DevExpress.XtraTab.XtraTabPage();
+            this.btnReturn = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.grdStaffs = new DevExpress.XtraGrid.GridControl();
+            this.grdvStaffs = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdclmnChoice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.rpschkSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.grdclmnUserCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnUserName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnRoleName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnAgencyName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnConsultationCall = new DevExpress.XtraEditors.SimpleButton();
+            this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
+            this.cboAndonEvent = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
             this.tcMain.SuspendLayout();
-            this.tpAndonEvents.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
-            this.splitContainerControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lstWaitingforCall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lstReadyToCall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
-            this.gpcAndonEvents.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvent.Properties)).BeginInit();
             this.tpIDCardnoRead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).BeginInit();
             this.pnlIDCardNoRead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).BeginInit();
+            this.tpAndonEvents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStaffs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvStaffs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
+            this.gpcAndonEvents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvent.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
             // 
-            this.lblFuncName.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.lblFuncName.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lblFuncName.Appearance.Font")));
+            this.lblFuncName.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("lblFuncName.Appearance.ForeColor")));
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblFuncName.Text = "安灯事件会诊呼叫";
+            resources.ApplyResources(this.lblFuncName, "lblFuncName");
             // 
             // toolTipController
             // 
-            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.toolTipController.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("toolTipController.Appearance.Font")));
             this.toolTipController.Appearance.Options.UseFont = true;
-            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.toolTipController.AppearanceTitle.Font = ((System.Drawing.Font)(resources.GetObject("toolTipController.AppearanceTitle.Font")));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
             // tcMain
             // 
-            this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcMain.HeaderButtonsShowMode = DevExpress.XtraTab.TabButtonShowMode.Always;
-            this.tcMain.Location = new System.Drawing.Point(0, 56);
+            resources.ApplyResources(this.tcMain, "tcMain");
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedTabPage = this.tpAndonEvents;
-            this.tcMain.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.tcMain.Size = new System.Drawing.Size(891, 652);
-            this.tcMain.TabIndex = 2;
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpIDCardnoRead,
             this.tpAndonEvents});
-            // 
-            // tpAndonEvents
-            // 
-            this.tpAndonEvents.Controls.Add(this.splitContainerControl);
-            this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
-            this.tpAndonEvents.Name = "tpAndonEvents";
-            this.tpAndonEvents.Size = new System.Drawing.Size(885, 646);
-            this.tpAndonEvents.Text = "xtraTabPage2";
-            // 
-            // splitContainerControl
-            // 
-            this.splitContainerControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainerControl.Location = new System.Drawing.Point(22, 81);
-            this.splitContainerControl.Name = "splitContainerControl";
-            this.splitContainerControl.Panel1.Controls.Add(this.groupControl1);
-            this.splitContainerControl.Panel1.Text = "Panel1";
-            this.splitContainerControl.Panel2.Controls.Add(this.groupControl2);
-            this.splitContainerControl.Panel2.Text = "Panel2";
-            this.splitContainerControl.Size = new System.Drawing.Size(847, 547);
-            this.splitContainerControl.SplitterPosition = 380;
-            this.splitContainerControl.TabIndex = 4;
-            this.splitContainerControl.Text = "splitContainerControl1";
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.lstWaitingforCall);
-            this.groupControl1.Controls.Add(this.cboType);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(380, 547);
-            this.groupControl1.TabIndex = 1;
-            this.groupControl1.Text = "可以呼叫的人员";
-            // 
-            // lstWaitingforCall
-            // 
-            this.lstWaitingforCall.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstWaitingforCall.Location = new System.Drawing.Point(5, 50);
-            this.lstWaitingforCall.Name = "lstWaitingforCall";
-            this.lstWaitingforCall.Size = new System.Drawing.Size(370, 492);
-            this.lstWaitingforCall.TabIndex = 1;
-            // 
-            // cboType
-            // 
-            this.cboType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboType.Location = new System.Drawing.Point(5, 24);
-            this.cboType.Name = "cboType";
-            this.cboType.Properties.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboType.Properties.Appearance.Options.UseFont = true;
-            this.cboType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboType.Size = new System.Drawing.Size(370, 20);
-            this.cboType.TabIndex = 0;
-            // 
-            // groupControl2
-            // 
-            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupControl2.AppearanceCaption.Options.UseFont = true;
-            this.groupControl2.Controls.Add(this.lstReadyToCall);
-            this.groupControl2.Controls.Add(this.btnConsultationCall);
-            this.groupControl2.Location = new System.Drawing.Point(0, 0);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(462, 547);
-            this.groupControl2.TabIndex = 2;
-            this.groupControl2.Text = "准备呼叫的人员";
-            // 
-            // lstReadyToCall
-            // 
-            this.lstReadyToCall.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstReadyToCall.Location = new System.Drawing.Point(5, 24);
-            this.lstReadyToCall.Name = "lstReadyToCall";
-            this.lstReadyToCall.Size = new System.Drawing.Size(452, 481);
-            this.lstReadyToCall.TabIndex = 1;
-            // 
-            // btnConsultationCall
-            // 
-            this.btnConsultationCall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConsultationCall.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnConsultationCall.Appearance.Options.UseFont = true;
-            this.btnConsultationCall.Location = new System.Drawing.Point(369, 511);
-            this.btnConsultationCall.Name = "btnConsultationCall";
-            this.btnConsultationCall.Size = new System.Drawing.Size(88, 31);
-            this.btnConsultationCall.TabIndex = 2;
-            this.btnConsultationCall.Text = "呼叫";
-            // 
-            // gpcAndonEvents
-            // 
-            this.gpcAndonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpcAndonEvents.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpcAndonEvents.Appearance.Options.UseFont = true;
-            this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
-            this.gpcAndonEvents.Controls.Add(this.cboAndonEvent);
-            this.gpcAndonEvents.Location = new System.Drawing.Point(22, 17);
-            this.gpcAndonEvents.Name = "gpcAndonEvents";
-            this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(847, 58);
-            this.gpcAndonEvents.TabIndex = 0;
-            this.gpcAndonEvents.Text = "我响应的安灯事件";
-            // 
-            // cboAndonEvent
-            // 
-            this.cboAndonEvent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboAndonEvent.Location = new System.Drawing.Point(10, 29);
-            this.cboAndonEvent.Name = "cboAndonEvent";
-            this.cboAndonEvent.Properties.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboAndonEvent.Properties.Appearance.Options.UseFont = true;
-            this.cboAndonEvent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboAndonEvent.Size = new System.Drawing.Size(827, 20);
-            this.cboAndonEvent.TabIndex = 1;
+            this.tcMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tcMain_SelectedPageChanged);
             // 
             // tpIDCardnoRead
             // 
             this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
             this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(885, 646);
+            resources.ApplyResources(this.tpIDCardnoRead, "tpIDCardnoRead");
             // 
             // pnlIDCardNoRead
             // 
             this.pnlIDCardNoRead.ContentImage = global::IRAP.Client.GUI.CAS.Properties.Resources.AndonCall;
             this.pnlIDCardNoRead.Controls.Add(this.edtIDCardNo);
             this.pnlIDCardNoRead.Controls.Add(this.lblGetIDNo);
-            this.pnlIDCardNoRead.Location = new System.Drawing.Point(22, 26);
+            resources.ApplyResources(this.pnlIDCardNoRead, "pnlIDCardNoRead");
             this.pnlIDCardNoRead.Name = "pnlIDCardNoRead";
-            this.pnlIDCardNoRead.Size = new System.Drawing.Size(800, 600);
-            this.pnlIDCardNoRead.TabIndex = 0;
             // 
             // edtIDCardNo
             // 
-            this.edtIDCardNo.EditValue = "";
-            this.edtIDCardNo.Location = new System.Drawing.Point(465, 316);
+            resources.ApplyResources(this.edtIDCardNo, "edtIDCardNo");
             this.edtIDCardNo.Name = "edtIDCardNo";
-            this.edtIDCardNo.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtIDCardNo.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("edtIDCardNo.Properties.Appearance.Font")));
             this.edtIDCardNo.Properties.Appearance.Options.UseFont = true;
             this.edtIDCardNo.Properties.Appearance.Options.UseTextOptions = true;
             this.edtIDCardNo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.edtIDCardNo.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtIDCardNo.Properties.UseSystemPasswordChar = true;
-            this.edtIDCardNo.Size = new System.Drawing.Size(300, 26);
-            this.edtIDCardNo.TabIndex = 1;
             this.edtIDCardNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtIDCardNo_KeyDown);
             // 
             // lblGetIDNo
             // 
-            this.lblGetIDNo.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGetIDNo.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lblGetIDNo.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lblGetIDNo.Appearance.Font")));
+            this.lblGetIDNo.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("lblGetIDNo.Appearance.ForeColor")));
             this.lblGetIDNo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.lblGetIDNo.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.lblGetIDNo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.lblGetIDNo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblGetIDNo.Location = new System.Drawing.Point(465, 234);
+            resources.ApplyResources(this.lblGetIDNo, "lblGetIDNo");
             this.lblGetIDNo.Name = "lblGetIDNo";
-            this.lblGetIDNo.Size = new System.Drawing.Size(300, 76);
-            this.lblGetIDNo.TabIndex = 0;
-            this.lblGetIDNo.Text = "    请刷卡或输入工号，获取呼叫您的安灯事件：";
+            // 
+            // tpAndonEvents
+            // 
+            this.tpAndonEvents.Controls.Add(this.btnReturn);
+            this.tpAndonEvents.Controls.Add(this.groupControl3);
+            this.tpAndonEvents.Controls.Add(this.btnConsultationCall);
+            this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
+            this.tpAndonEvents.Name = "tpAndonEvents";
+            resources.ApplyResources(this.tpAndonEvents, "tpAndonEvents");
+            // 
+            // btnReturn
+            // 
+            resources.ApplyResources(this.btnReturn, "btnReturn");
+            this.btnReturn.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnReturn.Appearance.Font")));
+            this.btnReturn.Appearance.Options.UseFont = true;
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
+            // groupControl3
+            // 
+            resources.ApplyResources(this.groupControl3, "groupControl3");
+            this.groupControl3.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("groupControl3.Appearance.Font")));
+            this.groupControl3.Appearance.Options.UseFont = true;
+            this.groupControl3.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("groupControl3.AppearanceCaption.Font")));
+            this.groupControl3.AppearanceCaption.Options.UseFont = true;
+            this.groupControl3.Controls.Add(this.grdStaffs);
+            this.groupControl3.Name = "groupControl3";
+            // 
+            // grdStaffs
+            // 
+            resources.ApplyResources(this.grdStaffs, "grdStaffs");
+            this.grdStaffs.MainView = this.grdvStaffs;
+            this.grdStaffs.Name = "grdStaffs";
+            this.grdStaffs.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.rpschkSelect});
+            this.grdStaffs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdvStaffs});
+            // 
+            // grdvStaffs
+            // 
+            this.grdvStaffs.Appearance.HeaderPanel.Font = ((System.Drawing.Font)(resources.GetObject("grdvStaffs.Appearance.HeaderPanel.Font")));
+            this.grdvStaffs.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grdvStaffs.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.grdvStaffs.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdvStaffs.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdvStaffs.Appearance.Row.Font = ((System.Drawing.Font)(resources.GetObject("grdvStaffs.Appearance.Row.Font")));
+            this.grdvStaffs.Appearance.Row.Options.UseFont = true;
+            this.grdvStaffs.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grdclmnChoice,
+            this.grdclmnUserCode,
+            this.grdclmnUserName,
+            this.grdclmnRoleName,
+            this.grdclmnAgencyName});
+            this.grdvStaffs.GridControl = this.grdStaffs;
+            this.grdvStaffs.Name = "grdvStaffs";
+            this.grdvStaffs.OptionsView.ColumnAutoWidth = false;
+            this.grdvStaffs.OptionsView.RowAutoHeight = true;
+            this.grdvStaffs.OptionsView.ShowGroupPanel = false;
+            // 
+            // grdclmnChoice
+            // 
+            resources.ApplyResources(this.grdclmnChoice, "grdclmnChoice");
+            this.grdclmnChoice.ColumnEdit = this.rpschkSelect;
+            this.grdclmnChoice.FieldName = "Choice";
+            this.grdclmnChoice.Name = "grdclmnChoice";
+            this.grdclmnChoice.OptionsColumn.AllowMove = false;
+            // 
+            // rpschkSelect
+            // 
+            resources.ApplyResources(this.rpschkSelect, "rpschkSelect");
+            this.rpschkSelect.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined;
+            this.rpschkSelect.ImageIndexChecked = 1;
+            this.rpschkSelect.ImageIndexUnchecked = 0;
+            this.rpschkSelect.Images = this.imageCollection;
+            this.rpschkSelect.Name = "rpschkSelect";
+            // 
+            // imageCollection
+            // 
+            resources.ApplyResources(this.imageCollection, "imageCollection");
+            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
+            this.imageCollection.InsertGalleryImage("paperkind_a4.png", "images/pages/paperkind_a4.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/pages/paperkind_a4.png"), 0);
+            this.imageCollection.Images.SetKeyName(0, "paperkind_a4.png");
+            this.imageCollection.InsertGalleryImage("apply_32x32.png", "images/actions/apply_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/apply_32x32.png"), 1);
+            this.imageCollection.Images.SetKeyName(1, "apply_32x32.png");
+            // 
+            // grdclmnUserCode
+            // 
+            resources.ApplyResources(this.grdclmnUserCode, "grdclmnUserCode");
+            this.grdclmnUserCode.FieldName = "UserCode";
+            this.grdclmnUserCode.Name = "grdclmnUserCode";
+            this.grdclmnUserCode.OptionsColumn.AllowEdit = false;
+            this.grdclmnUserCode.OptionsColumn.ReadOnly = true;
+            // 
+            // grdclmnUserName
+            // 
+            resources.ApplyResources(this.grdclmnUserName, "grdclmnUserName");
+            this.grdclmnUserName.FieldName = "UserName";
+            this.grdclmnUserName.Name = "grdclmnUserName";
+            this.grdclmnUserName.OptionsColumn.AllowEdit = false;
+            this.grdclmnUserName.OptionsColumn.ReadOnly = true;
+            // 
+            // grdclmnRoleName
+            // 
+            this.grdclmnRoleName.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnRoleName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnRoleName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            resources.ApplyResources(this.grdclmnRoleName, "grdclmnRoleName");
+            this.grdclmnRoleName.FieldName = "RoleName";
+            this.grdclmnRoleName.Name = "grdclmnRoleName";
+            this.grdclmnRoleName.OptionsColumn.AllowEdit = false;
+            this.grdclmnRoleName.OptionsColumn.ReadOnly = true;
+            // 
+            // grdclmnAgencyName
+            // 
+            this.grdclmnAgencyName.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnAgencyName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnAgencyName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            resources.ApplyResources(this.grdclmnAgencyName, "grdclmnAgencyName");
+            this.grdclmnAgencyName.FieldName = "AgencyName";
+            this.grdclmnAgencyName.Name = "grdclmnAgencyName";
+            this.grdclmnAgencyName.OptionsColumn.AllowEdit = false;
+            this.grdclmnAgencyName.OptionsColumn.ReadOnly = true;
+            // 
+            // btnConsultationCall
+            // 
+            resources.ApplyResources(this.btnConsultationCall, "btnConsultationCall");
+            this.btnConsultationCall.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnConsultationCall.Appearance.Font")));
+            this.btnConsultationCall.Appearance.Options.UseFont = true;
+            this.btnConsultationCall.Name = "btnConsultationCall";
+            this.btnConsultationCall.Click += new System.EventHandler(this.btnConsultationCall_Click);
+            // 
+            // gpcAndonEvents
+            // 
+            resources.ApplyResources(this.gpcAndonEvents, "gpcAndonEvents");
+            this.gpcAndonEvents.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("gpcAndonEvents.Appearance.Font")));
+            this.gpcAndonEvents.Appearance.Options.UseFont = true;
+            this.gpcAndonEvents.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("gpcAndonEvents.AppearanceCaption.Font")));
+            this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
+            this.gpcAndonEvents.Controls.Add(this.cboAndonEvent);
+            this.gpcAndonEvents.Name = "gpcAndonEvents";
+            // 
+            // cboAndonEvent
+            // 
+            resources.ApplyResources(this.cboAndonEvent, "cboAndonEvent");
+            this.cboAndonEvent.Name = "cboAndonEvent";
+            this.cboAndonEvent.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("cboAndonEvent.Properties.Appearance.Font")));
+            this.cboAndonEvent.Properties.Appearance.Options.UseFont = true;
+            this.cboAndonEvent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("cboAndonEvent.Properties.Buttons"))))});
+            this.cboAndonEvent.SelectedIndexChanged += new System.EventHandler(this.cboAndonEvent_SelectedIndexChanged);
             // 
             // frmAndonEventConsultationCall
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(891, 708);
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.tcMain);
             this.Name = "frmAndonEventConsultationCall";
-            this.Text = "安灯事件会诊呼叫";
             this.Shown += new System.EventHandler(this.frmAndonEventConsultation_Shown);
             this.Resize += new System.EventHandler(this.frmAndonEventConsultation_Resize);
             this.Controls.SetChildIndex(this.panelControl1, 0);
@@ -277,23 +295,20 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
             this.tcMain.ResumeLayout(false);
-            this.tpAndonEvents.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
-            this.splitContainerControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lstWaitingforCall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lstReadyToCall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).EndInit();
-            this.gpcAndonEvents.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvent.Properties)).EndInit();
             this.tpIDCardnoRead.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).EndInit();
             this.pnlIDCardNoRead.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).EndInit();
+            this.tpAndonEvents.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdStaffs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvStaffs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).EndInit();
+            this.gpcAndonEvents.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvent.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -309,11 +324,16 @@
         private DevExpress.XtraEditors.SimpleButton btnConsultationCall;
         private DevExpress.XtraEditors.GroupControl gpcAndonEvents;
         private DevExpress.XtraEditors.ComboBoxEdit cboAndonEvent;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.ListBoxControl lstWaitingforCall;
-        private DevExpress.XtraEditors.ComboBoxEdit cboType;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.ListBoxControl lstReadyToCall;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private DevExpress.XtraGrid.GridControl grdStaffs;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdvStaffs;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnChoice;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit rpschkSelect;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnUserCode;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnUserName;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnRoleName;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnAgencyName;
+        private DevExpress.Utils.ImageCollection imageCollection;
+        private DevExpress.XtraEditors.SimpleButton btnReturn;
     }
 }

@@ -13,6 +13,7 @@ using IRAP.Client.User;
 using IRAP.Client.Global.GUI.Dialogs;
 using IRAP.Entity.SSO;
 using IRAP.Entity.FVS;
+using IRAP.Entities.SSO;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.CAS
@@ -36,6 +37,26 @@ namespace IRAP.Client.GUI.CAS
                 ControlStyles.AllPaintingInWmPaint | 
                 ControlStyles.UserPaint, 
                 true);
+
+            switch (IRAPUser.Instance.CommunityID)
+            {
+                case 60006:
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        lblGetIDNo.Text = "Please swipe your card or enter a number " +
+                            "to obtain a call to your andon event";
+                    else
+                        lblGetIDNo.Text = "    请刷卡或输入工号，获取呼叫您的安灯事件：";
+                    edtIDCardNo.Properties.UseSystemPasswordChar = false;
+                    break;
+                default:
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        lblGetIDNo.Text = "Please swipe your card to obtain a " +
+                            "call to your andon event";
+                    else
+                        lblGetIDNo.Text = "请刷卡，获取呼叫您的安灯事件：";
+                    edtIDCardNo.Properties.UseSystemPasswordChar = true;
+                    break;
+            }
         }
 
         private void image_OnFrameChanged(object sender, EventArgs e)
@@ -45,7 +66,7 @@ namespace IRAP.Client.GUI.CAS
 
         private void ReplaceIDCardNoReadPanel()
         {
-            pnlIDCardNoRead.Top = (tpIDCardnoRead.Height - pnlIDCardNoRead.Height) / 3;
+            pnlIDCardNoRead.Top = (tpIDCardnoRead.Height - pnlIDCardNoRead.Height) / 2;
             pnlIDCardNoRead.Left = (tpIDCardnoRead.Width - pnlIDCardNoRead.Width) / 2;
         }
 
@@ -100,7 +121,7 @@ namespace IRAP.Client.GUI.CAS
 
                         if (errCode != 0)
                         {
-                            ShowMessageBox.Show(
+                            IRAPMessageBox.Instance.Show(
                                 errText, 
                                 Text, 
                                 MessageBoxButtons.OK, 
@@ -141,14 +162,14 @@ namespace IRAP.Client.GUI.CAS
                                     }
                                     else
                                     {
-                                        ShowMessageBox.Show("没有您触发的安灯事件！", Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                        IRAPMessageBox.Instance.Show("没有您触发的安灯事件！", Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                         edtIDCardNo.Text = "";
                                         edtIDCardNo.Focus();
                                     }
                                 }
                                 else
                                 {
-                                    ShowMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     edtIDCardNo.Text = "";
                                     edtIDCardNo.Focus();
                                     return;
@@ -156,8 +177,17 @@ namespace IRAP.Client.GUI.CAS
                             }
                             catch (Exception error)
                             {
-                                WriteLog.Instance.Write(error.Message, strProcedureName);
-                                MessageBox.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                WriteLog.Instance.Write(
+                                    error.Message, 
+                                    strProcedureName);
+                                WriteLog.Instance.Write(
+                                    error.StackTrace, 
+                                    strProcedureName);
+                                IRAPMessageBox.Instance.Show(
+                                    error.Message, 
+                                    Text, 
+                                    MessageBoxButtons.OK, 
+                                    MessageBoxIcon.Error);
                                 grdAndonEvents.DataSource = null;
 
                                 edtIDCardNo.Text = "";
@@ -185,44 +215,80 @@ namespace IRAP.Client.GUI.CAS
             itemID = ((MenuInfo)Tag).ItemID;
             parameters = ((MenuInfo)Tag).Parameters;
 
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
             int errCode = 0;
             string errText = "";
 
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                IRAPFVSClient.Instance.usp_AuthorizationRequest(
-                    IRAPUser.Instance.CommunityID,
-                    andonEvents[index].EventFactID,
-                    staffInfo.UserCode,
-                    staffInfo.UserName,
-                    itemID,
-                    Tools.ConvertToInt32(parameters),
-                    IRAPUser.Instance.SysLogID,
-                    out errCode,
-                    out errText);
-                if (errCode != 0)
+                try
                 {
-                    ShowMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    IRAPFVSClient.Instance.usp_AuthorizationRequest(
+                        IRAPUser.Instance.CommunityID,
+                        andonEvents[index].EventFactID,
+                        staffInfo.UserCode,
+                        staffInfo.UserName,
+                        itemID,
+                        Tools.ConvertToInt32(parameters),
+                        IRAPUser.Instance.SysLogID,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText),
+                        strProcedureName);
+                    if (errCode != 0)
+                    {
+                        IRAPMessageBox.Instance.Show(
+                            errText, 
+                            Text, 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        IRAPMessageBox.Instance.Show(
+                            errText, 
+                            Text, 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Asterisk);
+                    }
+                }
+                catch (Exception error)
+                {
+                    WriteLog.Instance.Write(
+                        error.Message,
+                        strProcedureName);
+                    WriteLog.Instance.Write(
+                        error.StackTrace,
+                        strProcedureName);
+
+                    IRAPMessageBox.Instance.Show(
+                        error.Message, 
+                        Text, 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     return;
                 }
-                else
-                {
-                    ShowMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
+
+                #region 要求用户输入安灯事件撤销授权码
+                string veriCode = InputAuthrizeCode.Instance.Execute(errText);
+                #endregion
+
+                #region 撤销安灯事件
+                CancelAndonEvent(andonEvents[index], veriCode);
+                #endregion
             }
-            catch (Exception error)
+            finally
             {
-                ShowMessageBox.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-
-            #region 要求用户输入安灯事件撤销授权码
-            string veriCode = InputAuthrizeCode.Instance.Execute(errText);
-            #endregion
-
-            #region 撤销安灯事件
-            CancelAndonEvent(andonEvents[index], veriCode);
-            #endregion
 
             edtIDCardNo.Text = "";
             edtIDCardNo.Focus();
@@ -254,14 +320,14 @@ namespace IRAP.Client.GUI.CAS
                         out errText);
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     if (errCode != 0)
-                        ShowMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        ShowMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    ShowMessageBox.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    IRAPMessageBox.Instance.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 #endregion
             }
@@ -277,6 +343,14 @@ namespace IRAP.Client.GUI.CAS
             edtIDCardNo.Focus();
 
             tcMain.SelectedTabPage = tpIDCardnoRead;
+        }
+
+        private void tcMain_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            if (e.Page == tpIDCardnoRead)
+            {
+                edtIDCardNo.Focus();
+            }
         }
     }
 }

@@ -11,28 +11,29 @@ using System.Threading;
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Client.Global.GUI.Dialogs;
-using IRAP.Entity.SSO;
-using IRAP.Entities.SSO;
 using IRAP.Entity.MDM;
+using IRAP.Entities.SSO;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.CAS
 {
-    public partial class frmSelectAndonObjectsToCall : IRAP.Client.Global.frmCustomBase
+    public partial class frmSelectPersonsToCall : IRAP.Client.Global.frmCustomBase
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
+
         private AndonEventType andonEventType = null;
-        private List<AndonCallObject> objectsOfAndonCall = new List<AndonCallObject>();
+        private List<AndonCallPerson> objectsOfAndonCall = new List<AndonCallPerson>();
         private string opNode = "";
         private ProductionLineForStationBound productionLine = null;
 
-        public frmSelectAndonObjectsToCall()
+        public frmSelectPersonsToCall()
         {
             InitializeComponent();
         }
 
-        public frmSelectAndonObjectsToCall(
+        public frmSelectPersonsToCall(
             AndonEventType andonEventTypeItem,
             string opNode,
             ProductionLineForStationBound pLine) : this()
@@ -51,124 +52,12 @@ namespace IRAP.Client.GUI.CAS
                 Text = string.Format("呼叫{0}", andonEventType.EventTypeName);
                 gpcAndonEvents.Text = string.Format("请选择{0}", andonEventType.CaptionName);
             }
-
-            // 如果呼叫事件类型是“安全”，则隐藏多选栏
-            if (andonEventType.EventTypeCode == "S")
-                grdclmnChoice.Visible = false;
-        }
-
-        private void frmSelectAndonObjectsToCall_Shown(object sender, EventArgs e)
-        {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                int errCode = 0;
-                string errText = "";
-
-                IRAPMDMClient.Instance.ufn_GetList_AndonCallObjects(
-                    IRAPUser.Instance.CommunityID,
-                    andonEventType.EventTypeLeaf,
-                    0,
-                    0,
-                    IRAPUser.Instance.SysLogID,
-                    ref objectsOfAndonCall,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText), 
-                    strProcedureName);
-                if (errCode != 0)
-                {
-                    ShowMessageBox.Show(
-                        string.Format("({0}){1}", errCode, errText), 
-                        this.Text, 
-                        MessageBoxButtons.OK, 
-                        MessageBoxIcon.Error);
-                    return;
-                }
-
-                grdAndonCallObjects.DataSource = objectsOfAndonCall;
-            }
-            catch (Exception error)
-            {
-                WriteLog.Instance.Write(error.Message, strProcedureName);
-                ShowMessageBox.Show(
-                    error.Message, 
-                    this.Text, 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Error);
-                return;
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnCall_Click(object sender, EventArgs e)
-        {
-            string userIDCardNo = "";
-            switch (andonEventType.EventTypeCode)
-            {
-                case "S":       // 安全事件呼叫，一次只能呼叫一个
-                    int index = grdvAndonCallObjects.GetFocusedDataSourceRowIndex();
-                    if (index >= 0)
-                    {
-                        if (SaveAndonEventCall(objectsOfAndonCall[index], ref userIDCardNo))
-                            btnClose.PerformClick();
-                    }
-                    break;
-                default:
-                    int intSelectedCount = 0;
-                    foreach (AndonCallObject andonObject in objectsOfAndonCall)
-                    {
-                        if (andonObject.Choice)
-                        {
-                            intSelectedCount++;
-                            if (!SaveAndonEventCall(andonObject, ref userIDCardNo))
-                                return;
-                        }
-                    }
-
-                    if (intSelectedCount <= 0)
-                    {
-                        string msgText = "";
-                        if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                            msgText = "Please select at least one item that needs to be called.";
-                        else
-                            msgText = "请至少选择一项需要呼叫的内容！";
-
-                        ShowMessageBox.Show(
-                            msgText,
-                            this.Text,
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        grdAndonCallObjects.Focus();
-                        return;
-                    }
-                    else
-                    {
-                        btnClose.PerformClick();
-                    }
-                    break;
-            }
         }
 
         /// <summary>
         /// 保存安灯事件呼叫事实
         /// </summary>
-        private bool SaveAndonEventCall(AndonCallObject andonObject, ref string userIDCardNo)
+        private bool SaveAndonEventCall(AndonCallPerson andonObject, ref string userIDCardNo)
         {
             string strProcedureName =
                 string.Format(
@@ -191,7 +80,7 @@ namespace IRAP.Client.GUI.CAS
                 if (userIDCardNo == "")
                 {
                     userIDCardNo = ReadUserIDCard.Instance.Execute();
-                    if (ReadUserIDCard.Instance.DialogResult!= DialogResult.OK)
+                    if (ReadUserIDCard.Instance.DialogResult != DialogResult.OK)
                     {
                         userIDCardNo = "";
                         return false;
@@ -207,7 +96,7 @@ namespace IRAP.Client.GUI.CAS
                         msgText = "There is no caller information, can not call!";
                     else
                         msgText = "没有呼叫者信息，不能呼叫！";
-                    ShowMessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         msgText,
                         this.Text,
                         MessageBoxButtons.OK,
@@ -229,7 +118,7 @@ namespace IRAP.Client.GUI.CAS
                             strProcedureName);
                         if (errCode != 0)
                         {
-                            ShowMessageBox.Show(
+                            IRAPMessageBox.Instance.Show(
                                 errText,
                                 this.Text,
                                 MessageBoxButtons.OK,
@@ -245,10 +134,12 @@ namespace IRAP.Client.GUI.CAS
                             msgText = "Error occurred while verifying the ID card number, {0}.";
                         else
                             msgText = "验证 ID 卡号时发生错误：{0}";
-                        ShowMessageBox.Show(
-                            string.Format(msgText,
+                        IRAPMessageBox.Instance.Show(
+                            string.Format(
+                                msgText,
                                 error.Message),
-                            this.Text);
+                            Text,
+                            MessageBoxIcon.Error);
                         return false;
                     }
                 }
@@ -281,7 +172,7 @@ namespace IRAP.Client.GUI.CAS
                     strProcedureName);
                 if (errCode != 0)
                 {
-                    ShowMessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         errText,
                         this.Text,
                         MessageBoxButtons.OK,
@@ -309,7 +200,7 @@ namespace IRAP.Client.GUI.CAS
                     0,
                     andonObject.TreeID,
                     andonObject.LeafID,
-                    andonObject.Code,
+                    andonObject.UserCode,
                     chkProductionLineStopped.Checked,
                     IRAPUser.Instance.SysLogID,
                     out errCode,
@@ -317,7 +208,10 @@ namespace IRAP.Client.GUI.CAS
                 WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                 if (errCode != 0)
                 {
-                    ShowMessageBox.Show(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    IRAPMessageBox.Instance.Show(
+                        string.Format("({0}){1}", errCode, errText), 
+                        strProcedureName,
+                        MessageBoxIcon.Error);
                     return false;
                 }
                 else
@@ -331,10 +225,10 @@ namespace IRAP.Client.GUI.CAS
                     {
                         msgText = "安灯呼叫【{0}】：{1}";
                     }
-                    ShowMessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         string.Format(
                             msgText,
-                            andonObject.ObjectDesc,
+                            andonObject.UserName,
                             errText),
                         this.Text,
                         MessageBoxButtons.OK,
@@ -346,12 +240,109 @@ namespace IRAP.Client.GUI.CAS
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
-                ShowMessageBox.Show(error.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                IRAPMessageBox.Instance.Show(error.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void frmSelectPersonsToCall_Shown(object sender, EventArgs e)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPMDMClient.Instance.ufn_GetList_AndonCallPersons(
+                    IRAPUser.Instance.CommunityID,
+                    andonEventType.EventTypeLeaf,
+                    0,
+                    0,
+                    IRAPUser.Instance.SysLogID,
+                    ref objectsOfAndonCall,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    IRAPMessageBox.Instance.Show(
+                        string.Format("({0}){1}", errCode, errText),
+                        this.Text,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
+                grdStaffs.DataSource = objectsOfAndonCall;
+                grdvStaffs.BestFitColumns();
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                IRAPMessageBox.Instance.Show(
+                    error.Message,
+                    this.Text,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnCall_Click(object sender, EventArgs e)
+        {
+            string userIDCardNo = "";
+
+            int intSelectedCount = 0;
+            foreach (AndonCallPerson andonObject in objectsOfAndonCall)
+            {
+                if (andonObject.Choice)
+                {
+                    intSelectedCount++;
+                    if (!SaveAndonEventCall(andonObject, ref userIDCardNo))
+                        return;
+                }
+            }
+
+            if (intSelectedCount <= 0)
+            {
+                string msgText = "";
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    msgText = "Please select at least one item that needs to be called.";
+                else
+                    msgText = "请至少选择一项需要呼叫的内容！";
+
+                IRAPMessageBox.Instance.Show(
+                    msgText,
+                    this.Text,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                grdStaffs.Focus();
+                return;
+            }
+            else
+            {
+                btnClose.PerformClick();
             }
         }
     }

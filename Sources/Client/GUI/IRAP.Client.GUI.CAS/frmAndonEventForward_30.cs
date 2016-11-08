@@ -12,6 +12,7 @@ using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Client.Global.GUI.Dialogs;
 using IRAP.Entity.SSO;
+using IRAP.Entities.SSO;
 using IRAP.Entity.FVS;
 using IRAP.WCF.Client.Method;
 

@@ -195,7 +195,7 @@ namespace IRAP.Client.GUI.CAS
                     switch (andonEventTypeItem.EventTypeCode)
                     {
                         case "R":
-                            using (frmSelectFailureModesByDeviceToCall formAndonCall = 
+                            using (frmSelectFailureModesByDeviceToCall formAndonCall =
                                 new frmSelectFailureModesByDeviceToCall(
                                     andonEventTypeItem,
                                     menuInfo.OpNode,
@@ -204,8 +204,34 @@ namespace IRAP.Client.GUI.CAS
                                 formAndonCall.ShowDialog();
                             }
                             break;
+                        case "O":
+                            if (IRAPUser.Instance.CommunityID == 60006)
+                            {
+                                // 伟世通在进行其他支持呼叫时，使用定制界面
+                                using (frmSelectPersonsToCall formAndonCall =
+                                    new frmSelectPersonsToCall(
+                                        andonEventTypeItem,
+                                        menuInfo.OpNode,
+                                        currentProductionLine))
+                                {
+                                    formAndonCall.ShowDialog();
+                                }
+                            }
+                            else
+                            {
+                                // 其他支持呼叫，使用一般通用界面
+                                using (frmSelectAndonObjectsToCall formAndonCall =
+                                    new frmSelectAndonObjectsToCall(
+                                        andonEventTypeItem,
+                                        menuInfo.OpNode,
+                                        currentProductionLine))
+                                {
+                                    formAndonCall.ShowDialog();
+                                }
+                            }
+                            break;
                         default:
-                            using (frmSelectAndonObjectsToCall formAndonCall = 
+                            using (frmSelectAndonObjectsToCall formAndonCall =
                                 new frmSelectAndonObjectsToCall(
                                     andonEventTypeItem,
                                     menuInfo.OpNode,

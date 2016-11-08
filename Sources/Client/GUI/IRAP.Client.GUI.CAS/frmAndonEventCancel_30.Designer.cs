@@ -47,7 +47,7 @@
             this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
             this.pnlIDCardNoRead = new DevExpress.XtraEditors.PanelControl();
             this.edtIDCardNo = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblGetIDNo = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
@@ -101,6 +101,7 @@
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpIDCardnoRead,
             this.tpAndonEvents});
+            this.tcMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tcMain_SelectedPageChanged);
             // 
             // tpAndonEvents
             // 
@@ -108,14 +109,14 @@
             this.tpAndonEvents.Controls.Add(this.btnCancel);
             this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
             this.tpAndonEvents.Name = "tpAndonEvents";
-            this.tpAndonEvents.Size = new System.Drawing.Size(885, 433);
+            this.tpAndonEvents.Size = new System.Drawing.Size(886, 434);
             // 
             // btnReturn
             // 
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReturn.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturn.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReturn.Appearance.Options.UseFont = true;
-            this.btnReturn.Location = new System.Drawing.Point(753, 379);
+            this.btnReturn.Location = new System.Drawing.Point(754, 380);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(117, 36);
             this.btnReturn.TabIndex = 3;
@@ -125,9 +126,9 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(753, 17);
+            this.btnCancel.Location = new System.Drawing.Point(754, 17);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(117, 36);
             this.btnCancel.TabIndex = 2;
@@ -139,15 +140,15 @@
             this.gpcAndonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpcAndonEvents.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpcAndonEvents.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gpcAndonEvents.Appearance.Options.UseFont = true;
-            this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
             this.gpcAndonEvents.Controls.Add(this.grdAndonEvents);
             this.gpcAndonEvents.Location = new System.Drawing.Point(22, 17);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(708, 398);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(709, 399);
             this.gpcAndonEvents.TabIndex = 0;
             this.gpcAndonEvents.Text = "您触发的安灯事件";
             // 
@@ -159,19 +160,19 @@
             this.grdAndonEvents.Name = "grdAndonEvents";
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.rpschkSelect});
-            this.grdAndonEvents.Size = new System.Drawing.Size(694, 360);
+            this.grdAndonEvents.Size = new System.Drawing.Size(695, 361);
             this.grdAndonEvents.TabIndex = 0;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvAndonEvents});
             // 
             // grdvAndonEvents
             // 
-            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseFont = true;
             this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdvAndonEvents.Appearance.Row.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvAndonEvents.Appearance.Row.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvAndonEvents.Appearance.Row.Options.UseFont = true;
             this.grdvAndonEvents.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdclmnChoice,
@@ -257,13 +258,13 @@
             // 
             this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
             this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(885, 433);
+            this.tpIDCardnoRead.Size = new System.Drawing.Size(886, 434);
             // 
             // pnlIDCardNoRead
             // 
             this.pnlIDCardNoRead.ContentImage = global::IRAP.Client.GUI.CAS.Properties.Resources.AndonCall;
             this.pnlIDCardNoRead.Controls.Add(this.edtIDCardNo);
-            this.pnlIDCardNoRead.Controls.Add(this.labelControl1);
+            this.pnlIDCardNoRead.Controls.Add(this.lblGetIDNo);
             this.pnlIDCardNoRead.Location = new System.Drawing.Point(22, 26);
             this.pnlIDCardNoRead.Name = "pnlIDCardNoRead";
             this.pnlIDCardNoRead.Size = new System.Drawing.Size(800, 600);
@@ -284,18 +285,19 @@
             this.edtIDCardNo.TabIndex = 1;
             this.edtIDCardNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtIDCardNo_KeyDown);
             // 
-            // labelControl1
+            // lblGetIDNo
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(465, 272);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(300, 38);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "请刷卡，获取您触发的安灯事件";
+            this.lblGetIDNo.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblGetIDNo.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lblGetIDNo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.lblGetIDNo.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.lblGetIDNo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.lblGetIDNo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblGetIDNo.Location = new System.Drawing.Point(465, 234);
+            this.lblGetIDNo.Name = "lblGetIDNo";
+            this.lblGetIDNo.Size = new System.Drawing.Size(300, 76);
+            this.lblGetIDNo.TabIndex = 0;
+            this.lblGetIDNo.Text = "请刷卡，获取您触发的安灯事件";
             // 
             // frmAndonEventCancel_30
             // 
@@ -347,6 +349,6 @@
         private DevExpress.XtraTab.XtraTabPage tpIDCardnoRead;
         private DevExpress.XtraEditors.PanelControl pnlIDCardNoRead;
         private DevExpress.XtraEditors.TextEdit edtIDCardNo;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblGetIDNo;
     }
 }

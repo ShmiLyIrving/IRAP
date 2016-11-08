@@ -117,12 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTipController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="imageCollection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>170, 17</value>
-  </metadata>
+  <data name="btnReturn.Text" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="grdvStaffs.Appearance.HeaderPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>等线, 12pt</value>
+  </data>
+  <data name="grdvStaffs.Appearance.Row.Font" type="System.Drawing.Font, System.Drawing">
+    <value>等线, 12pt</value>
+  </data>
+  <data name="grdclmnChoice.Caption" xml:space="preserve">
+    <value>Choice</value>
+  </data>
+  <data name="grdclmnUserCode.Caption" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="grdclmnUserName.Caption" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="grdclmnRoleName.Caption" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="grdclmnAgencyName.Caption" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="groupControl3.Text" xml:space="preserve">
+    <value>Please select person to participate in the consultation</value>
+  </data>
   <assembly alias="DevExpress.Utils.v15.2" name="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="imageCollection.ImageStream" type="DevExpress.Utils.ImageCollectionStreamer, DevExpress.Utils.v15.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -134,5 +156,11 @@
         /xNTeXN0ZW0uRHJhd2luZy5TaXplAgAAAAV3aWR0aAZoZWlnaHQAAAgIAwAAACAAAAAgAAAACQUAAAAP
         BQAAAAAAAAACCw==
 </value>
+  </data>
+  <data name="btnConsultationCall.Text" xml:space="preserve">
+    <value>Call</value>
+  </data>
+  <data name="gpcAndonEvents.Text" xml:space="preserve">
+    <value>The Andon event that I responded</value>
   </data>
 </root>

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
-            this.btnEventClose = new DevExpress.XtraEditors.SimpleButton();
             this.grdAndonEvents = new DevExpress.XtraGrid.GridControl();
             this.grdvAndonEvents = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnEventType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnProductionLineStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnRespondingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnFirstResponder = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnEventClose = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
@@ -54,7 +54,7 @@
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblFuncName.Size = new System.Drawing.Size(1098, 56);
-            this.lblFuncName.Text = "frmCustomBase";
+            this.lblFuncName.Text = "安灯关闭";
             // 
             // panelControl1
             // 
@@ -72,9 +72,9 @@
             this.gpcAndonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpcAndonEvents.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpcAndonEvents.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gpcAndonEvents.Appearance.Options.UseFont = true;
-            this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
             this.gpcAndonEvents.Controls.Add(this.grdAndonEvents);
             this.gpcAndonEvents.Location = new System.Drawing.Point(12, 62);
@@ -83,19 +83,6 @@
             this.gpcAndonEvents.Size = new System.Drawing.Size(942, 550);
             this.gpcAndonEvents.TabIndex = 1;
             this.gpcAndonEvents.Text = "待关闭的安灯事件";
-            // 
-            // btnEventClose
-            // 
-            this.btnEventClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEventClose.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEventClose.Appearance.Options.UseFont = true;
-            this.btnEventClose.Enabled = false;
-            this.btnEventClose.Location = new System.Drawing.Point(969, 62);
-            this.btnEventClose.Name = "btnEventClose";
-            this.btnEventClose.Size = new System.Drawing.Size(117, 36);
-            this.btnEventClose.TabIndex = 2;
-            this.btnEventClose.Text = "关闭呼叫";
-            this.btnEventClose.Click += new System.EventHandler(this.btnEventClose_Click);
             // 
             // grdAndonEvents
             // 
@@ -110,12 +97,12 @@
             // 
             // grdvAndonEvents
             // 
-            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseFont = true;
             this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdvAndonEvents.Appearance.Row.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvAndonEvents.Appearance.Row.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvAndonEvents.Appearance.Row.Options.UseFont = true;
             this.grdvAndonEvents.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdclmnEventType,
@@ -155,6 +142,14 @@
             this.grdclmnEventDescription.VisibleIndex = 1;
             this.grdclmnEventDescription.Width = 300;
             // 
+            // grdclmnProductionLineStatus
+            // 
+            this.grdclmnProductionLineStatus.Caption = "是否已停线";
+            this.grdclmnProductionLineStatus.FieldName = "ProductionLineStatus";
+            this.grdclmnProductionLineStatus.Name = "grdclmnProductionLineStatus";
+            this.grdclmnProductionLineStatus.Visible = true;
+            this.grdclmnProductionLineStatus.VisibleIndex = 2;
+            // 
             // grdclmnCallingTime
             // 
             this.grdclmnCallingTime.AppearanceCell.Options.UseTextOptions = true;
@@ -168,28 +163,6 @@
             this.grdclmnCallingTime.Visible = true;
             this.grdclmnCallingTime.VisibleIndex = 3;
             this.grdclmnCallingTime.Width = 120;
-            // 
-            // grdclmnTimeElapsed
-            // 
-            this.grdclmnTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
-            this.grdclmnTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnTimeElapsed.Caption = "已过时间";
-            this.grdclmnTimeElapsed.FieldName = "TimeElapsed";
-            this.grdclmnTimeElapsed.Name = "grdclmnTimeElapsed";
-            this.grdclmnTimeElapsed.OptionsColumn.AllowEdit = false;
-            this.grdclmnTimeElapsed.OptionsColumn.ReadOnly = true;
-            this.grdclmnTimeElapsed.Visible = true;
-            this.grdclmnTimeElapsed.VisibleIndex = 6;
-            this.grdclmnTimeElapsed.Width = 120;
-            // 
-            // grdclmnProductionLineStatus
-            // 
-            this.grdclmnProductionLineStatus.Caption = "是否已停线";
-            this.grdclmnProductionLineStatus.FieldName = "ProductionLineStatus";
-            this.grdclmnProductionLineStatus.Name = "grdclmnProductionLineStatus";
-            this.grdclmnProductionLineStatus.Visible = true;
-            this.grdclmnProductionLineStatus.VisibleIndex = 2;
             // 
             // grdclmnRespondingTime
             // 
@@ -209,6 +182,33 @@
             this.grdclmnFirstResponder.Name = "grdclmnFirstResponder";
             this.grdclmnFirstResponder.Visible = true;
             this.grdclmnFirstResponder.VisibleIndex = 5;
+            // 
+            // grdclmnTimeElapsed
+            // 
+            this.grdclmnTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnTimeElapsed.Caption = "已过时间";
+            this.grdclmnTimeElapsed.FieldName = "TimeElapsed";
+            this.grdclmnTimeElapsed.Name = "grdclmnTimeElapsed";
+            this.grdclmnTimeElapsed.OptionsColumn.AllowEdit = false;
+            this.grdclmnTimeElapsed.OptionsColumn.ReadOnly = true;
+            this.grdclmnTimeElapsed.Visible = true;
+            this.grdclmnTimeElapsed.VisibleIndex = 6;
+            this.grdclmnTimeElapsed.Width = 120;
+            // 
+            // btnEventClose
+            // 
+            this.btnEventClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEventClose.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEventClose.Appearance.Options.UseFont = true;
+            this.btnEventClose.Enabled = false;
+            this.btnEventClose.Location = new System.Drawing.Point(969, 62);
+            this.btnEventClose.Name = "btnEventClose";
+            this.btnEventClose.Size = new System.Drawing.Size(117, 36);
+            this.btnEventClose.TabIndex = 2;
+            this.btnEventClose.Text = "关闭呼叫";
+            this.btnEventClose.Click += new System.EventHandler(this.btnEventClose_Click);
             // 
             // frmAndonEventClose_30
             // 

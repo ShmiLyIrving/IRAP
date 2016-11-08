@@ -134,6 +134,12 @@
     <Compile Include="frmSelectFailureModesByDeviceToCall.Designer.cs">
       <DependentUpon>frmSelectFailureModesByDeviceToCall.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSelectPersonsToCall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectPersonsToCall.Designer.cs">
+      <DependentUpon>frmSelectPersonsToCall.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSwitchToPLine_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     <EmbeddedResource Include="frmAndonEventClose_30.resx">
       <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventConsultationCall.en-US.resx">
+      <DependentUpon>frmAndonEventConsultationCall.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventConsultationCall.resx">
       <DependentUpon>frmAndonEventConsultationCall.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSelectFailureModesByDeviceToCall.resx">
       <DependentUpon>frmSelectFailureModesByDeviceToCall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectPersonsToCall.resx">
+      <DependentUpon>frmSelectPersonsToCall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSwitchToPLine_30.resx">
       <DependentUpon>frmSwitchToPLine_30.cs</DependentUpon>
