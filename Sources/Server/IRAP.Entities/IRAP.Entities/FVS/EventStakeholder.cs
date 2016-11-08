@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entities.FVS
 {
     public class EventStakeholder
@@ -19,6 +21,9 @@ namespace IRAP.Entities.FVS
         /// 干系人姓名
         /// </summary>
         public string UserName { get; set; }
+
+        [IRAPORMMap(ORMMap = false)]
+        public bool Choice { get; set; }
 
         public EventStakeholder Clone()
         {

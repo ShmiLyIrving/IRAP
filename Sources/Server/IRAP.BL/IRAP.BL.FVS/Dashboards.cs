@@ -351,6 +351,7 @@ namespace IRAP.BL.FVS
                         IList<Dashboard_KPI> lstDatas =
                             conn.CallTableFunc<Dashboard_KPI>(strSQL, paramList);
                         datas = lstDatas.ToList();
+
                         errCode = 0;
                         errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
                         WriteLog.Instance.Write(errText, strProcedureName);

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndonCallPerson.cs" />
     <Compile Include="AndonRspedEventInfo.cs" />
     <Compile Include="FVS\EventStakeholder.cs" />
     <Compile Include="MDM\AvailableSite.cs" />
