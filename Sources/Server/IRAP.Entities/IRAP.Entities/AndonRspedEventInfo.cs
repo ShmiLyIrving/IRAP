@@ -50,5 +50,10 @@ namespace IRAP.Entities.FVS
         {
             return MemberwiseClone() as AndonRspedEventInfo;
         }
+
+        public override string ToString()
+        {
+            return EventDescription;
+        }
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="AndonCallPerson.cs" />
     <Compile Include="AndonRspedEventInfo.cs" />
     <Compile Include="FVS\EventStakeholder.cs" />
+    <Compile Include="FVS\EventsToConsultation.cs" />
     <Compile Include="MDM\AvailableSite.cs" />
     <Compile Include="MDM\CustomerOfAProduction.cs" />
     <Compile Include="SCES\MaterialToDeliver.cs" />

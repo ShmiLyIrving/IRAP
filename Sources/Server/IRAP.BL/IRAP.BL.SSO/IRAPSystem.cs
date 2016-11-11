@@ -89,7 +89,7 @@ namespace IRAP.BL.SSO
                         string strSQL = "SELECT * " +
                             "FROM IRAP..sfn_AvailableCSFunctions(@CommunityID, " +
                             "@SystemID, @MenuCacheID, @ProgLanguageID, @AvailableOnly) " +
-                            "ORDER BY Ordinal";
+                            "ORDER BY NodeDepth, Parent, Ordinal";
                         WriteLog.Instance.Write(strSQL, strProcedureName);
 
                         IList<SystemMenuInfoButtonStyle> lstDatas = conn.CallTableFunc<SystemMenuInfoButtonStyle>(strSQL, paramList);

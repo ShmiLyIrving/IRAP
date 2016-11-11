@@ -14,6 +14,14 @@ namespace IRAP.Entities.FVS
         /// </summary>
         public long EventFactID { get; set; }
         /// <summary>
+        /// 部门
+        /// </summary>
+        public string AgencyName { get; set; }
+        /// <summary>
+        /// 角色
+        /// </summary>
+        public string RoleName { get; set; }
+        /// <summary>
         /// 干系人工号
         /// </summary>
         public string UserCode { get; set; }

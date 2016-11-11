@@ -38,7 +38,7 @@
   <Class Name="IRAP.BL.FVS.Andon" Collapsed="true">
     <Position X="4.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAIAAACAASACEAAAAAgAQABAAAAAIAAAAAAAgIAA=</HashCode>
+      <HashCode>QAQBAIAAACAASADEAAAAAgAQEBAAAAAIAIAAAAAgIAA=</HashCode>
       <FileName>Andon.cs</FileName>
     </TypeIdentifier>
   </Class>
