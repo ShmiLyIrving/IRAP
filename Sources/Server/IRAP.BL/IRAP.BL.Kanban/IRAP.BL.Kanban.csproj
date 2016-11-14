@@ -57,6 +57,10 @@
       <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
       <Name>IRAPShared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
       <Project>{38588300-33df-457a-936a-d0d0ca499e96}</Project>
       <Name>IRAP.Entity.Kanban</Name>
