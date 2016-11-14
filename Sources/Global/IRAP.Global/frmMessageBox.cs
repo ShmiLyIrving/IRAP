@@ -158,6 +158,20 @@ namespace IRAP.Global
             messageBox.Hide();
         }
 
+        public void ShowErrorMessage(
+            string text,
+            string caption = "")
+        {
+            Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void ShowInformation(
+            string text,
+            string caption = "")
+        {
+            Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
         public DialogResult Show(
             string text,
             string caption = "",

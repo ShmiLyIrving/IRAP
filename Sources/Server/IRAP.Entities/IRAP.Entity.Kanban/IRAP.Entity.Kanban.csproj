@@ -56,7 +56,6 @@
     <Compile Include="ProductMoveBack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScopeCriterionType.cs" />
-    <Compile Include="SelectedLeaf.cs" />
     <Compile Include="SlotStorage.cs" />
     <Compile Include="StationPortInfo.cs" />
     <Compile Include="Tables\Stb228.cs" />
