@@ -49,7 +49,7 @@
       <FileName>EWI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.BL.FVS.WorkOrder">
+  <Class Name="IRAP.BL.FVS.WorkOrder" Collapsed="true">
     <Position X="8.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAgAAAAABACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

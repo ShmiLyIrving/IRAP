@@ -1214,6 +1214,7 @@ namespace IRAP.BL.FVS
         /// <param name="communityID">社区标识</param>
         /// <param name="eventFactID">安灯事件标识</param>
         /// <param name="newEventType">业务操作标识</param>
+        /// <param name="objectTreeID">对象树标识</param>
         /// <param name="objectCode">新对象代码</param>
         /// <param name="attrLeafID">对象属性</param>
         /// <param name="t144LeafID">原因叶标识</param>
@@ -1226,6 +1227,7 @@ namespace IRAP.BL.FVS
             int communityID,
             long eventFactID,
             int newEventType,
+            int objectTreeID, 
             string objectCode,
             int attrLeafID,
             int t144LeafID,
@@ -1248,6 +1250,7 @@ namespace IRAP.BL.FVS
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@EventFactID", DbType.Int64, eventFactID));
                 paramList.Add(new IRAPProcParameter("@NewEventType", DbType.Int32, newEventType));
+                paramList.Add(new IRAPProcParameter("@ObjectTreeID", DbType.Int32, objectTreeID));
                 paramList.Add(new IRAPProcParameter("@ObjectCode", DbType.String, objectCode));
                 paramList.Add(new IRAPProcParameter("@AttrLeafID", DbType.Int32, attrLeafID));
                 paramList.Add(new IRAPProcParameter("@T144LeafID", DbType.Int32, t144LeafID));
@@ -1269,10 +1272,10 @@ namespace IRAP.BL.FVS
                     string.Format("执行存储过程 " +
                         "IRAPFVS..usp_SaveFact_AndonEventConsultation，参数：" +
                         "CommunityID={0}|EventFactID={1}|NewEventType={2}|" +
-                        "ObjectCode={3}|AttrLeafID={4}|T144LeafID={5}|" +
-                        "UserCode={6}|SysLogID={7}",
-                        communityID, eventFactID, newEventType, objectCode,
-                        attrLeafID, t144LeafID, userCode, sysLogID),
+                        "ObjectTreeID={3}|ObjectCode={4}|AttrLeafID={5}|" +
+                        "T144LeafID={6}|UserCode={7}|SysLogID={8}",
+                        communityID, eventFactID, newEventType, objectTreeID,
+                        objectCode, attrLeafID, t144LeafID, userCode, sysLogID),
                     strProcedureName);
                 #endregion
 
