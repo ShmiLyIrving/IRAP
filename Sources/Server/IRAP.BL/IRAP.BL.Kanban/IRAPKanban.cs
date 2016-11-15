@@ -172,7 +172,7 @@ namespace IRAP.BL.Kanban
         /// <param name="treeID">树标识</param>
         /// <param name="clickStream">点击流</param>
         /// <param name="languageID">语言标识</param>
-        public IRAPJsonResult sfn_SelectedLeafSet(
+        public IRAPJsonResult sfn_SelectedLeafSetEx(
             int communityID,
             int treeID,
             string clickStream,
@@ -200,7 +200,7 @@ namespace IRAP.BL.Kanban
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAP..sfn_SelectedLeafSetEx，" +
-                        "参数：CommunityID={0}|TreeID={1}|ClickStream={2}"+
+                        "参数：CommunityID={0}|TreeID={1}|ClickStream={2}|"+
                         "LanguageID={3}",
                         communityID, treeID, clickStream, languageID),
                     strProcedureName);
