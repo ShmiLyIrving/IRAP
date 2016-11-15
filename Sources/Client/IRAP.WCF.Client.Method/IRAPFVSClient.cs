@@ -1026,7 +1026,7 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
-        /// 安灯事件追加呼叫
+        /// 安灯事件追加呼叫（呼叫本部门人员）
         /// </summary>
         public void usp_AndonEventForwarding(
             int communityID,
@@ -1073,6 +1073,78 @@ namespace IRAP.WCF.Client.Method
                         "IRAP.BL.FVS.dll",
                         "IRAP.BL.FVS.Andon",
                         "usp_AndonEventForwarding",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 安灯事件追加呼叫（跨部门呼叫人员）
+        /// </summary>
+        public void usp_AndonEventForwardingEx(
+            int communityID,
+            long eventFactID,
+            int opID,
+            int ordinal,
+            string userCode,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("eventFactID", eventFactID);
+                    hashParams.Add("opID", opID);
+                    hashParams.Add("ordinal", ordinal);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 usp_AndonEventForwardingEx，输入参数：" +
+                            "CommunityID={0}|EventFactID={1}|OpID={2}|" +
+                            "Ordinal={3}|UserCode={4}|SysLogID={5}",
+                            communityID, eventFactID, opID, ordinal,
+                            userCode, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.Andon",
+                        "usp_AndonEventForwardingEx",
                         hashParams,
                         out errCode,
                         out errText);
@@ -1885,20 +1957,23 @@ namespace IRAP.WCF.Client.Method
         /// 保存安灯事件会诊呼叫事实
         /// </summary>
         /// <param name="communityID">社区标识</param>
-        /// <param name="transactNo">申请到的交易号</param>
-        /// <param name="factID">申请到的事实编号</param>
         /// <param name="eventFactID">安灯事件标识</param>
-        /// <param name="opID">业务操作标识</param>
+        /// <param name="newEventType">新确定的安灯事件标识</param>
+        /// <param name="objectCode">新确定的设备代码，或者人员代码</param>
+        /// <param name="attrLeafID">失效模式叶标识</param>
+        /// <param name="t144LeafID">原因叶标识</param>
         /// <param name="userCode">会诊呼叫人员用户代码</param>
         /// <param name="sysLogID">系统登录标识</param>
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
+        /// <returns></returns>
         public void usp_SaveFact_AndonEventConsultation(
             int communityID,
-            long transactNo,
-            long factID,
             long eventFactID,
-            int opID,
+            int newEventType,
+            string objectCode,
+            int attrLeafID,
+            int t144LeafID,
             string userCode,
             long sysLogID,
             out int errCode,
@@ -1919,20 +1994,21 @@ namespace IRAP.WCF.Client.Method
 
                     #region 将函数参数加入 Hashtable 中
                     hashParams.Add("communityID", communityID);
-                    hashParams.Add("transactNo", transactNo);
-                    hashParams.Add("factID", factID);
                     hashParams.Add("eventFactID", eventFactID);
-                    hashParams.Add("opID", opID);
+                    hashParams.Add("newEventType", newEventType);
+                    hashParams.Add("objectCode", objectCode);
+                    hashParams.Add("attrLeafID", attrLeafID);
+                    hashParams.Add("t144LeafID", t144LeafID);
                     hashParams.Add("userCode", userCode);
                     hashParams.Add("sysLogID", sysLogID);
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行存储过程 usp_SaveFact_AndonEventConsultation，输入参数：" +
-                            "CommunityID={0}|TransactNo={1}|FactID={2}|" +
-                            "EventFactID={3}|OpID={4}|UserCode={5}|" +
-                            "SysLogID={7}",
-                            communityID, transactNo, factID, eventFactID, opID,
-                            userCode, sysLogID),
+                            "CommunityID={0}|EventFactID={1}|NewEventType={2}|" +
+                            "ObjectCode={3}|AttrLeafID={4}|T144LeafID={5}|" +
+                            "UserCode={6}|SysLogID={7}",
+                            communityID, eventFactID, newEventType, objectCode,
+                            attrLeafID, t144LeafID, userCode, sysLogID),
                         strProcedureName);
                     #endregion
 
@@ -1950,6 +2026,77 @@ namespace IRAP.WCF.Client.Method
                             errCode,
                             errText),
                         strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取当前产线正在会诊的安灯事件及干系人清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_EventsToConsultation(
+            int communityID,
+            long sysLogID,
+            ref List<EventToConsultation> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 ufn_GetList_EventsToConsultation，输入参数：" +
+                            "CommunityID={0}|SysLogID={1}",
+                            communityID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetList_EventsToConsultation",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<EventToConsultation>;
+                    }
                     #endregion
                 }
             }

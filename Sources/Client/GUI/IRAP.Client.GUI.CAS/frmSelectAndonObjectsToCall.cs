@@ -85,7 +85,7 @@ namespace IRAP.Client.GUI.CAS
                     strProcedureName);
                 if (errCode != 0)
                 {
-                    ShowMessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         string.Format("({0}){1}", errCode, errText), 
                         this.Text, 
                         MessageBoxButtons.OK, 
@@ -98,7 +98,7 @@ namespace IRAP.Client.GUI.CAS
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
-                ShowMessageBox.Show(
+                IRAPMessageBox.Instance.Show(
                     error.Message, 
                     this.Text, 
                     MessageBoxButtons.OK, 
@@ -149,7 +149,7 @@ namespace IRAP.Client.GUI.CAS
                         else
                             msgText = "请至少选择一项需要呼叫的内容！";
 
-                        ShowMessageBox.Show(
+                        IRAPMessageBox.Instance.Show(
                             msgText,
                             this.Text,
                             MessageBoxButtons.OK,
@@ -207,7 +207,7 @@ namespace IRAP.Client.GUI.CAS
                         msgText = "There is no caller information, can not call!";
                     else
                         msgText = "没有呼叫者信息，不能呼叫！";
-                    ShowMessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         msgText,
                         this.Text,
                         MessageBoxButtons.OK,
@@ -229,7 +229,7 @@ namespace IRAP.Client.GUI.CAS
                             strProcedureName);
                         if (errCode != 0)
                         {
-                            ShowMessageBox.Show(
+                            IRAPMessageBox.Instance.Show(
                                 errText,
                                 this.Text,
                                 MessageBoxButtons.OK,
@@ -245,10 +245,12 @@ namespace IRAP.Client.GUI.CAS
                             msgText = "Error occurred while verifying the ID card number, {0}.";
                         else
                             msgText = "验证 ID 卡号时发生错误：{0}";
-                        ShowMessageBox.Show(
+                        IRAPMessageBox.Instance.Show(
                             string.Format(msgText,
                                 error.Message),
-                            this.Text);
+                            this.Text,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                         return false;
                     }
                 }
@@ -281,7 +283,7 @@ namespace IRAP.Client.GUI.CAS
                     strProcedureName);
                 if (errCode != 0)
                 {
-                    ShowMessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         errText,
                         this.Text,
                         MessageBoxButtons.OK,
@@ -317,7 +319,11 @@ namespace IRAP.Client.GUI.CAS
                 WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                 if (errCode != 0)
                 {
-                    ShowMessageBox.Show(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    IRAPMessageBox.Instance.Show(
+                        string.Format("({0}){1}", errCode, errText), 
+                        strProcedureName,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return false;
                 }
                 else
@@ -331,7 +337,7 @@ namespace IRAP.Client.GUI.CAS
                     {
                         msgText = "安灯呼叫【{0}】：{1}";
                     }
-                    ShowMessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         string.Format(
                             msgText,
                             andonObject.ObjectDesc,
@@ -346,7 +352,7 @@ namespace IRAP.Client.GUI.CAS
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
-                ShowMessageBox.Show(error.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                IRAPMessageBox.Instance.Show(error.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally

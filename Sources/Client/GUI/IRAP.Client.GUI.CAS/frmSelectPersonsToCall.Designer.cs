@@ -34,21 +34,21 @@
             this.btnCall = new DevExpress.XtraEditors.SimpleButton();
             this.chkProductionLineStopped = new DevExpress.XtraEditors.CheckEdit();
             this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
-            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.grdStaffs = new DevExpress.XtraGrid.GridControl();
             this.grdvStaffs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnChoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repiceChoice = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.grdclmnT2NodeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnUserCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnUserName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.chkProductionLineStopped.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
             this.gpcAndonEvents.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdStaffs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvStaffs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repiceChoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTipController
@@ -113,15 +113,6 @@
             this.gpcAndonEvents.TabIndex = 6;
             this.gpcAndonEvents.Text = "请选择需要呼叫的人员";
             // 
-            // imageCollection
-            // 
-            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
-            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
-            this.imageCollection.InsertGalleryImage("paperkind_a4.png", "images/pages/paperkind_a4.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/pages/paperkind_a4.png"), 0);
-            this.imageCollection.Images.SetKeyName(0, "paperkind_a4.png");
-            this.imageCollection.InsertGalleryImage("apply_32x32.png", "images/actions/apply_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/apply_32x32.png"), 1);
-            this.imageCollection.Images.SetKeyName(1, "apply_32x32.png");
-            // 
             // grdStaffs
             // 
             this.grdStaffs.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -185,6 +176,15 @@
             this.repiceChoice.Images = this.imageCollection;
             this.repiceChoice.Name = "repiceChoice";
             // 
+            // imageCollection
+            // 
+            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
+            this.imageCollection.InsertGalleryImage("paperkind_a4.png", "images/pages/paperkind_a4.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/pages/paperkind_a4.png"), 0);
+            this.imageCollection.Images.SetKeyName(0, "paperkind_a4.png");
+            this.imageCollection.InsertGalleryImage("apply_32x32.png", "images/actions/apply_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/apply_32x32.png"), 1);
+            this.imageCollection.Images.SetKeyName(1, "apply_32x32.png");
+            // 
             // grdclmnT2NodeName
             // 
             this.grdclmnT2NodeName.AppearanceCell.Options.UseTextOptions = true;
@@ -197,7 +197,7 @@
             this.grdclmnT2NodeName.OptionsColumn.ReadOnly = true;
             this.grdclmnT2NodeName.Visible = true;
             this.grdclmnT2NodeName.VisibleIndex = 1;
-            this.grdclmnT2NodeName.Width = 80;
+            this.grdclmnT2NodeName.Width = 200;
             // 
             // grdclmnUserCode
             // 
@@ -209,6 +209,7 @@
             this.grdclmnUserCode.Name = "grdclmnUserCode";
             this.grdclmnUserCode.Visible = true;
             this.grdclmnUserCode.VisibleIndex = 2;
+            this.grdclmnUserCode.Width = 100;
             // 
             // grdclmnUserName
             // 
@@ -217,6 +218,7 @@
             this.grdclmnUserName.Name = "grdclmnUserName";
             this.grdclmnUserName.Visible = true;
             this.grdclmnUserName.VisibleIndex = 3;
+            this.grdclmnUserName.Width = 150;
             // 
             // frmSelectPersonsToCall
             // 
@@ -231,10 +233,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkProductionLineStopped.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).EndInit();
             this.gpcAndonEvents.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdStaffs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvStaffs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repiceChoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             this.ResumeLayout(false);
 
         }

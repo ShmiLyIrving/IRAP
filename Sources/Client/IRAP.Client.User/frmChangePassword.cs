@@ -89,5 +89,16 @@ namespace IRAP.Client.User
                 edtPassword.Focus();
             }
         }
+
+        private void edtPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if (edtPassword.Text.Trim() == edtConfPassword.Text.Trim() &&
+                edtPassword.Text.Trim() != "")
+                btnOK.Enabled = true;
+            else
+                btnOK.Enabled = false;
+
+            e.Cancel = false;
+        }
     }
 }

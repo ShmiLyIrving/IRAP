@@ -465,41 +465,65 @@ namespace IRAP.AutoUpgrade
                 return null;
             }
 
-            using (FileStream fs = 
-                new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            List<FileInfo> filesToUpgrade = new List<FileInfo>();
+
+            //using (FileStream fs = 
+            //    new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            //{
+            //    XmlReaderSettings xmlSettings = new XmlReaderSettings()
+            //    {
+            //        ConformanceLevel = ConformanceLevel.Fragment,
+            //        IgnoreComments = true,
+            //        IgnoreWhitespace = true,
+            //    };
+
+                //using (XmlReader xr = XmlReader.Create(fs, xmlSettings))
+                //{
+                //    while (xr.Read())
+                //    {
+                //        if (xr.NodeType == XmlNodeType.Element && xr.HasAttributes)
+                //        {
+                //            if (xr.Name.ToUpper() == "FILE")
+                //            {
+                //                FileInfo file = new FileInfo();
+                //                file.FileName =
+                //                    string.Format(
+                //                        @"{0}\{1}",
+                //                        rootPath,
+                //                        xr.GetAttribute("name"));
+                //                file.NewMD5 = xr.GetAttribute("md5");
+
+                //                filesToUpgrade.Add(file);
+                //            }
+                //        }
+                //    }
+                //}
+            //}
+
+            XmlDocument xml = new XmlDocument();
+            xml.Load(fileName);
+
+            try
             {
-                XmlReaderSettings xmlSettings = new XmlReaderSettings()
+                foreach (XmlNode node in xml.SelectNodes("root/File"))
                 {
-                    ConformanceLevel = ConformanceLevel.Fragment,
-                    IgnoreComments = true,
-                    IgnoreWhitespace = true,
-                };
-
-                List<FileInfo> filesToUpgrade = new List<FileInfo>();
-                using (XmlReader xr = XmlReader.Create(fs, xmlSettings))
-                {
-                    while (xr.Read())
-                    {
-                        if (xr.NodeType == XmlNodeType.Element && xr.HasAttributes)
+                    filesToUpgrade.Add(
+                        new FileInfo()
                         {
-                            if (xr.Name.ToUpper() == "FILE")
-                            {
-                                FileInfo file = new FileInfo();
-                                file.FileName =
-                                    string.Format(
-                                        @"{0}\{1}",
-                                        rootPath,
-                                        xr.GetAttribute("name"));
-                                file.NewMD5 = xr.GetAttribute("md5");
-
-                                filesToUpgrade.Add(file);
-                            }
-                        }
-                    }
+                            FileName = string.Format(@"{0}\{1}", rootPath, node.Attributes["name"].Value),
+                            NewMD5 = node.Attributes["md5"].Value,
+                        });
                 }
-
-                return filesToUpgrade;
             }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+                MessageBox.Show(error.StackTrace);
+
+                throw error;
+            }
+
+            return filesToUpgrade;
         }
     }
 }

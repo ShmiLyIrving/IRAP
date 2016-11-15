@@ -253,11 +253,12 @@ namespace IRAP.Client.GUI.CAS
                     }
                     else
                     {
-                        IRAPMessageBox.Instance.Show(
-                            errText, 
-                            Text, 
-                            MessageBoxButtons.OK, 
-                            MessageBoxIcon.Asterisk);
+                        if (errText.Trim() != "")
+                            IRAPMessageBox.Instance.Show(
+                                errText,
+                                Text,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Asterisk);
                     }
                 }
                 catch (Exception error)
@@ -320,14 +321,26 @@ namespace IRAP.Client.GUI.CAS
                         out errText);
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     if (errCode != 0)
-                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        IRAPMessageBox.Instance.Show(
+                            errText, 
+                            Text, 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Error);
                     else
-                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        IRAPMessageBox.Instance.Show(
+                            errText, 
+                            Text, 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Asterisk);
                 }
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    IRAPMessageBox.Instance.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    IRAPMessageBox.Instance.Show(
+                        error.Message, 
+                        Text, 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                 }
                 #endregion
             }

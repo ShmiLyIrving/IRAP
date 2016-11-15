@@ -104,6 +104,7 @@
             this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdvAndonEvents.Appearance.Row.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvAndonEvents.Appearance.Row.Options.UseFont = true;
+            this.grdvAndonEvents.ColumnPanelRowHeight = 30;
             this.grdvAndonEvents.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdclmnEventType,
             this.grdclmnEventDescription,
@@ -114,10 +115,12 @@
             this.grdclmnTimeElapsed});
             this.grdvAndonEvents.GridControl = this.grdAndonEvents;
             this.grdvAndonEvents.Name = "grdvAndonEvents";
-            this.grdvAndonEvents.OptionsBehavior.ReadOnly = true;
+            this.grdvAndonEvents.OptionsBehavior.Editable = false;
             this.grdvAndonEvents.OptionsView.ColumnAutoWidth = false;
             this.grdvAndonEvents.OptionsView.RowAutoHeight = true;
             this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
+            this.grdvAndonEvents.RowHeight = 30;
+            this.grdvAndonEvents.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grdvAndonEvents_SelectionChanged);
             this.grdvAndonEvents.Click += new System.EventHandler(this.grdvAndonEvents_Click);
             // 
             // grdclmnEventType
@@ -177,7 +180,7 @@
             // 
             // grdclmnFirstResponder
             // 
-            this.grdclmnFirstResponder.Caption = "第一响应人";
+            this.grdclmnFirstResponder.Caption = "责任响应人";
             this.grdclmnFirstResponder.FieldName = "FirstResponder";
             this.grdclmnFirstResponder.Name = "grdclmnFirstResponder";
             this.grdclmnFirstResponder.Visible = true;

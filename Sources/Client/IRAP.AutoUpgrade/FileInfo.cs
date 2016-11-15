@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 using IRAP.Global;
 
@@ -45,8 +46,15 @@ namespace IRAP.AutoUpgrade
                 fileName = value;
                 if (File.Exists(value))
                 {
-                    FileVersionInfo version = FileVersionInfo.GetVersionInfo(value);
-                    currentVerion = new Version(version.FileVersion);
+                    try
+                    {
+                        FileVersionInfo version = FileVersionInfo.GetVersionInfo(value);
+                        currentVerion = new Version(version.FileVersion);
+                    }
+                    catch
+                    {
+                        currentVerion = new Version("0.0.0.0");
+                    }
 
                     currentMD5 = Tools.GetMD5HashFromFile(value);
 

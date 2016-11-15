@@ -166,11 +166,11 @@ namespace IRAP.Client.GUI.CAS
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     if (errCode == 0)
                     {
-                        ShowMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                     else
                     {
-                        ShowMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     GetAndonEventsToClose();
@@ -178,13 +178,18 @@ namespace IRAP.Client.GUI.CAS
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    ShowMessageBox.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    IRAPMessageBox.Instance.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
             }
+        }
+
+        private void grdvAndonEvents_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            btnEventClose.Enabled = grdvAndonEvents.GetFocusedDataSourceRowIndex() >= 0;
         }
     }
 }

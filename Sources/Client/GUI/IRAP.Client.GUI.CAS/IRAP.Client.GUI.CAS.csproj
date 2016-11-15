@@ -158,6 +158,18 @@
     <Compile Include="UserControls\ucAndonEventButton.Designer.cs">
       <DependentUpon>ucAndonEventButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucDeviceFailureModes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucDeviceFailureModes.Designer.cs">
+      <DependentUpon>ucDeviceFailureModes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucFailureModes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucFailureModes.Designer.cs">
+      <DependentUpon>ucFailureModes.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.GUI.CAS.cd" />
@@ -273,6 +285,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucAndonEventButton.resx">
       <DependentUpon>ucAndonEventButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucDeviceFailureModes.resx">
+      <DependentUpon>ucDeviceFailureModes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucFailureModes.resx">
+      <DependentUpon>ucFailureModes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

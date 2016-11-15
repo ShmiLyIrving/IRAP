@@ -117,96 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblFuncName.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblFuncName.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="lblFuncName.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblFuncName.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="toolTipController.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="toolTipController.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="toolTipController.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="toolTipController.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="toolTipController.AppearanceTitle.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="toolTipController.AppearanceTitle.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="toolTipController.AppearanceTitle.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="toolTipController.AppearanceTitle.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <assembly alias="DevExpress.Data.v15.2" name="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="panelControl1.AllowHtmlText" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
-  </data>
   <data name="lblProductionLine.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 12pt, style=Bold</value>
   </data>
-  <data name="lblProductionLine.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblProductionLine.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="lblProductionLine.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="lblProductionLine.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="panelControl1.Title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="panelControl1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <assembly alias="DevExpress.Utils.v15.2" name="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="panelControl1.ToolTipIconType" type="DevExpress.Utils.ToolTipIconType, DevExpress.Utils.v15.2">
-    <value>None</value>
-  </data>
-  <data name="$this.AllowHtmlText" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
-  </data>
-  <data name="frmCustomAndonForm.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="frmCustomAndonForm.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="frmCustomAndonForm.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="frmCustomAndonForm.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.Title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="$this.ToolTipIconType" type="DevExpress.Utils.ToolTipIconType, DevExpress.Utils.v15.2">
-    <value>None</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblProductionLine.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 10, 0</value>
   </data>
 </root>

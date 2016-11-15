@@ -7,6 +7,7 @@ using System.Reflection;
 
 using IRAP.Global;
 using IRAP.Entity.Kanban;
+using IRAP.Entities.Kanban;
 
 namespace IRAP.WCF.Client.Method
 {
@@ -387,6 +388,157 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 获取点击流选中叶集
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="treeID">树标识</param>
+        /// <param name="clickStream">点击流</param>
+        public void sfn_SelectedLeafSet(
+            int communityID,
+            int treeID,
+            string clickStream,
+            ref List<SelectedLeaf> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("treeID", treeID);
+                hashParams.Add("clickStream", clickStream);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_SelectedLeafSet，输入参数：" +
+                        "CommunityID={0}|TreeID={1}|ClickStream={2}",
+                        communityID,
+                        treeID,
+                        clickStream),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.Kanban.dll",
+                        "IRAP.BL.Kanban.IRAPKanban",
+                        "sfn_SelectedLeafSet",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<SelectedLeaf>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取点击流选中叶集增强版
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="treeID">树标识</param>
+        /// <param name="clickStream">点击流</param>
+        /// <param name="languageID">语言标识</param>
+        public void sfn_SelectedLeafSetEx(
+            int communityID,
+            int treeID,
+            string clickStream,
+            int languageID,
+            ref List<SelectedLeafEx> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("treeID", treeID);
+                hashParams.Add("clickStream", clickStream);
+                hashParams.Add("languageID", languageID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_SelectedLeafSetEx，输入参数：" +
+                        "CommunityID={0}|TreeID={1}|ClickStream={2}|"+
+                        "LanguageID={3}",
+                        communityID,
+                        treeID,
+                        clickStream,
+                        languageID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.Kanban.dll",
+                        "IRAP.BL.Kanban.IRAPKanban",
+                        "sfn_SelectedLeafSetEx",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<SelectedLeafEx>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取指定社区的所有用户清单
         /// </summary>
         public void sfn_GetList_UsersOfACommunity(
@@ -469,40 +621,6 @@ namespace IRAP.WCF.Client.Method
                     "{0}.{1}",
                     className,
                     MethodBase.GetCurrentMethod().Name);
-
-#if DEBUG
-            datas.Add(
-                new StationPortInfo()
-                {
-                    Ordinal = 1,
-                    IsComm = true,
-                    CommPort = "COM8",
-                    BoudRate = 9600,
-                    Parity = 0,
-                    ByteSize = 8,
-                    StopBits = 1,
-                    WorkUnitCode = "1A2B3C",
-                    WorkUnitLeaf = 12345,
-                    WorkUnitName = "生产记载测试工位 1",
-                });
-            datas.Add(
-                new StationPortInfo()
-                {
-                    Ordinal = 1,
-                    IsComm = true,
-                    CommPort = "COM10",
-                    BoudRate = 9600,
-                    Parity = 0,
-                    ByteSize = 8,
-                    StopBits = 1,
-                    WorkUnitCode = "1A2B3C",
-                    WorkUnitLeaf = 12345,
-                    WorkUnitName = "生产记载测试工位 1",
-                });
-            errCode = 0;
-            errText = "模拟正常执行";
-            return;
-#endif
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try

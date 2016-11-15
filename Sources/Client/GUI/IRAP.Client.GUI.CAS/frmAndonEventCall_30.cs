@@ -99,16 +99,19 @@ namespace IRAP.Client.GUI.CAS
                 #region 根据获取的 Andon 事件类型列表，生成界面上的 Andon 事件点击按钮
                 foreach (AndonEventType andonEventType in andonEventTypes)
                 {
-                    UserControls.ucAndonEventButton button = new UserControls.ucAndonEventButton()
+                    if (andonEventType.Available)
                     {
-                        EventTypeItem = andonEventType,
-                    };
+                        UserControls.ucAndonEventButton button = new UserControls.ucAndonEventButton()
+                        {
+                            EventTypeItem = andonEventType,
+                        };
 
-                    // 绑定 Andon 按钮点击事件
-                    if (button.Available && button.Statue != 0)
-                        button.MouseLeftClick += AndonEventCall;
+                        // 绑定 Andon 按钮点击事件
+                        if (button.Available && button.Statue != 0)
+                            button.MouseLeftClick += AndonEventCall;
 
-                    buttons.Add(button);
+                        buttons.Add(button);
+                    }
                 }
                 #endregion
             }
@@ -152,7 +155,7 @@ namespace IRAP.Client.GUI.CAS
                     else
                         msgTitle = "系统信息";
 
-                    XtraMessageBox.Show(errText, msgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    IRAPMessageBox.Instance.Show(errText, msgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception error)
@@ -166,7 +169,7 @@ namespace IRAP.Client.GUI.CAS
                     else
                         msgTitle = "系统信息";
 
-                    XtraMessageBox.Show(error.Message, msgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    IRAPMessageBox.Instance.Show(error.Message, msgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             finally
@@ -384,8 +387,11 @@ namespace IRAP.Client.GUI.CAS
                 if (i >= andonEventTypes.Count)
                     break;
 
-                button.EventTypeItem = andonEventTypes[i];
-                i++;
+                if (andonEventTypes[i].Available)
+                {
+                    button.EventTypeItem = andonEventTypes[i];
+                    i++;
+                }
             }
         }
 
@@ -415,7 +421,7 @@ namespace IRAP.Client.GUI.CAS
                         msgText = "The menu parameters is not correct!";
                     else
                         msgText = "没有正确的传入菜单参数！";
-                    XtraMessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         msgText,
                         Text,
                         MessageBoxButtons.OK,

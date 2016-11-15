@@ -111,7 +111,7 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("availableOnly", availableOnly);
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用 sfn_AvailableCSMenus，输入参数：" +
+                        "调用 sfn_AvailableCSFunctions，输入参数：" +
                         "CommunityID={0}|SystemID={1}|SysLogID={2}|" +
                         "ProgLanguageID={3}|AvailableOnly={4}",
                         communityID,

@@ -31,10 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventConsultationCall));
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
-            this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
-            this.pnlIDCardNoRead = new DevExpress.XtraEditors.PanelControl();
-            this.edtIDCardNo = new DevExpress.XtraEditors.TextEdit();
-            this.lblGetIDNo = new DevExpress.XtraEditors.LabelControl();
             this.tpAndonEvents = new DevExpress.XtraTab.XtraTabPage();
             this.btnReturn = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
@@ -50,14 +46,14 @@
             this.btnConsultationCall = new DevExpress.XtraEditors.SimpleButton();
             this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
             this.cboAndonEvent = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
+            this.pnlIDCardNoRead = new DevExpress.XtraEditors.PanelControl();
+            this.edtIDCardNo = new DevExpress.XtraEditors.TextEdit();
+            this.lblGetIDNo = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
             this.tcMain.SuspendLayout();
-            this.tpIDCardnoRead.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).BeginInit();
-            this.pnlIDCardNoRead.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).BeginInit();
             this.tpAndonEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
@@ -68,6 +64,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
             this.gpcAndonEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvent.Properties)).BeginInit();
+            this.tpIDCardnoRead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).BeginInit();
+            this.pnlIDCardNoRead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -94,42 +94,6 @@
             this.tpIDCardnoRead,
             this.tpAndonEvents});
             this.tcMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tcMain_SelectedPageChanged);
-            // 
-            // tpIDCardnoRead
-            // 
-            this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
-            this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            resources.ApplyResources(this.tpIDCardnoRead, "tpIDCardnoRead");
-            // 
-            // pnlIDCardNoRead
-            // 
-            this.pnlIDCardNoRead.ContentImage = global::IRAP.Client.GUI.CAS.Properties.Resources.AndonCall;
-            this.pnlIDCardNoRead.Controls.Add(this.edtIDCardNo);
-            this.pnlIDCardNoRead.Controls.Add(this.lblGetIDNo);
-            resources.ApplyResources(this.pnlIDCardNoRead, "pnlIDCardNoRead");
-            this.pnlIDCardNoRead.Name = "pnlIDCardNoRead";
-            // 
-            // edtIDCardNo
-            // 
-            resources.ApplyResources(this.edtIDCardNo, "edtIDCardNo");
-            this.edtIDCardNo.Name = "edtIDCardNo";
-            this.edtIDCardNo.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("edtIDCardNo.Properties.Appearance.Font")));
-            this.edtIDCardNo.Properties.Appearance.Options.UseFont = true;
-            this.edtIDCardNo.Properties.Appearance.Options.UseTextOptions = true;
-            this.edtIDCardNo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.edtIDCardNo.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.edtIDCardNo.Properties.UseSystemPasswordChar = true;
-            this.edtIDCardNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtIDCardNo_KeyDown);
-            // 
-            // lblGetIDNo
-            // 
-            this.lblGetIDNo.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lblGetIDNo.Appearance.Font")));
-            this.lblGetIDNo.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("lblGetIDNo.Appearance.ForeColor")));
-            this.lblGetIDNo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.lblGetIDNo.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.lblGetIDNo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            resources.ApplyResources(this.lblGetIDNo, "lblGetIDNo");
-            this.lblGetIDNo.Name = "lblGetIDNo";
             // 
             // tpAndonEvents
             // 
@@ -170,6 +134,8 @@
             // 
             // grdvStaffs
             // 
+            this.grdvStaffs.Appearance.FilterPanel.Font = ((System.Drawing.Font)(resources.GetObject("grdvStaffs.Appearance.FilterPanel.Font")));
+            this.grdvStaffs.Appearance.FilterPanel.Options.UseFont = true;
             this.grdvStaffs.Appearance.HeaderPanel.Font = ((System.Drawing.Font)(resources.GetObject("grdvStaffs.Appearance.HeaderPanel.Font")));
             this.grdvStaffs.Appearance.HeaderPanel.Options.UseFont = true;
             this.grdvStaffs.Appearance.HeaderPanel.Options.UseTextOptions = true;
@@ -217,6 +183,8 @@
             // 
             // grdclmnUserCode
             // 
+            this.grdclmnUserCode.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnUserCode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             resources.ApplyResources(this.grdclmnUserCode, "grdclmnUserCode");
             this.grdclmnUserCode.FieldName = "UserCode";
             this.grdclmnUserCode.Name = "grdclmnUserCode";
@@ -245,7 +213,7 @@
             // grdclmnAgencyName
             // 
             this.grdclmnAgencyName.AppearanceCell.Options.UseTextOptions = true;
-            this.grdclmnAgencyName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnAgencyName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.grdclmnAgencyName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             resources.ApplyResources(this.grdclmnAgencyName, "grdclmnAgencyName");
             this.grdclmnAgencyName.FieldName = "AgencyName";
@@ -279,7 +247,44 @@
             this.cboAndonEvent.Properties.Appearance.Options.UseFont = true;
             this.cboAndonEvent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("cboAndonEvent.Properties.Buttons"))))});
+            this.cboAndonEvent.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboAndonEvent.SelectedIndexChanged += new System.EventHandler(this.cboAndonEvent_SelectedIndexChanged);
+            // 
+            // tpIDCardnoRead
+            // 
+            this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
+            this.tpIDCardnoRead.Name = "tpIDCardnoRead";
+            resources.ApplyResources(this.tpIDCardnoRead, "tpIDCardnoRead");
+            // 
+            // pnlIDCardNoRead
+            // 
+            this.pnlIDCardNoRead.ContentImage = global::IRAP.Client.GUI.CAS.Properties.Resources.AndonCall;
+            this.pnlIDCardNoRead.Controls.Add(this.edtIDCardNo);
+            this.pnlIDCardNoRead.Controls.Add(this.lblGetIDNo);
+            resources.ApplyResources(this.pnlIDCardNoRead, "pnlIDCardNoRead");
+            this.pnlIDCardNoRead.Name = "pnlIDCardNoRead";
+            // 
+            // edtIDCardNo
+            // 
+            resources.ApplyResources(this.edtIDCardNo, "edtIDCardNo");
+            this.edtIDCardNo.Name = "edtIDCardNo";
+            this.edtIDCardNo.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("edtIDCardNo.Properties.Appearance.Font")));
+            this.edtIDCardNo.Properties.Appearance.Options.UseFont = true;
+            this.edtIDCardNo.Properties.Appearance.Options.UseTextOptions = true;
+            this.edtIDCardNo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.edtIDCardNo.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.edtIDCardNo.Properties.UseSystemPasswordChar = true;
+            this.edtIDCardNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtIDCardNo_KeyDown);
+            // 
+            // lblGetIDNo
+            // 
+            this.lblGetIDNo.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lblGetIDNo.Appearance.Font")));
+            this.lblGetIDNo.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("lblGetIDNo.Appearance.ForeColor")));
+            this.lblGetIDNo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.lblGetIDNo.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.lblGetIDNo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            resources.ApplyResources(this.lblGetIDNo, "lblGetIDNo");
+            this.lblGetIDNo.Name = "lblGetIDNo";
             // 
             // frmAndonEventConsultationCall
             // 
@@ -287,6 +292,7 @@
             resources.ApplyResources(this, "$this");
             this.Controls.Add(this.tcMain);
             this.Name = "frmAndonEventConsultationCall";
+            this.Activated += new System.EventHandler(this.frmAndonEventConsultationCall_Activated);
             this.Shown += new System.EventHandler(this.frmAndonEventConsultation_Shown);
             this.Resize += new System.EventHandler(this.frmAndonEventConsultation_Resize);
             this.Controls.SetChildIndex(this.panelControl1, 0);
@@ -295,10 +301,6 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
             this.tcMain.ResumeLayout(false);
-            this.tpIDCardnoRead.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).EndInit();
-            this.pnlIDCardNoRead.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).EndInit();
             this.tpAndonEvents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
@@ -309,6 +311,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).EndInit();
             this.gpcAndonEvents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cboAndonEvent.Properties)).EndInit();
+            this.tpIDCardnoRead.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).EndInit();
+            this.pnlIDCardNoRead.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.edtIDCardNo.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

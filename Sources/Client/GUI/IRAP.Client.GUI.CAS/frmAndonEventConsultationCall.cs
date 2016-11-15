@@ -26,6 +26,8 @@ namespace IRAP.Client.GUI.CAS
             new List<AndonRspedEventInfo>();
         List<EventStakeholder> staffs = new List<EventStakeholder>();
 
+        bool isShowMessageBeforeActive = false;
+
         public frmAndonEventConsultationCall()
         {
             InitializeComponent();
@@ -107,6 +109,7 @@ namespace IRAP.Client.GUI.CAS
 
                                 if (errCode != 0)
                                 {
+                                    isShowMessageBeforeActive = true;
                                     IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     edtIDCardNo.Text = "";
                                     edtIDCardNo.Focus();
@@ -135,6 +138,7 @@ namespace IRAP.Client.GUI.CAS
                             {
                                 if (andonEventsRepsonded.Count <= 0)
                                 {
+                                    isShowMessageBeforeActive = true;
                                     IRAPMessageBox.Instance.Show(
                                         "当前站点没有呼叫您的安灯事件！",
                                         Text,
@@ -159,6 +163,7 @@ namespace IRAP.Client.GUI.CAS
                             }
                             else
                             {
+                                isShowMessageBeforeActive = true;
                                 IRAPMessageBox.Instance.Show(
                                     errText,
                                     Text,
@@ -173,6 +178,8 @@ namespace IRAP.Client.GUI.CAS
                         {
                             WriteLog.Instance.Write(error.Message, strProcedureName);
                             WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
+                            isShowMessageBeforeActive = true;
                             IRAPMessageBox.Instance.Show(
                                 error.Message,
                                 Text,
@@ -228,24 +235,23 @@ namespace IRAP.Client.GUI.CAS
                 if (errCode == 0)
                 {
                     grdStaffs.DataSource = staffs;
-                    grdvStaffs.BestFitColumns();
                 }
                 else
                 {
                     grdStaffs.DataSource = null;
-                    grdvStaffs.BestFitColumns();
 
-                    IRAPMessageBox.Instance.Show(errText, Text, MessageBoxIcon.Error);
+                    isShowMessageBeforeActive = true;
+                    IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception error)
             {
                 grdStaffs.DataSource = null;
-                grdvStaffs.BestFitColumns();
 
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-                IRAPMessageBox.Instance.Show(error.Message, Text, MessageBoxIcon.Error);
+                isShowMessageBeforeActive = true;
+                IRAPMessageBox.Instance.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -268,7 +274,8 @@ namespace IRAP.Client.GUI.CAS
             }
             if (intSelectedCount <= 0)
             {
-                IRAPMessageBox.Instance.Show("至少要选择一个人员！", Text, MessageBoxIcon.Error);
+                isShowMessageBeforeActive = true;
+                IRAPMessageBox.Instance.Show("至少要选择一个人员！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 grdStaffs.Focus();
                 return;
             }
@@ -294,25 +301,11 @@ namespace IRAP.Client.GUI.CAS
                     {
                         try
                         {
-                            long transactNo = 
-                                IRAPUTSClient.Instance.mfn_GetTransactNo(
-                                    IRAPUser.Instance.CommunityID, 
-                                    1, 
-                                    IRAPUser.Instance.SysLogID, 
-                                    "");
-                            long factID =
-                                IRAPUTSClient.Instance.mfn_GetFactID(
-                                    IRAPUser.Instance.CommunityID,
-                                    1,
-                                    IRAPUser.Instance.SysLogID,
-                                    "");
-
-                            IRAPFVSClient.Instance.usp_SaveFact_AndonEventConsultation(
+                            IRAPFVSClient.Instance.usp_AndonEventForwardingEx(
                                 IRAPUser.Instance.CommunityID,
-                                transactNo,
-                                factID,
                                 andonEvent.EventFactID,
                                 andonEvent.OpID,
+                                0,
                                 staff.UserCode,
                                 IRAPUser.Instance.SysLogID,
                                 out errCode,
@@ -322,7 +315,8 @@ namespace IRAP.Client.GUI.CAS
                             if (errCode != 0)
                             {
                                 strFailures += string.Format("[{0}]", staff.UserName);
-                                IRAPMessageBox.Instance.Show(errText, Text, MessageBoxIcon.Error);
+                                isShowMessageBeforeActive = true;
+                                IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
@@ -334,9 +328,11 @@ namespace IRAP.Client.GUI.CAS
                             WriteLog.Instance.Write(error.Message, strProcedureName);
                             WriteLog.Instance.Write(error.StackTrace, strProcedureName);
 
+                            isShowMessageBeforeActive = true;
                             IRAPMessageBox.Instance.Show(
                                 error.Message,
                                 Text,
+                                MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                         }
                     }
@@ -349,7 +345,10 @@ namespace IRAP.Client.GUI.CAS
                     msg += string.Format("{0}呼叫失败，你可以再次重新呼叫！", strFailures);
 
                 if (msg != "")
-                    IRAPMessageBox.Instance.Show(msg, Text, MessageBoxIcon.Asterisk);
+                {
+                    isShowMessageBeforeActive = true;
+                    IRAPMessageBox.Instance.Show(msg, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
 
                 btnReturn.PerformClick();
             }
@@ -372,6 +371,15 @@ namespace IRAP.Client.GUI.CAS
             if (e.Page== tpIDCardnoRead)
             {
                 edtIDCardNo.Focus();
+            }
+        }
+
+        private void frmAndonEventConsultationCall_Activated(object sender, EventArgs e)
+        {
+            if (!isShowMessageBeforeActive)
+            {
+                btnReturn.PerformClick();
+                isShowMessageBeforeActive = false;
             }
         }
     }

@@ -178,7 +178,7 @@
     <value>等线, 12pt</value>
   </data>
   <data name="btnReturn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>791, 599</value>
+    <value>790, 598</value>
   </data>
   <data name="btnReturn.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 31</value>
@@ -216,6 +216,9 @@
   </data>
   <data name="grdStaffs.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 29</value>
+  </data>
+  <data name="grdvStaffs.Appearance.FilterPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>等线, 12pt</value>
   </data>
   <data name="grdvStaffs.Appearance.HeaderPanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>等线, 12pt</value>
@@ -263,7 +266,7 @@
     <value>True</value>
   </data>
   <data name="grdclmnUserCode.VisibleIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="grdclmnUserCode.Width" type="System.Int32, mscorlib">
     <value>97</value>
@@ -275,7 +278,7 @@
     <value>True</value>
   </data>
   <data name="grdclmnUserName.VisibleIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="grdclmnUserName.Width" type="System.Int32, mscorlib">
     <value>161</value>
@@ -287,25 +290,19 @@
     <value>True</value>
   </data>
   <data name="grdclmnRoleName.VisibleIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="grdclmnRoleName.Width" type="System.Int32, mscorlib">
-    <value>127</value>
+    <value>200</value>
   </data>
   <data name="grdclmnAgencyName.Caption" xml:space="preserve">
     <value>部门</value>
-  </data>
-  <data name="grdclmnAgencyName.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="grdclmnAgencyName.VisibleIndex" type="System.Int32, mscorlib">
-    <value>1</value>
   </data>
   <data name="grdclmnAgencyName.Width" type="System.Int32, mscorlib">
     <value>145</value>
   </data>
   <data name="grdStaffs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>750, 504</value>
+    <value>749, 503</value>
   </data>
   <data name="grdStaffs.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -329,7 +326,7 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="groupControl3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>764, 540</value>
+    <value>763, 539</value>
   </data>
   <data name="groupControl3.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -356,7 +353,7 @@
     <value>等线, 12pt</value>
   </data>
   <data name="btnConsultationCall.Location" type="System.Drawing.Point, System.Drawing">
-    <value>791, 90</value>
+    <value>790, 90</value>
   </data>
   <data name="btnConsultationCall.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 31</value>
@@ -401,7 +398,7 @@
     <value>Combo</value>
   </data>
   <data name="cboAndonEvent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>744, 24</value>
+    <value>743, 24</value>
   </data>
   <data name="cboAndonEvent.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -425,7 +422,7 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="gpcAndonEvents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>764, 67</value>
+    <value>763, 67</value>
   </data>
   <data name="gpcAndonEvents.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -446,7 +443,7 @@
     <value>3</value>
   </data>
   <data name="tpAndonEvents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>886, 647</value>
+    <value>885, 646</value>
   </data>
   <data name="tpAndonEvents.Text" xml:space="preserve">
     <value>xtraTabPage2</value>
@@ -555,7 +552,7 @@
     <value>0</value>
   </data>
   <data name="tpIDCardnoRead.Size" type="System.Drawing.Size, System.Drawing">
-    <value>886, 647</value>
+    <value>885, 646</value>
   </data>
   <data name="&gt;&gt;tpIDCardnoRead.Name" xml:space="preserve">
     <value>tpIDCardnoRead</value>
@@ -648,6 +645,6 @@
     <value>frmAndonEventConsultationCall</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IRAP.Client.GUI.CAS.frmCustomAndonForm, IRAP.Client.GUI.CAS, Version=6.1.6156.27664, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.GUI.CAS.frmCustomAndonForm, IRAP.Client.GUI.CAS, Version=6.1.6158.23565, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

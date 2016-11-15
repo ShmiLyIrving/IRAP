@@ -286,7 +286,6 @@ namespace IRAP.Client.GUI.CAS
                 }
 
                 grdStaffs.DataSource = objectsOfAndonCall;
-                grdvStaffs.BestFitColumns();
             }
             catch (Exception error)
             {
@@ -319,8 +318,9 @@ namespace IRAP.Client.GUI.CAS
                 if (andonObject.Choice)
                 {
                     intSelectedCount++;
-                    if (!SaveAndonEventCall(andonObject, ref userIDCardNo))
-                        return;
+                    //if (!SaveAndonEventCall(andonObject, ref userIDCardNo))
+                    //    return;
+                    SaveAndonEventCall(andonObject, ref userIDCardNo);  // 安灯呼叫失败后，继续其余内容的呼叫
                 }
             }
 
