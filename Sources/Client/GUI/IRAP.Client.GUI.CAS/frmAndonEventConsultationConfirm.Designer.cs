@@ -283,7 +283,7 @@
             this.splitContainerControl2.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl2.Panel2.Text = "Panel2";
             this.splitContainerControl2.Size = new System.Drawing.Size(472, 657);
-            this.splitContainerControl2.SplitterPosition = 58;
+            this.splitContainerControl2.SplitterPosition = 54;
             this.splitContainerControl2.TabIndex = 8;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
@@ -307,7 +307,7 @@
             this.splitContainerControl1.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.ShowCaption = true;
-            this.splitContainerControl1.Size = new System.Drawing.Size(472, 594);
+            this.splitContainerControl1.Size = new System.Drawing.Size(472, 598);
             this.splitContainerControl1.SplitterPosition = 318;
             this.splitContainerControl1.TabIndex = 7;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -320,7 +320,7 @@
             this.lstEventType.ImageList = this.imgsAndonTypes;
             this.lstEventType.Location = new System.Drawing.Point(5, 5);
             this.lstEventType.Name = "lstEventType";
-            this.lstEventType.Size = new System.Drawing.Size(304, 558);
+            this.lstEventType.Size = new System.Drawing.Size(304, 562);
             this.lstEventType.TabIndex = 6;
             this.lstEventType.SelectedIndexChanged += new System.EventHandler(this.lstEventType_SelectedIndexChanged);
             // 
@@ -344,7 +344,7 @@
             this.tcEventTypes.Name = "tcEventTypes";
             this.tcEventTypes.SelectedTabPage = this.tpEmpty;
             this.tcEventTypes.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.tcEventTypes.Size = new System.Drawing.Size(135, 580);
+            this.tcEventTypes.Size = new System.Drawing.Size(135, 584);
             this.tcEventTypes.TabIndex = 0;
             this.tcEventTypes.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpEmpty,
@@ -359,7 +359,7 @@
             // 
             this.tpEmpty.Name = "tpEmpty";
             this.tpEmpty.Padding = new System.Windows.Forms.Padding(5);
-            this.tpEmpty.Size = new System.Drawing.Size(129, 574);
+            this.tpEmpty.Size = new System.Drawing.Size(129, 578);
             this.tpEmpty.Text = "Empty";
             // 
             // tpR
@@ -367,7 +367,7 @@
             this.tpR.Controls.Add(this.ucDeviceFailureModes);
             this.tpR.Name = "tpR";
             this.tpR.Padding = new System.Windows.Forms.Padding(5);
-            this.tpR.Size = new System.Drawing.Size(129, 574);
+            this.tpR.Size = new System.Drawing.Size(129, 578);
             this.tpR.Text = "R";
             // 
             // ucDeviceFailureModes
@@ -375,7 +375,7 @@
             this.ucDeviceFailureModes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucDeviceFailureModes.Location = new System.Drawing.Point(5, 5);
             this.ucDeviceFailureModes.Name = "ucDeviceFailureModes";
-            this.ucDeviceFailureModes.Size = new System.Drawing.Size(119, 564);
+            this.ucDeviceFailureModes.Size = new System.Drawing.Size(119, 568);
             this.ucDeviceFailureModes.T133Code = "";
             this.ucDeviceFailureModes.TabIndex = 0;
             // 
@@ -384,7 +384,7 @@
             this.tpM.Controls.Add(this.ucFailureModesM);
             this.tpM.Name = "tpM";
             this.tpM.Padding = new System.Windows.Forms.Padding(5);
-            this.tpM.Size = new System.Drawing.Size(129, 574);
+            this.tpM.Size = new System.Drawing.Size(129, 578);
             this.tpM.Text = "M";
             // 
             // ucFailureModesM
@@ -392,7 +392,7 @@
             this.ucFailureModesM.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesM.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesM.Name = "ucFailureModesM";
-            this.ucFailureModesM.Size = new System.Drawing.Size(119, 564);
+            this.ucFailureModesM.Size = new System.Drawing.Size(119, 568);
             this.ucFailureModesM.T179LeafID = 0;
             this.ucFailureModesM.TabIndex = 0;
             // 
@@ -401,7 +401,7 @@
             this.tpQ.Controls.Add(this.ucFailureModesQ);
             this.tpQ.Name = "tpQ";
             this.tpQ.Padding = new System.Windows.Forms.Padding(5);
-            this.tpQ.Size = new System.Drawing.Size(129, 574);
+            this.tpQ.Size = new System.Drawing.Size(129, 578);
             this.tpQ.Text = "Q";
             // 
             // ucFailureModesQ
@@ -409,7 +409,7 @@
             this.ucFailureModesQ.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesQ.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesQ.Name = "ucFailureModesQ";
-            this.ucFailureModesQ.Size = new System.Drawing.Size(119, 564);
+            this.ucFailureModesQ.Size = new System.Drawing.Size(119, 568);
             this.ucFailureModesQ.T179LeafID = 0;
             this.ucFailureModesQ.TabIndex = 0;
             // 
@@ -418,7 +418,7 @@
             this.tpT.Controls.Add(this.ucFailureModesT);
             this.tpT.Name = "tpT";
             this.tpT.Padding = new System.Windows.Forms.Padding(5);
-            this.tpT.Size = new System.Drawing.Size(129, 574);
+            this.tpT.Size = new System.Drawing.Size(129, 578);
             this.tpT.Text = "T";
             // 
             // ucFailureModesT
@@ -426,7 +426,7 @@
             this.ucFailureModesT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesT.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesT.Name = "ucFailureModesT";
-            this.ucFailureModesT.Size = new System.Drawing.Size(119, 564);
+            this.ucFailureModesT.Size = new System.Drawing.Size(119, 568);
             this.ucFailureModesT.T179LeafID = 0;
             this.ucFailureModesT.TabIndex = 0;
             // 
@@ -435,7 +435,7 @@
             this.tpS.Controls.Add(this.ucFailureModesS);
             this.tpS.Name = "tpS";
             this.tpS.Padding = new System.Windows.Forms.Padding(5);
-            this.tpS.Size = new System.Drawing.Size(129, 574);
+            this.tpS.Size = new System.Drawing.Size(129, 578);
             this.tpS.Text = "S";
             // 
             // ucFailureModesS
@@ -443,7 +443,7 @@
             this.ucFailureModesS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesS.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesS.Name = "ucFailureModesS";
-            this.ucFailureModesS.Size = new System.Drawing.Size(119, 564);
+            this.ucFailureModesS.Size = new System.Drawing.Size(119, 568);
             this.ucFailureModesS.T179LeafID = 0;
             this.ucFailureModesS.TabIndex = 0;
             // 
@@ -451,7 +451,7 @@
             // 
             this.tpO.Name = "tpO";
             this.tpO.Padding = new System.Windows.Forms.Padding(5);
-            this.tpO.Size = new System.Drawing.Size(129, 574);
+            this.tpO.Size = new System.Drawing.Size(129, 578);
             this.tpO.Text = "O";
             // 
             // rgpT144Leaf
@@ -473,7 +473,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "跟料"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "质量"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "拓展位")});
-            this.rgpT144Leaf.Size = new System.Drawing.Size(462, 48);
+            this.rgpT144Leaf.Size = new System.Drawing.Size(462, 44);
             this.rgpT144Leaf.TabIndex = 0;
             // 
             // splitContainerControl3

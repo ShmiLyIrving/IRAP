@@ -31,7 +31,15 @@ namespace IRAP.Client.GUI.CAS.UserControls
 
         public string T133Code
         {
-            get { return t133Code; }
+            get
+            {
+                if (cboEquipmentList.SelectedItem == null)
+                    return "";
+                else
+                {
+                    return (cboEquipmentList.SelectedItem as AndonCallObject).Code;
+                }
+            }
             set
             {
                 t133Code = value;
@@ -59,7 +67,17 @@ namespace IRAP.Client.GUI.CAS.UserControls
 
         public int FailureModeLeafID
         {
-            get { return 0; }
+            get
+            {
+                int idx = grdvAndonCallObjects.GetFocusedDataSourceRowIndex();
+
+                if (idx < 0)
+                    return 0;
+                else
+                {
+                    return (grdAndonCallObjects.DataSource as List<AndonCallObject>)[idx].LeafID;
+                }
+            }
         }
 
         private void GetDeviceList()
@@ -122,6 +140,9 @@ namespace IRAP.Client.GUI.CAS.UserControls
                 {
                     AndonCallObject selectedEquipment =
                         cboEquipmentList.SelectedItem as AndonCallObject;
+
+                    t133Code = selectedEquipment.Code;
+
                     int errCode = 0;
                     string errText = "";
                     List<AndonCallObject> failureModeList =

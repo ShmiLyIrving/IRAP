@@ -35,8 +35,8 @@
             this.grdvAndonCallObjects = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnChoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repiceChoice = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chkProductionLineStopped = new DevExpress.XtraEditors.CheckEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnCall = new DevExpress.XtraEditors.SimpleButton();
@@ -131,6 +131,15 @@
             this.repiceChoice.Images = this.imageCollection;
             this.repiceChoice.Name = "repiceChoice";
             // 
+            // imageCollection
+            // 
+            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
+            this.imageCollection.InsertGalleryImage("paperkind_a4.png", "images/pages/paperkind_a4.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/pages/paperkind_a4.png"), 0);
+            this.imageCollection.Images.SetKeyName(0, "paperkind_a4.png");
+            this.imageCollection.InsertGalleryImage("apply_32x32.png", "images/actions/apply_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/apply_32x32.png"), 1);
+            this.imageCollection.Images.SetKeyName(1, "apply_32x32.png");
+            // 
             // grdclmnEventDescription
             // 
             this.grdclmnEventDescription.AppearanceCell.Font = new System.Drawing.Font("新宋体", 12F);
@@ -152,15 +161,6 @@
             this.grdclmnEventDescription.VisibleIndex = 1;
             this.grdclmnEventDescription.Width = 400;
             // 
-            // imageCollection
-            // 
-            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
-            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
-            this.imageCollection.InsertGalleryImage("paperkind_a4.png", "images/pages/paperkind_a4.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/pages/paperkind_a4.png"), 0);
-            this.imageCollection.Images.SetKeyName(0, "paperkind_a4.png");
-            this.imageCollection.InsertGalleryImage("apply_32x32.png", "images/actions/apply_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/apply_32x32.png"), 1);
-            this.imageCollection.Images.SetKeyName(1, "apply_32x32.png");
-            // 
             // chkProductionLineStopped
             // 
             this.chkProductionLineStopped.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -173,6 +173,7 @@
             this.chkProductionLineStopped.Properties.Caption = "已停线";
             this.chkProductionLineStopped.Size = new System.Drawing.Size(92, 20);
             this.chkProductionLineStopped.TabIndex = 3;
+            this.chkProductionLineStopped.Visible = false;
             // 
             // btnClose
             // 

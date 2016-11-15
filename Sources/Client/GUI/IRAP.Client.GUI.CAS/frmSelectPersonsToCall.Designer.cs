@@ -95,6 +95,7 @@
             this.chkProductionLineStopped.Properties.Caption = "已停线";
             this.chkProductionLineStopped.Size = new System.Drawing.Size(92, 21);
             this.chkProductionLineStopped.TabIndex = 7;
+            this.chkProductionLineStopped.Visible = false;
             // 
             // gpcAndonEvents
             // 
@@ -223,6 +224,7 @@
             // frmSelectPersonsToCall
             // 
             this.Appearance.Options.UseFont = true;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCall);

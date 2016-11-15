@@ -31,11 +31,25 @@ namespace IRAP.Client.GUI.CAS
             InitializeComponent();
         }
 
+        private void Clear()
+        {
+            lstEventType.Items.Clear();
+            lstEventType.SelectedItem = null;
+
+            tcEventTypes.SelectedTabPage = tpEmpty;
+
+            ucDeviceFailureModes.T133Code = "";
+            rgpT144Leaf.SelectedIndex = -1;
+
+            grdStaffs.DataSource = null;
+        }
+
         /// <summary>
         /// 安灯事件会诊结果确认保存
         /// </summary>
         /// <param name="eventFactID">安灯事件事实号</param>
         /// <param name="newEventType">新安灯类型叶标识</param>
+        /// <param name="objectTreeID">对象树标识</param>
         /// <param name="objectCode">设备代码</param>
         /// <param name="attrLeafID">失效模式叶标识</param>
         /// <param name="t144LeafID">发生原因叶标识</param>
@@ -43,6 +57,7 @@ namespace IRAP.Client.GUI.CAS
         private void ConsultationConfirm(
             long eventFactID,
             int newEventType,
+            int objectTreeID,
             string objectCode,
             int attrLeafID,
             int t144LeafID,
@@ -64,6 +79,7 @@ namespace IRAP.Client.GUI.CAS
                     IRAPUser.Instance.CommunityID,
                     eventFactID,
                     newEventType,
+                    objectTreeID,
                     objectCode,
                     attrLeafID,
                     t144LeafID,
@@ -221,6 +237,8 @@ namespace IRAP.Client.GUI.CAS
             cboAndonEvent.Properties.Items.Clear();
             cboAndonEvent.SelectedItem = null;
 
+            Clear();
+
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
@@ -260,10 +278,12 @@ namespace IRAP.Client.GUI.CAS
 
         private void GetNewEventInfo(
             ref int eventLeafID, 
+            ref int objectTreeID,
             ref string objectCode, 
             ref int failureModeLeafID)
         {
             eventLeafID = 0;
+            objectTreeID = 0;
             objectCode = "";
             failureModeLeafID = 0;
 
@@ -276,19 +296,24 @@ namespace IRAP.Client.GUI.CAS
             switch (eventType.EventTypeCode)
             {
                 case "R":
+                    objectTreeID = 133;
                     objectCode = ucDeviceFailureModes.T133Code;
                     failureModeLeafID = ucDeviceFailureModes.FailureModeLeafID;
                     break;
                 case "M":
+                    objectTreeID = 118;
                     failureModeLeafID = ucFailureModesM.FailureModeLeafID;
                     break;
                 case "Q":
+                    objectTreeID = 118;
                     failureModeLeafID = ucFailureModesQ.FailureModeLeafID;
                     break;
                 case "T":
+                    objectTreeID = 118;
                     failureModeLeafID = ucFailureModesT.FailureModeLeafID;
                     break;
                 case "S":
+                    objectTreeID = 118;
                     failureModeLeafID = ucFailureModesS.FailureModeLeafID;
                     break;
                 case "O":
@@ -310,6 +335,8 @@ namespace IRAP.Client.GUI.CAS
 
                 splitContainerControl1.Enabled = false;
                 lstEventType.SelectedItem = null;
+
+                Clear();
             }
             else
             {
@@ -412,8 +439,9 @@ namespace IRAP.Client.GUI.CAS
             int failureModeLeafID = 0;
             int eventTypeLeaf = 0;
             int t144LeafID = 0;
+            int objectTreeID = 0;
 
-            GetNewEventInfo(ref eventTypeLeaf, ref objectCode, ref failureModeLeafID);
+            GetNewEventInfo(ref eventTypeLeaf, ref objectTreeID, ref objectCode, ref failureModeLeafID);
             if (eventTypeLeaf == 0)
                 return;
             if (objectCode != "" && failureModeLeafID == 0)
@@ -423,9 +451,10 @@ namespace IRAP.Client.GUI.CAS
             t144LeafID = (rgpT144Leaf.Properties.Items[rgpT144Leaf.SelectedIndex].Value as AnomalyCauseType).T144LeafID;
 
             string userCode = "";
-            if (grdvStaffs.GetFocusedDataSourceRowIndex() >= 0)
+            int idx = grdvStaffs.GetFocusedDataSourceRowIndex();
+            if (idx >= 0)
             {
-                userCode = grdvStaffs.GetFocusedDataRow().Field<string>("UserCode");
+                userCode = (grdStaffs.DataSource as List<Stakeholder>)[idx].UserCode;
             }
             else
             {
@@ -435,6 +464,7 @@ namespace IRAP.Client.GUI.CAS
             ConsultationConfirm(
                 (cboAndonEvent.SelectedItem as EventToConsultation).EventFactID,
                 eventTypeLeaf,
+                objectTreeID,
                 objectCode,
                 failureModeLeafID,
                 t144LeafID,

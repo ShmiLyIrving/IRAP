@@ -1959,6 +1959,7 @@ namespace IRAP.WCF.Client.Method
         /// <param name="communityID">社区标识</param>
         /// <param name="eventFactID">安灯事件标识</param>
         /// <param name="newEventType">新确定的安灯事件标识</param>
+        /// <param name="objectTreeID">对象树标识</param>
         /// <param name="objectCode">新确定的设备代码，或者人员代码</param>
         /// <param name="attrLeafID">失效模式叶标识</param>
         /// <param name="t144LeafID">原因叶标识</param>
@@ -1971,6 +1972,7 @@ namespace IRAP.WCF.Client.Method
             int communityID,
             long eventFactID,
             int newEventType,
+            int objectTreeID,
             string objectCode,
             int attrLeafID,
             int t144LeafID,
@@ -1996,6 +1998,7 @@ namespace IRAP.WCF.Client.Method
                     hashParams.Add("communityID", communityID);
                     hashParams.Add("eventFactID", eventFactID);
                     hashParams.Add("newEventType", newEventType);
+                    hashParams.Add("objectTreeID", objectTreeID);
                     hashParams.Add("objectCode", objectCode);
                     hashParams.Add("attrLeafID", attrLeafID);
                     hashParams.Add("t144LeafID", t144LeafID);
@@ -2005,10 +2008,10 @@ namespace IRAP.WCF.Client.Method
                         string.Format(
                             "执行存储过程 usp_SaveFact_AndonEventConsultation，输入参数：" +
                             "CommunityID={0}|EventFactID={1}|NewEventType={2}|" +
-                            "ObjectCode={3}|AttrLeafID={4}|T144LeafID={5}|" +
-                            "UserCode={6}|SysLogID={7}",
-                            communityID, eventFactID, newEventType, objectCode,
-                            attrLeafID, t144LeafID, userCode, sysLogID),
+                        "ObjectTreeID={3}|ObjectCode={4}|AttrLeafID={5}|" +
+                        "T144LeafID={6}|UserCode={7}|SysLogID={8}",
+                        communityID, eventFactID, newEventType, objectTreeID,
+                        objectCode, attrLeafID, t144LeafID, userCode, sysLogID),
                         strProcedureName);
                     #endregion
 
