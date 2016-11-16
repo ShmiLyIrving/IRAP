@@ -24,7 +24,9 @@ namespace IRAP.Client.GUI.CAS
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
         private UserInfo staffInfo = new UserInfo();
         private List<AndonEventInfo> andonEvents = new List<AndonEventInfo>();
-        AnimateImage image = null;
+        private AnimateImage image = null;
+
+        bool isShowMessageBeforeActive = false;
 
         public frmAndonEventCancel_30()
         {
@@ -33,9 +35,9 @@ namespace IRAP.Client.GUI.CAS
             image = new AnimateImage(Properties.Resources.ReadIDCard);
             image.OnFrameChanged += new EventHandler<EventArgs>(image_OnFrameChanged);
             SetStyle(
-                ControlStyles.OptimizedDoubleBuffer | 
-                ControlStyles.AllPaintingInWmPaint | 
-                ControlStyles.UserPaint, 
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.UserPaint,
                 true);
 
             switch (IRAPUser.Instance.CommunityID)
@@ -43,17 +45,17 @@ namespace IRAP.Client.GUI.CAS
                 case 60006:
                     if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                         lblGetIDNo.Text = "Please swipe your card or enter a number " +
-                            "to obtain a call to your andon event";
+                            "to obtain the events that you called";
                     else
-                        lblGetIDNo.Text = "    请刷卡或输入工号，获取呼叫您的安灯事件：";
+                        lblGetIDNo.Text = "    请刷卡或输入工号，获取您呼叫的安灯事件：";
                     edtIDCardNo.Properties.UseSystemPasswordChar = false;
                     break;
                 default:
                     if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                        lblGetIDNo.Text = "Please swipe your card to obtain a " +
-                            "call to your andon event";
+                        lblGetIDNo.Text = "Please swipe your card to obtain " +
+                            "the events that you called";
                     else
-                        lblGetIDNo.Text = "请刷卡，获取呼叫您的安灯事件：";
+                        lblGetIDNo.Text = "请刷卡，获取您呼叫的安灯事件：";
                     edtIDCardNo.Properties.UseSystemPasswordChar = true;
                     break;
             }
@@ -116,15 +118,16 @@ namespace IRAP.Client.GUI.CAS
                             out errCode,
                             out errText);
                         WriteLog.Instance.Write(
-                            string.Format("({0}){1}", errCode, errText), 
+                            string.Format("({0}){1}", errCode, errText),
                             strProcedureName);
 
                         if (errCode != 0)
                         {
+                            isShowMessageBeforeActive = true;
                             IRAPMessageBox.Instance.Show(
-                                errText, 
-                                Text, 
-                                MessageBoxButtons.OK, 
+                                errText,
+                                Text,
+                                MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                             edtIDCardNo.Text = "";
                             edtIDCardNo.Focus();
@@ -162,14 +165,24 @@ namespace IRAP.Client.GUI.CAS
                                     }
                                     else
                                     {
-                                        IRAPMessageBox.Instance.Show("没有您触发的安灯事件！", Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                        isShowMessageBeforeActive = true;
+                                        IRAPMessageBox.Instance.Show(
+                                            "没有您触发的安灯事件！",
+                                            Text,
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Exclamation);
                                         edtIDCardNo.Text = "";
                                         edtIDCardNo.Focus();
                                     }
                                 }
                                 else
                                 {
-                                    IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    isShowMessageBeforeActive = true;
+                                    IRAPMessageBox.Instance.Show(
+                                        errText,
+                                        Text,
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                                     edtIDCardNo.Text = "";
                                     edtIDCardNo.Focus();
                                     return;
@@ -178,15 +191,16 @@ namespace IRAP.Client.GUI.CAS
                             catch (Exception error)
                             {
                                 WriteLog.Instance.Write(
-                                    error.Message, 
+                                    error.Message,
                                     strProcedureName);
                                 WriteLog.Instance.Write(
-                                    error.StackTrace, 
+                                    error.StackTrace,
                                     strProcedureName);
+                                isShowMessageBeforeActive = true;
                                 IRAPMessageBox.Instance.Show(
-                                    error.Message, 
-                                    Text, 
-                                    MessageBoxButtons.OK, 
+                                    error.Message,
+                                    Text,
+                                    MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                                 grdAndonEvents.DataSource = null;
 
@@ -244,21 +258,25 @@ namespace IRAP.Client.GUI.CAS
                         strProcedureName);
                     if (errCode != 0)
                     {
+                        isShowMessageBeforeActive = true;
                         IRAPMessageBox.Instance.Show(
-                            errText, 
-                            Text, 
-                            MessageBoxButtons.OK, 
+                            errText,
+                            Text,
+                            MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         return;
                     }
                     else
                     {
                         if (errText.Trim() != "")
+                        {
+                            isShowMessageBeforeActive = true;
                             IRAPMessageBox.Instance.Show(
                                 errText,
                                 Text,
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Asterisk);
+                        }
                     }
                 }
                 catch (Exception error)
@@ -270,10 +288,11 @@ namespace IRAP.Client.GUI.CAS
                         error.StackTrace,
                         strProcedureName);
 
+                    isShowMessageBeforeActive = true;
                     IRAPMessageBox.Instance.Show(
-                        error.Message, 
-                        Text, 
-                        MessageBoxButtons.OK, 
+                        error.Message,
+                        Text,
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
@@ -321,25 +340,32 @@ namespace IRAP.Client.GUI.CAS
                         out errText);
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     if (errCode != 0)
+                    {
+                        isShowMessageBeforeActive = true;
                         IRAPMessageBox.Instance.Show(
-                            errText, 
-                            Text, 
-                            MessageBoxButtons.OK, 
+                            errText,
+                            Text,
+                            MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
+                    }
                     else
+                    {
+                        isShowMessageBeforeActive = true;
                         IRAPMessageBox.Instance.Show(
-                            errText, 
-                            Text, 
-                            MessageBoxButtons.OK, 
+                            errText,
+                            Text,
+                            MessageBoxButtons.OK,
                             MessageBoxIcon.Asterisk);
+                    }
                 }
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
+                    isShowMessageBeforeActive = true;
                     IRAPMessageBox.Instance.Show(
-                        error.Message, 
-                        Text, 
-                        MessageBoxButtons.OK, 
+                        error.Message,
+                        Text,
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
                 #endregion
@@ -364,6 +390,15 @@ namespace IRAP.Client.GUI.CAS
             {
                 edtIDCardNo.Focus();
             }
+        }
+
+        private void frmAndonEventCancel_30_Activated(object sender, EventArgs e)
+        {
+            if (!isShowMessageBeforeActive)
+            {
+                btnReturn.PerformClick();
+            }
+            isShowMessageBeforeActive = false;
         }
     }
 }

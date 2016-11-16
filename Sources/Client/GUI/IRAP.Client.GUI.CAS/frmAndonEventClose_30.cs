@@ -84,11 +84,6 @@ namespace IRAP.Client.GUI.CAS
             GetAndonEventsToClose();
         }
 
-        private void grdvAndonEvents_Click(object sender, EventArgs e)
-        {
-            btnEventClose.Enabled = grdvAndonEvents.GetFocusedDataSourceRowIndex() >= 0;
-        }
-
         private void btnEventClose_Click(object sender, EventArgs e)
         {
             if (grdvAndonEvents.GetFocusedDataSourceRowIndex() >= 0)
@@ -100,6 +95,15 @@ namespace IRAP.Client.GUI.CAS
                         MethodBase.GetCurrentMethod().Name);
 
                 int index = grdvAndonEvents.GetFocusedDataSourceRowIndex();
+                if (index < 0)
+                {
+                    IRAPMessageBox.Instance.Show(
+                        "请选择一个需要关闭的安灯事件！",
+                        Text,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
 
                 WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                 try
@@ -110,67 +114,169 @@ namespace IRAP.Client.GUI.CAS
                     string userCode = "";
                     int satisfactoryLevel = 0;
 
-                    using (frmAndonEventCloseProperties formAndonEventClose = new frmAndonEventCloseProperties())
+                    switch (IRAPUser.Instance.CommunityID)
                     {
-                        if (formAndonEventClose.ShowDialog() == DialogResult.Cancel)
-                        {
-                            WriteLog.Instance.Write(string.Format("取消关闭安灯事件[{0}]", events[index].EventFactID), strProcedureName);
+                        case 60006:
+                            #region 采集关闭者代码、满意度评分和T144LeafID后，关闭安灯事件
+                            int t144LeafID = 0;
 
-                            GetAndonEventsToClose();
+                            using (frmAndonEventCloseProperties formAndonEventClose = new frmAndonEventCloseProperties())
+                            {
+                                if (formAndonEventClose.ShowDialog() == DialogResult.Cancel)
+                                {
+                                    WriteLog.Instance.Write(
+                                        string.Format(
+                                            "取消关闭安灯事件[{0}]", 
+                                            events[index].EventFactID), 
+                                        strProcedureName);
 
-                            return;
-                        }
-                        else
-                        {
-                            userCode = formAndonEventClose.UserInfo.UserCode;
-                            satisfactoryLevel = formAndonEventClose.Satisfactory;
-                        }
-                    }
+                                    GetAndonEventsToClose();
 
-                    WriteLog.Instance.Write(
-                        string.Format("采集到关闭者代码[{0}]和满意度评分[{0}]",
-                            userCode,
-                            satisfactoryLevel),
-                        strProcedureName);
+                                    return;
+                                }
+                                else
+                                {
+                                    userCode = formAndonEventClose.UserInfo.UserCode;
+                                    satisfactoryLevel = formAndonEventClose.Satisfactory;
+                                }
+                            }
 
-                    int errCode = 0;
-                    string errText = "";
-                    long transactNo = 0;
-                    long factID = 0;
-                    string opNode = ((MenuInfo)Tag).OpNode;
+                            WriteLog.Instance.Write(
+                                string.Format("采集到关闭者代码[{0}]，满意度评分[{1}]，现场原因[{2}]",
+                                    userCode,
+                                    satisfactoryLevel,
+                                    t144LeafID),
+                                strProcedureName);
 
-                    transactNo = 
-                        IRAPUTSClient.Instance.mfn_GetTransactNo(
-                            IRAPUser.Instance.CommunityID, 
-                            1, 
-                            IRAPUser.Instance.SysLogID, 
-                            opNode);
-                    factID = 
-                        IRAPUTSClient.Instance.mfn_GetFactID(
-                            IRAPUser.Instance.CommunityID, 
-                            1, 
-                            IRAPUser.Instance.SysLogID, 
-                            opNode);
+                            int errCode = 0;
+                            string errText = "";
+                            long transactNo = 0;
+                            long factID = 0;
+                            string opNode = ((MenuInfo)Tag).OpNode;
 
-                    IRAPFVSClient.Instance.usp_SaveFact_AndonEventClose(
-                        IRAPUser.Instance.CommunityID,
-                        transactNo,
-                        factID,
-                        events[index].EventFactID,
-                        events[index].OpID,
-                        userCode,
-                        satisfactoryLevel,
-                        IRAPUser.Instance.SysLogID,
-                        out errCode,
-                        out errText);
-                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
-                    if (errCode == 0)
-                    {
-                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    }
-                    else
-                    {
-                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            transactNo =
+                                IRAPUTSClient.Instance.mfn_GetTransactNo(
+                                    IRAPUser.Instance.CommunityID,
+                                    1,
+                                    IRAPUser.Instance.SysLogID,
+                                    opNode);
+                            factID =
+                                IRAPUTSClient.Instance.mfn_GetFactID(
+                                    IRAPUser.Instance.CommunityID,
+                                    1,
+                                    IRAPUser.Instance.SysLogID,
+                                    opNode);
+
+                            IRAPFVSClient.Instance.usp_SaveFact_AndonEventClose_Visteon(
+                                IRAPUser.Instance.CommunityID,
+                                transactNo,
+                                factID,
+                                events[index].EventFactID,
+                                events[index].OpID,
+                                userCode,
+                                t144LeafID,
+                                satisfactoryLevel,
+                                IRAPUser.Instance.SysLogID,
+                                out errCode,
+                                out errText);
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "({0}){1}", 
+                                    errCode, 
+                                    errText), 
+                                strProcedureName);
+                            if (errCode == 0)
+                            {
+                                IRAPMessageBox.Instance.Show(
+                                    errText,
+                                    Text,
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Asterisk);
+                            }
+                            else
+                            {
+                                IRAPMessageBox.Instance.Show(
+                                    errText,
+                                    Text,
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                            #endregion
+                            break;
+                        default:
+                            #region 只采集关闭者代码和满意度评分，来关闭安灯事件
+                            using (frmAndonEventCloseProperties formAndonEventClose = new frmAndonEventCloseProperties())
+                            {
+                                if (formAndonEventClose.ShowDialog() == DialogResult.Cancel)
+                                {
+                                    WriteLog.Instance.Write(string.Format("取消关闭安灯事件[{0}]", events[index].EventFactID), strProcedureName);
+
+                                    GetAndonEventsToClose();
+
+                                    return;
+                                }
+                                else
+                                {
+                                    userCode = formAndonEventClose.UserInfo.UserCode;
+                                    satisfactoryLevel = formAndonEventClose.Satisfactory;
+                                }
+                            }
+
+                            WriteLog.Instance.Write(
+                                string.Format("采集到关闭者代码[{0}]和满意度评分[{0}]",
+                                    userCode,
+                                    satisfactoryLevel),
+                                strProcedureName);
+
+                            int errCode = 0;
+                            string errText = "";
+                            long transactNo = 0;
+                            long factID = 0;
+                            string opNode = ((MenuInfo)Tag).OpNode;
+
+                            transactNo =
+                                IRAPUTSClient.Instance.mfn_GetTransactNo(
+                                    IRAPUser.Instance.CommunityID,
+                                    1,
+                                    IRAPUser.Instance.SysLogID,
+                                    opNode);
+                            factID =
+                                IRAPUTSClient.Instance.mfn_GetFactID(
+                                    IRAPUser.Instance.CommunityID,
+                                    1,
+                                    IRAPUser.Instance.SysLogID,
+                                    opNode);
+
+                            IRAPFVSClient.Instance.usp_SaveFact_AndonEventClose(
+                                IRAPUser.Instance.CommunityID,
+                                transactNo,
+                                factID,
+                                events[index].EventFactID,
+                                events[index].OpID,
+                                userCode,
+                                satisfactoryLevel,
+                                IRAPUser.Instance.SysLogID,
+                                out errCode,
+                                out errText);
+                            WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                            if (errCode == 0)
+                            {
+                                IRAPMessageBox.Instance.Show(
+                                    errText, 
+                                    Text, 
+                                    MessageBoxButtons.OK, 
+                                    MessageBoxIcon.Asterisk);
+                            }
+                            else
+                            {
+                                IRAPMessageBox.Instance.Show(
+                                    errText, 
+                                    Text, 
+                                    MessageBoxButtons.OK, 
+                                    MessageBoxIcon.Error);
+                            }
+                            #endregion
+                            break;
                     }
 
                     GetAndonEventsToClose();

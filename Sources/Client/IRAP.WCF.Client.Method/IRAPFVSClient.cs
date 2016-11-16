@@ -292,10 +292,10 @@ namespace IRAP.WCF.Client.Method
                         string.Format(
                             "执行存储过程 usp_SaveFact_AndonEventCallFromProductionLine，输入参数：" +
                             "CommunityID={0}|TransactNo={1}|FactID={2}|" +
-                            "T179LeafID={3}|T134LeafID={4}|T133LeafID={5}|"+
-                            "ObjectTreeID={6}|ObjectLeafID={7}|ObjectCode={8}|"+
+                            "T179LeafID={3}|T134LeafID={4}|T133LeafID={5}|" +
+                            "ObjectTreeID={6}|ObjectLeafID={7}|ObjectCode={8}|" +
                             "ProductionDown={9}|SysLogID={10}",
-                            communityID, transactNo, factID, t179LeafID, t134LeafID, 
+                            communityID, transactNo, factID, t179LeafID, t134LeafID,
                             t133LeafID, objectTreeID, objectLeafID, objectCode,
                             productionDown, sysLogID),
                         strProcedureName);
@@ -464,9 +464,9 @@ namespace IRAP.WCF.Client.Method
                     hashParams.Add("sysLogID", sysLogID);
                     WriteLog.Instance.Write(
                         string.Format(
-                            "执行存储过程 usp_SaveFact_AndonEventOnSiteRespond，输入参数：" +
+                            "执行存储过程 usp_SaveFact_AndonEventClose，输入参数：" +
                             "CommunityID={0}|TransactNo={1}|FactID={2}|" +
-                            "EventFactID={3}|OpID={4}|UserCode={5}|"+
+                            "EventFactID={3}|OpID={4}|UserCode={5}|" +
                             "SatisfactoryLevel={6}|SysLogID={7}",
                             communityID, transactNo, factID, eventFactID, opID,
                             userCode, satisfactoryLevel, sysLogID),
@@ -1619,7 +1619,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetInfo_LineKPI_BTS，输入参数：" +
-                        "CommunityID={0}|ResourceTreeID={1}|"+
+                        "CommunityID={0}|ResourceTreeID={1}|" +
                         "ResourceLeafID={2}|NowTime={3}|SysLogID={4}",
                         communityID,
                         resourceTreeID,
@@ -1738,11 +1738,11 @@ namespace IRAP.WCF.Client.Method
         /// <param name="pwoNo">生产工单号</param>
         /// <param name="sysLogID">系统登录标识</param>
         public void ufn_GetStructure_FFTofAPWO(
-            int communityID, 
-            string pwoNo, 
-            long sysLogID, 
-            ref List<Structure_FFTofAPWO> datas, 
-            out int errCode, 
+            int communityID,
+            string pwoNo,
+            long sysLogID,
+            ref List<Structure_FFTofAPWO> datas,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -2099,6 +2099,175 @@ namespace IRAP.WCF.Client.Method
                     if (errCode == 0)
                     {
                         datas = rlt as List<EventToConsultation>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 安灯事件关闭(增加了 T144LeafID 的输入，
+        /// 目前伟世通松江工厂在用
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">申请到的交易号</param>
+        /// <param name="factID">申请到的事实编号</param>
+        /// <param name="eventFactID">安灯事件标识</param>
+        /// <param name="opID">业务操作标识</param>
+        /// <param name="userCode">关闭人用户代码</param>
+        /// <param name="t144LeafID">原因叶标识</param>
+        /// <param name="satisfactoryLevel">
+        /// 满意度评价：
+        /// 1-非常满意；
+        /// 2-满意；
+        /// 3-一般；
+        /// 4-不满意
+        /// </param>
+        /// <param name="sysLogID">关闭站点系统登录标识</param>
+        public void usp_SaveFact_AndonEventClose_Visteon(
+            int communityID,
+            long transactNo,
+            long factID,
+            long eventFactID,
+            int opID,
+            string userCode,
+            int t144LeafID,
+            int satisfactoryLevel,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("transactNo", transactNo);
+                    hashParams.Add("factID", factID);
+                    hashParams.Add("eventFactID", eventFactID);
+                    hashParams.Add("opID", opID);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("t144LeafID", t144LeafID);
+                    hashParams.Add("satisfactoryLevel", satisfactoryLevel);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 usp_SaveFact_AndonEventClose_Visteon，输入参数：" +
+                            "CommunityID={0}|TransactNo={1}|FactID={2}|" +
+                            "EventFactID={3}|OpID={4}|UserCode={5}|" +
+                            "T144LeafID={6}|SatisfactoryLevel={7}|SysLogID={8}",
+                            communityID, transactNo, factID, eventFactID, opID,
+                            userCode, t144LeafID, satisfactoryLevel, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.Andon",
+                        "usp_SaveFact_AndonEventClose_Visteon",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定事实编号安灯事件的原因叶标识
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="eventFactID">安灯事件事实编号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetT144LeafID(
+            int communityID,
+            long eventFactID,
+            long sysLogID,
+            ref int t144LeafID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                t144LeafID = 0;
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("eventFactID", eventFactID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 ufn_GetT144LeafID，输入参数：" +
+                            "CommunityID={0}|EventFactID={1}|SysLogID={2}",
+                            communityID, eventFactID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetT144LeafID",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        t144LeafID = (int)rlt;
                     }
                     #endregion
                 }

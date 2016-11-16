@@ -382,14 +382,13 @@ namespace IRAP.Client.GUI.CAS
             List<UserControls.ucAndonEventButton> buttons)
         {
             int i = 0;
-            foreach (UserControls.ucAndonEventButton button in buttons)
+            foreach (AndonEventType type in andonEventTypes)
             {
-                if (i >= andonEventTypes.Count)
-                    break;
-
-                if (andonEventTypes[i].Available)
+                if (i >= buttons.Count)
+                    return;
+                if (type.Available)
                 {
-                    button.EventTypeItem = andonEventTypes[i];
+                    buttons[i].EventTypeItem = type;
                     i++;
                 }
             }

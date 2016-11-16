@@ -379,8 +379,8 @@ namespace IRAP.Client.GUI.CAS
             if (!isShowMessageBeforeActive)
             {
                 btnReturn.PerformClick();
-                isShowMessageBeforeActive = false;
             }
+            isShowMessageBeforeActive = false;
         }
     }
 }

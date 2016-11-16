@@ -109,14 +109,14 @@
             this.tpAndonEvents.Controls.Add(this.btnCancel);
             this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
             this.tpAndonEvents.Name = "tpAndonEvents";
-            this.tpAndonEvents.Size = new System.Drawing.Size(886, 434);
+            this.tpAndonEvents.Size = new System.Drawing.Size(885, 433);
             // 
             // btnReturn
             // 
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReturn.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReturn.Appearance.Options.UseFont = true;
-            this.btnReturn.Location = new System.Drawing.Point(754, 380);
+            this.btnReturn.Location = new System.Drawing.Point(753, 379);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(117, 36);
             this.btnReturn.TabIndex = 3;
@@ -128,7 +128,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(754, 17);
+            this.btnCancel.Location = new System.Drawing.Point(753, 17);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(117, 36);
             this.btnCancel.TabIndex = 2;
@@ -148,7 +148,7 @@
             this.gpcAndonEvents.Location = new System.Drawing.Point(22, 17);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(709, 399);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(708, 398);
             this.gpcAndonEvents.TabIndex = 0;
             this.gpcAndonEvents.Text = "您触发的安灯事件";
             // 
@@ -160,7 +160,7 @@
             this.grdAndonEvents.Name = "grdAndonEvents";
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.rpschkSelect});
-            this.grdAndonEvents.Size = new System.Drawing.Size(695, 361);
+            this.grdAndonEvents.Size = new System.Drawing.Size(694, 360);
             this.grdAndonEvents.TabIndex = 0;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvAndonEvents});
@@ -258,7 +258,7 @@
             // 
             this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
             this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(886, 434);
+            this.tpIDCardnoRead.Size = new System.Drawing.Size(885, 433);
             // 
             // pnlIDCardNoRead
             // 
@@ -306,6 +306,7 @@
             this.Controls.Add(this.tcMain);
             this.Name = "frmAndonEventCancel_30";
             this.Text = "安灯事件撤销";
+            this.Activated += new System.EventHandler(this.frmAndonEventCancel_30_Activated);
             this.Shown += new System.EventHandler(this.frmAndonEventCancel_30_Shown);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmAndonEventCancel_30_Paint);
             this.Resize += new System.EventHandler(this.frmAndonEventCancel_30_Resize);

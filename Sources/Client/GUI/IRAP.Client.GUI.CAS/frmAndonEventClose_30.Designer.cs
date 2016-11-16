@@ -121,7 +121,6 @@
             this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
             this.grdvAndonEvents.RowHeight = 30;
             this.grdvAndonEvents.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grdvAndonEvents_SelectionChanged);
-            this.grdvAndonEvents.Click += new System.EventHandler(this.grdvAndonEvents_Click);
             // 
             // grdclmnEventType
             // 
