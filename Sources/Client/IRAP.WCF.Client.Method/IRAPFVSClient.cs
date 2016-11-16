@@ -1963,6 +1963,7 @@ namespace IRAP.WCF.Client.Method
         /// <param name="objectCode">新确定的设备代码，或者人员代码</param>
         /// <param name="attrLeafID">失效模式叶标识</param>
         /// <param name="t144LeafID">原因叶标识</param>
+        /// <param name="remark">备注信息</param>
         /// <param name="userCode">会诊呼叫人员用户代码</param>
         /// <param name="sysLogID">系统登录标识</param>
         /// <param name="errCode"></param>
@@ -1976,6 +1977,7 @@ namespace IRAP.WCF.Client.Method
             string objectCode,
             int attrLeafID,
             int t144LeafID,
+            string remark,
             string userCode,
             long sysLogID,
             out int errCode,
@@ -2002,16 +2004,17 @@ namespace IRAP.WCF.Client.Method
                     hashParams.Add("objectCode", objectCode);
                     hashParams.Add("attrLeafID", attrLeafID);
                     hashParams.Add("t144LeafID", t144LeafID);
+                    hashParams.Add("remark", remark);
                     hashParams.Add("userCode", userCode);
                     hashParams.Add("sysLogID", sysLogID);
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行存储过程 usp_SaveFact_AndonEventConsultation，输入参数：" +
                             "CommunityID={0}|EventFactID={1}|NewEventType={2}|" +
-                        "ObjectTreeID={3}|ObjectCode={4}|AttrLeafID={5}|" +
-                        "T144LeafID={6}|UserCode={7}|SysLogID={8}",
-                        communityID, eventFactID, newEventType, objectTreeID,
-                        objectCode, attrLeafID, t144LeafID, userCode, sysLogID),
+                            "ObjectTreeID={3}|ObjectCode={4}|AttrLeafID={5}|" +
+                            "T144LeafID={6}|Remark={7}|UserCode={8}|SysLogID={9}",
+                            communityID, eventFactID, newEventType, objectTreeID,
+                            objectCode, attrLeafID, t144LeafID, remark, userCode, sysLogID),
                         strProcedureName);
                     #endregion
 
@@ -2116,33 +2119,13 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
-        /// 安灯事件关闭(增加了 T144LeafID 的输入，
-        /// 目前伟世通松江工厂在用
+        /// 更新安灯事件的 T144LeafID 和备注
         /// </summary>
-        /// <param name="communityID">社区标识</param>
-        /// <param name="transactNo">申请到的交易号</param>
-        /// <param name="factID">申请到的事实编号</param>
-        /// <param name="eventFactID">安灯事件标识</param>
-        /// <param name="opID">业务操作标识</param>
-        /// <param name="userCode">关闭人用户代码</param>
-        /// <param name="t144LeafID">原因叶标识</param>
-        /// <param name="satisfactoryLevel">
-        /// 满意度评价：
-        /// 1-非常满意；
-        /// 2-满意；
-        /// 3-一般；
-        /// 4-不满意
-        /// </param>
-        /// <param name="sysLogID">关闭站点系统登录标识</param>
-        public void usp_SaveFact_AndonEventClose_Visteon(
+        public void usp_SaveFact_AndonEventNote(
             int communityID,
-            long transactNo,
-            long factID,
             long eventFactID,
-            int opID,
-            string userCode,
             int t144LeafID,
-            int satisfactoryLevel,
+            string remark,
             long sysLogID,
             out int errCode,
             out string errText)
@@ -2162,22 +2145,16 @@ namespace IRAP.WCF.Client.Method
 
                     #region 将函数参数加入 Hashtable 中
                     hashParams.Add("communityID", communityID);
-                    hashParams.Add("transactNo", transactNo);
-                    hashParams.Add("factID", factID);
                     hashParams.Add("eventFactID", eventFactID);
-                    hashParams.Add("opID", opID);
-                    hashParams.Add("userCode", userCode);
                     hashParams.Add("t144LeafID", t144LeafID);
-                    hashParams.Add("satisfactoryLevel", satisfactoryLevel);
+                    hashParams.Add("remark", remark);
                     hashParams.Add("sysLogID", sysLogID);
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行存储过程 usp_SaveFact_AndonEventClose_Visteon，输入参数：" +
-                            "CommunityID={0}|TransactNo={1}|FactID={2}|" +
-                            "EventFactID={3}|OpID={4}|UserCode={5}|" +
-                            "T144LeafID={6}|SatisfactoryLevel={7}|SysLogID={8}",
-                            communityID, transactNo, factID, eventFactID, opID,
-                            userCode, t144LeafID, satisfactoryLevel, sysLogID),
+                            "CommunityID={0}|EventFactID={1}|" +
+                            "T144LeafID={2}|Remark={3}|SysLogID={4}",
+                            communityID, eventFactID, t144LeafID, remark, sysLogID),
                         strProcedureName);
                     #endregion
 
@@ -2185,7 +2162,7 @@ namespace IRAP.WCF.Client.Method
                     object rlt = client.WCFRESTFul(
                         "IRAP.BL.FVS.dll",
                         "IRAP.BL.FVS.Andon",
-                        "usp_SaveFact_AndonEventClose_Visteon",
+                        "usp_SaveFact_AndonEventNote",
                         hashParams,
                         out errCode,
                         out errText);

@@ -31,8 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventClosePropertiesVisteon));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
-            this.lblReadUserIDCard = new DevExpress.XtraEditors.LabelControl();
+            this.edtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.imgsAndonTypes = new DevExpress.Utils.ImageCollection(this.components);
@@ -42,7 +41,7 @@
             this.rgpT144Leaf = new DevExpress.XtraEditors.RadioGroup();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtRemark.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgsAndonTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -61,52 +60,49 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.memoEdit1);
-            this.groupControl1.Controls.Add(this.lblReadUserIDCard);
+            this.groupControl1.Controls.Add(this.edtRemark);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
             this.groupControl1.Size = new System.Drawing.Size(529, 139);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "备注";
             // 
-            // memoEdit1
+            // edtRemark
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(136, 34);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(378, 97);
-            this.memoEdit1.TabIndex = 1;
-            // 
-            // lblReadUserIDCard
-            // 
-            this.lblReadUserIDCard.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReadUserIDCard.Location = new System.Drawing.Point(26, 34);
-            this.lblReadUserIDCard.Name = "lblReadUserIDCard";
-            this.lblReadUserIDCard.Size = new System.Drawing.Size(112, 16);
-            this.lblReadUserIDCard.TabIndex = 0;
-            this.lblReadUserIDCard.Text = "当前事件备注：";
+            this.edtRemark.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.edtRemark.EditValue = "";
+            this.edtRemark.Location = new System.Drawing.Point(7, 29);
+            this.edtRemark.Name = "edtRemark";
+            this.edtRemark.Properties.AcceptsReturn = false;
+            this.edtRemark.Properties.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtRemark.Properties.Appearance.Options.UseFont = true;
+            this.edtRemark.Size = new System.Drawing.Size(515, 103);
+            this.edtRemark.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(555, 64);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(555, 50);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(99, 38);
+            this.btnCancel.Size = new System.Drawing.Size(99, 32);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "取消";
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnOK.Appearance.Options.UseFont = true;
             this.btnOK.Location = new System.Drawing.Point(555, 12);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(99, 38);
+            this.btnOK.Size = new System.Drawing.Size(99, 32);
             this.btnOK.TabIndex = 4;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -153,12 +149,13 @@
             // 
             // groupControl3
             // 
-            this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupControl3.AppearanceCaption.Options.UseFont = true;
             this.groupControl3.Controls.Add(this.rgpT144Leaf);
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl3.Location = new System.Drawing.Point(0, 0);
             this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Padding = new System.Windows.Forms.Padding(5);
             this.groupControl3.Size = new System.Drawing.Size(529, 83);
             this.groupControl3.TabIndex = 6;
             this.groupControl3.Text = "现场原因";
@@ -166,7 +163,7 @@
             // rgpT144Leaf
             // 
             this.rgpT144Leaf.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rgpT144Leaf.Location = new System.Drawing.Point(2, 23);
+            this.rgpT144Leaf.Location = new System.Drawing.Point(7, 29);
             this.rgpT144Leaf.Name = "rgpT144Leaf";
             this.rgpT144Leaf.Properties.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rgpT144Leaf.Properties.Appearance.Options.UseFont = true;
@@ -182,22 +179,22 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(8)), "跟料"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(9)), "质量"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(10)), "拓展位")});
-            this.rgpT144Leaf.Size = new System.Drawing.Size(525, 58);
+            this.rgpT144Leaf.Size = new System.Drawing.Size(515, 47);
             this.rgpT144Leaf.TabIndex = 1;
             // 
             // frmAndonEventClosePropertiesVisteon
             // 
             this.Appearance.Options.UseFont = true;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(666, 250);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.btnOK);
             this.Name = "frmAndonEventClosePropertiesVisteon";
-            this.Text = "关闭安灯事件";
+            this.Text = "安灯事件原因确认";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtRemark.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgsAndonTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
@@ -212,7 +209,6 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.LabelControl lblReadUserIDCard;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.Utils.ImageCollection imgsAndonTypes;
@@ -220,6 +216,6 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.RadioGroup rgpT144Leaf;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.MemoEdit edtRemark;
     }
 }

@@ -38,6 +38,7 @@
             this.grdclmnRespondingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnFirstResponder = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnEventCauseConfirm = new DevExpress.XtraEditors.SimpleButton();
             this.btnEventClose = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -120,7 +121,7 @@
             this.grdvAndonEvents.OptionsView.RowAutoHeight = true;
             this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
             this.grdvAndonEvents.RowHeight = 30;
-            this.grdvAndonEvents.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grdvAndonEvents_SelectionChanged);
+            this.grdvAndonEvents.FocusedRowObjectChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventHandler(this.grdvAndonEvents_FocusedRowObjectChanged);
             // 
             // grdclmnEventType
             // 
@@ -199,16 +200,29 @@
             this.grdclmnTimeElapsed.VisibleIndex = 6;
             this.grdclmnTimeElapsed.Width = 120;
             // 
+            // btnEventCauseConfirm
+            // 
+            this.btnEventCauseConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEventCauseConfirm.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEventCauseConfirm.Appearance.Options.UseFont = true;
+            this.btnEventCauseConfirm.Enabled = false;
+            this.btnEventCauseConfirm.Location = new System.Drawing.Point(969, 62);
+            this.btnEventCauseConfirm.Name = "btnEventCauseConfirm";
+            this.btnEventCauseConfirm.Size = new System.Drawing.Size(117, 36);
+            this.btnEventCauseConfirm.TabIndex = 2;
+            this.btnEventCauseConfirm.Text = "原因确认";
+            this.btnEventCauseConfirm.Click += new System.EventHandler(this.btnEventCauseConfirm_Click);
+            // 
             // btnEventClose
             // 
             this.btnEventClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEventClose.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEventClose.Appearance.Options.UseFont = true;
             this.btnEventClose.Enabled = false;
-            this.btnEventClose.Location = new System.Drawing.Point(969, 62);
+            this.btnEventClose.Location = new System.Drawing.Point(969, 104);
             this.btnEventClose.Name = "btnEventClose";
             this.btnEventClose.Size = new System.Drawing.Size(117, 36);
-            this.btnEventClose.TabIndex = 2;
+            this.btnEventClose.TabIndex = 3;
             this.btnEventClose.Text = "关闭呼叫";
             this.btnEventClose.Click += new System.EventHandler(this.btnEventClose_Click);
             // 
@@ -217,12 +231,15 @@
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(1098, 624);
             this.Controls.Add(this.btnEventClose);
+            this.Controls.Add(this.btnEventCauseConfirm);
             this.Controls.Add(this.gpcAndonEvents);
             this.Name = "frmAndonEventClose_30";
             this.Text = "安灯关闭";
             this.Activated += new System.EventHandler(this.frmAndonEventClose_30_Activated);
+            this.Shown += new System.EventHandler(this.frmAndonEventClose_30_Shown);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.gpcAndonEvents, 0);
+            this.Controls.SetChildIndex(this.btnEventCauseConfirm, 0);
             this.Controls.SetChildIndex(this.btnEventClose, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -237,7 +254,7 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl gpcAndonEvents;
-        private DevExpress.XtraEditors.SimpleButton btnEventClose;
+        private DevExpress.XtraEditors.SimpleButton btnEventCauseConfirm;
         private DevExpress.XtraGrid.GridControl grdAndonEvents;
         private DevExpress.XtraGrid.Views.Grid.GridView grdvAndonEvents;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnEventType;
@@ -247,5 +264,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnRespondingTime;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnFirstResponder;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnTimeElapsed;
+        private DevExpress.XtraEditors.SimpleButton btnEventClose;
     }
 }

@@ -33,7 +33,6 @@ namespace IRAP.Client.GUI.CAS
 
         private void Clear()
         {
-            lstEventType.Items.Clear();
             lstEventType.SelectedItem = null;
 
             tcEventTypes.SelectedTabPage = tpEmpty;
@@ -42,6 +41,10 @@ namespace IRAP.Client.GUI.CAS
             rgpT144Leaf.SelectedIndex = -1;
 
             grdStaffs.DataSource = null;
+
+            edtRemark.Text = "";
+
+            splitContainerControl3.Enabled = false;
         }
 
         /// <summary>
@@ -61,6 +64,7 @@ namespace IRAP.Client.GUI.CAS
             string objectCode,
             int attrLeafID,
             int t144LeafID,
+            string remark,
             string userCode)
         {
             string strProcedureName =
@@ -83,6 +87,7 @@ namespace IRAP.Client.GUI.CAS
                     objectCode,
                     attrLeafID,
                     t144LeafID,
+                    remark,
                     userCode,
                     IRAPUser.Instance.SysLogID,
                     out errCode,
@@ -333,7 +338,7 @@ namespace IRAP.Client.GUI.CAS
             {
                 grdStaffs.DataSource = null;
 
-                splitContainerControl1.Enabled = false;
+                splitContainerControl3.Enabled = false;
                 lstEventType.SelectedItem = null;
 
                 Clear();
@@ -342,7 +347,7 @@ namespace IRAP.Client.GUI.CAS
             {
                 grdStaffs.DataSource = (cboAndonEvent.SelectedItem as EventToConsultation).Stakeholders;
 
-                splitContainerControl1.Enabled = true;
+                splitContainerControl3.Enabled = true;
 
                 EventToConsultation etc = cboAndonEvent.SelectedItem as EventToConsultation;
 
@@ -440,6 +445,7 @@ namespace IRAP.Client.GUI.CAS
             int eventTypeLeaf = 0;
             int t144LeafID = 0;
             int objectTreeID = 0;
+            string remark = edtRemark.Text; ;
 
             GetNewEventInfo(ref eventTypeLeaf, ref objectTreeID, ref objectCode, ref failureModeLeafID);
             if (eventTypeLeaf == 0)
@@ -468,6 +474,7 @@ namespace IRAP.Client.GUI.CAS
                 objectCode,
                 failureModeLeafID,
                 t144LeafID,
+                remark,
                 userCode);
 
             GetEvents_WaitforConfirm();

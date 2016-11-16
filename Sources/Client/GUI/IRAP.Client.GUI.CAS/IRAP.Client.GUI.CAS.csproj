@@ -80,6 +80,12 @@
     <Compile Include="frmAndonEventCloseProperties.Designer.cs">
       <DependentUpon>frmAndonEventCloseProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAndonEventClosePropertiesVisteon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventClosePropertiesVisteon.designer.cs">
+      <DependentUpon>frmAndonEventClosePropertiesVisteon.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAndonEventClose_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventCloseProperties.resx">
       <DependentUpon>frmAndonEventCloseProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventClosePropertiesVisteon.resx">
+      <DependentUpon>frmAndonEventClosePropertiesVisteon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventClose_30.resx">
       <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
