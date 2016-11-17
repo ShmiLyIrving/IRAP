@@ -307,18 +307,22 @@ namespace IRAP.Client.GUI.CAS
                     break;
                 case "M":
                     objectTreeID = 118;
+                    objectCode = ucFailureModesM.FailureModeCode;
                     failureModeLeafID = ucFailureModesM.FailureModeLeafID;
                     break;
                 case "Q":
                     objectTreeID = 118;
+                    objectCode = ucFailureModesQ.FailureModeCode;
                     failureModeLeafID = ucFailureModesQ.FailureModeLeafID;
                     break;
                 case "T":
                     objectTreeID = 118;
+                    objectCode = ucFailureModesT.FailureModeCode;
                     failureModeLeafID = ucFailureModesT.FailureModeLeafID;
                     break;
                 case "S":
                     objectTreeID = 118;
+                    objectCode = ucFailureModesS.FailureModeCode;
                     failureModeLeafID = ucFailureModesS.FailureModeLeafID;
                     break;
                 case "O":

@@ -30,7 +30,7 @@ namespace IRAP.TPM.SIM.PWOBuilder
         {
             try
             {
-                factory = new ConnectionFactory("tcp://192.168.1.2:61616/");
+                factory = new ConnectionFactory("tcp://192.168.97.242:61616/");
 
                 edtContent.Enabled = true;
                 btnSend.Enabled = true;
@@ -62,15 +62,16 @@ namespace IRAP.TPM.SIM.PWOBuilder
                 using (ISession session = connection.CreateSession())
                 {
                     IMessageProducer prod = session.CreateProducer(
-                        new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPDCS_MEQ"));
-                        //new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPTPM_InQueue"));
+                        //new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPDCS_MEQ"));
+                        new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPTPM_InQueue"));
                     ITextMessage message = prod.CreateTextMessage();
-                    message.Text = 
-                        string.Format(
-                            content, 
-                            edtContent.Text,
-                            DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    message.Text = edtContent.Text;
+                        //string.Format(
+                        //    content, 
+                        //    edtContent.Text,
+                        //    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     message.Properties.SetString("filter", edtContent.Text);
+                    message.Properties.SetString("filter", "Andon");
                     prod.Send(message, MsgDeliveryMode.Persistent, MsgPriority.Normal, TimeSpan.MinValue);
                     MessageBox.Show("发送成功!");
                 }

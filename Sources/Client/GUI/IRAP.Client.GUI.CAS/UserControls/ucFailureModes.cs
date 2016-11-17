@@ -65,6 +65,21 @@ namespace IRAP.Client.GUI.CAS.UserControls
             }
         }
 
+        /// <summary>
+        /// 当前选择的失效模式代码
+        /// </summary>
+        public string FailureModeCode
+        {
+            get
+            {
+                int idx = grdvAndonCallObjects.GetFocusedDataSourceRowIndex();
+                if (idx < 0)
+                    return "";
+                else
+                    return failureModeList[idx].Code;
+            }
+        }
+
         private void GetAndonCallObjects(int t179LeafID)
         {
             string strProcedureName =

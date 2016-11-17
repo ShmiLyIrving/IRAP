@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.edtContent = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.edtContent = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "消息报文";
+            // 
+            // edtContent
+            // 
+            this.edtContent.Location = new System.Drawing.Point(7, 27);
+            this.edtContent.Multiline = true;
+            this.edtContent.Name = "edtContent";
+            this.edtContent.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.edtContent.Size = new System.Drawing.Size(598, 405);
+            this.edtContent.TabIndex = 0;
+            this.edtContent.Text = "<SY>\r\n\t<Head>\r\n\t\t<ExCode>tpm_0001</ExCode>\r\n\t</Head>\r\n\t<Body>\r\n\t\t<Action Type=\"PW" +
+    "OBuild\" DeviceCode=\"1100100020\" />\r\n\t</Body>\r\n</SY>";
             // 
             // btnSend
             // 
@@ -74,16 +85,6 @@
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // edtContent
-            // 
-            this.edtContent.Location = new System.Drawing.Point(7, 27);
-            this.edtContent.Multiline = true;
-            this.edtContent.Name = "edtContent";
-            this.edtContent.Size = new System.Drawing.Size(598, 405);
-            this.edtContent.TabIndex = 0;
-            this.edtContent.Text = "<SY>\r\n\t<Head>\r\n\t\t<ExCode>tpm_0001</ExCode>\r\n\t</Head>\r\n\t<Body>\r\n\t\t<Action Type=\"PW" +
-    "OBuild\" DeviceCode=\"1100100020\" />\r\n\t</Body>\r\n</SY>";
             // 
             // Form1
             // 
