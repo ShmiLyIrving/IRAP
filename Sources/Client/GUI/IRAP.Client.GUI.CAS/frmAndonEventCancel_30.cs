@@ -229,6 +229,21 @@ namespace IRAP.Client.GUI.CAS
             itemID = ((MenuInfo)Tag).ItemID;
             parameters = ((MenuInfo)Tag).Parameters;
 
+            #region 要求操作员再次确认撤销该安灯事件
+            AndonEventInfo andonEvent = (grdAndonEvents.DataSource as List<AndonEventInfo>)[index];
+
+            if (
+                IRAPMessageBox.Instance.Show(
+                    string.Format(
+                        "是否要撤销{0}？",
+                        andonEvent.EventDescription), 
+                    Text, 
+                    MessageBoxButtons.YesNo, 
+                    MessageBoxIcon.Question, 
+                    MessageBoxDefaultButton.Button2) == DialogResult.No)
+                return;
+            #endregion
+
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
@@ -237,69 +252,78 @@ namespace IRAP.Client.GUI.CAS
 
             int errCode = 0;
             string errText = "";
+            string veriCode = "";
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                try
+                switch (IRAPUser.Instance.CommunityID)
                 {
-                    IRAPFVSClient.Instance.usp_AuthorizationRequest(
-                        IRAPUser.Instance.CommunityID,
-                        andonEvents[index].EventFactID,
-                        staffInfo.UserCode,
-                        staffInfo.UserName,
-                        itemID,
-                        Tools.ConvertToInt32(parameters),
-                        IRAPUser.Instance.SysLogID,
-                        out errCode,
-                        out errText);
-                    WriteLog.Instance.Write(
-                        string.Format("({0}){1}", errCode, errText),
-                        strProcedureName);
-                    if (errCode != 0)
-                    {
-                        isShowMessageBeforeActive = true;
-                        IRAPMessageBox.Instance.Show(
-                            errText,
-                            Text,
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
-                    else
-                    {
-                        if (errText.Trim() != "")
+                    case 60006:
+                        break;
+                    default:
+                        try
                         {
+                            IRAPFVSClient.Instance.usp_AuthorizationRequest(
+                                IRAPUser.Instance.CommunityID,
+                                andonEvents[index].EventFactID,
+                                staffInfo.UserCode,
+                                staffInfo.UserName,
+                                itemID,
+                                Tools.ConvertToInt32(parameters),
+                                IRAPUser.Instance.SysLogID,
+                                out errCode,
+                                out errText);
+                            WriteLog.Instance.Write(
+                                string.Format("({0}){1}", errCode, errText),
+                                strProcedureName);
+                            if (errCode != 0)
+                            {
+                                isShowMessageBeforeActive = true;
+                                IRAPMessageBox.Instance.Show(
+                                    errText,
+                                    Text,
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                return;
+                            }
+                            else
+                            {
+                                if (errText.Trim() != "")
+                                {
+                                    isShowMessageBeforeActive = true;
+                                    IRAPMessageBox.Instance.Show(
+                                        errText,
+                                        Text,
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Asterisk);
+                                }
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            WriteLog.Instance.Write(
+                                error.Message,
+                                strProcedureName);
+                            WriteLog.Instance.Write(
+                                error.StackTrace,
+                                strProcedureName);
+
                             isShowMessageBeforeActive = true;
                             IRAPMessageBox.Instance.Show(
-                                errText,
+                                error.Message,
                                 Text,
                                 MessageBoxButtons.OK,
-                                MessageBoxIcon.Asterisk);
+                                MessageBoxIcon.Error);
+                            return;
                         }
-                    }
-                }
-                catch (Exception error)
-                {
-                    WriteLog.Instance.Write(
-                        error.Message,
-                        strProcedureName);
-                    WriteLog.Instance.Write(
-                        error.StackTrace,
-                        strProcedureName);
 
-                    isShowMessageBeforeActive = true;
-                    IRAPMessageBox.Instance.Show(
-                        error.Message,
-                        Text,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
+                        #region 要求用户输入安灯事件撤销授权码
+                        veriCode = InputAuthrizeCode.Instance.Execute(errText);
+                        #endregion
 
-                #region 要求用户输入安灯事件撤销授权码
-                string veriCode = InputAuthrizeCode.Instance.Execute(errText);
-                #endregion
+                        break;
+                }
 
                 #region 撤销安灯事件
                 CancelAndonEvent(andonEvents[index], veriCode);

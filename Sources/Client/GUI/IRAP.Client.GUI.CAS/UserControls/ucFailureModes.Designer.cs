@@ -64,6 +64,14 @@
             // 
             // grdvAndonCallObjects
             // 
+            this.grdvAndonCallObjects.Appearance.FocusedCell.BackColor = System.Drawing.Color.Blue;
+            this.grdvAndonCallObjects.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.grdvAndonCallObjects.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.grdvAndonCallObjects.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.grdvAndonCallObjects.Appearance.FocusedRow.BackColor = System.Drawing.Color.Blue;
+            this.grdvAndonCallObjects.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
+            this.grdvAndonCallObjects.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.grdvAndonCallObjects.Appearance.FocusedRow.Options.UseForeColor = true;
             this.grdvAndonCallObjects.Appearance.HeaderPanel.Font = new System.Drawing.Font("等线", 12F);
             this.grdvAndonCallObjects.Appearance.HeaderPanel.Options.UseFont = true;
             this.grdvAndonCallObjects.Appearance.HeaderPanel.Options.UseTextOptions = true;

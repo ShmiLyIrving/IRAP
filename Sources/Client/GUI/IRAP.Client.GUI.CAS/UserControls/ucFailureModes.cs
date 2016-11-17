@@ -53,7 +53,16 @@ namespace IRAP.Client.GUI.CAS.UserControls
         /// </summary>
         public int FailureModeLeafID
         {
-            get { return 0; }
+            get
+            {
+                int idx = grdvAndonCallObjects.GetFocusedDataSourceRowIndex();
+                if (idx < 0)
+                    return 0;
+                else
+                {
+                    return failureModeList[idx].LeafID;
+                }
+            }
         }
 
         private void GetAndonCallObjects(int t179LeafID)

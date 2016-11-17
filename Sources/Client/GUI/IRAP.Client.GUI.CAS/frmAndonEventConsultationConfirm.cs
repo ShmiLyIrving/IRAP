@@ -448,6 +448,18 @@ namespace IRAP.Client.GUI.CAS
             string remark = edtRemark.Text; ;
 
             GetNewEventInfo(ref eventTypeLeaf, ref objectTreeID, ref objectCode, ref failureModeLeafID);
+
+            if (objectTreeID == 133 && objectCode == "" && failureModeLeafID == 0)
+            {
+                IRAPMessageBox.Instance.ShowErrorMessage("请选择具体设备以及该设备的失效模式！", Text);
+                return;
+            }
+            if (objectTreeID ==  118 && failureModeLeafID == 0)
+            {
+                IRAPMessageBox.Instance.ShowErrorMessage("请选择失效模式！", Text);
+                return;
+            }
+
             if (eventTypeLeaf == 0)
                 return;
             if (objectCode != "" && failureModeLeafID == 0)
