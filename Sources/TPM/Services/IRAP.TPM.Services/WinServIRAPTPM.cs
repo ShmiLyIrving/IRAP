@@ -78,8 +78,9 @@ namespace IRAP.TPM.Services
             connection.Start();
             session = connection.CreateSession();
             consumer = session.CreateConsumer(
-                new ActiveMQQueue("IRAPTPM_InQueue"),
-                "filter='Andon'");
+                new ActiveMQQueue(
+                    "IRAPTPM_InQueue"),
+                    "filter=Andon, ESBServerAddr=http://192.168.97.198:16911/RESTFul/SendMQ/, ExCode=IRAPTPM_InQueue");
             consumer.Listener += new MessageListener(consumer_Listener);
         }
 
@@ -202,10 +203,11 @@ namespace IRAP.TPM.Services
                                 switch (opID)
                                 {
                                     case 0:
+                                    case 4:
                                         sqlCmd.CommandText =
                                             "INSERT INTO utb_RWO_Info " +
                                             "SELECT MAX(RWONo) + 1 , 0, " +
-                                            "@FactID, @TransactNo, 0, " +
+                                            "@FactID, @TransactNo, @EventStatus, " +
                                             "@DeviceCode, @IsStoped, @CallerCode, " +
                                             "@CallerName, @CallTime, 0, " +
                                             "'', @ResponseTime, @ResponserCode, " +
@@ -215,7 +217,10 @@ namespace IRAP.TPM.Services
 
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.BigInt, 8, ParameterDirection.Input, "@FactID", factID));
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.BigInt, 8, ParameterDirection.Input, "@TransactNo", transactNo));
-                                        sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.Int, 4, ParameterDirection.Input, "@EventStatus", 0));
+                                        if (opID == 0)
+                                            sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.Int, 4, ParameterDirection.Input, "@EventStatus", 0));
+                                        else
+                                            sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.Int, 4, ParameterDirection.Input, "@EventStatus", 1));
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.VarChar, 30, ParameterDirection.Input, "@DeviceCode", deviceCode));
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.Bit, 1, ParameterDirection.Input, "@IsStoped", 1));
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.VarChar, 20, ParameterDirection.Input, "@CallerCode", callerCode));
@@ -231,7 +236,8 @@ namespace IRAP.TPM.Services
                                             "UPDATE utb_RWO_Info " +
                                             "SET EventStatus=1, ResponseTime=@ResponseTime, " +
                                             "ResponserCode=@ResponserCode, ResponserName=@ResponserName " +
-                                            "WHERE FactID=@FactID AND TransactNo=@TransactNo";
+                                            "WHERE FactID=@FactID AND TransactNo=@TransactNo AND ResponserCode='' " +
+                                            "AND ResponserName=''";
 
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.BigInt, 8, ParameterDirection.Input, "@FactID", factID));
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.BigInt, 8, ParameterDirection.Input, "@TransactNo", transactNo));
