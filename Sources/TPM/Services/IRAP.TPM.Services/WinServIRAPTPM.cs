@@ -78,16 +78,15 @@ namespace IRAP.TPM.Services
             connection.Start();
             session = connection.CreateSession();
             consumer = session.CreateConsumer(
-                new ActiveMQQueue(
-                    "IRAPTPM_InQueue"),
-                    "filter=Andon, ESBServerAddr=http://192.168.97.198:16911/RESTFul/SendMQ/, ExCode=IRAPTPM_InQueue");
+                new ActiveMQQueue("IRAPTPM_InQueue"),
+                "Filter='Andon'");
             consumer.Listener += new MessageListener(consumer_Listener);
         }
 
         private void consumer_Listener(IMessage message)
         {
             ITextMessage msg = (ITextMessage) message;
-
+           
             DoAction(msg.Text);
         }
 
