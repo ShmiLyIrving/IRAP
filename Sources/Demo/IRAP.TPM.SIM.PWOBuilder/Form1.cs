@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using Apache.NMS;
 using Apache.NMS.ActiveMQ;
+using Apache.NMS.ActiveMQ.Commands;
 
 namespace IRAP.TPM.SIM.PWOBuilder
 {
@@ -70,8 +71,12 @@ namespace IRAP.TPM.SIM.PWOBuilder
                         //    content, 
                         //    edtContent.Text,
                         //    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                    message.Properties.SetString("filter", edtContent.Text);
-                    message.Properties.SetString("filter", "Andon");
+                    //message.Properties.SetString("filter", edtContent.Text);
+                    message.Properties.SetString("filter", "Andon_Test");
+                    message.Properties.SetString("ESBServerAddr", "http://192.168.97.198:16911/RESTFul/SendMQ/");
+                    message.Properties.SetString("ExCode", "IRAPTPM_InQueue");
+                    message.NMSType = "XML";
+                    message.NMSReplyTo = new ActiveMQQueue("IRAPTPM_OutQueue");
                     prod.Send(message, MsgDeliveryMode.Persistent, MsgPriority.Normal, TimeSpan.MinValue);
                     MessageBox.Show("发送成功!");
                 }
