@@ -45,9 +45,21 @@ namespace IRAP.Global
         #region 属性定义
         public const string FILE_ATTRIBUTE_WRITELOG = "IRAP.ini";
 
+        /// <summary>
+        /// 写日志的属性配置文件名
+        /// </summary>
         string attributeFileName = "";
+        /// <summary>
+        /// 日志文件所在文件夹
+        /// </summary>
         string logPath = "";
+        /// <summary>
+        /// 日志文件名前缀
+        /// </summary>
         string writeLogFileName = "IRAP";
+        /// <summary>
+        /// 能否创建日志文件标志
+        /// </summary>
         bool canCreateLogFile = true;
 
         public string AttributeFileName
@@ -101,6 +113,8 @@ namespace IRAP.Global
             {
                 lock (LockStatus)
                 {
+                    DeleteObsoleteFiles();
+
                     string strLogFileName = string.Format("{0}{1}_{2}.log",
                                                           logPath,
                                                           writeLogFileName,
@@ -200,6 +214,17 @@ namespace IRAP.Global
         {
             WriteLogFileName = logFileName;
             WriteEndSplitter(modeName);
+        }
+
+        private void DeleteObsoleteFiles()
+        {
+            string[] fileNames = Directory.GetFiles(logPath, "*.log");
+            for (int i = 0; i < fileNames.Length - 1; i++)
+            {
+                FileInfo fi = new FileInfo(fileNames[i]);
+                if (fi.LastWriteTime <= DateTime.Now.AddMonths(-1))
+                    File.Delete(fileNames[i]);
+            }
         }
         #endregion
     }
