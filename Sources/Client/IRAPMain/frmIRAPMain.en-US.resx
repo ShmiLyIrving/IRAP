@@ -130,16 +130,16 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ribbonControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>736, 55</value>
+    <value>1016, 55</value>
   </data>
   <data name="ucOptions.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 55</value>
   </data>
   <data name="ucOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>736, 47</value>
+    <value>1016, 47</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>736, 507</value>
+    <value>1016, 764</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -199,5 +199,8 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1024, 768</value>
   </data>
 </root>

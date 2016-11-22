@@ -118,14 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1024, 768</value>
+  </data>
   <data name="cmdQuitSubSystem.AppearanceDisabled.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>734, 506</value>
+  <data name="backstageViewControl1.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
+    <value>Horizontal</value>
   </data>
   <data name="&gt;&gt;barStaticItem1.Name" xml:space="preserve">
     <value>barStaticItem1</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Ribbon.RibbonForm, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <assembly alias="DevExpress.Utils.v15.2" name="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="imageCollection.ImageStream" type="DevExpress.Utils.ImageCollectionStreamer, DevExpress.Utils.v15.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -145,9 +151,6 @@
   <data name="&gt;&gt;backstageViewClientControl1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;imageCollection.Name" xml:space="preserve">
-    <value>imageCollection</value>
-  </data>
   <data name="cmdAbout.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
@@ -156,6 +159,9 @@
   </data>
   <data name="&gt;&gt;backstageViewClientControl1.Parent" xml:space="preserve">
     <value>backstageViewControl1</value>
+  </data>
+  <data name="&gt;&gt;defaultLookAndFeel.Name" xml:space="preserve">
+    <value>defaultLookAndFeel</value>
   </data>
   <data name="cmdAbout.Caption" xml:space="preserve">
     <value>关于...</value>
@@ -166,13 +172,16 @@
   <data name="cmdQuitSubSystem.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
-  <data name="&gt;&gt;cmdAbout.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.BackstageViewTabItem, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="&gt;&gt;imageCollection.Type" xml:space="preserve">
+    <value>DevExpress.Utils.ImageCollection, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmIRAPMain</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="backstageViewControl1.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="cmdQuitSubSystem.AppearanceHover.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -181,9 +190,6 @@
   </data>
   <data name="backstageViewClientControl1.Size" type="System.Drawing.Size, System.Drawing">
     <value>346, 136</value>
-  </data>
-  <data name="backstageViewClientControl1.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
   </data>
   <data name="cmdQuitSubSystem.AppearanceDisabled.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -197,6 +203,9 @@
   <data name="backstageViewControl1.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
+  <data name="&gt;&gt;ucOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="cmdAbout.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -209,8 +218,8 @@
   <data name="backstageViewClientControl1.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+  <data name="&gt;&gt;backstageViewControl1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;barStaticItem1.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.BarStaticItem, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
@@ -236,9 +245,6 @@
   <data name="cmdAbout.AppearanceHover.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
-  <data name="&gt;&gt;imageCollection.Type" xml:space="preserve">
-    <value>DevExpress.Utils.ImageCollection, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
   <data name="cmdAbout.AppearanceHover.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
@@ -247,9 +253,6 @@
   </data>
   <data name="cmdQuitSubSystem.AppearancePressed.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="ucOptions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
   </data>
   <data name="ribbonControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>734, 50</value>
@@ -287,11 +290,8 @@
   <data name="backstageViewClientControl1.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
   </data>
-  <data name="barStaticItem1.Description" xml:space="preserve">
-    <value>江苏芍园科技有限责任公司 版权所有</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>frmIRAPMain</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
   <data name="cmdAbout.AppearanceDisabled.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
@@ -302,26 +302,29 @@
   <data name="cmdQuitSubSystem.AppearancePressed.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
+  <data name="cmdQuitSubSystem.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="cmdAbout.AppearanceSelected.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="backstageViewItemSeparator1.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
+  </data>
+  <data name="ucOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="imageCollection.ImageSize" type="System.Drawing.Size, System.Drawing">
     <value>48, 48</value>
   </data>
   <data name="&gt;&gt;ucOptions.Type" xml:space="preserve">
-    <value>IRAP.Client.SubSystems.ucOptions, IRAP.Client.SubSystems, Version=6.1.6047.28262, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.SubSystem.ucOptions, IRAP.Client.SubSystem, Version=6.1.6170.20141, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cmdQuitSubSystem.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;backstageViewControl1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ucOptions.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="backstageViewControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 220</value>
+  <data name="barStaticItem1.Description" xml:space="preserve">
+    <value>江苏芍园科技有限责任公司 版权所有</value>
   </data>
   <data name="cmdAbout.AppearanceSelected.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
@@ -332,11 +335,17 @@
   <data name="&gt;&gt;backstageViewClientControl1.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.Ribbon.BackstageViewClientControl, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;ribbonControl.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Ribbon.RibbonControl, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
   <data name="&gt;&gt;ucOptions.Name" xml:space="preserve">
     <value>ucOptions</value>
   </data>
   <data name="cmdQuitSubSystem.AppearancePressed.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <data name="cmdAbout.AppearanceDisabled.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="&gt;&gt;backstageViewClientControl1.Name" xml:space="preserve">
     <value>backstageViewClientControl1</value>
@@ -353,17 +362,11 @@
   <data name="cmdAbout.AppearanceDisabled.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="cmdAbout.AppearanceSelected.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
   <data name="backstageViewControl1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="backstageViewItemSeparator1.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
-  </data>
-  <data name="&gt;&gt;backstageViewControl1.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.BackstageViewControl, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -427,8 +430,11 @@
   <data name="&gt;&gt;ribbonControl.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="cmdAbout.AppearanceDisabled.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="cmdQuitSubSystem.AppearanceHover.FontSizeDelta" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cmdAbout.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Ribbon.BackstageViewTabItem, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;cmdQuitSubSystem.Name" xml:space="preserve">
     <value>cmdQuitSubSystem</value>
@@ -439,8 +445,8 @@
   <data name="cmdAbout.AppearanceDisabled.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
-  <data name="cmdQuitSubSystem.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>frmIRAPMain</value>
   </data>
   <data name="&gt;&gt;ucOptions.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -457,20 +463,20 @@
   <data name="backstageViewItemSeparator1.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="ucOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="backstageViewClientControl1.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
+    <value>Regular</value>
   </data>
   <data name="backstageViewControl1.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
   </data>
-  <data name="cmdAbout.AppearanceSelected.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="ucOptions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="backstageViewControl1.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
+  <data name="&gt;&gt;imageCollection.Name" xml:space="preserve">
+    <value>imageCollection</value>
   </data>
-  <data name="&gt;&gt;ribbonControl.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonControl, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="&gt;&gt;backstageViewControl1.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.Ribbon.BackstageViewControl, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="backstageViewClientControl1.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -478,26 +484,23 @@
   <data name="backstageViewClientControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>133, 63</value>
   </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>734, 506</value>
+  </data>
   <data name="barStaticItem1.Caption" xml:space="preserve">
     <value>江苏芍园科技有限责任公司 版权所有</value>
-  </data>
-  <data name="backstageViewControl1.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>DevExpress.XtraBars.Ribbon.RibbonForm, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;backstageViewItemSeparator1.Name" xml:space="preserve">
     <value>backstageViewItemSeparator1</value>
   </data>
-  <data name="cmdQuitSubSystem.AppearanceHover.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="cmdAbout.AppearanceSelected.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
+    <value>Regular</value>
   </data>
   <data name="cmdQuitSubSystem.AppearancePressed.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
-  <data name="&gt;&gt;defaultLookAndFeel.Name" xml:space="preserve">
-    <value>defaultLookAndFeel</value>
+  <data name="backstageViewControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 220</value>
   </data>
   <metadata name="defaultLookAndFeel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

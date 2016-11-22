@@ -43,6 +43,7 @@
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.grdclmnEventType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
@@ -61,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.tpIDCardnoRead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).BeginInit();
             this.pnlIDCardNoRead.SuspendLayout();
@@ -95,7 +97,7 @@
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedTabPage = this.tpAndonEvents;
             this.tcMain.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.tcMain.Size = new System.Drawing.Size(1020, 686);
+            this.tcMain.Size = new System.Drawing.Size(1020, 685);
             this.tcMain.TabIndex = 1;
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpIDCardnoRead,
@@ -109,7 +111,7 @@
             this.tpAndonEvents.Controls.Add(this.btnResponse);
             this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
             this.tpAndonEvents.Name = "tpAndonEvents";
-            this.tpAndonEvents.Size = new System.Drawing.Size(1015, 681);
+            this.tpAndonEvents.Size = new System.Drawing.Size(1015, 680);
             this.tpAndonEvents.Text = "xtraTabPage2";
             // 
             // btnReturn
@@ -117,7 +119,7 @@
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReturn.Appearance.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.Appearance.Options.UseFont = true;
-            this.btnReturn.Location = new System.Drawing.Point(883, 627);
+            this.btnReturn.Location = new System.Drawing.Point(883, 626);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(117, 36);
             this.btnReturn.TabIndex = 3;
@@ -127,7 +129,7 @@
             // chkCallOtherOneAndonEvents
             // 
             this.chkCallOtherOneAndonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkCallOtherOneAndonEvents.Location = new System.Drawing.Point(22, 642);
+            this.chkCallOtherOneAndonEvents.Location = new System.Drawing.Point(22, 641);
             this.chkCallOtherOneAndonEvents.Name = "chkCallOtherOneAndonEvents";
             this.chkCallOtherOneAndonEvents.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkCallOtherOneAndonEvents.Properties.Appearance.Options.UseFont = true;
@@ -156,37 +158,38 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gpcAndonEvents.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpcAndonEvents.Appearance.Options.UseFont = true;
-            this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
             this.gpcAndonEvents.Controls.Add(this.grdAndonEvents);
             this.gpcAndonEvents.Location = new System.Drawing.Point(22, 17);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(838, 603);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(838, 602);
             this.gpcAndonEvents.TabIndex = 0;
             this.gpcAndonEvents.Text = "呼叫我的安灯事件";
             // 
             // grdAndonEvents
             // 
             this.grdAndonEvents.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdAndonEvents.Location = new System.Drawing.Point(7, 31);
+            this.grdAndonEvents.Location = new System.Drawing.Point(7, 28);
             this.grdAndonEvents.MainView = this.grdvAndonEvents;
             this.grdAndonEvents.Name = "grdAndonEvents";
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.rpschkSelect});
-            this.grdAndonEvents.Size = new System.Drawing.Size(824, 565);
+            this.rpschkSelect,
+            this.repositoryItemMemoEdit1});
+            this.grdAndonEvents.Size = new System.Drawing.Size(824, 567);
             this.grdAndonEvents.TabIndex = 0;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvAndonEvents});
             // 
             // grdvAndonEvents
             // 
-            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseFont = true;
             this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdvAndonEvents.Appearance.Row.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvAndonEvents.Appearance.Row.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvAndonEvents.Appearance.Row.Options.UseFont = true;
             this.grdvAndonEvents.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdclmnChoice,
@@ -196,7 +199,6 @@
             this.grdclmnTimeElapsed});
             this.grdvAndonEvents.GridControl = this.grdAndonEvents;
             this.grdvAndonEvents.Name = "grdvAndonEvents";
-            this.grdvAndonEvents.OptionsView.ColumnAutoWidth = false;
             this.grdvAndonEvents.OptionsView.RowAutoHeight = true;
             this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
             // 
@@ -205,10 +207,13 @@
             this.grdclmnChoice.Caption = "选择";
             this.grdclmnChoice.ColumnEdit = this.rpschkSelect;
             this.grdclmnChoice.FieldName = "Choice";
+            this.grdclmnChoice.MaxWidth = 50;
+            this.grdclmnChoice.MinWidth = 50;
             this.grdclmnChoice.Name = "grdclmnChoice";
             this.grdclmnChoice.OptionsColumn.AllowMove = false;
             this.grdclmnChoice.Visible = true;
             this.grdclmnChoice.VisibleIndex = 0;
+            this.grdclmnChoice.Width = 50;
             // 
             // rpschkSelect
             // 
@@ -233,23 +238,33 @@
             // 
             this.grdclmnEventType.Caption = "事件类型";
             this.grdclmnEventType.FieldName = "EventType";
+            this.grdclmnEventType.MaxWidth = 80;
+            this.grdclmnEventType.MinWidth = 80;
             this.grdclmnEventType.Name = "grdclmnEventType";
             this.grdclmnEventType.OptionsColumn.AllowEdit = false;
             this.grdclmnEventType.OptionsColumn.ReadOnly = true;
             this.grdclmnEventType.Visible = true;
             this.grdclmnEventType.VisibleIndex = 1;
-            this.grdclmnEventType.Width = 200;
+            this.grdclmnEventType.Width = 80;
             // 
             // grdclmnEventDescription
             // 
+            this.grdclmnEventDescription.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnEventDescription.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnEventDescription.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.grdclmnEventDescription.Caption = "事件描述";
+            this.grdclmnEventDescription.ColumnEdit = this.repositoryItemMemoEdit1;
             this.grdclmnEventDescription.FieldName = "EventDescription";
             this.grdclmnEventDescription.Name = "grdclmnEventDescription";
             this.grdclmnEventDescription.OptionsColumn.AllowEdit = false;
             this.grdclmnEventDescription.OptionsColumn.ReadOnly = true;
             this.grdclmnEventDescription.Visible = true;
             this.grdclmnEventDescription.VisibleIndex = 2;
-            this.grdclmnEventDescription.Width = 300;
+            this.grdclmnEventDescription.Width = 482;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // grdclmnCallingTime
             // 
@@ -258,12 +273,14 @@
             this.grdclmnCallingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnCallingTime.Caption = "呼叫时间";
             this.grdclmnCallingTime.FieldName = "CallingTime";
+            this.grdclmnCallingTime.MaxWidth = 100;
+            this.grdclmnCallingTime.MinWidth = 100;
             this.grdclmnCallingTime.Name = "grdclmnCallingTime";
             this.grdclmnCallingTime.OptionsColumn.AllowEdit = false;
             this.grdclmnCallingTime.OptionsColumn.ReadOnly = true;
             this.grdclmnCallingTime.Visible = true;
             this.grdclmnCallingTime.VisibleIndex = 3;
-            this.grdclmnCallingTime.Width = 120;
+            this.grdclmnCallingTime.Width = 100;
             // 
             // grdclmnTimeElapsed
             // 
@@ -272,18 +289,20 @@
             this.grdclmnTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnTimeElapsed.Caption = "已过时间";
             this.grdclmnTimeElapsed.FieldName = "TimeElapsed";
+            this.grdclmnTimeElapsed.MaxWidth = 100;
+            this.grdclmnTimeElapsed.MinWidth = 100;
             this.grdclmnTimeElapsed.Name = "grdclmnTimeElapsed";
             this.grdclmnTimeElapsed.OptionsColumn.AllowEdit = false;
             this.grdclmnTimeElapsed.OptionsColumn.ReadOnly = true;
             this.grdclmnTimeElapsed.Visible = true;
             this.grdclmnTimeElapsed.VisibleIndex = 4;
-            this.grdclmnTimeElapsed.Width = 120;
+            this.grdclmnTimeElapsed.Width = 100;
             // 
             // tpIDCardnoRead
             // 
             this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
             this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(1015, 681);
+            this.tpIDCardnoRead.Size = new System.Drawing.Size(1014, 679);
             // 
             // pnlIDCardNoRead
             // 
@@ -327,7 +346,7 @@
             // frmAndonEventRespond_30
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(1020, 742);
+            this.ClientSize = new System.Drawing.Size(1020, 741);
             this.Controls.Add(this.tcMain);
             this.Name = "frmAndonEventRespond_30";
             this.Text = "安灯事件响应";
@@ -347,6 +366,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.tpIDCardnoRead.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).EndInit();
             this.pnlIDCardNoRead.ResumeLayout(false);
@@ -376,5 +396,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnCallingTime;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnTimeElapsed;
         private DevExpress.XtraEditors.SimpleButton btnReturn;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
     }
 }

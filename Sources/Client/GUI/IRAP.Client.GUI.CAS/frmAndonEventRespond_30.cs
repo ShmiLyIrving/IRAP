@@ -307,12 +307,12 @@ namespace IRAP.Client.GUI.CAS
             }
 
             grdAndonEvents.DataSource = andonEventsInList;
-            for (int i = 0; i < grdvAndonEvents.Columns.Count; i++)
-            {
-                grdvAndonEvents.Columns[i].BestFit();
-            }
-            grdvAndonEvents.OptionsView.RowAutoHeight = true;
-            grdvAndonEvents.LayoutChanged();
+            //for (int i = 0; i < grdvAndonEvents.Columns.Count; i++)
+            //{
+            //    grdvAndonEvents.Columns[i].BestFit();
+            //}
+            //grdvAndonEvents.OptionsView.RowAutoHeight = true;
+            //grdvAndonEvents.LayoutChanged();
         }
     }
 }
