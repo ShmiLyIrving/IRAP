@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventCancel_30));
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
             this.tpAndonEvents = new DevExpress.XtraTab.XtraTabPage();
@@ -42,8 +43,10 @@
             this.rpschkSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.grdclmnEventType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
             this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
             this.pnlIDCardNoRead = new DevExpress.XtraEditors.PanelControl();
             this.edtIDCardNo = new DevExpress.XtraEditors.TextEdit();
@@ -59,6 +62,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.tpIDCardnoRead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).BeginInit();
             this.pnlIDCardNoRead.SuspendLayout();
@@ -114,14 +119,14 @@
             this.tpAndonEvents.Controls.Add(this.btnCancel);
             this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
             this.tpAndonEvents.Name = "tpAndonEvents";
-            this.tpAndonEvents.Size = new System.Drawing.Size(911, 500);
+            this.tpAndonEvents.Size = new System.Drawing.Size(910, 499);
             // 
             // btnReturn
             // 
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReturn.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReturn.Appearance.Options.UseFont = true;
-            this.btnReturn.Location = new System.Drawing.Point(779, 446);
+            this.btnReturn.Location = new System.Drawing.Point(778, 445);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(117, 36);
             this.btnReturn.TabIndex = 3;
@@ -133,7 +138,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(779, 17);
+            this.btnCancel.Location = new System.Drawing.Point(778, 17);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(117, 36);
             this.btnCancel.TabIndex = 2;
@@ -153,19 +158,24 @@
             this.gpcAndonEvents.Location = new System.Drawing.Point(22, 17);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(734, 465);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(733, 464);
             this.gpcAndonEvents.TabIndex = 0;
             this.gpcAndonEvents.Text = "您触发的安灯事件";
             // 
             // grdAndonEvents
             // 
             this.grdAndonEvents.Dock = System.Windows.Forms.DockStyle.Fill;
+            gridLevelNode1.RelationName = "Level1";
+            this.grdAndonEvents.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
             this.grdAndonEvents.Location = new System.Drawing.Point(7, 31);
             this.grdAndonEvents.MainView = this.grdvAndonEvents;
             this.grdAndonEvents.Name = "grdAndonEvents";
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.rpschkSelect});
-            this.grdAndonEvents.Size = new System.Drawing.Size(720, 427);
+            this.rpschkSelect,
+            this.repositoryItemMemoEdit1,
+            this.repositoryItemRichTextEdit1});
+            this.grdAndonEvents.Size = new System.Drawing.Size(719, 426);
             this.grdAndonEvents.TabIndex = 0;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvAndonEvents});
@@ -223,14 +233,24 @@
             // 
             // grdclmnEventDescription
             // 
+            this.grdclmnEventDescription.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnEventDescription.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.grdclmnEventDescription.Caption = "事件描述";
+            this.grdclmnEventDescription.ColumnEdit = this.repositoryItemMemoEdit1;
             this.grdclmnEventDescription.FieldName = "EventDescription";
             this.grdclmnEventDescription.Name = "grdclmnEventDescription";
             this.grdclmnEventDescription.OptionsColumn.AllowEdit = false;
             this.grdclmnEventDescription.OptionsColumn.ReadOnly = true;
             this.grdclmnEventDescription.Visible = true;
             this.grdclmnEventDescription.VisibleIndex = 1;
-            this.grdclmnEventDescription.Width = 318;
+            this.grdclmnEventDescription.Width = 388;
+            // 
+            // repositoryItemRichTextEdit1
+            // 
+            this.repositoryItemRichTextEdit1.CustomHeight = 2;
+            this.repositoryItemRichTextEdit1.Name = "repositoryItemRichTextEdit1";
+            this.repositoryItemRichTextEdit1.OptionsExport.PlainText.ExportFinalParagraphMark = DevExpress.XtraRichEdit.Export.PlainText.ExportFinalParagraphMark.Never;
+            this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
             // 
             // grdclmnCallingTime
             // 
@@ -239,12 +259,14 @@
             this.grdclmnCallingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnCallingTime.Caption = "呼叫时间";
             this.grdclmnCallingTime.FieldName = "CallingTime";
+            this.grdclmnCallingTime.MaxWidth = 100;
+            this.grdclmnCallingTime.MinWidth = 100;
             this.grdclmnCallingTime.Name = "grdclmnCallingTime";
             this.grdclmnCallingTime.OptionsColumn.AllowEdit = false;
             this.grdclmnCallingTime.OptionsColumn.ReadOnly = true;
             this.grdclmnCallingTime.Visible = true;
             this.grdclmnCallingTime.VisibleIndex = 2;
-            this.grdclmnCallingTime.Width = 126;
+            this.grdclmnCallingTime.Width = 100;
             // 
             // grdclmnTimeElapsed
             // 
@@ -253,18 +275,24 @@
             this.grdclmnTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnTimeElapsed.Caption = "已过时间";
             this.grdclmnTimeElapsed.FieldName = "TimeElapsed";
+            this.grdclmnTimeElapsed.MaxWidth = 90;
+            this.grdclmnTimeElapsed.MinWidth = 90;
             this.grdclmnTimeElapsed.Name = "grdclmnTimeElapsed";
             this.grdclmnTimeElapsed.OptionsColumn.AllowEdit = false;
             this.grdclmnTimeElapsed.OptionsColumn.ReadOnly = true;
             this.grdclmnTimeElapsed.Visible = true;
             this.grdclmnTimeElapsed.VisibleIndex = 3;
-            this.grdclmnTimeElapsed.Width = 132;
+            this.grdclmnTimeElapsed.Width = 90;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // tpIDCardnoRead
             // 
             this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
             this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(886, 434);
+            this.tpIDCardnoRead.Size = new System.Drawing.Size(910, 499);
             // 
             // pnlIDCardNoRead
             // 
@@ -329,6 +357,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.tpIDCardnoRead.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).EndInit();
             this.pnlIDCardNoRead.ResumeLayout(false);
@@ -357,5 +387,7 @@
         private DevExpress.XtraEditors.PanelControl pnlIDCardNoRead;
         private DevExpress.XtraEditors.TextEdit edtIDCardNo;
         private DevExpress.XtraEditors.LabelControl lblGetIDNo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
     }
 }
