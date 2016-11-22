@@ -71,7 +71,12 @@
             this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblFuncName.Size = new System.Drawing.Size(916, 56);
             this.lblFuncName.Text = "安灯事件撤销";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Size = new System.Drawing.Size(916, 56);
             // 
             // toolTipController
             // 
@@ -96,7 +101,7 @@
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedTabPage = this.tpAndonEvents;
             this.tcMain.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.tcMain.Size = new System.Drawing.Size(891, 439);
+            this.tcMain.Size = new System.Drawing.Size(916, 505);
             this.tcMain.TabIndex = 2;
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpIDCardnoRead,
@@ -109,14 +114,14 @@
             this.tpAndonEvents.Controls.Add(this.btnCancel);
             this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
             this.tpAndonEvents.Name = "tpAndonEvents";
-            this.tpAndonEvents.Size = new System.Drawing.Size(885, 433);
+            this.tpAndonEvents.Size = new System.Drawing.Size(911, 500);
             // 
             // btnReturn
             // 
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReturn.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReturn.Appearance.Options.UseFont = true;
-            this.btnReturn.Location = new System.Drawing.Point(753, 379);
+            this.btnReturn.Location = new System.Drawing.Point(779, 446);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(117, 36);
             this.btnReturn.TabIndex = 3;
@@ -128,7 +133,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(753, 17);
+            this.btnCancel.Location = new System.Drawing.Point(779, 17);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(117, 36);
             this.btnCancel.TabIndex = 2;
@@ -148,7 +153,7 @@
             this.gpcAndonEvents.Location = new System.Drawing.Point(22, 17);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(708, 398);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(734, 465);
             this.gpcAndonEvents.TabIndex = 0;
             this.gpcAndonEvents.Text = "您触发的安灯事件";
             // 
@@ -160,7 +165,7 @@
             this.grdAndonEvents.Name = "grdAndonEvents";
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.rpschkSelect});
-            this.grdAndonEvents.Size = new System.Drawing.Size(694, 360);
+            this.grdAndonEvents.Size = new System.Drawing.Size(720, 427);
             this.grdAndonEvents.TabIndex = 0;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvAndonEvents});
@@ -182,7 +187,6 @@
             this.grdclmnTimeElapsed});
             this.grdvAndonEvents.GridControl = this.grdAndonEvents;
             this.grdvAndonEvents.Name = "grdvAndonEvents";
-            this.grdvAndonEvents.OptionsView.ColumnAutoWidth = false;
             this.grdvAndonEvents.OptionsView.RowAutoHeight = true;
             this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
             // 
@@ -208,12 +212,14 @@
             // 
             this.grdclmnEventType.Caption = "事件类型";
             this.grdclmnEventType.FieldName = "EventType";
+            this.grdclmnEventType.MaxWidth = 100;
+            this.grdclmnEventType.MinWidth = 100;
             this.grdclmnEventType.Name = "grdclmnEventType";
             this.grdclmnEventType.OptionsColumn.AllowEdit = false;
             this.grdclmnEventType.OptionsColumn.ReadOnly = true;
             this.grdclmnEventType.Visible = true;
             this.grdclmnEventType.VisibleIndex = 0;
-            this.grdclmnEventType.Width = 200;
+            this.grdclmnEventType.Width = 100;
             // 
             // grdclmnEventDescription
             // 
@@ -224,7 +230,7 @@
             this.grdclmnEventDescription.OptionsColumn.ReadOnly = true;
             this.grdclmnEventDescription.Visible = true;
             this.grdclmnEventDescription.VisibleIndex = 1;
-            this.grdclmnEventDescription.Width = 300;
+            this.grdclmnEventDescription.Width = 318;
             // 
             // grdclmnCallingTime
             // 
@@ -238,7 +244,7 @@
             this.grdclmnCallingTime.OptionsColumn.ReadOnly = true;
             this.grdclmnCallingTime.Visible = true;
             this.grdclmnCallingTime.VisibleIndex = 2;
-            this.grdclmnCallingTime.Width = 120;
+            this.grdclmnCallingTime.Width = 126;
             // 
             // grdclmnTimeElapsed
             // 
@@ -252,13 +258,13 @@
             this.grdclmnTimeElapsed.OptionsColumn.ReadOnly = true;
             this.grdclmnTimeElapsed.Visible = true;
             this.grdclmnTimeElapsed.VisibleIndex = 3;
-            this.grdclmnTimeElapsed.Width = 120;
+            this.grdclmnTimeElapsed.Width = 132;
             // 
             // tpIDCardnoRead
             // 
             this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
             this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(885, 433);
+            this.tpIDCardnoRead.Size = new System.Drawing.Size(886, 434);
             // 
             // pnlIDCardNoRead
             // 
@@ -302,7 +308,7 @@
             // frmAndonEventCancel_30
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(891, 495);
+            this.ClientSize = new System.Drawing.Size(916, 561);
             this.Controls.Add(this.tcMain);
             this.Name = "frmAndonEventCancel_30";
             this.Text = "安灯事件撤销";

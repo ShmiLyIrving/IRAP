@@ -153,12 +153,12 @@ namespace IRAP.Client.GUI.CAS
                                     if (andonEvents.Count > 0)
                                     {
                                         grdAndonEvents.DataSource = andonEvents;
-                                        for (int i = 0; i < grdvAndonEvents.Columns.Count; i++)
-                                        {
-                                            grdvAndonEvents.Columns[i].BestFit();
-                                        }
-                                        grdvAndonEvents.OptionsView.RowAutoHeight = true;
-                                        grdvAndonEvents.LayoutChanged();
+                                        //for (int i = 0; i < grdvAndonEvents.Columns.Count; i++)
+                                        //{
+                                        //    grdvAndonEvents.Columns[i].BestFit();
+                                        //}
+                                        //grdvAndonEvents.OptionsView.RowAutoHeight = true;
+                                        //grdvAndonEvents.LayoutChanged();
 
                                         gpcAndonEvents.Text = string.Format("{0}触发的安灯事件", staffInfo.UserName);
                                         tcMain.SelectedTabPage = tpAndonEvents;
