@@ -99,12 +99,12 @@
             this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblFuncName.Size = new System.Drawing.Size(1130, 56);
+            this.lblFuncName.Size = new System.Drawing.Size(1020, 56);
             this.lblFuncName.Text = "会诊结果确认";
             // 
             // panelControl1
             // 
-            this.panelControl1.Size = new System.Drawing.Size(1130, 56);
+            this.panelControl1.Size = new System.Drawing.Size(1020, 56);
             // 
             // toolTipController
             // 
@@ -123,7 +123,7 @@
             this.groupControl1.Location = new System.Drawing.Point(12, 62);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl1.Size = new System.Drawing.Size(1012, 62);
+            this.groupControl1.Size = new System.Drawing.Size(902, 62);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "正在进行会诊的安灯事件";
             // 
@@ -138,7 +138,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboAndonEvent.Properties.DropDownItemHeight = 30;
             this.cboAndonEvent.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboAndonEvent.Size = new System.Drawing.Size(998, 24);
+            this.cboAndonEvent.Size = new System.Drawing.Size(888, 24);
             this.cboAndonEvent.TabIndex = 2;
             this.cboAndonEvent.SelectedIndexChanged += new System.EventHandler(this.cboAndonEvent_SelectedIndexChanged);
             // 
@@ -150,7 +150,7 @@
             this.grdStaffs.Name = "grdStaffs";
             this.grdStaffs.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.rpschkSelect});
-            this.grdStaffs.Size = new System.Drawing.Size(507, 657);
+            this.grdStaffs.Size = new System.Drawing.Size(437, 563);
             this.grdStaffs.TabIndex = 1;
             this.grdStaffs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvStaffs});
@@ -236,7 +236,7 @@
             this.grdclmnUserName.OptionsColumn.ReadOnly = true;
             this.grdclmnUserName.Visible = true;
             this.grdclmnUserName.VisibleIndex = 2;
-            this.grdclmnUserName.Width = 161;
+            this.grdclmnUserName.Width = 97;
             // 
             // grdclmnRoleName
             // 
@@ -267,7 +267,7 @@
             this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfirm.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnConfirm.Appearance.Options.UseFont = true;
-            this.btnConfirm.Location = new System.Drawing.Point(1030, 130);
+            this.btnConfirm.Location = new System.Drawing.Point(920, 130);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(88, 31);
             this.btnConfirm.TabIndex = 2;
@@ -287,7 +287,7 @@
             this.splitContainerControl2.Panel2.Controls.Add(this.rgpT144Leaf);
             this.splitContainerControl2.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(472, 657);
+            this.splitContainerControl2.Size = new System.Drawing.Size(432, 563);
             this.splitContainerControl2.SplitterPosition = 54;
             this.splitContainerControl2.TabIndex = 8;
             this.splitContainerControl2.Text = "splitContainerControl2";
@@ -306,14 +306,14 @@
             this.splitContainerControl1.Panel1.Controls.Add(this.lstEventType);
             this.splitContainerControl1.Panel1.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl1.Panel1.ShowCaption = true;
-            this.splitContainerControl1.Panel1.Text = "请确认当前安灯事件的类型和失效模式";
+            this.splitContainerControl1.Panel1.Text = "事件类型和失效模式";
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl4);
             this.splitContainerControl1.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.ShowCaption = true;
-            this.splitContainerControl1.Size = new System.Drawing.Size(472, 598);
-            this.splitContainerControl1.SplitterPosition = 318;
+            this.splitContainerControl1.Size = new System.Drawing.Size(432, 504);
+            this.splitContainerControl1.SplitterPosition = 209;
             this.splitContainerControl1.TabIndex = 7;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -325,7 +325,7 @@
             this.lstEventType.ImageList = this.imgsAndonTypes;
             this.lstEventType.Location = new System.Drawing.Point(5, 5);
             this.lstEventType.Name = "lstEventType";
-            this.lstEventType.Size = new System.Drawing.Size(304, 562);
+            this.lstEventType.Size = new System.Drawing.Size(195, 468);
             this.lstEventType.TabIndex = 6;
             this.lstEventType.SelectedIndexChanged += new System.EventHandler(this.lstEventType_SelectedIndexChanged);
             // 
@@ -359,7 +359,7 @@
             this.splitContainerControl4.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl4.Panel2.ShowCaption = true;
             this.splitContainerControl4.Panel2.Text = "备注信息";
-            this.splitContainerControl4.Size = new System.Drawing.Size(135, 584);
+            this.splitContainerControl4.Size = new System.Drawing.Size(204, 490);
             this.splitContainerControl4.SplitterPosition = 154;
             this.splitContainerControl4.TabIndex = 0;
             this.splitContainerControl4.Text = "splitContainerControl4";
@@ -371,7 +371,7 @@
             this.tcEventTypes.Name = "tcEventTypes";
             this.tcEventTypes.SelectedTabPage = this.tpEmpty;
             this.tcEventTypes.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.tcEventTypes.Size = new System.Drawing.Size(125, 415);
+            this.tcEventTypes.Size = new System.Drawing.Size(194, 321);
             this.tcEventTypes.TabIndex = 0;
             this.tcEventTypes.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpEmpty,
@@ -386,7 +386,7 @@
             // 
             this.tpEmpty.Name = "tpEmpty";
             this.tpEmpty.Padding = new System.Windows.Forms.Padding(5);
-            this.tpEmpty.Size = new System.Drawing.Size(119, 409);
+            this.tpEmpty.Size = new System.Drawing.Size(188, 315);
             this.tpEmpty.Text = "Empty";
             // 
             // tpR
@@ -394,7 +394,7 @@
             this.tpR.Controls.Add(this.ucDeviceFailureModes);
             this.tpR.Name = "tpR";
             this.tpR.Padding = new System.Windows.Forms.Padding(5);
-            this.tpR.Size = new System.Drawing.Size(119, 409);
+            this.tpR.Size = new System.Drawing.Size(188, 315);
             this.tpR.Text = "R";
             // 
             // ucDeviceFailureModes
@@ -402,7 +402,7 @@
             this.ucDeviceFailureModes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucDeviceFailureModes.Location = new System.Drawing.Point(5, 5);
             this.ucDeviceFailureModes.Name = "ucDeviceFailureModes";
-            this.ucDeviceFailureModes.Size = new System.Drawing.Size(109, 399);
+            this.ucDeviceFailureModes.Size = new System.Drawing.Size(178, 305);
             this.ucDeviceFailureModes.T133Code = "";
             this.ucDeviceFailureModes.TabIndex = 0;
             // 
@@ -411,7 +411,7 @@
             this.tpM.Controls.Add(this.ucFailureModesM);
             this.tpM.Name = "tpM";
             this.tpM.Padding = new System.Windows.Forms.Padding(5);
-            this.tpM.Size = new System.Drawing.Size(119, 409);
+            this.tpM.Size = new System.Drawing.Size(188, 315);
             this.tpM.Text = "M";
             // 
             // ucFailureModesM
@@ -419,7 +419,7 @@
             this.ucFailureModesM.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesM.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesM.Name = "ucFailureModesM";
-            this.ucFailureModesM.Size = new System.Drawing.Size(109, 399);
+            this.ucFailureModesM.Size = new System.Drawing.Size(178, 305);
             this.ucFailureModesM.T179LeafID = 0;
             this.ucFailureModesM.TabIndex = 0;
             // 
@@ -428,7 +428,7 @@
             this.tpQ.Controls.Add(this.ucFailureModesQ);
             this.tpQ.Name = "tpQ";
             this.tpQ.Padding = new System.Windows.Forms.Padding(5);
-            this.tpQ.Size = new System.Drawing.Size(119, 409);
+            this.tpQ.Size = new System.Drawing.Size(188, 315);
             this.tpQ.Text = "Q";
             // 
             // ucFailureModesQ
@@ -436,7 +436,7 @@
             this.ucFailureModesQ.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesQ.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesQ.Name = "ucFailureModesQ";
-            this.ucFailureModesQ.Size = new System.Drawing.Size(109, 399);
+            this.ucFailureModesQ.Size = new System.Drawing.Size(178, 305);
             this.ucFailureModesQ.T179LeafID = 0;
             this.ucFailureModesQ.TabIndex = 0;
             // 
@@ -445,7 +445,7 @@
             this.tpT.Controls.Add(this.ucFailureModesT);
             this.tpT.Name = "tpT";
             this.tpT.Padding = new System.Windows.Forms.Padding(5);
-            this.tpT.Size = new System.Drawing.Size(119, 409);
+            this.tpT.Size = new System.Drawing.Size(188, 315);
             this.tpT.Text = "T";
             // 
             // ucFailureModesT
@@ -453,7 +453,7 @@
             this.ucFailureModesT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesT.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesT.Name = "ucFailureModesT";
-            this.ucFailureModesT.Size = new System.Drawing.Size(109, 399);
+            this.ucFailureModesT.Size = new System.Drawing.Size(178, 305);
             this.ucFailureModesT.T179LeafID = 0;
             this.ucFailureModesT.TabIndex = 0;
             // 
@@ -462,7 +462,7 @@
             this.tpS.Controls.Add(this.ucFailureModesS);
             this.tpS.Name = "tpS";
             this.tpS.Padding = new System.Windows.Forms.Padding(5);
-            this.tpS.Size = new System.Drawing.Size(119, 409);
+            this.tpS.Size = new System.Drawing.Size(188, 315);
             this.tpS.Text = "S";
             // 
             // ucFailureModesS
@@ -470,7 +470,7 @@
             this.ucFailureModesS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesS.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesS.Name = "ucFailureModesS";
-            this.ucFailureModesS.Size = new System.Drawing.Size(109, 399);
+            this.ucFailureModesS.Size = new System.Drawing.Size(178, 305);
             this.ucFailureModesS.T179LeafID = 0;
             this.ucFailureModesS.TabIndex = 0;
             // 
@@ -478,7 +478,7 @@
             // 
             this.tpO.Name = "tpO";
             this.tpO.Padding = new System.Windows.Forms.Padding(5);
-            this.tpO.Size = new System.Drawing.Size(119, 409);
+            this.tpO.Size = new System.Drawing.Size(188, 315);
             this.tpO.Text = "O";
             // 
             // edtRemark
@@ -489,7 +489,7 @@
             this.edtRemark.Properties.AcceptsReturn = false;
             this.edtRemark.Properties.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtRemark.Properties.Appearance.Options.UseFont = true;
-            this.edtRemark.Size = new System.Drawing.Size(121, 118);
+            this.edtRemark.Size = new System.Drawing.Size(190, 118);
             this.edtRemark.TabIndex = 0;
             // 
             // rgpT144Leaf
@@ -511,7 +511,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "跟料"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "质量"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "拓展位")});
-            this.rgpT144Leaf.Size = new System.Drawing.Size(462, 44);
+            this.rgpT144Leaf.Size = new System.Drawing.Size(422, 44);
             this.rgpT144Leaf.TabIndex = 0;
             // 
             // splitContainerControl3
@@ -539,15 +539,15 @@
             this.splitContainerControl3.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl3.Panel2.ShowCaption = true;
             this.splitContainerControl3.Panel2.Text = "请选择一个参与本次会诊的人员作为最终责任人";
-            this.splitContainerControl3.Size = new System.Drawing.Size(1012, 693);
-            this.splitContainerControl3.SplitterPosition = 521;
+            this.splitContainerControl3.Size = new System.Drawing.Size(902, 599);
+            this.splitContainerControl3.SplitterPosition = 451;
             this.splitContainerControl3.TabIndex = 4;
             this.splitContainerControl3.Text = "请确认当前正在会诊的安灯事件的责任";
             // 
             // frmAndonEventConsultationConfirm
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(1130, 835);
+            this.ClientSize = new System.Drawing.Size(1020, 741);
             this.Controls.Add(this.splitContainerControl3);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.groupControl1);
