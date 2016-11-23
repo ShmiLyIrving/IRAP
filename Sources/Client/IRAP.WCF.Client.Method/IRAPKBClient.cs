@@ -814,5 +814,152 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取有效期间类型清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="languageID">语言标识</param>
+        public void sfn_GetList_ValidPeriodTypes(
+            int communityID,
+            int languageID,
+            ref List<PeriodType> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("languageID", languageID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_GetList_ValidPeriodTypes，输入参数：" +
+                        "CommunityID={0}|LanguageID={1}",
+                        communityID, languageID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.Kanban.dll",
+                        "IRAP.BL.Kanban.IRAPKanban",
+                        "sfn_GetList_ValidPeriodTypes",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<PeriodType>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取期间起止时间
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="periodTypeCode">期间类型代码</param>
+        /// <param name="datetimeSpec">指定的日期时间点</param>
+        /// <param name="periodOffset">期间偏移量</param>
+        public void sfn_Period(
+            int communityID,
+            string periodTypeCode,
+            DateTime datetimeSpec,
+            int periodOffset,
+            ref Period data,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                data = new Period()
+                {
+                    BeginDT = DateTime.Now,
+                    EndDT = DateTime.Now,
+                };
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("periodTypeCode", periodTypeCode);
+                hashParams.Add("datetimeSpec", datetimeSpec);
+                hashParams.Add("periodOffset", periodOffset);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_Period，输入参数：" +
+                        "CommunityID={0}|PeriodTypeCode={1}|DatetimeSpec={2}|"+
+                        "PeriodOffset={3}",
+                        communityID,
+                        periodTypeCode,
+                        datetimeSpec,
+                        periodOffset),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.Kanban.dll",
+                            "IRAP.BL.Kanban.IRAPKanban",
+                            "sfn_Period",
+                            hashParams,
+                            out errCode,
+                            out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        data = (Period)rlt;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
