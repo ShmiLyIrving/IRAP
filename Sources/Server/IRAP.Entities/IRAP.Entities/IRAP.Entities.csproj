@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AndonCallPerson.cs" />
     <Compile Include="AndonRspedEventInfo.cs" />
+    <Compile Include="FVS\AndonEventFact.cs" />
     <Compile Include="FVS\EventStakeholder.cs" />
     <Compile Include="FVS\EventsToConsultation.cs" />
     <Compile Include="Kanban\SelectedLeaf.cs" />

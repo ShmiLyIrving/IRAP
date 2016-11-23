@@ -1555,5 +1555,89 @@ namespace IRAP.BL.FVS
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取产线的安灯事件列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="t179LeafID">安灯事件类型叶标识</param>
+        /// <param name="beginDate">开始时间</param>
+        /// <param name="endDate">结束时间</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[AndonEventFact]</returns>
+        public IRAPJsonResult ufn_GetFactList_AndonEvents(
+            int communityID,
+            int t134LeafID,
+            int t179LeafID,
+            string beginDate,
+            string endDate,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className, 
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<AndonEventFact> datas = new List<AndonEventFact>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T134LeafID", DbType.Int32, t134LeafID));
+                paramList.Add(new IRAPProcParameter("@T179LeafID", DbType.Int32, t179LeafID));
+                paramList.Add(new IRAPProcParameter("@BeginDate", DbType.String, beginDate));
+                paramList.Add(new IRAPProcParameter("@EndDate", DbType.String, endDate));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPFVS.dbo.ufn_GetFactList_AndonEvents，参数：CommunityID={0}|" +
+                        "T134LeafID={1}|T179LeafID={2}|BeginDate={3}|EndDate={4}|SysLogID={5}",
+                        communityID, t134LeafID, t179LeafID, beginDate, endDate, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPFVS..ufn_GetFactList_AndonEvents(" +
+                            "@CommunityID, @T134LeafID, @T179LeafID, "+
+                            "@BeginDate, @EndDate, @SysLogID)";
+
+                        IList<AndonEventFact> lstDatas =
+                            conn.CallTableFunc<AndonEventFact>(strSQL, paramList);
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPFVS..ufn_GetFactList_AndonEvents 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
