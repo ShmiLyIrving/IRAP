@@ -156,7 +156,7 @@
             this.groupControl3.Location = new System.Drawing.Point(0, 0);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl3.Size = new System.Drawing.Size(529, 83);
+            this.groupControl3.Size = new System.Drawing.Size(529, 82);
             this.groupControl3.TabIndex = 6;
             this.groupControl3.Text = "现场原因";
             // 
@@ -165,7 +165,7 @@
             this.rgpT144Leaf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rgpT144Leaf.Location = new System.Drawing.Point(7, 29);
             this.rgpT144Leaf.Name = "rgpT144Leaf";
-            this.rgpT144Leaf.Properties.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rgpT144Leaf.Properties.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rgpT144Leaf.Properties.Appearance.Options.UseFont = true;
             this.rgpT144Leaf.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(0)), "系统"),
@@ -179,7 +179,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(8)), "跟料"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(9)), "质量"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(10)), "拓展位")});
-            this.rgpT144Leaf.Size = new System.Drawing.Size(515, 47);
+            this.rgpT144Leaf.Size = new System.Drawing.Size(515, 46);
             this.rgpT144Leaf.TabIndex = 1;
             // 
             // frmAndonEventClosePropertiesVisteon

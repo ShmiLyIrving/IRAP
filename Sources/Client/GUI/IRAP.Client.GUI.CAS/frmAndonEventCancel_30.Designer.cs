@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventCancel_30));
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
             this.tpAndonEvents = new DevExpress.XtraTab.XtraTabPage();
@@ -43,9 +42,9 @@
             this.rpschkSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.grdclmnEventType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.tpIDCardnoRead = new DevExpress.XtraTab.XtraTabPage();
             this.pnlIDCardNoRead = new DevExpress.XtraEditors.PanelControl();
             this.edtIDCardNo = new DevExpress.XtraEditors.TextEdit();
@@ -117,14 +116,14 @@
             this.tpAndonEvents.Controls.Add(this.btnCancel);
             this.tpAndonEvents.Controls.Add(this.gpcAndonEvents);
             this.tpAndonEvents.Name = "tpAndonEvents";
-            this.tpAndonEvents.Size = new System.Drawing.Size(910, 499);
+            this.tpAndonEvents.Size = new System.Drawing.Size(911, 500);
             // 
             // btnReturn
             // 
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReturn.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReturn.Appearance.Options.UseFont = true;
-            this.btnReturn.Location = new System.Drawing.Point(778, 445);
+            this.btnReturn.Location = new System.Drawing.Point(779, 446);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(117, 36);
             this.btnReturn.TabIndex = 3;
@@ -136,7 +135,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(778, 17);
+            this.btnCancel.Location = new System.Drawing.Point(779, 17);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(117, 36);
             this.btnCancel.TabIndex = 2;
@@ -156,23 +155,20 @@
             this.gpcAndonEvents.Location = new System.Drawing.Point(22, 17);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(733, 464);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(734, 465);
             this.gpcAndonEvents.TabIndex = 0;
             this.gpcAndonEvents.Text = "您触发的安灯事件";
             // 
             // grdAndonEvents
             // 
             this.grdAndonEvents.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.RelationName = "Level1";
-            this.grdAndonEvents.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
             this.grdAndonEvents.Location = new System.Drawing.Point(7, 31);
             this.grdAndonEvents.MainView = this.grdvAndonEvents;
             this.grdAndonEvents.Name = "grdAndonEvents";
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.rpschkSelect,
             this.repositoryItemMemoEdit1});
-            this.grdAndonEvents.Size = new System.Drawing.Size(719, 426);
+            this.grdAndonEvents.Size = new System.Drawing.Size(720, 427);
             this.grdAndonEvents.TabIndex = 0;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvAndonEvents});
@@ -231,6 +227,7 @@
             // grdclmnEventDescription
             // 
             this.grdclmnEventDescription.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnEventDescription.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnEventDescription.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.grdclmnEventDescription.Caption = "事件描述";
             this.grdclmnEventDescription.ColumnEdit = this.repositoryItemMemoEdit1;
@@ -241,6 +238,10 @@
             this.grdclmnEventDescription.Visible = true;
             this.grdclmnEventDescription.VisibleIndex = 1;
             this.grdclmnEventDescription.Width = 388;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // grdclmnCallingTime
             // 
@@ -274,15 +275,11 @@
             this.grdclmnTimeElapsed.VisibleIndex = 3;
             this.grdclmnTimeElapsed.Width = 90;
             // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
-            // 
             // tpIDCardnoRead
             // 
             this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
             this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(910, 499);
+            this.tpIDCardnoRead.Size = new System.Drawing.Size(911, 500);
             // 
             // pnlIDCardNoRead
             // 

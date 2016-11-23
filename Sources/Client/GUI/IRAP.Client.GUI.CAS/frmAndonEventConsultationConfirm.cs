@@ -96,9 +96,9 @@ namespace IRAP.Client.GUI.CAS
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
                 if (errCode != 0)
-                    IRAPMessageBox.Instance.ShowErrorMessage(
-                        errText,
-                        Text);
+                    IRAPMessageBox.Instance.ShowErrorMessage(errText, Text);
+                else
+                    IRAPMessageBox.Instance.ShowInformation(errText, Text);
             }
             catch (Exception error)
             {
@@ -464,12 +464,21 @@ namespace IRAP.Client.GUI.CAS
                 return;
             }
 
+            if (remark.Trim() == "")
+            {
+                IRAPMessageBox.Instance.ShowErrorMessage("请输入备注信息！", Text);
+                return;
+            }
+
             if (eventTypeLeaf == 0)
                 return;
             if (objectCode != "" && failureModeLeafID == 0)
                 return;
             if (rgpT144Leaf.SelectedIndex < 0)
+            {
+                IRAPMessageBox.Instance.ShowErrorMessage("请选择现场原因！", Text);
                 return;
+            }
             t144LeafID = (rgpT144Leaf.Properties.Items[rgpT144Leaf.SelectedIndex].Value as AnomalyCauseType).T144LeafID;
 
             string userCode = "";
@@ -480,6 +489,7 @@ namespace IRAP.Client.GUI.CAS
             }
             else
             {
+                IRAPMessageBox.Instance.ShowErrorMessage("请选择责任人！", Text);
                 return;
             }
 

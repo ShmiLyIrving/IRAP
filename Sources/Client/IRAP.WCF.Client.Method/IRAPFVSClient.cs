@@ -882,6 +882,87 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 安灯事件撤销
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="eventFactID">安灯事件标识</param>
+        /// <param name="opID">业务操作标识</param>
+        /// <param name="userCode">撤销人用户代码</param>
+        /// <param name="veriCode">撤销授权码(短信)</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_AndonEventCancel_Visteon(
+            int communityID,
+            long eventFactID,
+            int opID,
+            string userCode,
+            string veriCode,
+            string cancelReason,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("eventFactID", eventFactID);
+                    hashParams.Add("opID", opID);
+                    hashParams.Add("userCode", userCode);
+                    hashParams.Add("veriCode", veriCode);
+                    hashParams.Add("cancelReason", cancelReason);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 usp_AndonEventCancel，输入参数：" +
+                            "CommunityID={0}|EventFactID={1}|OpID={2}|" +
+                            "UserCode={3}|VeriCode={4}|CancelReason={5}|"+
+                            "SysLogID={6}",
+                            communityID, eventFactID, opID, userCode,
+                            veriCode, cancelReason, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.Andon",
+                        "usp_AndonEventCancel_Visteon",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取本人已响应未关闭的安灯事件清单
         /// </summary>
         /// <param name="communityID">社区标识</param>

@@ -122,6 +122,12 @@
     <Compile Include="frmCustomAndonForm.Designer.cs">
       <DependentUpon>frmCustomAndonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGetHisAndonEvents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGetHisAndonEvents.designer.cs">
+      <DependentUpon>frmGetHisAndonEvents.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKanbanPS_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -268,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomAndonForm.resx">
       <DependentUpon>frmCustomAndonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGetHisAndonEvents.resx">
+      <DependentUpon>frmGetHisAndonEvents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKanbanPS_30.resx">
       <DependentUpon>frmKanbanPS_30.cs</DependentUpon>

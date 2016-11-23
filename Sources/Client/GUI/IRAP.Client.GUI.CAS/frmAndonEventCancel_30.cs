@@ -342,7 +342,28 @@ namespace IRAP.Client.GUI.CAS
 
         private void CancelAndonEvent(AndonEventInfo andonEvent, string veriCode)
         {
-            string strProcedureName = className + ".CancelAndonEvent";
+            #region 伟世通要求在撤销的时候，输入撤销原因
+            string reason = "";
+            if (IRAPUser.Instance.CommunityID == 60006)
+            {
+                reason = GetString.Instance.Show(Text, "请输入当前安灯事件撤销原因：");
+                if (reason.Trim() == "")
+                {
+                    IRAPMessageBox.Instance.Show(
+                        "撤销原因未填写，不能撤销安灯事件！",
+                        Text,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            #endregion
+
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -353,16 +374,36 @@ namespace IRAP.Client.GUI.CAS
                 #region 保存
                 try
                 {
-                    IRAPFVSClient.Instance.usp_AndonEventCancel(
-                        IRAPUser.Instance.CommunityID,
-                        andonEvent.EventFactID,
-                        andonEvent.OpID,
-                        this.staffInfo.UserCode,
-                        veriCode,
-                        IRAPUser.Instance.SysLogID,
-                        out errCode,
-                        out errText);
-                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    switch (IRAPUser.Instance.CommunityID)
+                    {
+                        case 60006:
+                            IRAPFVSClient.Instance.usp_AndonEventCancel_Visteon(
+                                IRAPUser.Instance.CommunityID,
+                                andonEvent.EventFactID,
+                                andonEvent.OpID,
+                                this.staffInfo.UserCode,
+                                veriCode,
+                                reason,
+                                IRAPUser.Instance.SysLogID,
+                                out errCode,
+                                out errText);
+                            break;
+                        default:
+                            IRAPFVSClient.Instance.usp_AndonEventCancel(
+                                IRAPUser.Instance.CommunityID,
+                                andonEvent.EventFactID,
+                                andonEvent.OpID,
+                                this.staffInfo.UserCode,
+                                veriCode,
+                                IRAPUser.Instance.SysLogID,
+                                out errCode,
+                                out errText);
+                            break;
+                    }
+
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText), 
+                        strProcedureName);
                     if (errCode != 0)
                     {
                         isShowMessageBeforeActive = true;

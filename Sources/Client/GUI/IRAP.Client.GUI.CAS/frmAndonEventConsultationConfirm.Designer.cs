@@ -495,7 +495,7 @@
             this.rgpT144Leaf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rgpT144Leaf.Location = new System.Drawing.Point(5, 5);
             this.rgpT144Leaf.Name = "rgpT144Leaf";
-            this.rgpT144Leaf.Properties.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rgpT144Leaf.Properties.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rgpT144Leaf.Properties.Appearance.Options.UseFont = true;
             this.rgpT144Leaf.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "系统"),
