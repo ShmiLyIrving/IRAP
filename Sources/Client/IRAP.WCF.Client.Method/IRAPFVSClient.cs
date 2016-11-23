@@ -2260,5 +2260,90 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取产线的安灯事件列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="t179LeafID">安灯事件类型叶标识</param>
+        /// <param name="beginDate">开始时间</param>
+        /// <param name="endDate">结束时间</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetFactList_AndonEvents(
+            int communityID,
+            int t134LeafID,
+            int t179LeafID,
+            string beginDate,
+            string endDate,
+            long sysLogID,
+            ref List<AndonEventFact> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("t134LeafID", t134LeafID);
+                    hashParams.Add("t179LeafID", t179LeafID);
+                    hashParams.Add("beginDate", beginDate);
+                    hashParams.Add("endDate", endDate);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_GetFactList_AndonEvents，输入参数：" +
+                            "CommunityID={0}|T134LeafID={1}|T179LeafID={2}"+
+                            "BeginDate={3}|EndDate={4}|SysLogID={5}",
+                            communityID, t134LeafID, t179LeafID, beginDate, 
+                            endDate, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetFactList_AndonEvents",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<AndonEventFact>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

@@ -43,10 +43,10 @@
             this.grdclmnRespondedTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerControl4 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.lstEventType = new DevExpress.XtraEditors.ImageListBoxControl();
             this.imgsAndonTypes = new DevExpress.Utils.ImageCollection(this.components);
-            this.splitContainerControl4 = new DevExpress.XtraEditors.SplitContainerControl();
             this.tcEventTypes = new DevExpress.XtraTab.XtraTabControl();
             this.tpEmpty = new DevExpress.XtraTab.XtraTabPage();
             this.tpR = new DevExpress.XtraTab.XtraTabPage();
@@ -74,12 +74,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             this.splitContainerControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl4)).BeginInit();
+            this.splitContainerControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lstEventType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgsAndonTypes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl4)).BeginInit();
-            this.splitContainerControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcEventTypes)).BeginInit();
             this.tcEventTypes.SuspendLayout();
             this.tpR.SuspendLayout();
@@ -281,7 +281,7 @@
             this.splitContainerControl2.IsSplitterFixed = true;
             this.splitContainerControl2.Location = new System.Drawing.Point(5, 5);
             this.splitContainerControl2.Name = "splitContainerControl2";
-            this.splitContainerControl2.Panel1.Controls.Add(this.splitContainerControl1);
+            this.splitContainerControl2.Panel1.Controls.Add(this.splitContainerControl4);
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.rgpT144Leaf);
             this.splitContainerControl2.Panel2.Padding = new System.Windows.Forms.Padding(5);
@@ -291,13 +291,34 @@
             this.splitContainerControl2.TabIndex = 8;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
+            // splitContainerControl4
+            // 
+            this.splitContainerControl4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl4.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
+            this.splitContainerControl4.Horizontal = false;
+            this.splitContainerControl4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl4.Name = "splitContainerControl4";
+            this.splitContainerControl4.Panel1.Controls.Add(this.splitContainerControl1);
+            this.splitContainerControl4.Panel1.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl4.Panel1.Text = "Panel1";
+            this.splitContainerControl4.Panel2.AppearanceCaption.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl4.Panel2.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl4.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl4.Panel2.Controls.Add(this.edtRemark);
+            this.splitContainerControl4.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl4.Panel2.ShowCaption = true;
+            this.splitContainerControl4.Panel2.Text = "备注信息";
+            this.splitContainerControl4.Size = new System.Drawing.Size(501, 503);
+            this.splitContainerControl4.TabIndex = 0;
+            this.splitContainerControl4.Text = "splitContainerControl4";
+            // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.AppearanceCaption.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl1.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl1.CaptionLocation = DevExpress.Utils.Locations.Top;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl1.Location = new System.Drawing.Point(5, 5);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.AppearanceCaption.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl1.Panel1.AppearanceCaption.Options.UseFont = true;
@@ -307,11 +328,11 @@
             this.splitContainerControl1.Panel1.ShowCaption = true;
             this.splitContainerControl1.Panel1.Text = "事件类型和失效模式";
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl4);
+            this.splitContainerControl1.Panel2.Controls.Add(this.tcEventTypes);
             this.splitContainerControl1.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.ShowCaption = true;
-            this.splitContainerControl1.Size = new System.Drawing.Size(501, 503);
+            this.splitContainerControl1.Size = new System.Drawing.Size(491, 387);
             this.splitContainerControl1.SplitterPosition = 207;
             this.splitContainerControl1.TabIndex = 7;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -324,7 +345,7 @@
             this.lstEventType.ImageList = this.imgsAndonTypes;
             this.lstEventType.Location = new System.Drawing.Point(5, 5);
             this.lstEventType.Name = "lstEventType";
-            this.lstEventType.Size = new System.Drawing.Size(193, 467);
+            this.lstEventType.Size = new System.Drawing.Size(193, 351);
             this.lstEventType.TabIndex = 6;
             this.lstEventType.SelectedIndexChanged += new System.EventHandler(this.lstEventType_SelectedIndexChanged);
             // 
@@ -341,28 +362,6 @@
             this.imgsAndonTypes.Images.SetKeyName(6, "D1_48.bmp");
             this.imgsAndonTypes.Images.SetKeyName(7, "F1_48.bmp");
             // 
-            // splitContainerControl4
-            // 
-            this.splitContainerControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl4.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-            this.splitContainerControl4.Horizontal = false;
-            this.splitContainerControl4.Location = new System.Drawing.Point(5, 5);
-            this.splitContainerControl4.Name = "splitContainerControl4";
-            this.splitContainerControl4.Panel1.Controls.Add(this.tcEventTypes);
-            this.splitContainerControl4.Panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainerControl4.Panel1.Text = "Panel1";
-            this.splitContainerControl4.Panel2.AppearanceCaption.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainerControl4.Panel2.AppearanceCaption.Options.UseFont = true;
-            this.splitContainerControl4.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.splitContainerControl4.Panel2.Controls.Add(this.edtRemark);
-            this.splitContainerControl4.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainerControl4.Panel2.ShowCaption = true;
-            this.splitContainerControl4.Panel2.Text = "备注信息";
-            this.splitContainerControl4.Size = new System.Drawing.Size(274, 489);
-            this.splitContainerControl4.SplitterPosition = 154;
-            this.splitContainerControl4.TabIndex = 0;
-            this.splitContainerControl4.Text = "splitContainerControl4";
-            // 
             // tcEventTypes
             // 
             this.tcEventTypes.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -370,7 +369,7 @@
             this.tcEventTypes.Name = "tcEventTypes";
             this.tcEventTypes.SelectedTabPage = this.tpEmpty;
             this.tcEventTypes.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.tcEventTypes.Size = new System.Drawing.Size(264, 319);
+            this.tcEventTypes.Size = new System.Drawing.Size(264, 373);
             this.tcEventTypes.TabIndex = 0;
             this.tcEventTypes.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpEmpty,
@@ -385,7 +384,7 @@
             // 
             this.tpEmpty.Name = "tpEmpty";
             this.tpEmpty.Padding = new System.Windows.Forms.Padding(5);
-            this.tpEmpty.Size = new System.Drawing.Size(259, 314);
+            this.tpEmpty.Size = new System.Drawing.Size(259, 368);
             this.tpEmpty.Text = "Empty";
             // 
             // tpR
@@ -393,7 +392,7 @@
             this.tpR.Controls.Add(this.ucDeviceFailureModes);
             this.tpR.Name = "tpR";
             this.tpR.Padding = new System.Windows.Forms.Padding(5);
-            this.tpR.Size = new System.Drawing.Size(259, 314);
+            this.tpR.Size = new System.Drawing.Size(259, 368);
             this.tpR.Text = "R";
             // 
             // ucDeviceFailureModes
@@ -401,7 +400,7 @@
             this.ucDeviceFailureModes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucDeviceFailureModes.Location = new System.Drawing.Point(5, 5);
             this.ucDeviceFailureModes.Name = "ucDeviceFailureModes";
-            this.ucDeviceFailureModes.Size = new System.Drawing.Size(249, 304);
+            this.ucDeviceFailureModes.Size = new System.Drawing.Size(249, 358);
             this.ucDeviceFailureModes.T133Code = "";
             this.ucDeviceFailureModes.TabIndex = 0;
             // 
@@ -410,7 +409,7 @@
             this.tpM.Controls.Add(this.ucFailureModesM);
             this.tpM.Name = "tpM";
             this.tpM.Padding = new System.Windows.Forms.Padding(5);
-            this.tpM.Size = new System.Drawing.Size(259, 314);
+            this.tpM.Size = new System.Drawing.Size(259, 368);
             this.tpM.Text = "M";
             // 
             // ucFailureModesM
@@ -418,7 +417,7 @@
             this.ucFailureModesM.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesM.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesM.Name = "ucFailureModesM";
-            this.ucFailureModesM.Size = new System.Drawing.Size(249, 304);
+            this.ucFailureModesM.Size = new System.Drawing.Size(249, 358);
             this.ucFailureModesM.T179LeafID = 0;
             this.ucFailureModesM.TabIndex = 0;
             // 
@@ -427,7 +426,7 @@
             this.tpQ.Controls.Add(this.ucFailureModesQ);
             this.tpQ.Name = "tpQ";
             this.tpQ.Padding = new System.Windows.Forms.Padding(5);
-            this.tpQ.Size = new System.Drawing.Size(259, 314);
+            this.tpQ.Size = new System.Drawing.Size(259, 368);
             this.tpQ.Text = "Q";
             // 
             // ucFailureModesQ
@@ -435,7 +434,7 @@
             this.ucFailureModesQ.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesQ.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesQ.Name = "ucFailureModesQ";
-            this.ucFailureModesQ.Size = new System.Drawing.Size(249, 304);
+            this.ucFailureModesQ.Size = new System.Drawing.Size(249, 358);
             this.ucFailureModesQ.T179LeafID = 0;
             this.ucFailureModesQ.TabIndex = 0;
             // 
@@ -444,7 +443,7 @@
             this.tpT.Controls.Add(this.ucFailureModesT);
             this.tpT.Name = "tpT";
             this.tpT.Padding = new System.Windows.Forms.Padding(5);
-            this.tpT.Size = new System.Drawing.Size(259, 314);
+            this.tpT.Size = new System.Drawing.Size(259, 368);
             this.tpT.Text = "T";
             // 
             // ucFailureModesT
@@ -452,7 +451,7 @@
             this.ucFailureModesT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesT.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesT.Name = "ucFailureModesT";
-            this.ucFailureModesT.Size = new System.Drawing.Size(249, 304);
+            this.ucFailureModesT.Size = new System.Drawing.Size(249, 358);
             this.ucFailureModesT.T179LeafID = 0;
             this.ucFailureModesT.TabIndex = 0;
             // 
@@ -461,7 +460,7 @@
             this.tpS.Controls.Add(this.ucFailureModesS);
             this.tpS.Name = "tpS";
             this.tpS.Padding = new System.Windows.Forms.Padding(5);
-            this.tpS.Size = new System.Drawing.Size(259, 314);
+            this.tpS.Size = new System.Drawing.Size(259, 368);
             this.tpS.Text = "S";
             // 
             // ucFailureModesS
@@ -469,7 +468,7 @@
             this.ucFailureModesS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFailureModesS.Location = new System.Drawing.Point(5, 5);
             this.ucFailureModesS.Name = "ucFailureModesS";
-            this.ucFailureModesS.Size = new System.Drawing.Size(249, 304);
+            this.ucFailureModesS.Size = new System.Drawing.Size(249, 358);
             this.ucFailureModesS.T179LeafID = 0;
             this.ucFailureModesS.TabIndex = 0;
             // 
@@ -477,7 +476,7 @@
             // 
             this.tpO.Name = "tpO";
             this.tpO.Padding = new System.Windows.Forms.Padding(5);
-            this.tpO.Size = new System.Drawing.Size(259, 314);
+            this.tpO.Size = new System.Drawing.Size(259, 368);
             this.tpO.Text = "O";
             // 
             // edtRemark
@@ -488,7 +487,7 @@
             this.edtRemark.Properties.AcceptsReturn = false;
             this.edtRemark.Properties.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtRemark.Properties.Appearance.Options.UseFont = true;
-            this.edtRemark.Size = new System.Drawing.Size(260, 118);
+            this.edtRemark.Size = new System.Drawing.Size(487, 64);
             this.edtRemark.TabIndex = 0;
             // 
             // rgpT144Leaf
@@ -569,12 +568,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl4)).EndInit();
+            this.splitContainerControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lstEventType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgsAndonTypes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl4)).EndInit();
-            this.splitContainerControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tcEventTypes)).EndInit();
             this.tcEventTypes.ResumeLayout(false);
             this.tpR.ResumeLayout(false);

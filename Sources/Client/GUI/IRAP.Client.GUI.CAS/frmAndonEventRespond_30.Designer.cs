@@ -302,7 +302,7 @@
             // 
             this.tpIDCardnoRead.Controls.Add(this.pnlIDCardNoRead);
             this.tpIDCardnoRead.Name = "tpIDCardnoRead";
-            this.tpIDCardnoRead.Size = new System.Drawing.Size(1014, 679);
+            this.tpIDCardnoRead.Size = new System.Drawing.Size(1015, 680);
             // 
             // pnlIDCardNoRead
             // 
@@ -350,6 +350,7 @@
             this.Controls.Add(this.tcMain);
             this.Name = "frmAndonEventRespond_30";
             this.Text = "安灯事件响应";
+            this.Activated += new System.EventHandler(this.frmAndonEventRespond_30_Activated);
             this.Shown += new System.EventHandler(this.frmAndonEventRespond_30_Shown);
             this.Resize += new System.EventHandler(this.frmAndonEventRespond_30_Resize);
             this.Controls.SetChildIndex(this.panelControl1, 0);

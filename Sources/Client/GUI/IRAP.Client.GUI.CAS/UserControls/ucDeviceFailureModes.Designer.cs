@@ -119,7 +119,6 @@
             this.grdclmnEventDescription});
             this.grdvAndonCallObjects.GridControl = this.grdAndonCallObjects;
             this.grdvAndonCallObjects.Name = "grdvAndonCallObjects";
-            this.grdvAndonCallObjects.OptionsView.ColumnAutoWidth = false;
             this.grdvAndonCallObjects.OptionsView.RowAutoHeight = true;
             this.grdvAndonCallObjects.OptionsView.ShowGroupPanel = false;
             this.grdvAndonCallObjects.RowHeight = 30;

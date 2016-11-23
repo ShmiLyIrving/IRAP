@@ -40,12 +40,14 @@
             this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEventCauseConfirm = new DevExpress.XtraEditors.SimpleButton();
             this.btnEventClose = new DevExpress.XtraEditors.SimpleButton();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
             this.gpcAndonEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -91,6 +93,8 @@
             this.grdAndonEvents.Location = new System.Drawing.Point(12, 36);
             this.grdAndonEvents.MainView = this.grdvAndonEvents;
             this.grdAndonEvents.Name = "grdAndonEvents";
+            this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemMemoEdit1});
             this.grdAndonEvents.Size = new System.Drawing.Size(918, 502);
             this.grdAndonEvents.TabIndex = 1;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -98,7 +102,7 @@
             // 
             // grdvAndonEvents
             // 
-            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseFont = true;
             this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -117,7 +121,7 @@
             this.grdvAndonEvents.GridControl = this.grdAndonEvents;
             this.grdvAndonEvents.Name = "grdvAndonEvents";
             this.grdvAndonEvents.OptionsBehavior.Editable = false;
-            this.grdvAndonEvents.OptionsView.ColumnAutoWidth = false;
+            this.grdvAndonEvents.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.grdvAndonEvents.OptionsView.RowAutoHeight = true;
             this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
             this.grdvAndonEvents.RowHeight = 30;
@@ -127,28 +131,38 @@
             // 
             this.grdclmnEventType.Caption = "事件类型";
             this.grdclmnEventType.FieldName = "EventType";
+            this.grdclmnEventType.MaxWidth = 90;
+            this.grdclmnEventType.MinWidth = 90;
             this.grdclmnEventType.Name = "grdclmnEventType";
             this.grdclmnEventType.OptionsColumn.AllowEdit = false;
             this.grdclmnEventType.OptionsColumn.ReadOnly = true;
             this.grdclmnEventType.Visible = true;
             this.grdclmnEventType.VisibleIndex = 0;
-            this.grdclmnEventType.Width = 200;
+            this.grdclmnEventType.Width = 90;
             // 
             // grdclmnEventDescription
             // 
+            this.grdclmnEventDescription.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnEventDescription.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnEventDescription.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.grdclmnEventDescription.Caption = "事件描述";
+            this.grdclmnEventDescription.ColumnEdit = this.repositoryItemMemoEdit1;
             this.grdclmnEventDescription.FieldName = "EventDescription";
             this.grdclmnEventDescription.Name = "grdclmnEventDescription";
             this.grdclmnEventDescription.OptionsColumn.AllowEdit = false;
             this.grdclmnEventDescription.OptionsColumn.ReadOnly = true;
             this.grdclmnEventDescription.Visible = true;
             this.grdclmnEventDescription.VisibleIndex = 1;
-            this.grdclmnEventDescription.Width = 300;
+            this.grdclmnEventDescription.Width = 364;
             // 
             // grdclmnProductionLineStatus
             // 
+            this.grdclmnProductionLineStatus.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnProductionLineStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnProductionLineStatus.Caption = "是否已停线";
             this.grdclmnProductionLineStatus.FieldName = "ProductionLineStatus";
+            this.grdclmnProductionLineStatus.MaxWidth = 75;
+            this.grdclmnProductionLineStatus.MinWidth = 75;
             this.grdclmnProductionLineStatus.Name = "grdclmnProductionLineStatus";
             this.grdclmnProductionLineStatus.Visible = true;
             this.grdclmnProductionLineStatus.VisibleIndex = 2;
@@ -160,12 +174,14 @@
             this.grdclmnCallingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnCallingTime.Caption = "呼叫时间";
             this.grdclmnCallingTime.FieldName = "CallingTime";
+            this.grdclmnCallingTime.MaxWidth = 90;
+            this.grdclmnCallingTime.MinWidth = 90;
             this.grdclmnCallingTime.Name = "grdclmnCallingTime";
             this.grdclmnCallingTime.OptionsColumn.AllowEdit = false;
             this.grdclmnCallingTime.OptionsColumn.ReadOnly = true;
             this.grdclmnCallingTime.Visible = true;
             this.grdclmnCallingTime.VisibleIndex = 3;
-            this.grdclmnCallingTime.Width = 120;
+            this.grdclmnCallingTime.Width = 90;
             // 
             // grdclmnRespondingTime
             // 
@@ -174,17 +190,23 @@
             this.grdclmnRespondingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnRespondingTime.Caption = "响应时间";
             this.grdclmnRespondingTime.FieldName = "RespondingTime";
+            this.grdclmnRespondingTime.MaxWidth = 90;
+            this.grdclmnRespondingTime.MinWidth = 90;
             this.grdclmnRespondingTime.Name = "grdclmnRespondingTime";
             this.grdclmnRespondingTime.Visible = true;
             this.grdclmnRespondingTime.VisibleIndex = 4;
+            this.grdclmnRespondingTime.Width = 90;
             // 
             // grdclmnFirstResponder
             // 
             this.grdclmnFirstResponder.Caption = "责任响应人";
             this.grdclmnFirstResponder.FieldName = "FirstResponder";
+            this.grdclmnFirstResponder.MaxWidth = 80;
+            this.grdclmnFirstResponder.MinWidth = 80;
             this.grdclmnFirstResponder.Name = "grdclmnFirstResponder";
             this.grdclmnFirstResponder.Visible = true;
             this.grdclmnFirstResponder.VisibleIndex = 5;
+            this.grdclmnFirstResponder.Width = 80;
             // 
             // grdclmnTimeElapsed
             // 
@@ -193,12 +215,14 @@
             this.grdclmnTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnTimeElapsed.Caption = "已过时间";
             this.grdclmnTimeElapsed.FieldName = "TimeElapsed";
+            this.grdclmnTimeElapsed.MaxWidth = 90;
+            this.grdclmnTimeElapsed.MinWidth = 90;
             this.grdclmnTimeElapsed.Name = "grdclmnTimeElapsed";
             this.grdclmnTimeElapsed.OptionsColumn.AllowEdit = false;
             this.grdclmnTimeElapsed.OptionsColumn.ReadOnly = true;
             this.grdclmnTimeElapsed.Visible = true;
             this.grdclmnTimeElapsed.VisibleIndex = 6;
-            this.grdclmnTimeElapsed.Width = 120;
+            this.grdclmnTimeElapsed.Width = 90;
             // 
             // btnEventCauseConfirm
             // 
@@ -226,6 +250,10 @@
             this.btnEventClose.Text = "关闭呼叫";
             this.btnEventClose.Click += new System.EventHandler(this.btnEventClose_Click);
             // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            // 
             // frmAndonEventClose_30
             // 
             this.Appearance.Options.UseFont = true;
@@ -247,6 +275,7 @@
             this.gpcAndonEvents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -265,5 +294,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnFirstResponder;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnTimeElapsed;
         private DevExpress.XtraEditors.SimpleButton btnEventClose;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
     }
 }

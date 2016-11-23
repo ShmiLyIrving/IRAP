@@ -26,6 +26,8 @@ namespace IRAP.Client.GUI.CAS
         private List<AndonRspEventInfo> andonEventsToRespond = new List<AndonRspEventInfo>();
         private List<AndonRspEventInfo> andonEventsInList = new List<AndonRspEventInfo>();
 
+        bool isShowMessageBeforeActive = false;
+
         public frmAndonEventRespond_30()
         {
             InitializeComponent();
@@ -76,7 +78,7 @@ namespace IRAP.Client.GUI.CAS
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            if (e.KeyCode== Keys.Return)
+            if (e.KeyCode == Keys.Return)
             {
                 if (edtIDCardNo.Text.Trim() != "")
                 {
@@ -98,7 +100,13 @@ namespace IRAP.Client.GUI.CAS
 
                         if (errCode != 0)
                         {
-                            IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            isShowMessageBeforeActive = true;
+                            IRAPMessageBox.Instance.Show(
+                                errText, 
+                                Text, 
+                                MessageBoxButtons.OK, 
+                                MessageBoxIcon.Error);
+
                             edtIDCardNo.Text = "";
                             edtIDCardNo.Focus();
                             return;
@@ -129,14 +137,26 @@ namespace IRAP.Client.GUI.CAS
                                     }
                                     else
                                     {
-                                        IRAPMessageBox.Instance.Show("当前站点没有呼叫您的安灯事件！", Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                        isShowMessageBeforeActive = true;
+                                        IRAPMessageBox.Instance.Show(
+                                            "当前站点没有呼叫您的安灯事件！", 
+                                            Text, 
+                                            MessageBoxButtons.OK, 
+                                            MessageBoxIcon.Exclamation);
+
                                         edtIDCardNo.Text = "";
                                         edtIDCardNo.Focus();
                                     }
                                 }
                                 else
                                 {
-                                    IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    isShowMessageBeforeActive = true;
+                                    IRAPMessageBox.Instance.Show(
+                                        errText, 
+                                        Text, 
+                                        MessageBoxButtons.OK, 
+                                        MessageBoxIcon.Error);
+
                                     edtIDCardNo.Text = "";
                                     edtIDCardNo.Focus();
                                     return;
@@ -145,7 +165,14 @@ namespace IRAP.Client.GUI.CAS
                             catch (Exception error)
                             {
                                 WriteLog.Instance.Write(error.Message, strProcedureName);
-                                IRAPMessageBox.Instance.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                isShowMessageBeforeActive = true;
+                                IRAPMessageBox.Instance.Show(
+                                    error.Message, 
+                                    Text, 
+                                    MessageBoxButtons.OK, 
+                                    MessageBoxIcon.Error);
+
                                 grdAndonEvents.DataSource = null;
 
                                 edtIDCardNo.Text = "";
@@ -171,7 +198,13 @@ namespace IRAP.Client.GUI.CAS
             }
             if (intSelectedCount <= 0)
             {
-                IRAPMessageBox.Instance.Show("至少要选择一个安灯事件！", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isShowMessageBeforeActive = true;
+                IRAPMessageBox.Instance.Show(
+                    "至少要选择一个安灯事件！", 
+                    Text, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+
                 grdAndonEvents.Focus();
                 return;
             }
@@ -218,7 +251,14 @@ namespace IRAP.Client.GUI.CAS
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    IRAPMessageBox.Instance.Show(error.Message, "系统信息", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    isShowMessageBeforeActive = true;
+                    IRAPMessageBox.Instance.Show(
+                        error.Message, 
+                        "系统信息", 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
+
                     return;
                 }
 
@@ -233,7 +273,14 @@ namespace IRAP.Client.GUI.CAS
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    MessageBox.Show(error.Message, "系统信息", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    isShowMessageBeforeActive = true;
+                    IRAPMessageBox.Instance.Show(
+                        error.Message, 
+                        "系统信息", 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
+
                     return;
                 }
                 #endregion
@@ -252,15 +299,31 @@ namespace IRAP.Client.GUI.CAS
                         out errCode,
                         out errText);
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+
+                    isShowMessageBeforeActive = true;
                     if (errCode != 0)
-                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        IRAPMessageBox.Instance.Show(
+                            errText, 
+                            Text, 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Error);
                     else
-                        IRAPMessageBox.Instance.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        IRAPMessageBox.Instance.Show(
+                            errText, 
+                            Text, 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Asterisk);
                 }
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    IRAPMessageBox.Instance.Show(error.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    isShowMessageBeforeActive = true;
+                    IRAPMessageBox.Instance.Show(
+                        error.Message, 
+                        Text, 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                 }
                 #endregion
             }
@@ -313,6 +376,15 @@ namespace IRAP.Client.GUI.CAS
             //}
             //grdvAndonEvents.OptionsView.RowAutoHeight = true;
             //grdvAndonEvents.LayoutChanged();
+        }
+
+        private void frmAndonEventRespond_30_Activated(object sender, EventArgs e)
+        {
+            if (!isShowMessageBeforeActive)
+            {
+                btnReturn.PerformClick();
+            }
+            isShowMessageBeforeActive = false;
         }
     }
 }

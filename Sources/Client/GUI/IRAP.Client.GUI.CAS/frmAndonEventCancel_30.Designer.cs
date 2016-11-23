@@ -43,7 +43,6 @@
             this.rpschkSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.grdclmnEventType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
             this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
@@ -62,7 +61,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.tpIDCardnoRead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).BeginInit();
@@ -173,8 +171,7 @@
             this.grdAndonEvents.Name = "grdAndonEvents";
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.rpschkSelect,
-            this.repositoryItemMemoEdit1,
-            this.repositoryItemRichTextEdit1});
+            this.repositoryItemMemoEdit1});
             this.grdAndonEvents.Size = new System.Drawing.Size(719, 426);
             this.grdAndonEvents.TabIndex = 0;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -244,13 +241,6 @@
             this.grdclmnEventDescription.Visible = true;
             this.grdclmnEventDescription.VisibleIndex = 1;
             this.grdclmnEventDescription.Width = 388;
-            // 
-            // repositoryItemRichTextEdit1
-            // 
-            this.repositoryItemRichTextEdit1.CustomHeight = 2;
-            this.repositoryItemRichTextEdit1.Name = "repositoryItemRichTextEdit1";
-            this.repositoryItemRichTextEdit1.OptionsExport.PlainText.ExportFinalParagraphMark = DevExpress.XtraRichEdit.Export.PlainText.ExportFinalParagraphMark.Never;
-            this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
             // 
             // grdclmnCallingTime
             // 
@@ -357,7 +347,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpschkSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.tpIDCardnoRead.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlIDCardNoRead)).EndInit();
@@ -388,6 +377,5 @@
         private DevExpress.XtraEditors.TextEdit edtIDCardNo;
         private DevExpress.XtraEditors.LabelControl lblGetIDNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
     }
 }
