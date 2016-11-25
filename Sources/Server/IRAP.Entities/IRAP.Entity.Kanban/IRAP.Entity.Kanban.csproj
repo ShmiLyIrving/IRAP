@@ -50,8 +50,6 @@
     <Compile Include="JumpToFunction.cs" />
     <Compile Include="LeafSetEx.cs" />
     <Compile Include="MessageToSend.cs" />
-    <Compile Include="Period.cs" />
-    <Compile Include="PeriodType.cs" />
     <Compile Include="ProductProcessInfo.cs" />
     <Compile Include="ProductMoveBack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

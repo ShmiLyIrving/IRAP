@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IRAP.Entity.Kanban
+namespace IRAP.Entities.Kanban
 {
     /// <summary>
     /// 时间期间类型
@@ -28,6 +28,11 @@ namespace IRAP.Entity.Kanban
             PeriodType rlt = MemberwiseClone() as PeriodType;
 
             return rlt;
+        }
+
+        public override string ToString()
+        {
+            return PeriodTypeName;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IRAP.Entity.Kanban
+namespace IRAP.Entities.Kanban
 {
     /// <summary>
     /// 时间期间
@@ -16,6 +16,14 @@ namespace IRAP.Entity.Kanban
         public Period Clone()
         {
             return MemberwiseClone() as Period;
+        }
+
+        public override string ToString()
+        {
+            return string.Format(
+                "{0} - {1}",
+                BeginDT.ToString("G"),
+                EndDT.ToString("G"));
         }
     }
 }

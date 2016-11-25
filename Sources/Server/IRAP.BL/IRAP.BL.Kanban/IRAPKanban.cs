@@ -1290,7 +1290,11 @@ namespace IRAP.BL.Kanban
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                List<Period> datas = new List<Period>();
+                Period data = new Period()
+                {
+                    BeginDT = DateTime.Now,
+                    EndDT = DateTime.Now,
+                };
 
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
@@ -1318,9 +1322,20 @@ namespace IRAP.BL.Kanban
 
                         IList<Period> lstDatas =
                             conn.CallTableFunc<Period>(strSQL, paramList);
-                        datas = lstDatas.ToList<Period>();
-                        errCode = 0;
-                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+
+                        if (lstDatas.Count > 0)
+                        {
+                            data = lstDatas[0].Clone();
+
+                            errCode = 0;
+                            errText = "调用成功，获得时间期间";
+                        }
+                        else
+                        {
+                            errCode = 99001;
+                            errText = "调用成功，未获得时间期间";
+                        }
+
                         WriteLog.Instance.Write(errText, strProcedureName);
                     }
                 }
@@ -1336,7 +1351,7 @@ namespace IRAP.BL.Kanban
                 }
                 #endregion
 
-                return Json(datas);
+                return Json(data);
             }
             finally
             {
