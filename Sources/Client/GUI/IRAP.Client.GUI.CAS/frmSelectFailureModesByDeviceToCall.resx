@@ -330,6 +330,9 @@
   <data name="chkProductionLineStopped.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="chkProductionLineStopped.EditValue" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="chkProductionLineStopped.Location" type="System.Drawing.Point, System.Drawing">
     <value>680, 101</value>
   </data>
@@ -340,16 +343,13 @@
     <value>Red</value>
   </data>
   <data name="chkProductionLineStopped.Properties.Caption" xml:space="preserve">
-    <value>已停线</value>
+    <value>已停产</value>
   </data>
   <data name="chkProductionLineStopped.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 21</value>
   </data>
   <data name="chkProductionLineStopped.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="chkProductionLineStopped.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;chkProductionLineStopped.Name" xml:space="preserve">
     <value>chkProductionLineStopped</value>
@@ -472,6 +472,6 @@
     <value>frmSelectFailureModesByDeviceToCall</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6162.18784, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6170.22716, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

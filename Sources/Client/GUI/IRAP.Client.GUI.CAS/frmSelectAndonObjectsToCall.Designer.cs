@@ -164,16 +164,16 @@
             // chkProductionLineStopped
             // 
             this.chkProductionLineStopped.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkProductionLineStopped.EditValue = true;
             this.chkProductionLineStopped.Location = new System.Drawing.Point(680, 98);
             this.chkProductionLineStopped.Name = "chkProductionLineStopped";
             this.chkProductionLineStopped.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.chkProductionLineStopped.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
             this.chkProductionLineStopped.Properties.Appearance.Options.UseFont = true;
             this.chkProductionLineStopped.Properties.Appearance.Options.UseForeColor = true;
-            this.chkProductionLineStopped.Properties.Caption = "已停线";
+            this.chkProductionLineStopped.Properties.Caption = "已停产";
             this.chkProductionLineStopped.Size = new System.Drawing.Size(92, 20);
             this.chkProductionLineStopped.TabIndex = 3;
-            this.chkProductionLineStopped.Visible = false;
             // 
             // btnClose
             // 

@@ -28,46 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnGetAndonEvents = new DevExpress.XtraEditors.SimpleButton();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comAndonEvent = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.lnklblNext = new System.Windows.Forms.LinkLabel();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.EventName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.EventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lnklblPrev = new System.Windows.Forms.LinkLabel();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboPeriodTypes = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.edtEndDT = new System.Windows.Forms.DateTimePicker();
+            this.cboAndonEventTypes = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.edtBeginDT = new System.Windows.Forms.DateTimePicker();
+            this.grdAndonEvents = new DevExpress.XtraGrid.GridControl();
+            this.grdvAndonEvents = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdlcmnEventName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.CallUserName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.RespondUserName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnCallUserName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnRespondUserName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnRespondingTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnClosingTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comAndonEvent.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPeriodTypes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEventTypes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
+            this.splitContainerControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -84,378 +78,365 @@
             this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
-            // simpleButton1
+            // btnGetAndonEvents
             // 
-            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(812, 0);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(79, 32);
-            this.simpleButton1.TabIndex = 2;
-            this.simpleButton1.Text = "查询";
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl2.Controls.Add(this.splitContainerControl1);
-            this.panelControl2.Controls.Add(this.simpleButton1);
-            this.panelControl2.Location = new System.Drawing.Point(0, 75);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(891, 420);
-            this.panelControl2.TabIndex = 4;
+            this.btnGetAndonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetAndonEvents.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
+            this.btnGetAndonEvents.Appearance.Options.UseFont = true;
+            this.btnGetAndonEvents.Location = new System.Drawing.Point(13, 6);
+            this.btnGetAndonEvents.Name = "btnGetAndonEvents";
+            this.btnGetAndonEvents.Size = new System.Drawing.Size(79, 32);
+            this.btnGetAndonEvents.TabIndex = 2;
+            this.btnGetAndonEvents.Text = "查询";
+            this.btnGetAndonEvents.Click += new System.EventHandler(this.btnGetAndonEvents_Click);
             // 
             // splitContainerControl1
             // 
-            this.splitContainerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainerControl1.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl1.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Horizontal = false;
-            this.splitContainerControl1.IsSplitterFixed = true;
-            this.splitContainerControl1.Location = new System.Drawing.Point(5, 0);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.groupControl3);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.groupControl1);
-            this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(806, 415);
-            this.splitContainerControl1.SplitterPosition = 79;
+            this.splitContainerControl1.Panel1.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl1.Panel1.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl1.Panel1.Controls.Add(this.labelControl3);
+            this.splitContainerControl1.Panel1.Controls.Add(this.lnklblNext);
+            this.splitContainerControl1.Panel1.Controls.Add(this.labelControl1);
+            this.splitContainerControl1.Panel1.Controls.Add(this.lnklblPrev);
+            this.splitContainerControl1.Panel1.Controls.Add(this.labelControl2);
+            this.splitContainerControl1.Panel1.Controls.Add(this.label1);
+            this.splitContainerControl1.Panel1.Controls.Add(this.cboPeriodTypes);
+            this.splitContainerControl1.Panel1.Controls.Add(this.edtEndDT);
+            this.splitContainerControl1.Panel1.Controls.Add(this.cboAndonEventTypes);
+            this.splitContainerControl1.Panel1.Controls.Add(this.edtBeginDT);
+            this.splitContainerControl1.Panel1.ShowCaption = true;
+            this.splitContainerControl1.Panel1.Text = "查询条件";
+            this.splitContainerControl1.Panel2.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl1.Panel2.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl1.Panel2.Controls.Add(this.grdAndonEvents);
+            this.splitContainerControl1.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl1.Panel2.ShowCaption = true;
+            this.splitContainerControl1.Panel2.Text = "查询到的安灯事件列表";
+            this.splitContainerControl1.Size = new System.Drawing.Size(782, 439);
+            this.splitContainerControl1.SplitterPosition = 82;
             this.splitContainerControl1.TabIndex = 3;
             this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // groupControl3
-            // 
-            this.groupControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F);
-            this.groupControl3.AppearanceCaption.Options.UseFont = true;
-            this.groupControl3.Controls.Add(this.labelControl3);
-            this.groupControl3.Controls.Add(this.linkLabel2);
-            this.groupControl3.Controls.Add(this.linkLabel1);
-            this.groupControl3.Controls.Add(this.label1);
-            this.groupControl3.Controls.Add(this.dateTimePicker2);
-            this.groupControl3.Controls.Add(this.dateTimePicker1);
-            this.groupControl3.Controls.Add(this.comboBoxEdit2);
-            this.groupControl3.Controls.Add(this.comAndonEvent);
-            this.groupControl3.Controls.Add(this.labelControl2);
-            this.groupControl3.Controls.Add(this.labelControl1);
-            this.groupControl3.Location = new System.Drawing.Point(0, 0);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(806, 75);
-            this.groupControl3.TabIndex = 0;
-            this.groupControl3.Text = "查询条件";
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
-            this.labelControl3.Location = new System.Drawing.Point(213, 30);
+            this.labelControl3.Location = new System.Drawing.Point(222, 12);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(56, 14);
             this.labelControl3.TabIndex = 30;
             this.labelControl3.Text = "时间段：";
             // 
-            // linkLabel2
+            // lnklblNext
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(708, 31);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(25, 14);
-            this.linkLabel2.TabIndex = 29;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = ">>";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(263, 32);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(25, 14);
-            this.linkLabel1.TabIndex = 28;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "<<";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(485, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 16);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "￣";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateTimePicker2.Font = new System.Drawing.Font("等线", 10.5F);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(511, 26);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(191, 22);
-            this.dateTimePicker2.TabIndex = 26;
-            this.dateTimePicker2.Value = new System.DateTime(2016, 11, 22, 0, 0, 0, 0);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateTimePicker1.Font = new System.Drawing.Font("等线", 10.5F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dateTimePicker1.Location = new System.Drawing.Point(294, 26);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(189, 22);
-            this.dateTimePicker1.TabIndex = 25;
-            this.dateTimePicker1.Value = new System.DateTime(2016, 11, 22, 0, 0, 0, 0);
-            // 
-            // comboBoxEdit2
-            // 
-            this.comboBoxEdit2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.comboBoxEdit2.Location = new System.Drawing.Point(114, 52);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Properties.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
-            this.comboBoxEdit2.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(80, 20);
-            this.comboBoxEdit2.TabIndex = 19;
-            // 
-            // comAndonEvent
-            // 
-            this.comAndonEvent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.comAndonEvent.Location = new System.Drawing.Point(114, 26);
-            this.comAndonEvent.Name = "comAndonEvent";
-            this.comAndonEvent.Properties.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
-            this.comAndonEvent.Properties.Appearance.Options.UseFont = true;
-            this.comAndonEvent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comAndonEvent.Size = new System.Drawing.Size(80, 20);
-            this.comAndonEvent.TabIndex = 18;
-            this.comAndonEvent.SelectedIndexChanged += new System.EventHandler(this.Duringtype);
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
-            this.labelControl2.Location = new System.Drawing.Point(20, 55);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(87, 14);
-            this.labelControl2.TabIndex = 17;
-            this.labelControl2.Text = "安灯事件类型:";
+            this.lnklblNext.AutoSize = true;
+            this.lnklblNext.Location = new System.Drawing.Point(679, 11);
+            this.lnklblNext.Name = "lnklblNext";
+            this.lnklblNext.Size = new System.Drawing.Size(25, 14);
+            this.lnklblNext.TabIndex = 29;
+            this.lnklblNext.TabStop = true;
+            this.lnklblNext.Text = ">>";
+            this.lnklblNext.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblNext_LinkClicked);
             // 
             // labelControl1
             // 
             this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl1.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
-            this.labelControl1.Location = new System.Drawing.Point(47, 30);
+            this.labelControl1.Location = new System.Drawing.Point(51, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(59, 14);
+            this.labelControl1.Size = new System.Drawing.Size(70, 14);
             this.labelControl1.TabIndex = 16;
-            this.labelControl1.Text = "期间类型:";
+            this.labelControl1.Text = "期间类型：";
             // 
-            // groupControl1
+            // lnklblPrev
             // 
-            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F);
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.gridControl1);
-            this.groupControl1.Location = new System.Drawing.Point(3, 0);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(800, 331);
-            this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "查询到的安灯事件列表";
+            this.lnklblPrev.AutoSize = true;
+            this.lnklblPrev.Location = new System.Drawing.Point(284, 11);
+            this.lnklblPrev.Name = "lnklblPrev";
+            this.lnklblPrev.Size = new System.Drawing.Size(25, 14);
+            this.lnklblPrev.TabIndex = 28;
+            this.lnklblPrev.TabStop = true;
+            this.lnklblPrev.Text = "<<";
+            this.lnklblPrev.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblPrev_LinkClicked);
             // 
-            // gridControl1
+            // labelControl2
             // 
-            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl1.Location = new System.Drawing.Point(4, 24);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
+            this.labelControl2.Location = new System.Drawing.Point(23, 38);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(98, 14);
+            this.labelControl2.TabIndex = 17;
+            this.labelControl2.Text = "安灯事件类型：";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(481, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 16);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "―";
+            // 
+            // cboPeriodTypes
+            // 
+            this.cboPeriodTypes.Location = new System.Drawing.Point(127, 9);
+            this.cboPeriodTypes.Name = "cboPeriodTypes";
+            this.cboPeriodTypes.Properties.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
+            this.cboPeriodTypes.Properties.Appearance.Options.UseFont = true;
+            this.cboPeriodTypes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboPeriodTypes.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboPeriodTypes.Size = new System.Drawing.Size(80, 20);
+            this.cboPeriodTypes.TabIndex = 18;
+            this.cboPeriodTypes.SelectedIndexChanged += new System.EventHandler(this.cboPeriodTypes_SelectedIndexChanged);
+            // 
+            // edtEndDT
+            // 
+            this.edtEndDT.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.edtEndDT.Font = new System.Drawing.Font("等线", 10.5F);
+            this.edtEndDT.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.edtEndDT.Location = new System.Drawing.Point(511, 7);
+            this.edtEndDT.Name = "edtEndDT";
+            this.edtEndDT.Size = new System.Drawing.Size(162, 22);
+            this.edtEndDT.TabIndex = 26;
+            this.edtEndDT.Value = new System.DateTime(2016, 11, 22, 0, 0, 0, 0);
+            // 
+            // cboAndonEventTypes
+            // 
+            this.cboAndonEventTypes.Location = new System.Drawing.Point(127, 35);
+            this.cboAndonEventTypes.Name = "cboAndonEventTypes";
+            this.cboAndonEventTypes.Properties.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
+            this.cboAndonEventTypes.Properties.Appearance.Options.UseFont = true;
+            this.cboAndonEventTypes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboAndonEventTypes.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboAndonEventTypes.Size = new System.Drawing.Size(202, 20);
+            this.cboAndonEventTypes.TabIndex = 19;
+            // 
+            // edtBeginDT
+            // 
+            this.edtBeginDT.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.edtBeginDT.Font = new System.Drawing.Font("等线", 10.5F);
+            this.edtBeginDT.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.edtBeginDT.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.edtBeginDT.Location = new System.Drawing.Point(315, 7);
+            this.edtBeginDT.Name = "edtBeginDT";
+            this.edtBeginDT.Size = new System.Drawing.Size(160, 22);
+            this.edtBeginDT.TabIndex = 25;
+            this.edtBeginDT.Value = new System.DateTime(2016, 11, 22, 0, 0, 0, 0);
+            // 
+            // grdAndonEvents
+            // 
+            this.grdAndonEvents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdAndonEvents.Location = new System.Drawing.Point(5, 5);
+            this.grdAndonEvents.MainView = this.grdvAndonEvents;
+            this.grdAndonEvents.Name = "grdAndonEvents";
+            this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(790, 299);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.grdAndonEvents.Size = new System.Drawing.Size(768, 319);
+            this.grdAndonEvents.TabIndex = 0;
+            this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdvAndonEvents});
             // 
-            // gridView1
+            // grdvAndonEvents
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.EventName,
-            this.EventDescription,
-            this.CallUserName,
-            this.RespondUserName,
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.grdvAndonEvents.Appearance.HeaderPanel.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grdvAndonEvents.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdvAndonEvents.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.grdvAndonEvents.Appearance.Row.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdvAndonEvents.Appearance.Row.Options.UseFont = true;
+            this.grdvAndonEvents.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grdlcmnEventName,
+            this.grdclmnEventDescription,
+            this.grdclmnCallUserName,
+            this.grdclmnRespondUserName,
+            this.grdclmnCallingTime,
+            this.grdclmnRespondingTime,
+            this.grdclmnClosingTime});
+            this.grdvAndonEvents.GridControl = this.grdAndonEvents;
+            this.grdvAndonEvents.Name = "grdvAndonEvents";
+            this.grdvAndonEvents.OptionsView.RowAutoHeight = true;
+            this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
             // 
-            // EventName
+            // grdlcmnEventName
             // 
-            this.EventName.AppearanceCell.Options.UseTextOptions = true;
-            this.EventName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.EventName.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
-            this.EventName.AppearanceHeader.Options.UseFont = true;
-            this.EventName.AppearanceHeader.Options.UseTextOptions = true;
-            this.EventName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.EventName.Caption = "事件类型";
-            this.EventName.MaxWidth = 80;
-            this.EventName.MinWidth = 80;
-            this.EventName.Name = "EventName";
-            this.EventName.Visible = true;
-            this.EventName.VisibleIndex = 0;
-            this.EventName.Width = 80;
+            this.grdlcmnEventName.AppearanceCell.Options.UseTextOptions = true;
+            this.grdlcmnEventName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdlcmnEventName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdlcmnEventName.Caption = "事件类型";
+            this.grdlcmnEventName.FieldName = "EventName";
+            this.grdlcmnEventName.MaxWidth = 80;
+            this.grdlcmnEventName.MinWidth = 80;
+            this.grdlcmnEventName.Name = "grdlcmnEventName";
+            this.grdlcmnEventName.Visible = true;
+            this.grdlcmnEventName.VisibleIndex = 0;
+            this.grdlcmnEventName.Width = 80;
             // 
-            // EventDescription
+            // grdclmnEventDescription
             // 
-            this.EventDescription.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
-            this.EventDescription.AppearanceHeader.Options.UseFont = true;
-            this.EventDescription.AppearanceHeader.Options.UseTextOptions = true;
-            this.EventDescription.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.EventDescription.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.EventDescription.Caption = "事件描述";
-            this.EventDescription.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.EventDescription.Name = "EventDescription";
-            this.EventDescription.Visible = true;
-            this.EventDescription.VisibleIndex = 1;
-            this.EventDescription.Width = 254;
+            this.grdclmnEventDescription.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnEventDescription.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnEventDescription.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.grdclmnEventDescription.Caption = "事件描述";
+            this.grdclmnEventDescription.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.grdclmnEventDescription.FieldName = "EventDescription";
+            this.grdclmnEventDescription.Name = "grdclmnEventDescription";
+            this.grdclmnEventDescription.Visible = true;
+            this.grdclmnEventDescription.VisibleIndex = 1;
+            this.grdclmnEventDescription.Width = 254;
             // 
             // repositoryItemMemoEdit1
             // 
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
-            // CallUserName
+            // grdclmnCallUserName
             // 
-            this.CallUserName.AppearanceCell.Options.UseTextOptions = true;
-            this.CallUserName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.CallUserName.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
-            this.CallUserName.AppearanceHeader.Options.UseFont = true;
-            this.CallUserName.AppearanceHeader.Options.UseTextOptions = true;
-            this.CallUserName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.CallUserName.Caption = "呼叫人";
-            this.CallUserName.MaxWidth = 60;
-            this.CallUserName.MinWidth = 60;
-            this.CallUserName.Name = "CallUserName";
-            this.CallUserName.Visible = true;
-            this.CallUserName.VisibleIndex = 3;
-            this.CallUserName.Width = 60;
+            this.grdclmnCallUserName.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnCallUserName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnCallUserName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnCallUserName.Caption = "呼叫人";
+            this.grdclmnCallUserName.FieldName = "CallUserName";
+            this.grdclmnCallUserName.MaxWidth = 100;
+            this.grdclmnCallUserName.MinWidth = 100;
+            this.grdclmnCallUserName.Name = "grdclmnCallUserName";
+            this.grdclmnCallUserName.Visible = true;
+            this.grdclmnCallUserName.VisibleIndex = 3;
+            this.grdclmnCallUserName.Width = 100;
             // 
-            // RespondUserName
+            // grdclmnRespondUserName
             // 
-            this.RespondUserName.AppearanceCell.Options.UseTextOptions = true;
-            this.RespondUserName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.RespondUserName.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
-            this.RespondUserName.AppearanceHeader.Options.UseFont = true;
-            this.RespondUserName.AppearanceHeader.Options.UseTextOptions = true;
-            this.RespondUserName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.RespondUserName.Caption = "响应人";
-            this.RespondUserName.MaxWidth = 60;
-            this.RespondUserName.MinWidth = 60;
-            this.RespondUserName.Name = "RespondUserName";
-            this.RespondUserName.Visible = true;
-            this.RespondUserName.VisibleIndex = 5;
-            this.RespondUserName.Width = 60;
+            this.grdclmnRespondUserName.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnRespondUserName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnRespondUserName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnRespondUserName.Caption = "响应人";
+            this.grdclmnRespondUserName.FieldName = "RespondUserName";
+            this.grdclmnRespondUserName.MaxWidth = 100;
+            this.grdclmnRespondUserName.MinWidth = 100;
+            this.grdclmnRespondUserName.Name = "grdclmnRespondUserName";
+            this.grdclmnRespondUserName.Visible = true;
+            this.grdclmnRespondUserName.VisibleIndex = 5;
+            this.grdclmnRespondUserName.Width = 100;
             // 
-            // gridColumn1
+            // grdclmnCallingTime
             // 
-            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn1.Caption = "呼叫时间";
-            this.gridColumn1.MaxWidth = 100;
-            this.gridColumn1.MinWidth = 100;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
-            this.gridColumn1.Width = 100;
+            this.grdclmnCallingTime.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnCallingTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnCallingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnCallingTime.Caption = "呼叫时间";
+            this.grdclmnCallingTime.FieldName = "CallingTime";
+            this.grdclmnCallingTime.MaxWidth = 100;
+            this.grdclmnCallingTime.MinWidth = 100;
+            this.grdclmnCallingTime.Name = "grdclmnCallingTime";
+            this.grdclmnCallingTime.Visible = true;
+            this.grdclmnCallingTime.VisibleIndex = 2;
+            this.grdclmnCallingTime.Width = 100;
             // 
-            // gridColumn2
+            // grdclmnRespondingTime
             // 
-            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.Caption = "响应时间";
-            this.gridColumn2.MaxWidth = 100;
-            this.gridColumn2.MinWidth = 100;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 4;
-            this.gridColumn2.Width = 100;
+            this.grdclmnRespondingTime.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnRespondingTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnRespondingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnRespondingTime.Caption = "响应时间";
+            this.grdclmnRespondingTime.FieldName = "RespondingTime";
+            this.grdclmnRespondingTime.MaxWidth = 100;
+            this.grdclmnRespondingTime.MinWidth = 100;
+            this.grdclmnRespondingTime.Name = "grdclmnRespondingTime";
+            this.grdclmnRespondingTime.Visible = true;
+            this.grdclmnRespondingTime.VisibleIndex = 4;
+            this.grdclmnRespondingTime.Width = 100;
             // 
-            // gridColumn3
+            // grdclmnClosingTime
             // 
-            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn3.Caption = "关闭时间";
-            this.gridColumn3.MaxWidth = 100;
-            this.gridColumn3.MinWidth = 100;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 6;
-            this.gridColumn3.Width = 100;
+            this.grdclmnClosingTime.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnClosingTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnClosingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnClosingTime.Caption = "关闭时间";
+            this.grdclmnClosingTime.FieldName = "ClosingTime";
+            this.grdclmnClosingTime.MaxWidth = 100;
+            this.grdclmnClosingTime.MinWidth = 100;
+            this.grdclmnClosingTime.Name = "grdclmnClosingTime";
+            this.grdclmnClosingTime.Visible = true;
+            this.grdclmnClosingTime.VisibleIndex = 6;
+            this.grdclmnClosingTime.Width = 100;
+            // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
+            this.splitContainerControl2.IsSplitterFixed = true;
+            this.splitContainerControl2.Location = new System.Drawing.Point(0, 56);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            this.splitContainerControl2.Panel1.Controls.Add(this.splitContainerControl1);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
+            this.splitContainerControl2.Panel2.Controls.Add(this.btnGetAndonEvents);
+            this.splitContainerControl2.Panel2.Text = "Panel2";
+            this.splitContainerControl2.Size = new System.Drawing.Size(891, 439);
+            this.splitContainerControl2.SplitterPosition = 104;
+            this.splitContainerControl2.TabIndex = 5;
+            this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // frmGetHisAndonEvents
             // 
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(891, 495);
-            this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.splitContainerControl2);
             this.Name = "frmGetHisAndonEvents";
+            this.Activated += new System.EventHandler(this.frmGetHisAndonEvents_Activated);
+            this.Shown += new System.EventHandler(this.frmGetHisAndonEvents_Shown);
             this.Controls.SetChildIndex(this.panelControl1, 0);
-            this.Controls.SetChildIndex(this.panelControl2, 0);
+            this.Controls.SetChildIndex(this.splitContainerControl2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
-            this.groupControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comAndonEvent.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPeriodTypes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboAndonEventTypes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
+            this.splitContainerControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.SimpleButton btnGetAndonEvents;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel lnklblNext;
+        private System.Windows.Forms.LinkLabel lnklblPrev;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
-        private DevExpress.XtraEditors.ComboBoxEdit comAndonEvent;
+        private System.Windows.Forms.DateTimePicker edtEndDT;
+        private System.Windows.Forms.DateTimePicker edtBeginDT;
+        private DevExpress.XtraEditors.ComboBoxEdit cboAndonEventTypes;
+        private DevExpress.XtraEditors.ComboBoxEdit cboPeriodTypes;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn EventName;
-        private DevExpress.XtraGrid.Columns.GridColumn EventDescription;
+        private DevExpress.XtraGrid.GridControl grdAndonEvents;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdvAndonEvents;
+        private DevExpress.XtraGrid.Columns.GridColumn grdlcmnEventName;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnEventDescription;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn CallUserName;
-        private DevExpress.XtraGrid.Columns.GridColumn RespondUserName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnCallUserName;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnRespondUserName;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnCallingTime;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnRespondingTime;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnClosingTime;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
     }
 }

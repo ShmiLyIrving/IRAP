@@ -86,16 +86,16 @@
             // chkProductionLineStopped
             // 
             this.chkProductionLineStopped.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkProductionLineStopped.EditValue = true;
             this.chkProductionLineStopped.Location = new System.Drawing.Point(680, 98);
             this.chkProductionLineStopped.Name = "chkProductionLineStopped";
             this.chkProductionLineStopped.Properties.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chkProductionLineStopped.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
             this.chkProductionLineStopped.Properties.Appearance.Options.UseFont = true;
             this.chkProductionLineStopped.Properties.Appearance.Options.UseForeColor = true;
-            this.chkProductionLineStopped.Properties.Caption = "已停线";
+            this.chkProductionLineStopped.Properties.Caption = "已停产";
             this.chkProductionLineStopped.Size = new System.Drawing.Size(92, 21);
             this.chkProductionLineStopped.TabIndex = 7;
-            this.chkProductionLineStopped.Visible = false;
             // 
             // gpcAndonEvents
             // 
