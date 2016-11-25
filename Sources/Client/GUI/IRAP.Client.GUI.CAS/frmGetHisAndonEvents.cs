@@ -5,30 +5,66 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Reflection;
+
+using DevExpress.XtraEditors.Controls;
+
+using IRAP.Global;
+using IRAP.Client.User;
+using IRAP.Entities.SSO;
+using IRAP.Entities.FVS;
+using IRAP.WCF.Client.Method;
+using System.Reflection;
+using IRAP.Entity.MDM;
+using IRAP.Entity.FVS;
+using IRAP.Entities.Kanban;
+using IRAP.Entity.Kanban;
 
 namespace IRAP.Client.GUI.CAS
 {
     public partial class frmGetHisAndonEvents : IRAP.Client.GUI.CAS.frmCustomAndonForm
     {
+        private string className =
+            MethodBase.GetCurrentMethod().DeclaringType.FullName;
         public frmGetHisAndonEvents()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// 起始时间
-        /// </summary>
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void Duringtype(object sender, EventArgs e)
         {
-            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-        }
+            int errCode=0;
+            string errText="";
+            List<Entity.Kanban.PeriodType> type = new List<Entity.Kanban.PeriodType>();
 
-        /// <summary>
-        /// 结束时间
-        /// </summary>
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            this.dateTimePicker2.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            { 
+            IRAPKBClient.Instance.sfn_GetList_ValidPeriodTypes(
+                IRAPUser.Instance.CommunityID,
+                IRAPUser.Instance.LanguageID,
+                ref type,
+                out errCode,
+                out errText);
+
+            WriteLog.Instance.Write(
+                   string.Format("({0}){1}", errCode, errText),
+                   strProcedureName);
+
+                foreach (PeriodType data in type)
+                {
+                    comAndonEvent.Properties.Items.Add(data);
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
     }
 }
