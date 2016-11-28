@@ -25,6 +25,8 @@ namespace IRAP.Client.GUI.CAS
         public frmCustomAndonForm()
         {
             InitializeComponent();
+
+            lblProductionLine.Parent = lblFuncName;
         }
 
         /// <summary>
@@ -102,18 +104,44 @@ namespace IRAP.Client.GUI.CAS
             if (currentProductionLine != null)
             {
                 if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                    lblProductionLine.Text = 
+                {
+                    lblProductionLine.Text =
                         string.Format(
                             "Current production line: {0}",
                             currentProductionLine.T134NodeName);
+
+                    if (currentProductionLine.IsStoped)
+                    {
+                        lblProductionLine.ForeColor = Color.Red;
+                        lblProductionLine.Text += "  (Stopped)";
+                    }
+                    else
+                    {
+                        lblProductionLine.ForeColor = Color.Green;
+                    }
+                }
                 else
-                    lblProductionLine.Text = 
+                {
+                    lblProductionLine.Text =
                         string.Format(
                             "当前产线：{0}",
                             currentProductionLine.T134NodeName);
+
+                    if (currentProductionLine.IsStoped)
+                    {
+                        lblProductionLine.ForeColor = Color.Red;
+                        lblProductionLine.Text += "  (已停线)";
+                    }
+                    else
+                    {
+                        lblProductionLine.ForeColor = Color.Green;
+                    }
+                }
             }
             else
             {
+                lblProductionLine.ForeColor = Color.Green;
+
                 if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                     lblProductionLine.Text = "Current production line: None";
                 else

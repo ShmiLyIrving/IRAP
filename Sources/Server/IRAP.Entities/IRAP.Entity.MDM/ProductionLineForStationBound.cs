@@ -38,6 +38,10 @@ namespace IRAP.Entity.MDM
         /// 是否绑定到安灯主机
         /// </summary>
         public bool BoundToAndonHost { get; set; }
+        /// <summary>
+        /// 是否停线
+        /// </summary>
+        public bool IsStoped { get; set; }
 
         public ProductionLineForStationBound Clone()
         {

@@ -57,6 +57,7 @@
             // 
             // lblProductionLine
             // 
+            this.lblProductionLine.Appearance.BackColor = ((System.Drawing.Color)(resources.GetObject("lblProductionLine.Appearance.BackColor")));
             this.lblProductionLine.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lblProductionLine.Appearance.Font")));
             this.lblProductionLine.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("lblProductionLine.Appearance.ForeColor")));
             this.lblProductionLine.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
