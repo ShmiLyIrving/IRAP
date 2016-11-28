@@ -85,16 +85,22 @@ namespace MarcalDataSim
 
         private void WriteLog(string message)
         {
-            if (mmeLogs.Text.Trim() != "")
-                mmeLogs.Text += "\r\n";
+            //if (mmeLogs.Text.Trim() != "")
+            //    mmeLogs.Text += "\r\n";
 
             if (message.Trim() != "")
             {
-                mmeLogs.Text +=
+                message = 
                     string.Format(
                         "{0}: {1}",
                         DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"),
-                        message);
+                        message).Trim('\0');
+
+                mmeLogs.Text = 
+                    string.Format(
+                        "{0}\r\n{1}",
+                        message,
+                        mmeLogs.Text);
             }
         }
 

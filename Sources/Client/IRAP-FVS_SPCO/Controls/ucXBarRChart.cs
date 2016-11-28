@@ -69,6 +69,7 @@ namespace IRAP_FVS_SPCO
         public void DrawChart(
             StationLogin stationUser,
             WIPStationProductionStatus workUnit,
+            WIPStationSPCMonitor spcMonitor,
             string pwoNo,
             long lcl,
             long ucl,
@@ -100,7 +101,7 @@ namespace IRAP_FVS_SPCO
                     stationUser.CommunityID, //60010,
                     pwoNo, //"1C3PK1A7BA50422003",
                     workUnit.T47LeafID, // 373564,
-                    workUnit.T216LeafID, // 2155621,
+                    spcMonitor.T216LeafID, // 2155621,
                     workUnit.T133LeafID, //2155684,
                     t20LeafID, //352942,
                     stationUser.SysLogID, //101,

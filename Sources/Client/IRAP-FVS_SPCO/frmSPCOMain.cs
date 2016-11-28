@@ -673,6 +673,7 @@ namespace IRAP_FVS_SPCO
                             (ucCharts[pageIndex] as ucXBarRChart).DrawChart(
                                 stationUser,
                                 workUnit,
+                                datas[0],
                                 datas[0].PWONo_InExecution,
                                 datas[0].LCL,
                                 datas[0].UCL,

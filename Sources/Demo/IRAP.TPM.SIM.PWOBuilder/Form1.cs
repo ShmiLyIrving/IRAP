@@ -64,7 +64,7 @@ namespace IRAP.TPM.SIM.PWOBuilder
                 {
                     IMessageProducer prod = session.CreateProducer(
                         //new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPDCS_MEQ"));
-                        new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("IRAPTPM_InQueue"));
+                        new ActiveMQQueue("IRAPTPM_InQueue"));
                     ITextMessage message = prod.CreateTextMessage();
                     message.Text = edtContent.Text;
                         //string.Format(
