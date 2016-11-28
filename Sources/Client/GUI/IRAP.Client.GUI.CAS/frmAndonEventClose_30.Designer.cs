@@ -28,19 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventClose_30));
             this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
             this.grdAndonEvents = new DevExpress.XtraGrid.GridControl();
             this.grdvAndonEvents = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnEventType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnEventDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.grdclmnProductionLineStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.rsichkProductionDown = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnRespondingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnFirstResponder = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEventCauseConfirm = new DevExpress.XtraEditors.SimpleButton();
             this.btnEventClose = new DevExpress.XtraEditors.SimpleButton();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
@@ -48,6 +52,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rsichkProductionDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -94,7 +100,8 @@
             this.grdAndonEvents.MainView = this.grdvAndonEvents;
             this.grdAndonEvents.Name = "grdAndonEvents";
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemMemoEdit1});
+            this.repositoryItemMemoEdit1,
+            this.rsichkProductionDown});
             this.grdAndonEvents.Size = new System.Drawing.Size(918, 502);
             this.grdAndonEvents.TabIndex = 1;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -119,6 +126,7 @@
             this.grdclmnFirstResponder,
             this.grdclmnTimeElapsed});
             this.grdvAndonEvents.GridControl = this.grdAndonEvents;
+            this.grdvAndonEvents.Images = this.imageCollection;
             this.grdvAndonEvents.Name = "grdvAndonEvents";
             this.grdvAndonEvents.OptionsBehavior.Editable = false;
             this.grdvAndonEvents.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
@@ -155,17 +163,39 @@
             this.grdclmnEventDescription.VisibleIndex = 1;
             this.grdclmnEventDescription.Width = 364;
             // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            // 
             // grdclmnProductionLineStatus
             // 
             this.grdclmnProductionLineStatus.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnProductionLineStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnProductionLineStatus.Caption = "是否已停线";
-            this.grdclmnProductionLineStatus.FieldName = "ProductionLineStatus";
+            this.grdclmnProductionLineStatus.Caption = "是否已停产";
+            this.grdclmnProductionLineStatus.ColumnEdit = this.rsichkProductionDown;
+            this.grdclmnProductionLineStatus.FieldName = "ProductionDown";
             this.grdclmnProductionLineStatus.MaxWidth = 75;
             this.grdclmnProductionLineStatus.MinWidth = 75;
             this.grdclmnProductionLineStatus.Name = "grdclmnProductionLineStatus";
             this.grdclmnProductionLineStatus.Visible = true;
             this.grdclmnProductionLineStatus.VisibleIndex = 2;
+            // 
+            // rsichkProductionDown
+            // 
+            this.rsichkProductionDown.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined;
+            this.rsichkProductionDown.ImageIndexChecked = 1;
+            this.rsichkProductionDown.ImageIndexUnchecked = 0;
+            this.rsichkProductionDown.Images = this.imageCollection;
+            this.rsichkProductionDown.Name = "rsichkProductionDown";
+            // 
+            // imageCollection
+            // 
+            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
+            this.imageCollection.InsertGalleryImage("paperkind_a4.png", "images/pages/paperkind_a4.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/pages/paperkind_a4.png"), 0);
+            this.imageCollection.Images.SetKeyName(0, "paperkind_a4.png");
+            this.imageCollection.InsertGalleryImage("apply_32x32.png", "images/actions/apply_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/apply_32x32.png"), 1);
+            this.imageCollection.Images.SetKeyName(1, "apply_32x32.png");
             // 
             // grdclmnCallingTime
             // 
@@ -250,10 +280,6 @@
             this.btnEventClose.Text = "关闭呼叫";
             this.btnEventClose.Click += new System.EventHandler(this.btnEventClose_Click);
             // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
-            // 
             // frmAndonEventClose_30
             // 
             this.Appearance.Options.UseFont = true;
@@ -276,6 +302,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rsichkProductionDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -295,5 +323,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnTimeElapsed;
         private DevExpress.XtraEditors.SimpleButton btnEventClose;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit rsichkProductionDown;
+        private DevExpress.Utils.ImageCollection imageCollection;
     }
 }

@@ -47,31 +47,31 @@
             // 
             // lblReadUserIDCard
             // 
-            this.lblReadUserIDCard.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReadUserIDCard.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.lblReadUserIDCard.Location = new System.Drawing.Point(28, 32);
             this.lblReadUserIDCard.Name = "lblReadUserIDCard";
-            this.lblReadUserIDCard.Size = new System.Drawing.Size(64, 16);
+            this.lblReadUserIDCard.Size = new System.Drawing.Size(128, 21);
             this.lblReadUserIDCard.TabIndex = 0;
-            this.lblReadUserIDCard.Text = "请刷卡：";
+            this.lblReadUserIDCard.Text = "请输入您的工号：";
             // 
             // edtUserIDCardNo
             // 
             this.edtUserIDCardNo.EnterMoveNextControl = true;
             this.edtUserIDCardNo.Location = new System.Drawing.Point(162, 29);
             this.edtUserIDCardNo.Name = "edtUserIDCardNo";
-            this.edtUserIDCardNo.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtUserIDCardNo.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.edtUserIDCardNo.Properties.Appearance.Options.UseFont = true;
             this.edtUserIDCardNo.Properties.UseSystemPasswordChar = true;
-            this.edtUserIDCardNo.Size = new System.Drawing.Size(231, 22);
+            this.edtUserIDCardNo.Size = new System.Drawing.Size(231, 28);
             this.edtUserIDCardNo.TabIndex = 1;
             this.edtUserIDCardNo.Validating += new System.ComponentModel.CancelEventHandler(this.edtUserIDCardNo_Validating);
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.labelControl1.Location = new System.Drawing.Point(28, 72);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(128, 16);
+            this.labelControl1.Size = new System.Drawing.Size(128, 21);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "用户满意度调查：";
             // 
@@ -82,7 +82,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rgpSatisfactory.Location = new System.Drawing.Point(162, 66);
             this.rgpSatisfactory.Name = "rgpSatisfactory";
-            this.rgpSatisfactory.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rgpSatisfactory.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.rgpSatisfactory.Properties.Appearance.Options.UseFont = true;
             this.rgpSatisfactory.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "1 - 非常满意"),
@@ -96,7 +96,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnOK.Appearance.Options.UseFont = true;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Enabled = false;
@@ -109,7 +109,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(412, 67);

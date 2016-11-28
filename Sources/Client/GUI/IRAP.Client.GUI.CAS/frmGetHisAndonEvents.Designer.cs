@@ -269,6 +269,7 @@
             this.grdclmnClosingTime});
             this.grdvAndonEvents.GridControl = this.grdAndonEvents;
             this.grdvAndonEvents.Name = "grdvAndonEvents";
+            this.grdvAndonEvents.OptionsBehavior.Editable = false;
             this.grdvAndonEvents.OptionsView.RowAutoHeight = true;
             this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
             // 
@@ -297,7 +298,7 @@
             this.grdclmnEventDescription.Name = "grdclmnEventDescription";
             this.grdclmnEventDescription.Visible = true;
             this.grdclmnEventDescription.VisibleIndex = 1;
-            this.grdclmnEventDescription.Width = 254;
+            this.grdclmnEventDescription.Width = 20;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -322,7 +323,7 @@
             this.grdclmnRespondUserName.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnRespondUserName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnRespondUserName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnRespondUserName.Caption = "响应人";
+            this.grdclmnRespondUserName.Caption = "责任响应人";
             this.grdclmnRespondUserName.FieldName = "RespondUserName";
             this.grdclmnRespondUserName.MaxWidth = 100;
             this.grdclmnRespondUserName.MinWidth = 100;
@@ -337,13 +338,15 @@
             this.grdclmnCallingTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnCallingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnCallingTime.Caption = "呼叫时间";
+            this.grdclmnCallingTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.grdclmnCallingTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.grdclmnCallingTime.FieldName = "CallingTime";
-            this.grdclmnCallingTime.MaxWidth = 100;
-            this.grdclmnCallingTime.MinWidth = 100;
+            this.grdclmnCallingTime.MaxWidth = 140;
+            this.grdclmnCallingTime.MinWidth = 140;
             this.grdclmnCallingTime.Name = "grdclmnCallingTime";
             this.grdclmnCallingTime.Visible = true;
             this.grdclmnCallingTime.VisibleIndex = 2;
-            this.grdclmnCallingTime.Width = 100;
+            this.grdclmnCallingTime.Width = 140;
             // 
             // grdclmnRespondingTime
             // 
@@ -351,13 +354,15 @@
             this.grdclmnRespondingTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnRespondingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnRespondingTime.Caption = "响应时间";
+            this.grdclmnRespondingTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.grdclmnRespondingTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.grdclmnRespondingTime.FieldName = "RespondingTime";
-            this.grdclmnRespondingTime.MaxWidth = 100;
-            this.grdclmnRespondingTime.MinWidth = 100;
+            this.grdclmnRespondingTime.MaxWidth = 140;
+            this.grdclmnRespondingTime.MinWidth = 140;
             this.grdclmnRespondingTime.Name = "grdclmnRespondingTime";
             this.grdclmnRespondingTime.Visible = true;
             this.grdclmnRespondingTime.VisibleIndex = 4;
-            this.grdclmnRespondingTime.Width = 100;
+            this.grdclmnRespondingTime.Width = 140;
             // 
             // grdclmnClosingTime
             // 
@@ -365,13 +370,15 @@
             this.grdclmnClosingTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnClosingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnClosingTime.Caption = "关闭时间";
+            this.grdclmnClosingTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.grdclmnClosingTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.grdclmnClosingTime.FieldName = "ClosingTime";
-            this.grdclmnClosingTime.MaxWidth = 100;
-            this.grdclmnClosingTime.MinWidth = 100;
+            this.grdclmnClosingTime.MaxWidth = 140;
+            this.grdclmnClosingTime.MinWidth = 140;
             this.grdclmnClosingTime.Name = "grdclmnClosingTime";
             this.grdclmnClosingTime.Visible = true;
             this.grdclmnClosingTime.VisibleIndex = 6;
-            this.grdclmnClosingTime.Width = 100;
+            this.grdclmnClosingTime.Width = 140;
             // 
             // splitContainerControl2
             // 

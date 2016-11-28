@@ -86,6 +86,12 @@
     <Compile Include="frmAndonEventClosePropertiesVisteon.designer.cs">
       <DependentUpon>frmAndonEventClosePropertiesVisteon.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAndonEventCloseWithProductionLineStopped.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAndonEventCloseWithProductionLineStopped.Designer.cs">
+      <DependentUpon>frmAndonEventCloseWithProductionLineStopped.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAndonEventClose_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,12 @@
     </Compile>
     <Compile Include="frmKanbanPS_30.Designer.cs">
       <DependentUpon>frmKanbanPS_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductionLineStoppedConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductionLineStoppedConfirm.Designer.cs">
+      <DependentUpon>frmProductionLineStoppedConfirm.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSelectAndonObjectsToCall.cs">
       <SubType>Form</SubType>
@@ -251,6 +263,9 @@
     <EmbeddedResource Include="frmAndonEventClosePropertiesVisteon.resx">
       <DependentUpon>frmAndonEventClosePropertiesVisteon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAndonEventCloseWithProductionLineStopped.resx">
+      <DependentUpon>frmAndonEventCloseWithProductionLineStopped.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAndonEventClose_30.resx">
       <DependentUpon>frmAndonEventClose_30.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmKanbanPS_30.resx">
       <DependentUpon>frmKanbanPS_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductionLineStoppedConfirm.resx">
+      <DependentUpon>frmProductionLineStoppedConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSelectAndonObjectsToCall.resx">
       <DependentUpon>frmSelectAndonObjectsToCall.cs</DependentUpon>

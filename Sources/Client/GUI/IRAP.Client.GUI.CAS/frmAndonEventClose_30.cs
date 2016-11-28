@@ -56,12 +56,6 @@ namespace IRAP.Client.GUI.CAS
                 if (errCode == 0)
                 {
                     grdAndonEvents.DataSource = events;
-                    //for (int i = 0; i < grdvAndonEvents.Columns.Count; i++)
-                    //{
-                    //    grdvAndonEvents.Columns[i].BestFit();
-                    //}
-                    //grdvAndonEvents.OptionsView.RowAutoHeight = true;
-                    //grdvAndonEvents.LayoutChanged();
                 }
                 else
                 {
@@ -116,32 +110,66 @@ namespace IRAP.Client.GUI.CAS
 
                     string userCode = "";
                     int satisfactoryLevel = 0;
+                    long nextEventFactID = 0;
 
-                    using (frmAndonEventCloseProperties formAndonEventClose = new frmAndonEventCloseProperties())
+                    AndonEventToClose andonEvent = grdvAndonEvents.GetFocusedRow() as AndonEventToClose;
+
+                    if (andonEvent.StopEventFactID == 0)
                     {
-                        if (formAndonEventClose.ShowDialog() == DialogResult.Cancel)
+                        using (frmAndonEventCloseProperties formAndonEventClose = new frmAndonEventCloseProperties())
                         {
-                            WriteLog.Instance.Write(
-                                string.Format(
-                                    "取消关闭安灯事件[{0}]", 
-                                    events[index].EventFactID), 
-                                strProcedureName);
+                            if (formAndonEventClose.ShowDialog() == DialogResult.Cancel)
+                            {
+                                WriteLog.Instance.Write(
+                                    string.Format(
+                                        "取消关闭安灯事件[{0}]",
+                                        events[index].EventFactID),
+                                    strProcedureName);
 
-                            GetAndonEventsToClose();
+                                GetAndonEventsToClose();
 
-                            return;
+                                return;
+                            }
+                            else
+                            {
+                                userCode = formAndonEventClose.UserInfo.UserCode;
+                                satisfactoryLevel = formAndonEventClose.Satisfactory;
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        using (frmAndonEventCloseWithProductionLineStopped formClose =
+                            new frmAndonEventCloseWithProductionLineStopped(
+                                currentProductionLine.T134LeafID,
+                                andonEvent.EventFactID))
                         {
-                            userCode = formAndonEventClose.UserInfo.UserCode;
-                            satisfactoryLevel = formAndonEventClose.Satisfactory;
+                            if (formClose.ShowDialog()== DialogResult.Cancel)
+                            {
+                                WriteLog.Instance.Write(
+                                    string.Format(
+                                        "取消关闭安灯事件[{0}]",
+                                        events[index].EventFactID),
+                                    strProcedureName);
+
+                                GetAndonEventsToClose();
+
+                                return;
+                            }
+                            else
+                            {
+                                userCode = formClose.UserInfo.UserCode;
+                                satisfactoryLevel = formClose.Satisfactory;
+                                nextEventFactID = formClose.NewEventFactID;
+                            }
                         }
                     }
 
                     WriteLog.Instance.Write(
-                        string.Format("采集到关闭者代码[{0}]和满意度评分[{0}]",
+                        string.Format("采集到关闭者代码[{0}]、满意度评分[{1}]、新关联停线的安灯事件事实号[{2}]",
                             userCode,
-                            satisfactoryLevel),
+                            satisfactoryLevel,
+                            nextEventFactID),
                         strProcedureName);
 
                     int errCode = 0;
@@ -168,6 +196,7 @@ namespace IRAP.Client.GUI.CAS
                         transactNo,
                         factID,
                         events[index].EventFactID,
+                        nextEventFactID,
                         events[index].OpID,
                         userCode,
                         satisfactoryLevel,
@@ -231,7 +260,12 @@ namespace IRAP.Client.GUI.CAS
             if (IRAPUser.Instance.CommunityID == 60006)
             {
                 if (e.FocusedRowHandle < 0)
+                {
+                    btnEventCauseConfirm.Enabled = false;
+                    btnEventClose.Enabled = false;
+
                     return;
+                }
 
                 if (e.Row is AndonEventToClose)
                 {
