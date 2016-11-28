@@ -45,6 +45,7 @@
     <Compile Include="FVS\AndonEventFact.cs" />
     <Compile Include="FVS\EventStakeholder.cs" />
     <Compile Include="FVS\EventsToConsultation.cs" />
+    <Compile Include="FVS\OpenAndonEvent.cs" />
     <Compile Include="Kanban\Period.cs" />
     <Compile Include="Kanban\PeriodType.cs" />
     <Compile Include="Kanban\SelectedLeaf.cs" />

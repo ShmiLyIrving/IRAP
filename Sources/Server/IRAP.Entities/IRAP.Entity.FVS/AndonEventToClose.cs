@@ -46,6 +46,10 @@ namespace IRAP.Entity.FVS
         /// 业务操作标识
         /// </summary>
         public int OpID { get; set; }
+        /// <summary>
+        /// 关联的停线事件
+        /// </summary>
+        public long StopEventFactID { get; set; }
 
         public AndonEventToClose Clone()
         {
