@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SimpleContextButton simpleContextButton1 = new DevExpress.Utils.SimpleContextButton();
             DevExpress.Utils.SimpleContextButton simpleContextButton2 = new DevExpress.Utils.SimpleContextButton();
             DevExpress.Utils.SimpleContextButton simpleContextButton3 = new DevExpress.Utils.SimpleContextButton();
@@ -39,7 +40,7 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.lstTemplates = new DevExpress.XtraEditors.ListBoxControl();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,7 +89,7 @@
             this.lblCurrentTemplateName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
             this.lblCurrentTemplateName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblCurrentTemplateName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCurrentTemplateName.Location = new System.Drawing.Point(2, 22);
+            this.lblCurrentTemplateName.Location = new System.Drawing.Point(2, 21);
             this.lblCurrentTemplateName.Name = "lblCurrentTemplateName";
             this.lblCurrentTemplateName.Padding = new System.Windows.Forms.Padding(5);
             this.lblCurrentTemplateName.Size = new System.Drawing.Size(259, 24);
@@ -103,7 +104,7 @@
             this.groupControl2.Location = new System.Drawing.Point(5, 5);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl2.Size = new System.Drawing.Size(674, 558);
+            this.groupControl2.Size = new System.Drawing.Size(675, 558);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "标签预览";
             // 
@@ -115,11 +116,11 @@
             this.previewControl.Buttons = ((FastReport.PreviewButtons)((FastReport.PreviewButtons.Zoom | FastReport.PreviewButtons.Edit)));
             this.previewControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.previewControl.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.previewControl.Location = new System.Drawing.Point(7, 27);
+            this.previewControl.Location = new System.Drawing.Point(7, 26);
             this.previewControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.previewControl.Name = "previewControl";
             this.previewControl.PageOffset = new System.Drawing.Point(10, 10);
-            this.previewControl.Size = new System.Drawing.Size(660, 524);
+            this.previewControl.Size = new System.Drawing.Size(661, 525);
             this.previewControl.StatusbarVisible = false;
             this.previewControl.TabIndex = 0;
             this.previewControl.ToolbarVisible = false;
@@ -175,9 +176,9 @@
             this.lstTemplates.ContextButtons.Add(simpleContextButton3);
             this.lstTemplates.ContextMenuStrip = this.contextMenuStrip;
             this.lstTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstTemplates.Location = new System.Drawing.Point(2, 22);
+            this.lstTemplates.Location = new System.Drawing.Point(2, 21);
             this.lstTemplates.Name = "lstTemplates";
-            this.lstTemplates.Size = new System.Drawing.Size(259, 484);
+            this.lstTemplates.Size = new System.Drawing.Size(259, 485);
             this.lstTemplates.TabIndex = 0;
             this.lstTemplates.SelectedIndexChanged += new System.EventHandler(this.lstTemplates_SelectedIndexChanged);
             // 
@@ -192,7 +193,7 @@
             this.toolStripMenuItem2,
             this.tsmiRename});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(213, 126);
+            this.contextMenuStrip.Size = new System.Drawing.Size(213, 148);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // tsmiReplace

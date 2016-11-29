@@ -42,11 +42,12 @@ namespace IRAP.Client.Global.GUI.Dialogs
                     _instance = new GetString();
                 return _instance;
             }
-        }   
+        }
 
         public string Show(
             string caption,
-            string messages)
+            string messages,
+            string defaultValue)
         {
             string rlt = "";
 

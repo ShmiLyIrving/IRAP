@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.exe" version="6.1.6176.28839" md5="cf9a4393cbca43f31d6d0dda46fcdf2d" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.exe" version="6.1.6177.21393" md5="16fe87edc7a7de5f524a564987cc1903" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\CH375Controller.dll" version="1.0.0.0" md5="c7dcc5695944dfcae0da13af76ca3b48" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\CH375DLL.DLL" version="2.2" md5="43f2bc6828b177477c2f98b8973460e8" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\DevExpress.BonusSkins.v15.2.dll" version="15.2.4.0" md5="05bc509ab00e39fd947a3d9283d09ed6" selected="True"/>
@@ -25,17 +25,17 @@
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\ftplib.dll" version="4.0.0.0" md5="9cf37fb829d6cf791eab4570a86c6a81" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.AutoUpgrade.dll" version="6.1.6176.28836" md5="876e2e70be32653474a2179bb02feec8" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.Global.dll" version="6.1.6176.28836" md5="c8bd491eec81b68fc03e04de895bb88d" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.Global.GUI.dll" version="6.1.6176.29952" md5="9a1f5ec31da017c035d85f55aa2c3075" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.Global.GUI.dll" version="6.1.6177.29431" md5="1ee563b164e08b7e016f1bfd0834e0f4" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.Global.Resources.dll" version="6.1.6170.22716" md5="a125f3a412bed68ebdf91e446b84c993" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.APS.dll" version="6.1.6176.28838" md5="fea0e18038450a34a5e8f131079d91df" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.CAS.dll" version="6.1.6176.29953" md5="f9fdad9d2ba81d601f88c9dee05168c8" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.MDM.dll" version="6.1.6176.28839" md5="972f0badb34173de52d05ea06bfdb101" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.MESPDC.dll" version="6.1.6176.28840" md5="c2d7b617adb450f94403b53d4fc6a2c8" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.MESRMM.dll" version="6.1.6176.28841" md5="4b2d3ef9c829c53883b7d1ec5702e25e" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.SCES.dll" version="6.1.6176.28840" md5="dad9a5b2a60a8fe8de936e1720c15f64" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.SubSystem.dll" version="6.1.6176.29952" md5="52ecd2221a45b35250c2d43368ee3f30" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.APS.dll" version="6.1.6177.21392" md5="57ac984dd53df0743097fb85f79a8d1d" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.CAS.dll" version="6.1.6177.21394" md5="dfbf3d0f7f5e0d05fd59beef9e5dd86b" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.MDM.dll" version="6.1.6177.29432" md5="b3c1a8e241aaa17e8881b9564dbd833c" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.MESPDC.dll" version="6.1.6177.21394" md5="3dcd7a582bf75e34c20147beef215e7b" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.MESRMM.dll" version="6.1.6177.21394" md5="402cf1840ad5e08e6b4e5e1f4e6677c1" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.GUI.SCES.dll" version="6.1.6177.21393" md5="d490b0e630ba32f35187ac05f4cd189c" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.SubSystem.dll" version="6.1.6177.29431" md5="b91ad0cf5cf5f84c3925d10c1645d123" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.SubSystems.dll" version="6.1.6150.23480" md5="07dcca0e89be29aaafee474d2f3804c7" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.User.dll" version="6.1.6176.29952" md5="df1eab70206144eab7177f33360fa504" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Client.User.dll" version="6.1.6177.29431" md5="c7a60d0a6c586353ff3fa02b00e2db6c" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Components.WorkFlow.dll" version="6.1.6176.28836" md5="65a865ba69aa6602b1269500ab1038c3" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Entities.dll" version="1.0.6176.28836" md5="c3764351cc6a15537235d3fd6bae2a0c" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\Release\IRAP.Entity.APS.dll" version="1.0.0.0" md5="e1421ca6a11a26bf1927c7dc042a7797" selected="True"/>

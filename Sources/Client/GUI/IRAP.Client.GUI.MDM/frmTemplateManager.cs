@@ -314,10 +314,12 @@ namespace IRAP.Client.GUI.MDM
                 File.Delete(tempTemplateFile);
 
             // 给新的标签模板取个名字
+            LeafSetEx data = lstTemplates.SelectedItem as LeafSetEx;
             string newTemplateName =
                 GetString.Instance.Show(
                     "给新的标签模板取个名",
-                    "请给新的标签模板设置一个名称：");
+                    "请给新的标签模板设置一个名称：",
+                    data.LeafName);
             if (newTemplateName.Trim() == "")
                 newTemplateName = "未取名的标签模板";
 
@@ -551,7 +553,8 @@ namespace IRAP.Client.GUI.MDM
                     "重命名",
                     string.Format(
                         "您想将标签模板[{0}]更换成：",
-                        data.LeafName));
+                        data.LeafName),
+                    data.LeafName);
             if (newTemplateName.Trim() != "")
             {
                 string strProcedureName =
