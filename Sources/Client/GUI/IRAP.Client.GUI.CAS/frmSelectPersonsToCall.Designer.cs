@@ -96,6 +96,7 @@
             this.chkProductionLineStopped.Properties.Caption = "已停产";
             this.chkProductionLineStopped.Size = new System.Drawing.Size(92, 21);
             this.chkProductionLineStopped.TabIndex = 7;
+            this.chkProductionLineStopped.TabStop = false;
             // 
             // gpcAndonEvents
             // 

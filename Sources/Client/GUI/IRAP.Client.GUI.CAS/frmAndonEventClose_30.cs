@@ -223,6 +223,8 @@ namespace IRAP.Client.GUI.CAS
 
                     GetAndonEventsToClose();
                     #endregion
+
+                    RefreshCurrentProductionLine();
                 }
                 catch (Exception error)
                 {

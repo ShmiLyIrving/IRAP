@@ -168,6 +168,7 @@ namespace IRAP.Client.GUI.CAS
             finally
             {
                 GetOpenedAndonEvents();
+                RefreshCurrentProductionLine();
 
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }

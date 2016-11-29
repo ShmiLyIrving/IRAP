@@ -153,53 +153,68 @@
     <value>新宋体, 21.75pt</value>
   </data>
   <data name="gpcAndonEvents.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
+    <value>微软雅黑, 12pt</value>
   </data>
-  <data name="cboEquipmentList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="tlEquipments.Appearance.Caption.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 12pt</value>
   </data>
-  <data name="cboEquipmentList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 42</value>
+  <data name="tlEquipments.Appearance.FocusedCell.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Blue</value>
   </data>
-  <data name="cboEquipmentList.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
+  <data name="tlEquipments.Appearance.FocusedCell.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>White</value>
   </data>
-  <data name="cboEquipmentList.Properties.AppearanceDropDown.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新宋体, 12pt</value>
+  <data name="tlEquipments.Appearance.HeaderPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 12pt</value>
   </data>
-  <data name="cboEquipmentList.Properties.AppearanceFocused.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新宋体, 12pt</value>
+  <data name="tlEquipments.Appearance.Row.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 12pt</value>
   </data>
-  <data name="cboEquipmentList.Properties.AppearanceReadOnly.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新宋体, 12pt</value>
-  </data>
-  <data name="cboEquipmentList.Properties.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v15.2">
-    <value>Combo</value>
-  </data>
-  <data name="cboEquipmentList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>620, 24</value>
+  <data name="tlcEquipmentName.Caption" xml:space="preserve">
+    <value>设备名称</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cboEquipmentList.TabIndex" type="System.Int32, mscorlib">
+  <data name="tlcEquipmentName.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tlcEquipmentName.VisibleIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;cboEquipmentList.Name" xml:space="preserve">
-    <value>cboEquipmentList</value>
+  <data name="tlEquipments.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
-  <data name="&gt;&gt;cboEquipmentList.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.ComboBoxEdit, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="tlEquipments.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 33</value>
   </data>
-  <data name="&gt;&gt;cboEquipmentList.Parent" xml:space="preserve">
+  <data name="tlEquipments.RowHeight" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="tlEquipments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>637, 305</value>
+  </data>
+  <data name="tlEquipments.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tlEquipments.Name" xml:space="preserve">
+    <value>tlEquipments</value>
+  </data>
+  <data name="&gt;&gt;tlEquipments.Type" xml:space="preserve">
+    <value>DevExpress.XtraTreeList.TreeList, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;tlEquipments.Parent" xml:space="preserve">
     <value>gpcAndonEvents</value>
   </data>
-  <data name="&gt;&gt;cboEquipmentList.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tlEquipments.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="gpcAndonEvents.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
   </data>
+  <data name="gpcAndonEvents.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
   <data name="gpcAndonEvents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>651, 85</value>
+    <value>651, 345</value>
   </data>
   <data name="gpcAndonEvents.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -226,19 +241,19 @@
     <value>新宋体, 21.75pt</value>
   </data>
   <data name="groupControl1.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
+    <value>微软雅黑, 12pt</value>
   </data>
   <data name="grdAndonCallObjects.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="grdAndonCallObjects.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 29</value>
+    <value>7, 33</value>
   </data>
   <data name="grdvAndonCallObjects.Appearance.HeaderPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
+    <value>微软雅黑, 12pt</value>
   </data>
   <data name="grdvAndonCallObjects.Appearance.Row.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
+    <value>微软雅黑, 12pt</value>
   </data>
   <data name="grdclmnChoice.AppearanceCell.Font" type="System.Drawing.Font, System.Drawing">
     <value>新宋体, 12pt</value>
@@ -264,6 +279,9 @@
   <data name="grdclmnChoice.VisibleIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="grdclmnChoice.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
   <data name="grdclmnEventDescription.AppearanceCell.Font" type="System.Drawing.Font, System.Drawing">
     <value>新宋体, 12pt</value>
   </data>
@@ -283,7 +301,7 @@
     <value>400</value>
   </data>
   <data name="grdAndonCallObjects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>637, 411</value>
+    <value>637, 147</value>
   </data>
   <data name="grdAndonCallObjects.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -301,13 +319,13 @@
     <value>0</value>
   </data>
   <data name="groupControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 103</value>
+    <value>12, 363</value>
   </data>
   <data name="groupControl1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="groupControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>651, 447</value>
+    <value>651, 187</value>
   </data>
   <data name="groupControl1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -349,7 +367,7 @@
     <value>92, 21</value>
   </data>
   <data name="chkProductionLineStopped.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;chkProductionLineStopped.Name" xml:space="preserve">
     <value>chkProductionLineStopped</value>
@@ -367,7 +385,7 @@
     <value>Top, Right</value>
   </data>
   <data name="btnCall.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
+    <value>微软雅黑, 12pt</value>
   </data>
   <data name="btnCall.Location" type="System.Drawing.Point, System.Drawing">
     <value>680, 12</value>
@@ -397,7 +415,7 @@
     <value>Top, Right</value>
   </data>
   <data name="btnClose.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
+    <value>微软雅黑, 12pt</value>
   </data>
   <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
     <value>680, 511</value>
@@ -444,6 +462,12 @@
   <data name="&gt;&gt;imageCollection.Type" xml:space="preserve">
     <value>DevExpress.Utils.ImageCollection, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;tlcEquipmentName.Name" xml:space="preserve">
+    <value>tlcEquipmentName</value>
+  </data>
+  <data name="&gt;&gt;tlcEquipmentName.Type" xml:space="preserve">
+    <value>DevExpress.XtraTreeList.Columns.TreeListColumn, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
   <data name="&gt;&gt;grdvAndonCallObjects.Name" xml:space="preserve">
     <value>grdvAndonCallObjects</value>
   </data>
@@ -472,6 +496,6 @@
     <value>frmSelectFailureModesByDeviceToCall</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6170.22716, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6176.28030, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

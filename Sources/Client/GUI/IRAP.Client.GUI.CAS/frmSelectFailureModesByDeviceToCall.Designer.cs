@@ -32,7 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelectFailureModesByDeviceToCall));
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
-            this.cboEquipmentList = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.tlEquipments = new DevExpress.XtraTreeList.TreeList();
+            this.tlcEquipmentName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.grdAndonCallObjects = new DevExpress.XtraGrid.GridControl();
             this.grdvAndonCallObjects = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -45,7 +46,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
             this.gpcAndonEvents.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboEquipmentList.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlEquipments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonCallObjects)).BeginInit();
@@ -77,26 +78,35 @@
             this.gpcAndonEvents.Appearance.Options.UseFont = true;
             this.gpcAndonEvents.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("gpcAndonEvents.AppearanceCaption.Font")));
             this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
-            this.gpcAndonEvents.Controls.Add(this.cboEquipmentList);
+            this.gpcAndonEvents.Controls.Add(this.tlEquipments);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             // 
-            // cboEquipmentList
+            // tlEquipments
             // 
-            resources.ApplyResources(this.cboEquipmentList, "cboEquipmentList");
-            this.cboEquipmentList.Name = "cboEquipmentList";
-            this.cboEquipmentList.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("cboEquipmentList.Properties.Appearance.Font")));
-            this.cboEquipmentList.Properties.Appearance.Options.UseFont = true;
-            this.cboEquipmentList.Properties.AppearanceDropDown.Font = ((System.Drawing.Font)(resources.GetObject("cboEquipmentList.Properties.AppearanceDropDown.Font")));
-            this.cboEquipmentList.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboEquipmentList.Properties.AppearanceFocused.Font = ((System.Drawing.Font)(resources.GetObject("cboEquipmentList.Properties.AppearanceFocused.Font")));
-            this.cboEquipmentList.Properties.AppearanceFocused.Options.UseFont = true;
-            this.cboEquipmentList.Properties.AppearanceReadOnly.Font = ((System.Drawing.Font)(resources.GetObject("cboEquipmentList.Properties.AppearanceReadOnly.Font")));
-            this.cboEquipmentList.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.cboEquipmentList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("cboEquipmentList.Properties.Buttons"))))});
-            this.cboEquipmentList.Properties.DropDownItemHeight = 30;
-            this.cboEquipmentList.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboEquipmentList.SelectedIndexChanged += new System.EventHandler(this.cboEquipmentList_SelectedIndexChanged);
+            this.tlEquipments.Appearance.Caption.Font = ((System.Drawing.Font)(resources.GetObject("tlEquipments.Appearance.Caption.Font")));
+            this.tlEquipments.Appearance.Caption.Options.UseFont = true;
+            this.tlEquipments.Appearance.FocusedCell.BackColor = ((System.Drawing.Color)(resources.GetObject("tlEquipments.Appearance.FocusedCell.BackColor")));
+            this.tlEquipments.Appearance.FocusedCell.ForeColor = ((System.Drawing.Color)(resources.GetObject("tlEquipments.Appearance.FocusedCell.ForeColor")));
+            this.tlEquipments.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.tlEquipments.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.tlEquipments.Appearance.HeaderPanel.Font = ((System.Drawing.Font)(resources.GetObject("tlEquipments.Appearance.HeaderPanel.Font")));
+            this.tlEquipments.Appearance.HeaderPanel.Options.UseFont = true;
+            this.tlEquipments.Appearance.Row.Font = ((System.Drawing.Font)(resources.GetObject("tlEquipments.Appearance.Row.Font")));
+            this.tlEquipments.Appearance.Row.Options.UseFont = true;
+            this.tlEquipments.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.tlcEquipmentName});
+            resources.ApplyResources(this.tlEquipments, "tlEquipments");
+            this.tlEquipments.Name = "tlEquipments";
+            this.tlEquipments.OptionsBehavior.Editable = false;
+            this.tlEquipments.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
+            this.tlEquipments.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
+            this.tlEquipments.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.tlEquipments_FocusedNodeChanged);
+            // 
+            // tlcEquipmentName
+            // 
+            resources.ApplyResources(this.tlcEquipmentName, "tlcEquipmentName");
+            this.tlcEquipmentName.FieldName = "ObjectDesc";
+            this.tlcEquipmentName.Name = "tlcEquipmentName";
             // 
             // groupControl1
             // 
@@ -137,7 +147,6 @@
             this.grdclmnEventDescription});
             this.grdvAndonCallObjects.GridControl = this.grdAndonCallObjects;
             this.grdvAndonCallObjects.Name = "grdvAndonCallObjects";
-            this.grdvAndonCallObjects.OptionsView.ColumnAutoWidth = false;
             this.grdvAndonCallObjects.OptionsView.RowAutoHeight = true;
             this.grdvAndonCallObjects.OptionsView.ShowGroupPanel = false;
             this.grdvAndonCallObjects.RowHeight = 40;
@@ -155,6 +164,8 @@
             resources.ApplyResources(this.grdclmnChoice, "grdclmnChoice");
             this.grdclmnChoice.ColumnEdit = this.repiceChoice;
             this.grdclmnChoice.FieldName = "Choice";
+            this.grdclmnChoice.MaxWidth = 50;
+            this.grdclmnChoice.MinWidth = 50;
             this.grdclmnChoice.Name = "grdclmnChoice";
             this.grdclmnChoice.OptionsColumn.AllowMove = false;
             // 
@@ -194,6 +205,7 @@
             this.chkProductionLineStopped.Properties.Appearance.Options.UseTextOptions = true;
             this.chkProductionLineStopped.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.chkProductionLineStopped.Properties.Caption = resources.GetString("chkProductionLineStopped.Properties.Caption");
+            this.chkProductionLineStopped.TabStop = false;
             // 
             // btnCall
             // 
@@ -229,7 +241,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).EndInit();
             this.gpcAndonEvents.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cboEquipmentList.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlEquipments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonCallObjects)).EndInit();
@@ -244,7 +256,6 @@
 
         private DevExpress.Utils.ImageCollection imageCollection;
         private DevExpress.XtraEditors.GroupControl gpcAndonEvents;
-        private DevExpress.XtraEditors.ComboBoxEdit cboEquipmentList;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraGrid.GridControl grdAndonCallObjects;
         private DevExpress.XtraGrid.Views.Grid.GridView grdvAndonCallObjects;
@@ -254,5 +265,7 @@
         private DevExpress.XtraEditors.CheckEdit chkProductionLineStopped;
         private DevExpress.XtraEditors.SimpleButton btnCall;
         private DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraTreeList.TreeList tlEquipments;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn tlcEquipmentName;
     }
 }

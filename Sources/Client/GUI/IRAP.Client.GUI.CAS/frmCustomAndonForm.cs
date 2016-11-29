@@ -98,7 +98,7 @@ namespace IRAP.Client.GUI.CAS
             }
         }
 
-        private void frmCustomAndonForm_Activated(object sender, EventArgs e)
+        protected void RefreshCurrentProductionLine()
         {
             currentProductionLine = GetBoundAndonHost();
             if (currentProductionLine != null)
@@ -147,6 +147,11 @@ namespace IRAP.Client.GUI.CAS
                 else
                     lblProductionLine.Text = "当前产线：无";
             }
+        }
+
+        private void frmCustomAndonForm_Activated(object sender, EventArgs e)
+        {
+            RefreshCurrentProductionLine();
         }
     }
 }

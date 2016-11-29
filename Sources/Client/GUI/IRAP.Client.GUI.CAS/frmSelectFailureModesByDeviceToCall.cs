@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Threading;
 
 using DevExpress.XtraEditors;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
 
 using IRAP.Global;
 using IRAP.Client.User;
@@ -57,6 +59,72 @@ namespace IRAP.Client.GUI.CAS
             }
         }
 
+        private void GetFailureModesFromAndonCallObject(AndonCallObject obj)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPMDMClient.Instance.ufn_GetList_AndonCallObjects(
+                    IRAPUser.Instance.CommunityID,
+                    andonEventType.EventTypeLeaf,
+                    0,
+                    obj.LeafID,
+                    IRAPUser.Instance.SysLogID,
+                    ref failureModeList,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    IRAPMessageBox.Instance.Show(
+                        string.Format("({0}){1}", errCode, errText),
+                        this.Text,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    grdAndonCallObjects.DataSource = null;
+                    return;
+                }
+
+                // 自动选择第一项
+                if (failureModeList.Count > 0)
+                    failureModeList[0].Choice = true;
+
+                grdAndonCallObjects.DataSource = failureModeList;
+                for (int i = 0; i < grdvAndonCallObjects.Columns.Count; i++)
+                {
+                    grdvAndonCallObjects.Columns[i].BestFit();
+                }
+                grdvAndonCallObjects.OptionsView.RowAutoHeight = true;
+                grdvAndonCallObjects.LayoutChanged();
+            }
+            catch (Exception error)
+            {
+                grdAndonCallObjects.DataSource = null;
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                IRAPMessageBox.Instance.Show(
+                    error.Message,
+                    this.Text,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         private void frmSelectFailureModesByDeviceToCall_Shown(object sender, EventArgs e)
         {
             string strProcedureName =
@@ -94,10 +162,24 @@ namespace IRAP.Client.GUI.CAS
                     return;
                 }
 
-                cboEquipmentList.Properties.Items.Clear();
+                //cboEquipmentList.Properties.Items.Clear();
+                //foreach (AndonCallObject equipment in equipmentList)
+                //{
+                //    cboEquipmentList.Properties.Items.Add(equipment);
+                //}
+
+                tlEquipments.Nodes.Clear();
                 foreach (AndonCallObject equipment in equipmentList)
                 {
-                    cboEquipmentList.Properties.Items.Add(equipment);
+                    tlEquipments.AppendNode(new object[] { equipment.ObjectDesc }, -1).Tag = equipment;
+                }
+                if (equipmentList.Count > 0)
+                {
+                    tlEquipments_FocusedNodeChanged(
+                        tlEquipments,
+                        new FocusedNodeChangedEventArgs(
+                            null,
+                            tlEquipments.Nodes.FirstNode));
                 }
             }
             catch (Exception error)
@@ -115,86 +197,23 @@ namespace IRAP.Client.GUI.CAS
             }
         }
 
-        private void cboEquipmentList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboEquipmentList.SelectedItem != null)
-            {
-                string strProcedureName =
-                    string.Format(
-                        "{0}.{1}",
-                        className,
-                        MethodBase.GetCurrentMethod().Name);
-
-                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-                try
-                {
-                    AndonCallObject selectedEquipment =
-                        cboEquipmentList.SelectedItem as AndonCallObject;
-                    int errCode = 0;
-                    string errText = "";
-
-                    IRAPMDMClient.Instance.ufn_GetList_AndonCallObjects(
-                        IRAPUser.Instance.CommunityID,
-                        andonEventType.EventTypeLeaf,
-                        0,
-                        selectedEquipment.LeafID,
-                        IRAPUser.Instance.SysLogID,
-                        ref failureModeList,
-                        out errCode,
-                        out errText);
-                    WriteLog.Instance.Write(
-                        string.Format("({0}){1}", errCode, errText),
-                        strProcedureName);
-                    if (errCode != 0)
-                    {
-                        IRAPMessageBox.Instance.Show(
-                            string.Format("({0}){1}", errCode, errText),
-                            this.Text,
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        grdAndonCallObjects.DataSource = null;
-                        return;
-                    }
-
-                    // 自动选择第一项
-                    if (failureModeList.Count > 0)
-                        failureModeList[0].Choice = true;
-
-                    grdAndonCallObjects.DataSource = failureModeList;
-                    for (int i = 0; i < grdvAndonCallObjects.Columns.Count; i++)
-                    {
-                        grdvAndonCallObjects.Columns[i].BestFit();
-                    }
-                    grdvAndonCallObjects.OptionsView.RowAutoHeight = true;
-                    grdvAndonCallObjects.LayoutChanged();
-                }
-                catch (Exception error)
-                {
-                    grdAndonCallObjects.DataSource = null;
-                    WriteLog.Instance.Write(error.Message, strProcedureName);
-                    IRAPMessageBox.Instance.Show(
-                        error.Message,
-                        this.Text,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                finally
-                {
-                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
-                }
-            }
-        }
-
         private void btnCall_Click(object sender, EventArgs e)
         {
+            AndonCallObject equipment = new AndonCallObject();
+            if (tlEquipments.FocusedNode == null ||
+                !(tlEquipments.FocusedNode.Tag is AndonCallObject))
+            {
+                return;
+            }
+            equipment = tlEquipments.FocusedNode.Tag as AndonCallObject;
+
             int intSelectedCount = 0;
             foreach (AndonCallObject andonObject in failureModeList)
             {
                 if (andonObject.Choice)
                 {
                     intSelectedCount++;
-                    if (!SaveAndonEventCall(andonObject))
+                    if (!SaveAndonEventCall(equipment, andonObject))
                         return;
                 }
             }
@@ -224,7 +243,9 @@ namespace IRAP.Client.GUI.CAS
         /// <summary>
         /// 保存安灯事件呼叫事实
         /// </summary>
-        private bool SaveAndonEventCall(AndonCallObject andonObject)
+        private bool SaveAndonEventCall(
+            AndonCallObject equipment, 
+            AndonCallObject failureMode)
         {
             string strProcedureName =
                 string.Format(
@@ -354,10 +375,10 @@ namespace IRAP.Client.GUI.CAS
                     factID,
                     andonEventType.EventTypeLeaf,
                     productionLine.T134LeafID,
-                    (cboEquipmentList.SelectedItem as AndonCallObject).LeafID,
-                    andonObject.TreeID,
-                    andonObject.LeafID,
-                    andonObject.Code,
+                    equipment.LeafID,
+                    failureMode.TreeID,
+                    failureMode.LeafID,
+                    failureMode.Code,
                     chkProductionLineStopped.Checked,
                     IRAPUser.Instance.SysLogID,
                     out errCode,
@@ -386,7 +407,7 @@ namespace IRAP.Client.GUI.CAS
                     IRAPMessageBox.Instance.Show(
                         string.Format(
                             msgText,
-                            andonObject.ObjectDesc,
+                            failureMode.ObjectDesc,
                             errText),
                         this.Text,
                         MessageBoxButtons.OK,
@@ -404,6 +425,14 @@ namespace IRAP.Client.GUI.CAS
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void tlEquipments_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        {
+            if (e.Node != null && e.Node.Tag is AndonCallObject)
+            {
+                GetFailureModesFromAndonCallObject((AndonCallObject)e.Node.Tag);
             }
         }
     }

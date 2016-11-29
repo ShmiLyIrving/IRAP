@@ -174,6 +174,7 @@
             this.chkProductionLineStopped.Properties.Caption = "已停产";
             this.chkProductionLineStopped.Size = new System.Drawing.Size(92, 20);
             this.chkProductionLineStopped.TabIndex = 3;
+            this.chkProductionLineStopped.TabStop = false;
             // 
             // btnClose
             // 

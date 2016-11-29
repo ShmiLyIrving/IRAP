@@ -356,6 +356,7 @@ namespace IRAP.Client.GUI.CAS
                     gpcAndonEvents.Text = string.Format(string.Format("{0}可以响应的安灯事件", staffInfo.UserName));
                     if (andonEvent.AndonEventOwnership == 0)
                     {
+                        andonEvent.Choice = false;
                         andonEventsInList.Add(andonEvent);
                     }
                 }
@@ -364,18 +365,18 @@ namespace IRAP.Client.GUI.CAS
                     gpcAndonEvents.Text = string.Format(string.Format("呼叫{0}的安灯事件", staffInfo.UserName));
                     if (andonEvent.AndonEventOwnership != 0)
                     {
+                        andonEvent.Choice = false;
                         andonEventsInList.Add(andonEvent);
                     }
                 }
             }
 
+            if (andonEventsInList.Count > 0)
+                andonEventsInList[0].Choice = true;
+
             grdAndonEvents.DataSource = andonEventsInList;
-            //for (int i = 0; i < grdvAndonEvents.Columns.Count; i++)
-            //{
-            //    grdvAndonEvents.Columns[i].BestFit();
-            //}
-            //grdvAndonEvents.OptionsView.RowAutoHeight = true;
-            //grdvAndonEvents.LayoutChanged();
+            grdvAndonEvents.OptionsView.RowAutoHeight = true;
+            grdvAndonEvents.LayoutChanged();
         }
 
         private void frmAndonEventRespond_30_Activated(object sender, EventArgs e)
