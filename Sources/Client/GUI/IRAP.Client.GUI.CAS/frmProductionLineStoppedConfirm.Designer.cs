@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductionLineStoppedConfirm));
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
             this.grdAndonEvents = new DevExpress.XtraGrid.GridControl();
             this.grdvAndonEvents = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnResourceName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,8 +44,8 @@
             this.btnStoppedConfirm = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
+            this.gpcAndonEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -70,20 +70,20 @@
             this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
-            // groupControl1
+            // gpcAndonEvents
             // 
-            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gpcAndonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.grdAndonEvents);
-            this.groupControl1.Location = new System.Drawing.Point(12, 6);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl1.Size = new System.Drawing.Size(758, 421);
-            this.groupControl1.TabIndex = 1;
-            this.groupControl1.Text = "待关联停线的安灯事件列表";
+            this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
+            this.gpcAndonEvents.Controls.Add(this.grdAndonEvents);
+            this.gpcAndonEvents.Location = new System.Drawing.Point(12, 6);
+            this.gpcAndonEvents.Name = "gpcAndonEvents";
+            this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(758, 421);
+            this.gpcAndonEvents.TabIndex = 1;
+            this.gpcAndonEvents.Text = "待关联停线的安灯事件列表";
             // 
             // grdAndonEvents
             // 
@@ -210,7 +210,7 @@
             // 
             this.pnlBody.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlBody.Controls.Add(this.btnStoppedConfirm);
-            this.pnlBody.Controls.Add(this.groupControl1);
+            this.pnlBody.Controls.Add(this.gpcAndonEvents);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBody.Location = new System.Drawing.Point(0, 56);
             this.pnlBody.Name = "pnlBody";
@@ -242,8 +242,8 @@
             this.Controls.SetChildIndex(this.pnlBody, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).EndInit();
+            this.gpcAndonEvents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvAndonEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
@@ -257,7 +257,7 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.GroupControl gpcAndonEvents;
         private DevExpress.XtraEditors.PanelControl pnlBody;
         private DevExpress.XtraGrid.GridControl grdAndonEvents;
         private DevExpress.XtraGrid.Views.Grid.GridView grdvAndonEvents;

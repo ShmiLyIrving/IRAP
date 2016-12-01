@@ -369,6 +369,9 @@
   <data name="chkProductionLineStopped.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
+  <data name="chkProductionLineStopped.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;chkProductionLineStopped.Name" xml:space="preserve">
     <value>chkProductionLineStopped</value>
   </data>
@@ -496,6 +499,6 @@
     <value>frmSelectFailureModesByDeviceToCall</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6176.28030, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6176.28836, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

@@ -22,6 +22,16 @@ namespace IRAP.Client.GUI.CAS
         public frmProductionLineStoppedConfirm()
         {
             InitializeComponent();
+
+            switch (IRAPUser.Instance.CommunityID)
+            {
+                case 60006:
+                    // 在停线确认的时候，不需要和安灯事件进行关联
+
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void GetOpenedAndonEvents()

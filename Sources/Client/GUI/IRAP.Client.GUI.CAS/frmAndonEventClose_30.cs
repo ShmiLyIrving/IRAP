@@ -28,6 +28,9 @@ namespace IRAP.Client.GUI.CAS
         public frmAndonEventClose_30()
         {
             InitializeComponent();
+
+            if (IRAPUser.Instance.CommunityID == 60006)
+                grdclmnProductionLineStatus.Visible = false;
         }
 
         private void GetAndonEventsToClose()
@@ -114,6 +117,7 @@ namespace IRAP.Client.GUI.CAS
 
                     AndonEventToClose andonEvent = grdvAndonEvents.GetFocusedRow() as AndonEventToClose;
 
+                    andonEvent.StopEventFactID = 0;
                     if (andonEvent.StopEventFactID == 0)
                     {
                         using (frmAndonEventCloseProperties formAndonEventClose = new frmAndonEventCloseProperties())

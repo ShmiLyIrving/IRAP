@@ -175,6 +175,7 @@
             this.chkProductionLineStopped.Size = new System.Drawing.Size(92, 20);
             this.chkProductionLineStopped.TabIndex = 3;
             this.chkProductionLineStopped.TabStop = false;
+            this.chkProductionLineStopped.Visible = false;
             // 
             // btnClose
             // 

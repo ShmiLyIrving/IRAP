@@ -97,6 +97,7 @@
             this.chkProductionLineStopped.Size = new System.Drawing.Size(92, 21);
             this.chkProductionLineStopped.TabIndex = 7;
             this.chkProductionLineStopped.TabStop = false;
+            this.chkProductionLineStopped.Visible = false;
             // 
             // gpcAndonEvents
             // 
