@@ -114,7 +114,6 @@
             this.grdclmnActions});
             this.grdvAddressList.GridControl = this.grdAddressList;
             this.grdvAddressList.Name = "grdvAddressList";
-            this.grdvAddressList.OptionsBehavior.Editable = false;
             this.grdvAddressList.OptionsView.ColumnAutoWidth = false;
             this.grdvAddressList.OptionsView.ShowGroupPanel = false;
             // 
@@ -123,17 +122,25 @@
             this.grdclmnAddress.Caption = "收货地址";
             this.grdclmnAddress.FieldName = "Address";
             this.grdclmnAddress.Name = "grdclmnAddress";
+            this.grdclmnAddress.OptionsColumn.AllowEdit = false;
+            this.grdclmnAddress.Visible = true;
+            this.grdclmnAddress.VisibleIndex = 0;
             // 
             // grdclmnT117Name
             // 
             this.grdclmnT117Name.Caption = "标签模板名称";
             this.grdclmnT117Name.FieldName = "T117Name";
             this.grdclmnT117Name.Name = "grdclmnT117Name";
+            this.grdclmnT117Name.OptionsColumn.AllowEdit = false;
+            this.grdclmnT117Name.Visible = true;
+            this.grdclmnT117Name.VisibleIndex = 1;
             // 
             // grdclmnActions
             // 
             this.grdclmnActions.ColumnEdit = this.ribeActions;
             this.grdclmnActions.Name = "grdclmnActions";
+            this.grdclmnActions.Visible = true;
+            this.grdclmnActions.VisibleIndex = 2;
             this.grdclmnActions.Width = 120;
             // 
             // ribeActions

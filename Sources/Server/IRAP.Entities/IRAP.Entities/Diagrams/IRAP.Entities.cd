@@ -1,80 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.Entities.MDM.DstDeliveryStoreSite" Collapsed="true">
-    <Position X="4" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEARAAIAAAACAQBAIAAIAAAABAABA=</HashCode>
       <FileName>MDM\DstDeliveryStoreSite.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.SCES.ProductionWorkOrder" Collapsed="true">
-    <Position X="0.5" Y="2.5" Width="1.5" />
+    <Position X="2.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAoAAAAAAIkAABAAIAAAAwAIQAIAAAAgBAEAAAAFw=</HashCode>
       <FileName>SCES\ProductionWorkOrder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.SCES.MaterialToDeliver" Collapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
+    <Position X="4" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>KEBAIIMQQQAAEEAQgRoAEAAEAGAQBggAAAACEgkAiJA=</HashCode>
       <FileName>SCES\MaterialToDeliver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.SCES.ProductionFlowCard" Collapsed="true">
-    <Position X="4" Y="1.5" Width="1.5" />
+    <Position X="5.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAhAAACACCAAQAgBAgAAAQIAQABAAAAABAFAEEQRg=</HashCode>
       <FileName>SCES\ProductionFlowCard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.MDM.AvailableSite" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAABECAAEACAABEkBAIAAACgAIAIAACAAAAkAAAABA=</HashCode>
       <FileName>MDM\AvailableSite.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.MDM.CustomerOfAProduction" Collapsed="true">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAACAAAEEBAAAEACgAAAAAAAAAAAEAAAABA=</HashCode>
       <FileName>MDM\CustomerOfAProduction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.MDM.TemplateContent" Collapsed="true">
-    <Position X="2.25" Y="2.5" Width="1.5" />
+    <Position X="4" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAIBAAAgAAAAIAAIAAAAAAEAAAABA=</HashCode>
       <FileName>MDM\TemplateContent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.FVS.EventStakeholder" Collapsed="true">
-    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAQQAAAAAAABA=</HashCode>
+      <HashCode>AAQAAAAAAAACAAAAAAAAAAAAAAAACAAAQQAAEAAAABA=</HashCode>
       <FileName>FVS\EventStakeholder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.SSO.UserInfo" Collapsed="true">
-    <Position X="4" Y="2.5" Width="1.5" />
+    <Position X="5.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAACAAAAAAAAAAAAAAAAAAAAAQAAEAAAABA=</HashCode>
       <FileName>SSO\UserInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entities.FVS.AndonRspedEventInfo">
-    <Position X="6.75" Y="2.25" Width="1.5" />
+  <Class Name="IRAP.Entities.FVS.AndonRspedEventInfo" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAIAAAAAAAACAAABEAAAAAAAAQAAAgIAAABA=</HashCode>
+      <HashCode>AAAAAAAQAIAAAAAEAACAAABEAAAAAAAAQAAAgIAAABA=</HashCode>
       <FileName>AndonRspedEventInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entities.MDM.AndonCallPerson">
-    <Position X="9" Y="1.75" Width="1.5" />
+  <Class Name="IRAP.Entities.MDM.AndonCallPerson" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAACAAAAAAEAAgBAAEAAAAAAAAAAAAQAAAAAAABA=</HashCode>
+      <HashCode>AAQAAACAAAAAAEAAgBAAEAAAAAAACAAAAQAAAAAAABA=</HashCode>
       <FileName>AndonCallPerson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entities.FVS.ProductionSurveillance" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAEAEAAAgEAAAIARIAAAAAAAAFIEAABE=</HashCode>
+      <FileName>FVS\ProductionSurveillance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

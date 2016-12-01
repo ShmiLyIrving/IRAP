@@ -26,10 +26,10 @@ namespace IRAP.Client.GUI.CAS
             switch (IRAPUser.Instance.CommunityID)
             {
                 case 60006:
-                    // 在停线确认的时候，不需要和安灯事件进行关联
-
+                    tcMain.SelectedTabPage = tpLineStop;
                     break;
                 default:
+                    tcMain.SelectedTabPage = tpLineStopWithAndonEvent;
                     break;
             }
         }
@@ -182,6 +182,12 @@ namespace IRAP.Client.GUI.CAS
 
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        private void tpLineStop_Resize(object sender, EventArgs e)
+        {
+            btnLineStop.Left = (Width - btnLineStop.Width) / 2;
+            btnLineStop.Top = (Height - btnLineStop.Height) / 5 * 2;
         }
     }
 }

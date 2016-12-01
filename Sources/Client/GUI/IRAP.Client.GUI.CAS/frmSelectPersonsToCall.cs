@@ -79,7 +79,15 @@ namespace IRAP.Client.GUI.CAS
 
                 if (userIDCardNo == "")
                 {
-                    userIDCardNo = ReadUserIDCard.Instance.Execute();
+                    switch (IRAPUser.Instance.CommunityID)
+                    {
+                        case 60006:
+                            userIDCardNo = ReadUserIDCard.Instance.Execute(false);
+                            break;
+                        default:
+                            userIDCardNo = ReadUserIDCard.Instance.Execute(true);
+                            break;
+                    }
                     if (ReadUserIDCard.Instance.DialogResult != DialogResult.OK)
                     {
                         userIDCardNo = "";

@@ -63,7 +63,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(472, 12);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(75, 31);
             this.btnOK.TabIndex = 2;
             this.btnOK.Text = "确定";
             // 
@@ -71,9 +71,9 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(472, 41);
+            this.btnCancel.Location = new System.Drawing.Point(472, 51);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 31);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "取消";
             // 

@@ -29,15 +29,19 @@ namespace IRAP.Client.Global.GUI.Dialogs
             get { return dialogResult; }
         }
 
-        public string Execute()
+        public string Execute(bool isShowInputString)
         {
-            return Execute("");
+            return Execute(
+                notifyMessage:"", 
+                isShowInputString:isShowInputString);
         }
 
-        public string Execute(string notifyMessage)
+        public string Execute(string notifyMessage, bool isShowInputString)
         {
             using (frmReadUserIDCard readUserIDCard = new frmReadUserIDCard())
             {
+                readUserIDCard.ShowInputString = isShowInputString;
+
                 if (notifyMessage != "")
                 {
                     readUserIDCard.Caption = notifyMessage;

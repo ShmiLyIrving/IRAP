@@ -2391,7 +2391,7 @@ namespace IRAP.WCF.Client.Method
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行函数 ufn_GetFactList_AndonEvents，输入参数：" +
-                            "CommunityID={0}|T134LeafID={1}|T179LeafID={2}"+
+                            "CommunityID={0}|T134LeafID={1}|T179LeafID={2}|"+
                             "BeginDate={3}|EndDate={4}|SysLogID={5}",
                             communityID, t134LeafID, t179LeafID, beginDate, 
                             endDate, sysLogID),
@@ -2565,6 +2565,87 @@ namespace IRAP.WCF.Client.Method
                             errCode,
                             errText),
                         strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 生产异常监控看板：
+        /// ⒈ 监控指定工厂结构范围(按产线目录树点击流)生产异常状况；
+        /// ⒉ 可以产线或工作中心作为监控单元；
+        /// ⒊ 支持六大类安灯事件类型。
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t134ClickStream">工厂结构树点击流</param>
+        /// <param name="resourceTreeID">资源树标识(134-产线；211-工作中心)</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetKanban_ProductionSurveillance(
+            int communityID,
+            string t134ClickStream,
+            int resourceTreeID,
+            long sysLogID,
+            ref List<ProductionSurveillance> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("t134ClickStream", t134ClickStream);
+                    hashParams.Add("resourceTreeID", resourceTreeID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_GetKanban_ProductionSurveillance，输入参数：" +
+                            "CommunityID={0}|T134ClickStream={1}|ResourceTreeID={2}|" +
+                            "SysLogID={3}",
+                            communityID, t134ClickStream, resourceTreeID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Kanbans",
+                            "ufn_GetKanban_ProductionSurveillance",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<ProductionSurveillance>;
+                    }
                     #endregion
                 }
             }

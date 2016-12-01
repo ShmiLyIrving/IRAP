@@ -26,6 +26,12 @@ namespace IRAP.Client.Global.GUI.Dialogs
             get { return edtIDCardNo.Text; }
         }
 
+        public bool ShowInputString
+        {
+            get { return edtIDCardNo.Properties.UseSystemPasswordChar; }
+            set { edtIDCardNo.Properties.UseSystemPasswordChar = value; }
+        }
+
         private void edtIDCardNo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode== Keys.Return)

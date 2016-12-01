@@ -264,7 +264,16 @@ namespace IRAP.Client.GUI.CAS
 
                 #region 获取呼叫者的身份信息
                 WriteLog.Instance.Write("获取呼叫者的身份信息", strProcedureName);
-                string userIDCardNo = ReadUserIDCard.Instance.Execute();
+                string userIDCardNo = "";
+                switch (IRAPUser.Instance.CommunityID)
+                {
+                    case 60006:
+                        userIDCardNo = ReadUserIDCard.Instance.Execute(false);
+                        break;
+                    default:
+                        userIDCardNo = ReadUserIDCard.Instance.Execute(true);
+                        break;
+                }
                 if (userIDCardNo == "")
                 {
                     WriteLog.Instance.Write("没有输入ID卡号，不能呼叫安灯事件。", strProcedureName);

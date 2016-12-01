@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IRAP.Entity.FVS
+namespace IRAP.Entities.FVS
 {
     /// <summary>
     /// 生产监控结果
@@ -55,24 +55,26 @@ namespace IRAP.Entity.FVS
         /// </summary>
         public string T179NodeName { get; set; }
         /// <summary>
-        /// 资源状态
+        /// 资源状态(0=未开通 1=正常 2=非停线 3=停线)
         /// </summary>
-        /// <value>0=未开通 1=正常 2=非停线 3=停线</value>
         public int ResourceStatus { get; set; }
         /// <summary>
         /// 已过时间(s)
         /// </summary>
         public int ElapsedSeconds { get; set; }
         /// <summary>
-        /// 是否响应
+        /// 是否已响应
         /// </summary>
         public bool OnSiteResponded { get; set; }
 
         public ProductionSurveillance Clone()
         {
-            ProductionSurveillance rlt = MemberwiseClone() as ProductionSurveillance;
+            return MemberwiseClone() as ProductionSurveillance;
+        }
 
-            return rlt;
+        public override string ToString()
+        {
+            return NodeName + T179NodeName;
         }
     }
 }

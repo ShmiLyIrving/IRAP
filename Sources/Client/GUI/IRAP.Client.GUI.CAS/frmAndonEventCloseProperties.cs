@@ -26,6 +26,16 @@ namespace IRAP.Client.GUI.CAS
         public frmAndonEventCloseProperties()
         {
             InitializeComponent();
+
+            switch (IRAPUser.Instance.CommunityID)
+            {
+                case 60006:
+                    edtUserIDCardNo.Properties.UseSystemPasswordChar = false;
+                    break;
+                default:
+                    edtUserIDCardNo.Properties.UseSystemPasswordChar = true;
+                    break;
+            }
         }
 
         public UserInfo UserInfo

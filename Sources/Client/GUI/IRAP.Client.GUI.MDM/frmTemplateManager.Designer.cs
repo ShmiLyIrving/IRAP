@@ -80,7 +80,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(263, 45);
+            this.groupControl1.Size = new System.Drawing.Size(263, 54);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "当前标签";
             // 
@@ -147,10 +147,10 @@
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl2.Controls.Add(this.groupControl3);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(5, 50);
+            this.panelControl2.Location = new System.Drawing.Point(5, 59);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.panelControl2.Size = new System.Drawing.Size(263, 513);
+            this.panelControl2.Size = new System.Drawing.Size(263, 504);
             this.panelControl2.TabIndex = 3;
             // 
             // groupControl3
@@ -159,7 +159,7 @@
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl3.Location = new System.Drawing.Point(0, 5);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(263, 508);
+            this.groupControl3.Size = new System.Drawing.Size(263, 499);
             this.groupControl3.TabIndex = 1;
             this.groupControl3.Text = "标签模板库";
             // 
@@ -178,7 +178,7 @@
             this.lstTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstTemplates.Location = new System.Drawing.Point(2, 21);
             this.lstTemplates.Name = "lstTemplates";
-            this.lstTemplates.Size = new System.Drawing.Size(259, 485);
+            this.lstTemplates.Size = new System.Drawing.Size(259, 476);
             this.lstTemplates.TabIndex = 0;
             this.lstTemplates.SelectedIndexChanged += new System.EventHandler(this.lstTemplates_SelectedIndexChanged);
             // 
@@ -193,7 +193,7 @@
             this.toolStripMenuItem2,
             this.tsmiRename});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(213, 148);
+            this.contextMenuStrip.Size = new System.Drawing.Size(213, 126);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // tsmiReplace
@@ -248,7 +248,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(5, 5);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(263, 45);
+            this.panelControl1.Size = new System.Drawing.Size(263, 54);
             this.panelControl1.TabIndex = 2;
             // 
             // report

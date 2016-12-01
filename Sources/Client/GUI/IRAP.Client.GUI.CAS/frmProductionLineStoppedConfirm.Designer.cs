@@ -42,6 +42,10 @@
             this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlBody = new DevExpress.XtraEditors.PanelControl();
             this.btnStoppedConfirm = new DevExpress.XtraEditors.SimpleButton();
+            this.tcMain = new DevExpress.XtraTab.XtraTabControl();
+            this.tpLineStopWithAndonEvent = new DevExpress.XtraTab.XtraTabPage();
+            this.tpLineStop = new DevExpress.XtraTab.XtraTabPage();
+            this.btnLineStop = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
@@ -53,6 +57,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).BeginInit();
             this.pnlBody.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
+            this.tcMain.SuspendLayout();
+            this.tpLineStopWithAndonEvent.SuspendLayout();
+            this.tpLineStop.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -78,10 +86,10 @@
             this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
             this.gpcAndonEvents.Controls.Add(this.grdAndonEvents);
-            this.gpcAndonEvents.Location = new System.Drawing.Point(12, 6);
+            this.gpcAndonEvents.Location = new System.Drawing.Point(12, 16);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(758, 421);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(752, 405);
             this.gpcAndonEvents.TabIndex = 1;
             this.gpcAndonEvents.Text = "待关联停线的安灯事件列表";
             // 
@@ -94,7 +102,7 @@
             this.grdAndonEvents.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1,
             this.rsiChecked});
-            this.grdAndonEvents.Size = new System.Drawing.Size(744, 381);
+            this.grdAndonEvents.Size = new System.Drawing.Size(738, 365);
             this.grdAndonEvents.TabIndex = 2;
             this.grdAndonEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvAndonEvents});
@@ -212,9 +220,9 @@
             this.pnlBody.Controls.Add(this.btnStoppedConfirm);
             this.pnlBody.Controls.Add(this.gpcAndonEvents);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBody.Location = new System.Drawing.Point(0, 56);
+            this.pnlBody.Location = new System.Drawing.Point(0, 0);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(891, 439);
+            this.pnlBody.Size = new System.Drawing.Size(885, 433);
             this.pnlBody.TabIndex = 2;
             // 
             // btnStoppedConfirm
@@ -223,23 +231,63 @@
             this.btnStoppedConfirm.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnStoppedConfirm.Appearance.Options.UseFont = true;
             this.btnStoppedConfirm.Enabled = false;
-            this.btnStoppedConfirm.Location = new System.Drawing.Point(782, 6);
+            this.btnStoppedConfirm.Location = new System.Drawing.Point(781, 16);
             this.btnStoppedConfirm.Name = "btnStoppedConfirm";
             this.btnStoppedConfirm.Size = new System.Drawing.Size(97, 36);
             this.btnStoppedConfirm.TabIndex = 2;
             this.btnStoppedConfirm.Text = "停线登记";
             this.btnStoppedConfirm.Click += new System.EventHandler(this.btnStoppedConfirm_Click);
             // 
+            // tcMain
+            // 
+            this.tcMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.tcMain.BorderStylePage = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcMain.Location = new System.Drawing.Point(0, 56);
+            this.tcMain.Name = "tcMain";
+            this.tcMain.SelectedTabPage = this.tpLineStop;
+            this.tcMain.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
+            this.tcMain.Size = new System.Drawing.Size(891, 439);
+            this.tcMain.TabIndex = 3;
+            this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.tpLineStopWithAndonEvent,
+            this.tpLineStop});
+            // 
+            // tpLineStopWithAndonEvent
+            // 
+            this.tpLineStopWithAndonEvent.Controls.Add(this.pnlBody);
+            this.tpLineStopWithAndonEvent.Name = "tpLineStopWithAndonEvent";
+            this.tpLineStopWithAndonEvent.Size = new System.Drawing.Size(885, 433);
+            this.tpLineStopWithAndonEvent.Text = "xtraTabPage1";
+            // 
+            // tpLineStop
+            // 
+            this.tpLineStop.Controls.Add(this.btnLineStop);
+            this.tpLineStop.Name = "tpLineStop";
+            this.tpLineStop.Size = new System.Drawing.Size(885, 433);
+            this.tpLineStop.Text = "xtraTabPage2";
+            this.tpLineStop.Resize += new System.EventHandler(this.tpLineStop_Resize);
+            // 
+            // btnLineStop
+            // 
+            this.btnLineStop.Appearance.Font = new System.Drawing.Font("微软雅黑", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLineStop.Appearance.Options.UseFont = true;
+            this.btnLineStop.Location = new System.Drawing.Point(342, 125);
+            this.btnLineStop.Name = "btnLineStop";
+            this.btnLineStop.Size = new System.Drawing.Size(207, 97);
+            this.btnLineStop.TabIndex = 3;
+            this.btnLineStop.Text = "停线登记";
+            // 
             // frmProductionLineStoppedConfirm
             // 
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(891, 495);
-            this.Controls.Add(this.pnlBody);
+            this.Controls.Add(this.tcMain);
             this.Name = "frmProductionLineStoppedConfirm";
             this.Text = "产线停线确认";
             this.Activated += new System.EventHandler(this.frmProductionLineStoppedConfirm_Activated);
             this.Controls.SetChildIndex(this.panelControl1, 0);
-            this.Controls.SetChildIndex(this.pnlBody, 0);
+            this.Controls.SetChildIndex(this.tcMain, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).EndInit();
@@ -251,6 +299,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).EndInit();
             this.pnlBody.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
+            this.tcMain.ResumeLayout(false);
+            this.tpLineStopWithAndonEvent.ResumeLayout(false);
+            this.tpLineStop.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -269,5 +321,9 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit rsiChecked;
         private DevExpress.Utils.ImageCollection imageCollection;
         private DevExpress.XtraEditors.SimpleButton btnStoppedConfirm;
+        private DevExpress.XtraTab.XtraTabControl tcMain;
+        private DevExpress.XtraTab.XtraTabPage tpLineStopWithAndonEvent;
+        private DevExpress.XtraTab.XtraTabPage tpLineStop;
+        private DevExpress.XtraEditors.SimpleButton btnLineStop;
     }
 }

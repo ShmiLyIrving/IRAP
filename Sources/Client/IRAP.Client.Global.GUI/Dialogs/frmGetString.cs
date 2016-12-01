@@ -24,6 +24,7 @@ namespace IRAP.Client.Global.GUI.Dialogs
         public string String
         {
             get { return edtInputString.Text; }
+            set { edtInputString.Text = value; }
         }
     }
 
@@ -53,6 +54,7 @@ namespace IRAP.Client.Global.GUI.Dialogs
 
             formGetString.Text = caption;
             formGetString.Message = messages;
+            formGetString.String = defaultValue;
 
             if (formGetString.ShowDialog() == DialogResult.OK)
                 rlt = formGetString.String;
