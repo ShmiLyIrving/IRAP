@@ -42,16 +42,43 @@ namespace IRAP.Client.GUI.CAS
         {
             InitializeComponent();
 
-            bandedGridColumnArea.Caption = "车间\nWorkshop";
-            bandedGridColumnProductionLine.Caption = "生产线/工作中心\nLine/Work Center";
-            bandedGridColumnMaterial.Caption = "物料\nMaterial";
-            bandedGridColumnEquipment.Caption = "维修\nMaintenance";
-            bandedGridColumnQualify.Caption = "质量\nQuality";
-            bandedGridColumnTooling.Caption = "工装\nTooling";
-            bandedGridColumnSecurity.Caption = "安全\nSafety";
-            bandedGridColumnTechnology.Caption = "技术\nTechnology";
-            bandedGridColumnDesign.Caption = "设计\nDesign";
-            bandedGridColumnOther.Caption = "其他\nOthers";
+            switch (IRAPUser.Instance.CommunityID)
+            {
+                case 60006:
+                    bandedGridColumnArea.Caption = "区域";
+                    bandedGridColumnProductionLine.Caption = "生产线";
+                    bandedGridColumnMaterial.Caption = "物料";
+                    bandedGridColumnEquipment.Caption = "维修";
+                    bandedGridColumnQualify.Caption = "质量";
+                    bandedGridColumnTooling.Caption = "工装";
+                    bandedGridColumnSecurity.Caption = "安全";
+                    bandedGridColumnTechnology.Caption = "技术";
+                    bandedGridColumnDesign.Caption = "设计";
+                    bandedGridColumnOther.Caption = "其他";
+
+                    grdbndTooling.Visible = false;
+                    grdbndSafety.Visible = false;
+                    grdbndTechnology.Visible = false;
+                    grdbndDesign.Visible = false;
+
+                    lblNone.Visible = false;
+                    lblMicroAbnormal.Visible = false;
+
+                    lblGreatAbnormal.Text = "有异常";
+                    break;
+                default:
+                    bandedGridColumnArea.Caption = "车间\nWorkshop";
+                    bandedGridColumnProductionLine.Caption = "生产线/工作中心\nLine/Work Center";
+                    bandedGridColumnMaterial.Caption = "物料\nMaterial";
+                    bandedGridColumnEquipment.Caption = "维修\nMaintenance";
+                    bandedGridColumnQualify.Caption = "质量\nQuality";
+                    bandedGridColumnTooling.Caption = "工装\nTooling";
+                    bandedGridColumnSecurity.Caption = "安全\nSafety";
+                    bandedGridColumnTechnology.Caption = "技术\nTechnology";
+                    bandedGridColumnDesign.Caption = "设计\nDesign";
+                    bandedGridColumnOther.Caption = "其他\nOthers";
+                    break;
+            }
         }
 
         private void ShowAndonStatusWithProductionLine()
@@ -265,7 +292,6 @@ namespace IRAP.Client.GUI.CAS
 
         private void frmKanbanPS_Resize(object sender, EventArgs e)
         {
-            pnlRemark.Left = (this.Width - pnlRemark.Width) / 2;
         }
 
         private void timer_Tick(object sender, EventArgs e)
