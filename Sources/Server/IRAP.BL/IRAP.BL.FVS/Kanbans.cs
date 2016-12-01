@@ -9,6 +9,7 @@ using IRAP.Global;
 using IRAPShared;
 using IRAPORM;
 using IRAP.Entity.FVS;
+using IRAP.Entities.FVS;
 
 namespace IRAP.BL.FVS
 {
