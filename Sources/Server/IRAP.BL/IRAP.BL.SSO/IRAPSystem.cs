@@ -89,7 +89,7 @@ namespace IRAP.BL.SSO
                         string strSQL = "SELECT * " +
                             "FROM IRAP..sfn_AvailableCSFunctions(@CommunityID, " +
                             "@SystemID, @MenuCacheID, @ProgLanguageID, @AvailableOnly) " +
-                            "ORDER BY NodeDepth, Parent, Ordinal";
+                            "ORDER BY Ordinal";
                         WriteLog.Instance.Write(strSQL, strProcedureName);
 
                         IList<SystemMenuInfoButtonStyle> lstDatas = conn.CallTableFunc<SystemMenuInfoButtonStyle>(strSQL, paramList);
@@ -198,10 +198,12 @@ namespace IRAP.BL.SSO
         /// <param name="communityID"></param>
         /// <param name="sysLogID"></param>
         /// <param name="progLanguageID">编程语言标识</param>
+        /// <param name="isAccessible">只显示有权限的记录</param>
         public IRAPJsonResult sfn_AvailableSystems(
             int communityID,
             int sysLogID,
             int progLanguageID,
+            bool isAccessible,
             out int errCode,
             out string errText)
         {
@@ -222,8 +224,8 @@ namespace IRAP.BL.SSO
                     paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                     paramList.Add(new IRAPProcParameter("@ProgLanguageID", DbType.Int32, progLanguageID));
                     WriteLog.Instance.Write(string.Format("执行函数 IRAP..sfn_AvailableSystems，参数：" +
-                            "CommunityID={0}|SysLogID={1}|ProgLanguageID={2}",
-                            communityID, sysLogID, progLanguageID),
+                            "CommunityID={0}|SysLogID={1}|ProgLanguageID={2}|IsAccessible={3}",
+                            communityID, sysLogID, progLanguageID, isAccessible),
                         strProcedureName);
                     #endregion
 
@@ -233,10 +235,12 @@ namespace IRAP.BL.SSO
                         string strSQL = "SELECT * " +
                             "FROM IRAP..sfn_AvailableSystems(@CommunityID, " +
                             "@SysLogID, @ProgLanguageID)";
+                        if (isAccessible)
+                            strSQL += " WHERE Accessible=1";
                         WriteLog.Instance.Write(strSQL, strProcedureName);
 
                         IList<SystemInfo> lstDatas = conn.CallTableFunc<SystemInfo>(strSQL, paramList);
-                        datas = lstDatas.ToList<SystemInfo>();
+                        datas = lstDatas.ToList();
 
                         errCode = 0;
                         errText = string.Format("调用成功，共获得 {0} 条记录", datas.Count);
