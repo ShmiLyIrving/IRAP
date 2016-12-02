@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.pnlRemark = new DevExpress.XtraEditors.PanelControl();
             this.lblGreatAbnormal = new DevExpress.XtraEditors.LabelControl();
@@ -69,8 +70,8 @@
             this.repositoryItemPictureEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.advBandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.timer = new System.Windows.Forms.Timer();
-            this.tmrPage = new System.Windows.Forms.Timer();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.tmrPage = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
@@ -334,6 +335,9 @@
             // 
             // bandedGridColumnEquipmentTimeElapsed
             // 
+            this.bandedGridColumnEquipmentTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumnEquipmentTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumnEquipmentTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.bandedGridColumnEquipmentTimeElapsed.Caption = "已过时间";
             this.bandedGridColumnEquipmentTimeElapsed.FieldName = "EquipmentTimeElapsedString";
             this.bandedGridColumnEquipmentTimeElapsed.Name = "bandedGridColumnEquipmentTimeElapsed";
@@ -366,6 +370,9 @@
             // 
             // bandedGridColumnMaterialTimeElapsed
             // 
+            this.bandedGridColumnMaterialTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumnMaterialTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumnMaterialTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.bandedGridColumnMaterialTimeElapsed.Caption = "已过时间";
             this.bandedGridColumnMaterialTimeElapsed.FieldName = "MaterialTimeElapsedString";
             this.bandedGridColumnMaterialTimeElapsed.Name = "bandedGridColumnMaterialTimeElapsed";
@@ -398,6 +405,9 @@
             // 
             // bandedGridColumnQualifyTimeElapsed
             // 
+            this.bandedGridColumnQualifyTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumnQualifyTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumnQualifyTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.bandedGridColumnQualifyTimeElapsed.Caption = "已过时间1";
             this.bandedGridColumnQualifyTimeElapsed.FieldName = "QualifyTimeElapsedString";
             this.bandedGridColumnQualifyTimeElapsed.Name = "bandedGridColumnQualifyTimeElapsed";
@@ -430,6 +440,9 @@
             // 
             // bandedGridColumnToolingTimeElapsed
             // 
+            this.bandedGridColumnToolingTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumnToolingTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumnToolingTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.bandedGridColumnToolingTimeElapsed.Caption = "已过时间2";
             this.bandedGridColumnToolingTimeElapsed.FieldName = "ToolingTimeElapsedString";
             this.bandedGridColumnToolingTimeElapsed.Name = "bandedGridColumnToolingTimeElapsed";
@@ -462,6 +475,9 @@
             // 
             // bandedGridColumnSecurityTimeElapsed
             // 
+            this.bandedGridColumnSecurityTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumnSecurityTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumnSecurityTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.bandedGridColumnSecurityTimeElapsed.Caption = "已过时间3";
             this.bandedGridColumnSecurityTimeElapsed.FieldName = "SecurityTimeElapsedString";
             this.bandedGridColumnSecurityTimeElapsed.Name = "bandedGridColumnSecurityTimeElapsed";
@@ -494,6 +510,9 @@
             // 
             // bandedGridColumnTechnologyTimeElapsed
             // 
+            this.bandedGridColumnTechnologyTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumnTechnologyTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumnTechnologyTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.bandedGridColumnTechnologyTimeElapsed.Caption = "已过时间4";
             this.bandedGridColumnTechnologyTimeElapsed.FieldName = "TechnologyTimeElapsedString";
             this.bandedGridColumnTechnologyTimeElapsed.Name = "bandedGridColumnTechnologyTimeElapsed";
@@ -526,6 +545,9 @@
             // 
             // bandedGridColumnDesignTimeElapsed
             // 
+            this.bandedGridColumnDesignTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumnDesignTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumnDesignTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.bandedGridColumnDesignTimeElapsed.Caption = "已过时间5";
             this.bandedGridColumnDesignTimeElapsed.FieldName = "DesignTimeElapsedString";
             this.bandedGridColumnDesignTimeElapsed.Name = "bandedGridColumnDesignTimeElapsed";
@@ -558,6 +580,9 @@
             // 
             // bandedGridColumnOtherTimeElapsed
             // 
+            this.bandedGridColumnOtherTimeElapsed.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumnOtherTimeElapsed.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumnOtherTimeElapsed.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.bandedGridColumnOtherTimeElapsed.Caption = "已过时间6";
             this.bandedGridColumnOtherTimeElapsed.FieldName = "OtherTimeElapsedString";
             this.bandedGridColumnOtherTimeElapsed.Name = "bandedGridColumnOtherTimeElapsed";

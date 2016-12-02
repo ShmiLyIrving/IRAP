@@ -166,7 +166,15 @@ namespace IRAP.WCF.Client.Method
         /// <param name="communityID">社区标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         /// <param name="progLanguageID">编程语言标识</param>
-        public void sfn_AvailableSystems(int communityID, long sysLogID, int progLanguageID, ref List<SystemInfo> subSystems, out int errCode, out string errText)
+        /// <param name="accessibleOnly">只获取有权限的</param>
+        public void sfn_AvailableSystems(
+            int communityID, 
+            long sysLogID, 
+            int progLanguageID, 
+            bool accessibleOnly,
+            ref List<SystemInfo> subSystems, 
+            out int errCode, 
+            out string errText)
         {
             string strProcedureName = string.Format("{0}.{1}",
                 className,
@@ -181,13 +189,16 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("communityID", communityID);
                 hashParams.Add("sysLogID", sysLogID);
                 hashParams.Add("progLanguageID", progLanguageID);
+                hashParams.Add("isAccessible", accessibleOnly);
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 sfn_AvailableSystems，输入参数：" +
-                        "CommunityID={0}|SysLogID={1}|ProgLanguageID={2}",
+                        "CommunityID={0}|SysLogID={1}|ProgLanguageID={2}|" +
+                        "AccessibleOnly={3}",
                         communityID,
                         sysLogID,
-                        progLanguageID),
+                        progLanguageID,
+                        accessibleOnly),
                     strProcedureName);
                 #endregion
 

@@ -65,6 +65,7 @@ namespace IRAP.Client.SubSystem
                     communityID,
                     sysLogID,
                     progLanguageID,
+                    true,
                     ref subSystems,
                     out errCode,
                     out errText);
