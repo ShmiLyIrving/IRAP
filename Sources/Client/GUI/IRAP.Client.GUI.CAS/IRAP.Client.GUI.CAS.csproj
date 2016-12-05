@@ -134,6 +134,36 @@
     <Compile Include="frmGetHisAndonEvents.designer.cs">
       <DependentUpon>frmGetHisAndonEvents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kanban\frmKanbanQCR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanQCR.Designer.cs">
+      <DependentUpon>frmKanbanQCR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanSPR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanSPR.Designer.cs">
+      <DependentUpon>frmKanbanSPR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanTRR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanTRR.Designer.cs">
+      <DependentUpon>frmKanbanTRR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanMDR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanMDR.Designer.cs">
+      <DependentUpon>frmKanbanMDR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanLSR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanLSR.Designer.cs">
+      <DependentUpon>frmKanbanLSR.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kanban\frmKanbanAI.cs">
       <SubType>Form</SubType>
     </Compile>
