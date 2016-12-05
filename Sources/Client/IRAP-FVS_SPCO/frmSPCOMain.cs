@@ -77,9 +77,20 @@ namespace IRAP_FVS_SPCO
                 ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
             if (config.AppSettings.Settings["ActiveMQ_URI"] != null)
+            {
                 brokerUri = config.AppSettings.Settings["ActiveMQ_URI"].Value;
+                if (!brokerUri.Contains("failover:"))
+                {
+                    brokerUri = string.Format(
+                        "failover:({0})",
+                        brokerUri);
+                    config.AppSettings.Settings["ActiveMQ_URI"].Value = brokerUri;
+                    config.Save(ConfigurationSaveMode.Modified);
+                    ConfigurationManager.RefreshSection("appSettings");
+                }
+            }
             if (brokerUri.Trim() == "")
-                brokerUri = "failover:tcp://192.168.57.208:61616";
+                brokerUri = "failover:(tcp://192.168.57.208:61616)";
 
             if (config.AppSettings.Settings["ActiveMQ_QueueName"] != null)
                 queueName = config.AppSettings.Settings["ActiveMQ_QueueName"].Value;

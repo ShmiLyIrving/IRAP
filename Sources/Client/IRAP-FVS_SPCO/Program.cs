@@ -6,6 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Configuration;
 
 using IRAP.AutoUpgrade;
 
@@ -44,6 +45,10 @@ namespace IRAP_FVS_SPCO
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            #region 判断 ActiveMQ 有没有设置自动重连，如果没有则自动加上
+            
+            #endregion
 
 #if !DEBUG
             #region 系统自动更新
