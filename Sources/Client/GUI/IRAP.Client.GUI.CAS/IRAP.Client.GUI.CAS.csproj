@@ -134,10 +134,22 @@
     <Compile Include="frmGetHisAndonEvents.designer.cs">
       <DependentUpon>frmGetHisAndonEvents.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKanbanPS.cs">
+    <Compile Include="Kanban\frmKanbanAI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKanbanPS.Designer.cs">
+    <Compile Include="Kanban\frmKanbanAI.Designer.cs">
+      <DependentUpon>frmKanbanAI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanBMR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanBMR.Designer.cs">
+      <DependentUpon>frmKanbanBMR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanPS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanPS.Designer.cs">
       <DependentUpon>frmKanbanPS.cs</DependentUpon>
     </Compile>
     <Compile Include="frmProductionLineStoppedConfirm.cs">
@@ -297,7 +309,7 @@
     <EmbeddedResource Include="frmGetHisAndonEvents.resx">
       <DependentUpon>frmGetHisAndonEvents.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmKanbanPS.resx">
+    <EmbeddedResource Include="Kanban\frmKanbanPS.resx">
       <DependentUpon>frmKanbanPS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductionLineStoppedConfirm.resx">
