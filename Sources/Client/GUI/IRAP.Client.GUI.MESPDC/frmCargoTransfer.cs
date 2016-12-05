@@ -20,6 +20,9 @@ using IRAP.Client.Global.GUI.Dialogs;
 
 namespace IRAP.Client.GUI.MESPDC
 {
+    /// <summary>
+    /// 本表单是为上海京西重工定制的货品发运（标签打印）。调用存储过程时，不预先申请交易号和事实编号
+    /// </summary>
     public partial class frmCargoTransfer : IRAP.Client.Global.GUI.frmCustomFuncBase
     {
         private string className =
