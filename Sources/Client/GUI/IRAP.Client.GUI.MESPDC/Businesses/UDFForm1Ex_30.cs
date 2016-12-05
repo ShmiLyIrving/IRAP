@@ -243,6 +243,84 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
+        public void SaveOLTPUDFFormDataWithoutFactIDAndTransactNo(
+            int processLeaf,
+            int workUnitLeaf)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                long intTransactNo = 0;
+                long intFactID = 0;
+
+                #region 保存
+                try
+                {
+                    if (ctrlParameter2 >= 0)
+                    {
+                        IRAPUTSClient.Instance.ssp_OLTP_UDFForm(
+                            IRAPUser.Instance.CommunityID,
+                            intTransactNo,
+                            intFactID,
+                            ctrlParameter1,
+                            ctrlParameter2,
+                            ctrlParameter3,
+                            IRAPUser.Instance.SysLogID,
+                            strParameter1,
+                            strParameter2,
+                            strParameter3,
+                            strParameter4,
+                            strParameter5,
+                            strParameter6,
+                            strParameter7,
+                            strParameter8,
+                            ref outputStr,
+                            out errorCode,
+                            out errorMessage);
+                    }
+                    else
+                    {
+                        IRAPUTSClient.Instance.ssp_OLTP_UDFForm(
+                            IRAPUser.Instance.CommunityID,
+                            intTransactNo,
+                            intFactID,
+                            ctrlParameter1,
+                            processLeaf,
+                            workUnitLeaf,
+                            IRAPUser.Instance.SysLogID,
+                            strParameter1,
+                            strParameter2,
+                            strParameter3,
+                            strParameter4,
+                            strParameter5,
+                            strParameter6,
+                            strParameter7,
+                            strParameter8,
+                            ref outputStr,
+                            out errorCode,
+                            out errorMessage);
+                    }
+                }
+                catch (Exception error)
+                {
+                    outputStr = "";
+                    WriteLog.Instance.Write(error.Message, strProcedureName);
+                    throw error;
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         public void SetCtrlParameter(string parameters)
         {
             string strProcedureName =

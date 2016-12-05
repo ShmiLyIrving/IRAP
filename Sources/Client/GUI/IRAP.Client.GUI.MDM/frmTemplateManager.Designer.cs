@@ -50,6 +50,7 @@
             this.tsmiRename = new System.Windows.Forms.ToolStripMenuItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.report = new FastReport.Report();
+            this.tmrShowLabelTemplate = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -256,6 +257,11 @@
             this.report.ReportResourceString = "";
             this.report.StoreInResources = false;
             // 
+            // tmrShowLabelTemplate
+            // 
+            this.tmrShowLabelTemplate.Enabled = true;
+            this.tmrShowLabelTemplate.Tick += new System.EventHandler(this.tmrShowLabelTemplate_Tick);
+            // 
             // frmTemplateManager
             // 
             this.Appearance.Options.UseFont = true;
@@ -306,5 +312,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem tsmiRename;
+        private System.Windows.Forms.Timer tmrShowLabelTemplate;
     }
 }

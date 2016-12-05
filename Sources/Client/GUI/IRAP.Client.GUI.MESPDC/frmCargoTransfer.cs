@@ -209,7 +209,7 @@ namespace IRAP.Client.GUI.MESPDC
                 busUDFForm.SetStrParameterValue(edtProductDate.DateTime.ToString("yyyy-MM-dd HH:mm:ss"), 5);
                 busUDFForm.SetStrParameterValue(edtCopies.Value.ToString(), 6);
 
-                busUDFForm.SaveOLTPUDFFormData(0, 0);
+                busUDFForm.SaveOLTPUDFFormDataWithoutFactIDAndTransactNo(0, 0);
                 WriteLog.Instance.Write(
                     string.Format("({0}){1}", busUDFForm.ErrorCode, busUDFForm.ErrorMessage),
                     strProcedureName);

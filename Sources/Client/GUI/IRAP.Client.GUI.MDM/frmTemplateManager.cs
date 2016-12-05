@@ -32,6 +32,9 @@ namespace IRAP.Client.GUI.MDM
                 @"{0}Temp\temp.frx",
                 AppDomain.CurrentDomain.BaseDirectory);
 
+        private bool selectedChanged = false;
+        private DateTime lastSelectedChangedTime = DateTime.Now;
+
         public frmTemplateManager(AvailableSite site)
         {
             InitializeComponent();
@@ -205,28 +208,8 @@ namespace IRAP.Client.GUI.MDM
 
         private void lstTemplates_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstTemplates.SelectedItem == null)
-            {
-                report.Preview = null;
-                previewControl.Clear();
-                return;
-            }
-
-            LeafSetEx item = lstTemplates.SelectedItem as LeafSetEx;
-            if (item.LeafID != 0)
-            {
-                string template = LoadTemplateFromDB(item.LeafID);
-                report.Clear();
-                report.LoadFromString(template);
-                SetReportParameters(report);
-                report.Preview = previewControl;
-
-                if (report.Prepare())
-                {
-                    report.ShowPrepared();
-                    previewControl.ZoomWholePage();
-                }
-            }
+            selectedChanged = true;
+            lastSelectedChangedTime = DateTime.Now;
         }
 
         private void lblCurrentTemplateName_Click(object sender, EventArgs e)
@@ -533,7 +516,7 @@ namespace IRAP.Client.GUI.MDM
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
 
-                
+
 
             }
         }
@@ -613,6 +596,41 @@ namespace IRAP.Client.GUI.MDM
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
                 #endregion
+            }
+        }
+
+        private void tmrShowLabelTemplate_Tick(object sender, EventArgs e)
+        {
+            if (selectedChanged)
+            {
+                TimeSpan span = DateTime.Now - lastSelectedChangedTime;
+                if (span.TotalSeconds >= 0.5)
+                {
+                    selectedChanged = false;
+
+                    if (lstTemplates.SelectedItem == null)
+                    {
+                        report.Preview = null;
+                        previewControl.Clear();
+                        return;
+                    }
+
+                    LeafSetEx item = lstTemplates.SelectedItem as LeafSetEx;
+                    if (item.LeafID != 0)
+                    {
+                        string template = LoadTemplateFromDB(item.LeafID);
+                        report.Clear();
+                        report.LoadFromString(template);
+                        SetReportParameters(report);
+                        report.Preview = previewControl;
+
+                        if (report.Prepare())
+                        {
+                            report.ShowPrepared();
+                            previewControl.ZoomWholePage();
+                        }
+                    }
+                }
             }
         }
     }
