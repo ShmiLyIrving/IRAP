@@ -28,58 +28,92 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUDFForm1Ex_30));
             this.xucIRAPListView = new IRAP.Client.Global.GUI.xucIRAPListView();
             this.pnlBody = new DevExpress.XtraEditors.PanelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).BeginInit();
             this.pnlBody.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblFuncName
             // 
-            this.lblFuncName.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
+            resources.ApplyResources(this.lblFuncName, "lblFuncName");
+            this.lblFuncName.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lblFuncName.Appearance.Font")));
+            this.lblFuncName.Appearance.FontSizeDelta = ((int)(resources.GetObject("lblFuncName.Appearance.FontSizeDelta")));
+            this.lblFuncName.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("lblFuncName.Appearance.FontStyleDelta")));
+            this.lblFuncName.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("lblFuncName.Appearance.ForeColor")));
+            this.lblFuncName.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("lblFuncName.Appearance.GradientMode")));
+            this.lblFuncName.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("lblFuncName.Appearance.Image")));
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblFuncName.Size = new System.Drawing.Size(478, 56);
-            this.lblFuncName.Text = "万能表单";
+            // 
+            // panelControl1
+            // 
+            resources.ApplyResources(this.panelControl1, "panelControl1");
+            this.toolTipController.SetAllowHtmlText(this.panelControl1, ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("panelControl1.AllowHtmlText"))));
+            this.toolTipController.SetTitle(this.panelControl1, resources.GetString("panelControl1.Title"));
+            this.toolTipController.SetToolTip(this.panelControl1, resources.GetString("panelControl1.ToolTip"));
+            this.toolTipController.SetToolTipIconType(this.panelControl1, ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("panelControl1.ToolTipIconType"))));
             // 
             // toolTipController
             // 
-            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("toolTipController.Appearance.Font")));
+            this.toolTipController.Appearance.FontSizeDelta = ((int)(resources.GetObject("toolTipController.Appearance.FontSizeDelta")));
+            this.toolTipController.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("toolTipController.Appearance.FontStyleDelta")));
+            this.toolTipController.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("toolTipController.Appearance.GradientMode")));
+            this.toolTipController.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("toolTipController.Appearance.Image")));
             this.toolTipController.Appearance.Options.UseFont = true;
-            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Font = ((System.Drawing.Font)(resources.GetObject("toolTipController.AppearanceTitle.Font")));
+            this.toolTipController.AppearanceTitle.FontSizeDelta = ((int)(resources.GetObject("toolTipController.AppearanceTitle.FontSizeDelta")));
+            this.toolTipController.AppearanceTitle.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("toolTipController.AppearanceTitle.FontStyleDelta")));
+            this.toolTipController.AppearanceTitle.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("toolTipController.AppearanceTitle.GradientMode")));
+            this.toolTipController.AppearanceTitle.Image = ((System.Drawing.Image)(resources.GetObject("toolTipController.AppearanceTitle.Image")));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
             // xucIRAPListView
             // 
-            this.xucIRAPListView.Caption = "操作日志";
-            this.xucIRAPListView.Location = new System.Drawing.Point(12, 79);
+            resources.ApplyResources(this.xucIRAPListView, "xucIRAPListView");
+            this.toolTipController.SetAllowHtmlText(this.xucIRAPListView, ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("xucIRAPListView.AllowHtmlText"))));
+            this.xucIRAPListView.Caption = "Logs";
             this.xucIRAPListView.MaxLineNumber = 1000;
             this.xucIRAPListView.Name = "xucIRAPListView";
-            this.xucIRAPListView.Padding = new System.Windows.Forms.Padding(5);
-            this.xucIRAPListView.Size = new System.Drawing.Size(454, 179);
-            this.xucIRAPListView.TabIndex = 1;
+            this.toolTipController.SetTitle(this.xucIRAPListView, resources.GetString("xucIRAPListView.Title"));
+            this.toolTipController.SetToolTip(this.xucIRAPListView, resources.GetString("xucIRAPListView.ToolTip"));
+            this.toolTipController.SetToolTipIconType(this.xucIRAPListView, ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("xucIRAPListView.ToolTipIconType"))));
             // 
             // pnlBody
             // 
+            resources.ApplyResources(this.pnlBody, "pnlBody");
+            this.toolTipController.SetAllowHtmlText(this.pnlBody, ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("pnlBody.AllowHtmlText"))));
             this.pnlBody.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlBody.Controls.Add(this.xucIRAPListView);
-            this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBody.Location = new System.Drawing.Point(0, 56);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(478, 269);
-            this.pnlBody.TabIndex = 2;
+            this.toolTipController.SetTitle(this.pnlBody, resources.GetString("pnlBody.Title"));
+            this.toolTipController.SetToolTip(this.pnlBody, resources.GetString("pnlBody.ToolTip"));
+            this.toolTipController.SetToolTipIconType(this.pnlBody, ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("pnlBody.ToolTipIconType"))));
             // 
             // frmUDFForm1Ex_30
             // 
+            resources.ApplyResources(this, "$this");
+            this.toolTipController.SetAllowHtmlText(this, ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("$this.AllowHtmlText"))));
+            this.Appearance.FontSizeDelta = ((int)(resources.GetObject("frmUDFForm1Ex_30.Appearance.FontSizeDelta")));
+            this.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("frmUDFForm1Ex_30.Appearance.FontStyleDelta")));
+            this.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("frmUDFForm1Ex_30.Appearance.GradientMode")));
+            this.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("frmUDFForm1Ex_30.Appearance.Image")));
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(478, 325);
             this.Controls.Add(this.pnlBody);
             this.Name = "frmUDFForm1Ex_30";
-            this.Text = "万能表单";
+            this.toolTipController.SetTitle(this, resources.GetString("$this.Title"));
+            this.toolTipController.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.toolTipController.SetToolTipIconType(this, ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("$this.ToolTipIconType"))));
             this.Activated += new System.EventHandler(this.frmUDFForm1Ex_30_Activated);
             this.Shown += new System.EventHandler(this.frmUDFForm1Ex_30_Shown);
+            this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.pnlBody, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).EndInit();
             this.pnlBody.ResumeLayout(false);
             this.ResumeLayout(false);

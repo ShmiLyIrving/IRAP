@@ -94,6 +94,12 @@
     <Compile Include="frmTestStandards_30.Designer.cs">
       <DependentUpon>frmTestStandards_30.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUDFForm1Ex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUDFForm1Ex.Designer.cs">
+      <DependentUpon>frmUDFForm1Ex.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUDFForm1Ex_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,7 +117,7 @@
     <Compile Include="Actions\MultipleCommandAction.cs" />
     <Compile Include="Actions\PrintWithFastReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Businesses\UDFForm1Ex_30.cs" />
+    <Compile Include="Businesses\UDFForm1Ex.cs" />
     <Compile Include="Businesses\ScannerForSerialPort.cs" />
     <Compile Include="Actions\SerialPortOutput.cs" />
   </ItemGroup>
@@ -177,6 +183,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTestStandards_30.resx">
       <DependentUpon>frmTestStandards_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUDFForm1Ex.en-US.resx">
+      <DependentUpon>frmUDFForm1Ex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUDFForm1Ex.resx">
+      <DependentUpon>frmUDFForm1Ex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUDFForm1Ex_30.en-US.resx">
+      <DependentUpon>frmUDFForm1Ex_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUDFForm1Ex_30.resx">
       <DependentUpon>frmUDFForm1Ex_30.cs</DependentUpon>

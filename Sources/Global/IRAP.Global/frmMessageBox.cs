@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Configuration;
+using System.Threading;
 
 namespace IRAP.Global
 {
@@ -48,6 +49,9 @@ namespace IRAP.Global
             timeout--;
             if (timeout <= 0)
                 btnClose.PerformClick();
+            else
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                btnClose.Text = string.Format("OK ({0})", timeout);
             else
                 btnClose.Text = string.Format("确定({0})", timeout);
         }

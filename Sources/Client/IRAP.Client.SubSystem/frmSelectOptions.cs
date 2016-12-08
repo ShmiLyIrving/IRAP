@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
 
 using DevExpress.XtraEditors;
 
@@ -22,9 +23,16 @@ namespace IRAP.Client.SubSystem
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
+        private string caption = "";
+
         public frmSelectOptions()
         {
             InitializeComponent();
+
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                caption = "System tip";
+            else
+                caption = "系统信息";
         }
 
         private void frmSelectOptions_Load(object sender, EventArgs e)
@@ -128,11 +136,9 @@ namespace IRAP.Client.SubSystem
                     strProcedureName);
                 if (errCode != 0)
                 {
-                    XtraMessageBox.Show(
+                    IRAPMessageBox.Instance.ShowErrorMessage(
                         errText, 
-                        Text, 
-                        MessageBoxButtons.OK, 
-                        MessageBoxIcon.Error);
+                        Text);
                     return;
                 }
             }
@@ -164,11 +170,9 @@ namespace IRAP.Client.SubSystem
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
-                XtraMessageBox.Show(
+                IRAPMessageBox.Instance.ShowErrorMessage(
                     error.Message,
-                    Text,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    caption);
             }
         }
 
@@ -231,7 +235,7 @@ namespace IRAP.Client.SubSystem
                     strProcedureName);
                 if (errCode != 0)
                 {
-                    XtraMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    IRAPMessageBox.Instance.ShowErrorMessage(errText, caption);
                     return;
                 }
                 else
@@ -259,11 +263,7 @@ namespace IRAP.Client.SubSystem
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-                XtraMessageBox.Show(
-                    error.Message,
-                    Text,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                IRAPMessageBox.Instance.ShowErrorMessage(error.Message, caption);
             }
             finally
             {

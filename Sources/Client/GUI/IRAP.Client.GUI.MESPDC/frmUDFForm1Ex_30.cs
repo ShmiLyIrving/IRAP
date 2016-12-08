@@ -29,7 +29,7 @@ namespace IRAP.Client.GUI.MESPDC
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private MenuInfo menuInfo = null;
-        private UDFForm1Ex_30 busUDFForm = new UDFForm1Ex_30();
+        private UDFForm1Ex busUDFForm = new UDFForm1Ex();
         private TextEdit firstFocusedObject = null;
         private List<FormCtrlInfo> controls = new List<FormCtrlInfo>();
         private List<LabelControl> _labels = new List<LabelControl>();

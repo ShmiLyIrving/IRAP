@@ -94,6 +94,9 @@
     <None Include="Diagrams\IRAP.Global.cd" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmMessageBox.en-US.resx">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMessageBox.resx">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
     </EmbeddedResource>

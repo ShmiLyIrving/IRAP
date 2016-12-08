@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
 using System.Configuration;
+using System.Threading;
 
 using DevExpress.XtraEditors;
 using DevExpress.XtraBars;
@@ -37,9 +38,17 @@ namespace IRAP
         private bool isQuitSilent = false;
         private List<MenuInfo> menuInfos = new List<MenuInfo>();
 
+        private string message = "";
+        private string caption = "";
+
         public frmIRAPMain()
         {
             InitializeComponent();
+
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                caption = "System tip";
+            else
+                caption = "系统信息";
 
             string skinName = "";
             skinName = IniFile.ReadString(
@@ -156,9 +165,17 @@ namespace IRAP
                 if (menuInfos.Count <= 0)
                 {
                     WriteLog.Instance.Write("没有菜单项可供系统生成！", strProcedureName);
+
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        message = "User [{0}] do not have the function to use in [{1}], " +
+                            "please contact the system to support the maintenance personnel " +
+                            "to solve!";
+                    else
+                        message = "{0}用户在[{1}]中没有可以使用的功能，请联系系统支持维护人员解决！";
+
                     throw new Exception(
                         string.Format(
-                            "{0}用户在[{1}]中没有可以使用的功能，请联系系统支持维护人员解决！",
+                            message,
                             IRAPUser.Instance.UserName,
                             CurrentSubSystem.Instance.SysInfo.SystemName));
                 }
@@ -242,9 +259,17 @@ namespace IRAP
                 if (menuInfos.Count <= 0)
                 {
                     WriteLog.Instance.Write("没有菜单项可供系统生成！", strProcedureName);
+
+                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                        message = "User [{0}] do not have the function to use in [{1}], " +
+                            "please contact the system to support the maintenance personnel " +
+                            "to solve!";
+                    else
+                        message = "{0}用户在[{1}]中没有可以使用的功能，请联系系统支持维护人员解决！";
+
                     throw new Exception(
                         string.Format(
-                            "{0}用户在[{1}]中没有可以使用的功能，请联系系统支持维护人员解决！",
+                            message,
                             IRAPUser.Instance.UserName,
                             CurrentSubSystem.Instance.SysInfo.SystemName));
                 }
@@ -352,11 +377,16 @@ namespace IRAP
                                     break;
                                 default:
                                     WriteLog.Instance.Write("当前系统不支持 4 层以上的菜单结构！", strProcedureName);
-                                    MessageBox.Show(
-                                        "当前系统不支持 4 层以上的菜单结构！",
-                                        "系统信息",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error);
+
+                                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                        message = "The platform does not support more than 4 layers " +
+                                            "of menu structure!";
+                                    else
+                                        message = "当前系统不支持 4 层以上的菜单结构！";
+
+                                    IRAPMessageBox.Instance.ShowErrorMessage(
+                                        message,
+                                        caption);
 
                                     break;
                             }
@@ -406,11 +436,9 @@ namespace IRAP
                     catch (Exception error)
                     {
                         WriteLog.Instance.Write(error.Message, strProcedureName);
-                        MessageBox.Show(
+                        IRAPMessageBox.Instance.ShowErrorMessage(
                             error.Message,
-                            "记录运行功能",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                            caption);
                         activeMDIChildForm = false;
                     }
                     #endregion
@@ -449,26 +477,32 @@ namespace IRAP
 
                         if (!File.Exists(classFileName))
                         {
-                            MessageBox.Show(
+                            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                message = "The class library file [{0}] does not exist!";
+                            else
+                                message = "类库文件[{0}]不存在！";
+
+                            IRAPMessageBox.Instance.ShowErrorMessage(
                                 string.Format(
-                                    "类库文件[{0}]不存在！",
+                                    message,
                                     classFileName),
-                                "系统信息",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                                caption);
                             return;
                         }
 
                         Assembly asm = Assembly.LoadFile(classFileName);
                         if (asm == null)
                         {
-                            MessageBox.Show(
+                            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                message = "Unable to load class library file [{0}]";
+                            else
+                                message = "无法加载类库文件[{0}]";
+
+                            IRAPMessageBox.Instance.ShowErrorMessage(
                                 string.Format(
-                                    "无法加载类库文件[{0}]",
+                                    message,
                                     classFileName),
-                                "系统信息",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                                caption);
                             return;
                         }
 
@@ -484,15 +518,19 @@ namespace IRAP
                     {
                         WriteLog.Instance.Write(error.Message, strProcedureName);
                         WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-                        MessageBox.Show(
+
+                        if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                            message = "[{0}(IRAP.Client.GUI.{1}.{2})] is under construction...";
+                        else
+                            message = "[{0}(IRAP.Client.GUI.{1}.{2})]目前正在建设中......";
+
+                        IRAPMessageBox.Instance.ShowErrorMessage(
                             string.Format(
-                                "[{0}(IRAP.Client.GUI.{1}.{2})]目前正在建设中......",
+                                message,
                                 ((MenuInfo)menuItem.Tag).ItemText,
                                 fileBuiltin,
                                 ((MenuInfo)menuItem.Tag).FormName),
-                            "系统信息",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                            caption);
                     }
                     #endregion
 
@@ -523,11 +561,9 @@ namespace IRAP
                         {
                             WriteLog.Instance.Write(error.Message, strProcedureName);
                             WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-                            XtraMessageBox.Show(
+                            IRAPMessageBox.Instance.ShowErrorMessage(
                                 error.Message,
-                                Text,
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                                caption);
                         }
                     }
                     #endregion
@@ -568,7 +604,12 @@ namespace IRAP
         {
             if (!CurrentSubSystem.Instance.IsSystemSelected)
             {
-                throw new Exception("还没有选择需要使用的子系统!");
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    message = "There is no option to use the subsystem.";
+                else
+                    message = "还没有选择需要使用的子系统！";
+
+                throw new Exception(message);
             }
 
             string strProcedureName =
@@ -583,17 +624,27 @@ namespace IRAP
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    message = "{0}-[Login user：{1}{2}]-[{3}]-[{4}]";
+                else
+                    message = "{0}-[登录用户：{1}{2}]-[{3}]-[{4}]";
+
                 Text = string.Format(
-                    "{0}-[登录用户：{1}{2}]-[{3}]-[{4}]",
+                    message,
                     CurrentSubSystem.Instance.SysInfo.SystemName,
                     IRAPUser.Instance.UserName,
                     IRAPUser.Instance.UserCode,
                     IRAPUser.Instance.Agency.AgencyName,
                     IRAPUser.Instance.HostName);
 
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    message = "Quit [{0}]";
+                else
+                    message = "退出[{0}]";
+
                 cmdQuitSubSystem.Caption =
                     string.Format(
-                        "退出[{0}]",
+                        message,
                         CurrentSubSystem.Instance.SysInfo.SystemName);
 
                 int errCode = 0;
@@ -621,11 +672,9 @@ namespace IRAP
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    MessageBox.Show(
+                    IRAPMessageBox.Instance.ShowErrorMessage(
                         error.Message,
-                        "子系统使用登记失败",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                        caption);
                 }
                 #endregion
 
@@ -651,13 +700,17 @@ namespace IRAP
                         catch (Exception error)
                         {
                             WriteLog.Instance.Write(error.Message, strProcedureName);
-                            MessageBox.Show(
+
+                            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                message = "{0}\n\nClick \"OK\" button to quit.";
+                            else
+                                message = "{0}\n\n点击“确定”退出。";
+
+                            IRAPMessageBox.Instance.ShowErrorMessage(
                                 string.Format(
-                                    "{0}\n\n点击“确定”退出。",
+                                    message,
                                     error.Message),
-                                "动态菜单生成",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                                caption);
                             isQuitSilent = true;
                             Close();
                         }
@@ -676,29 +729,42 @@ namespace IRAP
                         catch (Exception error)
                         {
                             WriteLog.Instance.Write(error.Message, strProcedureName);
-                            MessageBox.Show(
+
+                            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                                message = "{0}\n\nClick \"OK\" button to quit.";
+                            else
+                                message = "{0}\n\n点击“确定”退出。";
+
+                            IRAPMessageBox.Instance.ShowErrorMessage(
                                 string.Format(
-                                    "{0}\n\n点击“确定”退出。",
+                                    "",
                                     error.Message),
-                                "动态菜单生成",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                                caption);
                             isQuitSilent = true;
                             Close();
                         }
                         break;
                     default:
+                        if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                            message = "The system does not support the style of [{0}] from menu";
+                        else
+                            message = "系统不支持[{0}]形式的菜单！";
+
                         errText = string.Format(
-                            "系统不支持[{0}]形式的菜单！",
+                            message,
                             CurrentSubSystem.Instance.SysInfo.MenuStyle);
                         WriteLog.Instance.Write(errText, strProcedureName);
-                        MessageBox.Show(
+
+                        if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                            message = "{0}\n\nClick \"OK\" button to quit.";
+                        else
+                            message = "{0}\n\n点击“确定”按钮后退出。";
+
+                        IRAPMessageBox.Instance.ShowErrorMessage(
                             string.Format(
-                                "{0}\n\n点击“确定”按钮后退出就。",
+                                message,
                                 errText),
-                            "菜单样式错误",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                            caption);
                         isQuitSilent = true;
                         Close();
                         break;
@@ -757,11 +823,16 @@ namespace IRAP
         {
             if (!isQuitSilent)
             {
-                if (XtraMessageBox.Show(
+                if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                    message = "Please make sure you want to exit [{0}] ?";
+                else
+                    message = "请确定是否要退出[{0}]？";
+
+                if (IRAPMessageBox.Instance.Show(
                     string.Format(
-                        "请确定是否要退出[{0}]？",
+                        message,
                         CurrentSubSystem.Instance.SysInfo.SystemName),
-                    "退出子系统",
+                    caption,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2) == DialogResult.Yes)

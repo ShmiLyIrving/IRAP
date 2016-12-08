@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelectOptions));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.lstProcesses = new DevExpress.XtraEditors.ListBoxControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -51,140 +52,177 @@
             // 
             // toolTipController
             // 
-            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("toolTipController.Appearance.Font")));
+            this.toolTipController.Appearance.FontSizeDelta = ((int)(resources.GetObject("toolTipController.Appearance.FontSizeDelta")));
+            this.toolTipController.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("toolTipController.Appearance.FontStyleDelta")));
+            this.toolTipController.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("toolTipController.Appearance.GradientMode")));
+            this.toolTipController.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("toolTipController.Appearance.Image")));
             this.toolTipController.Appearance.Options.UseFont = true;
-            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Font = ((System.Drawing.Font)(resources.GetObject("toolTipController.AppearanceTitle.Font")));
+            this.toolTipController.AppearanceTitle.FontSizeDelta = ((int)(resources.GetObject("toolTipController.AppearanceTitle.FontSizeDelta")));
+            this.toolTipController.AppearanceTitle.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("toolTipController.AppearanceTitle.FontStyleDelta")));
+            this.toolTipController.AppearanceTitle.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("toolTipController.AppearanceTitle.GradientMode")));
+            this.toolTipController.AppearanceTitle.Image = ((System.Drawing.Image)(resources.GetObject("toolTipController.AppearanceTitle.Image")));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
             // groupControl1
             // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.groupControl1, "groupControl1");
+            this.groupControl1.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("groupControl1.AppearanceCaption.Font")));
+            this.groupControl1.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("groupControl1.AppearanceCaption.FontSizeDelta")));
+            this.groupControl1.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("groupControl1.AppearanceCaption.FontStyleDelta")));
+            this.groupControl1.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("groupControl1.AppearanceCaption.GradientMode")));
+            this.groupControl1.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl1.AppearanceCaption.Image")));
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.Controls.Add(this.lstProcesses);
-            this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl1.Size = new System.Drawing.Size(311, 294);
-            this.groupControl1.TabIndex = 1;
-            this.groupControl1.Text = "请选择：";
             // 
             // lstProcesses
             // 
-            this.lstProcesses.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.lstProcesses, "lstProcesses");
+            this.lstProcesses.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lstProcesses.Appearance.Font")));
+            this.lstProcesses.Appearance.FontSizeDelta = ((int)(resources.GetObject("lstProcesses.Appearance.FontSizeDelta")));
+            this.lstProcesses.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("lstProcesses.Appearance.FontStyleDelta")));
+            this.lstProcesses.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("lstProcesses.Appearance.GradientMode")));
+            this.lstProcesses.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("lstProcesses.Appearance.Image")));
             this.lstProcesses.Appearance.Options.UseFont = true;
-            this.lstProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstProcesses.Location = new System.Drawing.Point(7, 32);
             this.lstProcesses.Name = "lstProcesses";
-            this.lstProcesses.Size = new System.Drawing.Size(297, 255);
-            this.lstProcesses.TabIndex = 0;
             this.lstProcesses.SelectedIndexChanged += new System.EventHandler(this.lstProcesses_SelectedIndexChanged);
             // 
             // groupControl2
             // 
-            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.groupControl2, "groupControl2");
+            this.groupControl2.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("groupControl2.AppearanceCaption.Font")));
+            this.groupControl2.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("groupControl2.AppearanceCaption.FontSizeDelta")));
+            this.groupControl2.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("groupControl2.AppearanceCaption.FontStyleDelta")));
+            this.groupControl2.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("groupControl2.AppearanceCaption.GradientMode")));
+            this.groupControl2.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl2.AppearanceCaption.Image")));
             this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.Controls.Add(this.lstWorkUnits);
-            this.groupControl2.Location = new System.Drawing.Point(329, 12);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl2.Size = new System.Drawing.Size(311, 294);
-            this.groupControl2.TabIndex = 2;
-            this.groupControl2.Text = "请选择：";
             // 
             // lstWorkUnits
             // 
-            this.lstWorkUnits.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.lstWorkUnits, "lstWorkUnits");
+            this.lstWorkUnits.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lstWorkUnits.Appearance.Font")));
+            this.lstWorkUnits.Appearance.FontSizeDelta = ((int)(resources.GetObject("lstWorkUnits.Appearance.FontSizeDelta")));
+            this.lstWorkUnits.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("lstWorkUnits.Appearance.FontStyleDelta")));
+            this.lstWorkUnits.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("lstWorkUnits.Appearance.GradientMode")));
+            this.lstWorkUnits.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("lstWorkUnits.Appearance.Image")));
             this.lstWorkUnits.Appearance.Options.UseFont = true;
-            this.lstWorkUnits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstWorkUnits.Location = new System.Drawing.Point(7, 32);
             this.lstWorkUnits.Name = "lstWorkUnits";
-            this.lstWorkUnits.Size = new System.Drawing.Size(297, 255);
-            this.lstWorkUnits.TabIndex = 0;
             this.lstWorkUnits.Click += new System.EventHandler(this.lstWorkUnits_Click);
             this.lstWorkUnits.DoubleClick += new System.EventHandler(this.lstWorkUnits_DoubleClick);
             // 
             // groupControl3
             // 
-            this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.groupControl3, "groupControl3");
+            this.groupControl3.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("groupControl3.AppearanceCaption.Font")));
+            this.groupControl3.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("groupControl3.AppearanceCaption.FontSizeDelta")));
+            this.groupControl3.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("groupControl3.AppearanceCaption.FontStyleDelta")));
+            this.groupControl3.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("groupControl3.AppearanceCaption.GradientMode")));
+            this.groupControl3.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl3.AppearanceCaption.Image")));
             this.groupControl3.AppearanceCaption.Options.UseFont = true;
             this.groupControl3.Controls.Add(this.btnShowAll);
             this.groupControl3.Controls.Add(this.btnSearch);
             this.groupControl3.Controls.Add(this.edtSearchCondition);
-            this.groupControl3.Location = new System.Drawing.Point(12, 312);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl3.Size = new System.Drawing.Size(628, 69);
-            this.groupControl3.TabIndex = 3;
-            this.groupControl3.Text = "根据输入的产品名称或者工单号查找生产流程";
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.btnShowAll, "btnShowAll");
+            this.btnShowAll.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnShowAll.Appearance.Font")));
+            this.btnShowAll.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnShowAll.Appearance.FontSizeDelta")));
+            this.btnShowAll.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnShowAll.Appearance.FontStyleDelta")));
+            this.btnShowAll.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnShowAll.Appearance.GradientMode")));
+            this.btnShowAll.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnShowAll.Appearance.Image")));
             this.btnShowAll.Appearance.Options.UseFont = true;
-            this.btnShowAll.Location = new System.Drawing.Point(544, 31);
             this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(77, 32);
-            this.btnShowAll.TabIndex = 2;
-            this.btnShowAll.Text = "显示全部";
             this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
             // btnSearch
             // 
-            this.btnSearch.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.btnSearch, "btnSearch");
+            this.btnSearch.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnSearch.Appearance.Font")));
+            this.btnSearch.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnSearch.Appearance.FontSizeDelta")));
+            this.btnSearch.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnSearch.Appearance.FontStyleDelta")));
+            this.btnSearch.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnSearch.Appearance.GradientMode")));
+            this.btnSearch.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Appearance.Image")));
             this.btnSearch.Appearance.Options.UseFont = true;
-            this.btnSearch.Location = new System.Drawing.Point(461, 31);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(77, 32);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "查找";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // edtSearchCondition
             // 
-            this.edtSearchCondition.Location = new System.Drawing.Point(7, 35);
+            resources.ApplyResources(this.edtSearchCondition, "edtSearchCondition");
             this.edtSearchCondition.Name = "edtSearchCondition";
-            this.edtSearchCondition.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edtSearchCondition.Properties.AccessibleDescription = resources.GetString("edtSearchCondition.Properties.AccessibleDescription");
+            this.edtSearchCondition.Properties.AccessibleName = resources.GetString("edtSearchCondition.Properties.AccessibleName");
+            this.edtSearchCondition.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("edtSearchCondition.Properties.Appearance.Font")));
+            this.edtSearchCondition.Properties.Appearance.FontSizeDelta = ((int)(resources.GetObject("edtSearchCondition.Properties.Appearance.FontSizeDelta")));
+            this.edtSearchCondition.Properties.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("edtSearchCondition.Properties.Appearance.FontStyleDelta")));
+            this.edtSearchCondition.Properties.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("edtSearchCondition.Properties.Appearance.GradientMode")));
+            this.edtSearchCondition.Properties.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("edtSearchCondition.Properties.Appearance.Image")));
             this.edtSearchCondition.Properties.Appearance.Options.UseFont = true;
-            this.edtSearchCondition.Size = new System.Drawing.Size(448, 26);
-            this.edtSearchCondition.TabIndex = 0;
+            this.edtSearchCondition.Properties.AutoHeight = ((bool)(resources.GetObject("edtSearchCondition.Properties.AutoHeight")));
+            this.edtSearchCondition.Properties.Mask.AutoComplete = ((DevExpress.XtraEditors.Mask.AutoCompleteType)(resources.GetObject("edtSearchCondition.Properties.Mask.AutoComplete")));
+            this.edtSearchCondition.Properties.Mask.BeepOnError = ((bool)(resources.GetObject("edtSearchCondition.Properties.Mask.BeepOnError")));
+            this.edtSearchCondition.Properties.Mask.EditMask = resources.GetString("edtSearchCondition.Properties.Mask.EditMask");
+            this.edtSearchCondition.Properties.Mask.IgnoreMaskBlank = ((bool)(resources.GetObject("edtSearchCondition.Properties.Mask.IgnoreMaskBlank")));
+            this.edtSearchCondition.Properties.Mask.MaskType = ((DevExpress.XtraEditors.Mask.MaskType)(resources.GetObject("edtSearchCondition.Properties.Mask.MaskType")));
+            this.edtSearchCondition.Properties.Mask.PlaceHolder = ((char)(resources.GetObject("edtSearchCondition.Properties.Mask.PlaceHolder")));
+            this.edtSearchCondition.Properties.Mask.SaveLiteral = ((bool)(resources.GetObject("edtSearchCondition.Properties.Mask.SaveLiteral")));
+            this.edtSearchCondition.Properties.Mask.ShowPlaceHolders = ((bool)(resources.GetObject("edtSearchCondition.Properties.Mask.ShowPlaceHolders")));
+            this.edtSearchCondition.Properties.Mask.UseMaskAsDisplayFormat = ((bool)(resources.GetObject("edtSearchCondition.Properties.Mask.UseMaskAsDisplayFormat")));
+            this.edtSearchCondition.Properties.NullValuePrompt = resources.GetString("edtSearchCondition.Properties.NullValuePrompt");
+            this.edtSearchCondition.Properties.NullValuePromptShowForEmptyValue = ((bool)(resources.GetObject("edtSearchCondition.Properties.NullValuePromptShowForEmptyValue")));
             this.edtSearchCondition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtSearchCondition_KeyDown);
             // 
             // btnCancel
             // 
-            this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnCancel.Appearance.Font")));
+            this.btnCancel.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnCancel.Appearance.FontSizeDelta")));
+            this.btnCancel.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnCancel.Appearance.FontStyleDelta")));
+            this.btnCancel.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnCancel.Appearance.GradientMode")));
+            this.btnCancel.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Appearance.Image")));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(647, 50);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(85, 32);
-            this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "取消";
             // 
             // btnSelect
             // 
-            this.btnSelect.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            resources.ApplyResources(this.btnSelect, "btnSelect");
+            this.btnSelect.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnSelect.Appearance.Font")));
+            this.btnSelect.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnSelect.Appearance.FontSizeDelta")));
+            this.btnSelect.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnSelect.Appearance.FontStyleDelta")));
+            this.btnSelect.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnSelect.Appearance.GradientMode")));
+            this.btnSelect.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect.Appearance.Image")));
             this.btnSelect.Appearance.Options.UseFont = true;
             this.btnSelect.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSelect.Location = new System.Drawing.Point(647, 12);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(85, 32);
-            this.btnSelect.TabIndex = 5;
-            this.btnSelect.Text = "选择";
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // frmSelectOptions
             // 
+            resources.ApplyResources(this, "$this");
+            this.toolTipController.SetAllowHtmlText(this, ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("$this.AllowHtmlText"))));
+            this.Appearance.FontSizeDelta = ((int)(resources.GetObject("frmSelectOptions.Appearance.FontSizeDelta")));
+            this.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("frmSelectOptions.Appearance.FontStyleDelta")));
+            this.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("frmSelectOptions.Appearance.GradientMode")));
+            this.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("frmSelectOptions.Appearance.Image")));
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(744, 392);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
             this.Name = "frmSelectOptions";
-            this.Text = "选择产品/流程和工位/工序";
+            this.toolTipController.SetTitle(this, resources.GetString("$this.Title"));
+            this.toolTipController.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.toolTipController.SetToolTipIconType(this, ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("$this.ToolTipIconType"))));
             this.Load += new System.EventHandler(this.frmSelectOptions_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmSelectOptions_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();

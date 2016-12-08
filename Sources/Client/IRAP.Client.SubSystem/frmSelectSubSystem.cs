@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
 
 using IRAP.Global;
 using IRAP.Client.Global;
@@ -14,9 +15,17 @@ namespace IRAP.Client.SubSystem
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
+        private string message = "";
+        private string caption = "";
+
         public frmSelectSubSystem()
         {
             InitializeComponent();
+
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                caption = "System tip";
+            else
+                caption = "系统信息";
         }
 
         private void RefreshButtonStatus()
@@ -58,11 +67,9 @@ namespace IRAP.Client.SubSystem
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
-                MessageBox.Show(
+                IRAPMessageBox.Instance.ShowErrorMessage(
                     error.Message,
-                    this.Text,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    caption);
             }
             finally
             {
@@ -108,11 +115,9 @@ namespace IRAP.Client.SubSystem
                     catch (Exception error)
                     {
                         WriteLog.Instance.Write(error.Message, strProcedureName);
-                        MessageBox.Show(
+                        IRAPMessageBox.Instance.ShowErrorMessage(
                             error.Message,
-                            this.Text,
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                            caption);
                     }
 
                     DialogResult = DialogResult.OK;

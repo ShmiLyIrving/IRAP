@@ -184,6 +184,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="xucIRAPListView.en-US.resx">
+      <DependentUpon>xucIRAPListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="xucIRAPListView.resx">
       <DependentUpon>xucIRAPListView.cs</DependentUpon>
     </EmbeddedResource>

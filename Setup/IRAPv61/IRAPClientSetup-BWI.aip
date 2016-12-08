@@ -275,7 +275,7 @@
     <ROW File="IRAP.Client.SubSystems.resources.dll" Component_="IRAP.Client.SubSystems.resources.dll" FileName="IRAPCL~4.DLL|IRAP.Client.SubSystems.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\en-US\IRAP.Client.SubSystems.resources.dll" SelfReg="false" NextFile="IRAP.Client.User.resources.dll"/>
     <ROW File="IRAP.Client.User.dll" Component_="IRAP.Client.User.dll" FileName="IRAPCL~8.DLL|IRAP.Client.User.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\IRAP.Client.User.dll" SelfReg="false" NextFile="IRAP.Components.WorkFlow.dll"/>
     <ROW File="IRAP.Client.User.resources.dll" Component_="IRAP.Client.User.resources.dll" FileName="IRAPCL~5.DLL|IRAP.Client.User.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\en-US\IRAP.Client.User.resources.dll" SelfReg="false" NextFile="IRAP.resources.dll"/>
-    <ROW File="IRAP.Client.User.resources.dll_1" Component_="IRAP.Client.User.resources.dll_1" FileName="IRAPCL~1.DLL|IRAP.Client.User.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\zh-CN\IRAP.Client.User.resources.dll" SelfReg="false" NextFile="IRAP.xml"/>
+    <ROW File="IRAP.Client.User.resources.dll_1" Component_="IRAP.Client.User.resources.dll_1" FileName="IRAPCL~1.DLL|IRAP.Client.User.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\zh-CN\IRAP.Client.User.resources.dll" SelfReg="false" NextFile="IRAP.Client.SubSystem.dll"/>
     <ROW File="IRAP.Components.WorkFlow.dll" Component_="IRAP.Components.WorkFlow.dll" FileName="IRAPCO~1.DLL|IRAP.Components.WorkFlow.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\IRAP.Components.WorkFlow.dll" SelfReg="false" NextFile="IRAP.Entity.APS.dll"/>
     <ROW File="IRAP.Entities.dll" Component_="IRAP.Entities.dll" FileName="IRAPEN~5.DLL|IRAP.Entities.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\IRAP.Entities.dll" SelfReg="false" NextFile="IRAP.Entity.FVS.dll"/>
     <ROW File="IRAP.Entity.APS.dll" Component_="IRAP.Entity.APS.dll" FileName="IRAPEN~1.DLL|IRAP.Entity.APS.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\IRAP.Entity.APS.dll" SelfReg="false" NextFile="IRAP.Entity.Kanban.dll"/>
@@ -289,7 +289,6 @@
     <ROW File="IRAP.WCF.Client.dll" Component_="IRAP.WCF.Client.dll" FileName="IRAPWC~1.DLL|IRAP.WCF.Client.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\IRAP.WCF.Client.dll" SelfReg="false" NextFile="IRAP.WCF.Client.Method.dll"/>
     <ROW File="IRAP.exe" Component_="IRAP.exe" FileName="IRAP.exe" Attributes="0" SourcePath="..\..\Bin\Client\Release\IRAP.exe" SelfReg="false" NextFile="IRAP.Global.dll" DigSign="true"/>
     <ROW File="IRAP.resources.dll" Component_="IRAP.resources.dll" FileName="IRAPRE~1.DLL|IRAP.resources.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\en-US\IRAP.resources.dll" SelfReg="false" NextFile="FastReport.Bars.dll"/>
-    <ROW File="IRAP.xml" Component_="DevExpress.Data.v15.2.xml" FileName="IRAP.xml" Attributes="0" SourcePath="..\..\Bin\Client\Release\IRAP.xml" SelfReg="false" NextFile="IRAP.Client.SubSystem.dll"/>
     <ROW File="IRAPShared.dll" Component_="IRAPShared.dll" FileName="IRAPSH~1.DLL|IRAPShared.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\IRAPShared.dll" SelfReg="false" NextFile="DevExpress.Data.v15.2.resources.dll_2"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\Bin\Client\Release\Newtonsoft.Json.dll" SelfReg="false" NextFile="Newtonsoft.Json.xml"/>
     <ROW File="Newtonsoft.Json.xml" Component_="DevExpress.Data.v15.2.xml" FileName="NEWTON~1.XML|Newtonsoft.Json.xml" Attributes="0" SourcePath="..\..\Bin\Client\Release\Newtonsoft.Json.xml" SelfReg="false" NextFile="DevExpress.Data.v15.2.resources.dll_3"/>
@@ -498,10 +497,10 @@
     <ROW SearchKey="C673FE9433B49AFAC9592AB26B8F8E4Install" Prereq="C673FE9433B49AFAC9592AB26B8F8E4" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Install" RefContent="M1" Order="1" Property="PreReqSearch_C673FE9433B49AFAC9592AB26B8F8E4"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
-    <ROW Directory_="APPDIR" SourcePath="..\..\Bin\Client\Release" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|IRAP.ini|\Log|IRAP.exe.config|\Oracle|Update.xml|Upgrade.xml" ExcludeFlags="6"/>
+    <ROW Directory_="APPDIR" SourcePath="..\..\Bin\Client\Release" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|IRAP.ini|\Log|IRAP.exe.config|\Oracle|Update.xml|Upgrade.xml|*.rar|IRAP.xml" ExcludeFlags="6"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlAttributeComponent">
-    <ROW XmlAttribute="URL" XmlElement="UpgradeXXX" Name="URL" Flags="14" Order="0" Value="http://10.66.150.135/IRAP/Upgrade/6.1/PC/upgrade.xml"/>
+    <ROW XmlAttribute="URL" XmlElement="UpgradeXXX" Name="URL" Flags="14" Order="0" Value="http://10.66.150.135:8000/IRAP/Upgrade/6.1/PC/upgrade.xml"/>
     <ROW XmlAttribute="address" XmlElement="endpoint" Name="address" Flags="14" Order="0" Value="net.tcp://10.66.150.135:16010/IRAP"/>
     <ROW XmlAttribute="binding" XmlElement="endpoint" Name="binding" Flags="14" Order="1" Value="netTcpBinding"/>
     <ROW XmlAttribute="bindingConfiguration" XmlElement="endpoint" Name="bindingConfiguration" Flags="14" Order="2" Value="NetTcpBinding_IServiceIRAPGlobal"/>

@@ -22,7 +22,7 @@ namespace IRAP.Client.GUI.MESPDC
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private MenuInfo menuInfo = null;
-        private UDFForm1Ex_30 busUDFForm = new UDFForm1Ex_30();
+        private UDFForm1Ex busUDFForm = new UDFForm1Ex();
 
         private List<StationPortInfo> ports = new List<StationPortInfo>();
         private List<ScannerForSerialPort> scanners = new List<ScannerForSerialPort>();

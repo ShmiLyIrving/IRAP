@@ -11,7 +11,7 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MESPDC
 {
-    class UDFForm1Ex_30
+    class UDFForm1Ex
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;

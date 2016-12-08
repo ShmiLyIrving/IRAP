@@ -29,7 +29,7 @@ namespace IRAP.Client.GUI.MESPDC
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private MenuInfo menuInfo = null;
-        private UDFForm1Ex_30 busUDFForm = new UDFForm1Ex_30();
+        private UDFForm1Ex busUDFForm = new UDFForm1Ex();
 
         public frmCargoTransfer()
         {
@@ -211,6 +211,7 @@ namespace IRAP.Client.GUI.MESPDC
                 busUDFForm.SetStrParameterValue(edtTransferQuantity.Text, 4);
                 busUDFForm.SetStrParameterValue(edtProductDate.DateTime.ToString("yyyy-MM-dd HH:mm:ss"), 5);
                 busUDFForm.SetStrParameterValue(edtCopies.Value.ToString(), 6);
+                busUDFForm.SetStrParameterValue(edtTempPKGQuantity.Text, 7);
 
                 busUDFForm.SaveOLTPUDFFormDataWithoutFactIDAndTransactNo(0, 0);
                 WriteLog.Instance.Write(
@@ -230,6 +231,7 @@ namespace IRAP.Client.GUI.MESPDC
                     cboAddresses.SelectedItem = null;
                     edtTransferQuantity.Text = "";
                     edtProductDate.EditValue = null;
+                    edtTempPKGQuantity.Text = "";
 
                     WriteLog.Instance.Write(
                         string.Format("Output={0}", busUDFForm.OutputStr),
@@ -264,6 +266,7 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     edtTransferQuantity.Text = "";
                     edtProductDate.EditValue = null;
+                    edtTempPKGQuantity.Text = "";
 
                     edtTransferQuantity.Focus();
                 }
@@ -277,6 +280,7 @@ namespace IRAP.Client.GUI.MESPDC
 
                 edtTransferQuantity.Text = "";
                 edtProductDate.EditValue = null;
+                edtTempPKGQuantity.Text = "";
 
                 edtTransferQuantity.Focus();
             }

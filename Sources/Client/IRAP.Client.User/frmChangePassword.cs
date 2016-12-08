@@ -10,6 +10,7 @@ using System.Threading;
 
 using DevExpress.XtraEditors;
 
+using IRAP.Global;
 using IRAP.Client.Global;
 
 namespace IRAP.Client.User
@@ -49,11 +50,9 @@ namespace IRAP.Client.User
                         msgTitle = "登录密码修改";
                         break;
                 }
-                XtraMessageBox.Show(
+                IRAPMessageBox.Instance.ShowInformation(
                     msgContent,
-                    msgTitle,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                    msgTitle);
                 #endregion
 
                 btnCancel.PerformClick();
@@ -74,13 +73,11 @@ namespace IRAP.Client.User
                         msgTitle = "登录密码修改";
                         break;
                 }
-                XtraMessageBox.Show(
+                IRAPMessageBox.Instance.ShowErrorMessage(
                     string.Format(
                         msgContent,
                         error.Message),
-                    msgTitle,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    msgTitle);
                 #endregion
 
                 edtPassword.Text = "";

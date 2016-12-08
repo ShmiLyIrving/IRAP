@@ -43,6 +43,8 @@
             this.cboCustomers = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.xucIRAPListView = new IRAP.Client.Global.GUI.xucIRAPListView();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.edtTempPKGQuantity = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtPartNumber.Properties)).BeginInit();
@@ -54,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtTransferQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAddresses.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomers.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtTempPKGQuantity.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -99,6 +102,8 @@
             // 
             this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl1.Controls.Add(this.edtTempPKGQuantity);
+            this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.edtCopies);
             this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.btnSave);
@@ -280,6 +285,28 @@
             this.xucIRAPListView.Size = new System.Drawing.Size(867, 217);
             this.xucIRAPListView.TabIndex = 4;
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl6.Location = new System.Drawing.Point(413, 130);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(138, 17);
+            this.labelControl6.TabIndex = 13;
+            this.labelControl6.Text = "临时标准包装量：";
+            // 
+            // edtTempPKGQuantity
+            // 
+            this.edtTempPKGQuantity.EnterMoveNextControl = true;
+            this.edtTempPKGQuantity.Location = new System.Drawing.Point(557, 127);
+            this.edtTempPKGQuantity.Name = "edtTempPKGQuantity";
+            this.edtTempPKGQuantity.Properties.Appearance.Font = new System.Drawing.Font("等线", 12F);
+            this.edtTempPKGQuantity.Properties.Appearance.Options.UseFont = true;
+            this.edtTempPKGQuantity.Size = new System.Drawing.Size(111, 24);
+            this.edtTempPKGQuantity.TabIndex = 14;
+            // 
             // frmCargoTransfer
             // 
             this.Appearance.Options.UseFont = true;
@@ -304,6 +331,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtTransferQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAddresses.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomers.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtTempPKGQuantity.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -325,5 +353,7 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SpinEdit edtCopies;
         private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.TextEdit edtTempPKGQuantity;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
     }
 }
