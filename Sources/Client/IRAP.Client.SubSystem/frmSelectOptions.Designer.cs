@@ -29,24 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelectOptions));
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.lstProcesses = new DevExpress.XtraEditors.ListBoxControl();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.lstWorkUnits = new DevExpress.XtraEditors.ListBoxControl();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.edtSearchCondition = new DevExpress.XtraEditors.TextEdit();
             this.btnShowAll = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
-            this.edtSearchCondition = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSelect = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lstProcesses)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lstWorkUnits)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
+            this.splitContainerControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtSearchCondition.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,17 +62,31 @@
             this.toolTipController.AppearanceTitle.Image = ((System.Drawing.Image)(resources.GetObject("toolTipController.AppearanceTitle.Image")));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
-            // groupControl1
+            // splitContainerControl1
             // 
-            resources.ApplyResources(this.groupControl1, "groupControl1");
-            this.groupControl1.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("groupControl1.AppearanceCaption.Font")));
-            this.groupControl1.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("groupControl1.AppearanceCaption.FontSizeDelta")));
-            this.groupControl1.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("groupControl1.AppearanceCaption.FontStyleDelta")));
-            this.groupControl1.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("groupControl1.AppearanceCaption.GradientMode")));
-            this.groupControl1.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl1.AppearanceCaption.Image")));
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.lstProcesses);
-            this.groupControl1.Name = "groupControl1";
+            resources.ApplyResources(this.splitContainerControl1, "splitContainerControl1");
+            this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("splitContainerControl1.Panel1.AppearanceCaption.Font")));
+            this.splitContainerControl1.Panel1.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("splitContainerControl1.Panel1.AppearanceCaption.FontSizeDelta")));
+            this.splitContainerControl1.Panel1.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("splitContainerControl1.Panel1.AppearanceCaption.FontStyleDelta")));
+            this.splitContainerControl1.Panel1.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("splitContainerControl1.Panel1.AppearanceCaption.GradientMode")));
+            this.splitContainerControl1.Panel1.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("splitContainerControl1.Panel1.AppearanceCaption.Image")));
+            this.splitContainerControl1.Panel1.AppearanceCaption.Options.UseFont = true;
+            resources.ApplyResources(this.splitContainerControl1.Panel1, "splitContainerControl1.Panel1");
+            this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl1.Panel1.Controls.Add(this.lstProcesses);
+            this.splitContainerControl1.Panel1.ShowCaption = true;
+            this.splitContainerControl1.Panel2.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("splitContainerControl1.Panel2.AppearanceCaption.Font")));
+            this.splitContainerControl1.Panel2.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("splitContainerControl1.Panel2.AppearanceCaption.FontSizeDelta")));
+            this.splitContainerControl1.Panel2.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("splitContainerControl1.Panel2.AppearanceCaption.FontStyleDelta")));
+            this.splitContainerControl1.Panel2.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("splitContainerControl1.Panel2.AppearanceCaption.GradientMode")));
+            this.splitContainerControl1.Panel2.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("splitContainerControl1.Panel2.AppearanceCaption.Image")));
+            this.splitContainerControl1.Panel2.AppearanceCaption.Options.UseFont = true;
+            resources.ApplyResources(this.splitContainerControl1.Panel2, "splitContainerControl1.Panel2");
+            this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl1.Panel2.Controls.Add(this.lstWorkUnits);
+            this.splitContainerControl1.Panel2.ShowCaption = true;
+            this.splitContainerControl1.SplitterPosition = 355;
             // 
             // lstProcesses
             // 
@@ -88,18 +99,6 @@
             this.lstProcesses.Appearance.Options.UseFont = true;
             this.lstProcesses.Name = "lstProcesses";
             this.lstProcesses.SelectedIndexChanged += new System.EventHandler(this.lstProcesses_SelectedIndexChanged);
-            // 
-            // groupControl2
-            // 
-            resources.ApplyResources(this.groupControl2, "groupControl2");
-            this.groupControl2.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("groupControl2.AppearanceCaption.Font")));
-            this.groupControl2.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("groupControl2.AppearanceCaption.FontSizeDelta")));
-            this.groupControl2.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("groupControl2.AppearanceCaption.FontStyleDelta")));
-            this.groupControl2.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("groupControl2.AppearanceCaption.GradientMode")));
-            this.groupControl2.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl2.AppearanceCaption.Image")));
-            this.groupControl2.AppearanceCaption.Options.UseFont = true;
-            this.groupControl2.Controls.Add(this.lstWorkUnits);
-            this.groupControl2.Name = "groupControl2";
             // 
             // lstWorkUnits
             // 
@@ -114,43 +113,34 @@
             this.lstWorkUnits.Click += new System.EventHandler(this.lstWorkUnits_Click);
             this.lstWorkUnits.DoubleClick += new System.EventHandler(this.lstWorkUnits_DoubleClick);
             // 
-            // groupControl3
+            // splitContainerControl2
             // 
-            resources.ApplyResources(this.groupControl3, "groupControl3");
-            this.groupControl3.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("groupControl3.AppearanceCaption.Font")));
-            this.groupControl3.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("groupControl3.AppearanceCaption.FontSizeDelta")));
-            this.groupControl3.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("groupControl3.AppearanceCaption.FontStyleDelta")));
-            this.groupControl3.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("groupControl3.AppearanceCaption.GradientMode")));
-            this.groupControl3.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("groupControl3.AppearanceCaption.Image")));
-            this.groupControl3.AppearanceCaption.Options.UseFont = true;
-            this.groupControl3.Controls.Add(this.btnShowAll);
-            this.groupControl3.Controls.Add(this.btnSearch);
-            this.groupControl3.Controls.Add(this.edtSearchCondition);
-            this.groupControl3.Name = "groupControl3";
-            // 
-            // btnShowAll
-            // 
-            resources.ApplyResources(this.btnShowAll, "btnShowAll");
-            this.btnShowAll.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnShowAll.Appearance.Font")));
-            this.btnShowAll.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnShowAll.Appearance.FontSizeDelta")));
-            this.btnShowAll.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnShowAll.Appearance.FontStyleDelta")));
-            this.btnShowAll.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnShowAll.Appearance.GradientMode")));
-            this.btnShowAll.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnShowAll.Appearance.Image")));
-            this.btnShowAll.Appearance.Options.UseFont = true;
-            this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
-            // 
-            // btnSearch
-            // 
-            resources.ApplyResources(this.btnSearch, "btnSearch");
-            this.btnSearch.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnSearch.Appearance.Font")));
-            this.btnSearch.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnSearch.Appearance.FontSizeDelta")));
-            this.btnSearch.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnSearch.Appearance.FontStyleDelta")));
-            this.btnSearch.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnSearch.Appearance.GradientMode")));
-            this.btnSearch.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Appearance.Image")));
-            this.btnSearch.Appearance.Options.UseFont = true;
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            resources.ApplyResources(this.splitContainerControl2, "splitContainerControl2");
+            this.splitContainerControl2.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("splitContainerControl2.AppearanceCaption.Font")));
+            this.splitContainerControl2.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("splitContainerControl2.AppearanceCaption.FontSizeDelta")));
+            this.splitContainerControl2.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("splitContainerControl2.AppearanceCaption.FontStyleDelta")));
+            this.splitContainerControl2.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("splitContainerControl2.AppearanceCaption.GradientMode")));
+            this.splitContainerControl2.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("splitContainerControl2.AppearanceCaption.Image")));
+            this.splitContainerControl2.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl2.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
+            this.splitContainerControl2.Horizontal = false;
+            this.splitContainerControl2.IsSplitterFixed = true;
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            resources.ApplyResources(this.splitContainerControl2.Panel1, "splitContainerControl2.Panel1");
+            this.splitContainerControl2.Panel1.Controls.Add(this.splitContainerControl1);
+            this.splitContainerControl2.Panel2.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("splitContainerControl2.Panel2.AppearanceCaption.Font")));
+            this.splitContainerControl2.Panel2.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("splitContainerControl2.Panel2.AppearanceCaption.FontSizeDelta")));
+            this.splitContainerControl2.Panel2.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("splitContainerControl2.Panel2.AppearanceCaption.FontStyleDelta")));
+            this.splitContainerControl2.Panel2.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("splitContainerControl2.Panel2.AppearanceCaption.GradientMode")));
+            this.splitContainerControl2.Panel2.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("splitContainerControl2.Panel2.AppearanceCaption.Image")));
+            this.splitContainerControl2.Panel2.AppearanceCaption.Options.UseFont = true;
+            resources.ApplyResources(this.splitContainerControl2.Panel2, "splitContainerControl2.Panel2");
+            this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl2.Panel2.Controls.Add(this.edtSearchCondition);
+            this.splitContainerControl2.Panel2.Controls.Add(this.btnShowAll);
+            this.splitContainerControl2.Panel2.Controls.Add(this.btnSearch);
+            this.splitContainerControl2.Panel2.ShowCaption = true;
+            this.splitContainerControl2.SplitterPosition = 71;
             // 
             // edtSearchCondition
             // 
@@ -177,6 +167,30 @@
             this.edtSearchCondition.Properties.NullValuePrompt = resources.GetString("edtSearchCondition.Properties.NullValuePrompt");
             this.edtSearchCondition.Properties.NullValuePromptShowForEmptyValue = ((bool)(resources.GetObject("edtSearchCondition.Properties.NullValuePromptShowForEmptyValue")));
             this.edtSearchCondition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtSearchCondition_KeyDown);
+            // 
+            // btnShowAll
+            // 
+            resources.ApplyResources(this.btnShowAll, "btnShowAll");
+            this.btnShowAll.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnShowAll.Appearance.Font")));
+            this.btnShowAll.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnShowAll.Appearance.FontSizeDelta")));
+            this.btnShowAll.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnShowAll.Appearance.FontStyleDelta")));
+            this.btnShowAll.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnShowAll.Appearance.GradientMode")));
+            this.btnShowAll.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnShowAll.Appearance.Image")));
+            this.btnShowAll.Appearance.Options.UseFont = true;
+            this.btnShowAll.Name = "btnShowAll";
+            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
+            // 
+            // btnSearch
+            // 
+            resources.ApplyResources(this.btnSearch, "btnSearch");
+            this.btnSearch.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnSearch.Appearance.Font")));
+            this.btnSearch.Appearance.FontSizeDelta = ((int)(resources.GetObject("btnSearch.Appearance.FontSizeDelta")));
+            this.btnSearch.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("btnSearch.Appearance.FontStyleDelta")));
+            this.btnSearch.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("btnSearch.Appearance.GradientMode")));
+            this.btnSearch.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Appearance.Image")));
+            this.btnSearch.Appearance.Options.UseFont = true;
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnCancel
             // 
@@ -214,41 +228,35 @@
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
+            this.Controls.Add(this.splitContainerControl2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSelect);
-            this.Controls.Add(this.groupControl3);
-            this.Controls.Add(this.groupControl2);
-            this.Controls.Add(this.groupControl1);
             this.Name = "frmSelectOptions";
             this.toolTipController.SetTitle(this, resources.GetString("$this.Title"));
             this.toolTipController.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.toolTipController.SetToolTipIconType(this, ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("$this.ToolTipIconType"))));
             this.Load += new System.EventHandler(this.frmSelectOptions_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmSelectOptions_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lstProcesses)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lstWorkUnits)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
+            this.splitContainerControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtSearchCondition.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.ListBoxControl lstProcesses;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.ListBoxControl lstWorkUnits;
-        private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.SimpleButton btnShowAll;
         private DevExpress.XtraEditors.SimpleButton btnSearch;
         private DevExpress.XtraEditors.TextEdit edtSearchCondition;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnSelect;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
     }
 }
