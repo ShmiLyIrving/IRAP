@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C78CDB3F-F78A-4C17-B5C8-E2E88A0A5947}</ProjectGuid>
+    <ProjectGuid>{FE288DE4-07AF-4D94-82B6-61169BB407B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.Entity.MES</RootNamespace>
-    <AssemblyName>IRAP.Entity.MES</AssemblyName>
+    <RootNamespace>IRAPDAL</RootNamespace>
+    <AssemblyName>IRAPDAL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -30,12 +29,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,36 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chart\EntitySPCChart.cs" />
-    <Compile Include="Inspecting.cs" />
-    <Compile Include="InspectingFailureItem.cs" />
-    <Compile Include="OpenChangeInfo.cs" />
-    <Compile Include="OpenChangeSummary.cs" />
-    <Compile Include="OpenProductionWorkOrder.cs" />
-    <Compile Include="OpenPWO.cs" />
-    <Compile Include="OpenReworkPWO.cs" />
+    <Compile Include="PartitioningKey.cs" />
+    <Compile Include="UTS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepairMode.cs" />
-    <Compile Include="Report_MOExecution.cs" />
-    <Compile Include="ReworkPWOUnloadingSheetItem.cs" />
-    <Compile Include="ReworkRouter.cs" />
-    <Compile Include="SubWIPIDCodeInfo.cs" />
-    <Compile Include="SubWIPIDCodeInfo_Inspecting.cs" />
-    <Compile Include="SymbolInspecting.cs" />
-    <Compile Include="WIPBarCodeInfo.cs" />
-    <Compile Include="WIPIDCode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\IRAP.Entity.MES.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
-      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
-      <Name>IRAP.Global</Name>
+    <ProjectReference Include="..\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Global\IRAPShared\IRAPShared.csproj">
-      <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
-      <Name>IRAPShared</Name>
+    <ProjectReference Include="..\IRAPORM\IRAPORM.csproj">
+      <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
+      <Name>IRAPORM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

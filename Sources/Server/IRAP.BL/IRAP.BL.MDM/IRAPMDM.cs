@@ -4777,5 +4777,84 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取指定产品指定工位可选产品失效模式清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="productLeaf">产品叶标识</param>
+        /// <param name="workUnitLeaf">工位叶标识</param>
+        public IRAPJsonResult ufn_GetList_FailureModes(
+            int communityID,
+            int productLeaf,
+            int workUnitLeaf,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<FailureMode> datas = new List<FailureMode>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@ProductLeaf", DbType.Int32, productLeaf));
+                paramList.Add(new IRAPProcParameter("@WorkUnitLeaf", DbType.Int32, workUnitLeaf));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_FailureModes，" +
+                        "参数：CommunityID={0}|ProductLeaf={1}|WorkUnitLeaf={2}|" +
+                        "SysLogID={4}",
+                        communityID, productLeaf, workUnitLeaf, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_FailureModes(" +
+                            "@CommunityID, @ProductLeaf, @WorkUnitLeaf, " +
+                            "@SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<FailureMode> lstDatas =
+                            conn.CallTableFunc<FailureMode>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetList_FailureModes 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

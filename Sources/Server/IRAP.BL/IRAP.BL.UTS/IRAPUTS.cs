@@ -9,6 +9,7 @@ using System.Data;
 
 using IRAP.Global;
 using IRAP.Server.Global;
+using IRAP.Entities.UTS;
 using IRAPShared;
 using IRAPORM;
 
@@ -195,6 +196,76 @@ namespace IRAP.BL.UTS
                 #endregion
 
                 return Json(rlt);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取业务操作类型清单
+        /// </summary>
+        public IRAPJsonResult sfn_OperTypes(
+            int opID,
+            int languageID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<OperTypeInfo> datas = new List<OperTypeInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@OpID", DbType.Int32, opID));
+                paramList.Add(new IRAPProcParameter("@LanguageID", DbType.Int32, languageID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..sfn_OperTypes，" +
+                        "参数：OpID={0}|LanguageID={1}",
+                        opID, languageID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAP..sfn_OperTypes(" +
+                            "@OpID, @LanguageID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<OperTypeInfo> lstDatas =
+                            conn.CallTableFunc<OperTypeInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAP..sfn_OperTypes 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
             }
             finally
             {

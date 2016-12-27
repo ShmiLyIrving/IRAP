@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="CommunityUserInfo.cs" />
     <Compile Include="EquipmentInfo.cs" />
-    <Compile Include="FailureMode.cs" />
     <Compile Include="InspectFailure.cs" />
     <Compile Include="IRAPTreeViewNode.cs" />
     <Compile Include="JumpToFunction.cs" />

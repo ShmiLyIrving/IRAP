@@ -42,6 +42,10 @@
   <ItemGroup>
     <Compile Include="AndonCallPerson.cs" />
     <Compile Include="AndonRspedEventInfo.cs" />
+    <Compile Include="FVS\AndonCancelReason.cs" />
+    <Compile Include="FVS\PeriodAndonEvent.cs" />
+    <Compile Include="IRAP\STB009.cs" />
+    <Compile Include="MES\FailuresOfNGProduct.cs" />
     <Compile Include="FVS\AndonEventFact.cs" />
     <Compile Include="FVS\EventStakeholder.cs" />
     <Compile Include="FVS\EventsToConsultation.cs" />
@@ -53,6 +57,21 @@
     <Compile Include="Kanban\SelectedLeafEx.cs" />
     <Compile Include="MDM\AvailableSite.cs" />
     <Compile Include="MDM\CustomerOfAProduction.cs" />
+    <Compile Include="MDM\FailureMode.cs" />
+    <Compile Include="MES\FailureDuty.cs" />
+    <Compile Include="MES\FailureNature.cs" />
+    <Compile Include="MES\FailureSrcOperation.cs" />
+    <Compile Include="MES\TBL_AuxFact_PDC.cs" />
+    <Compile Include="MES\TBL_FixedFact_MES.cs" />
+    <Compile Include="MES\PCBSymbols.cs" />
+    <Compile Include="MES\SubWIPIDCodes_TS.cs" />
+    <Compile Include="MES\SubWIPIDCode_TroubleShooting.cs" />
+    <Compile Include="MES\SubWIPIDCode_TSItem.cs" />
+    <Compile Include="MES\TBL_RSFact_TSDataCollecting.cs" />
+    <Compile Include="MES\TBL_RSFact_WIPScrapping.cs" />
+    <Compile Include="MES\TSFormCtrl.cs" />
+    <Compile Include="MES\QCOperationsForNG.cs" />
+    <Compile Include="MES\WIPContext.cs" />
     <Compile Include="SCES\MaterialToDeliver.cs" />
     <Compile Include="MDM\DstDeliveryStoreSite.cs" />
     <Compile Include="SCES\ProductionFlowCard.cs" />
@@ -60,6 +79,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MDM\TemplateContent.cs" />
     <Compile Include="SSO\UserInfo.cs" />
+    <Compile Include="UTS\OperTypeInfo.cs" />
+    <Compile Include="UTS\STB010.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Entities.cd" />

@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entities", "IRAP.Entit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.SCES", "IRAP.BL\IRAP.BL.SCES\IRAP.BL.SCES.csproj", "{C9B634F0-22D3-4C11-A0B8-C6E5F6CD080B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPDAL", "IRAPDAL\IRAPDAL.csproj", "{FE288DE4-07AF-4D94-82B6-61169BB407B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +173,10 @@ Global
 		{C9B634F0-22D3-4C11-A0B8-C6E5F6CD080B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9B634F0-22D3-4C11-A0B8-C6E5F6CD080B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9B634F0-22D3-4C11-A0B8-C6E5F6CD080B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE288DE4-07AF-4D94-82B6-61169BB407B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE288DE4-07AF-4D94-82B6-61169BB407B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE288DE4-07AF-4D94-82B6-61169BB407B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE288DE4-07AF-4D94-82B6-61169BB407B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

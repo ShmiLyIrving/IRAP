@@ -26,7 +26,7 @@ namespace IRAP.BL.MES
         }
 
         /// <summary>
-        /// 获取在制品以及子在制品信息
+        /// 获取用于人工检查的在制品以及子在制品信息
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="wipIDCode">在制品标识</param>

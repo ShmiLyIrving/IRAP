@@ -9,10 +9,12 @@ using IRAP.Global;
 using IRAPShared;
 using IRAPORM;
 using IRAP.Entity.FVS;
+using IRAP.Entities.FVS;
 
 namespace IRAP.BL.FVS
 {
-     public class IRAPFVS : IRAPBLLBase
+
+    public class IRAPFVS : IRAPBLLBase
     {
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -288,6 +290,170 @@ namespace IRAP.BL.FVS
                     errCode = 99000;
                     errText = string.Format(
                         "调用 IRAPFVS..ufn_GetList_AnomalyCauseTypes 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 保存停线记录
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">申请到的交易号</param>
+        /// <param name="factID">申请到的事实编号（新发起时新申请，复核时传递未关闭的停线事件）</param>
+        /// <param name="resourceTreeID">工作中心传211，生产线传134</param>
+        /// <param name="resourceLeafID">工作中心或产线叶标识</param>
+        /// <param name="eventFactIDs">关联安灯事件点击流 （发起新事件时传空）</param>
+        /// <param name="andonEventID">关联的安灯事件FactID</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult usp_SaveFact_StopEvent(
+            int communityID,
+            long transactNo,
+            long factID,
+            int resourceTreeID,  // 工作中心传211，生产线传134
+            int resourceLeafID, // 工作中心或产线叶标识
+            string eventFactIDs,  // 关联安灯事件点击流 （发起新事件时传空）
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@TransactNo", DbType.Int64, transactNo));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@ResourceTreeID", DbType.Int32, resourceTreeID));
+                paramList.Add(new IRAPProcParameter("@ResourceLeafID", DbType.Int32, resourceLeafID));
+                paramList.Add(new IRAPProcParameter("@EventFactIDs", DbType.String, eventFactIDs));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrCode",
+                        DbType.Int32,
+                        ParameterDirection.Output,
+                        4));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrText",
+                        DbType.String,
+                        ParameterDirection.Output,
+                        400));
+                WriteLog.Instance.Write(
+                    string.Format("执行存储过程 " +
+                        "IRAPFVS..usp_SaveFact_StopEvent，参数：" +
+                        "CommunityID={0}|TransactNo={1}|FactID={2}|ResourceTreeID={3}|" +
+                        "ResourceLeafID={4}|EventFactIDs={5}|SysLogID={6}",
+                        communityID, transactNo, factID, resourceTreeID,
+                        resourceLeafID, eventFactIDs, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error = conn.CallProc("IRAPFVS..usp_SaveFact_StopEvent", ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    return Json("");
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText = string.Format("调用 IRAPFVS..usp_SaveFact_StopEvent 时发生异常：{0}", error.Message);
+                return Json("");
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 当前工单执行期间发起的安灯事件清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List[PeriodAndonEvent]</returns>
+        public IRAPJsonResult ufn_GetList_PeriodAndonEvents(
+            int communityID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<PeriodAndonEvent> datas = new List<PeriodAndonEvent>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPFVS..ufn_GetList_PeriodAndonEvents，" +
+                        "参数：CommunityID={0}|SysLogID={1}",
+                        communityID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAPFVS..ufn_GetList_PeriodAndonEvents(" +
+                                "@CommunityID, @SysLogID) " +
+                                "ORDER BY Ordinal";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<PeriodAndonEvent> lstDatas =
+                            conn.CallTableFunc<PeriodAndonEvent>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPFVS..ufn_GetList_PeriodAndonEvents 函数发生异常：{0}",
                         error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                 }

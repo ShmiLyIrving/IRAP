@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IRAP.Entity.MES
+namespace IRAP.Entities.MES
 {
     /// <summary>
-    /// 修复转出工序
+    /// 送修在制品修复转出工序
     /// </summary>
-    public class QCOperationForNG
+    public class QCOperationsForNG
     {
         /// <summary>
         /// 序号
@@ -27,9 +27,9 @@ namespace IRAP.Entity.MES
         /// </summary>
         public string T216Name { get; set; }
 
-        public QCOperationForNG Clone()
+        public QCOperationsForNG Clone()
         {
-            return MemberwiseClone() as QCOperationForNG;
+            return MemberwiseClone() as QCOperationsForNG;
         }
     }
 }

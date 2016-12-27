@@ -40,7 +40,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +55,10 @@
     <ProjectReference Include="..\..\..\Global\IRAPShared\IRAPShared.csproj">
       <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
       <Name>IRAPShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\IRAP.Server.Global\IRAP.Server.Global.csproj">
       <Project>{6cad9cb5-9549-4f44-a66c-5e8b1d55f22e}</Project>

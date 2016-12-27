@@ -46,15 +46,15 @@ namespace IRAP.Entities.FVS
         /// <summary>
         /// 呼叫时间
         /// </summary>
-        public DateTime CallingTime { get; set; }
+        public string CallingTime { get; set; }
         /// <summary>
         /// 响应时间
         /// </summary>
-        public DateTime RespondingTime { get; set; }
+        public string RespondingTime { get; set; }
         /// <summary>
         /// 关闭时间
         /// </summary>
-        public DateTime ClosingTime { get; set; }
+        public string ClosingTime { get; set; }
 
         public AndonEventFact Clone()
         {
