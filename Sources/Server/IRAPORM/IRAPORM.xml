@@ -5,12 +5,12 @@
     <add key="DBType" value="1"/>
     <add key="SeqServerAddr" value="192.168.57.217"/>
     <!--MES数据库地址-->
-    <add key="ConnectionString" value="Server=192.168.57.217;initial catalog=IRAP;UID=sa;Password=irap!209420;Min Pool Size=2;Max Pool Size=60;"/>
+    <!--<add key="ConnectionString" value="Server=192.168.57.217;initial catalog=IRAP;UID=sa;Password=irap!209420;Min Pool Size=2;Max Pool Size=60;"/>-->
     <!--<add key="ConnectionString" value="Server=192.168.57.221;initial catalog=IRAP;UID=sa;Password=irap!209420;Min Pool Size=2;Max Pool Size=60;"/>-->
     <!--<add key="ConnectionString" value="Server=192.168.1.2;initial catalog=IRAP;UID=sa;Password=CyprMes571;Min Pool Size=2;Max Pool Size=60;"/>-->
     <!--<add key="ConnectionString" value="Server=192.168.97.213;initial catalog=IRAP;UID=sa;Password=pause!0510;Min Pool Size=2;Max Pool Size=60;"/>-->
     <!--<add key="ConnectionString" value="Server=192.168.97.243;initial catalog=IRAP;UID=sa;Password=CIMS!040312;Min Pool Size=2;Max Pool Size=60;"/>-->
-    <!--<add key="ConnectionString" value="Server=192.168.101.254;initial catalog=IRAP;UID=sa;Password=ncd.mes.2016;Min Pool Size=2;Max Pool Size=60;"/>-->
+    <add key="ConnectionString" value="Server=192.168.101.254;initial catalog=IRAP;UID=sa;Password=ncd.mes.2016;Min Pool Size=2;Max Pool Size=60;"/>
     <!--<add key="ConnectionString" value="Server=10.66.150.136;initial catalog=IRAP;UID=sa;Password=bwi@1234;Min Pool Size=2;Max Pool Size=60;"/>-->
     <add key="OracleConnectionString"
          value="Data Source=(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.97.202)(PORT = 1521)))(CONNECT_DATA = (SERVICE_NAME = orcl)));password=irap;User ID=irap;"/>

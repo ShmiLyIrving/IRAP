@@ -7,6 +7,7 @@ using System.Reflection;
 
 using IRAP.Global;
 using IRAP.Entity.MES;
+using IRAP.Entities.MES;
 using IRAPShared;
 using IRAPORM;
 
@@ -503,6 +504,178 @@ namespace IRAP.BL.MES
                         ErrCode = errCode,
                         ErrText = errText,
                     });
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List[ProducingPWOFromWorkUnit]</returns>
+        public IRAPJsonResult ufn_GetList_ProducingPWOFromWorkUnit(
+            int communityID,
+            int t102LeafID,
+            int t107LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<ProducingPWOFromWorkUnit> datas =
+                    new List<ProducingPWOFromWorkUnit>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES..ufn_GetList_ProducingPWOFromWorkUnit，" +
+                        "参数：CommunityID={0}|T102LeafID={1}|" +
+                        "T107LeafID={2}|SysLogID={3}",
+                        communityID,
+                        t102LeafID,
+                        t107LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetList_ProducingPWOFromWorkUnit(" +
+                            "@CommunityID, @T102LeafID, @T107LeafID, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<ProducingPWOFromWorkUnit> lstDatas =
+                            conn.CallTableFunc<ProducingPWOFromWorkUnit>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetList_ProducingPWOFromWorkUnit 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List[ToDoPWOFromWorkUnit]</returns>
+        public IRAPJsonResult ufn_GetList_ToDoPWOFromWorkUnit(
+            int communityID,
+            int t102LeafID,
+            int t107LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<ToDoPWOFromWorkUnit> datas =
+                    new List<ToDoPWOFromWorkUnit>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES..ufn_GetList_ToDoPWOFromWorkUnit，" +
+                        "参数：CommunityID={0}|T102LeafID={1}|" +
+                        "T107LeafID={2}|SysLogID={3}",
+                        communityID,
+                        t102LeafID,
+                        t107LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetList_ToDoPWOFromWorkUnit(" +
+                            "@CommunityID, @T102LeafID, @T107LeafID, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<ToDoPWOFromWorkUnit> lstDatas =
+                            conn.CallTableFunc<ToDoPWOFromWorkUnit>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetList_ToDoPWOFromWorkUnit 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
             }
             finally
             {
