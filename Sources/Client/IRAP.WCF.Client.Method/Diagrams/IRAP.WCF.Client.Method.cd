@@ -10,28 +10,28 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPFVSClient" Collapsed="true">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAQFAIJAgCggSADEBAOAAgAQEBAAAAAIQIABAAAgIBA=</HashCode>
+      <HashCode>QAQFAIJQgOggSADEBAOAAgGQkBAACAAIQIABEQAgIJA=</HashCode>
       <FileName>IRAPFVSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPKBClient" Collapsed="true">
     <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>GAAEQJAIAAAAAAAAAAAAAAAAAACAgAAAQDAAAIEAAAE=</HashCode>
+      <HashCode>GAAEQJAIAAAAAAAAAAAAAAAAAACAgAAAQDAAAIEAAIE=</HashCode>
       <FileName>IRAPKBClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMDMClient" Collapsed="true">
     <Position X="1" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAFAdAAIAAAGAUACRhIADwUAARAQAAKUHCIAIQ5oAA=</HashCode>
+      <HashCode>AAAFAdgAIAAAGAUACRhIADwUAARAQAAKUHCIAIQ5oAA=</HashCode>
       <FileName>IRAPMDMClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMESClient" Collapsed="true">
     <Position X="2.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>JAAEAIAAAQAAAAAAAAAAAAIAABAAAAACQAAACAACAAA=</HashCode>
+      <HashCode>JAAEAIAAASAAAAAAAAAAAAIAABAAAAACQAAACAACAAA=</HashCode>
       <FileName>IRAPMESClient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPMESTSClient" Collapsed="true">
     <Position X="1" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIEAIBAAAAAAIAAACAAACACAIAAAAAAQABACAAAAAA=</HashCode>
       <FileName>IRAPMESTSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -87,7 +87,7 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPUTSClient" Collapsed="true">
     <Position X="2.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAIAAAACAIAAAACAAAABAAAAAAAgAQAAAAAAAAAg=</HashCode>
+      <HashCode>AAAEAIAAAACAIAAAACAAAABQAAAAAAgAQAAAAAAAAAg=</HashCode>
       <FileName>IRAPUTSClient.cs</FileName>
     </TypeIdentifier>
   </Class>

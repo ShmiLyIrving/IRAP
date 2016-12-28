@@ -88,6 +88,12 @@ namespace IRAP.Client.GUI.CAS
             try
             {
                 cboAndonEventTypes.Properties.Items.Clear();
+                cboAndonEventTypes.Properties.Items.Add(
+                    new AndonEventType()
+                    {
+                        EventTypeLeaf = 0,
+                        EventTypeName = "全部",
+                    });
 
                 int errCode = 0;
                 string errText = "";

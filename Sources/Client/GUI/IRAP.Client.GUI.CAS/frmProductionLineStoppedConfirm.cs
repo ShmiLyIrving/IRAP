@@ -189,5 +189,69 @@ namespace IRAP.Client.GUI.CAS
             btnLineStop.Left = (Width - btnLineStop.Width) / 2;
             btnLineStop.Top = (Height - btnLineStop.Height) / 5 * 2;
         }
+
+        private void btnLineStop_Click(object sender, EventArgs e)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                long transactNo = 0;
+                long factID = 0;
+                string opNode = "-4820";
+
+                transactNo =
+                    IRAPUTSClient.Instance.mfn_GetTransactNo(
+                        IRAPUser.Instance.CommunityID,
+                        1,
+                        IRAPUser.Instance.SysLogID,
+                        opNode);
+                factID =
+                    IRAPUTSClient.Instance.mfn_GetFactID(
+                        IRAPUser.Instance.CommunityID,
+                        1,
+                        IRAPUser.Instance.SysLogID,
+                        opNode);
+
+                IRAPFVSClient.Instance.usp_SaveFact_StopEvent(
+                    IRAPUser.Instance.CommunityID,
+                    transactNo,
+                    factID,
+                    134,
+                    currentProductionLine.T134LeafID,
+                    "",
+                    IRAPUser.Instance.SysLogID,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+
+                if (errCode == 0)
+                    IRAPMessageBox.Instance.ShowInformation(errText, Text);
+                else
+                    IRAPMessageBox.Instance.ShowErrorMessage(errText, Text);
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
+                IRAPMessageBox.Instance.ShowErrorMessage(error.Message, Text);
+            }
+            finally
+            {
+                RefreshCurrentProductionLine();
+
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

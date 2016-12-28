@@ -61,6 +61,7 @@
     <Compile Include="MES\FailureDuty.cs" />
     <Compile Include="MES\FailureNature.cs" />
     <Compile Include="MES\FailureSrcOperation.cs" />
+    <Compile Include="MES\ProducingPWOFromWorkUnit.cs" />
     <Compile Include="MES\TBL_AuxFact_PDC.cs" />
     <Compile Include="MES\TBL_FixedFact_MES.cs" />
     <Compile Include="MES\PCBSymbols.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="MES\SubWIPIDCode_TSItem.cs" />
     <Compile Include="MES\TBL_RSFact_TSDataCollecting.cs" />
     <Compile Include="MES\TBL_RSFact_WIPScrapping.cs" />
+    <Compile Include="MES\ToDoPWOFromWorkUnit.cs" />
     <Compile Include="MES\TSFormCtrl.cs" />
     <Compile Include="MES\QCOperationsForNG.cs" />
     <Compile Include="MES\WIPContext.cs" />

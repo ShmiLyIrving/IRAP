@@ -3088,5 +3088,160 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取安灯撤销的原因
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_AndonCancelReason(
+            int communityID,
+            long sysLogID,
+            ref List<AndonCancelReason> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_GetList_AndonCancelReason，输入参数：" +
+                            "CommunityID={0}|SysLogID={1}",
+                            communityID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Andon",
+                            "ufn_GetList_AndonCancelReason",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<AndonCancelReason>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 保存停线记录
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">申请到的交易号</param>
+        /// <param name="factID">申请到的事实编号（新发起时新申请，复核时传递未关闭的停线事件）</param>
+        /// <param name="resourceTreeID">工作中心传211，生产线传134</param>
+        /// <param name="resourceLeafID">工作中心或产线叶标识</param>
+        /// <param name="eventFactIDs">关联安灯事件点击流 （发起新事件时传空）</param>
+        /// <param name="andonEventID">关联的安灯事件FactID</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_SaveFact_StopEvent(
+            int communityID,
+            long transactNo,
+            long factID,
+            int resourceTreeID, 
+            int resourceLeafID, 
+            string eventFactIDs, 
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("transactNo", transactNo);
+                    hashParams.Add("factID", factID);
+                    hashParams.Add("resourceTreeID", resourceTreeID);
+                    hashParams.Add("resrouceLeafID", resourceLeafID);
+                    hashParams.Add("eventFactIDs", eventFactIDs);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format("执行存储过程 " +
+                            "usp_SaveFact_StopEvent，参数：" +
+                            "CommunityID={0}|TransactNo={1}|FactID={2}|ResourceTreeID={3}|" +
+                            "ResourceLeafID={4}|EventFactIDs={5}|SysLogID={6}",
+                            communityID, transactNo, factID, resourceTreeID,
+                            resourceLeafID, eventFactIDs, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.FVS.dll",
+                        "IRAP.BL.FVS.IRAPFVS",
+                        "usp_SaveFact_StopEvent",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

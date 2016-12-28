@@ -346,11 +346,15 @@ namespace IRAP.Client.GUI.CAS
             string reason = "";
             if (IRAPUser.Instance.CommunityID == 60006)
             {
-                reason = GetString.Instance.Show(Text, "请输入当前安灯事件撤销原因：", "");
+                //reason = GetString.Instance.Show(Text, "请输入当前安灯事件撤销原因：", "");
+                reason =
+                    Dialogs.frmSelectAndonEventCancelReason.Instance.GetReason(
+                        IRAPUser.Instance.CommunityID,
+                        IRAPUser.Instance.SysLogID);
                 if (reason.Trim() == "")
                 {
                     IRAPMessageBox.Instance.Show(
-                        "撤销原因未填写，不能撤销安灯事件！",
+                        "撤销原因未选择或撤销原因未配置，不能撤销安灯事件！",
                         Text,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);

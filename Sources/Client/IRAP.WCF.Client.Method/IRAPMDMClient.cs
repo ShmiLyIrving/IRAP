@@ -3472,5 +3472,25 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取指定产品指定工位可选产品失效模式清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="productLeaf">产品叶标识</param>
+        /// <param name="workUnitLeaf">工位叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_FailureModes(
+            int communityID,
+            int productLeaf,
+            int workUnitLeaf,
+            long sysLogID,
+            ref List<FailureMode> datas,
+            out int errCode,
+            out string errText)
+        {
+            errCode = -1;
+            errText = "功能未完成";
+        }
     }
 }

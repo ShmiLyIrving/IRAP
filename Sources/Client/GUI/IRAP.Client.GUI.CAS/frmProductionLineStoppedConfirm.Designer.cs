@@ -43,9 +43,9 @@
             this.pnlBody = new DevExpress.XtraEditors.PanelControl();
             this.btnStoppedConfirm = new DevExpress.XtraEditors.SimpleButton();
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
-            this.tpLineStopWithAndonEvent = new DevExpress.XtraTab.XtraTabPage();
             this.tpLineStop = new DevExpress.XtraTab.XtraTabPage();
             this.btnLineStop = new DevExpress.XtraEditors.SimpleButton();
+            this.tpLineStopWithAndonEvent = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
@@ -59,8 +59,8 @@
             this.pnlBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
             this.tcMain.SuspendLayout();
-            this.tpLineStopWithAndonEvent.SuspendLayout();
             this.tpLineStop.SuspendLayout();
+            this.tpLineStopWithAndonEvent.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -253,13 +253,6 @@
             this.tpLineStopWithAndonEvent,
             this.tpLineStop});
             // 
-            // tpLineStopWithAndonEvent
-            // 
-            this.tpLineStopWithAndonEvent.Controls.Add(this.pnlBody);
-            this.tpLineStopWithAndonEvent.Name = "tpLineStopWithAndonEvent";
-            this.tpLineStopWithAndonEvent.Size = new System.Drawing.Size(885, 433);
-            this.tpLineStopWithAndonEvent.Text = "xtraTabPage1";
-            // 
             // tpLineStop
             // 
             this.tpLineStop.Controls.Add(this.btnLineStop);
@@ -277,6 +270,14 @@
             this.btnLineStop.Size = new System.Drawing.Size(207, 97);
             this.btnLineStop.TabIndex = 3;
             this.btnLineStop.Text = "停线登记";
+            this.btnLineStop.Click += new System.EventHandler(this.btnLineStop_Click);
+            // 
+            // tpLineStopWithAndonEvent
+            // 
+            this.tpLineStopWithAndonEvent.Controls.Add(this.pnlBody);
+            this.tpLineStopWithAndonEvent.Name = "tpLineStopWithAndonEvent";
+            this.tpLineStopWithAndonEvent.Size = new System.Drawing.Size(885, 433);
+            this.tpLineStopWithAndonEvent.Text = "xtraTabPage1";
             // 
             // frmProductionLineStoppedConfirm
             // 
@@ -301,8 +302,8 @@
             this.pnlBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
             this.tcMain.ResumeLayout(false);
-            this.tpLineStopWithAndonEvent.ResumeLayout(false);
             this.tpLineStop.ResumeLayout(false);
+            this.tpLineStopWithAndonEvent.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

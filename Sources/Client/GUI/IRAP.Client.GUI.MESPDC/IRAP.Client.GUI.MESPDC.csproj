@@ -35,11 +35,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="FastReport.Editor, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
@@ -88,11 +91,29 @@
     <Compile Include="frmMethodStandards_30.Designer.cs">
       <DependentUpon>frmMethodStandards_30.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmSelectDestT216LeafID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmSelectDestT216LeafID.Designer.cs">
+      <DependentUpon>frmSelectDestT216LeafID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProcessFIFO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcessFIFO.Designer.cs">
+      <DependentUpon>frmProcessFIFO.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTestStandards_30.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTestStandards_30.Designer.cs">
       <DependentUpon>frmTestStandards_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTroubleShooting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTroubleShooting.Designer.cs">
+      <DependentUpon>frmTroubleShooting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUDFForm1Ex.cs">
       <SubType>Form</SubType>
@@ -181,8 +202,17 @@
     <EmbeddedResource Include="frmMethodStandards_30.resx">
       <DependentUpon>frmMethodStandards_30.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmSelectDestT216LeafID.resx">
+      <DependentUpon>frmSelectDestT216LeafID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProcessFIFO.resx">
+      <DependentUpon>frmProcessFIFO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTestStandards_30.resx">
       <DependentUpon>frmTestStandards_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTroubleShooting.resx">
+      <DependentUpon>frmTroubleShooting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUDFForm1Ex.en-US.resx">
       <DependentUpon>frmUDFForm1Ex.cs</DependentUpon>

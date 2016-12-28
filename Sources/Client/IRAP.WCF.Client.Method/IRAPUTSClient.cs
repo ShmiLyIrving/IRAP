@@ -7,6 +7,7 @@ using System.Collections;
 using System.Data;
 
 using IRAP.Global;
+using IRAP.Entities.UTS;
 
 namespace IRAP.WCF.Client.Method
 {
@@ -64,27 +65,26 @@ namespace IRAP.WCF.Client.Method
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                #region 将函数参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("sequenceCode", sequenceCode);
+                hashParams.Add("count", count);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("opNode", opNode);
+                hashParams.Add("voucherNo", voucherNo);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 ssp_GetSequenceNo，输入参数：" +
+                        "CommunityID={0}|SequenceCode={1}|Count={2}|SysLogID={3}|" +
+                        "OpNode={4}|VoucherNo={5}",
+                        communityID, sequenceCode, count, sysLogID, opNode, voucherNo),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
                 using (WCFClient client = new WCFClient())
                 {
-                    Hashtable hashParams = new Hashtable();
-
-                    #region 将函数参数加入 Hashtable 中
-                    hashParams.Add("communityID", communityID);
-                    hashParams.Add("sequenceCode", sequenceCode);
-                    hashParams.Add("count", count);
-                    hashParams.Add("sysLogID", sysLogID);
-                    hashParams.Add("opNode", opNode);
-                    hashParams.Add("voucherNo", voucherNo);
-                    WriteLog.Instance.Write(
-                        string.Format(
-                            "执行存储过程 ssp_GetSequenceNo，输入参数：" +
-                            "CommunityID={0}|SequenceCode={1}|Count={2}|SysLogID={3}|" +
-                            "OpNode={4}|VoucherNo={5}",
-                            communityID, sequenceCode, count, sysLogID, opNode, voucherNo),
-                        strProcedureName);
-                    #endregion
-
-                    #region 调用应用服务过程，并解析返回值
                     object rlt = client.WCFRESTFul(
                         "IRAP.BL.UTS.dll",
                         "IRAP.BL.UTS.IRAPUTS",
@@ -122,8 +122,8 @@ namespace IRAP.WCF.Client.Method
                             WriteLog.Instance.Write(errText, strProcedureName);
                         }
                     }
-                    #endregion
                 }
+                #endregion
             }
             catch (Exception error)
             {
@@ -271,42 +271,41 @@ namespace IRAP.WCF.Client.Method
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                #region 将函数参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("transactNo", transactNo);
+                hashParams.Add("factID", factID);
+                hashParams.Add("ctrlParameter1", ctrlParameter1);
+                hashParams.Add("ctrlParameter2", ctrlParameter2);
+                hashParams.Add("ctrlParameter3", ctrlParameter3);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("strParameter1", strParameter1);
+                hashParams.Add("strParameter2", strParameter2);
+                hashParams.Add("strParameter3", strParameter3);
+                hashParams.Add("strParameter4", strParameter4);
+                hashParams.Add("strParameter5", strParameter5);
+                hashParams.Add("strParameter6", strParameter6);
+                hashParams.Add("strParameter7", strParameter7);
+                hashParams.Add("strParameter8", strParameter8);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 ssp_GetSequenceNo，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|FactID={2}|CtrlParameter1={3}|" +
+                        "CtrlParameter2={4}|CtrlParameter3={5}|SysLogID={6}|" +
+                        "StrParameter1={7}|StrParameter2={8}|StrParameter3={9}|" +
+                        "StrParameter4={10}|StrParameter5={11}|StrParameter6={12}|" +
+                        "StrParameter7={13}|StrParameter8={14}",
+                        communityID, transactNo, factID, ctrlParameter1, ctrlParameter2,
+                        ctrlParameter3, sysLogID, strParameter1, strParameter2,
+                        strParameter3, strParameter4, strParameter5, strParameter6,
+                        strParameter7, strParameter8),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
                 using (WCFClient client = new WCFClient())
                 {
-                    Hashtable hashParams = new Hashtable();
-
-                    #region 将函数参数加入 Hashtable 中
-                    hashParams.Add("communityID", communityID);
-                    hashParams.Add("transactNo", transactNo);
-                    hashParams.Add("factID", factID);
-                    hashParams.Add("ctrlParameter1", ctrlParameter1);
-                    hashParams.Add("ctrlParameter2", ctrlParameter2);
-                    hashParams.Add("ctrlParameter3", ctrlParameter3);
-                    hashParams.Add("sysLogID", sysLogID);
-                    hashParams.Add("strParameter1", strParameter1);
-                    hashParams.Add("strParameter2", strParameter2);
-                    hashParams.Add("strParameter3", strParameter3);
-                    hashParams.Add("strParameter4", strParameter4);
-                    hashParams.Add("strParameter5", strParameter5);
-                    hashParams.Add("strParameter6", strParameter6);
-                    hashParams.Add("strParameter7", strParameter7);
-                    hashParams.Add("strParameter8", strParameter8);
-                    WriteLog.Instance.Write(
-                        string.Format(
-                            "执行存储过程 ssp_GetSequenceNo，输入参数：" +
-                            "CommunityID={0}|TransactNo={1}|FactID={2}|CtrlParameter1={3}|" +
-                            "CtrlParameter2={4}|CtrlParameter3={5}|SysLogID={6}|"+
-                            "StrParameter1={7}|StrParameter2={8}|StrParameter3={9}|" +
-                            "StrParameter4={10}|StrParameter5={11}|StrParameter6={12}|" +
-                            "StrParameter7={13}|StrParameter8={14}",
-                            communityID, transactNo, factID, ctrlParameter1, ctrlParameter2,
-                            ctrlParameter3, sysLogID, strParameter1, strParameter2, 
-                            strParameter3, strParameter4, strParameter5, strParameter6, 
-                            strParameter7, strParameter8),
-                        strProcedureName);
-                    #endregion
-
-                    #region 调用应用服务过程，并解析返回值
                     object rlt = client.WCFRESTFul(
                         "IRAP.BL.UTS.dll",
                         "IRAP.BL.UTS.IRAPUTS",
@@ -344,8 +343,8 @@ namespace IRAP.WCF.Client.Method
                             WriteLog.Instance.Write(errText, strProcedureName);
                         }
                     }
-                    #endregion
                 }
+                #endregion
             }
             catch (Exception error)
             {
@@ -455,35 +454,105 @@ namespace IRAP.WCF.Client.Method
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("sqlCmd", sqlCmd);
+                WriteLog.Instance.Write(
+                    string.Format("执行 SQL 语句：[{0}]", sqlCmd),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或函数
                 using (WCFClient client = new WCFClient())
                 {
-                    WriteLog.Instance.Write(
-                        string.Format("执行 SQL 语句：[{0}]", sqlCmd),
-                        strProcedureName);
-                    #region 将函数调用参数加入 HashTable 中
-                    Hashtable hashParams = new Hashtable();
-                    hashParams.Add("sqlCmd", sqlCmd);
-                    #endregion
-
-                    object d1 = client.WCFRESTFul("IRAP.BL.UTS.dll",
+                    object d1 = client.WCFRESTFul(
+                        "IRAP.BL.UTS.dll",
                         "IRAP.BL.UTS.IRAPPDC",
                         "GetDataTableWithSQL",
                         hashParams,
                         out errCode,
                         out errText);
-                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText), 
+                        strProcedureName);
 
                     if (errCode == 0)
                         dataTable = d1 as DataTable;
                     else
                         dataTable.Clear();
                 }
+                #endregion
             }
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取业务操作类型清单
+        /// </summary>
+        public void sfn_OperTypes(
+            int opID,
+            int languageID,
+            ref List<OperTypeInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("opID", opID);
+                hashParams.Add("languageID", languageID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_OperTypes，输入参数：" +
+                        "OpID={0}|LanguageID={1}",
+                        opID,
+                        languageID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.UTS.dll",
+                        "IRAP.BL.UTS.IRAPUTS",
+                        "sfn_OperTypes",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<OperTypeInfo>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
             }
             finally
             {
