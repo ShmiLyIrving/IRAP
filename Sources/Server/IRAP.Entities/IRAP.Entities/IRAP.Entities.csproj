@@ -44,6 +44,7 @@
     <Compile Include="AndonRspedEventInfo.cs" />
     <Compile Include="FVS\AndonCancelReason.cs" />
     <Compile Include="FVS\PeriodAndonEvent.cs" />
+    <Compile Include="FVS\PeriodStopEvent.cs" />
     <Compile Include="IRAP\STB009.cs" />
     <Compile Include="MES\FailuresOfNGProduct.cs" />
     <Compile Include="FVS\AndonEventFact.cs" />
