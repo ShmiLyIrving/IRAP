@@ -43,11 +43,13 @@ namespace IRAP.Client.GUI.MESPDC
             cboDevices.Properties.Items.Clear();
             cboDevices.SelectedItem = null;
 
-#if !DEBUG
-            if (Options.SelectProduct == null ||
-                Options.SelectWorkUnit == null)
-                return;
-#endif
+            int t102LeafID = 0;
+            int t107LeafID = 0;
+
+            if (Options.SelectProduct != null)
+                t102LeafID = Options.SelectProduct.T102LeafID;
+            if (Options.SelectWorkUnit != null)
+                t107LeafID = Options.SelectWorkUnit.WorkUnitLeaf;
 
             string strProcedureName =
                 string.Format(
@@ -63,13 +65,8 @@ namespace IRAP.Client.GUI.MESPDC
 
                 IRAPMESClient.Instance.ufn_GetList_ProducingPWOFromWorkUnit(
                     IRAPUser.Instance.CommunityID,
-#if DEBUG
-                    0,
-                    0,
-#else
-                    Options.SelectProduct.T102LeafID,
-                    Options.SelectWorkUnit.WorkUnitLeaf,
-#endif
+                    t102LeafID,
+                    t107LeafID,
                     IRAPUser.Instance.SysLogID,
                     ref pwoOnWorking,
                     out errCode,
@@ -106,11 +103,13 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void GetPWOOnWaiting()
         {
-#if !DEBUG
-            if (Options.SelectProduct == null ||
-                Options.SelectWorkUnit == null)
-                return;
-#endif
+            int t102LeafID = 0;
+            int t107LeafID = 0;
+
+            if (Options.SelectProduct != null)
+                t102LeafID = Options.SelectProduct.T102LeafID;
+            if (Options.SelectWorkUnit != null)
+                t107LeafID = Options.SelectWorkUnit.WorkUnitLeaf;
 
             string strProcedureName =
                 string.Format(
@@ -126,13 +125,8 @@ namespace IRAP.Client.GUI.MESPDC
 
                 IRAPMESClient.Instance.ufn_GetList_ToDoPWOFromWorkUnit(
                     IRAPUser.Instance.CommunityID,
-#if DEBUG
-                    0,
-                    0,
-#else
-                    Options.SelectProduct.T102LeafID,
-                    Options.SelectWorkUnit.WorkUnitLeaf,
-#endif
+                    t102LeafID,
+                    t107LeafID,
                     IRAPUser.Instance.SysLogID,
                     ref pwoWaiting,
                     out errCode,
@@ -140,15 +134,11 @@ namespace IRAP.Client.GUI.MESPDC
                 WriteLog.Instance.Write(
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
-                if (errCode == 0)
-                {
-                    grdPWOofWait.DataSource = pwoWaiting;
-                    grdvPWOofWait.BestFitColumns();
-                }
-                else
-                {
-                    grdPWOofWait.DataSource = null;
 
+                FillcboDevicesInWaiting(pwoWaiting);
+
+                if (errCode != 0)
+                {
                     IRAPMessageBox.Instance.ShowErrorMessage(errText, caption);
                 }
             }
@@ -165,6 +155,32 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
+        private void FillcboDevicesInWaiting(List<ToDoPWOFromWorkUnit> datas)
+        {
+            cboDevicesInWaitingPWO.Properties.Items.Clear();
+            cboDevicesInWaitingPWO.SelectedIndex = -1;
+
+            cboDevicesInWaitingPWO.Properties.Items.Add("全部设备");
+
+            foreach (ToDoPWOFromWorkUnit data in datas)
+            {
+                InsertIntoDistinctDeviceName(data.T133Name);
+            }
+
+            cboDevicesInWaitingPWO.SelectedIndex = 0;
+        }
+
+        private void InsertIntoDistinctDeviceName(string t133Name)
+        {
+            for (int i = 0; i < cboDevicesInWaitingPWO.Properties.Items.Count; i++)
+            {
+                if ((string)cboDevicesInWaitingPWO.Properties.Items[i] == t133Name)
+                    return;
+            }
+
+            cboDevicesInWaitingPWO.Properties.Items.Add(t133Name);
+        }
+
         private void AfterOptionsChanged(object sender, EventArgs e)
         {
             GetPWOOnProducing();
@@ -179,6 +195,8 @@ namespace IRAP.Client.GUI.MESPDC
                 int idx = cboDevices.SelectedIndex;
 
                 rowPWONo.Properties.Value = pwoOnWorking[idx].PWONo;
+                rowProductCode.Properties.Value = pwoOnWorking[idx].ProductCode;
+                rowProductName.Properties.Value = pwoOnWorking[idx].ProductName;
                 rowPWOQuantity.Properties.Value = pwoOnWorking[idx].PWOQuantity.ToString();
                 rowPWOStartTime.Properties.Value = pwoOnWorking[idx].PWOStartTime;
                 rowPlannedCloseTime.Properties.Value = pwoOnWorking[idx].PlannedCloseTime;
@@ -189,6 +207,8 @@ namespace IRAP.Client.GUI.MESPDC
             else
             {
                 rowPWONo.Properties.Value = "";
+                rowProductCode.Properties.Value = "";
+                rowProductName.Properties.Value = "";
                 rowPWOQuantity.Properties.Value = "";
                 rowPWOStartTime.Properties.Value = "";
                 rowPlannedCloseTime.Properties.Value = "";
@@ -221,6 +241,30 @@ namespace IRAP.Client.GUI.MESPDC
         private void frmProcessFIFO_Activated(object sender, EventArgs e)
         {
             Options.Visible = true;
+        }
+
+        private void cboDevicesInWaitingPWO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<ToDoPWOFromWorkUnit> displayDatas = null;
+
+            if (cboDevicesInWaitingPWO.SelectedIndex >= 0)
+            {
+                string filter = cboDevicesInWaitingPWO.SelectedItem as string;
+                if (filter == "全部设备")
+                    displayDatas = pwoWaiting;
+                else
+                {
+                    displayDatas = new List<ToDoPWOFromWorkUnit>();
+                    foreach (ToDoPWOFromWorkUnit data in pwoWaiting)
+                    {
+                        if (data.T133Name == filter)
+                            displayDatas.Add(data.Clone());
+                    }
+                }
+            }
+
+            grdPWOofWait.DataSource = displayDatas;
+            grdvPWOofWait.BestFitColumns();
         }
     }
 }

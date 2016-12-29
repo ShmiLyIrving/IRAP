@@ -38,26 +38,37 @@
             this.rowT133Name = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowNotGoodQuantity = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowGoodRate = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.cboDevices = new DevExpress.XtraEditors.ComboBoxEdit();
             this.grdPWOofWait = new DevExpress.XtraGrid.GridControl();
             this.grdvPWOofWait = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnOrdinal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnDeviceInWaitingPWO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnPWO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnPWOQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnT106Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnPWOStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnProcessWaitTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
+            this.cboDevicesInWaitingPWO = new DevExpress.XtraEditors.ComboBoxEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
+            this.rowProductCode = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.rowProductName = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.grdclmnProductName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnProductCode = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vgrdCurrentPWO)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDevices.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPWOofWait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPWOofWait)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDevicesInWaitingPWO.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +100,7 @@
             this.splitContainerControl1.Panel1.AppearanceCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitContainerControl1.Panel1.Controls.Add(this.vgrdCurrentPWO);
+            this.splitContainerControl1.Panel1.Controls.Add(this.separatorControl1);
             this.splitContainerControl1.Panel1.Controls.Add(this.cboDevices);
             this.splitContainerControl1.Panel1.Padding = new System.Windows.Forms.Padding(10);
             this.splitContainerControl1.Panel1.ShowCaption = true;
@@ -100,6 +112,8 @@
             this.splitContainerControl1.Panel2.AppearanceCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitContainerControl1.Panel2.Controls.Add(this.grdPWOofWait);
+            this.splitContainerControl1.Panel2.Controls.Add(this.separatorControl2);
+            this.splitContainerControl1.Panel2.Controls.Add(this.cboDevicesInWaitingPWO);
             this.splitContainerControl1.Panel2.Padding = new System.Windows.Forms.Padding(10);
             this.splitContainerControl1.Panel2.ShowCaption = true;
             this.splitContainerControl1.Panel2.Text = "待生产的工单";
@@ -120,8 +134,9 @@
             this.vgrdCurrentPWO.Appearance.RowHeaderPanel.Options.UseFont = true;
             this.vgrdCurrentPWO.Appearance.RowHeaderPanel.Options.UseTextOptions = true;
             this.vgrdCurrentPWO.Appearance.RowHeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdCurrentPWO.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.vgrdCurrentPWO.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vgrdCurrentPWO.Location = new System.Drawing.Point(10, 36);
+            this.vgrdCurrentPWO.Location = new System.Drawing.Point(10, 54);
             this.vgrdCurrentPWO.Name = "vgrdCurrentPWO";
             this.vgrdCurrentPWO.OptionsBehavior.Editable = false;
             this.vgrdCurrentPWO.OptionsView.MinRowAutoHeight = 30;
@@ -131,13 +146,15 @@
             this.vgrdCurrentPWO.RowHeaderWidth = 132;
             this.vgrdCurrentPWO.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
             this.rowPWONo,
+            this.rowProductName,
+            this.rowProductCode,
             this.rowPWOQuantity,
             this.rowPWOStartTime,
             this.rowPlannedCloseTime,
             this.rowT133Name,
             this.rowNotGoodQuantity,
             this.rowGoodRate});
-            this.vgrdCurrentPWO.Size = new System.Drawing.Size(425, 340);
+            this.vgrdCurrentPWO.Size = new System.Drawing.Size(425, 322);
             this.vgrdCurrentPWO.TabIndex = 2;
             // 
             // repositoryItemMemoEdit1
@@ -194,6 +211,15 @@
             this.rowGoodRate.Properties.Format.FormatType = DevExpress.Utils.FormatType.Custom;
             this.rowGoodRate.Properties.RowEdit = this.repositoryItemMemoEdit1;
             // 
+            // separatorControl1
+            // 
+            this.separatorControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.separatorControl1.LineAlignment = DevExpress.XtraEditors.Alignment.Center;
+            this.separatorControl1.Location = new System.Drawing.Point(10, 36);
+            this.separatorControl1.Name = "separatorControl1";
+            this.separatorControl1.Size = new System.Drawing.Size(425, 18);
+            this.separatorControl1.TabIndex = 3;
+            // 
             // cboDevices
             // 
             this.cboDevices.Dock = System.Windows.Forms.DockStyle.Top;
@@ -211,10 +237,10 @@
             // grdPWOofWait
             // 
             this.grdPWOofWait.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdPWOofWait.Location = new System.Drawing.Point(10, 10);
+            this.grdPWOofWait.Location = new System.Drawing.Point(10, 54);
             this.grdPWOofWait.MainView = this.grdvPWOofWait;
             this.grdPWOofWait.Name = "grdPWOofWait";
-            this.grdPWOofWait.Size = new System.Drawing.Size(272, 366);
+            this.grdPWOofWait.Size = new System.Drawing.Size(272, 322);
             this.grdPWOofWait.TabIndex = 0;
             this.grdPWOofWait.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvPWOofWait});
@@ -232,7 +258,10 @@
             this.grdvPWOofWait.Appearance.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdvPWOofWait.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdclmnOrdinal,
+            this.grdclmnDeviceInWaitingPWO,
             this.grdclmnPWO,
+            this.grdclmnProductCode,
+            this.grdclmnProductName,
             this.grdclmnPWOQuantity,
             this.grdclmnT106Code,
             this.grdclmnPWOStartTime,
@@ -255,13 +284,21 @@
             this.grdclmnOrdinal.Visible = true;
             this.grdclmnOrdinal.VisibleIndex = 0;
             // 
+            // grdclmnDeviceInWaitingPWO
+            // 
+            this.grdclmnDeviceInWaitingPWO.Caption = "设备名称";
+            this.grdclmnDeviceInWaitingPWO.FieldName = "T133Name";
+            this.grdclmnDeviceInWaitingPWO.Name = "grdclmnDeviceInWaitingPWO";
+            this.grdclmnDeviceInWaitingPWO.Visible = true;
+            this.grdclmnDeviceInWaitingPWO.VisibleIndex = 1;
+            // 
             // grdclmnPWO
             // 
             this.grdclmnPWO.Caption = "工单号";
             this.grdclmnPWO.FieldName = "PWONo";
             this.grdclmnPWO.Name = "grdclmnPWO";
             this.grdclmnPWO.Visible = true;
-            this.grdclmnPWO.VisibleIndex = 1;
+            this.grdclmnPWO.VisibleIndex = 2;
             // 
             // grdclmnPWOQuantity
             // 
@@ -269,7 +306,7 @@
             this.grdclmnPWOQuantity.FieldName = "PWOQuantity";
             this.grdclmnPWOQuantity.Name = "grdclmnPWOQuantity";
             this.grdclmnPWOQuantity.Visible = true;
-            this.grdclmnPWOQuantity.VisibleIndex = 2;
+            this.grdclmnPWOQuantity.VisibleIndex = 5;
             // 
             // grdclmnT106Code
             // 
@@ -277,7 +314,7 @@
             this.grdclmnT106Code.FieldName = "T106Code";
             this.grdclmnT106Code.Name = "grdclmnT106Code";
             this.grdclmnT106Code.Visible = true;
-            this.grdclmnT106Code.VisibleIndex = 3;
+            this.grdclmnT106Code.VisibleIndex = 6;
             // 
             // grdclmnPWOStartTime
             // 
@@ -285,15 +322,41 @@
             this.grdclmnPWOStartTime.FieldName = "PWOStartTime";
             this.grdclmnPWOStartTime.Name = "grdclmnPWOStartTime";
             this.grdclmnPWOStartTime.Visible = true;
-            this.grdclmnPWOStartTime.VisibleIndex = 4;
+            this.grdclmnPWOStartTime.VisibleIndex = 7;
             // 
             // grdclmnProcessWaitTime
             // 
+            this.grdclmnProcessWaitTime.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnProcessWaitTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmnProcessWaitTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnProcessWaitTime.Caption = "停留时间";
             this.grdclmnProcessWaitTime.FieldName = "ProcessWaitTime";
             this.grdclmnProcessWaitTime.Name = "grdclmnProcessWaitTime";
             this.grdclmnProcessWaitTime.Visible = true;
-            this.grdclmnProcessWaitTime.VisibleIndex = 5;
+            this.grdclmnProcessWaitTime.VisibleIndex = 8;
+            // 
+            // separatorControl2
+            // 
+            this.separatorControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.separatorControl2.LineAlignment = DevExpress.XtraEditors.Alignment.Center;
+            this.separatorControl2.Location = new System.Drawing.Point(10, 36);
+            this.separatorControl2.Name = "separatorControl2";
+            this.separatorControl2.Size = new System.Drawing.Size(272, 18);
+            this.separatorControl2.TabIndex = 4;
+            // 
+            // cboDevicesInWaitingPWO
+            // 
+            this.cboDevicesInWaitingPWO.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cboDevicesInWaitingPWO.Location = new System.Drawing.Point(10, 10);
+            this.cboDevicesInWaitingPWO.Name = "cboDevicesInWaitingPWO";
+            this.cboDevicesInWaitingPWO.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.cboDevicesInWaitingPWO.Properties.Appearance.Options.UseFont = true;
+            this.cboDevicesInWaitingPWO.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboDevicesInWaitingPWO.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboDevicesInWaitingPWO.Size = new System.Drawing.Size(272, 26);
+            this.cboDevicesInWaitingPWO.TabIndex = 2;
+            this.cboDevicesInWaitingPWO.SelectedIndexChanged += new System.EventHandler(this.cboDevicesInWaitingPWO_SelectedIndexChanged);
             // 
             // panelControl2
             // 
@@ -319,6 +382,32 @@
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // rowProductCode
+            // 
+            this.rowProductCode.Name = "rowProductCode";
+            this.rowProductCode.Properties.Caption = "存货编码";
+            // 
+            // rowProductName
+            // 
+            this.rowProductName.Name = "rowProductName";
+            this.rowProductName.Properties.Caption = "存货名称";
+            // 
+            // grdclmnProductName
+            // 
+            this.grdclmnProductName.Caption = "存货名称";
+            this.grdclmnProductName.FieldName = "ProductName";
+            this.grdclmnProductName.Name = "grdclmnProductName";
+            this.grdclmnProductName.Visible = true;
+            this.grdclmnProductName.VisibleIndex = 4;
+            // 
+            // grdclmnProductCode
+            // 
+            this.grdclmnProductCode.Caption = "存货编码";
+            this.grdclmnProductCode.FieldName = "ProductCode";
+            this.grdclmnProductCode.Name = "grdclmnProductCode";
+            this.grdclmnProductCode.Visible = true;
+            this.grdclmnProductCode.VisibleIndex = 3;
+            // 
             // frmProcessFIFO
             // 
             this.Appearance.Options.UseFont = true;
@@ -339,9 +428,12 @@
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.vgrdCurrentPWO)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDevices.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPWOofWait)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPWOofWait)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDevicesInWaitingPWO.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -371,5 +463,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnPWOStartTime;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnProcessWaitTime;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl2;
+        private DevExpress.XtraEditors.ComboBoxEdit cboDevicesInWaitingPWO;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnDeviceInWaitingPWO;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowProductName;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowProductCode;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnProductCode;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnProductName;
     }
 }
