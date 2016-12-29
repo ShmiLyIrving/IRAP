@@ -33,6 +33,18 @@ namespace IRAP.Entities.MES
             set { quantityPWO.IntValue = value; }
         }
         /// <summary>
+        /// 存货编码（产品编码）
+        /// </summary>
+        public string ProductCode { get; set; }
+        /// <summary>
+        /// 存货名称(产品名称）
+        /// </summary>
+        public string ProductName { get; set; }
+        /// <summary>
+        /// 规格型号
+        /// </summary>
+        public string ProductAlterCode { get; set; }
+        /// <summary>
         /// 工单开始时间
         /// </summary>
         public string PWOStartTime { get; set; }

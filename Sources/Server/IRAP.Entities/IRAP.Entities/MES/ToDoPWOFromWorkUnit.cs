@@ -30,6 +30,18 @@ namespace IRAP.Entities.MES
             set { quantityPWO.IntValue = value; }
         }
         /// <summary>
+        /// 存货编码（产品编码）
+        /// </summary>
+        public string ProductCode { get; set; }
+        /// <summary>
+        /// 存货名称(产品名称）
+        /// </summary>
+        public string ProductName { get; set; }
+        /// <summary>
+        /// 规格型号
+        /// </summary>
+        public string ProductAlterCode { get; set; }
+        /// <summary>
         /// 存放库位
         /// </summary>
         public string T106Code { get; set; }
@@ -40,7 +52,7 @@ namespace IRAP.Entities.MES
         /// <summary>
         /// 工序停留时间
         /// </summary>
-        public int ProcessWaitTime { get; set; }
+        public string ProcessWaitTime { get; set; }
         /// <summary>
         /// 计划入库时间
         /// </summary>
