@@ -455,5 +455,13 @@ namespace IRAP.Global
                 buffer[i / 2] = (byte)Convert.ToByte(s.Substring(i, 2), 16);
             return buffer;
         }
+
+        public static string ConvertToUTF8(string unicodeString)
+        {
+            UTF8Encoding utf8 = new UTF8Encoding();
+            byte[] encodedBytes = utf8.GetBytes(unicodeString);
+            string decodedString = utf8.GetString(encodedBytes);
+            return decodedString;
+        }
     }
 }

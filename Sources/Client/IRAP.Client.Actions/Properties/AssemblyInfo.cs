@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("IRAP.Entities")]
+[assembly: AssemblyTitle("IRAP.Client.Actions")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("江苏芍园科技有限责任公司")]
-[assembly: AssemblyProduct("IRAP.Entities")]
-[assembly: AssemblyCopyright("Copyright © Softland 2016")]
+[assembly: AssemblyProduct("IRAP.Client.Actions")]
+[assembly: AssemblyCopyright("Copyright © Softland 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("a10eb27e-6444-44ad-b5fb-2c8f96c04225")]
+[assembly: Guid("7b31b532-0ca4-451a-a9ab-ae49277fb003")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
