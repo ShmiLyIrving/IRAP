@@ -127,6 +127,7 @@ namespace IRAPPrinterServer
         private void ShowForm()
         {
             Show();
+            ShowInTaskbar = true;
             WindowState = FormWindowState.Normal;
             Activate();
             SetForegroundWindow(Process.GetCurrentProcess().MainWindowHandle);
