@@ -50,6 +50,7 @@
             this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnRespondingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnClosingTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnCancelTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -274,10 +275,12 @@
             this.grdclmnRespondUserName,
             this.grdclmnCallingTime,
             this.grdclmnRespondingTime,
-            this.grdclmnClosingTime});
+            this.grdclmnClosingTime,
+            this.grdclmnCancelTime});
             this.grdvAndonEvents.GridControl = this.grdAndonEvents;
             this.grdvAndonEvents.Name = "grdvAndonEvents";
             this.grdvAndonEvents.OptionsBehavior.Editable = false;
+            this.grdvAndonEvents.OptionsView.ColumnAutoWidth = false;
             this.grdvAndonEvents.OptionsView.RowAutoHeight = true;
             this.grdvAndonEvents.OptionsView.ShowGroupPanel = false;
             // 
@@ -376,13 +379,27 @@
             this.grdclmnClosingTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnClosingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnClosingTime.Caption = "关闭时间";
-            this.grdclmnClosingTime.FieldName = "ClosingTime";
+            this.grdclmnClosingTime.FieldName = "EventClosingTime";
             this.grdclmnClosingTime.MaxWidth = 160;
             this.grdclmnClosingTime.MinWidth = 160;
             this.grdclmnClosingTime.Name = "grdclmnClosingTime";
             this.grdclmnClosingTime.Visible = true;
             this.grdclmnClosingTime.VisibleIndex = 6;
             this.grdclmnClosingTime.Width = 160;
+            // 
+            // grdclmnCancelTime
+            // 
+            this.grdclmnCancelTime.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnCancelTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnCancelTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnCancelTime.Caption = "撤销时间";
+            this.grdclmnCancelTime.FieldName = "EventCancelTime";
+            this.grdclmnCancelTime.MaxWidth = 160;
+            this.grdclmnCancelTime.MinWidth = 160;
+            this.grdclmnCancelTime.Name = "grdclmnCancelTime";
+            this.grdclmnCancelTime.Visible = true;
+            this.grdclmnCancelTime.VisibleIndex = 7;
+            this.grdclmnCancelTime.Width = 160;
             // 
             // splitContainerControl2
             // 
@@ -449,5 +466,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnRespondingTime;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnClosingTime;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnCancelTime;
     }
 }

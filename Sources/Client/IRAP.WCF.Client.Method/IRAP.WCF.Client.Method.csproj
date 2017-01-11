@@ -47,6 +47,7 @@
     <Compile Include="IRAPKBClient.cs" />
     <Compile Include="IRAPMDMClient.cs" />
     <Compile Include="IRAPMESClient.cs" />
+    <Compile Include="IRAPMESPKGClient.cs" />
     <Compile Include="IRAPMESReportClient.cs" />
     <Compile Include="IRAPMESRMMClient.cs" />
     <Compile Include="IRAPMESTSClient.cs" />

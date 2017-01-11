@@ -40,6 +40,7 @@
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -103,6 +104,12 @@
     <Compile Include="frmProcessFIFO.Designer.cs">
       <DependentUpon>frmProcessFIFO.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProductPackage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductPackage.Designer.cs">
+      <DependentUpon>frmProductPackage.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTestStandards_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,10 +144,21 @@
     <Compile Include="Actions\PrintWithLab.cs" />
     <Compile Include="Actions\MultipleCommandAction.cs" />
     <Compile Include="Actions\PrintWithFastReport.cs" />
+    <Compile Include="frmUpdateCustomerBindingInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateCustomerBindingInfo.Designer.cs">
+      <DependentUpon>frmUpdateCustomerBindingInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Businesses\UDFForm1Ex.cs" />
     <Compile Include="Businesses\ScannerForSerialPort.cs" />
     <Compile Include="Actions\SerialPortOutput.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -208,6 +226,9 @@
     <EmbeddedResource Include="frmProcessFIFO.resx">
       <DependentUpon>frmProcessFIFO.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmProductPackage.resx">
+      <DependentUpon>frmProductPackage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTestStandards_30.resx">
       <DependentUpon>frmTestStandards_30.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,7 +250,14 @@
     <EmbeddedResource Include="frmUDFFormWithCOMScanner.resx">
       <DependentUpon>frmUDFFormWithCOMScanner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateCustomerBindingInfo.resx">
+      <DependentUpon>frmUpdateCustomerBindingInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="PrintLabel.dll">

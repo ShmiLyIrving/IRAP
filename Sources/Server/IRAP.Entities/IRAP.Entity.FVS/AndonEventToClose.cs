@@ -31,6 +31,10 @@ namespace IRAP.Entity.FVS
         /// </summary>
         public string CallingTime { get; set; }
         /// <summary>
+        /// 呼叫人
+        /// </summary>
+        public string CallUserName { get; set; }
+        /// <summary>
         /// 响应时间
         /// </summary>
         public string RespondingTime { get; set; }

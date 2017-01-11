@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="IRAP.WCF.Client.Method.IRAPUserClient" Collapsed="true">
-    <Position X="1" Y="3.5" Width="1.5" />
+    <Position X="2.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAEAYgGAAAAAYAACAAAAACAAAAgAAAAQBAAAAAgAgE=</HashCode>
       <FileName>IRAPUserClient.cs</FileName>
@@ -10,7 +10,7 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPFVSClient" Collapsed="true">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAQFAIJQgOggSADEBAOAAgGQkBAACAAIQIABEQAgIJA=</HashCode>
+      <HashCode>QAQHAIJQgOgoSADEDAOAIgGQkBAACAAIQIABEQAgIJA=</HashCode>
       <FileName>IRAPFVSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,47 +31,47 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPMESClient" Collapsed="true">
     <Position X="2.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>JAAEAIAAASAAAAAAAAAAAAIAABAAAAACQAAACAACAAA=</HashCode>
+      <HashCode>JAAEAIAAASACAAAAAAAAAAIAABAAAAACQAAgCAACAAA=</HashCode>
       <FileName>IRAPMESClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMESReportClient" Collapsed="true">
-    <Position X="4.5" Y="1.5" Width="1.5" />
+    <Position X="6.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IRAPMESReportClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMESTSClient" Collapsed="true">
-    <Position X="1" Y="2.5" Width="1.5" />
+    <Position X="2.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIEAIBAAAAAAIAAACAAACACAIAAAAAAQABACAAAAAA=</HashCode>
+      <HashCode>EAIEAIBAAAAAAIAAACAAACACAIAAAAAAQABACAAAAAA=</HashCode>
       <FileName>IRAPMESTSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPSCESClient" Collapsed="true">
-    <Position X="2.75" Y="2.5" Width="1.5" />
+    <Position X="4.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAEIJAAAAAAEAAAAIAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>IRAPSCESClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPSystemClient" Collapsed="true">
-    <Position X="4.5" Y="2.5" Width="1.5" />
+    <Position X="6.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEEIAACAADAAAABAAAAAAEBAQIAAAAQgAAAAAAAAA=</HashCode>
       <FileName>IRAPSystemClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPTreeClient" Collapsed="true">
-    <Position X="6.25" Y="2.5" Width="1.5" />
+    <Position X="1" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IRAPTreeClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMESRMMClient" Collapsed="true">
-    <Position X="6.25" Y="1.5" Width="1.5" />
+    <Position X="1" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IRAPMESRMMClient.cs</FileName>
@@ -85,7 +85,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPUTSClient" Collapsed="true">
-    <Position X="2.75" Y="3.5" Width="1.5" />
+    <Position X="4.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAIAAAACAIAAAACAAAABQAAAAAAgAQAAAAAAAAAg=</HashCode>
       <FileName>IRAPUTSClient.cs</FileName>
@@ -96,6 +96,13 @@
     <TypeIdentifier>
       <HashCode>AAAEAIAAAAAAAAAAAAAAAAAAAAAACAAAQAIAAAAAAAA=</HashCode>
       <FileName>IRAPAPSClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPMESPKGClient" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>IRAPMESPKGClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

@@ -7,9 +7,12 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 
+using DevExpress.XtraEditors.Controls;
+
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Entities.FVS;
+using IRAP.Entity.FVS;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.CAS
@@ -86,9 +89,66 @@ namespace IRAP.Client.GUI.CAS
             }
         }
 
+        private void GetT144Leaf(int T134LeafID)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            int errCode = 0;
+            string errText = "";
+            List<AnomalyCauseType> datas = new List<AnomalyCauseType>();
+
+            rgpT144Leaf.Properties.Items.Clear();
+            rgpT144Leaf.SelectedIndex = -1;
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                IRAPFVSClient.Instance.ufn_GetList_AnomalyCauseTypes(
+                    IRAPUser.Instance.CommunityID,
+                    T134LeafID,
+                    IRAPUser.Instance.SysLogID,
+                    ref datas,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode == 0)
+                {
+                    foreach (AnomalyCauseType data in datas)
+                    {
+                        rgpT144Leaf.Properties.Items.Add(
+                            new RadioGroupItem()
+                            {
+                                Description = data.T144Name,
+                                Value = data,
+                            });
+                    }
+                }
+                else
+                {
+                    IRAPMessageBox.Instance.Show(
+                        errText,
+                        Text,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         private void frmProductionLineStoppedConfirm_Activated(object sender, EventArgs e)
         {
             GetOpenedAndonEvents();
+            if (currentProductionLine != null)
+                GetT144Leaf(currentProductionLine.T134LeafID);
         }
 
         private void grdvAndonEvents_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -187,11 +247,31 @@ namespace IRAP.Client.GUI.CAS
         private void tpLineStop_Resize(object sender, EventArgs e)
         {
             btnLineStop.Left = (Width - btnLineStop.Width) / 2;
-            btnLineStop.Top = (Height - btnLineStop.Height) / 5 * 2;
+            //btnLineStop.Top = (Height - btnLineStop.Height) / 5 * 2;
         }
 
         private void btnLineStop_Click(object sender, EventArgs e)
         {
+            int t144LeafID = 0;
+            if (rgpT144Leaf.SelectedIndex < 0)
+            {
+                IRAPMessageBox.Instance.Show(
+                    "请选择【现场原因】！",
+                    Text,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+            else
+            {
+                int idx = rgpT144Leaf.SelectedIndex;
+                if (rgpT144Leaf.Properties.Items[idx].Value is AnomalyCauseType)
+                {
+                    AnomalyCauseType type = rgpT144Leaf.Properties.Items[idx].Value as AnomalyCauseType;
+                    t144LeafID = type.T144LeafID;
+                }
+            }
+
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
@@ -227,6 +307,7 @@ namespace IRAP.Client.GUI.CAS
                     134,
                     currentProductionLine.T134LeafID,
                     "",
+                    t144LeafID,
                     IRAPUser.Instance.SysLogID,
                     out errCode,
                     out errText);

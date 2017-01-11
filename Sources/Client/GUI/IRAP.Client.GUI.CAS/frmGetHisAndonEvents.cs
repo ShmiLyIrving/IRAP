@@ -264,6 +264,8 @@ namespace IRAP.Client.GUI.CAS
             }
             finally
             {
+                grdvAndonEvents.BestFitColumns();
+
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }

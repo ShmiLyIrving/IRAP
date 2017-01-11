@@ -472,7 +472,7 @@ namespace IRAP.WCF.Client.Method
                             "UserCode={6}|SatisfactoryLevel={7}|" +
                             "SysLogID={8}",
                             communityID, transactNo, factID, eventFactID,
-                            nextEventFactID, opID, userCode, satisfactoryLevel, 
+                            nextEventFactID, opID, userCode, satisfactoryLevel,
                             sysLogID),
                         strProcedureName);
                     #endregion
@@ -930,7 +930,7 @@ namespace IRAP.WCF.Client.Method
                         string.Format(
                             "执行存储过程 usp_AndonEventCancel，输入参数：" +
                             "CommunityID={0}|EventFactID={1}|OpID={2}|" +
-                            "UserCode={3}|VeriCode={4}|CancelReason={5}|"+
+                            "UserCode={3}|VeriCode={4}|CancelReason={5}|" +
                             "SysLogID={6}",
                             communityID, eventFactID, opID, userCode,
                             veriCode, cancelReason, sysLogID),
@@ -2391,9 +2391,9 @@ namespace IRAP.WCF.Client.Method
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行函数 ufn_GetFactList_AndonEvents，输入参数：" +
-                            "CommunityID={0}|T134LeafID={1}|T179LeafID={2}|"+
+                            "CommunityID={0}|T134LeafID={1}|T179LeafID={2}|" +
                             "BeginDate={3}|EndDate={4}|SysLogID={5}",
-                            communityID, t134LeafID, t179LeafID, beginDate, 
+                            communityID, t134LeafID, t179LeafID, beginDate,
                             endDate, sysLogID),
                         strProcedureName);
                     #endregion
@@ -2697,7 +2697,7 @@ namespace IRAP.WCF.Client.Method
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行函数 ufn_GetAndonEventKanban_BMR，输入参数：" +
-                            "CommunityID={0}|T134ClickStream={1}|SysLogID={2}|" ,
+                            "CommunityID={0}|T134ClickStream={1}|SysLogID={2}|",
                             communityID, t134ClickStream, sysLogID),
                         strProcedureName);
                     #endregion
@@ -3172,14 +3172,16 @@ namespace IRAP.WCF.Client.Method
         /// <param name="resourceLeafID">工作中心或产线叶标识</param>
         /// <param name="eventFactIDs">关联安灯事件点击流 （发起新事件时传空）</param>
         /// <param name="andonEventID">关联的安灯事件FactID</param>
+        /// <param name="t144LeafID">停线记录根源原因</param>
         /// <param name="sysLogID">系统登录标识</param>
         public void usp_SaveFact_StopEvent(
             int communityID,
             long transactNo,
             long factID,
-            int resourceTreeID, 
-            int resourceLeafID, 
-            string eventFactIDs, 
+            int resourceTreeID,
+            int resourceLeafID,
+            string eventFactIDs,
+            int t144LeafID,
             long sysLogID,
             out int errCode,
             out string errText)
@@ -3202,16 +3204,17 @@ namespace IRAP.WCF.Client.Method
                     hashParams.Add("transactNo", transactNo);
                     hashParams.Add("factID", factID);
                     hashParams.Add("resourceTreeID", resourceTreeID);
-                    hashParams.Add("resrouceLeafID", resourceLeafID);
+                    hashParams.Add("resourceLeafID", resourceLeafID);
                     hashParams.Add("eventFactIDs", eventFactIDs);
+                    hashParams.Add("t144LeafID", t144LeafID);
                     hashParams.Add("sysLogID", sysLogID);
                     WriteLog.Instance.Write(
                         string.Format("执行存储过程 " +
                             "usp_SaveFact_StopEvent，参数：" +
                             "CommunityID={0}|TransactNo={1}|FactID={2}|ResourceTreeID={3}|" +
-                            "ResourceLeafID={4}|EventFactIDs={5}|SysLogID={6}",
+                            "ResourceLeafID={4}|EventFactIDs={5}|T144LeafID={6}|SysLogID={7}",
                             communityID, transactNo, factID, resourceTreeID,
-                            resourceLeafID, eventFactIDs, sysLogID),
+                            resourceLeafID, eventFactIDs, t144LeafID, sysLogID),
                         strProcedureName);
                     #endregion
 
@@ -3235,6 +3238,192 @@ namespace IRAP.WCF.Client.Method
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 当前工单执行期间发起的安灯事件清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void ufn_GetList_PeriodAndonEvents(
+            int communityID,
+            long sysLogID,
+            ref List<PeriodAndonEvent> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+              string.Format(
+                  "{0}.{1}",
+                  className,
+                  MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_GetList_PeriodAndonEvents，输入参数：" +
+                            "CommunityID={0}|SysLogID={1}",
+                            communityID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.IRAPFVS",
+                            "ufn_GetList_PeriodAndonEvents",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<PeriodAndonEvent>;
+                    }
+                    #endregion
+
+#if DEBUG
+                    for (int i = 1; i <= 10; i++)
+                        datas.Add(
+                            new PeriodAndonEvent()
+                            {
+                                Ordinal = i,
+                                EventFactID = 101 + i,
+                                Description = string.Format("[{0}]{1}", i, "D13-01-SGM A3 Cluster代码为[1216900027]的SGM A3 CAT发生故障：故障"),
+                                CallTime = "2016-12-12 12:50:18",
+                                ClosedTime = "2016-12-14 09:29:43",
+                            });
+#endif
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取未关联的停线事件
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void ufn_GetList_PeriodStopEvents(
+            int communityID,
+            long sysLogID,
+            ref List<PeriodStopEvent> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+              string.Format(
+                  "{0}.{1}",
+                  className,
+                  MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_GetList_PeriodStopEvents，输入参数：" +
+                            "CommunityID={0}|SysLogID={1}",
+                            communityID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.IRAPFVS",
+                            "ufn_GetList_PeriodStopEvents",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<PeriodStopEvent>;
+                    }
+                    #endregion
+
+#if DEBUG
+                    datas.Add(
+                        new PeriodStopEvent()
+                        {
+                            Ordinal = 1,
+                            EventFactID = 100,
+                            AndonFactID = 102,
+                            Remark = "",
+                            CallTime = "2016-12-28 8:23:43",
+                            EndTime = "2016-12-28 9:30.12",
+                        });
+                    datas.Add(
+                        new PeriodStopEvent()
+                        {
+                            Ordinal = 2,
+                            EventFactID = 101,
+                            AndonFactID = 104,
+                            Remark = "",
+                            CallTime = "2016-12-28 12:10:32",
+                            EndTime = "2016-12-28 14:21:45",
+                        });
+#endif
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
                 errCode = -1001;
                 errText = error.Message;
             }

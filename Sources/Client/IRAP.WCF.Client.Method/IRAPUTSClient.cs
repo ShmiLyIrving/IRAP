@@ -138,6 +138,85 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 申请序列号
+        /// ⒈ 申请预定义序列的一个或多个序列号；
+        /// ⒉ 如果序列是交易号的，自动写交易日志。
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sequenceCode">序列代码</param>
+        /// <param name="count">申请序列值个数</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="sequenceNo">申请到的第一个序列值</param>
+        public void msp_GetSequenceNo(
+            int communityID,
+            string sequenceCode,
+            int count,
+            long sysLogID,
+            ref long sequenceNo,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            sequenceNo = 0;
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("sequenceCode", sequenceCode);
+                hashParams.Add("count", count);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 msp_GetSequenceNo，输入参数：" +
+                        "CommunityID={0}|SequenceCode={1}|Count={2}|SysLogID={3}",
+                        communityID, sequenceCode, count, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.UTS.dll",
+                        "IRAP.BL.UTS.IRAPUTS",
+                        "msp_GetSequenceNo",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    if (errCode == 0)
+                    {
+                        sequenceNo = (long)rlt;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 申请交易号
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -553,6 +632,72 @@ namespace IRAP.WCF.Client.Method
                 errText = error.Message;
                 WriteLog.Instance.Write(errText, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 复核交易
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">待复核的交易号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ssp_CheckTransaction(
+            int communityID,
+            long transactNo,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("transactNo", transactNo);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 ssp_CheckTransaction，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|SysLogID={3}",
+                        communityID, transactNo, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.UTS.dll",
+                        "IRAP.BL.UTS.IRAPUTS",
+                        "ssp_CheckTransaction",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
             }
             finally
             {

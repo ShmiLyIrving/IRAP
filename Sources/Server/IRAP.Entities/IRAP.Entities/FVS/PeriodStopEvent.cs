@@ -9,8 +9,10 @@ namespace IRAP.Entities.FVS
     {
         public int Ordinal { get; set; }
         public long EventFactID { get; set; }
+        public long AndonFactID { get; set; }
         public string Remark { get; set; }
         public string CallTime { get; set; }
+        public string EndTime { get; set; }
 
         public PeriodStopEvent Clone()
         {

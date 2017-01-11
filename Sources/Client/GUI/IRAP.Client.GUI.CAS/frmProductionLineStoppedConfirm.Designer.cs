@@ -44,6 +44,7 @@
             this.btnStoppedConfirm = new DevExpress.XtraEditors.SimpleButton();
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
             this.tpLineStop = new DevExpress.XtraTab.XtraTabPage();
+            this.rgpT144Leaf = new DevExpress.XtraEditors.RadioGroup();
             this.btnLineStop = new DevExpress.XtraEditors.SimpleButton();
             this.tpLineStopWithAndonEvent = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -60,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
             this.tcMain.SuspendLayout();
             this.tpLineStop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rgpT144Leaf.Properties)).BeginInit();
             this.tpLineStopWithAndonEvent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -255,17 +257,33 @@
             // 
             // tpLineStop
             // 
+            this.tpLineStop.Controls.Add(this.rgpT144Leaf);
             this.tpLineStop.Controls.Add(this.btnLineStop);
             this.tpLineStop.Name = "tpLineStop";
             this.tpLineStop.Size = new System.Drawing.Size(885, 433);
             this.tpLineStop.Text = "xtraTabPage2";
             this.tpLineStop.Resize += new System.EventHandler(this.tpLineStop_Resize);
             // 
+            // rgpT144Leaf
+            // 
+            this.rgpT144Leaf.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rgpT144Leaf.Location = new System.Drawing.Point(47, 37);
+            this.rgpT144Leaf.Name = "rgpT144Leaf";
+            this.rgpT144Leaf.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rgpT144Leaf.Properties.Appearance.Options.UseFont = true;
+            this.rgpT144Leaf.Properties.Columns = 4;
+            this.rgpT144Leaf.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Column;
+            this.rgpT144Leaf.Size = new System.Drawing.Size(799, 147);
+            this.rgpT144Leaf.TabIndex = 4;
+            // 
             // btnLineStop
             // 
+            this.btnLineStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLineStop.Appearance.Font = new System.Drawing.Font("微软雅黑", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnLineStop.Appearance.Options.UseFont = true;
-            this.btnLineStop.Location = new System.Drawing.Point(342, 125);
+            this.btnLineStop.Location = new System.Drawing.Point(342, 225);
             this.btnLineStop.Name = "btnLineStop";
             this.btnLineStop.Size = new System.Drawing.Size(207, 97);
             this.btnLineStop.TabIndex = 3;
@@ -303,6 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
             this.tcMain.ResumeLayout(false);
             this.tpLineStop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rgpT144Leaf.Properties)).EndInit();
             this.tpLineStopWithAndonEvent.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -326,5 +345,6 @@
         private DevExpress.XtraTab.XtraTabPage tpLineStopWithAndonEvent;
         private DevExpress.XtraTab.XtraTabPage tpLineStop;
         private DevExpress.XtraEditors.SimpleButton btnLineStop;
+        private DevExpress.XtraEditors.RadioGroup rgpT144Leaf;
     }
 }

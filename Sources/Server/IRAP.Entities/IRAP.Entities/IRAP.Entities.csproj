@@ -46,6 +46,8 @@
     <Compile Include="FVS\PeriodAndonEvent.cs" />
     <Compile Include="FVS\PeriodStopEvent.cs" />
     <Compile Include="IRAP\STB009.cs" />
+    <Compile Include="MDM\BWI_SKUIDInfo.cs" />
+    <Compile Include="MES\FactPackaging.cs" />
     <Compile Include="MES\FailuresOfNGProduct.cs" />
     <Compile Include="FVS\AndonEventFact.cs" />
     <Compile Include="FVS\EventStakeholder.cs" />
@@ -62,6 +64,8 @@
     <Compile Include="MES\FailureDuty.cs" />
     <Compile Include="MES\FailureNature.cs" />
     <Compile Include="MES\FailureSrcOperation.cs" />
+    <Compile Include="MES\LabelFMTStr.cs" />
+    <Compile Include="MES\PackageType.cs" />
     <Compile Include="MES\ProducingPWOFromWorkUnit.cs" />
     <Compile Include="MES\TBL_AuxFact_PDC.cs" />
     <Compile Include="MES\TBL_FixedFact_MES.cs" />
@@ -74,6 +78,7 @@
     <Compile Include="MES\ToDoPWOFromWorkUnit.cs" />
     <Compile Include="MES\TSFormCtrl.cs" />
     <Compile Include="MES\QCOperationsForNG.cs" />
+    <Compile Include="MES\UncompletedPackage.cs" />
     <Compile Include="MES\WIPContext.cs" />
     <Compile Include="SCES\MaterialToDeliver.cs" />
     <Compile Include="MDM\DstDeliveryStoreSite.cs" />
