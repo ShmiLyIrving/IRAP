@@ -75,7 +75,7 @@ namespace IRAP.WCF.Client.Method
                     string.Format(
                         "调用 ufn_GetInfo_SPCChart，输入参数：" +
                         "CommunityID={0}|PWONo={1}|T47LeafID={2}|" +
-                        "T216LeafID={3}|T133LeafID={4}|T20LeafID={5}|"+
+                        "T216LeafID={3}|T133LeafID={4}|T20LeafID={5}|" +
                         "SysLogID={6}",
                         communityID,
                         pwoNo,
@@ -238,8 +238,8 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 usp_WriteLog_SPCCtrlLineSet，输入参数：" +
-                        "CommunityID={0}|C1ID={1}|T47LeafID={2}|"+
-                        "LCL={3}|UCL={4}|RLCL={5}|RUCL={6}|RBar={7}|"+
+                        "CommunityID={0}|C1ID={1}|T47LeafID={2}|" +
+                        "LCL={3}|UCL={4}|RLCL={5}|RUCL={6}|RBar={7}|" +
                         "SysLogID={8}",
                         communityID,
                         c1ID,
@@ -604,9 +604,11 @@ namespace IRAP.WCF.Client.Method
             out int errCode,
             out string errText)
         {
-            string strProcedureName = string.Format("{0}.{1}",
-                className,
-                MethodBase.GetCurrentMethod().Name);
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
@@ -708,7 +710,7 @@ namespace IRAP.WCF.Client.Method
                     string.Format(
                         "调用 ufn_GetInfo_WIPIDCode 函数， " +
                         "参数：CommunityID={0}|WIPIDCode={1}|" +
-                        "ProductLeaf={2}|WorkUnitLeaf={3}|"+
+                        "ProductLeaf={2}|WorkUnitLeaf={3}|" +
                         "IsEnhanced={4}|SysLogID={5}",
                         communityID,
                         wipIDCode,
@@ -916,6 +918,175 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">申请到的交易号</param>
+        /// <param name="factID">申请到的事实编号</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="pwoNo">生产工单号</param>
+        /// <param name="rsFactXML">检查结果 XML 
+        /// [RSFact]
+        ///     [RF17 Ordinal="" T118LeafID="" Metric01="" /]
+        /// [/RSFact]
+        /// </param>
+        /// <param name="inspectedQty">检查总不良品数量</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_SaveFact_FailureInspecting(
+            int communityID,
+            long transactNo,
+            long factID,
+            int t102LeafID,
+            int t107LeafID,
+            string pwoNo,
+            string rsFactXML,
+            long inspectedQty,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("transactNo", transactNo);
+                hashParams.Add("factID", factID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("pwoNo", pwoNo);
+                hashParams.Add("rsFactXML", rsFactXML);
+                hashParams.Add("inspectedQty", inspectedQty);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveFact_FailureInspecting，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|FactID={2}|" +
+                        "T102LeafID={3}|T107LeafID={4}|PWONo={5}|" +
+                        "RSFactXML={6}|InspectedQty={7}|SysLogID={8}",
+                        communityID,
+                        transactNo,
+                        factID,
+                        t102LeafID,
+                        t107LeafID,
+                        pwoNo,
+                        rsFactXML,
+                        inspectedQty,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.ManualInspecting",
+                        "usp_SaveFact_FailureInspecting",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 在制品路由防错
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="pwoNo">生产工单号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_PokaYoke_PalletRouting(
+            int communityID,
+            int t102LeafID,
+            int t107LeafID,
+            string pwoNo,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}",
+                className,
+                MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("pwoNo", pwoNo);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_PokaYoke_PalletRouting，输入参数：" +
+                        "CommunityID={0}|T102LeafID={1}|T107LeafID={2}|"+
+                        "PWONo={3}|SysLogID={4}",
+                        communityID,
+                        t102LeafID,
+                        t107LeafID,
+                        pwoNo,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.PokaYoke",
+                        "usp_PokaYoke_PalletRouting",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
             }
             finally
             {

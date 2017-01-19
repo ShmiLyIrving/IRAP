@@ -4856,5 +4856,168 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="skuID"></param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetInfo_SKUID(
+            int communityID,
+            string skuID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                BWI_SKUIDInfo data = new BWI_SKUIDInfo();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SKUID", DbType.String, skuID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetInfo_SKUID，" +
+                        "参数：CommunityID={0}|SKUID={1}|SysLogID={2}",
+                        communityID, skuID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetInfo_SKUID(" +
+                            "@CommunityID, @SKUID, @SysLogID)";
+
+                        IList<BWI_SKUIDInfo> lstDatas = 
+                            conn.CallTableFunc<BWI_SKUIDInfo>(strSQL, paramList);
+                        if (lstDatas.Count > 0)
+                        {
+                            data = lstDatas[0].Clone();
+                            errCode = 0;
+                            errText = "调用成功！";
+                        }
+                        else
+                        {
+                            errCode = -99001;
+                            errText = "没有当前站点的产线信息";
+                        }
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetInfo_SKUID 函数发生异常：{0}", 
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(data);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据工位获取失效模式
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetList_WorkUnitFailureModes(
+            int communityID,
+            int t107LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<FailureModeByWorkUnit> datas = new List<FailureModeByWorkUnit>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_WorkUnitFailureModes，" +
+                        "参数：CommunityID={0}|T107LeafID={1}|SysLogID={2}",
+                        communityID, t107LeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_WorkUnitFailureModes(" +
+                            "@CommunityID, @T107LeafID, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<FailureModeByWorkUnit> lstDatas =
+                            conn.CallTableFunc<FailureModeByWorkUnit>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetList_WorkUnitFailureModes 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

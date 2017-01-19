@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/06/2016 09:32:42" ReportInfo.Modified="01/11/2017 00:52:30" ReportInfo.CreatorVersion="2013.2.5.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="210.1" PaperHeight="148.1" RawPaperSize="11" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="2">
+    <PageHeaderBand Name="PageHeader1" Width="756.38" Height="374.22">
+      <ShapeObject Name="Shape1" Width="756" Height="311.74" Border.Width="2"/>
+      <TextObject Name="Text1" Left="5.67" Top="1.89" Width="73.71" Height="28.35" Text="BWI" VertAlign="Center" Font="Arial, 22pt, style=Bold, Italic"/>
+      <TextObject Name="Text2" Left="71.82" Top="15.12" Width="60.48" Height="15.12" Text="GROUP" VertAlign="Center"/>
+      <TextObject Name="Text3" Left="181.44" Top="3.78" Width="98.28" Height="15.12" Text="QAFM-012-00" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text4" Left="294.84" Top="26.46" Width="185.22" Height="15.12" Text="Registration 注册" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text5" Left="294.84" Top="7.56" Width="185.22" Height="18.9" Border.Lines="All" Text="[DataSource.LotNumber]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text6" Left="487.62" Top="26.46" Width="260.82" Height="15.12" Text="Name &amp; Surname 姓名" HorzAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text7" Left="487.62" Top="7.56" Width="260.82" Height="18.9" Border.Lines="All" Text="[DataSource.PlannerName]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <BarcodeObject Name="Barcode1" Left="15.12" Top="30.24" Width="264.44" Height="37.8" AutoSize="false" Expression="[DataSource.WIPCode]" Text="1ABAS1ABCK61206002" ShowText="false" Barcode.CalcCheckSum="false"/>
+      <TextObject Name="Text8" Left="294.84" Top="68.04" Width="185.22" Height="15.12" Text="Date of registration 时间" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text9" Left="294.84" Top="45.36" Width="185.22" Height="18.9" Border.Lines="All" Text="[DataSource.MFGDate]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text10" Left="15.12" Top="71.82" Width="264.6" Height="11.34" Text="[DataSource.WIPCode]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+      <TextObject Name="Text11" Left="487.62" Top="68.04" Width="260.82" Height="15.12" Text="PRODUCT CARD No. 来料产品卡号" HorzAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text12" Left="487.62" Top="45.36" Width="260.82" Height="18.9" Border.Lines="All" Text="[DataSource.SrcWIPCode]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <LineObject Name="Line1" Top="83.16" Width="754" Border.Width="0.5"/>
+      <TextObject Name="Text13" Left="7.56" Top="105.84" Width="268.38" Height="15.12" Text="Name of warehouse employee 库管姓名" HorzAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text14" Left="7.56" Top="86.94" Width="268.38" Height="18.9" Border.Lines="All" Text="[DataSource.WHManager]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text15" Left="294.84" Top="105.84" Width="189" Height="15.12" Text="Signature 姓名签字" HorzAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text16" Left="294.84" Top="86.94" Width="189" Height="18.9" Border.Lines="All" Text="[DataSource.DelivererName]" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text17" Left="487.62" Top="105.84" Width="260.82" Height="15.12" Text="Date of issuance from warehouse 时间" HorzAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text18" Left="487.62" Top="86.94" Width="260.82" Height="18.9" Border.Lines="All" Text="[DataSource.DeliveryTime]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <LineObject Name="Line2" Top="120.96" Width="754" Border.Width="0.5"/>
+      <TextObject Name="Text19" Left="7.56" Top="143.64" Width="740.88" Height="15.12" Text="PRODUCT NAME 产品名称 (name 姓名, dimensions 尺寸, code 号, supplier 供应商, king 种类)" HorzAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text20" Left="7.56" Top="124.74" Width="740.88" Height="18.9" Border.Lines="All" Text="[DataSource.ProductDesc]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text21" Left="7.56" Top="177.66" Width="200.34" Height="15.12" Text="Quantity 数量(Kg/Pcs)" HorzAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text22" Left="7.56" Top="158.76" Width="200.34" Height="18.9" Border.Lines="All" Text="[DataSource.Quantity]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text23" Left="215.46" Top="177.66" Width="200.34" Height="15.12" Text="Part Number 零件号" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text24" Left="215.46" Top="158.76" Width="200.34" Height="18.9" Border.Lines="All" Text="[DataSource.MaterialCode]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <PictureObject Name="Picture1" Left="430.92" Top="158.76" Width="45.36" Height="18.9" SizeMode="StretchImage" Image="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAADASURBVDhPjczNCoJQEIZhr9O1m4oIKyukHwWhwIUQQQtvwV0/FFkRRBBEtzQ1whk6OmNn8SzOcL7XcjL7nxlzI+yxBL7ECHsswYAYqRwY4G4aYkR7CCDMfehum2yEPtWJLpNCf9dSN4pQYH4LjHj7thahQHyPjA0PHYpQIHksjPlHVwUCCqyesZHxqUdj3FKgzvqVFKa5p27FGKlAHUjfSwjOg8oY/X6UQHgdsWOkPQTiGFUODHGM2GOJOHYy2/oAsUDqdXXz8vkAAAAASUVORK5CYII="/>
+      <TextObject Name="Text25" Left="491.4" Top="158.76" Width="215.46" Height="18.9" Border.Lines="All" Text="[DataSource.ProductNo]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text26" Left="491.4" Top="181.44" Width="215.46" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text27" Left="491.4" Top="204.12" Width="215.46" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <PictureObject Name="Picture2" Left="710.64" Top="154.98" Width="26.46" Height="37.8" SizeMode="StretchImage" Image="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAE7SURBVDhPpZK9SgNREIXzJoKCTaogCmIjdlqJpXbRKiqIIgFJISTIFtqIIAsWNlpsITZWiwhWFqksBV8hr3A935DJ313XgMUHy509Z2bOvZUQwr8YfBy+1cMke9mOsf242RO5aG7drc/+avD09RBx/3lrXH50wunLAWb5xvXawp8GLnRuuldG6/U4yCBdvVi2ScYMfOT+2IZGDkfPDZvATaivnC82xwzKUMdEfLffWwFYRRN0qRUKipAgaWS7ZgBLZ7Ue59GPJD15BqMG5FA7qcYGEqfa2UYbBTEdEQJG1f35nNrgJwlTwqKofQ0JDcJE6N2pyWAYosQJYhImbcf3BYJDjJnE2Vx9ZniNGNC5TMzV9Tsjjh+Sionfv+7Y0N6EZYGxM2N758gAJOKFRSGWER34C5uWwsPpCZUfTBSmzQn0jhQAAAAASUVORK5CYII="/>
+      <PictureObject Name="Picture3" Left="710.64" Top="189" Width="26.46" Height="37.8" SizeMode="StretchImage" Image="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAE7SURBVDhPpZK9SgNREIXzJoKCTaogCmIjdlqJpXbRKiqIIgFJISTIFtqIIAsWNlpsITZWiwhWFqksBV8hr3A935DJ313XgMUHy509Z2bOvZUQwr8YfBy+1cMke9mOsf242RO5aG7drc/+avD09RBx/3lrXH50wunLAWb5xvXawp8GLnRuuldG6/U4yCBdvVi2ScYMfOT+2IZGDkfPDZvATaivnC82xwzKUMdEfLffWwFYRRN0qRUKipAgaWS7ZgBLZ7Ue59GPJD15BqMG5FA7qcYGEqfa2UYbBTEdEQJG1f35nNrgJwlTwqKofQ0JDcJE6N2pyWAYosQJYhImbcf3BYJDjJnE2Vx9ZniNGNC5TMzV9Tsjjh+Sionfv+7Y0N6EZYGxM2N758gAJOKFRSGWER34C5uWwsPpCZUfTBSmzQn0jhQAAAAASUVORK5CYII="/>
+      <LineObject Name="Line3" Left="1.78" Top="226.8" Width="754" Border.Width="0.5"/>
+      <TextObject Name="Text28" Left="7.56" Top="230.58" Width="60.48" Height="18.9" Text="IQC No.:" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text29" Left="71.82" Top="230.58" Width="676.62" Height="18.9" Border.Lines="All" Text="[DataSource.IQCNo]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text30" Left="7.56" Top="253.26" Width="109.62" Height="18.9" Text="input Cards No.: " VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text31" Left="120.96" Top="253.26" Width="627.48" Height="18.9" Border.Lines="All" Text="[DataSource.MaterialTrackNo]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text32" Left="7.56" Top="272.16" Width="740.88" Height="18.9" Text="Before run of first operation, operator fills production card base on pattern from shift leader." VertAlign="Center" Font="Gabriola, 11pt, style=Italic"/>
+      <TextObject Name="Text33" Left="7.56" Top="291.06" Width="740.88" Height="18.9" Text="在进行第一次操作之前，操作工根据班长的范本填写生产卡。" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <LineObject Name="Line4" Top="309.96" Width="754" Border.Width="2"/>
+      <TextObject Name="Text34" Left="1" Top="309.96" Width="85.94" Height="64.26" Border.Lines="All" Border.LeftLine.Width="2" Text="Dept.&#13;&#10;部门" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text35" Left="86.94" Top="309.96" Width="143.64" Height="64.26" Border.Lines="All" Text="Operation&#13;&#10;No.&#13;&#10;操作号" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text36" Left="230.58" Top="309.96" Width="120.96" Height="34.02" Border.Lines="All" Text="Pcs quantity&#13;&#10;数量" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text37" Left="351.54" Top="309.96" Width="117.18" Height="64.26" Border.Lines="All" Text="Record No.&#13;&#10;记录号" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text38" Left="468.72" Top="309.96" Width="98.28" Height="64.26" Border.Lines="All" Text="Operator&#13;&#10;Name&#13;&#10;操作名称" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text39" Left="567" Top="309.96" Width="94.5" Height="64.26" Border.Lines="All" Text="Name /&#13;&#10;Signature&#13;&#10;姓名签字" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text40" Left="661.5" Top="309.96" Width="93.72" Height="64.26" Border.Lines="All" Border.RightLine.Width="2" Text="Date of run&#13;&#10;操作日期" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text43" Left="230.58" Top="343.98" Width="60.48" Height="30.24" Border.Lines="All" Text="Good&#13;&#10;好" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+      <TextObject Name="Text44" Left="291.06" Top="343.98" Width="60.48" Height="30.24" Border.Lines="All" Text="Scrap&#13;&#10;废" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="376.72" Width="756.38" Height="18.9" MaxRows="8">
+      <TextObject Name="Text59" Left="1" Width="85.94" Height="18.9" Border.Lines="All" Border.LeftLine.Width="2" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DataSource.Department]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+      <TextObject Name="Text60" Left="86.94" Width="143.64" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DataSource.OperNo]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+      <TextObject Name="Text61" Left="230.58" Width="60.48" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DataSource.GoodQty]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+      <TextObject Name="Text62" Left="291.06" Width="60.48" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DataSource.ScrapQty]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+      <TextObject Name="Text63" Left="351.54" Width="117.18" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DataSource.RecNo]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+      <TextObject Name="Text64" Left="468.72" Width="98.28" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DataSource.OperName]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+      <TextObject Name="Text65" Left="567" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DataSource.Operator]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+      <TextObject Name="Text66" Left="661.5" Width="93.72" Height="18.9" Border.Lines="All" Border.RightLine.Width="2" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[DataSource.OperDate]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+    </DataBand>
+  </ReportPage>
+</Report>

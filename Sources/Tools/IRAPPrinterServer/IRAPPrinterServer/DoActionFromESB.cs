@@ -109,7 +109,7 @@ namespace IRAPPrinterServer
 
                 string brokerUri =
                     string.Format(
-                        "failover://({0})?&transport.startupMaxReconnectAttempts=2&" +
+                        "failover://({0})?&transport.startupMaxReconnectAttempts=1&" +
                         "transport.initialReconnectDelay=10",
                         esbUri);
                 factory = new ConnectionFactory(brokerUri);

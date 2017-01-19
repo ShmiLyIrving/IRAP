@@ -313,14 +313,16 @@ namespace IRAP.BL.FVS
         /// <param name="resourceLeafID">工作中心或产线叶标识</param>
         /// <param name="eventFactIDs">关联安灯事件点击流 （发起新事件时传空）</param>
         /// <param name="andonEventID">关联的安灯事件FactID</param>
+        /// <param name="t144LeafID">停线记录根源原因</param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult usp_SaveFact_StopEvent(
             int communityID,
             long transactNo,
             long factID,
-            int resourceTreeID,  // 工作中心传211，生产线传134
-            int resourceLeafID, // 工作中心或产线叶标识
-            string eventFactIDs,  // 关联安灯事件点击流 （发起新事件时传空）
+            int resourceTreeID,
+            int resourceLeafID,
+            string eventFactIDs,
+            int t144LeafID, 
             long sysLogID,
             out int errCode,
             out string errText)
@@ -342,6 +344,7 @@ namespace IRAP.BL.FVS
                 paramList.Add(new IRAPProcParameter("@ResourceTreeID", DbType.Int32, resourceTreeID));
                 paramList.Add(new IRAPProcParameter("@ResourceLeafID", DbType.Int32, resourceLeafID));
                 paramList.Add(new IRAPProcParameter("@EventFactIDs", DbType.String, eventFactIDs));
+                paramList.Add(new IRAPProcParameter("@T144LeafID", DbType.Int32, t144LeafID));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(
                     new IRAPProcParameter(
@@ -359,9 +362,9 @@ namespace IRAP.BL.FVS
                     string.Format("执行存储过程 " +
                         "IRAPFVS..usp_SaveFact_StopEvent，参数：" +
                         "CommunityID={0}|TransactNo={1}|FactID={2}|ResourceTreeID={3}|" +
-                        "ResourceLeafID={4}|EventFactIDs={5}|SysLogID={6}",
+                        "ResourceLeafID={4}|EventFactIDs={5}|T144LeafID={6}|SysLogID={7}",
                         communityID, transactNo, factID, resourceTreeID,
-                        resourceLeafID, eventFactIDs, sysLogID),
+                        resourceLeafID, eventFactIDs, t144LeafID, sysLogID),
                     strProcedureName);
                 #endregion
 

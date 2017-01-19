@@ -50,6 +50,7 @@
     <Compile Include="FVS\PeriodStopEvent.cs" />
     <Compile Include="IRAP\STB009.cs" />
     <Compile Include="MDM\BWI_SKUIDInfo.cs" />
+    <Compile Include="MDM\FailureModeByWorkUnit.cs" />
     <Compile Include="MES\FactPackaging.cs" />
     <Compile Include="MES\FailuresOfNGProduct.cs" />
     <Compile Include="FVS\AndonEventFact.cs" />

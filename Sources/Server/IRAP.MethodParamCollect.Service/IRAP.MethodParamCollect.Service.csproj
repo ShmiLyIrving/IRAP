@@ -84,10 +84,6 @@
       <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
       <Name>IRAP.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IRAPORM\IRAPORM.csproj">
-      <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
-      <Name>IRAPORM</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ch.ico" />

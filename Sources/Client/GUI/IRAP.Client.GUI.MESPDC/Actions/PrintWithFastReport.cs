@@ -83,6 +83,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                         {
                             report.LoadFromString(child.Value);
                         }
+                        else if (child.NodeType == XmlNodeType.Text)
+                            report.LoadFromString(child.Value);
                         else if (child.Name.ToUpper() == "SQLCOMMAND")
                         {
                             if (child.Attributes["command"] != null)

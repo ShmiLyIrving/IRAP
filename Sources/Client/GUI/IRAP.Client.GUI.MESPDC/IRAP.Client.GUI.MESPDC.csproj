@@ -80,6 +80,12 @@
     <Compile Include="frmCargoTransfer.Designer.cs">
       <DependentUpon>frmCargoTransfer.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFailureInspect_BWI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFailureInspect_BWI.Designer.cs">
+      <DependentUpon>frmFailureInspect_BWI.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmManufactureRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmCargoTransfer.resx">
       <DependentUpon>frmCargoTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFailureInspect_BWI.resx">
+      <DependentUpon>frmFailureInspect_BWI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmManufactureRecord.resx">
       <DependentUpon>frmManufactureRecord.cs</DependentUpon>

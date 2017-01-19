@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAndonEventClose_30));
             this.gpcAndonEvents = new DevExpress.XtraEditors.GroupControl();
             this.grdAndonEvents = new DevExpress.XtraGrid.GridControl();
@@ -38,14 +37,14 @@
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.grdclmnProductionLineStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rsichkProductionDown = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.imageCollection = new DevExpress.Utils.ImageCollection();
             this.grdclmnCallingTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnCallUseName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnRespondingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnFirstResponder = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnTimeElapsed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEventCauseConfirm = new DevExpress.XtraEditors.SimpleButton();
             this.btnEventClose = new DevExpress.XtraEditors.SimpleButton();
-            this.grdclmnCallUseName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpcAndonEvents)).BeginInit();
@@ -215,6 +214,17 @@
             this.grdclmnCallingTime.VisibleIndex = 3;
             this.grdclmnCallingTime.Width = 90;
             // 
+            // grdclmnCallUseName
+            // 
+            this.grdclmnCallUseName.Caption = "呼叫人";
+            this.grdclmnCallUseName.FieldName = "CallUserName";
+            this.grdclmnCallUseName.MaxWidth = 140;
+            this.grdclmnCallUseName.MinWidth = 140;
+            this.grdclmnCallUseName.Name = "grdclmnCallUseName";
+            this.grdclmnCallUseName.Visible = true;
+            this.grdclmnCallUseName.VisibleIndex = 4;
+            this.grdclmnCallUseName.Width = 140;
+            // 
             // grdclmnRespondingTime
             // 
             this.grdclmnRespondingTime.AppearanceCell.Options.UseTextOptions = true;
@@ -281,17 +291,6 @@
             this.btnEventClose.TabIndex = 3;
             this.btnEventClose.Text = "关闭呼叫";
             this.btnEventClose.Click += new System.EventHandler(this.btnEventClose_Click);
-            // 
-            // grdclmnCallUseName
-            // 
-            this.grdclmnCallUseName.Caption = "呼叫人";
-            this.grdclmnCallUseName.FieldName = "CallUserName";
-            this.grdclmnCallUseName.MaxWidth = 80;
-            this.grdclmnCallUseName.MinWidth = 80;
-            this.grdclmnCallUseName.Name = "grdclmnCallUseName";
-            this.grdclmnCallUseName.Visible = true;
-            this.grdclmnCallUseName.VisibleIndex = 4;
-            this.grdclmnCallUseName.Width = 80;
             // 
             // frmAndonEventClose_30
             // 

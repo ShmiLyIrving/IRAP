@@ -17,7 +17,6 @@ using Apache.NMS.ActiveMQ.Commands;
 
 using IRAP.Global;
 using IRAP.Entities.DPA;
-using IRAPORM;
 
 namespace IRAP.MethodParamCollect.Service
 {

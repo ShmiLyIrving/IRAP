@@ -12,6 +12,7 @@ using IRAP.Server.Global;
 using IRAP.Entities.UTS;
 using IRAPShared;
 using IRAPORM;
+using IRAPDAL;
 
 namespace IRAP.BL.UTS
 {
@@ -266,6 +267,296 @@ namespace IRAP.BL.UTS
                 #endregion
 
                 return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public IRAPJsonResult msp_GetSequenceNo(
+            int communityID,
+            string sequenceCode,
+            int count,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "申请序列号，SequenceCode={0}|Count={1}",
+                        sequenceCode,
+                        count),
+                    strProcedureName);
+                long sequenceNo = 0;
+
+                if (sequenceCode.ToUpper() == "TRANSACTNO")
+                {
+                    errCode = 999999;
+                    errText = "当前功能不支持申请交易号！";
+                }
+                else
+                {
+                    try
+                    {
+                        sequenceNo =
+                            IRAPDAL.UTS.Instance.msp_GetSequenceNo(
+                                sequenceCode,
+                                count);
+                        errCode = 0;
+                        errText =
+                            string.Format(
+                                "申请序列号成功：[{0}]",
+                                sequenceNo);
+                    }
+                    catch (Exception error)
+                    {
+                        errCode = 999999;
+                        errText =
+                            string.Format(
+                                "申请序列号失败：[{0}]",
+                                error.Message);
+                    }
+                }
+
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+
+                return Json(sequenceNo);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">待复核交易号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ssp_CheckTransaction(
+            int communityID,
+            long transactNo,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                Hashtable rlt = new Hashtable();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@TransactNo", DbType.Int64, transactNo));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 IRAP..ssp_CheckTransaction，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|SysLogID={2}",
+                        communityID, transactNo, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        IRAPError error = conn.CallProc("IRAP..ssp_CheckTransaction", ref paramList);
+                        errCode = error.ErrCode;
+                        errText = error.ErrText;
+
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAP..ssp_CheckTransaction 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(rlt);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 保存产品包装事实并防错
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">申请到的交易号</param>
+        /// <param name="factID">申请到的事实编号</param>
+        /// <param name="productLeaf">产品叶标识</param>
+        /// <param name="workUnitLeaf">包装工位叶标识</param>
+        /// <param name="packagingSpecNo">包装规格序号(C64R7.Ordinal)</param>
+        /// <param name="wipPattern">产品主标识代码</param>
+        /// <param name="layerNumOfPallet">铲板第几层</param>
+        /// <param name="cartonNumOfLayer">当前层第几箱</param>
+        /// <param name="layerNumOfCarton">箱内第几层内包装(盒）</param>
+        /// <param name="rowNumOfCarton">箱内第几排内包装(盒)</param>
+        /// <param name="colNumOfCarton">箱内第几列内包装(盒)</param>
+        /// <param name="layerNumOfBox">盒内第几层产品</param>
+        /// <param name="rowNumOfBox">盒内第几排产品</param>
+        /// <param name="colNumOfBox">盒内第几列产品</param>
+        /// <param name="boxSerialNumber">内包装序列号</param>
+        /// <param name="cartonSerialNumber">箱包装序列号</param>
+        /// <param name="layerSerialNumber">包装层层序列号</param>
+        /// <param name="palletSerialNumber">铲板标签序列号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errTex"></param>
+        /// <returns></returns>
+        public IRAPJsonResult usp_SaveFact_Packaging(
+            int communityID,
+            long transactNo,
+            long factID, 
+            int productLeaf,
+            int workUnitLeaf,
+            int packagingSpecNo,
+            string wipPattern,
+            int layerNumOfPallet, 
+            int cartonNumOfLayer, 
+            int layerNumOfCarton, 
+            int rowNumOfCarton, 
+            int colNumOfCarton, 
+            int layerNumOfBox, 
+            int rowNumOfBox, 
+            int colNumOfBox, 
+            string boxSerialNumber,
+            string cartonSerialNumber,
+            string layerSerialNumber, 
+            string palletSerialNumber,
+            long sysLogID, 
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                Hashtable rlt = new Hashtable();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@TransactNo", DbType.Int64, transactNo));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@ProductLeaf", DbType.Int32, productLeaf));
+                paramList.Add(new IRAPProcParameter("@WorkUnitLeaf", DbType.Int32, workUnitLeaf));
+                paramList.Add(new IRAPProcParameter("@PackagingSpecNo", DbType.Int32, packagingSpecNo));
+                paramList.Add(new IRAPProcParameter("@WIPPattern", DbType.String, wipPattern));
+                paramList.Add(new IRAPProcParameter("@LayerNumOfPallet", DbType.Int32, layerNumOfPallet));
+                paramList.Add(new IRAPProcParameter("@CartonNumOfLayer", DbType.Int32, cartonNumOfLayer));
+                paramList.Add(new IRAPProcParameter("@LayerNumOfCarton", DbType.Int32, layerNumOfCarton));
+                paramList.Add(new IRAPProcParameter("@RowNumOfCarton", DbType.Int32, rowNumOfCarton));
+                paramList.Add(new IRAPProcParameter("@ColNumOfCarton", DbType.Int32, colNumOfCarton));
+                paramList.Add(new IRAPProcParameter("@LayerNumOfBox", DbType.Int32, layerNumOfBox));
+                paramList.Add(new IRAPProcParameter("@RowNumOfBox", DbType.Int32, rowNumOfBox));
+                paramList.Add(new IRAPProcParameter("@ColNumOfBox", DbType.Int32, colNumOfBox));
+                paramList.Add(new IRAPProcParameter("@BoxSerialNumber", DbType.String, boxSerialNumber));
+                paramList.Add(new IRAPProcParameter("@CartonSerialNumber", DbType.String, cartonSerialNumber));
+                paramList.Add(new IRAPProcParameter("@LayerSerialNumber", DbType.String, layerSerialNumber));
+                paramList.Add(new IRAPProcParameter("@PalletSerialNumber", DbType.String, palletSerialNumber));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 IRAPMES..usp_SaveFact_Packaging，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|FactID={2}|" +
+                        "ProductLeaf={3}|WorkUnitLeaf={4}|PackagingSpecNo={5}|"+
+                        "WIPPattern={6}|LayerNumOfPallet={7}|CartonNumOfLayer={8}|"+
+                        "LayerNumOfCarton={9}|RowNumOfCarton={10}|ColNumOfCarton={11}|"+
+                        "LayerNumOfBox={12}|RowNumOfBox={13}|ColNumOfBox={14}|"+
+                        "BoxSerialNumber={15}|CartonSerialNumber={16}|LayerSerialNumber={17}|"+
+                        "PalletSerialNumber={18}|SysLogID={19}",
+                        communityID,
+                        transactNo,
+                        factID,
+                        productLeaf,
+                        workUnitLeaf,
+                        packagingSpecNo,
+                        wipPattern,
+                        layerNumOfPallet,
+                        cartonNumOfLayer,
+                        layerNumOfCarton,
+                        rowNumOfCarton,
+                        colNumOfCarton,
+                        layerNumOfBox,
+                        rowNumOfBox,
+                        colNumOfBox,
+                        boxSerialNumber,
+                        cartonSerialNumber,
+                        layerSerialNumber,
+                        palletSerialNumber,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        IRAPError error = 
+                            conn.CallProc(
+                                "IRAPMES..usp_SaveFact_Packaging", 
+                                ref paramList);
+                        errCode = error.ErrCode;
+                        errText = error.ErrText;
+
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 IRAPMES..usp_SaveFact_Packaging 函数发生异常：{0}", 
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(rlt);
             }
             finally
             {
