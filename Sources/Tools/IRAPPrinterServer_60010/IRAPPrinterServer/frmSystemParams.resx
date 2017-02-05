@@ -435,25 +435,25 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="edtT133Code.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="edtFilterString.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 17</value>
   </data>
-  <data name="edtT133Code.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="edtFilterString.Size" type="System.Drawing.Size, System.Drawing">
     <value>374, 21</value>
   </data>
-  <data name="edtT133Code.TabIndex" type="System.Int32, mscorlib">
+  <data name="edtFilterString.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;edtT133Code.Name" xml:space="preserve">
-    <value>edtT133Code</value>
+  <data name="&gt;&gt;edtFilterString.Name" xml:space="preserve">
+    <value>edtFilterString</value>
   </data>
-  <data name="&gt;&gt;edtT133Code.Type" xml:space="preserve">
+  <data name="&gt;&gt;edtFilterString.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;edtT133Code.Parent" xml:space="preserve">
+  <data name="&gt;&gt;edtFilterString.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;edtT133Code.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;edtFilterString.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
