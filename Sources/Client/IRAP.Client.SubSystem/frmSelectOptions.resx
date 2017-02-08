@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="frmSelectOptions.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
   <data name="&gt;&gt;btnSelect.Name" xml:space="preserve">
     <value>btnSelect</value>
   </data>
@@ -130,20 +126,21 @@
   <data name="&gt;&gt;splitContainerControl2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="splitContainerControl1.Panel2.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="btnCancel.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
   </data>
   <data name="splitContainerControl1.Panel2.Text" xml:space="preserve">
     <value>请选择：</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="edtSearchCondition.Properties.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnSelect.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="splitContainerControl2.AppearanceCaption.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -152,6 +149,9 @@
   </data>
   <data name="toolTipController.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
+  </data>
+  <data name="btnShowAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>542, 5</value>
   </data>
   <data name="&gt;&gt;splitContainerControl1.Parent" xml:space="preserve">
     <value>splitContainerControl2.Panel1</value>
@@ -162,14 +162,11 @@
   <data name="toolTipController.AppearanceTitle.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
-  <data name="splitContainerControl2.Panel2.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
+  <data name="edtSearchCondition.Properties.NullValuePromptShowForEmptyValue" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;btnSelect.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="edtSearchCondition.Properties.NullValuePromptShowForEmptyValue" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="splitContainerControl1.Panel1.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
@@ -180,11 +177,8 @@
   <data name="btnSearch.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="edtSearchCondition.Properties.NullValuePrompt" xml:space="preserve">
+  <data name="$this.Title" xml:space="preserve">
     <value />
-  </data>
-  <data name="splitContainerControl2.Panel2.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="btnShowAll.Text" xml:space="preserve">
     <value>显示全部</value>
@@ -195,11 +189,11 @@
   <data name="splitContainerControl2.Panel2.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>744, 392</value>
+  <data name="btnCancel.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
-    <value>splitContainerControl2.Panel2</value>
+  <data name="btnCancel.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
   </data>
   <data name="btnShowAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 32</value>
@@ -229,14 +223,11 @@
   <data name="lstWorkUnits.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;btnSelect.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnShowAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>542, 5</value>
+  <data name="edtSearchCondition.Properties.AutoHeight" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="splitContainerControl2.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
@@ -247,8 +238,8 @@
   <data name="&gt;&gt;lstProcesses.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="splitContainerControl1.Panel1.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="btnSelect.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="&gt;&gt;splitContainerControl2.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -256,8 +247,8 @@
   <data name="&gt;&gt;lstWorkUnits.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="edtSearchCondition.Properties.AutoHeight" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="splitContainerControl2.Panel2.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="splitContainerControl2.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -265,8 +256,8 @@
   <data name="btnSearch.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="splitContainerControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>628, 368</value>
+  <data name="btnShowAll.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="splitContainerControl1.Text" xml:space="preserve">
     <value>splitContainerControl1</value>
@@ -283,6 +274,9 @@
   <data name="&gt;&gt;splitContainerControl1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="edtSearchCondition.Properties.NullValuePrompt" xml:space="preserve">
+    <value />
+  </data>
   <data name="&gt;&gt;btnSelect.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
@@ -295,9 +289,6 @@
   <data name="btnShowAll.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
-  <data name="btnCancel.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="&gt;&gt;splitContainerControl2.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.SplitContainerControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
@@ -307,8 +298,8 @@
   <data name="&gt;&gt;lstWorkUnits.Name" xml:space="preserve">
     <value>lstWorkUnits</value>
   </data>
-  <data name="edtSearchCondition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 26</value>
+  <data name="btnSearch.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
@@ -322,11 +313,17 @@
   <data name="btnSelect.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
+  <data name="edtSearchCondition.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
   <data name="frmSelectOptions.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="splitContainerControl1.Panel1.Text" xml:space="preserve">
     <value>请选择：</value>
+  </data>
+  <data name="splitContainerControl1.Panel1.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="edtSearchCondition.Properties.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -352,9 +349,6 @@
   <data name="edtSearchCondition.Properties.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
-  <data name="btnSelect.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
@@ -364,11 +358,8 @@
   <data name="splitContainerControl2.Text" xml:space="preserve">
     <value>splitContainerControl2</value>
   </data>
-  <data name="btnSearch.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="edtSearchCondition.Properties.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="splitContainerControl2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>628, 368</value>
   </data>
   <data name="splitContainerControl1.Panel2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -425,18 +416,11 @@
   <data name="toolTipController.AppearanceTitle.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
-  <data name="frmSelectOptions.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="lstWorkUnits.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
   <data name="splitContainerControl1.Panel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
-  </data>
-  <assembly alias="DevExpress.Data.v15.2" name="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="$this.AllowHtmlText" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
   </data>
   <data name="lstProcesses.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
@@ -462,11 +446,17 @@
   <data name="splitContainerControl2.Panel2.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
+  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="edtSearchCondition.Properties.Mask.PlaceHolder" type="System.Char, mscorlib" xml:space="preserve">
     <value>_</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="splitContainerControl2.Panel2.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
+    <value>Regular</value>
   </data>
   <data name="&gt;&gt;splitContainerControl1.Name" xml:space="preserve">
     <value>splitContainerControl1</value>
@@ -501,20 +491,23 @@
   <data name="btnCancel.Text" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="$this.Title" xml:space="preserve">
-    <value />
-  </data>
   <data name="lstProcesses.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 5</value>
   </data>
+  <data name="edtSearchCondition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>448, 26</value>
+  </data>
   <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="splitContainerControl1.Panel2.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
+    <value>Horizontal</value>
   </data>
   <data name="splitContainerControl2.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6200.17582, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.Global.frmCustomBase, IRAP.Client.Global, Version=6.1.6248.16900, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="btnCancel.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
@@ -546,17 +539,11 @@
   <data name="lstWorkUnits.Size" type="System.Drawing.Size, System.Drawing">
     <value>254, 253</value>
   </data>
-  <data name="splitContainerControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
+    <value>splitContainerControl2.Panel2</value>
   </data>
   <data name="frmSelectOptions.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
-  </data>
-  <data name="splitContainerControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>628, 292</value>
-  </data>
-  <data name="btnShowAll.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
@@ -573,6 +560,9 @@
   <data name="btnSelect.Text" xml:space="preserve">
     <value>选择</value>
   </data>
+  <data name="frmSelectOptions.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
+    <value>Regular</value>
+  </data>
   <data name="splitContainerControl2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -585,14 +575,14 @@
   <data name="btnSelect.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
-  <data name="edtSearchCondition.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>744, 392</value>
   </data>
   <data name="btnShowAll.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
-  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;lstProcesses.Name" xml:space="preserve">
     <value>lstProcesses</value>
@@ -603,17 +593,24 @@
   <data name="&gt;&gt;toolTipController.Name" xml:space="preserve">
     <value>toolTipController</value>
   </data>
+  <data name="splitContainerControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
   <data name="toolTipController.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>647, 50</value>
+  <data name="splitContainerControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>628, 292</value>
   </data>
   <data name="toolTipController.AppearanceTitle.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="splitContainerControl1.Panel2.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
+  <assembly alias="DevExpress.Data.v15.2" name="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="$this.AllowHtmlText" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
+    <value>Default</value>
+  </data>
+  <data name="edtSearchCondition.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="splitContainerControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -627,18 +624,18 @@
   <data name="splitContainerControl2.Panel2.AppearanceCaption.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>647, 50</value>
+  </data>
   <data name="&gt;&gt;lstWorkUnits.Parent" xml:space="preserve">
     <value>splitContainerControl1.Panel2</value>
   </data>
   <data name="btnShowAll.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="edtSearchCondition.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
+  <data name="frmSelectOptions.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en-US</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

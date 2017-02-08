@@ -75,8 +75,7 @@ namespace IRAP.Client.SubSystem
             lstWorkUnits.Items.Clear();
             if (lstProcesses.SelectedItem != null)
             {
-                ProcessInfo process =
-                    AvailableProcesses.Instance.Processes[lstProcesses.SelectedIndex];
+                ProcessInfo process = lstProcesses.SelectedItem as ProcessInfo;
                 try
                 {
                     AvailableWorkUnits.Instance.GetWorkUnits(
@@ -202,6 +201,7 @@ namespace IRAP.Client.SubSystem
             lstProcesses.SelectedIndex =
                 AvailableProcesses.Instance.IndexOf(
                     CurrentOptions.Instance.Process);
+            lstProcesses_SelectedIndexChanged(null, null);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -256,7 +256,10 @@ namespace IRAP.Client.SubSystem
                     lstProcesses.DataSource = processes;
                     lstProcesses.DisplayMember = "T120NodeName";
                     if (processes.Count > 0)
+                    {
                         lstProcesses.SelectedIndex = 0;
+                        lstProcesses_SelectedIndexChanged(null, null);
+                    }
                 }
             }
             catch (Exception error)
