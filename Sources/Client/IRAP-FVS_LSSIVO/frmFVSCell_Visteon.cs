@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Management;
 using System.Reflection;
 using System.Configuration;
+using System.Runtime.InteropServices;
 
 using DevExpress.XtraEditors;
 
@@ -24,6 +25,8 @@ namespace IRAP_FVS_LSSIVO
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
+
+        private static object lockObject = new object();
 
         /// <summary>
         /// 当前站点的 MAC 地址
@@ -41,6 +44,228 @@ namespace IRAP_FVS_LSSIVO
         /// 最近一次更新
         /// </summary>
         private DateTime LastUpdatedTime = DateTime.Now;
+        /// <summary>
+        /// 是否可以退出程序
+        /// </summary>
+        private bool canClose = false;
+        /// <summary>
+        /// 上次键盘或者鼠标消息产生的时间
+        /// </summary>
+        private DateTime lastKBMouseActionTime = DateTime.Now;
+
+        #region 系统钩子
+        public struct KeyMSG
+        {
+            /// <summary>
+            /// 键值
+            /// </summary>
+            public int vkCode;
+            public int scanCode;
+            public int flags;
+            public int time;
+            public int dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public class POINT
+        {
+            public int X;
+            public int Y;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public class MouseHookStruct
+        {
+            public POINT pt;
+            public int hWnd;
+            public int wHitTestCode;
+            public int dwExtendInfo;
+        }
+
+        public delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
+        public static int hKeyobardHook = 0;
+        public static int hMouseHook = 0;
+        public HookProc KeyboardHookProcedure;
+
+        /// <summary>
+        /// 安装钩子
+        /// </summary>
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        private static extern int SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId);
+        /// <summary>
+        /// 卸载钩子
+        /// </summary>
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        private static extern bool UnhookWindowsHookEx(int idHook);
+        /// <summary>
+        /// 继续下一个钩子
+        /// </summary>
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        private static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
+        /// <summary>
+        /// 取得当前线程编号（线程钩子需要用到）
+        /// </summary>
+        /// <returns></returns>
+        [DllImport("kernel32.dll")]
+        private static extern int GetCurrentThreadId();
+
+        /// <summary>
+        /// 安装钩子
+        /// </summary>
+        private void HookStart()
+        {
+            if (hKeyobardHook == 0)
+            {
+                // 创建 HookProc 实例
+                KeyboardHookProcedure = new HookProc(KeyboardHookProc);
+
+                // 设置线程钩子
+                hKeyobardHook =
+                    SetWindowsHookEx(
+                        13,
+                        KeyboardHookProcedure,
+                        Marshal.GetHINSTANCE(
+                            Assembly.GetExecutingAssembly().GetModules()[0]),
+                        0);
+
+                // 键盘线程钩子
+                //SetWindowsHookEx(2, KeyboardHookProcedure, IntPtr.Zero, GetCurrentThreadId());
+
+                // 键盘全局钩子，需要引用空间 (using System.Reflection;)
+                //SetWindowsHookEx(
+                //    13,
+                //    KeyboardHookProcedure,
+                //    Marshal.GetHINSTANCE(
+                //        Assembly.GetExecutingAssembly().GetModules()[0]),
+                //    0);
+
+                /*
+                关于 SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId) 函数
+                将钩子加入到钩子链表中，说明一下四个参数：
+                idHook 钩子类型，即确定钩子监听何种消息，上面的代码中设定为 2，即监听键盘消息并且是线程钩子，如果是全
+                局钩子监听键盘消息应设为 13，线程钩子监听鼠标消息设为 7，全局钩子监听鼠标消息设为 14.
+                lpfn 钩子子程的地址指针。如果 dwThreadId 参数为 0 或是一个由别的进程创建的线程的标识， lpfn 必须
+                指向 DLL 中的钩子子程。除此之外， lpfn 可以指向当前进程的一段钩子子程代码。钩子函数的入口地址，当钩子
+                钩到任何消息后便调用这个函数。
+                hInstance 应用程序实例的句柄。标识包含 lpfn 所指的子程的 DLL。如果 threadId 标识当前进程创建的
+                一个线程，而且子程代码位于当前进程，hInstance 必须为 NULL。可以很简单的设定其为本应用程序的实例句柄。
+                threadId 与安装的钩子子程相关联的线程的标识符。如果为 0，钩子子程与所有的线程关联，即为全局钩子。
+                */
+
+                // 如果设置钩子失败
+                if (hKeyobardHook == 0)
+                {
+                    HookStop();
+                    throw new Exception("SetWindowsHookEx failed.");
+                }
+            }
+
+            if (hMouseHook == 0)
+            {
+                hMouseHook =
+                    SetWindowsHookEx(
+                        14,
+                        new HookProc(MouseHookProc),
+                        Marshal.GetHINSTANCE(
+                            Assembly.GetExecutingAssembly().GetModules()[0]),
+                        0);
+
+                if (hMouseHook == 0)
+                {
+                    HookStop();
+                    throw new Exception("SetWindowsHookEx failed.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 卸载钩子
+        /// </summary>
+        private void HookStop()
+        {
+            bool retKeyboard = true;
+            if (hKeyobardHook != 0)
+            {
+                retKeyboard = UnhookWindowsHookEx(hKeyobardHook);
+                hKeyobardHook = 0;
+            }
+            if (!retKeyboard)
+            {
+                throw new Exception("UnhookWindowsHookEx failed.");
+            }
+
+            bool retMouse = true;
+            if (hMouseHook != 0)
+            {
+                retMouse = UnhookWindowsHookEx(hMouseHook);
+                hMouseHook = 0;
+            }
+            if (!retMouse)
+                throw new Exception("UnhookWindowsHookEx failed.");
+        }
+
+
+        private int KeyboardHookProc(int nCode, int wParam, IntPtr lParam)
+        {
+            if (nCode >= 0)
+            {
+                // 线程键盘钩子判断是否按下键
+                Keys keyData = (Keys)wParam;
+                if (lParam.ToInt32() > 0)
+                {
+                    // 键盘按下
+                }
+                if (lParam.ToInt32() < 0)
+                {
+                    // 键盘抬起
+                }
+
+                /*
+                wParam==0x100       // 键盘按下
+                wParam==0x101       // 键盘抬起
+                */
+
+                KeyMSG m = (KeyMSG)Marshal.PtrToStructure(lParam, typeof(KeyMSG));
+
+                #region 在这里添加想要做的事情
+                lock (lockObject)
+                {
+                    lastKBMouseActionTime = DateTime.Now;
+                }
+                #endregion
+
+                // 如果返回 1，则结束消息，这个消息到此为止，不再传递。如果返回 0 或调用
+                // CallNextHookEx 函数，则消息出了这个钩子继续往下传递，也就是传给消息
+                // 真正的接受者
+                return 0;
+            }
+
+            return CallNextHookEx(hKeyobardHook, nCode, wParam, lParam);
+        }
+
+        private int MouseHookProc(int nCode, int wParam, IntPtr lParam)
+        {
+            MouseHookStruct MyMouseHookStruct = 
+                (MouseHookStruct)Marshal.PtrToStructure(
+                    lParam, 
+                    typeof(MouseHookStruct));
+            if (nCode < 0)
+            {
+                return CallNextHookEx(hMouseHook, nCode, wParam, lParam);
+            }
+            else
+            {
+                #region 在这里添加想要做的事情
+                lock(lockObject)
+                {
+                    lastKBMouseActionTime = DateTime.Now;
+                }
+                #endregion
+
+                return CallNextHookEx(hMouseHook, nCode, wParam, lParam);
+            }
+        }
+        #endregion
 
         public frmFVSCell_Visteon()
         {
@@ -64,7 +289,26 @@ namespace IRAP_FVS_LSSIVO
                 GetMacAddress();
             #endregion
 
+            notifyIcon.Icon = Icon;
+
             lblLineName.Parent = picLineName;
+        }
+
+        private void ShowForm()
+        {
+            notifyIcon.Visible = false;
+            Show();
+        }
+
+        private void HideForm()
+        {
+            lock (lockObject)
+            {
+                lastKBMouseActionTime = DateTime.Now;
+            }
+
+            notifyIcon.Visible = true;
+            Hide();
         }
 
         /// <summary>
@@ -318,13 +562,10 @@ namespace IRAP_FVS_LSSIVO
         {
         }
 
-        private void lblLineName_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void frmFVSCell_Visteon_Load(object sender, EventArgs e)
         {
+            notifyIcon.Text = "IRAP-FVS 线边客户端";
+
             WindowState = FormWindowState.Maximized;
 
             pnlTop.Height = Height / 2;
@@ -345,18 +586,91 @@ namespace IRAP_FVS_LSSIVO
             }
             #endregion
 
+            HookStart();
+
             RefreshProductionLineInfo();
         }
 
         private void timerRefresh_Tick(object sender, EventArgs e)
         {
-            TimeSpan span = DateTime.Now - LastUpdatedTime;
-            if (span.TotalMinutes > 2)
+            timerRefresh.Enabled = false;
+            try
             {
-                LastUpdatedTime = DateTime.Now;
+                #region 
+                if (!Visible)
+                {
+                    TimeSpan span = DateTime.Now - lastKBMouseActionTime;
+                    if (span.TotalSeconds >= 60)
+                    {
+                        ShowForm();
+                    }
+                }
+                #endregion
 
-                RefreshProductionLineInfo();
+                #region 刷新界面上的产线信息
+                {
+                    TimeSpan span = DateTime.Now - LastUpdatedTime;
+                    if (span.TotalMinutes > 2)
+                    {
+                        LastUpdatedTime = DateTime.Now;
+
+                        RefreshProductionLineInfo();
+                    }
+                }
+                #endregion
             }
+            finally
+            {
+                timerRefresh.Enabled = true;
+            }
+        }
+
+        private void btnMinimized_Click(object sender, EventArgs e)
+        {
+            HideForm();
+        }
+
+        private void tsmiQuit_Click(object sender, EventArgs e)
+        {
+            if (
+                IRAPMessageBox.Instance.Show(
+                    string.Format(
+                        "是否要退出[{0}]？",
+                        notifyIcon.Text),
+                    "系统信息",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                canClose = true;
+                Close();
+            }
+        }
+
+        private void frmFVSCell_Visteon_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (canClose)
+            {
+                HookStop();
+
+                e.Cancel = false;
+            }
+            else
+            {
+                HideForm();
+
+                e.Cancel = true;
+            }
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            ShowForm();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

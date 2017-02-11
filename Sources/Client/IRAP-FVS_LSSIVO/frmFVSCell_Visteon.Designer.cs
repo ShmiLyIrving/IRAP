@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFVSCell_Visteon));
             this.pnlFirstQuadrant = new DevExpress.XtraEditors.PanelControl();
             this.picCustomLogo = new System.Windows.Forms.PictureBox();
             this.picCompanyLogo = new System.Windows.Forms.PictureBox();
@@ -56,8 +57,15 @@
             this.tpPCChart = new DevExpress.XtraTab.XtraTabPage();
             this.tpManningLoop = new DevExpress.XtraTab.XtraTabPage();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnMinimized = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBotton = new DevExpress.XtraEditors.PanelControl();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiQuit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFirstQuadrant)).BeginInit();
             this.pnlFirstQuadrant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomLogo)).BeginInit();
@@ -79,8 +87,13 @@
             this.tpECNtoline.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
+            this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBotton)).BeginInit();
             this.pnlBotton.SuspendLayout();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFirstQuadrant
@@ -152,7 +165,6 @@
             this.lblLineName.Size = new System.Drawing.Size(544, 64);
             this.lblLineName.TabIndex = 0;
             this.lblLineName.Text = "当前站点未配置产线信息";
-            this.lblLineName.Click += new System.EventHandler(this.lblLineName_Click);
             // 
             // picLineName
             // 
@@ -176,10 +188,10 @@
             this.pnlBTS.Controls.Add(this.ucAndonStatus);
             this.pnlBTS.Controls.Add(this.ucKPIBTS);
             this.pnlBTS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBTS.Location = new System.Drawing.Point(554, 0);
+            this.pnlBTS.Location = new System.Drawing.Point(0, 34);
             this.pnlBTS.Name = "pnlBTS";
             this.pnlBTS.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlBTS.Size = new System.Drawing.Size(522, 394);
+            this.pnlBTS.Size = new System.Drawing.Size(522, 360);
             this.pnlBTS.TabIndex = 1;
             // 
             // panelControl1
@@ -190,7 +202,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(5, 224);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(512, 165);
+            this.panelControl1.Size = new System.Drawing.Size(512, 131);
             this.panelControl1.TabIndex = 3;
             // 
             // ucFTT
@@ -202,7 +214,7 @@
             this.ucFTT.Location = new System.Drawing.Point(0, 0);
             this.ucFTT.Name = "ucFTT";
             this.ucFTT.Padding = new System.Windows.Forms.Padding(5);
-            this.ucFTT.Size = new System.Drawing.Size(192, 165);
+            this.ucFTT.Size = new System.Drawing.Size(192, 131);
             this.ucFTT.TabIndex = 1;
             // 
             // ucOperatorSkillsMatrix
@@ -212,7 +224,7 @@
             this.ucOperatorSkillsMatrix.Dock = System.Windows.Forms.DockStyle.Right;
             this.ucOperatorSkillsMatrix.Location = new System.Drawing.Point(192, 0);
             this.ucOperatorSkillsMatrix.Name = "ucOperatorSkillsMatrix";
-            this.ucOperatorSkillsMatrix.Size = new System.Drawing.Size(320, 165);
+            this.ucOperatorSkillsMatrix.Size = new System.Drawing.Size(320, 131);
             this.ucOperatorSkillsMatrix.TabIndex = 0;
             // 
             // ucOpenPWOs
@@ -360,13 +372,59 @@
             this.pnlTop.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pnlTop.Appearance.Options.UseBackColor = true;
             this.pnlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnlTop.Controls.Add(this.pnlBTS);
+            this.pnlTop.Controls.Add(this.panelControl3);
             this.pnlTop.Controls.Add(this.pnlFirstQuadrant);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(5, 5);
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(1076, 394);
             this.pnlTop.TabIndex = 4;
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl3.Controls.Add(this.pnlBTS);
+            this.panelControl3.Controls.Add(this.panelControl4);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl3.Location = new System.Drawing.Point(554, 0);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(522, 394);
+            this.panelControl3.TabIndex = 2;
+            // 
+            // panelControl4
+            // 
+            this.panelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl4.Controls.Add(this.btnClose);
+            this.panelControl4.Controls.Add(this.btnMinimized);
+            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl4.Location = new System.Drawing.Point(0, 0);
+            this.panelControl4.Name = "panelControl4";
+            this.panelControl4.Size = new System.Drawing.Size(522, 34);
+            this.panelControl4.TabIndex = 2;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnClose.Location = new System.Drawing.Point(490, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(27, 23);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnMinimized
+            // 
+            this.btnMinimized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimized.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnMinimized.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimized.Image")));
+            this.btnMinimized.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnMinimized.Location = new System.Drawing.Point(458, 5);
+            this.btnMinimized.Name = "btnMinimized";
+            this.btnMinimized.Size = new System.Drawing.Size(27, 23);
+            this.btnMinimized.TabIndex = 0;
+            this.btnMinimized.Click += new System.EventHandler(this.btnMinimized_Click);
             // 
             // pnlBotton
             // 
@@ -387,6 +445,27 @@
             this.timerRefresh.Interval = 1000;
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
+            this.notifyIcon.Text = "notifyIcon1";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiQuit});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(101, 26);
+            // 
+            // tsmiQuit
+            // 
+            this.tsmiQuit.Name = "tsmiQuit";
+            this.tsmiQuit.Size = new System.Drawing.Size(100, 22);
+            this.tsmiQuit.Text = "退出";
+            this.tsmiQuit.Click += new System.EventHandler(this.tsmiQuit_Click);
+            // 
             // frmFVSCell_Visteon
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -400,9 +479,11 @@
             this.DoubleBuffered = true;
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmFVSCell_Visteon";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFVSCell_Visteon_FormClosing);
             this.Load += new System.EventHandler(this.frmFVSCell_Visteon_Load);
             this.Shown += new System.EventHandler(this.frmFVSCell_Visteon_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pnlFirstQuadrant)).EndInit();
@@ -426,8 +507,13 @@
             this.tpECNtoline.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
+            this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBotton)).EndInit();
             this.pnlBotton.ResumeLayout(false);
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -463,5 +549,12 @@
         private UserControls.ucOperatorSkillsMatrix ucOperatorSkillsMatrix;
         private UserControls.ucFTT ucFTT;
         private System.Windows.Forms.Timer timerRefresh;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.PanelControl panelControl4;
+        private DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraEditors.SimpleButton btnMinimized;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQuit;
     }
 }
