@@ -71,6 +71,7 @@
     <Compile Include="MES\LabelFMTStr.cs" />
     <Compile Include="MES\PackageType.cs" />
     <Compile Include="MES\ProducingPWOFromWorkUnit.cs" />
+    <Compile Include="MES\RSFactTestData.cs" />
     <Compile Include="MES\TBL_AuxFact_PDC.cs" />
     <Compile Include="MES\TBL_FixedFact_MES.cs" />
     <Compile Include="MES\PCBSymbols.cs" />

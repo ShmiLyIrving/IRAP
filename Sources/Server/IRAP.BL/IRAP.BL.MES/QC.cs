@@ -7,6 +7,7 @@ using System.Reflection;
 
 using IRAP.Global;
 using IRAP.Entity.MES;
+using IRAP.Entities.MES;
 using IRAPORM;
 using IRAPShared;
 
@@ -353,6 +354,91 @@ namespace IRAP.BL.MES
                         ErrCode = errCode,
                         ErrText = errText,
                     });
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取测试数据采集行集事实(测试数据)
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="rsFactPK">行集事实分区键</param>
+        /// <param name="factID">事实编号</param>
+        /// <param name="failOnly">是否仅包括失败的测试项</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[RSFactTestData]</returns>
+        public IRAPJsonResult ufn_GetRSFact_TestData(
+            int communityID,
+            long rsFactPK,
+            long factID,
+            bool failOnly,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<RSFactTestData> datas = new List<RSFactTestData>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@RSFactPK", DbType.Int64, rsFactPK));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@FailOnly", DbType.Boolean, failOnly));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES..ufn_GetRSFact_TestData，" +
+                        "参数：CommunityID={0}|RSFactPK={1}|FactID={2}|" +
+                        "FailOnly={3}|SysLogID={4}",
+                        communityID, rsFactPK, factID, failOnly,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetRSFact_TestData(" +
+                            "@CommunityID, @RSFactPK, @FactID, " +
+                            "@FailOnly, @SysLogID)" +
+                            "ORDER BY Ordinal";
+
+                        IList<RSFactTestData> lstDatas =
+                            conn.CallTableFunc<RSFactTestData>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetRSFact_TestData 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
             }
             finally
             {
