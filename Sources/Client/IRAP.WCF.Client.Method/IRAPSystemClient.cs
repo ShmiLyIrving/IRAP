@@ -608,6 +608,77 @@ namespace IRAP.WCF.Client.Method
             }
         }
 
+        /// <summary>
+        /// 功能站点注册
+        /// </summary>
+        /// <param name="stationID">站点编号</param>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="funcGroupID">功能组标识</param>
+        /// <param name="templateSTN">模板站点号</param>
+        public void ssp_RegistStation(
+            string stationID, 
+            int communityID, 
+            int funcGroupID, 
+            string templateSTN, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("stationID", stationID);
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("funcGroupID", funcGroupID);
+                    hashParams.Add("templateSTN", templateSTN);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行存储过程 ssp_RegistStation，输入参数：" +
+                            "StationID={0}|CommunityID={1}|FuncGroupID={2}|"+
+                            "TemplateSTN={3}",
+                            stationID, communityID, funcGroupID, templateSTN),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.SSO.dll",
+                        "IRAP.BL.SSO.IRAPRegister",
+                        "ssp_RegistStation",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         /// <param name="communityID">社区标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         public void sfn_GetInfo_Station(int communityID, long sysLogID, ref StationInfo station, out int errCode, out string errText)

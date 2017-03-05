@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP-FVS_LSSIVO.exe" version="6.1.6154.18978" md5="53e4458a6ae66d7fbb1b70c1d92ee153" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP-FVS_LSSIVO.exe" version="6.1.6260.34128" md5="ecc0895f1a69345fdbb26b6aec774249" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Charts.v15.2.Core.dll" version="15.2.4.0" md5="c432052af8d3b4e8fa204ac9c08b7238" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Data.v15.2.dll" version="15.2.4.0" md5="62049e84c443f5515bfb9873582d9784" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.Office.v15.2.Core.dll" version="15.2.4.0" md5="74cebbf6d4e81c747ca87a4940070b6d" selected="True"/>
@@ -23,18 +23,18 @@
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraRichEdit.v15.2.dll" version="15.2.4.0" md5="b21f77e1aa88f863304ada846439eac5" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraTreeList.v15.2.dll" version="15.2.4.0" md5="961efb13ce48f9043d0d830f74e95456" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\DevExpress.XtraVerticalGrid.v15.2.dll" version="15.2.4.0" md5="10ead62346cb080fb15c2cd8b71a19d1" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.AutoUpgrade.dll" version="6.1.6149.21188" md5="fabab5b2c18ca119614f27b1b9e7b2f3" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Client.Global.dll" version="6.1.6149.21188" md5="2108c25ecbb629b9dfefc3e35dfcea4b" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.AutoUpgrade.dll" version="6.1.6234.22053" md5="2baec7aff012d12e8f5a855afb96e4da" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Client.Global.dll" version="6.1.6248.16900" md5="e4a990169f7646be8185d7cf5cedfda2" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Client.Global.Resources.dll" version="6.1.6146.30385" md5="376180bbde4c8e3eb9ee52f00a06be96" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.FVS.dll" version="6.1.6149.21188" md5="a10c1767da5e65c95b83b91fea2d1a70" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.Kanban.dll" version="6.1.6149.21187" md5="1de3fd610cc7a5ea5dc319e4fdb2b40c" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.MDM.dll" version="6.1.6148.25450" md5="403b73ae65ebb4f0ca633a65507d8658" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.MES.dll" version="6.1.6149.21188" md5="61262f13fe2d836a6219d3d05cfbecf7" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.SSO.dll" version="6.1.6151.25850" md5="7933801c673fe1b91969328d859da57e" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Global.dll" version="6.1.6148.25449" md5="b2b77696f561e85815bf4bd21402caaa" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.WCF.Client.dll" version="6.1.6149.21187" md5="aaca1b5cc73c66a48f47a777b4c65cb4" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.WCF.Client.Method.dll" version="6.1.6154.18810" md5="3d839198b54e11722160a98225d80f77" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAPShared.dll" version="6.0.5636.21648" md5="fdf1fac150a339e4b0712f72e8270782" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.FVS.dll" version="6.1.6234.22052" md5="1f9f63e55a264d99f938c3b6937ab304" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.Kanban.dll" version="6.1.6234.22052" md5="1330dcc58b76dbd7d1a89fdb8ce4ee6b" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.MDM.dll" version="6.1.6234.22052" md5="46952c39e9fdc860a39130f05ad55d23" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.MES.dll" version="6.1.6234.22052" md5="d30332315650ec8cb71e48ef028098c5" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Entity.SSO.dll" version="6.1.6234.22052" md5="cc5742f1ff919f3e44d52305e5338dcb" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.Global.dll" version="6.1.6234.22052" md5="01093c262f710de2ad2bded315fa5961" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.WCF.Client.dll" version="6.1.6234.22052" md5="99cf78f245d30be7e4507da7cf8ad50d" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAP.WCF.Client.Method.dll" version="6.1.6234.22053" md5="fbeb7f2edb257cb1cb2e6a58453ff743" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\IRAPShared.dll" version="6.0.5636.21648" md5="016e8c550f303f3cf52e0ac30a9b9488" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\Newtonsoft.Json.dll" version="4.5.11.15520" md5="8611795b70cd1f321cb5cb5aad95ff7b" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_LSSIVO\Release\Oracle.DataAccess.dll" version="4.112.3.0" md5="3bf768bc471e2effa78594703d12be89" selected="True"/>
 </root>

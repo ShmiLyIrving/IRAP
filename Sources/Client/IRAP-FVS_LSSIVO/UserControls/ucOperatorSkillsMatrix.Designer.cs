@@ -49,10 +49,14 @@
             this.grdvOperatorSkillMatrixs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnT216Name1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnT216Name2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.vgrdOperatorSkills = new DevExpress.XtraVerticalGrid.VGridControl();
+            this.rowT216Name = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.rowUserName = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdOperatorSkillMatrixs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOperatorSkillMatrixs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vgrdOperatorSkills)).BeginInit();
             this.SuspendLayout();
             // 
             // grdclmnQualificationLevel1
@@ -163,6 +167,7 @@
             this.grdOperatorSkillMatrixs.TabStop = false;
             this.grdOperatorSkillMatrixs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvOperatorSkillMatrixs});
+            this.grdOperatorSkillMatrixs.Visible = false;
             // 
             // grdvOperatorSkillMatrixs
             // 
@@ -256,12 +261,105 @@
             this.grdclmnT216Name2.Visible = true;
             this.grdclmnT216Name2.VisibleIndex = 2;
             // 
+            // vgrdOperatorSkills
+            // 
+            this.vgrdOperatorSkills.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.vgrdOperatorSkills.Appearance.BandBorder.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.BandBorder.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.BandBorder.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.Category.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.Category.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.Category.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.CategoryExpandButton.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.CategoryExpandButton.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.CategoryExpandButton.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.DisabledRecordValue.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.DisabledRecordValue.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.DisabledRecordValue.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.DisabledRow.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.DisabledRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.DisabledRow.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.Empty.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.Empty.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.Empty.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ExpandButton.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.ExpandButton.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ExpandButton.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.FixedLine.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.FixedLine.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.FixedLine.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.FocusedCell.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.FocusedCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.FocusedCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.FocusedRecord.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.FocusedRecord.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.FocusedRecord.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.FocusedRow.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.FocusedRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.FocusedRow.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.HideSelectionRow.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.HideSelectionRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.HideSelectionRow.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.HorzLine.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.HorzLine.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.HorzLine.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ModifiedRecordValue.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.ModifiedRecordValue.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ModifiedRecordValue.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ModifiedRow.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.ModifiedRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ModifiedRow.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.PressedRow.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.PressedRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.PressedRow.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ReadOnlyRecordValue.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.ReadOnlyRecordValue.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ReadOnlyRecordValue.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ReadOnlyRow.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.ReadOnlyRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.ReadOnlyRow.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.RecordValue.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.RecordValue.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.RecordValue.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.RowHeaderPanel.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.RowHeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.RowHeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.VertLine.Options.UseTextOptions = true;
+            this.vgrdOperatorSkills.Appearance.VertLine.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.vgrdOperatorSkills.Appearance.VertLine.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.vgrdOperatorSkills.Location = new System.Drawing.Point(8, 31);
+            this.vgrdOperatorSkills.Name = "vgrdOperatorSkills";
+            this.vgrdOperatorSkills.OptionsBehavior.Editable = false;
+            this.vgrdOperatorSkills.RecordWidth = 74;
+            this.vgrdOperatorSkills.RowHeaderWidth = 67;
+            this.vgrdOperatorSkills.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
+            this.rowT216Name,
+            this.rowUserName});
+            this.vgrdOperatorSkills.Size = new System.Drawing.Size(496, 268);
+            this.vgrdOperatorSkills.TabIndex = 15;
+            this.vgrdOperatorSkills.CustomDrawRowValueCell += new DevExpress.XtraVerticalGrid.Events.CustomDrawRowValueCellEventHandler(this.vgrdOperatorSkills_CustomDrawRowValueCell);
+            // 
+            // rowT216Name
+            // 
+            this.rowT216Name.Name = "rowT216Name";
+            this.rowT216Name.Properties.Caption = "职务";
+            this.rowT216Name.Properties.FieldName = "T216Name";
+            // 
+            // rowUserName
+            // 
+            this.rowUserName.Name = "rowUserName";
+            this.rowUserName.Properties.Caption = "姓名";
+            this.rowUserName.Properties.FieldName = "UserName";
+            // 
             // ucOperatorSkillsMatrix
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.vgrdOperatorSkills);
             this.Controls.Add(this.grdOperatorSkillMatrixs);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
@@ -274,6 +372,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdOperatorSkillMatrixs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOperatorSkillMatrixs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vgrdOperatorSkills)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,5 +393,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnUserName2;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnQualificationLevel1;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnQualificationLevel2;
+        private DevExpress.XtraVerticalGrid.VGridControl vgrdOperatorSkills;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowT216Name;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowUserName;
     }
 }

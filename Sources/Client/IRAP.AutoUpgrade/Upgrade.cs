@@ -390,6 +390,18 @@ namespace IRAP.AutoUpgrade
                     File.Delete(dstFileName);
 
                 frmShowUpgrade.Instance.Message = "";
+
+                //try
+                //{
+                //    using (Command cmd = new Command())
+                //    {
+                //        cmd.RunCmd("ewfmgr c: -commit");
+                //    }
+                //}
+                //catch (Exception error)
+                //{
+                //    WriteLog.Instance.Write(error.Message, strProcedureName);
+                //}
             }
         }
 

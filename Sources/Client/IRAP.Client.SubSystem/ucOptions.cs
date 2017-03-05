@@ -66,7 +66,7 @@ namespace IRAP.Client.SubSystem
                 #region 获取当前站点的可用产品/流程列表
                 try
                 {
-                    AvailableProcesses.Instance.GetProcesses(
+                    AvailableWIPStations.Instance.GetWIPStations(
                         IRAPUser.Instance.CommunityID,
                         IRAPUser.Instance.SysLogID);
                 }
@@ -84,7 +84,7 @@ namespace IRAP.Client.SubSystem
 
                 #region 将获取的产品/流程列表加入下拉列表中
                 cboProcesses.Properties.Items.Clear();
-                foreach (ProcessInfo process in AvailableProcesses.Instance.Processes)
+                foreach (ProcessInfo process in AvailableWIPStations.Instance.Processes)
                     cboProcesses.Properties.Items.Add(process);
 
                 if (cboProcesses.Properties.Items.Count > 0)
@@ -116,7 +116,7 @@ namespace IRAP.Client.SubSystem
 
         public void RefreshOptions(int t102LeafID)
         {
-            foreach (ProcessInfo process in AvailableProcesses.Instance.Processes)
+            foreach (ProcessInfo process in AvailableWIPStations.Instance.Processes)
             {
                 if (process.T102LeafID == t102LeafID)
                 {
@@ -156,7 +156,7 @@ namespace IRAP.Client.SubSystem
                 {
                     if (Visible)
                     {
-                        if (AvailableProcesses.Instance.Processes.Count == 0)
+                        if (AvailableWIPStations.Instance.Processes.Count == 0)
                             RefreshOptions();
                     }
                 }

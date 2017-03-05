@@ -46,8 +46,7 @@
             this.ucKPIBTS = new IRAP_FVS_LSSIVO.UserControls.ucKPIBTS();
             this.pnlThirdQuadrant = new DevExpress.XtraEditors.PanelControl();
             this.ucOnePointLessons = new IRAP_FVS_LSSIVO.UserControls.ucOnePointLessons();
-            this.pnlECNtoLine = new DevExpress.XtraEditors.PanelControl();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.tcECNtoLine = new DevExpress.XtraTab.XtraTabControl();
             this.tpECNtoline = new DevExpress.XtraTab.XtraTabPage();
             this.ucECNtoLine = new IRAP_FVS_LSSIVO.UserControls.ucECNtoLine();
             this.tpControlPlan = new DevExpress.XtraTab.XtraTabPage();
@@ -57,15 +56,15 @@
             this.tpPCChart = new DevExpress.XtraTab.XtraTabPage();
             this.tpManningLoop = new DevExpress.XtraTab.XtraTabPage();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnMinimized = new DevExpress.XtraEditors.SimpleButton();
-            this.pnlBotton = new DevExpress.XtraEditors.PanelControl();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainerBody = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerLeft = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerRight = new DevExpress.XtraEditors.SplitContainerControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFirstQuadrant)).BeginInit();
             this.pnlFirstQuadrant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomLogo)).BeginInit();
@@ -80,20 +79,18 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlThirdQuadrant)).BeginInit();
             this.pnlThirdQuadrant.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlECNtoLine)).BeginInit();
-            this.pnlECNtoLine.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tcECNtoLine)).BeginInit();
+            this.tcECNtoLine.SuspendLayout();
             this.tpECNtoline.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
-            this.panelControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlBotton)).BeginInit();
-            this.pnlBotton.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBody)).BeginInit();
+            this.splitContainerBody.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
+            this.splitContainerLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerRight)).BeginInit();
+            this.splitContainerRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFirstQuadrant
@@ -104,37 +101,38 @@
             this.pnlFirstQuadrant.Controls.Add(this.picCustomLogo);
             this.pnlFirstQuadrant.Controls.Add(this.picCompanyLogo);
             this.pnlFirstQuadrant.Controls.Add(this.picProduction);
-            this.pnlFirstQuadrant.Controls.Add(this.panelControl2);
-            this.pnlFirstQuadrant.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlFirstQuadrant.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlFirstQuadrant.Location = new System.Drawing.Point(0, 0);
             this.pnlFirstQuadrant.Name = "pnlFirstQuadrant";
-            this.pnlFirstQuadrant.Size = new System.Drawing.Size(554, 394);
+            this.pnlFirstQuadrant.Size = new System.Drawing.Size(550, 220);
             this.pnlFirstQuadrant.TabIndex = 0;
             // 
             // picCustomLogo
             // 
-            this.picCustomLogo.Location = new System.Drawing.Point(126, 75);
+            this.picCustomLogo.Location = new System.Drawing.Point(131, 6);
             this.picCustomLogo.Name = "picCustomLogo";
             this.picCustomLogo.Size = new System.Drawing.Size(120, 120);
             this.picCustomLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picCustomLogo.TabIndex = 4;
             this.picCustomLogo.TabStop = false;
+            this.picCustomLogo.Visible = false;
             // 
             // picCompanyLogo
             // 
-            this.picCompanyLogo.Location = new System.Drawing.Point(0, 75);
+            this.picCompanyLogo.Location = new System.Drawing.Point(5, 6);
             this.picCompanyLogo.Name = "picCompanyLogo";
             this.picCompanyLogo.Size = new System.Drawing.Size(120, 120);
             this.picCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picCompanyLogo.TabIndex = 3;
             this.picCompanyLogo.TabStop = false;
+            this.picCompanyLogo.Visible = false;
             // 
             // picProduction
             // 
             this.picProduction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picProduction.Location = new System.Drawing.Point(0, 74);
+            this.picProduction.Location = new System.Drawing.Point(0, 0);
             this.picProduction.Name = "picProduction";
-            this.picProduction.Size = new System.Drawing.Size(554, 320);
+            this.picProduction.Size = new System.Drawing.Size(550, 220);
             this.picProduction.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picProduction.TabIndex = 1;
             this.picProduction.TabStop = false;
@@ -144,11 +142,11 @@
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl2.Controls.Add(this.lblLineName);
             this.panelControl2.Controls.Add(this.picLineName);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Padding = new System.Windows.Forms.Padding(5);
-            this.panelControl2.Size = new System.Drawing.Size(554, 74);
+            this.panelControl2.Size = new System.Drawing.Size(1033, 65);
             this.panelControl2.TabIndex = 2;
             // 
             // lblLineName
@@ -162,7 +160,7 @@
             this.lblLineName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLineName.Location = new System.Drawing.Point(5, 5);
             this.lblLineName.Name = "lblLineName";
-            this.lblLineName.Size = new System.Drawing.Size(544, 64);
+            this.lblLineName.Size = new System.Drawing.Size(1023, 55);
             this.lblLineName.TabIndex = 0;
             this.lblLineName.Text = "当前站点未配置产线信息";
             // 
@@ -173,7 +171,7 @@
             this.picLineName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picLineName.Location = new System.Drawing.Point(5, 5);
             this.picLineName.Name = "picLineName";
-            this.picLineName.Size = new System.Drawing.Size(544, 64);
+            this.picLineName.Size = new System.Drawing.Size(1023, 55);
             this.picLineName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picLineName.TabIndex = 1;
             this.picLineName.TabStop = false;
@@ -188,10 +186,10 @@
             this.pnlBTS.Controls.Add(this.ucAndonStatus);
             this.pnlBTS.Controls.Add(this.ucKPIBTS);
             this.pnlBTS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBTS.Location = new System.Drawing.Point(0, 34);
+            this.pnlBTS.Location = new System.Drawing.Point(0, 0);
             this.pnlBTS.Name = "pnlBTS";
             this.pnlBTS.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlBTS.Size = new System.Drawing.Size(522, 360);
+            this.pnlBTS.Size = new System.Drawing.Size(532, 394);
             this.pnlBTS.TabIndex = 1;
             // 
             // panelControl1
@@ -202,7 +200,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(5, 224);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(512, 131);
+            this.panelControl1.Size = new System.Drawing.Size(522, 165);
             this.panelControl1.TabIndex = 3;
             // 
             // ucFTT
@@ -214,7 +212,7 @@
             this.ucFTT.Location = new System.Drawing.Point(0, 0);
             this.ucFTT.Name = "ucFTT";
             this.ucFTT.Padding = new System.Windows.Forms.Padding(5);
-            this.ucFTT.Size = new System.Drawing.Size(192, 131);
+            this.ucFTT.Size = new System.Drawing.Size(64, 165);
             this.ucFTT.TabIndex = 1;
             // 
             // ucOperatorSkillsMatrix
@@ -222,9 +220,9 @@
             this.ucOperatorSkillsMatrix.Appearance.BackColor = System.Drawing.Color.White;
             this.ucOperatorSkillsMatrix.Appearance.Options.UseBackColor = true;
             this.ucOperatorSkillsMatrix.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ucOperatorSkillsMatrix.Location = new System.Drawing.Point(192, 0);
+            this.ucOperatorSkillsMatrix.Location = new System.Drawing.Point(64, 0);
             this.ucOperatorSkillsMatrix.Name = "ucOperatorSkillsMatrix";
-            this.ucOperatorSkillsMatrix.Size = new System.Drawing.Size(320, 131);
+            this.ucOperatorSkillsMatrix.Size = new System.Drawing.Size(458, 165);
             this.ucOperatorSkillsMatrix.TabIndex = 0;
             // 
             // ucOpenPWOs
@@ -235,7 +233,7 @@
             this.ucOpenPWOs.Location = new System.Drawing.Point(5, 141);
             this.ucOpenPWOs.Name = "ucOpenPWOs";
             this.ucOpenPWOs.Padding = new System.Windows.Forms.Padding(5);
-            this.ucOpenPWOs.Size = new System.Drawing.Size(512, 83);
+            this.ucOpenPWOs.Size = new System.Drawing.Size(522, 83);
             this.ucOpenPWOs.TabIndex = 2;
             // 
             // ucAndonStatus
@@ -245,7 +243,7 @@
             this.ucAndonStatus.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucAndonStatus.Location = new System.Drawing.Point(5, 91);
             this.ucAndonStatus.Name = "ucAndonStatus";
-            this.ucAndonStatus.Size = new System.Drawing.Size(512, 50);
+            this.ucAndonStatus.Size = new System.Drawing.Size(522, 50);
             this.ucAndonStatus.TabIndex = 1;
             // 
             // ucKPIBTS
@@ -253,7 +251,7 @@
             this.ucKPIBTS.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucKPIBTS.Location = new System.Drawing.Point(5, 5);
             this.ucKPIBTS.Name = "ucKPIBTS";
-            this.ucKPIBTS.Size = new System.Drawing.Size(512, 86);
+            this.ucKPIBTS.Size = new System.Drawing.Size(522, 86);
             this.ucKPIBTS.TabIndex = 0;
             // 
             // pnlThirdQuadrant
@@ -262,11 +260,11 @@
             this.pnlThirdQuadrant.Appearance.Options.UseBackColor = true;
             this.pnlThirdQuadrant.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlThirdQuadrant.Controls.Add(this.ucOnePointLessons);
-            this.pnlThirdQuadrant.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlThirdQuadrant.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlThirdQuadrant.Location = new System.Drawing.Point(0, 0);
             this.pnlThirdQuadrant.Name = "pnlThirdQuadrant";
             this.pnlThirdQuadrant.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlThirdQuadrant.Size = new System.Drawing.Size(488, 351);
+            this.pnlThirdQuadrant.Size = new System.Drawing.Size(550, 464);
             this.pnlThirdQuadrant.TabIndex = 2;
             // 
             // ucOnePointLessons
@@ -276,35 +274,22 @@
             this.ucOnePointLessons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucOnePointLessons.Location = new System.Drawing.Point(5, 5);
             this.ucOnePointLessons.Name = "ucOnePointLessons";
-            this.ucOnePointLessons.Size = new System.Drawing.Size(478, 341);
+            this.ucOnePointLessons.Size = new System.Drawing.Size(540, 454);
             this.ucOnePointLessons.TabIndex = 0;
             // 
-            // pnlECNtoLine
+            // tcECNtoLine
             // 
-            this.pnlECNtoLine.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pnlECNtoLine.Appearance.Options.UseBackColor = true;
-            this.pnlECNtoLine.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnlECNtoLine.Controls.Add(this.xtraTabControl1);
-            this.pnlECNtoLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlECNtoLine.Location = new System.Drawing.Point(488, 0);
-            this.pnlECNtoLine.Name = "pnlECNtoLine";
-            this.pnlECNtoLine.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlECNtoLine.Size = new System.Drawing.Size(588, 351);
-            this.pnlECNtoLine.TabIndex = 3;
-            // 
-            // xtraTabControl1
-            // 
-            this.xtraTabControl1.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.xtraTabControl1.Appearance.Options.UseFont = true;
-            this.xtraTabControl1.AppearancePage.Header.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.xtraTabControl1.AppearancePage.Header.Options.UseFont = true;
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(5, 5);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.tpECNtoline;
-            this.xtraTabControl1.Size = new System.Drawing.Size(578, 341);
-            this.xtraTabControl1.TabIndex = 0;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.tcECNtoLine.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tcECNtoLine.Appearance.Options.UseFont = true;
+            this.tcECNtoLine.AppearancePage.Header.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tcECNtoLine.AppearancePage.Header.Options.UseFont = true;
+            this.tcECNtoLine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcECNtoLine.Location = new System.Drawing.Point(0, 0);
+            this.tcECNtoLine.Name = "tcECNtoLine";
+            this.tcECNtoLine.SelectedTabPage = this.tpECNtoline;
+            this.tcECNtoLine.Size = new System.Drawing.Size(532, 290);
+            this.tcECNtoLine.TabIndex = 0;
+            this.tcECNtoLine.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpECNtoline,
             this.tpControlPlan,
             this.tpFlowChart,
@@ -318,7 +303,7 @@
             this.tpECNtoline.Controls.Add(this.ucECNtoLine);
             this.tpECNtoline.InvertTouchScroll = true;
             this.tpECNtoline.Name = "tpECNtoline";
-            this.tpECNtoline.Size = new System.Drawing.Size(572, 312);
+            this.tpECNtoline.Size = new System.Drawing.Size(526, 261);
             this.tpECNtoline.Text = "ECN to line";
             // 
             // ucECNtoLine
@@ -328,116 +313,86 @@
             this.ucECNtoLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucECNtoLine.Location = new System.Drawing.Point(0, 0);
             this.ucECNtoLine.Name = "ucECNtoLine";
-            this.ucECNtoLine.Size = new System.Drawing.Size(572, 312);
+            this.ucECNtoLine.Size = new System.Drawing.Size(526, 261);
             this.ucECNtoLine.TabIndex = 0;
             // 
             // tpControlPlan
             // 
             this.tpControlPlan.Name = "tpControlPlan";
-            this.tpControlPlan.Size = new System.Drawing.Size(572, 312);
+            this.tpControlPlan.Size = new System.Drawing.Size(526, 261);
             this.tpControlPlan.Text = "Control Plan";
             // 
             // tpFlowChart
             // 
             this.tpFlowChart.Name = "tpFlowChart";
-            this.tpFlowChart.Size = new System.Drawing.Size(572, 312);
+            this.tpFlowChart.Size = new System.Drawing.Size(526, 261);
             this.tpFlowChart.Text = "Flow Chart";
             // 
             // tpOpenWork
             // 
             this.tpOpenWork.Name = "tpOpenWork";
-            this.tpOpenWork.Size = new System.Drawing.Size(572, 312);
+            this.tpOpenWork.Size = new System.Drawing.Size(526, 261);
             this.tpOpenWork.Text = "开班单";
             // 
             // tpLayout
             // 
             this.tpLayout.Name = "tpLayout";
-            this.tpLayout.Size = new System.Drawing.Size(572, 312);
+            this.tpLayout.Size = new System.Drawing.Size(526, 261);
             this.tpLayout.Text = "Layout";
             // 
             // tpPCChart
             // 
             this.tpPCChart.Name = "tpPCChart";
-            this.tpPCChart.Size = new System.Drawing.Size(572, 312);
+            this.tpPCChart.Size = new System.Drawing.Size(526, 261);
             this.tpPCChart.Text = "P/C-Chart";
             // 
             // tpManningLoop
             // 
             this.tpManningLoop.Name = "tpManningLoop";
-            this.tpManningLoop.Size = new System.Drawing.Size(572, 312);
+            this.tpManningLoop.Size = new System.Drawing.Size(526, 261);
             this.tpManningLoop.Text = "Manning Loop";
             // 
             // pnlTop
             // 
-            this.pnlTop.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTop.Appearance.Options.UseBackColor = true;
             this.pnlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnlTop.Controls.Add(this.panelControl3);
-            this.pnlTop.Controls.Add(this.pnlFirstQuadrant);
+            this.pnlTop.Controls.Add(this.panelControl2);
+            this.pnlTop.Controls.Add(this.btnMinimized);
+            this.pnlTop.Controls.Add(this.btnClose);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(5, 5);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1076, 394);
-            this.pnlTop.TabIndex = 4;
-            // 
-            // panelControl3
-            // 
-            this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl3.Controls.Add(this.pnlBTS);
-            this.panelControl3.Controls.Add(this.panelControl4);
-            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(554, 0);
-            this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(522, 394);
-            this.panelControl3.TabIndex = 2;
-            // 
-            // panelControl4
-            // 
-            this.panelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl4.Controls.Add(this.btnClose);
-            this.panelControl4.Controls.Add(this.btnMinimized);
-            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl4.Location = new System.Drawing.Point(0, 0);
-            this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(522, 34);
-            this.panelControl4.TabIndex = 2;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnClose.Location = new System.Drawing.Point(490, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(27, 23);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.pnlTop.Size = new System.Drawing.Size(1087, 65);
+            this.pnlTop.TabIndex = 2;
             // 
             // btnMinimized
             // 
-            this.btnMinimized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimized.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.btnMinimized.Appearance.Options.UseBackColor = true;
             this.btnMinimized.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnMinimized.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnMinimized.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimized.Image")));
             this.btnMinimized.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnMinimized.Location = new System.Drawing.Point(458, 5);
+            this.btnMinimized.Location = new System.Drawing.Point(1033, 0);
             this.btnMinimized.Name = "btnMinimized";
-            this.btnMinimized.Size = new System.Drawing.Size(27, 23);
+            this.btnMinimized.Size = new System.Drawing.Size(27, 65);
             this.btnMinimized.TabIndex = 0;
+            this.btnMinimized.TabStop = false;
             this.btnMinimized.Click += new System.EventHandler(this.btnMinimized_Click);
             // 
-            // pnlBotton
+            // btnClose
             // 
-            this.pnlBotton.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pnlBotton.Appearance.Options.UseBackColor = true;
-            this.pnlBotton.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnlBotton.Controls.Add(this.pnlECNtoLine);
-            this.pnlBotton.Controls.Add(this.pnlThirdQuadrant);
-            this.pnlBotton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBotton.Location = new System.Drawing.Point(5, 399);
-            this.pnlBotton.Name = "pnlBotton";
-            this.pnlBotton.Size = new System.Drawing.Size(1076, 351);
-            this.pnlBotton.TabIndex = 5;
+            this.btnClose.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.Appearance.Options.UseBackColor = true;
+            this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnClose.Location = new System.Drawing.Point(1060, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(27, 65);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.TabStop = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // timerRefresh
             // 
@@ -466,14 +421,61 @@
             this.tsmiQuit.Text = "退出";
             this.tsmiQuit.Click += new System.EventHandler(this.tsmiQuit_Click);
             // 
+            // splitContainerBody
+            // 
+            this.splitContainerBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerBody.IsSplitterFixed = true;
+            this.splitContainerBody.Location = new System.Drawing.Point(5, 70);
+            this.splitContainerBody.Name = "splitContainerBody";
+            this.splitContainerBody.Panel1.Controls.Add(this.splitContainerLeft);
+            this.splitContainerBody.Panel1.Text = "Panel1";
+            this.splitContainerBody.Panel2.Controls.Add(this.splitContainerRight);
+            this.splitContainerBody.Panel2.Text = "Panel2";
+            this.splitContainerBody.Size = new System.Drawing.Size(1087, 689);
+            this.splitContainerBody.SplitterPosition = 550;
+            this.splitContainerBody.TabIndex = 6;
+            this.splitContainerBody.Text = "splitContainerControl1";
+            // 
+            // splitContainerLeft
+            // 
+            this.splitContainerLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerLeft.Horizontal = false;
+            this.splitContainerLeft.IsSplitterFixed = true;
+            this.splitContainerLeft.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerLeft.Name = "splitContainerLeft";
+            this.splitContainerLeft.Panel1.Controls.Add(this.pnlFirstQuadrant);
+            this.splitContainerLeft.Panel1.Text = "Panel1";
+            this.splitContainerLeft.Panel2.Controls.Add(this.pnlThirdQuadrant);
+            this.splitContainerLeft.Panel2.Text = "Panel2";
+            this.splitContainerLeft.Size = new System.Drawing.Size(550, 689);
+            this.splitContainerLeft.SplitterPosition = 220;
+            this.splitContainerLeft.TabIndex = 7;
+            this.splitContainerLeft.Text = "splitContainerControl2";
+            // 
+            // splitContainerRight
+            // 
+            this.splitContainerRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerRight.Horizontal = false;
+            this.splitContainerRight.IsSplitterFixed = true;
+            this.splitContainerRight.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerRight.Name = "splitContainerRight";
+            this.splitContainerRight.Panel1.Controls.Add(this.pnlBTS);
+            this.splitContainerRight.Panel1.Text = "Panel1";
+            this.splitContainerRight.Panel2.Controls.Add(this.tcECNtoLine);
+            this.splitContainerRight.Panel2.Text = "Panel2";
+            this.splitContainerRight.Size = new System.Drawing.Size(532, 689);
+            this.splitContainerRight.SplitterPosition = 394;
+            this.splitContainerRight.TabIndex = 8;
+            this.splitContainerRight.Text = "splitContainerControl3";
+            // 
             // frmFVSCell_Visteon
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1086, 755);
+            this.ClientSize = new System.Drawing.Size(1097, 764);
             this.ControlBox = false;
-            this.Controls.Add(this.pnlBotton);
+            this.Controls.Add(this.splitContainerBody);
             this.Controls.Add(this.pnlTop);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.DoubleBuffered = true;
@@ -500,20 +502,18 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlThirdQuadrant)).EndInit();
             this.pnlThirdQuadrant.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnlECNtoLine)).EndInit();
-            this.pnlECNtoLine.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tcECNtoLine)).EndInit();
+            this.tcECNtoLine.ResumeLayout(false);
             this.tpECNtoline.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
-            this.panelControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnlBotton)).EndInit();
-            this.pnlBotton.ResumeLayout(false);
             this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBody)).EndInit();
+            this.splitContainerBody.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).EndInit();
+            this.splitContainerLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerRight)).EndInit();
+            this.splitContainerRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -523,12 +523,9 @@
         private DevExpress.XtraEditors.PanelControl pnlFirstQuadrant;
         private DevExpress.XtraEditors.PanelControl pnlBTS;
         private DevExpress.XtraEditors.PanelControl pnlThirdQuadrant;
-        private DevExpress.XtraEditors.PanelControl pnlECNtoLine;
-        private DevExpress.XtraEditors.PanelControl pnlTop;
-        private DevExpress.XtraEditors.PanelControl pnlBotton;
         private System.Windows.Forms.PictureBox picProduction;
         private DevExpress.XtraEditors.LabelControl lblLineName;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabControl tcECNtoLine;
         private DevExpress.XtraTab.XtraTabPage tpECNtoline;
         private DevExpress.XtraTab.XtraTabPage tpControlPlan;
         private DevExpress.XtraEditors.PanelControl panelControl2;
@@ -549,12 +546,14 @@
         private UserControls.ucOperatorSkillsMatrix ucOperatorSkillsMatrix;
         private UserControls.ucFTT ucFTT;
         private System.Windows.Forms.Timer timerRefresh;
-        private DevExpress.XtraEditors.PanelControl panelControl3;
-        private DevExpress.XtraEditors.PanelControl panelControl4;
+        private DevExpress.XtraEditors.PanelControl pnlTop;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton btnMinimized;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem tsmiQuit;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerBody;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerLeft;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerRight;
     }
 }

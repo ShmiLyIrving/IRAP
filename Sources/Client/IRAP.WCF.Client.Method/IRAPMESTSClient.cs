@@ -406,6 +406,22 @@ namespace IRAP.WCF.Client.Method
             }
         }
 
+        /// <summary>
+        /// 故障维修路由防错
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="productLeaf">产品叶标识</param>
+        /// <param name="workUnitLeaf">工位叶标识</param>
+        /// <param name="wipIDCode">在制品标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="wipPattern">在制品主标识代码样式</param>
+        /// <param name="srcT107LeafID">来源工位叶标识</param>
+        /// <param name="srcT216LeafID">来源工序叶标识</param>
+        /// <param name="rsFactPK">检查失效或测试失败行集事实表分区键</param>
+        /// <param name="linkedFactID">检查失效或测试失败事实编号</param>
+        /// <param name="numTestChannels">测试通道数</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
         public void usp_PokaYoke_TroubleShooting(
             int communityID,
             ref int productLeaf,
@@ -414,6 +430,10 @@ namespace IRAP.WCF.Client.Method
             long sysLogID,
             out string wipPattern,
             out int srcT107LeafID,
+            out int srcT216LeafID,
+            out long rsFactPK,
+            out long linkedFactID,
+            out int numTestChannels,
             out int errCode,
             out string errText)
         {
@@ -425,6 +445,10 @@ namespace IRAP.WCF.Client.Method
 
             wipPattern = "";
             srcT107LeafID = 0;
+            srcT216LeafID = 0;
+            rsFactPK = 0;
+            linkedFactID = 0;
+            numTestChannels = 0;
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -474,10 +498,17 @@ namespace IRAP.WCF.Client.Method
                                 HashtableTools.Instance.GetValue(rltHash, "ProductLeaf", out productLeaf);
                                 HashtableTools.Instance.GetValue(rltHash, "WIPPattern", out wipPattern);
                                 HashtableTools.Instance.GetValue(rltHash, "SrcT107LeafID", out srcT107LeafID);
+                                HashtableTools.Instance.GetValue(rltHash, "SrcT216LeafID", out srcT216LeafID);
+                                HashtableTools.Instance.GetValue(rltHash, "RSFactPK", out rsFactPK);
+                                HashtableTools.Instance.GetValue(rltHash, "LinkedFactID", out linkedFactID);
+                                HashtableTools.Instance.GetValue(rltHash, "NumTestChannels", out numTestChannels);
                                 WriteLog.Instance.Write(
                                     string.Format(
-                                        "输出参数：ProductLeaf={0}|WIPPattern={1}|SrcT107LeafID={2}",
-                                        productLeaf, wipPattern, srcT107LeafID),
+                                        "输出参数：ProductLeaf={0}|WIPPattern={1}|SrcT107LeafID={2}|" +
+                                        "SrcT216LeafID={3}|RSFactPK={4}|LinkedFactID={5}|"+
+                                        "NumTestChannels={6}",
+                                        productLeaf, wipPattern, srcT107LeafID, srcT216LeafID,
+                                        rsFactPK, linkedFactID, numTestChannels),
                                     strProcedureName);
                             }
                             catch (Exception error)

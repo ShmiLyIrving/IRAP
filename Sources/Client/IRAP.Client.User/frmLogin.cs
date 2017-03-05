@@ -146,9 +146,9 @@ namespace IRAP.Client.User
                 catch (Exception error)
                 {
                     WriteLog.Instance.Write(error.Message, strProcedureName);
-                    MessageBox.Show(
+                    IRAPMessageBox.Instance.Show(
                         error.Message,
-                        "登录密码错误",
+                        "错误",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     edtUserPWD.Text = "";

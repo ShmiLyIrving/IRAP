@@ -130,7 +130,7 @@ namespace IRAP.BL.SSO
 
 
         /// <summary>
-        /// 获取用户名及密码验证的结果（0-验证不通过；1-验证通过，则返回社区标识号0;>1-验证通过，返回社区标识号）
+        /// 获取用户名及密码验证的结果（0:验证不通过；-1:信息站点未注册;>0:验证通过，返回社区标识号）
         /// </summary>
         /// <param name="userCode">用户代码</param>
         /// <param name="plainPWD">用户密码明码</param>
@@ -172,8 +172,19 @@ namespace IRAP.BL.SSO
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
                         int rlt = (int)conn.CallScalarFunc("IRAP.dbo.sfn_UserPWDVerify", paramList);
-                        errCode = 0;
-                        errText = "调用成功！";
+                        if (rlt == -1)
+                        {
+                            errCode = -1;
+                            errText =
+                                string.Format(
+                                    "站点[{0}]未注册！",
+                                    stationID);
+                        }
+                        else
+                        {
+                            errCode = 0;
+                            errText = "调用成功！";
+                        }
                         WriteLog.Instance.Write(errText, strProcedureName);
                         return Json(rlt);
                     }

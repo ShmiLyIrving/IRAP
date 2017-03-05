@@ -33,6 +33,7 @@
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="StartupFolder" Directory_Parent="TARGETDIR" DefaultDir="STARTU~1|StartupFolder" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="de_Dir" Directory_Parent="APPDIR" DefaultDir="de"/>
     <ROW Directory="enUS_Dir" Directory_Parent="APPDIR" DefaultDir="en-US"/>
@@ -468,8 +469,9 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="IRAPFVS_LSSIVO.exe" Directory_="SHORTCUTDIR" Name="IRAP-F~1.EXE|IRAP-FVS_LSSIVO.exe" Component_="IRAPFVS_LSSIVO.exe" Target="[#IRAPFVS_LSSIVO.exe]" Description="IRAP-FVS_LSSIVO.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="IRAPFVS_LSSIVO.exe_1" Directory_="DesktopFolder" Name="IRAP-F~1.EXE|IRAP-FVS_LSSIVO.exe" Component_="IRAPFVS_LSSIVO.exe" Target="[#IRAPFVS_LSSIVO.exe]" Description="IRAP-FVS_LSSIVO.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="IRAPFVSClient" Directory_="StartupFolder" Name="IRAP-F~1|IRAP-FVS Client" Component_="IRAPFVS_LSSIVO.exe" Target="[#IRAPFVS_LSSIVO.exe]" Description="IRAP 可视化客户端" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="IRAPFVSClient_1" Directory_="SHORTCUTDIR" Name="IRAP-F~1|IRAP-FVS Client" Component_="IRAPFVS_LSSIVO.exe" Target="[#IRAPFVS_LSSIVO.exe]" Description="IRAP 可视化客户端" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="IRAPFVS_LSSIVO.exe_1" Directory_="DesktopFolder" Name="IRAP-F~1|IRAP-FVS Client" Component_="IRAPFVS_LSSIVO.exe" Target="[#IRAPFVS_LSSIVO.exe]" Description="IRAP 可视化客户端" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
@@ -494,9 +496,14 @@
     <ROW XmlAttribute="key" XmlElement="add" Name="key" Flags="15" Order="0" Value="Virtual Station Used"/>
     <ROW XmlAttribute="key_1" XmlElement="add_1" Name="key" Flags="15" Order="0" Value="Virtual Station"/>
     <ROW XmlAttribute="key_2" XmlElement="add_2" Name="key" Flags="15" Order="0" Value="Environment"/>
+    <ROW XmlAttribute="maxArrayLength" XmlElement="readerQuotas" Name="maxArrayLength" Flags="14" Order="2" Value="6553500"/>
     <ROW XmlAttribute="maxBufferPoolSize" XmlElement="binding" Name="maxBufferPoolSize" Flags="14" Order="1" Value="2147483647"/>
     <ROW XmlAttribute="maxBufferSize" XmlElement="binding" Name="maxBufferSize" Flags="14" Order="2" Value="2147483647"/>
+    <ROW XmlAttribute="maxBytesPerRead" XmlElement="readerQuotas" Name="maxBytesPerRead" Flags="14" Order="3" Value="6553500"/>
+    <ROW XmlAttribute="maxDepth" XmlElement="readerQuotas" Name="maxDepth" Flags="14" Order="0" Value="6553500"/>
+    <ROW XmlAttribute="maxNameTableCharCount" XmlElement="readerQuotas" Name="maxNameTableCharCount" Flags="14" Order="4" Value="6553500"/>
     <ROW XmlAttribute="maxReceivedMessageSize" XmlElement="binding" Name="maxReceivedMessageSize" Flags="14" Order="3" Value="2147483647"/>
+    <ROW XmlAttribute="maxStringContentLength" XmlElement="readerQuotas" Name="maxStringContentLength" Flags="14" Order="1" Value="2147483647"/>
     <ROW XmlAttribute="mode" XmlElement="security" Name="mode" Flags="14" Order="0" Value="None"/>
     <ROW XmlAttribute="name" XmlElement="binding" Name="name" Flags="15" Order="0" Value="NetTcpBinding_IServiceIRAPGlobal"/>
     <ROW XmlAttribute="name_1" XmlElement="endpoint" Name="name" Flags="15" Order="4" Value="NetTcpBinding_IServiceIRAPGlobal"/>
@@ -516,6 +523,7 @@
     <ROW XmlElement="configuration" Name="configuration" Condition="1" Order="0" Flags="30"/>
     <ROW XmlElement="endpoint" ParentElement="client" Name="endpoint" Condition="1" Order="0" Flags="14"/>
     <ROW XmlElement="netTcpBinding" ParentElement="bindings" Name="netTcpBinding" Condition="1" Order="0" Flags="14"/>
+    <ROW XmlElement="readerQuotas" ParentElement="binding" Name="readerQuotas" Condition="1" Order="1" Flags="30"/>
     <ROW XmlElement="root" Name="root" Condition="1" Order="0" Flags="30"/>
     <ROW XmlElement="security" ParentElement="binding" Name="security" Condition="1" Order="0" Flags="14"/>
     <ROW XmlElement="system.serviceModel" ParentElement="configuration" Name="system.serviceModel" Condition="1" Order="1" Flags="14"/>

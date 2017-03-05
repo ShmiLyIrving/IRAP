@@ -40,8 +40,6 @@ namespace IRAP_FVS_LSSIVO.UserControls
             LabelControl label,
             OpenChangeSummary data)
         {
-            lblSystem.Text = data.T276Name;
-
             if (data.Existence)
             {
                 label.Appearance.Image = Properties.Resources.light_yellow;

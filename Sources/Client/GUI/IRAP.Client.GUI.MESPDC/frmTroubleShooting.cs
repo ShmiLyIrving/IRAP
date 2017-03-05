@@ -50,6 +50,22 @@ namespace IRAP.Client.GUI.MESPDC
         /// 来源工位
         /// </summary>
         private int srcT107LeafID = 0;
+        /// <summary>
+        /// 来源工序
+        /// </summary>
+        private int srcT216LeafID = 0;
+        /// <summary>
+        /// 检查失效或测试失败行集事实表分区键
+        /// </summary>
+        private long rsFactPK = 0;
+        /// <summary>
+        /// 检查失效或测试失败事实编号
+        /// </summary>
+        private long linkedFactID = 0;
+        /// <summary>
+        /// 测试通道数
+        /// </summary>
+        private int numOfTestChannels = 0;
 
         private string caption = "";
 
@@ -495,7 +511,7 @@ namespace IRAP.Client.GUI.MESPDC
                 int errCode = 0;
                 string errText = "";
                 List<TSFormCtrl> columns = new List<TSFormCtrl>();
-                SystemMenuInfoButtonStyle menuInfo = (SystemMenuInfoButtonStyle)this.Tag;
+                MenuInfo menuInfo = (MenuInfo)this.Tag;
 
                 IRAPMESTSClient.Instance.ufn_GetList_TSFormCtrl(
                     IRAPUser.Instance.CommunityID,
@@ -654,6 +670,7 @@ namespace IRAP.Client.GUI.MESPDC
             grdvRepairItems.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
             grdRepairItems.UseEmbeddedNavigator = false;
 
+            btnShowTestData.Enabled = false;
             btnBarCodeConf.Enabled = false;
         }
 
@@ -824,7 +841,7 @@ namespace IRAP.Client.GUI.MESPDC
                     int productLeaf = currentProductLeaf;
                     string wipPattern = "";
 
-                    WriteLog.Instance.Write("不良自制品路由校验", strProcedureName);
+                    WriteLog.Instance.Write("不良在制品路由校验", strProcedureName);
                     IRAPMESTSClient.Instance.usp_PokaYoke_TroubleShooting(
                         IRAPUser.Instance.CommunityID,
                         ref productLeaf,
@@ -833,6 +850,10 @@ namespace IRAP.Client.GUI.MESPDC
                         IRAPUser.Instance.SysLogID,
                         out wipPattern,
                         out srcT107LeafID,
+                        out srcT216LeafID,
+                        out rsFactPK,
+                        out linkedFactID,
+                        out numOfTestChannels,
                         out errCode,
                         out errText);
                     WriteLog.Instance.Write(
@@ -840,11 +861,17 @@ namespace IRAP.Client.GUI.MESPDC
                         strProcedureName);
                     WriteLog.Instance.Write(
                         string.Format(
-                            "得到返回值：ProductLeaf={0}|WIPPartten={1}|SrcT107LeafID={2}",
+                            "得到返回值：ProductLeaf={0}|WIPPartten={1}|SrcT107LeafID={2}|" +
+                            "SrcT216LeafID={3}|RSFactPK={4}|LinkedFactID={5}",
                             productLeaf,
                             wipPattern,
-                            srcT107LeafID),
+                            srcT107LeafID,
+                            srcT216LeafID,
+                            rsFactPK,
+                            linkedFactID),
                         strProcedureName);
+
+                    btnShowTestData.Enabled = (rsFactPK != 0 && linkedFactID != 0);
 
                     if (errCode == 0)
                     {
@@ -1105,6 +1132,15 @@ namespace IRAP.Client.GUI.MESPDC
         private void frmTroubleShooting_FormClosed(object sender, FormClosedEventArgs e)
         {
             Options.OptionChanged -= AfterOptionChenged;
+        }
+
+        private void btnShowTestData_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.frmRSFactListTestData formTestData = 
+                new Dialogs.frmRSFactListTestData())
+            {
+                formTestData.ShowDialog(rsFactPK, linkedFactID, numOfTestChannels);
+            }
         }
     }
 }

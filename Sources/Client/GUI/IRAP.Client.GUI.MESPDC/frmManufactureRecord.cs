@@ -226,7 +226,7 @@ namespace IRAP.Client.GUI.MESPDC
                                         case 1:
                                             // 自动切换工艺流程
                                             ProcessInfo process =
-                                                AvailableProcesses.Instance.GetProcessWithT120LeafID(barcodeInfo.ProcessLeaf);
+                                                AvailableWIPStations.Instance.GetStationWithT107LeafID(barcodeInfo.ProcessLeaf);
                                             if (process == null)
                                             {
                                                 WriteToScreenLog(

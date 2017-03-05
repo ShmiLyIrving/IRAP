@@ -45,15 +45,15 @@ namespace IRAP.Client.SubSystem
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                if (AvailableProcesses.Instance.Processes.Count <= 0)
-                    AvailableProcesses.Instance.GetProcesses(
+                if (AvailableWIPStations.Instance.Processes.Count <= 0)
+                    AvailableWIPStations.Instance.GetWIPStations(
                         IRAPUser.Instance.CommunityID,
                         IRAPUser.Instance.SysLogID);
 
-                lstProcesses.DataSource = AvailableProcesses.Instance.Processes;
+                lstProcesses.DataSource = AvailableWIPStations.Instance.Processes;
                 lstProcesses.DisplayMember = "T120NodeName";
                 lstProcesses.SelectedIndex =
-                    AvailableProcesses.Instance.IndexOf(
+                    AvailableWIPStations.Instance.IndexOf(
                         CurrentOptions.Instance.Process);
             }
             catch (Exception error)
@@ -196,10 +196,10 @@ namespace IRAP.Client.SubSystem
 
         private void btnShowAll_Click(object sender, EventArgs e)
         {
-            lstProcesses.DataSource = AvailableProcesses.Instance.Processes;
+            lstProcesses.DataSource = AvailableWIPStations.Instance.Processes;
             lstProcesses.DisplayMember = "T120NodeName";
             lstProcesses.SelectedIndex =
-                AvailableProcesses.Instance.IndexOf(
+                AvailableWIPStations.Instance.IndexOf(
                     CurrentOptions.Instance.Process);
             lstProcesses_SelectedIndexChanged(null, null);
         }
@@ -242,7 +242,7 @@ namespace IRAP.Client.SubSystem
                 {
                     foreach (ProductProcessInfo data in datas)
                     {
-                        foreach (ProcessInfo process in AvailableProcesses.Instance.Processes)
+                        foreach (ProcessInfo process in AvailableWIPStations.Instance.Processes)
                         {
                             if (process.T102LeafID == data.T102LeafID &&
                                 process.T120LeafID == data.T120LeafID)

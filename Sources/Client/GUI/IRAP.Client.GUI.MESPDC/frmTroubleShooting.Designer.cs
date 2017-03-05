@@ -63,6 +63,8 @@
             this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
             this.lblStatus = new DevExpress.XtraEditors.LabelControl();
             this.splitContainerControl4 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btnTrackProduction = new DevExpress.XtraEditors.SimpleButton();
+            this.btnShowTestData = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRepairItems)).BeginInit();
@@ -320,11 +322,11 @@
             this.btnBarCodeConf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBarCodeConf.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnBarCodeConf.Appearance.Options.UseFont = true;
-            this.btnBarCodeConf.Location = new System.Drawing.Point(7, 5);
+            this.btnBarCodeConf.Location = new System.Drawing.Point(7, 316);
             this.btnBarCodeConf.Name = "btnBarCodeConf";
             this.btnBarCodeConf.Size = new System.Drawing.Size(104, 37);
             this.btnBarCodeConf.TabIndex = 3;
-            this.btnBarCodeConf.Text = "维修确认";
+            this.btnBarCodeConf.Text = "确认维修完成";
             this.btnBarCodeConf.Click += new System.EventHandler(this.btnBarCodeConf_Click);
             // 
             // grdProducts
@@ -365,7 +367,7 @@
             // 
             // grdclmnPartNumber
             // 
-            this.grdclmnPartNumber.Caption = "物料代码";
+            this.grdclmnPartNumber.Caption = "产品编号";
             this.grdclmnPartNumber.FieldName = "PartNumber";
             this.grdclmnPartNumber.Name = "grdclmnPartNumber";
             this.grdclmnPartNumber.Visible = true;
@@ -374,7 +376,7 @@
             // 
             // gridColumn10
             // 
-            this.gridColumn10.Caption = "子板条码";
+            this.gridColumn10.Caption = "子在制品条码";
             this.gridColumn10.FieldName = "WIPCode";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
@@ -535,12 +537,39 @@
             this.splitContainerControl4.Panel1.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl4.Panel1.ShowCaption = true;
             this.splitContainerControl4.Panel1.Text = "维修情况";
+            this.splitContainerControl4.Panel2.Controls.Add(this.btnTrackProduction);
+            this.splitContainerControl4.Panel2.Controls.Add(this.btnShowTestData);
             this.splitContainerControl4.Panel2.Controls.Add(this.btnBarCodeConf);
             this.splitContainerControl4.Panel2.Text = "Panel2";
             this.splitContainerControl4.Size = new System.Drawing.Size(703, 360);
             this.splitContainerControl4.SplitterPosition = 118;
             this.splitContainerControl4.TabIndex = 4;
             this.splitContainerControl4.Text = "splitContainerControl4";
+            // 
+            // btnTrackProduction
+            // 
+            this.btnTrackProduction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTrackProduction.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnTrackProduction.Appearance.Options.UseFont = true;
+            this.btnTrackProduction.Location = new System.Drawing.Point(7, 75);
+            this.btnTrackProduction.Name = "btnTrackProduction";
+            this.btnTrackProduction.Size = new System.Drawing.Size(104, 37);
+            this.btnTrackProduction.TabIndex = 5;
+            this.btnTrackProduction.Text = "追溯生产过程";
+            this.btnTrackProduction.Visible = false;
+            // 
+            // btnShowTestData
+            // 
+            this.btnShowTestData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShowTestData.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnShowTestData.Appearance.Options.UseFont = true;
+            this.btnShowTestData.Enabled = false;
+            this.btnShowTestData.Location = new System.Drawing.Point(7, 32);
+            this.btnShowTestData.Name = "btnShowTestData";
+            this.btnShowTestData.Size = new System.Drawing.Size(104, 37);
+            this.btnShowTestData.TabIndex = 4;
+            this.btnShowTestData.Text = "查看测试数据";
+            this.btnShowTestData.Click += new System.EventHandler(this.btnShowTestData_Click);
             // 
             // frmTroubleShooting
             // 
@@ -620,5 +649,7 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl3;
         private DevExpress.XtraEditors.LabelControl lblStatus;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl4;
+        private DevExpress.XtraEditors.SimpleButton btnTrackProduction;
+        private DevExpress.XtraEditors.SimpleButton btnShowTestData;
     }
 }

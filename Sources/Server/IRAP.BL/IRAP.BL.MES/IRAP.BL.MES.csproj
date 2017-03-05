@@ -83,6 +83,10 @@
       <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
       <Name>IRAPORM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IRAP.BL.UTS\IRAP.BL.UTS.csproj">
+      <Project>{47a46432-15cd-4697-a024-1ed7976b7481}</Project>
+      <Name>IRAP.BL.UTS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

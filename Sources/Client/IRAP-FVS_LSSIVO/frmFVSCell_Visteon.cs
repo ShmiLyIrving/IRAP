@@ -52,6 +52,10 @@ namespace IRAP_FVS_LSSIVO
         /// 上次键盘或者鼠标消息产生的时间
         /// </summary>
         private DateTime lastKBMouseActionTime = DateTime.Now;
+        /// <summary>
+        /// 主窗体是否显示
+        /// </summary>
+        private bool isFormShow = true;
 
         #region 系统钩子
         public struct KeyMSG
@@ -114,6 +118,12 @@ namespace IRAP_FVS_LSSIVO
         /// </summary>
         private void HookStart()
         {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
             if (hKeyobardHook == 0)
             {
                 // 创建 HookProc 实例
@@ -156,26 +166,27 @@ namespace IRAP_FVS_LSSIVO
                 if (hKeyobardHook == 0)
                 {
                     HookStop();
-                    throw new Exception("SetWindowsHookEx failed.");
+                    WriteLog.Instance.Write("UnhookWindowsHookEx failed.", strProcedureName);
                 }
             }
 
-            if (hMouseHook == 0)
-            {
-                hMouseHook =
-                    SetWindowsHookEx(
-                        14,
-                        new HookProc(MouseHookProc),
-                        Marshal.GetHINSTANCE(
-                            Assembly.GetExecutingAssembly().GetModules()[0]),
-                        0);
+            // 不在设置鼠标系统钩子
+            //if (hMouseHook == 0)
+            //{
+            //    hMouseHook =
+            //        SetWindowsHookEx(
+            //            14,
+            //            new HookProc(MouseHookProc),
+            //            Marshal.GetHINSTANCE(
+            //                Assembly.GetExecutingAssembly().GetModules()[0]),
+            //            0);
 
-                if (hMouseHook == 0)
-                {
-                    HookStop();
-                    throw new Exception("SetWindowsHookEx failed.");
-                }
-            }
+            //    if (hMouseHook == 0)
+            //    {
+            //        HookStop();
+            //        WriteLog.Instance.Write("UnhookWindowsHookEx failed.", strProcedureName);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -183,6 +194,12 @@ namespace IRAP_FVS_LSSIVO
         /// </summary>
         private void HookStop()
         {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
             bool retKeyboard = true;
             if (hKeyobardHook != 0)
             {
@@ -191,7 +208,7 @@ namespace IRAP_FVS_LSSIVO
             }
             if (!retKeyboard)
             {
-                throw new Exception("UnhookWindowsHookEx failed.");
+                WriteLog.Instance.Write("UnhookWindowsHookEx failed.", strProcedureName);
             }
 
             bool retMouse = true;
@@ -201,7 +218,7 @@ namespace IRAP_FVS_LSSIVO
                 hMouseHook = 0;
             }
             if (!retMouse)
-                throw new Exception("UnhookWindowsHookEx failed.");
+                WriteLog.Instance.Write("UnhookWindowsHookEx failed.", strProcedureName);
         }
 
 
@@ -251,7 +268,7 @@ namespace IRAP_FVS_LSSIVO
                     typeof(MouseHookStruct));
             if (nCode < 0)
             {
-                return CallNextHookEx(hMouseHook, nCode, wParam, lParam);
+                return 0;
             }
             else
             {
@@ -298,6 +315,7 @@ namespace IRAP_FVS_LSSIVO
         {
             notifyIcon.Visible = false;
             Show();
+            isFormShow = true;
         }
 
         private void HideForm()
@@ -309,6 +327,7 @@ namespace IRAP_FVS_LSSIVO
 
             notifyIcon.Visible = true;
             Hide();
+            isFormShow = false;
         }
 
         /// <summary>
@@ -449,50 +468,57 @@ namespace IRAP_FVS_LSSIVO
                         picCustomLogo.Image = images.CustomerLogo;
                         picProduction.Image = images.CustomerProduct;
 
-                        // 当前工单执行的瞬时达成率
-                        RefreshExecutePWOInfo(line);
+                        if (!canClose)
+                            // 当前工单执行的瞬时达成率
+                            RefreshExecutePWOInfo(line);
 
-                        // 安灯状态
-                        ucAndonStatus.SetSearchCondition(
-                            stationUser.CommunityID,
-                            line.T134LeafID,
-                            stationUser.SysLogID);
+                        if (!canClose)
+                            // 安灯状态
+                            ucAndonStatus.SetSearchCondition(
+                                stationUser.CommunityID,
+                                line.T134LeafID,
+                                stationUser.SysLogID);
 
-                        // 未关闭工单
-                        ucOpenPWOs.SetSearchCondition(
-                            stationUser.CommunityID,
-                            134,
-                            line.T134LeafID,
-                            stationUser.SysLogID,
-                            ucKPIBTS,
-                            ref pwoNo);
+                        if (!canClose)
+                            // 未关闭工单
+                            ucOpenPWOs.SetSearchCondition(
+                                stationUser.CommunityID,
+                                134,
+                                line.T134LeafID,
+                                stationUser.SysLogID,
+                                ucKPIBTS,
+                                ref pwoNo);
 
-                        // FTT
-                        ucFTT.SetSearchCondition(
-                            stationUser.CommunityID,
-                            pwoNo,
-                            stationUser.SysLogID);
+                        if (!canClose)
+                            // FTT
+                            ucFTT.SetSearchCondition(
+                                stationUser.CommunityID,
+                                pwoNo,
+                                stationUser.SysLogID);
 
-                        // 技能矩阵
-                        ucOperatorSkillsMatrix.SetSearchCondition(
-                            stationUser.CommunityID,
-                            line.T102LeafID_InProduction,
-                            line.T134LeafID,
-                            "",
-                            stationUser.SysLogID);
+                        if (!canClose)
+                            // 技能矩阵
+                            ucOperatorSkillsMatrix.SetSearchCondition(
+                                stationUser.CommunityID,
+                                line.T102LeafID_InProduction,
+                                line.T134LeafID,
+                                "",
+                                stationUser.SysLogID);
 
-                        // 一点课
-                        ucOnePointLessons.SetSearchCondition(
-                            stationUser.CommunityID,
-                            line.T102LeafID_InProduction,
-                            "",
-                            stationUser.SysLogID);
+                        if (!canClose)
+                            // 一点课
+                            ucOnePointLessons.SetSearchCondition(
+                                stationUser.CommunityID,
+                                line.T102LeafID_InProduction,
+                                "",
+                                stationUser.SysLogID);
 
-                        // 未关闭的变更事项
-                        ucECNtoLine.SetSearchCondition(
-                            stationUser.CommunityID,
-                            line.T102LeafID_InProduction,
-                            stationUser.SysLogID);
+                        if (!canClose)
+                            // 未关闭的变更事项
+                            ucECNtoLine.SetSearchCondition(
+                                stationUser.CommunityID,
+                                line.T102LeafID_InProduction,
+                                stationUser.SysLogID);
                     }
                 }
             }
@@ -568,9 +594,11 @@ namespace IRAP_FVS_LSSIVO
 
             WindowState = FormWindowState.Maximized;
 
-            pnlTop.Height = Height / 2;
-            pnlFirstQuadrant.Width = pnlTop.Width / 100 * 48;
-            pnlThirdQuadrant.Width = pnlBotton.Width / 100 * 45;
+            //pnlTop.Height = Height / 2;
+            //pnlFirstQuadrant.Width = pnlTop.Width / 100 * 48;
+            //pnlThirdQuadrant.Width = pnlBotton.Width / 100 * 45;
+
+            splitContainerBody.SplitterPosition = splitContainerBody.Width / 100 * 45;
 
             int errCode = 0;
             string errText = "";
@@ -596,17 +624,6 @@ namespace IRAP_FVS_LSSIVO
             timerRefresh.Enabled = false;
             try
             {
-                #region 
-                if (!Visible)
-                {
-                    TimeSpan span = DateTime.Now - lastKBMouseActionTime;
-                    if (span.TotalSeconds >= 60)
-                    {
-                        ShowForm();
-                    }
-                }
-                #endregion
-
                 #region 刷新界面上的产线信息
                 {
                     TimeSpan span = DateTime.Now - LastUpdatedTime;
@@ -615,6 +632,17 @@ namespace IRAP_FVS_LSSIVO
                         LastUpdatedTime = DateTime.Now;
 
                         RefreshProductionLineInfo();
+                    }
+                }
+                #endregion
+
+                #region 
+                if (!isFormShow)
+                {
+                    TimeSpan span = DateTime.Now - lastKBMouseActionTime;
+                    if (span.TotalSeconds >= 60)
+                    {
+                        ShowForm();
                     }
                 }
                 #endregion
@@ -651,6 +679,8 @@ namespace IRAP_FVS_LSSIVO
         {
             if (canClose)
             {
+                isFormShow = true;
+
                 HookStop();
 
                 e.Cancel = false;

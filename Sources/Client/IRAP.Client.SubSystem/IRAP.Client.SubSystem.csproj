@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvailableProcesses.cs" />
+    <Compile Include="AvailableWIPStations.cs" />
     <Compile Include="AvailableSubSystems.cs" />
     <Compile Include="AvailableWorkUnits.cs" />
     <Compile Include="CurrentOptions.cs" />
@@ -82,6 +82,10 @@
     <ProjectReference Include="..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
       <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
       <Project>{38588300-33df-457a-936a-d0d0ca499e96}</Project>

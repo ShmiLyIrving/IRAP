@@ -6,38 +6,38 @@ using System.Reflection;
 using System.Threading;
 
 using IRAP.Global;
-using IRAP.Entity.SSO;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.SubSystem
 {
-    public class AvailableProcesses
+    public class AvailableWIPStations
     {
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private static AvailableProcesses _instance = null;
-        private List<ProcessInfo> _processes = new List<ProcessInfo>();
+        private static AvailableWIPStations _instance = null;
+        private List<WIPStation> _stations = new List<WIPStation>();
         private ucOptions barOptions;
 
-        private AvailableProcesses()
+        private AvailableWIPStations()
         {
 
         }
 
-        public static AvailableProcesses Instance
+        public static AvailableWIPStations Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new AvailableProcesses();
+                    _instance = new AvailableWIPStations();
                 return _instance;
             }
         }
 
-        public List<ProcessInfo> Processes
+        public List<WIPStation> Processes
         {
-            get { return _processes; }
+            get { return _stations; }
         }
 
         public ucOptions Options
@@ -46,7 +46,7 @@ namespace IRAP.Client.SubSystem
             set { barOptions = value; }
         }
 
-        public int GetProcesses(int communityID, long sysLogID)
+        public int GetWIPStations(int communityID, long sysLogID)
         {
             string strProcedureName =
                 string.Format(
@@ -58,19 +58,19 @@ namespace IRAP.Client.SubSystem
             {
                 int errCode = 0;
                 string errText = "";
-                _processes.Clear();
+                _stations.Clear();
 
-                IRAPSystemClient.Instance.ufn_GetKanban_Processes(
+                IRAPMDMClient.Instance.ufn_GetList_WIPStationsOfAHost(
                     communityID,
                     sysLogID,
-                    ref _processes,
+                    ref _stations,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
                 if (errCode == 0)
-                    return _processes.Count;
+                    return _stations.Count;
                 else
                     throw new Exception(errText);
             }
@@ -82,12 +82,12 @@ namespace IRAP.Client.SubSystem
                 if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                     throw new Exception(
                         string.Format(
-                            "Unable to get products/processes, reason: {0}",
+                            "Unable to get WIP Stations, reason: {0}",
                             error.Message));
                 else
                     throw new Exception(
                         string.Format(
-                            "无法获取产品/流程，原因：{0}",
+                            "无法获取当前站点的工位信息，原因：{0}",
                             error.Message));
             }
             finally
@@ -96,30 +96,29 @@ namespace IRAP.Client.SubSystem
             }
         }
 
-        public int IndexOf(ProcessInfo process)
+        public int IndexOf(WIPStation station)
         {
-            for (int i = 0; i < _processes.Count; i++)
+            for (int i = 0; i < _stations.Count; i++)
             {
-                if (_processes[i].T102LeafID == process.T102LeafID &&
-                    _processes[i].T120LeafID == process.T120LeafID)
+                if (_stations[i].T107LeafID == station.T107LeafID)
                     return i;
             }
             return -1;
         }
 
         /// <summary>
-        /// 根据 T120LeafID 从当面的流程列表中获取流程
+        /// 根据 T107LeafID 从当面的工位列表中获取工位
         /// </summary>
         /// <param name="leafID"></param>
         /// <returns></returns>
-        public ProcessInfo GetProcessWithT120LeafID(int leafID)
+        public WIPStation GetStationWithT107LeafID(int leafID)
         {
-            ProcessInfo rlt = null;
-            foreach (ProcessInfo process in _processes)
+            WIPStation rlt = null;
+            foreach (WIPStation station in _stations)
             {
-                if (process.T120LeafID == leafID)
+                if (station.T107LeafID == leafID)
                 {
-                    rlt = process;
+                    rlt = station;
                     break;
                 }
             }

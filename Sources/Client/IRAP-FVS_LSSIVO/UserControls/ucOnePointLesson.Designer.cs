@@ -196,8 +196,7 @@
             // 
             // lblTrainingDate
             // 
-            this.lblTrainingDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTrainingDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTrainingDate.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTrainingDate.Location = new System.Drawing.Point(402, 25);
             this.lblTrainingDate.Name = "lblTrainingDate";
@@ -270,7 +269,7 @@
             this.panelControl1.Controls.Add(this.picIncorrect);
             this.panelControl1.Location = new System.Drawing.Point(8, 30);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(568, 116);
+            this.panelControl1.Size = new System.Drawing.Size(560, 116);
             this.panelControl1.TabIndex = 15;
             // 
             // ucOnePointLesson

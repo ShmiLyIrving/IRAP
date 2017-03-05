@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Threading;
 using System.IO;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 using DevExpress.XtraEditors;
 using DevExpress.Utils;
@@ -40,6 +42,12 @@ namespace IRAP.Client.GUI.MESPDC
 
         private string message = "";
         private string caption = "";
+
+        private const int WS_SHOWNORMAL = 1;
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindowAsync(IntPtr hWnd, int cmdShow);
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         public frmUDFForm1Ex()
         {
@@ -139,12 +147,19 @@ namespace IRAP.Client.GUI.MESPDC
                 rlt.ToolTipTitle = "提示信息";
             }
 
+            rlt.ImeMode = ImeMode.Disable;
             rlt.Enabled = ctrlInfo.Enabled;
             rlt.Visible = ctrlInfo.Visible;
             rlt.EnterMoveNextControl = false;
 
             rlt.Text = ctrlInfo.DefaultValueStr;
 
+            // 如果当前站点是平板电脑，则自动打开软键盘
+            WriteLog.Instance.Write("设置是否自动打开软键盘");
+            if (IRAPUser.Instance.HostName.Substring(0, 2) == "04")
+            {
+                rlt.Enter += new EventHandler(TextEditGotFocus);
+            }
             rlt.TextChanged += new EventHandler(TextEditTextChanged);
             rlt.KeyDown += new KeyEventHandler(TextEditKeyDown);
             rlt.Leave += new EventHandler(TextEditLeave);
@@ -206,6 +221,42 @@ namespace IRAP.Client.GUI.MESPDC
         #endregion
 
         #region 自定义事件
+        private void TextEditGotFocus(object sender, EventArgs e)
+        {
+            if (IRAPUser.Instance.HostName.Substring(0, 2) == "04")
+            {
+                Process[] processes = Process.GetProcesses();
+                foreach (Process p in processes)
+                {
+                    try
+                    {
+                        if (p.ProcessName.ToLower() == "osk")
+                        {
+                            return;
+                        }
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+
+                using (Command cmd = new Command())
+                {
+                    cmd.RunCmd(@"C:\Windows\System32\OSK.exe");
+                }
+
+                {
+                    SetForegroundWindow(Process.GetCurrentProcess().MainWindowHandle);
+
+                    // 将焦点移回当前程序，并且是最大化
+                    ShowWindowAsync(
+                        Process.GetCurrentProcess().MainWindowHandle,
+                        3);
+                }
+            }
+        }
+
         private void TextEditKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Reflection;
 
 using DevExpress.XtraEditors;
+using DevExpress.XtraVerticalGrid;
+using DevExpress.XtraVerticalGrid.Events;
 
 using IRAP.Global;
 using IRAP.Entity.MDM;
@@ -26,7 +28,8 @@ namespace IRAP_FVS_LSSIVO.UserControls
         private int t134LeafID = 0;
         private string shotTime = "";
         private long sysLogID = 0;
-        private List<SkillMatrix> operators = new List<SkillMatrix>();
+        //private List<SkillMatrix> operators = new List<SkillMatrix>();
+        private List<OperatorSkillMatrix> operators = new List<OperatorSkillMatrix>();
 
         public ucOperatorSkillsMatrix()
         {
@@ -53,7 +56,7 @@ namespace IRAP_FVS_LSSIVO.UserControls
 
                 int errCode = 0;
                 string errText = "";
-                List<OperatorSkillMatrix> datas = new List<OperatorSkillMatrix>();
+                //List<OperatorSkillMatrix> datas = new List<OperatorSkillMatrix>();
 
                 IRAPMDMClient.Instance.ufn_GetSkillMatrix_Operators(
                     communityID,
@@ -61,7 +64,7 @@ namespace IRAP_FVS_LSSIVO.UserControls
                     t134LeafID,
                     shotTime,
                     sysLogID,
-                    ref datas,
+                    ref operators,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
@@ -70,27 +73,30 @@ namespace IRAP_FVS_LSSIVO.UserControls
 
                 if (errCode == 0)
                 {
-                    for (int i = 0; i < datas.Count; i += 2)
-                    {
-                        SkillMatrix op = new SkillMatrix()
-                        {
-                            T216Name1 = datas[i].T216Name,
-                            UserName1 = datas[i].UserName,
-                            QualificationLevel1 = datas[i].QualificationLevel,
-                        };
+                    //for (int i = 0; i < datas.Count; i += 2)
+                    //{
+                    //    SkillMatrix op = new SkillMatrix()
+                    //    {
+                    //        T216Name1 = datas[i].T216Name,
+                    //        UserName1 = datas[i].UserName,
+                    //        QualificationLevel1 = datas[i].QualificationLevel,
+                    //    };
 
-                        if (i + 1 < datas.Count)
-                        {
-                            op.T216Name2 = datas[i + 1].T216Name;
-                            op.UserName2 = datas[i + 1].UserName;
-                            op.QualificationLevel2 = datas[i + 1].QualificationLevel;
-                        }
+                    //    if (i + 1 < datas.Count)
+                    //    {
+                    //        op.T216Name2 = datas[i + 1].T216Name;
+                    //        op.UserName2 = datas[i + 1].UserName;
+                    //        op.QualificationLevel2 = datas[i + 1].QualificationLevel;
+                    //    }
 
-                        operators.Add(op);
-                    }
+                    //    operators.Add(op);
+                    //}
 
-                    grdOperatorSkillMatrixs.DataSource = operators;
+                    //grdOperatorSkillMatrixs.DataSource = operators;
+                    vgrdOperatorSkills.DataSource = operators;
                 }
+
+                FillGridDataWidth();
             }
             finally
             {
@@ -117,6 +123,46 @@ namespace IRAP_FVS_LSSIVO.UserControls
                 t134LeafID,
                 shotTime,
                 sysLogID);
+        }
+
+        private void FillGridDataWidth()
+        {
+            if (operators.Count > 0)
+            {
+                int recordWidth = (vgrdOperatorSkills.Width - vgrdOperatorSkills.RowHeaderWidth) / operators.Count;
+                if (recordWidth > vgrdOperatorSkills.RecordMinWidth)
+                {
+                    vgrdOperatorSkills.RecordWidth = recordWidth;
+                    vgrdOperatorSkills.ScrollVisibility = ScrollVisibility.Vertical;
+                }
+                else
+                {
+                    vgrdOperatorSkills.ScrollVisibility = ScrollVisibility.Auto;
+                }
+            }
+        }
+
+        private void vgrdOperatorSkills_CustomDrawRowValueCell(object sender, CustomDrawRowValueCellEventArgs e)
+        {
+            if (e.Row == rowUserName)
+            {
+                if (e.RecordIndex >= 0 && e.RecordIndex < operators.Count)
+                {
+                    switch (operators[e.RecordIndex].QualificationLevel)
+                    {
+                        case 2:
+                            e.Appearance.BackColor = Color.FromArgb(255, 192, 128);
+                            e.Appearance.ForeColor = Color.Black;
+                            break;
+                        case 3:
+                            e.Appearance.BackColor = Color.Red;
+                            e.Appearance.ForeColor = Color.White;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
     }
 

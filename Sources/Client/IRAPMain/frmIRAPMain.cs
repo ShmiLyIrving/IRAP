@@ -771,7 +771,7 @@ namespace IRAP
                 }
                 #endregion
 
-                AvailableProcesses.Instance.Options = ucOptions;
+                AvailableWIPStations.Instance.Options = ucOptions;
             }
             finally
             {

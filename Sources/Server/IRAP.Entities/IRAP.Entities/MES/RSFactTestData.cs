@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using IRAP.Global;
+using IRAPShared;
 
 namespace IRAP.Entities.MES
 {
@@ -419,130 +420,217 @@ namespace IRAP.Entities.MES
         }
 
         #region 加工以后的测试数据
+        /// <summary>
+        /// 参数标准
+        /// </summary>
+        [IRAPORMMap(ORMMap = false)]
+        public string StandardString
+        {
+            get
+            {
+                double doubleLow = LowLimit / Math.Pow(10, Scale);
+                double doubleHigh = HighLimit / Math.Pow(10, Scale);
+
+                string low = "";
+                string high = "";
+
+                if (Scale > 0)
+                {
+                    string strFormat = "";
+                    low = doubleLow.ToString("0." + strFormat.PadLeft(Scale, '0'));
+                    high = doubleHigh.ToString("0." + strFormat.PadLeft(Scale, '0'));
+                }
+                else
+                {
+                    low = doubleLow.ToString("0");
+                    high = doubleHigh.ToString("0");
+                }
+
+                switch (Criterion.ToUpper())
+                {
+                    case "EQ":
+                        return string.Format("＝ {0}{1}", low, UnitOfMeasure);
+                    case "NE":
+                        return string.Format("≠ {0}{1}", low, UnitOfMeasure);
+                    case "GELE":
+                        return string.Format("{0} ≤值≤ {1} {2}", low, high, UnitOfMeasure);
+                    case "GTLT":
+                        return string.Format("{0} ＜值＜ {1} {2}", low, high, UnitOfMeasure);
+                    case "GTLE":
+                        return string.Format("{0} ＜值≤ {1} {2}", low, high, UnitOfMeasure);
+                    case "GELT":
+                        return string.Format("{0} ≤值＜ {1} {2}", low, high, UnitOfMeasure);
+                    case "BOOL":
+                        return "通过";
+                    case "GE":
+                        return string.Format("{0} ≤值 {1}", low, UnitOfMeasure);
+                    case "LE":
+                        return string.Format("{0} ≥值 {1}", high, UnitOfMeasure);
+                    case "GT":
+                        return string.Format("{0} <值 {1}", low, UnitOfMeasure);
+                    case "LT":
+                        return string.Format("{0} >值 {1}", high, UnitOfMeasure);
+                    default:
+                        return string.Format("未定义的标准代码[{0}]", Criterion);
+                }
+            }
+        }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData01
         {
             get { return testData01; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData02
         {
             get { return testData02; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData03
         {
             get { return testData03; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData04
         {
             get { return testData04; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData05
         {
             get { return testData05; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData06
         {
             get { return testData06; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData07
         {
             get { return testData07; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData08
         {
             get { return testData08; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData09
         {
             get { return testData09; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData10
         {
             get { return testData10; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData11
         {
             get { return testData11; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData12
         {
             get { return testData12; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData13
         {
             get { return testData13; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData14
         {
             get { return testData14; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData15
         {
             get { return testData15; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData16
         {
             get { return testData16; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData17
         {
             get { return testData17; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData18
         {
             get { return testData18; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData19
         {
             get { return testData19; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData20
         {
             get { return testData20; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData21
         {
             get { return testData21; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData22
         {
             get { return testData22; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData23
         {
             get { return testData23; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData24
         {
             get { return testData24; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData25
         {
             get { return testData25; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData26
         {
             get { return testData26; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData27
         {
             get { return testData27; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData28
         {
             get { return testData28; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData29
         {
             get { return testData29; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData30
         {
             get { return testData30; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData31
         {
             get { return testData31; }
         }
+        [IRAPORMMap(ORMMap = false)]
         public Quantity TestData32
         {
             get { return testData32; }
