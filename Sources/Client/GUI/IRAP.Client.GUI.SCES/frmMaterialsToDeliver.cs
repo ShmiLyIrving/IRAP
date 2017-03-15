@@ -272,7 +272,7 @@ namespace IRAP.Client.GUI.SCES
                                 dt.Columns.Add("PWONo", typeof(string));
                                 dt.Columns.Add("PWOIssuingFactID", typeof(long));
                                 dt.Columns.Add("MONumber", typeof(string));
-                                dt.Columns.Add("OrderQty", typeof(int));
+                                dt.Columns.Add("OrderQty", typeof(string));
                                 dt.Columns.Add("StartTime", typeof(string));
                                 dt.Columns.Add("MaterialList", typeof(string));
                                 dt.Columns.Add("T134NodeName", typeof(string));
@@ -291,7 +291,7 @@ namespace IRAP.Client.GUI.SCES
                                         data.PWONo,
                                         data.PWOIssuingFactID,
                                         data.MONumber,
-                                        data.OrderQty,
+                                        data.OrderQuantity.ToString(),
                                         data.StartTime,
                                         data.MaterialList,
                                         data.T134NodeName,
