@@ -102,5 +102,25 @@ namespace IRAP.Client.SubSystem
             }
             return -1;
         }
+
+        /// <summary>
+        /// 根据 T102LeafID 或 T120LeafID 从当面的产品列表中获取产品
+        /// </summary>
+        /// <param name="leafID"></param>
+        /// <returns></returns>
+        public ProductViaStation GetProductWithLeafID(int leafID)
+        {
+            ProductViaStation rlt = null;
+            foreach (ProductViaStation product in _products)
+            {
+                if (product.T102LeafID == leafID ||
+                    product.T120LeafID == leafID)
+                {
+                    rlt = product;
+                    break;
+                }
+            }
+            return rlt;
+        }
     }
 }

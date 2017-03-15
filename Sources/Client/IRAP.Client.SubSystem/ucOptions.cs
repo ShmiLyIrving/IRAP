@@ -115,14 +115,19 @@ namespace IRAP.Client.SubSystem
             }
         }
 
-        public void RefreshOptions(int t107LeafID)
+        /// <summary>
+        /// 刷新当前的 OptionsTwo
+        /// </summary>
+        /// <param name="t102LeafID">产品叶标识</param>
+        public void RefreshOptionTwo(int t102LeafID)
         {
-            foreach (WIPStation station in AvailableWIPStations.Instance.Stations)
+            foreach (ProductViaStation product in AvailableProducts.Instance.Products)
             {
-                if (station.T107LeafID == t107LeafID)
+                if (product.T102LeafID == t102LeafID)
                 {
-                    CurrentOptions.Instance.OptionOne = station;
-                    ResetCurrentOptions();
+                    CurrentOptions.Instance.OptionTwo = product;
+
+                    cboOptionsTwo.SelectedIndex = CurrentOptions.Instance.IndexOfOptionTwo;
                 }
             }
         }
