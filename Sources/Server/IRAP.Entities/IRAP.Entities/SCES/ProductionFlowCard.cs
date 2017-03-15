@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using IRAP.Global;
+using IRAPShared;
 
 namespace IRAP.Entities.SCES
 {
     public class ProductionFlowCard
     {
+        private Quantity orderQuantity = new Quantity();
+
         /// <summary>
         /// 自增序列号
         /// </summary>
@@ -42,7 +42,11 @@ namespace IRAP.Entities.SCES
         /// <summary>
         /// 工单数量(投入数量)
         /// </summary>
-        public int OrderQty { get; set; }
+        public long OrderQty
+        {
+            get { return orderQuantity.IntValue; }
+            set { orderQuantity.IntValue = value; }
+        }
         /// <summary>
         /// 生产开始时间(投入时间)
         /// </summary>
@@ -95,10 +99,35 @@ namespace IRAP.Entities.SCES
         /// 备注
         /// </summary>
         public string Remark { get; set; }
+        /// <summary>
+        /// 放大数量级
+        /// </summary>
+        public int Scale
+        {
+            get { return orderQuantity.Scale; }
+            set { orderQuantity.Scale = value; }
+        }
+        /// <summary>
+        /// 计量单位
+        /// </summary>
+        public string UnitOfMeasure
+        {
+            get { return orderQuantity.UnitOfMeasure; }
+            set { orderQuantity.UnitOfMeasure = value; }
+        }
+
+        [IRAPORMMap(ORMMap = false)]
+        public Quantity OrderQuantity
+        {
+            get { return orderQuantity; }
+        }
 
         public ProductionFlowCard Clone()
         {
-            return MemberwiseClone() as ProductionFlowCard;
+            ProductionFlowCard rlt = MemberwiseClone() as ProductionFlowCard;
+            rlt.orderQuantity = orderQuantity.Clone();
+
+            return rlt;
         }
     }
 }
