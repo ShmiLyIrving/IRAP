@@ -8,6 +8,7 @@ using System.Threading;
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Entity.SSO;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.SubSystem
@@ -18,10 +19,10 @@ namespace IRAP.Client.SubSystem
         MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private static CurrentOptions _instance = null;
-        private int indexOfWorkUnit = -1;
-        private ProcessInfo process = new ProcessInfo();
-        private WorkUnitInfo workUnit = new WorkUnitInfo();
-        private List<WorkUnitInfo> workUnits = new List<WorkUnitInfo>();
+        private int indexOfOptionTwo = -1;
+        private WIPStation optionOne = new WIPStation();
+        private ProductViaStation optionTwo = new ProductViaStation();
+        private List<ProductViaStation> optionTwos = new List<ProductViaStation>();
 
         private CurrentOptions()
         {
@@ -38,67 +39,66 @@ namespace IRAP.Client.SubSystem
         }
 
         /// <summary>
-        ///  获取/设置当前选择的工位/工序在工位/工序列表中的索引号
+        ///  获取/设置当前选择的产品/流程在产品/流程列表中的索引号
         /// </summary>
-        public int IndexOfWorkUnit
+        public int IndexOfOptionTwo
         {
-            get { return indexOfWorkUnit; }
+            get { return indexOfOptionTwo; }
             set
             {
-                if (value > workUnits.Count)
+                if (value > optionTwos.Count)
                 {
                     if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                         throw new Exception("Index is out of range.");
                     else
-                        throw new Exception("索引超出工位/工序列表的范围");
+                        throw new Exception("索引超出列表的范围");
                 }
 
-                if (indexOfWorkUnit != value)
+                if (indexOfOptionTwo != value)
                 {
-                    if (indexOfWorkUnit < 0)
+                    if (indexOfOptionTwo < 0)
                     {
-                        indexOfWorkUnit = -1;
-                        workUnit = null;
+                        indexOfOptionTwo = -1;
+                        optionTwo = null;
                     }
                     else
                     {
-                        workUnit = WorkUnits[value];
-                        indexOfWorkUnit = value;
+                        optionTwo = OptionTwos[value];
+                        indexOfOptionTwo = value;
                     }
                 }
             }
         }
 
         /// <summary>
-        /// 获取/设置当前的产品/流程
+        /// 获取/设置当前的工位/工作流结点
         /// </summary>
-        public ProcessInfo Process
+        public WIPStation OptionOne
         {
-            get { return process; }
+            get { return optionOne; }
             set
             {
                 if (value != null)
                 {
-                    if (process == null ||
-                        process.T120LeafID != value.T120LeafID ||
-                        process.T102LeafID != value.T102LeafID)
+                    if (optionOne == null ||
+                        optionOne.T107LeafID != value.T107LeafID)
                     {
-                        process = value.Clone();
+                        optionOne = value.Clone();
                         try
                         {
-                            GetWorkUnitsWithCurrentProcess();
+                            GetProductsWithCurrentStatioin();
                         }
                         catch
                         {
-                            indexOfWorkUnit = -1;
-                            workUnit = null;
+                            indexOfOptionTwo = -1;
+                            optionTwo = null;
                             return;
                         }
 
-                        if (WorkUnits.Count > 0)
+                        if (OptionTwos.Count > 0)
                         {
-                            indexOfWorkUnit = 0;
-                            workUnit = workUnits[0];
+                            indexOfOptionTwo = 0;
+                            optionTwo = optionTwos[0];
                         }
                     }
                 }
@@ -106,40 +106,40 @@ namespace IRAP.Client.SubSystem
         }
 
         /// <summary>
-        /// 获取/设置当前选择的工位/工序
+        /// 获取/设置当前选择的产品/流程
         /// </summary>
-        public WorkUnitInfo WorkUnit
+        public ProductViaStation OptionTwo
         {
-            get { return workUnit; }
+            get { return optionTwo; }
             set
             {
-                if (workUnit == null ||
-                    workUnit.WorkUnitLeaf != value.WorkUnitLeaf)
+                if (optionTwo == null ||
+                    optionTwo.T102LeafID != value.T102LeafID)
                 {
-                    for (int i = 0; i < workUnits.Count; i++)
+                    for (int i = 0; i < optionTwos.Count; i++)
                     {
-                        if (workUnits[i].WorkUnitLeaf == value.WorkUnitLeaf)
+                        if (optionTwos[i].T102LeafID == value.T102LeafID)
                         {
-                            workUnit = workUnits[i];
-                            IndexOfWorkUnit = i;
+                            optionTwo = optionTwos[i];
+                            IndexOfOptionTwo = i;
                             return;
                         }
                     }
 
                     if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                        throw new Exception("The position/process to switch is not in the list of the current product / process");
+                        throw new Exception("The product/process to switch is not in the list of the current position/process");
                     else
-                        throw new Exception("要切换的工位/工序不在当前产品/流程允许的列表中");
+                        throw new Exception("要切换产品/流程的不在当前工位/工序允许的列表中");
                 }
             }
         }
 
-        public List<WorkUnitInfo> WorkUnits
+        public List<ProductViaStation> OptionTwos
         {
-            get { return workUnits; }
+            get { return optionTwos; }
         }
 
-        private void GetWorkUnitsWithCurrentProcess()
+        private void GetProductsWithCurrentStatioin()
         {
             string strProcedureName =
                 string.Format(
@@ -151,13 +151,14 @@ namespace IRAP.Client.SubSystem
             {
                 int errCode = 0;
                 string errText = "";
-                workUnits.Clear();
+                optionTwos.Clear();
 
-                IRAPSystemClient.Instance.ufn_GetKanban_WorkUnits(
+                IRAPMDMClient.Instance.ufn_GetList_ProductsViaStation(
                     IRAPUser.Instance.CommunityID,
+                    optionOne.T107LeafID,
+                    optionOne.IsWorkFlowNode,
                     IRAPUser.Instance.SysLogID,
-                    process.T120LeafID,
-                    ref workUnits,
+                    ref optionTwos,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(

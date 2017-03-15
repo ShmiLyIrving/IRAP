@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="AvailableWIPStations.cs" />
     <Compile Include="AvailableSubSystems.cs" />
-    <Compile Include="AvailableWorkUnits.cs" />
+    <Compile Include="AvailableProducts.cs" />
     <Compile Include="CurrentOptions.cs" />
     <Compile Include="CurrentStationInfo.cs" />
     <Compile Include="CurrentSubSystem.cs" />

@@ -14,6 +14,7 @@ using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Entity.SSO;
 using IRAP.Entity.Kanban;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.SubSystem
@@ -45,16 +46,16 @@ namespace IRAP.Client.SubSystem
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                if (AvailableWIPStations.Instance.Processes.Count <= 0)
+                if (AvailableWIPStations.Instance.Stations.Count <= 0)
                     AvailableWIPStations.Instance.GetWIPStations(
                         IRAPUser.Instance.CommunityID,
                         IRAPUser.Instance.SysLogID);
 
-                lstProcesses.DataSource = AvailableWIPStations.Instance.Processes;
-                lstProcesses.DisplayMember = "T120NodeName";
-                lstProcesses.SelectedIndex =
+                lstOptionOnes.DataSource = AvailableWIPStations.Instance.Stations;
+                lstOptionOnes.DisplayMember = "T107Name";
+                lstOptionOnes.SelectedIndex =
                     AvailableWIPStations.Instance.IndexOf(
-                        CurrentOptions.Instance.Process);
+                        CurrentOptions.Instance.OptionOne);
             }
             catch (Exception error)
             {
@@ -70,24 +71,25 @@ namespace IRAP.Client.SubSystem
             }
         }
 
-        private void lstProcesses_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstOptionTwos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lstWorkUnits.Items.Clear();
-            if (lstProcesses.SelectedItem != null)
+            lstOptionTwos.Items.Clear();
+            if (lstOptionOnes.SelectedItem != null)
             {
-                ProcessInfo process = lstProcesses.SelectedItem as ProcessInfo;
+                WIPStation station = lstOptionOnes.SelectedItem as WIPStation;
                 try
                 {
-                    AvailableWorkUnits.Instance.GetWorkUnits(
+                    AvailableProducts.Instance.GetProducts(
                         IRAPUser.Instance.CommunityID,
                         IRAPUser.Instance.SysLogID,
-                        process.T120LeafID);
+                        station.T107LeafID,
+                        station.IsWorkFlowNode);
 
-                    lstWorkUnits.DataSource = AvailableWorkUnits.Instance.WorkUnits;
-                    lstWorkUnits.DisplayMember = "WorkUnitName";
-                    lstWorkUnits.SelectedIndex =
-                        AvailableWorkUnits.Instance.IndexOf(
-                            CurrentOptions.Instance.WorkUnit);
+                    lstOptionTwos.DataSource = AvailableProducts.Instance.Products;
+                    lstOptionTwos.DisplayMember = "T102Name";
+                    lstOptionTwos.SelectedIndex =
+                        AvailableProducts.Instance.IndexOf(
+                            CurrentOptions.Instance.OptionTwo);
                 }
                 catch (Exception error)
                 {
@@ -161,25 +163,27 @@ namespace IRAP.Client.SubSystem
             #endregion
 #endif
 
-            CurrentOptions.Instance.Process = (ProcessInfo)lstProcesses.SelectedItem;
+            CurrentOptions.Instance.OptionOne = (WIPStation)lstOptionOnes.SelectedItem;
             try
             {
-                CurrentOptions.Instance.WorkUnit = (WorkUnitInfo)lstWorkUnits.SelectedItem;
+                CurrentOptions.Instance.OptionTwo = (ProductViaStation)lstOptionTwos.SelectedItem;
             }
             catch (Exception error)
             {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage(
+                XtraMessageBox.Show(
                     error.Message,
-                    caption);
+                    caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
         private void frmSelectOptions_Paint(object sender, PaintEventArgs e)
         {
             btnSelect.Enabled =
-                (lstProcesses.SelectedItem != null) &&
-                (lstWorkUnits.SelectedItem != null);
+                (lstOptionOnes.SelectedItem != null) &&
+                (lstOptionTwos.SelectedItem != null);
         }
 
         private void lstWorkUnits_Click(object sender, EventArgs e)
@@ -196,12 +200,12 @@ namespace IRAP.Client.SubSystem
 
         private void btnShowAll_Click(object sender, EventArgs e)
         {
-            lstProcesses.DataSource = AvailableWIPStations.Instance.Processes;
-            lstProcesses.DisplayMember = "T120NodeName";
-            lstProcesses.SelectedIndex =
-                AvailableWIPStations.Instance.IndexOf(
-                    CurrentOptions.Instance.Process);
-            lstProcesses_SelectedIndexChanged(null, null);
+            lstOptionTwos.DataSource = AvailableProducts.Instance.Products;
+            lstOptionTwos.DisplayMember = "T102Name";
+            lstOptionTwos.SelectedIndex =
+                AvailableProducts.Instance.IndexOf(
+                    CurrentOptions.Instance.OptionTwo);
+            lstOptionTwos_SelectedIndexChanged(null, null);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -211,55 +215,25 @@ namespace IRAP.Client.SubSystem
                     "{0}.{1}",
                     className,
                     MethodBase.GetCurrentMethod().Name);
+
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                lstProcesses.Items.Clear();
-
-                lstWorkUnits.DataSource = null;
-                lstWorkUnits.Items.Clear();
-
-                int errCode = 0;
-                string errText = "";
-                List<ProcessInfo> processes = new List<ProcessInfo>();
-                List<ProductProcessInfo> datas = new List<ProductProcessInfo>();
-
-                IRAPKBClient.Instance.ufn_GetList_GoToProduct(
-                    IRAPUser.Instance.CommunityID,
-                    edtSearchCondition.Text.Trim(),
-                    ref datas,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
-                    strProcedureName);
-                if (errCode != 0)
+                List<ProductViaStation> filterProducts = new List<ProductViaStation>();
+                foreach (ProductViaStation product in CurrentOptions.Instance.OptionTwos)
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText, caption);
-                    return;
+                    if (product.T102Name.IndexOf(edtSearchCondition.Text.Trim()) >= 0||
+                        product.T102Code.IndexOf(edtSearchCondition.Text.Trim()) >= 0)
+                    {
+                        filterProducts.Add(product);
+                    }
                 }
-                else
-                {
-                    foreach (ProductProcessInfo data in datas)
-                    {
-                        foreach (ProcessInfo process in AvailableWIPStations.Instance.Processes)
-                        {
-                            if (process.T102LeafID == data.T102LeafID &&
-                                process.T120LeafID == data.T120LeafID)
-                            {
-                                processes.Add(process);
-                                break;
-                            }
-                        }
-                    }
 
-                    lstProcesses.DataSource = processes;
-                    lstProcesses.DisplayMember = "T120NodeName";
-                    if (processes.Count > 0)
-                    {
-                        lstProcesses.SelectedIndex = 0;
-                        lstProcesses_SelectedIndexChanged(null, null);
-                    }
+                lstOptionTwos.DataSource = filterProducts;
+                lstOptionTwos.DisplayMember = "T102Name";
+                if (filterProducts.Count > 0)
+                {
+                    lstOptionTwos.SelectedIndex = 0;
                 }
             }
             catch (Exception error)

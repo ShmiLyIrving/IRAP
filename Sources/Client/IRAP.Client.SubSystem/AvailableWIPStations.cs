@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Reflection;
 using System.Threading;
 
@@ -35,7 +33,7 @@ namespace IRAP.Client.SubSystem
             }
         }
 
-        public List<WIPStation> Processes
+        public List<WIPStation> Stations
         {
             get { return _stations; }
         }

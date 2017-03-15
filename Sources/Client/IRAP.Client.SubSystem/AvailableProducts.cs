@@ -4,29 +4,30 @@ using System.Reflection;
 using System.Threading;
 
 using IRAP.Global;
-using IRAP.Entity.SSO;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.SubSystem
 {
-    public class AvailableWorkUnits
+    public class AvailableProducts
     {
         private static string className =
-        MethodBase.GetCurrentMethod().DeclaringType.FullName;
-        private static AvailableWorkUnits _instance = null;
-        private int processLeaf = 0;
-        private List<WorkUnitInfo> _workUnits = new List<WorkUnitInfo>();
+            MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private AvailableWorkUnits()
+        private static AvailableProducts _instance = null;
+        private int processLeaf = 0;
+        private List<ProductViaStation> _products = new List<ProductViaStation>();
+
+        private AvailableProducts()
         {
         }
 
-        public static AvailableWorkUnits Instance
+        public static AvailableProducts Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new AvailableWorkUnits();
+                    _instance = new AvailableProducts();
                 return _instance;
             }
         }
@@ -36,12 +37,12 @@ namespace IRAP.Client.SubSystem
             get { return processLeaf; }
         }
 
-        public List<WorkUnitInfo> WorkUnits
+        public List<ProductViaStation> Products
         {
-            get { return _workUnits; }
+            get { return _products; }
         }
 
-        public int GetWorkUnits(int communityID, long sysLogID, int processLeaf)
+        public int GetProducts(int communityID, long sysLogID, int t107LeafID, bool isWorkFlowNode)
         {
             string strProcedureName =
                 string.Format(
@@ -53,20 +54,21 @@ namespace IRAP.Client.SubSystem
             {
                 int errCode = 0;
                 string errText = "";
-                _workUnits.Clear();
+                _products.Clear();
 
-                IRAPSystemClient.Instance.ufn_GetKanban_WorkUnits(
+                IRAPMDMClient.Instance.ufn_GetList_ProductsViaStation(
                     communityID,
+                    t107LeafID,
+                    isWorkFlowNode,
                     sysLogID,
-                    processLeaf,
-                    ref _workUnits,
+                    ref _products,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
                 if (errCode == 0)
-                    return _workUnits.Count;
+                    return _products.Count;
                 else
                     throw new Exception(errText);
             }
@@ -77,12 +79,12 @@ namespace IRAP.Client.SubSystem
                 if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                     throw new Exception(
                         string.Format(
-                            "Unable to obtain stations/functions, reason: {0}",
+                            "Unable to obtain products/processes, reason: {0}",
                             error.Message));
                 else
                     throw new Exception(
                         string.Format(
-                            "无法获取工位/功能，原因：{0}",
+                            "无法获取产品/流程，原因：{0}",
                             error.Message));
             }
             finally
@@ -91,11 +93,11 @@ namespace IRAP.Client.SubSystem
             }
         }
 
-        public int IndexOf(WorkUnitInfo workUnit)
+        public int IndexOf(ProductViaStation product)
         {
-            for (int i = 0; i < _workUnits.Count; i++)
+            for (int i = 0; i < _products.Count; i++)
             {
-                if (WorkUnits[i].WorkUnitLeaf == workUnit.WorkUnitLeaf)
+                if (Products[i].T102LeafID == product.T102LeafID)
                     return i;
             }
             return -1;

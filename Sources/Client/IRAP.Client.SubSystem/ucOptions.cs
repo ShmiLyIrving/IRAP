@@ -13,6 +13,7 @@ using DevExpress.XtraEditors;
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Entity.SSO;
+using IRAP.Entities.MDM;
 
 namespace IRAP.Client.SubSystem
 {
@@ -35,8 +36,8 @@ namespace IRAP.Client.SubSystem
         {
             get
             {
-                if (cboProcesses.SelectedItem != null)
-                    return (ProcessInfo)cboProcesses.SelectedItem;
+                if (cboOptionsOne.SelectedItem != null)
+                    return (ProcessInfo)cboOptionsOne.SelectedItem;
                 else
                     return null;
             }
@@ -46,8 +47,8 @@ namespace IRAP.Client.SubSystem
         {
             get
             {
-                if (cboWorkUnits.SelectedItem != null)
-                    return (WorkUnitInfo)cboWorkUnits.SelectedItem;
+                if (cboOptionsTwo.SelectedItem != null)
+                    return (WorkUnitInfo)cboOptionsTwo.SelectedItem;
                 else
                     return null;
             }
@@ -83,23 +84,23 @@ namespace IRAP.Client.SubSystem
                 #endregion
 
                 #region 将获取的产品/流程列表加入下拉列表中
-                cboProcesses.Properties.Items.Clear();
-                foreach (ProcessInfo process in AvailableWIPStations.Instance.Processes)
-                    cboProcesses.Properties.Items.Add(process);
+                cboOptionsOne.Properties.Items.Clear();
+                foreach (WIPStation station in AvailableWIPStations.Instance.Stations)
+                    cboOptionsOne.Properties.Items.Add(station);
 
-                if (cboProcesses.Properties.Items.Count > 0)
+                if (cboOptionsOne.Properties.Items.Count > 0)
                 {
-                    cboProcesses.SelectedIndex = 0;
+                    cboOptionsOne.SelectedIndex = 0;
 
                     try
                     {
-                        CurrentOptions.Instance.Process =
-                            (ProcessInfo)cboProcesses.SelectedItem;
+                        CurrentOptions.Instance.OptionOne =
+                            (WIPStation)cboOptionsOne.SelectedItem;
 
-                        cboWorkUnits.Properties.Items.Clear();
-                        foreach (WorkUnitInfo workUnit in CurrentOptions.Instance.WorkUnits)
-                            cboWorkUnits.Properties.Items.Add(workUnit);
-                        cboWorkUnits.SelectedIndex = CurrentOptions.Instance.IndexOfWorkUnit;
+                        cboOptionsTwo.Properties.Items.Clear();
+                        foreach (ProductViaStation product in CurrentOptions.Instance.OptionTwos)
+                            cboOptionsTwo.Properties.Items.Add(product);
+                        cboOptionsTwo.SelectedIndex = CurrentOptions.Instance.IndexOfOptionTwo;
                     }
                     catch (Exception error)
                     {
@@ -114,13 +115,13 @@ namespace IRAP.Client.SubSystem
             }
         }
 
-        public void RefreshOptions(int t102LeafID)
+        public void RefreshOptions(int t107LeafID)
         {
-            foreach (ProcessInfo process in AvailableWIPStations.Instance.Processes)
+            foreach (WIPStation station in AvailableWIPStations.Instance.Stations)
             {
-                if (process.T102LeafID == t102LeafID)
+                if (station.T107LeafID == t107LeafID)
                 {
-                    CurrentOptions.Instance.Process = process;
+                    CurrentOptions.Instance.OptionOne = station;
                     ResetCurrentOptions();
                 }
             }
@@ -128,15 +129,15 @@ namespace IRAP.Client.SubSystem
 
         public void ResetCurrentOptions()
         {
-            cboProcesses.Properties.Items.Clear();
-            cboProcesses.Properties.Items.Add(CurrentOptions.Instance.Process);
-            cboProcesses.SelectedIndex = 0;
+            cboOptionsOne.Properties.Items.Clear();
+            cboOptionsOne.Properties.Items.Add(CurrentOptions.Instance.OptionOne);
+            cboOptionsOne.SelectedIndex = 0;
 
-            cboWorkUnits.Properties.Items.Clear();
-            foreach (WorkUnitInfo workUnit in CurrentOptions.Instance.WorkUnits)
-                cboWorkUnits.Properties.Items.Add(workUnit);
-            if (CurrentOptions.Instance.WorkUnit.WorkUnitLeaf != 0)
-                cboWorkUnits.SelectedIndex = CurrentOptions.Instance.IndexOfWorkUnit;
+            cboOptionsTwo.Properties.Items.Clear();
+            foreach (ProductViaStation product in CurrentOptions.Instance.OptionTwos)
+                cboOptionsTwo.Properties.Items.Add(product);
+            if (CurrentOptions.Instance.OptionTwo.T102LeafID != 0)
+                cboOptionsTwo.SelectedIndex = CurrentOptions.Instance.IndexOfOptionTwo;
 
             if (OptionChanged != null)
                 OptionChanged(this, new EventArgs());
@@ -156,7 +157,7 @@ namespace IRAP.Client.SubSystem
                 {
                     if (Visible)
                     {
-                        if (AvailableWIPStations.Instance.Processes.Count == 0)
+                        if (AvailableWIPStations.Instance.Stations.Count == 0)
                             RefreshOptions();
                     }
                 }
@@ -181,20 +182,20 @@ namespace IRAP.Client.SubSystem
             btnSwitch.Visible = boolShowSwtichButton;
         }
 
-        private void cboProcesses_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboOptionsOne_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboProcesses.SelectedIndex >= 0)
-                CurrentOptions.Instance.Process = cboProcesses.SelectedItem as ProcessInfo;
+            if (cboOptionsOne.SelectedIndex >= 0)
+                CurrentOptions.Instance.OptionOne = cboOptionsOne.SelectedItem as WIPStation;
             else
-                CurrentOptions.Instance.Process = null;
+                CurrentOptions.Instance.OptionOne = null;
         }
 
-        private void cboWorkUnits_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboOptionsTwo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboWorkUnits.SelectedItem == null)
-                CurrentOptions.Instance.WorkUnit = null;
+            if (cboOptionsTwo.SelectedItem == null)
+                CurrentOptions.Instance.OptionTwo = null;
             else
-                CurrentOptions.Instance.WorkUnit = cboWorkUnits.SelectedItem as WorkUnitInfo;
+                CurrentOptions.Instance.OptionTwo = cboOptionsTwo.SelectedItem as ProductViaStation;
         }
     }
 }
