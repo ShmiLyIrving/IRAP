@@ -48,8 +48,8 @@ namespace IRAP.Client.GUI.MESPDC
 
             if (Options.SelectProduct != null)
                 t102LeafID = Options.SelectProduct.T102LeafID;
-            if (Options.SelectWorkUnit != null)
-                t107LeafID = Options.SelectWorkUnit.WorkUnitLeaf;
+            if (Options.SelectStation != null)
+                t107LeafID = Options.SelectStation.T107LeafID;
 
             string strProcedureName =
                 string.Format(
@@ -108,8 +108,8 @@ namespace IRAP.Client.GUI.MESPDC
 
             if (Options.SelectProduct != null)
                 t102LeafID = Options.SelectProduct.T102LeafID;
-            if (Options.SelectWorkUnit != null)
-                t107LeafID = Options.SelectWorkUnit.WorkUnitLeaf;
+            if (Options.SelectProduct != null)
+                t107LeafID = Options.SelectStation.T107LeafID;
 
             string strProcedureName =
                 string.Format(

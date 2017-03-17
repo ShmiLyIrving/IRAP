@@ -39,7 +39,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         {
             try
             {
-                AvailableWIPStations.Instance.Options.RefreshOptions(searchValue);
+                AvailableWIPStations.Instance.Options.RefreshOptionTwo(searchValue);
             }
             catch (Exception error)
             {

@@ -15,6 +15,7 @@ using IRAP.Client.User;
 using IRAP.Client.SubSystem;
 using IRAP.Entity.SSO;
 using IRAP.Entity.FVS;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MESRMM
@@ -284,14 +285,14 @@ namespace IRAP.Client.GUI.MESRMM
             Options.Visible = true;
 
             if (url != "")
-                if (CurrentOptions.Instance.Process != null &&
-                    CurrentOptions.Instance.WorkUnit != null)
+                if (CurrentOptions.Instance.OptionOne != null &&
+                    CurrentOptions.Instance.OptionTwo != null)
                 {
-                    if (CurrentOptions.Instance.Process.T120LeafID != lastProcessLeaf ||
-                        CurrentOptions.Instance.WorkUnit.WorkUnitLeaf != lastWorkUnitLeaf)
+                    if (CurrentOptions.Instance.OptionTwo.T120LeafID != lastProcessLeaf ||
+                        CurrentOptions.Instance.OptionOne.T107LeafID != lastWorkUnitLeaf)
                     {
-                        lastProcessLeaf = CurrentOptions.Instance.Process.T120LeafID;
-                        lastWorkUnitLeaf = CurrentOptions.Instance.WorkUnit.WorkUnitLeaf;
+                        lastProcessLeaf = CurrentOptions.Instance.OptionTwo.T120LeafID;
+                        lastWorkUnitLeaf = CurrentOptions.Instance.OptionOne.T107LeafID;
 
                         ShowProductWI(lastProcessLeaf, lastWorkUnitLeaf);
                         ShowProductSerialWI(lastProcessLeaf, lastWorkUnitLeaf);

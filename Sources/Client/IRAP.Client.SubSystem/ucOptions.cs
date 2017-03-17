@@ -7,12 +7,12 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
 
 using DevExpress.XtraEditors;
 
 using IRAP.Global;
 using IRAP.Client.User;
-using IRAP.Entity.SSO;
 using IRAP.Entities.MDM;
 
 namespace IRAP.Client.SubSystem
@@ -22,6 +22,9 @@ namespace IRAP.Client.SubSystem
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
+        private string caption = "";
+        private string cultureName = "";
+
         /// <summary>
         /// 选项一、二更改后的事件
         /// </summary>
@@ -30,25 +33,31 @@ namespace IRAP.Client.SubSystem
         public ucOptions()
         {
             InitializeComponent();
+
+            cultureName = Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2).ToUpper();
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                caption = "System tip";
+            else
+                caption = "系统信息";
         }
 
-        public ProcessInfo SelectProduct
+        public WIPStation SelectStation
         {
             get
             {
                 if (cboOptionsOne.SelectedItem != null)
-                    return (ProcessInfo)cboOptionsOne.SelectedItem;
+                    return (WIPStation)cboOptionsOne.SelectedItem;
                 else
                     return null;
             }
         }
 
-        public WorkUnitInfo SelectWorkUnit
+        public ProductViaStation SelectProduct
         {
             get
             {
                 if (cboOptionsTwo.SelectedItem != null)
-                    return (WorkUnitInfo)cboOptionsTwo.SelectedItem;
+                    return (ProductViaStation)cboOptionsTwo.SelectedItem;
                 else
                     return null;
             }
@@ -190,9 +199,54 @@ namespace IRAP.Client.SubSystem
         private void cboOptionsOne_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboOptionsOne.SelectedIndex >= 0)
+            {
                 CurrentOptions.Instance.OptionOne = cboOptionsOne.SelectedItem as WIPStation;
+
+                if (CurrentOptions.Instance.OptionOne.IsWorkFlowNode)
+                {
+                    switch (cultureName)
+                    {
+                        case "EN":
+                            lblOptionOne.Text = "WORKFLOW NODE";
+                            lblOptionTwo.Text = "WORKFLOW";
+                            break;
+                        default:
+                            lblOptionOne.Text = "工作流结点";
+                            lblOptionTwo.Text = "工作流";
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (cultureName)
+                    {
+                        case "EN":
+                            lblOptionOne.Text = "WIP STATION";
+                            lblOptionTwo.Text = "PRODUCT";
+                            break;
+                        default:
+                            lblOptionOne.Text = "工位";
+                            lblOptionTwo.Text = "产品";
+                            break;
+                    }
+                }
+            }
             else
+            {
                 CurrentOptions.Instance.OptionOne = null;
+
+                switch (cultureName)
+                {
+                    case "EN":
+                        lblOptionOne.Text = "Option one";
+                        lblOptionTwo.Text = "Option two";
+                        break;
+                    default:
+                        lblOptionOne.Text = "选项一";
+                        lblOptionTwo.Text = "选项二";
+                        break;
+                }
+            }
         }
 
         private void cboOptionsTwo_SelectedIndexChanged(object sender, EventArgs e)

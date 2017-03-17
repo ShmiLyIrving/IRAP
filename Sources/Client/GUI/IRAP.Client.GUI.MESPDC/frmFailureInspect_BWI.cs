@@ -147,7 +147,7 @@ namespace IRAP.Client.GUI.MESPDC
                 IRAPMESClient.Instance.usp_PokaYoke_PalletRouting(
                     IRAPUser.Instance.CommunityID,
                     Options.SelectProduct.T102LeafID,
-                    Options.SelectWorkUnit.WorkUnitLeaf,
+                    Options.SelectStation.T107LeafID,
                     edtProductCardNo.Text.Trim(),
                     IRAPUser.Instance.SysLogID,
                     out errCode,
@@ -180,7 +180,7 @@ namespace IRAP.Client.GUI.MESPDC
         {
             try
             {
-                datas = GetFailureModes(Options.SelectWorkUnit.WorkUnitLeaf);
+                datas = GetFailureModes(Options.SelectStation.T107LeafID);
 
                 grdFailureModes.DataSource = datas;
             }
@@ -258,7 +258,7 @@ namespace IRAP.Client.GUI.MESPDC
                     intTransactNo,
                     intFactID,
                     Options.SelectProduct.T102LeafID,
-                    Options.SelectWorkUnit.WorkUnitLeaf,
+                    Options.SelectStation.T107LeafID,
                     edtProductCardNo.Text.Trim(),
                     "",
                     GetTotalFailureQuantity(datas),

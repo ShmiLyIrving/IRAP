@@ -76,7 +76,6 @@
     <Compile Include="MES\RSFactTestData.cs" />
     <Compile Include="MES\TBL_AuxFact_PDC.cs" />
     <Compile Include="MES\TBL_FixedFact_MES.cs" />
-    <Compile Include="MES\PCBSymbols.cs" />
     <Compile Include="MES\SubWIPIDCodes_TS.cs" />
     <Compile Include="MES\SubWIPIDCode_TroubleShooting.cs" />
     <Compile Include="MES\SubWIPIDCode_TSItem.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MDM\TemplateContent.cs" />
     <Compile Include="SSO\UserInfo.cs" />
+    <Compile Include="SymbolInspecting.cs" />
     <Compile Include="UTS\OperTypeInfo.cs" />
     <Compile Include="UTS\STB010.cs" />
   </ItemGroup>

@@ -599,8 +599,8 @@ namespace IRAP.Client.GUI.MESPDC
                     try
                     {
                         busUDFForm.SaveOLTPUDFFormData(
-                            CurrentOptions.Instance.Process.T102LeafID,
-                            CurrentOptions.Instance.WorkUnit.WorkUnitLeaf);
+                            CurrentOptions.Instance.OptionTwo.T102LeafID,
+                            CurrentOptions.Instance.OptionOne.T107LeafID);
                         WriteLog.Instance.Write(
                             string.Format(
                                 "{0}.{1}",
@@ -762,8 +762,8 @@ namespace IRAP.Client.GUI.MESPDC
 
                         if (IRAPUTSClient.Instance.ufn_OLTP_StringValid(
                                 menuInfo.Parameters,
-                                CurrentOptions.Instance.Process.T120LeafID,
-                                CurrentOptions.Instance.WorkUnit.WorkUnitLeaf,
+                                CurrentOptions.Instance.OptionTwo.T120LeafID,
+                                CurrentOptions.Instance.OptionOne.T107LeafID,
                                 edtOrigin.Text.Trim(),
                                 menuInfo.OpNode,
                                 menuInfo.Parameters,

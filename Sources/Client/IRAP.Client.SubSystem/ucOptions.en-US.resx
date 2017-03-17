@@ -117,11 +117,54 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labelControl1.Text" xml:space="preserve">
-    <value>Option No.1 </value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblOptionOne.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 11.25pt</value>
   </data>
-  <data name="labelControl2.Text" xml:space="preserve">
-    <value>Option No. 2 </value>
+  <data name="lblOptionOne.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 38</value>
+  </data>
+  <data name="lblOptionOne.Text" xml:space="preserve">
+    <value>Option one</value>
+  </data>
+  <data name="cboOptionsOne.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 7</value>
+  </data>
+  <data name="cboOptionsOne.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 11.25pt</value>
+  </data>
+  <data name="cboOptionsOne.Size" type="System.Drawing.Size, System.Drawing">
+    <value>294, 24</value>
+  </data>
+  <data name="lblOptionTwo.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 11.25pt</value>
+  </data>
+  <data name="lblOptionTwo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>414, 0</value>
+  </data>
+  <data name="lblOptionTwo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 38</value>
+  </data>
+  <data name="lblOptionTwo.Text" xml:space="preserve">
+    <value>Option two</value>
+  </data>
+  <data name="cboOptionsTwo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>491, 7</value>
+  </data>
+  <data name="cboOptionsTwo.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 11.25pt</value>
+  </data>
+  <data name="cboOptionsTwo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 24</value>
+  </data>
+  <data name="btnSwitch.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 11.25pt</value>
+  </data>
+  <data name="btnSwitch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>690, 4</value>
+  </data>
+  <data name="btnSwitch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 27</value>
   </data>
   <data name="btnSwitch.Text" xml:space="preserve">
     <value>Switch</value>

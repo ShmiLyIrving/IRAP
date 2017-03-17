@@ -13,6 +13,7 @@ using IRAP.Client.SubSystem;
 using IRAP.Entity.Kanban;
 using IRAP.Entity.MES;
 using IRAP.Entity.SSO;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MESPDC
@@ -104,10 +105,10 @@ namespace IRAP.Client.GUI.MESPDC
         {
             Options.Visible = true;
 
-            if (Options.SelectWorkUnit != null)
+            if (Options.SelectStation != null)
             {
-                edtContainerNo1.Text = Options.SelectWorkUnit.ContainerNo1;
-                edtContainerNo2.Text = Options.SelectWorkUnit.ContainerNo2;
+                edtContainerNo1.Text = Options.SelectStation.T107G02;
+                edtContainerNo2.Text = Options.SelectStation.T107G03;
             }
         }
 
@@ -158,8 +159,8 @@ namespace IRAP.Client.GUI.MESPDC
                         view.BarCode = splitString[1];
                         grdvSerialPortScanners.BestFitColumns();
 
-                        if (Options.SelectProduct == null ||
-                            Options.SelectWorkUnit == null)
+                        if (Options.SelectStation == null ||
+                            Options.SelectProduct == null)
                         {
                             WriteToScreenLog(
                                 view.BarCode,
@@ -183,7 +184,7 @@ namespace IRAP.Client.GUI.MESPDC
                                 IRAPUser.Instance.CommunityID,
                                 view.BarCode,
                                 Options.SelectProduct.T120LeafID,
-                                Options.SelectWorkUnit.WorkUnitLeaf,
+                                Options.SelectStation.T107LeafID,
                                 ref barcodeInfo,
                                 out errCode,
                                 out errText);
@@ -225,22 +226,22 @@ namespace IRAP.Client.GUI.MESPDC
                                     {
                                         case 1:
                                             // 自动切换工艺流程
-                                            ProcessInfo process =
-                                                AvailableWIPStations.Instance.GetStationWithT107LeafID(barcodeInfo.ProcessLeaf);
-                                            if (process == null)
+                                            ProductViaStation product =
+                                                AvailableProducts.Instance.GetProductWithLeafID(barcodeInfo.ProcessLeaf);
+                                            if (product == null)
                                             {
                                                 WriteToScreenLog(
                                                     view.BarCode,
                                                     "",
                                                     barcodeInfo.SerialNumber,
                                                     -1,
-                                                    "该条码的在产品生产流程不在本线上");
+                                                    "该条码的在产品生产流程不在当前工位上");
                                                 return;
                                             }
                                             else
                                             {
-                                                CurrentOptions.Instance.Process = process;
-                                                Options.ResetCurrentOptions();
+                                                CurrentOptions.Instance.OptionTwo = product;
+                                                Options.RefreshOptionTwo(product.T102LeafID);
                                             }
                                             break;
                                         default:
@@ -288,7 +289,7 @@ namespace IRAP.Client.GUI.MESPDC
                                 transactNo,
                                 factID,
                                 Options.SelectProduct.T120LeafID,
-                                Options.SelectWorkUnit.WorkUnitLeaf,
+                                Options.SelectStation.T107LeafID,
                                 view.BarCode,
                                 barcodeInfo.SerialNumber,
                                 IRAPUser.Instance.SysLogID,

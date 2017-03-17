@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entities.MDM
 {
     public class WIPStation
@@ -300,9 +302,14 @@ namespace IRAP.Entities.MDM
         /// </summary>
         public string T107G12 { get; set; }
 
+        [IRAPORMMap(ORMMap = false)]
+        public string WIPStationName
+        {
+            get { return ToString(); }
+        }
         public override string ToString()
         {
-            return T107Name;
+            return string.Format("[{0}]【{1}】{2}", T107Code, T216Code, T107Name);
         }
 
         public WIPStation Clone()

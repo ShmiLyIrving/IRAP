@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAPShared;
+
 namespace IRAP.Entities.MDM
 {
     /// <summary>
@@ -566,6 +568,16 @@ namespace IRAP.Entities.MDM
         /// 保留备用
         /// </summary>
         public long C64I16 { get; set; }
+
+        [IRAPORMMap(ORMMap = false)]
+        public string ProductViaStationName
+        {
+            get { return ToString(); }
+        }
+        public override string ToString()
+        {
+            return string.Format("[{0}] {1}", T102Code, T102Name);
+        }
 
         public ProductViaStation Clone()
         {

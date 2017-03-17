@@ -319,7 +319,7 @@
             // 
             // btnBarCodeConf
             // 
-            this.btnBarCodeConf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBarCodeConf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBarCodeConf.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnBarCodeConf.Appearance.Options.UseFont = true;
             this.btnBarCodeConf.Location = new System.Drawing.Point(7, 316);
@@ -440,6 +440,8 @@
             // 
             // edtBarCode
             // 
+            this.edtBarCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.edtBarCode.Location = new System.Drawing.Point(81, 3);
             this.edtBarCode.Name = "edtBarCode";
             this.edtBarCode.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

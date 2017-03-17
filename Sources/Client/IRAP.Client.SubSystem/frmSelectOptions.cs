@@ -25,15 +25,58 @@ namespace IRAP.Client.SubSystem
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private string caption = "";
+        private string cultureName = "";
 
         public frmSelectOptions()
         {
             InitializeComponent();
 
+            cultureName = Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2).ToUpper();
+
             if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                 caption = "System tip";
             else
                 caption = "系统信息";
+        }
+
+        private void ShowCaption(WIPStation station)
+        {
+            if (station.IsWorkFlowNode)
+            {
+                switch (cultureName)
+                {
+                    case "EN":
+                        Text = "Please select A WORKFLOW NODE and A WORKFLOW";
+                        splitContainerControl1.Panel1.Text = "Please select a WORKFLOW NODE:";
+                        splitContainerControl1.Panel2.Text = "Please select a WORKFLOW:";
+                        splitContainerControl2.Panel2.Text = "Search for the current workflow list based on the entered name or code";
+                        break;
+                    default:
+                        Text = "选择【工作流结点】和【工作流】";
+                        splitContainerControl1.Panel1.Text = "请选择工作流结点：";
+                        splitContainerControl1.Panel2.Text = "请选择工作流：";
+                        splitContainerControl2.Panel2.Text = "根据输入的名称和代码在当前工作流列表中查找";
+                        break;
+                }
+            }
+            else
+            {
+                switch (cultureName)
+                {
+                    case "EN":
+                        Text = "Please select a WIP STATION and a PRODUCT";
+                        splitContainerControl1.Panel1.Text = "Please select a WIP STATION:";
+                        splitContainerControl1.Panel2.Text = "Please select a PRODUCT:";
+                        splitContainerControl2.Panel2.Text = "Search for the current product list based on the entered name or code";
+                        break;
+                    default:
+                        Text = "选择【工位】和【产品】";
+                        splitContainerControl1.Panel1.Text = "请选择工位：";
+                        splitContainerControl1.Panel2.Text = "请选择产品：";
+                        splitContainerControl2.Panel2.Text = "根据输入的名称和代码在当前产品列表中查找";
+                        break;
+                }
+            }
         }
 
         private void frmSelectOptions_Load(object sender, EventArgs e)
@@ -52,10 +95,12 @@ namespace IRAP.Client.SubSystem
                         IRAPUser.Instance.SysLogID);
 
                 lstOptionOnes.DataSource = AvailableWIPStations.Instance.Stations;
-                lstOptionOnes.DisplayMember = "T107Name";
+                lstOptionOnes.DisplayMember = "WIPStationName";
                 lstOptionOnes.SelectedIndex =
                     AvailableWIPStations.Instance.IndexOf(
                         CurrentOptions.Instance.OptionOne);
+
+                ShowCaption(CurrentOptions.Instance.OptionOne);
             }
             catch (Exception error)
             {
@@ -79,6 +124,8 @@ namespace IRAP.Client.SubSystem
                 WIPStation station = lstOptionOnes.SelectedItem as WIPStation;
                 try
                 {
+                    ShowCaption(station);
+
                     AvailableProducts.Instance.GetProducts(
                         IRAPUser.Instance.CommunityID,
                         IRAPUser.Instance.SysLogID,
@@ -86,7 +133,7 @@ namespace IRAP.Client.SubSystem
                         station.IsWorkFlowNode);
 
                     lstOptionTwos.DataSource = AvailableProducts.Instance.Products;
-                    lstOptionTwos.DisplayMember = "T102Name";
+                    lstOptionTwos.DisplayMember = "ProductViaStationName";
                     lstOptionTwos.SelectedIndex =
                         AvailableProducts.Instance.IndexOf(
                             CurrentOptions.Instance.OptionTwo);
@@ -201,7 +248,7 @@ namespace IRAP.Client.SubSystem
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             lstOptionTwos.DataSource = AvailableProducts.Instance.Products;
-            lstOptionTwos.DisplayMember = "T102Name";
+            lstOptionTwos.DisplayMember = "ProductViaStationName";
             lstOptionTwos.SelectedIndex =
                 AvailableProducts.Instance.IndexOf(
                     CurrentOptions.Instance.OptionTwo);
@@ -230,7 +277,7 @@ namespace IRAP.Client.SubSystem
                 }
 
                 lstOptionTwos.DataSource = filterProducts;
-                lstOptionTwos.DisplayMember = "T102Name";
+                lstOptionTwos.DisplayMember = "ProductViaStationName";
                 if (filterProducts.Count > 0)
                 {
                     lstOptionTwos.SelectedIndex = 0;

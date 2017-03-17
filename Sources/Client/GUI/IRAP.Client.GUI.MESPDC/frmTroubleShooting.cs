@@ -30,7 +30,7 @@ namespace IRAP.Client.GUI.MESPDC
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private List<PCBSymbols> symbols = new List<PCBSymbols>();
+        private List<SymbolInspecting> symbols = new List<SymbolInspecting>();
         private List<OperTypeInfo> repairActions = new List<OperTypeInfo>();
         private List<SubWIPIDCode_TroubleShooting> repairWIPIDs = new List<SubWIPIDCode_TroubleShooting>();
 
@@ -68,11 +68,13 @@ namespace IRAP.Client.GUI.MESPDC
         private int numOfTestChannels = 0;
 
         private string caption = "";
+        private string cultureName = "";
 
         public frmTroubleShooting()
         {
             InitializeComponent();
 
+            cultureName = Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2).ToUpper();
             if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                 caption = "System tips";
             else
@@ -123,22 +125,22 @@ namespace IRAP.Client.GUI.MESPDC
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                if (CurrentOptions.Instance.Process == null ||
-                    CurrentOptions.Instance.WorkUnit == null)
+                if (CurrentOptions.Instance.OptionOne == null ||
+                    CurrentOptions.Instance.OptionTwo == null)
                 {
-                    WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
-                    IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
+                    WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
+                    IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
                     return;
                 }
 
                 int errCode = 0;
                 string errText = "";
 
-                IRAPMESTSClient.Instance.ufn_GetKanban_Symbols_Inspecting(
+                IRAPMDMClient.Instance.ufn_GetList_Symbols_Inspecting(
                     IRAPUser.Instance.CommunityID,
                     IRAPUser.Instance.SysLogID,
-                    CurrentOptions.Instance.Process.T102LeafID,
-                    CurrentOptions.Instance.WorkUnit.WorkUnitLeaf,
+                    CurrentOptions.Instance.OptionTwo.T102LeafID,
+                    0,
                     ref symbols,
                     out errCode,
                     out errText);
@@ -147,30 +149,16 @@ namespace IRAP.Client.GUI.MESPDC
                 if (errCode == 0)
                 {
                     dtSymbols.Clear();
-                    foreach (PCBSymbols symbol in symbols)
+                    foreach (SymbolInspecting symbol in symbols)
                     {
-                        if (symbol.SymbolLeaf != 0)
+                        dtSymbols.Rows.Add(new object[]
                         {
-                            dtSymbols.Rows.Add(new object[]
-                            {
-                                symbol.Ordinal,
-                                symbol.SymbolLeaf,
-                                symbol.Symbol,
-                                symbol.MaterialCode,
-                                "110",
-                            });
-                        }
-                        else
-                        {
-                            dtSymbols.Rows.Add(new object[]
-                            {
-                                symbol.Ordinal,
-                                symbol.MaterialLeaf,
-                                symbol.MaterialCode,
-                                "",
-                                "101",
-                            });
-                        }
+                            symbol.Ordinal,
+                            symbol.T110LeafID,
+                            symbol.T110Code,
+                            symbol.ComponentCode,
+                            symbol.ComponentTreeID,
+                        });
                     }
                 }
                 else
@@ -189,34 +177,20 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
-        private DataTable GetSymbols(int pwoCategoryLeaf, List<PCBSymbols> symbols)
+        private DataTable GetSymbols(int pwoCategoryLeaf, List<SymbolInspecting> symbols)
         {
             DataTable rlt = InitializeDataTable("Symbols");
-            foreach (PCBSymbols symbol in symbols)
+            foreach (SymbolInspecting symbol in symbols)
             {
                 if (symbol.PWOCategoryLeaf == pwoCategoryLeaf)
-                    if (symbol.SymbolLeaf == 0)
-                    {
-                        rlt.Rows.Add(new object[]
-                            {
-                                symbol.Ordinal,
-                                symbol.MaterialLeaf,
-                                symbol.MaterialCode,
-                                "",
-                                "101",
-                            });
-                    }
-                    else
-                    {
-                        rlt.Rows.Add(new object[]
-                            {
-                                symbol.Ordinal,
-                                symbol.SymbolLeaf,
-                                symbol.Symbol,
-                                symbol.MaterialCode,
-                                "110",
-                            });
-                    }
+                    rlt.Rows.Add(new object[]
+                        {
+                            symbol.Ordinal,
+                            symbol.T110LeafID,
+                            symbol.T110Code,
+                            symbol.ComponentCode,
+                            symbol.ComponentTreeID,
+                        });
             }
             return rlt;
         }
@@ -233,11 +207,11 @@ namespace IRAP.Client.GUI.MESPDC
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            if (CurrentOptions.Instance.Process == null ||
-                CurrentOptions.Instance.WorkUnit == null)
+            if (CurrentOptions.Instance.OptionOne == null ||
+                CurrentOptions.Instance.OptionTwo == null)
             {
-                WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
+                WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
+                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
                 return;
             }
 
@@ -276,11 +250,11 @@ namespace IRAP.Client.GUI.MESPDC
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            if (CurrentOptions.Instance.Process == null ||
-                CurrentOptions.Instance.WorkUnit == null)
+            if (CurrentOptions.Instance.OptionOne == null ||
+                CurrentOptions.Instance.OptionTwo == null)
             {
-                WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
+                WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
+                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
                 return;
             }
 
@@ -332,11 +306,11 @@ namespace IRAP.Client.GUI.MESPDC
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            if (CurrentOptions.Instance.Process == null ||
-                CurrentOptions.Instance.WorkUnit == null)
+            if (CurrentOptions.Instance.OptionOne == null ||
+                CurrentOptions.Instance.OptionTwo == null)
             {
-                WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
+                WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
+                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
                 return;
             }
 
@@ -375,11 +349,11 @@ namespace IRAP.Client.GUI.MESPDC
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            if (CurrentOptions.Instance.Process == null ||
-                CurrentOptions.Instance.WorkUnit == null)
+            if (CurrentOptions.Instance.OptionOne == null ||
+                CurrentOptions.Instance.OptionTwo == null)
             {
-                WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
+                WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
+                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
                 return;
             }
 
@@ -552,8 +526,8 @@ namespace IRAP.Client.GUI.MESPDC
                     MethodBase.GetCurrentMethod().Name);
 
             repairWIPIDs.Clear();
-            if (Options.SelectProduct == null ||
-                Options.SelectWorkUnit == null)
+            if (Options.SelectStation == null ||
+                Options.SelectProduct == null)
             {
                 WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
                 IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
@@ -610,8 +584,8 @@ namespace IRAP.Client.GUI.MESPDC
 
             WIPIDCode rlt = new WIPIDCode();
 
-            if (Options.SelectProduct == null ||
-                Options.SelectWorkUnit == null)
+            if (Options.SelectStation == null ||
+                Options.SelectProduct == null)
             {
                 WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
                 IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
@@ -676,6 +650,9 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void AfterOptionChenged(object sender, EventArgs e)
         {
+            edtBarCode.Text = "";
+            Clear();
+            edtBarCode.Focus();
         }
 
         private void GetFailuresOfNGProduct(SubWIPIDCode_TroubleShooting subWIPIDCode_TroubleShooting)
@@ -746,6 +723,14 @@ namespace IRAP.Client.GUI.MESPDC
             Options.ShowSwitchButton(true);
 
 
+            if (Options.SelectStation != null)
+            {
+                currentWorkUnitLeaf = Options.SelectStation.T107LeafID;
+            }
+            else
+            {
+                currentWorkUnitLeaf = 0;
+            }
             if (Options.SelectProduct != null)
             {
                 currentProductLeaf = Options.SelectProduct.T102LeafID;
@@ -754,21 +739,13 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 currentProductLeaf = 0;
             }
-            if (Options.SelectWorkUnit != null)
-            {
-                currentWorkUnitLeaf = Options.SelectWorkUnit.WorkUnitLeaf;
-            }
-            else
-            {
-                currentWorkUnitLeaf = 0;
-            }
 
             if (dtRepairWIPs != null)
             {
                 grdProducts.DataSource = dtRepairWIPs;
 
                 grdvProducts.OptionsBehavior.Editable = true;
-                grdvProducts.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
+                grdvProducts.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
             }
 
             if (dtRepairItems != null)
@@ -820,8 +797,8 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 Clear();
 
-                if (Options.SelectProduct == null ||
-                    Options.SelectWorkUnit == null)
+                if (Options.SelectStation == null ||
+                    Options.SelectProduct == null)
                 {
                     WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
                     IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
@@ -881,7 +858,7 @@ namespace IRAP.Client.GUI.MESPDC
                         #region 当前产品和扫描条码的产品是否一致？如果不一致则自动切换，如果切换失败，则报错
                         if (currentProductLeaf != productLeaf)
                         {
-                            Options.RefreshOptions(productLeaf);
+                            Options.RefreshOptionTwo(productLeaf);
                             if (Options.SelectProduct.T102LeafID != productLeaf)
                             {
                                 WriteLog.Instance.Write("产品切换失败！", strProcedureName);
@@ -1111,6 +1088,14 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void frmTroubleShooting_Enter(object sender, EventArgs e)
         {
+            if (Options.SelectStation != null)
+            {
+                currentWorkUnitLeaf = Options.SelectStation.T107LeafID;
+            }
+            else
+            {
+                currentWorkUnitLeaf = 0;
+            }
             if (Options.SelectProduct != null)
             {
                 currentProductLeaf = Options.SelectProduct.T102LeafID;
@@ -1118,14 +1103,6 @@ namespace IRAP.Client.GUI.MESPDC
             else
             {
                 currentProductLeaf = 0;
-            }
-            if (Options.SelectWorkUnit != null)
-            {
-                currentWorkUnitLeaf = Options.SelectWorkUnit.WorkUnitLeaf;
-            }
-            else
-            {
-                currentWorkUnitLeaf = 0;
             }
         }
 

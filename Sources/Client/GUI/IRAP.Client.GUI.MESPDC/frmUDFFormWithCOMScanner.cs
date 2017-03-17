@@ -230,8 +230,8 @@ namespace IRAP.Client.GUI.MESPDC
                         view.BarCode = splitString[1];
                         grdvSerialPortScanners.BestFitColumns();
 
-                        if (Options.SelectProduct == null ||
-                            Options.SelectWorkUnit == null)
+                        if (Options.SelectStation == null ||
+                            Options.SelectProduct == null)
                         {
                             WriteToScreenLog(
                                 view.BarCode,
@@ -248,8 +248,8 @@ namespace IRAP.Client.GUI.MESPDC
                         {
                             busUDFForm.SetStrParameterValue(view.BarCode, 1);
                             busUDFForm.SaveOLTPUDFFormData(
-                                CurrentOptions.Instance.Process.T102LeafID,
-                                CurrentOptions.Instance.WorkUnit.WorkUnitLeaf);
+                                CurrentOptions.Instance.OptionTwo.T102LeafID,
+                                CurrentOptions.Instance.OptionOne.T107LeafID);
                             WriteLog.Instance.Write(
                                 string.Format(
                                     "{0}.{1}",

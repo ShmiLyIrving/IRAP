@@ -1229,8 +1229,8 @@ namespace IRAP.Client.GUI.MESPDC
         /// </summary>
         private void GetKanban_PackageTypes()
         {
-            if (Options.SelectProduct == null ||
-                Options.SelectWorkUnit == null)
+            if (Options.SelectStation == null ||
+                Options.SelectProduct == null)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
                     "选项一或选项二没有配置！",
@@ -1255,7 +1255,7 @@ namespace IRAP.Client.GUI.MESPDC
                     IRAPMESPKGClient.Instance.ufn_GetKanban_PackageTypes(
                         IRAPUser.Instance.CommunityID,
                         Options.SelectProduct.T102LeafID,
-                        Options.SelectWorkUnit.WorkUnitLeaf,
+                        Options.SelectStation.T107LeafID,
                         IRAPUser.Instance.SysLogID,
                         ref packageTypeList,
                         out errCode,
@@ -1329,7 +1329,7 @@ namespace IRAP.Client.GUI.MESPDC
                     IRAPMESPKGClient.Instance.ufn_GetInfo_UncompletedPackage(
                         IRAPUser.Instance.CommunityID,
                         Options.SelectProduct.T102LeafID,
-                        Options.SelectWorkUnit.WorkUnitLeaf,
+                        Options.SelectStation.T107EntityID,
                         objPackageType.Ordinal,
                         IRAPUser.Instance.SysLogID,
                         ref rlt,
@@ -1437,7 +1437,7 @@ namespace IRAP.Client.GUI.MESPDC
                 int communityID = IRAPUser.Instance.CommunityID;
                 Int64 factID = factPackage.FactID;
                 int productLeaf = Options.SelectProduct.T102LeafID;
-                int workUnitLeaf = Options.SelectWorkUnit.WorkUnitLeaf;
+                int workUnitLeaf = Options.SelectStation.T107EntityID;
                 int packagingSpecNo = factPackage.PackagingSpecNo;
                 string wipPattern = factPackage.WIPCode;
                 int layerNumOfPallet = factPackage.LayerIdxOfPallet;
@@ -1639,7 +1639,7 @@ namespace IRAP.Client.GUI.MESPDC
                         IRAPUser.Instance.CommunityID,
                         serialNumber,
                         Options.SelectProduct.T102LeafID,
-                        Options.SelectWorkUnit.WorkUnitLeaf,
+                        Options.SelectStation.T107EntityID,
                         false,
                         IRAPUser.Instance.SysLogID,
                         ref data,
