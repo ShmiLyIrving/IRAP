@@ -5258,7 +5258,7 @@ namespace IRAP.BL.MDM
         /// <param name="sysLogID">系统登录标识</param>
         /// <param name="t102LeafID">产品叶标识</param>
         /// <param name="t216LeafID">工序叶标识</param>
-        /// <returns></returns>
+        /// <returns>List[DefectRootCause]</returns>
         public IRAPJsonResult ufn_GetList_DefectRootCauses(
             int communityID,
             long sysLogID,
