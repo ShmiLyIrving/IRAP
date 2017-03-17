@@ -50,6 +50,7 @@
     <Compile Include="FVS\PeriodStopEvent.cs" />
     <Compile Include="IRAP\STB009.cs" />
     <Compile Include="MDM\BWI_SKUIDInfo.cs" />
+    <Compile Include="MDM\DefectRootCause.cs" />
     <Compile Include="MDM\FailureModeByWorkUnit.cs" />
     <Compile Include="MDM\ProductViaStation.cs" />
     <Compile Include="MDM\WIPStation.cs" />
