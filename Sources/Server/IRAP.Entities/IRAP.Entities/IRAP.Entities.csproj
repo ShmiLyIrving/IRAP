@@ -68,9 +68,6 @@
     <Compile Include="MDM\AvailableSite.cs" />
     <Compile Include="MDM\CustomerOfAProduction.cs" />
     <Compile Include="MDM\FailureMode.cs" />
-    <Compile Include="MES\FailureDuty.cs" />
-    <Compile Include="MES\FailureNature.cs" />
-    <Compile Include="MES\FailureSrcOperation.cs" />
     <Compile Include="MES\LabelFMTStr.cs" />
     <Compile Include="MES\PackageType.cs" />
     <Compile Include="MES\ProducingPWOFromWorkUnit.cs" />
