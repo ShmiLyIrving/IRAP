@@ -149,23 +149,16 @@ namespace IRAP.Client.SubSystem
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                int errCode = 0;
-                string errText = "";
                 optionTwos.Clear();
 
-                IRAPMDMClient.Instance.ufn_GetList_ProductsViaStation(
+                AvailableProducts.Instance.GetProducts(
                     IRAPUser.Instance.CommunityID,
-                    optionOne.T107LeafID,
-                    optionOne.IsWorkFlowNode,
                     IRAPUser.Instance.SysLogID,
-                    ref optionTwos,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
-                    strProcedureName);
-                if (errCode != 0)
-                    throw new Exception(errText);
+                    optionOne.T107LeafID,
+                    optionOne.IsWorkFlowNode);
+
+                foreach (ProductViaStation prod in AvailableProducts.Instance.Products)
+                    optionTwos.Add(prod.Clone());
             }
             catch (Exception error)
             {

@@ -80,6 +80,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                         return rlt;
                     }
 
+                    cboDestT216LeafIDs.Properties.Items.Clear();
                     foreach (QCOperationsForNG data in datas)
                     {
                         cboDestT216LeafIDs.Properties.Items.Add(data);

@@ -31,228 +31,6 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <param name="communityID">社区标识</param>
-        /// <param name="sysLogID">系统登录标识</param>
-        /// <param name="productLeaf">产品叶标识</param>
-        /// <param name="workUnitLeaf">工位叶标识</param>
-        public void ufn_GetKanban_FaileureSrcOperation(
-            int communityID,
-            long sysLogID,
-            int productLeaf,
-            int workUnitLeaf,
-            ref List<FailureSrcOperation> datas,
-            out int errCode,
-            out string errText)
-        {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                datas.Clear();
-
-                #region 将函数调用参数加入 HashTable 中
-                Hashtable hashParams = new Hashtable();
-                hashParams.Add("communityID", communityID);
-                hashParams.Add("productLeaf", productLeaf);
-                hashParams.Add("workUnitLeaf", workUnitLeaf);
-                hashParams.Add("sysLogID", sysLogID);
-                WriteLog.Instance.Write(
-                    string.Format(
-                        "调用 ufn_GetKanban_FaileureSrcOperation，输入参数：" +
-                        "CommunityID={0}|ProductLeaf={1}|WorkUnitLeaf={2}|SysLogID={3}",
-                        communityID,
-                        productLeaf,
-                        workUnitLeaf,
-                        sysLogID),
-                    strProcedureName);
-                #endregion
-
-                #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient())
-                {
-                    object rlt = client.WCFRESTFul(
-                        "IRAP.BL.MES.dll",
-                        "IRAP.BL.MES.TroubleShooting",
-                        "ufn_GetKanban_FaileureSrcOperation",
-                        hashParams,
-                        out errCode,
-                        out errText);
-                    WriteLog.Instance.Write(
-                        string.Format("({0}){1}",
-                            errCode,
-                            errText),
-                        strProcedureName);
-
-                    if (errCode == 0)
-                        datas = rlt as List<FailureSrcOperation>;
-                }
-                #endregion
-            }
-            catch (Exception error)
-            {
-                errCode = -1001;
-                errText = error.Message;
-                WriteLog.Instance.Write(errText, strProcedureName);
-                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
-        /// <param name="communityID">社区标识</param>
-        /// <param name="sysLogID">系统登录标识</param>
-        /// <param name="productLeaf">产品叶标识</param>
-        /// <param name="workUnitLeaf">工位叶标识</param>
-        public void ufn_GetKanban_FailureNature(
-            int communityID,
-            long sysLogID,
-            int productLeaf,
-            int workUnitLeaf,
-            ref List<FailureNature> datas,
-            out int errCode,
-            out string errText)
-        {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                datas.Clear();
-
-                #region 将函数调用参数加入 HashTable 中
-                Hashtable hashParams = new Hashtable();
-                hashParams.Add("communityID", communityID);
-                hashParams.Add("productLeaf", productLeaf);
-                hashParams.Add("workUnitLeaf", workUnitLeaf);
-                hashParams.Add("sysLogID", sysLogID);
-                WriteLog.Instance.Write(
-                    string.Format(
-                        "调用 ufn_GetKanban_FailureNature，输入参数：" +
-                        "CommunityID={0}|ProductLeaf={1}|WorkUnitLeaf={2}|SysLogID={3}",
-                        communityID,
-                        productLeaf,
-                        workUnitLeaf,
-                        sysLogID),
-                    strProcedureName);
-                #endregion
-
-                #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient())
-                {
-                    object rlt = client.WCFRESTFul(
-                        "IRAP.BL.MES.dll",
-                        "IRAP.BL.MES.TroubleShooting",
-                        "ufn_GetKanban_FailureNature",
-                        hashParams,
-                        out errCode,
-                        out errText);
-                    WriteLog.Instance.Write(
-                        string.Format("({0}){1}",
-                            errCode,
-                            errText),
-                        strProcedureName);
-
-                    if (errCode == 0)
-                        datas = rlt as List<FailureNature>;
-                }
-                #endregion
-            }
-            catch (Exception error)
-            {
-                errCode = -1001;
-                errText = error.Message;
-                WriteLog.Instance.Write(errText, strProcedureName);
-                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
-        /// <param name="communityID">社区标识</param>
-        /// <param name="sysLogID">系统登录标识</param>
-        /// <param name="productLeaf">产品叶标识</param>
-        /// <param name="workUnitLeaf">工位叶标识</param>
-        public void ufn_GetKanban_FailureDuties(
-            int communityID,
-            long sysLogID,
-            int productLeaf,
-            int workUnitLeaf,
-            ref List<FailureDuty> datas,
-            out int errCode,
-            out string errText)
-        {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                datas.Clear();
-
-                #region 将函数调用参数加入 HashTable 中
-                Hashtable hashParams = new Hashtable();
-                hashParams.Add("communityID", communityID);
-                hashParams.Add("productLeaf", productLeaf);
-                hashParams.Add("workUnitLeaf", workUnitLeaf);
-                hashParams.Add("sysLogID", sysLogID);
-                WriteLog.Instance.Write(
-                    string.Format(
-                        "调用 ufn_GetKanban_FailureDuties，输入参数：" +
-                        "CommunityID={0}|ProductLeaf={1}|WorkUnitLeaf={2}|SysLogID={3}",
-                        communityID,
-                        productLeaf,
-                        workUnitLeaf,
-                        sysLogID),
-                    strProcedureName);
-                #endregion
-
-                #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient())
-                {
-                    object rlt = client.WCFRESTFul(
-                        "IRAP.BL.MES.dll",
-                        "IRAP.BL.MES.TroubleShooting",
-                        "ufn_GetKanban_FailureDuties",
-                        hashParams,
-                        out errCode,
-                        out errText);
-                    WriteLog.Instance.Write(
-                        string.Format("({0}){1}",
-                            errCode,
-                            errText),
-                        strProcedureName);
-
-                    if (errCode == 0)
-                        datas = rlt as List<FailureDuty>;
-                }
-                #endregion
-            }
-            catch (Exception error)
-            {
-                errCode = -1001;
-                errText = error.Message;
-                WriteLog.Instance.Write(errText, strProcedureName);
-                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
-        /// <param name="communityID">社区标识</param>
         /// <param name="menuItemID">功能菜单标识号</param>
         /// <param name="progLanguageID">编程语言标识</param>
         /// <param name="sysLogID">系统登录标识</param>
@@ -334,6 +112,7 @@ namespace IRAP.WCF.Client.Method
         /// <param name="workUnitLeaf">工位叶标识</param>
         /// <param name="wipIDCode">在制品标识</param>
         /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="pwoNo">生产工单号</param>
         /// <param name="wipPattern">在制品主标识代码样式</param>
         /// <param name="srcT107LeafID">来源工位叶标识</param>
         /// <param name="srcT216LeafID">来源工序叶标识</param>
@@ -348,6 +127,7 @@ namespace IRAP.WCF.Client.Method
             int workUnitLeaf,
             string wipIDCode,
             long sysLogID,
+            out string pwoNo,
             out string wipPattern,
             out int srcT107LeafID,
             out int srcT216LeafID,
@@ -363,6 +143,7 @@ namespace IRAP.WCF.Client.Method
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
+            pwoNo = "";
             wipPattern = "";
             srcT107LeafID = 0;
             srcT216LeafID = 0;
@@ -415,6 +196,7 @@ namespace IRAP.WCF.Client.Method
                             #region 取返回值
                             try
                             {
+                                HashtableTools.Instance.GetValue(rltHash, "PWONo", out pwoNo);
                                 HashtableTools.Instance.GetValue(rltHash, "ProductLeaf", out productLeaf);
                                 HashtableTools.Instance.GetValue(rltHash, "WIPPattern", out wipPattern);
                                 HashtableTools.Instance.GetValue(rltHash, "SrcT107LeafID", out srcT107LeafID);
@@ -426,9 +208,9 @@ namespace IRAP.WCF.Client.Method
                                     string.Format(
                                         "输出参数：ProductLeaf={0}|WIPPattern={1}|SrcT107LeafID={2}|" +
                                         "SrcT216LeafID={3}|RSFactPK={4}|LinkedFactID={5}|"+
-                                        "NumTestChannels={6}",
+                                        "NumTestChannels={6}|PWONo={7}",
                                         productLeaf, wipPattern, srcT107LeafID, srcT216LeafID,
-                                        rsFactPK, linkedFactID, numTestChannels),
+                                        rsFactPK, linkedFactID, numTestChannels, pwoNo),
                                     strProcedureName);
                             }
                             catch (Exception error)
@@ -551,6 +333,7 @@ namespace IRAP.WCF.Client.Method
         /// <param name="t102LeafID">产品叶标识</param>
         /// <param name="t107LeafID_Src">来源工位叶标识</param>
         /// <param name="wipIDCode">在制品主标识代码（个体）</param>
+        /// <param name="rsFactPK">行集事实分区键</param>
         /// <param name="qcFactID">检查或测试事实编号</param>
         /// <param name="sysLogID">系统登录标识</param>
         public void ufn_GetList_FailuresOfNGProduct(
@@ -558,6 +341,7 @@ namespace IRAP.WCF.Client.Method
             int t102LeafID,
             int t107LeafID_Src,
             string wipIDCode,
+            long rsFactPK,
             long qcFactID,
             long sysLogID,
             ref List<FailuresOfNGProduct> datas,
@@ -580,15 +364,16 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("t102LeafID", t102LeafID);
                 hashParams.Add("t107LeafID_Src", t107LeafID_Src);
                 hashParams.Add("wipIDCode", wipIDCode);
+                hashParams.Add("rsFactPK", rsFactPK);
                 hashParams.Add("qcFactID", qcFactID);
                 hashParams.Add("sysLogID", sysLogID);
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 ufn_GetList_FailuresOfNGProduct，" +
                         "参数：CommunityID={0}|T102LeafID={1}|T107LeafID_Src={2}|" +
-                        "WIPIDCode={3}|QCFactID={4}|SysLogID={5}",
+                        "WIPIDCode={3}|RSFactPK={4}|QCFactID={5}|SysLogID={6}",
                         communityID, t102LeafID, t107LeafID_Src, wipIDCode,
-                        qcFactID, sysLogID),
+                        rsFactPK, qcFactID, sysLogID),
                     strProcedureName);
                 #endregion
 
@@ -710,6 +495,8 @@ namespace IRAP.WCF.Client.Method
         /// <param name="userCode">维修人员工号</param>
         /// <param name="productLeaf">产品叶标识</param>
         /// <param name="workUnitLeaf">工位叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="t216Code">工序代码</param>
         /// <param name="destT216LeafID">修复转出目前工序</param>
         /// <param name="subWIPIDCodes">在制品维修内容清单</param>
         /// <param name="sysLogID">系统登录标识</param>
@@ -718,6 +505,8 @@ namespace IRAP.WCF.Client.Method
             string userCode, 
             int productLeaf, 
             int workUnitLeaf, 
+            int t216LeafID,
+            string t216Code,
             int destT216LeafID, 
             List<SubWIPIDCode_TroubleShooting> subWIPIDCodes, 
             long sysLogID, 
@@ -742,6 +531,8 @@ namespace IRAP.WCF.Client.Method
                     hashParams.Add("userCode", userCode);
                     hashParams.Add("productLeaf", productLeaf);
                     hashParams.Add("workUnitLeaf", workUnitLeaf);
+                    hashParams.Add("t216LeafID", t216LeafID);
+                    hashParams.Add("t216Code", t216Code);
                     hashParams.Add("destT216LeafID", destT216LeafID);
                     hashParams.Add("subWIPIDCodes", subWIPIDCodes);
                     hashParams.Add("sysLogID", sysLogID);
@@ -749,10 +540,12 @@ namespace IRAP.WCF.Client.Method
                         string.Format(
                             "执行存储过程 usp_SaveFact_TroubleShooting，输入参数：" +
                             "CommunityID={0}|UserCode={1}|ProductLeaf={2}|"+
-                            "WorkUnitLeaf={3}|DestT216LeafID={4}|"+
-                            "SubWIPIDCodes.Count={5}|SysLogID={6}",
+                            "WorkUnitLeaf={3}T216LeafID={4}|T216Code={5}"+
+                            "|DestT216LeafID={6}|SubWIPIDCodes.Count={7}|"+
+                            "SysLogID={8}",
                             communityID, userCode, productLeaf, workUnitLeaf, 
-                            destT216LeafID, subWIPIDCodes.Count, sysLogID),
+                            t216LeafID, t216Code, destT216LeafID, subWIPIDCodes.Count, 
+                            sysLogID),
                         strProcedureName);
                     #endregion
 
@@ -778,6 +571,172 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取维修物料超市先进先出物料的SKUID
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t107LeafID_TS">维修工位叶标识</param>
+        /// <param name="t101LeafID">物料叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetFIFOSKUIDinTSSite(
+            int communityID,
+            int t107LeafID_TS,
+            int t101LeafID,
+            long sysLogID,
+            ref string skuID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t107LeafID_TS", t107LeafID_TS);
+                hashParams.Add("t101LeafID", t101LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetFIFOSKUIDinTSSite，输入参数：" +
+                        "CommunityID={0}|T107LeafID_TS={1}|"+
+                        "T101LeafID={2}|SysLogID={3}",
+                        communityID,
+                        t107LeafID_TS,
+                        t101LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.TroubleShooting",
+                        "ufn_GetFIFOSKUIDinTSSite",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}，SKUID={2}",
+                            errCode,
+                            errText,
+                            (string)rlt),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        skuID = (string)rlt;
+                    else
+                        skuID = "";
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                skuID = "";
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据器件位号或物料代码获取追溯标签序列号
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="wipCode">在制品主标识代码</param>
+        /// <param name="t110LeafID">器件位置叶标识</param>
+        /// <param name="t101LeafID">原辅材料叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetMaterialSKUIDBySymbol(
+            int communityID,
+            string wipCode,
+            int t110LeafID,
+            int t101LeafID,
+            long sysLogID,
+            ref string skuID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("wipCode", wipCode);
+                hashParams.Add("t110LeafID", t110LeafID);
+                hashParams.Add("t101LeafID", t101LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetMaterialSKUIDBySymbol，输入参数：" +
+                        "CommunityID={0}|WIPCode={1}|T110LeafID={2}|" +
+                        "T101LeafID={3}|SysLogID={4}",
+                        communityID,
+                        wipCode,
+                        t110LeafID,
+                        t101LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.TroubleShooting",
+                        "ufn_GetMaterialSKUIDBySymbol",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}，SKUID={2}",
+                            errCode,
+                            errText,
+                            (string)rlt),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        skuID = (string)rlt;
+                    else
+                        skuID = "";
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                skuID = "";
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
             }
             finally
             {

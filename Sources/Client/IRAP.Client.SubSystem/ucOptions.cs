@@ -137,6 +137,9 @@ namespace IRAP.Client.SubSystem
                     CurrentOptions.Instance.OptionTwo = product;
 
                     cboOptionsTwo.SelectedIndex = CurrentOptions.Instance.IndexOfOptionTwo;
+
+                    if (OptionChanged != null)
+                        OptionChanged(this, new EventArgs());
                 }
             }
         }
