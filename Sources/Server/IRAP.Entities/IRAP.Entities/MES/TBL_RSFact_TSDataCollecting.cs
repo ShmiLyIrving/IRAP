@@ -13,7 +13,7 @@ namespace IRAP.Entities.MES
         [IRAPKey()]
         public long FactID { get; set; }
         [IRAPKey()]
-        public long PartitionPolicy { get; set; }
+        public long PartitioningKey { get; set; }
         public string WFInstanceID { get; set; }
         [IRAPKey()]
         public int Ordinal { get; set; }
@@ -25,8 +25,8 @@ namespace IRAP.Entities.MES
         public int T183LeafID { get; set; }
         public int T184LeafID { get; set; }
         public int CntDefect { get; set; }
-        public long MaterialTrackID0 { get; set; }
-        public long MaterialTrackID1 { get; set; }
+        public string MaterialLabelSN0 { get; set; }
+        public string MaterialLabelSN1 { get; set; }
         public string TrackRef { get; set; }
     }
 }

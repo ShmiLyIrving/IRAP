@@ -9,7 +9,7 @@ namespace IRAP.Entities.UTS
         [IRAPKey]
         public long TransactNo { get; set; }
         [IRAPKey]
-        public long PartitionPolicy { get; set; }
+        public long PartitioningKey { get; set; }
         public DateTime OperTime { get; set; }
         public DateTime OkayTime { get; set; }
         public DateTime RevokeTime { get; set; }

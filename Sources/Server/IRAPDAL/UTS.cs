@@ -89,7 +89,7 @@ namespace IRAPDAL
                 }
 
                 STB010 tRow = new STB010();
-                tRow.PartitionPolicy = 
+                tRow.PartitioningKey = 
                     long.Parse(
                         (DateTime.Now.Year.ToString() +
                         (100000000L + communityID).ToString().Substring(1, 8)));

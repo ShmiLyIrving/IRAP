@@ -13,7 +13,7 @@ namespace IRAP.Entities.MES
         public TBL_FixedFact_MES()
         {
             FactID = 0;
-            PartitionPolicy = 0;
+            PartitioningKey = 0;
             TransactNo = 0;
             IsFixed = 0;
             OpID = 0;
@@ -57,7 +57,7 @@ namespace IRAP.Entities.MES
         [IRAPKey]
         public long FactID { get; set; }
         [IRAPKey]
-        public long PartitionPolicy { get; set; }
+        public long PartitioningKey { get; set; }
         public long TransactNo { get; set; }
         public int IsFixed { get; set; }
         public int OpID { get; set; }
@@ -71,6 +71,8 @@ namespace IRAP.Entities.MES
         public string Code06 { get; set; }
         public string Code07 { get; set; }
         public string Code08 { get; set; }
+        public string Code09 { get; set; }
+        public string Code10 { get; set; }
         public int Leaf01 { get; set; }
         public int Leaf02 { get; set; }
         public int Leaf03 { get; set; }
@@ -79,6 +81,8 @@ namespace IRAP.Entities.MES
         public int Leaf06 { get; set; }
         public int Leaf07 { get; set; }
         public int Leaf08 { get; set; }
+        public int Leaf09 { get; set; }
+        public int Leaf10 { get; set; }
         public int AChecksum { get; set; }
         public int CorrelationID { get; set; }
         public long Metric01 { get; set; }
@@ -91,6 +95,8 @@ namespace IRAP.Entities.MES
         public long Metric08 { get; set; }
         public long Metric09 { get; set; }
         public long Metric10 { get; set; }
+        public long Metric11 { get; set; }
+        public long Metric12 { get; set; }
         public int BChecksum { get; set; }
         public int MeasurementID { get; set; }
         public string WFInstanceID { get; set; }

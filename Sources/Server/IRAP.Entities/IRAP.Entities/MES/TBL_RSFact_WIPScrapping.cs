@@ -12,7 +12,7 @@ namespace IRAP.Entities.MES
         [IRAPKey()]
         public long FactID { get; set; }
         [IRAPKey()]
-        public long PartitionPolicy { get; set; }
+        public long PartitioningKey { get; set; }
         public string WFInstanceID { get; set; }
         [IRAPKey()]
         public int Ordinal { get; set; }

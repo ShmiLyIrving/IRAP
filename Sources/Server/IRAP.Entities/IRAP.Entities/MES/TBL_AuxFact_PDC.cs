@@ -13,13 +13,14 @@ namespace IRAP.Entities.MES
         [IRAPKey()]
         public long FactID { get; set; }
         [IRAPKey()]
-        public long PartitionPolicy { get; set; }
+        public long PartitioningKey { get; set; }
         public long FactPartitioningKey { get; set; }
         public string WFInstanceID { get; set; }
         public string WIPCode { get; set; }
         public string AltWIPCode { get; set; }
         public string SerialNumber { get; set; }
         public string LotNumber { get; set; }
+        public string OvenNumber { get; set; }
         public string ContainerNo { get; set; }
         public string FakePreventingCode { get; set; }
         public string CustomerAssignedID { get; set; }

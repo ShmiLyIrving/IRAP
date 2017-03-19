@@ -75,6 +75,10 @@
       <Project>{c78cdb3f-f78a-4c17-b5c8-e2e88a0a5947}</Project>
       <Name>IRAP.Entity.MES</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Server.Global\IRAP.Server.Global.csproj">
+      <Project>{6cad9cb5-9549-4f44-a66c-5e8b1d55f22e}</Project>
+      <Name>IRAP.Server.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IRAPDAL\IRAPDAL.csproj">
       <Project>{fe288de4-07af-4d94-82b6-61169bb407b1}</Project>
       <Name>IRAPDAL</Name>

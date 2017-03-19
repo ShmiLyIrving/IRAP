@@ -3,7 +3,7 @@
   <appSettings>
     <!--1-MSSQL 2-Oracle 3-Mysql 4-PostgreSql -->
     <add key="DBType" value="1"/>
-    <add key="SeqServerAddr" value="192.168.57.217"/>
+    <add key="SeqServerAddr" value="192.168.97.198"/>
     <!--MES数据库地址-->
     <!--<add key="ConnectionString" value="Server=192.168.57.217;initial catalog=IRAP;UID=sa;Password=irap!209420;Min Pool Size=2;Max Pool Size=60;"/>-->
     <!--<add key="ConnectionString" value="Server=192.168.57.221;initial catalog=IRAP;UID=sa;Password=irap!209420;Min Pool Size=2;Max Pool Size=60;"/>-->

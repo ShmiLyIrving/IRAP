@@ -27,6 +27,15 @@ namespace IRAP.Entities.MES
         /// </summary>
         public string T216Name { get; set; }
 
+        public override string ToString()
+        {
+            return
+                string.Format(
+                    "[{0}] {1}",
+                    T216Code,
+                    T216Name);
+        }
+
         public QCOperationsForNG Clone()
         {
             return MemberwiseClone() as QCOperationsForNG;

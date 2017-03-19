@@ -11,6 +11,7 @@ using IRAP.Entities.MES;
 using IRAPORM;
 using IRAPShared;
 using IRAPDAL;
+using IRAP.Server.Global;
 
 namespace IRAP.BL.MES
 {
@@ -23,6 +24,159 @@ namespace IRAP.BL.MES
         {
             WriteLog.Instance.WriteLogFileName = 
                 MethodBase.GetCurrentMethod().DeclaringType.Namespace;
+        }
+
+        /// <summary>
+        /// 申请序列号
+        /// ⒈ 申请预定义序列的一个或多个序列号；
+        /// ⒉ 如果序列是交易号的，自动写交易日志。
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sequenceCode">序列代码</param>
+        /// <param name="count">申请序列值个数</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="opNode">业务操作节点列表</param>
+        /// <param name="voucherNo">业务凭证号</param>
+        /// <returns>申请到的第一个序列值[long]</returns>
+        private void ssp_GetSequenceNo(
+            int communityID,
+            string sequenceCode,
+            int count,
+            long sysLogID,
+            string opNode,
+            string voucherNo,
+            ref long sequenceNo,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                sequenceNo = 0;
+
+                Hashtable rlt = new Hashtable();
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SequenceCode", DbType.String, sequenceCode));
+                paramList.Add(new IRAPProcParameter("@Count", DbType.Int32, count));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@OpNode", DbType.String, opNode));
+                paramList.Add(new IRAPProcParameter("@VoucherNo", DbType.String, voucherNo));
+                paramList.Add(new IRAPProcParameter("@SequenceNo", DbType.Int64, ParameterDirection.Output, 8));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 IRAP..ssp_GetSequenceNo，输入参数：" +
+                        "CommunityID={0}|SequenceCode={1}|Count={2}|SysLogID={3}" +
+                        "OpNode={4}|VoucherNo={5}",
+                        communityID, sequenceCode, count, sysLogID, opNode, voucherNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        IRAPError error = conn.CallProc("IRAP..ssp_GetSequenceNo", ref paramList);
+                        errCode = error.ErrCode;
+                        errText = error.ErrText;
+
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
+                        if (rlt["SequenceNo"] != null)
+                            sequenceNo = (long)rlt["SequenceNo"];
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAP..ssp_GetSequenceNo 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 通用交易复核
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">待复核交易号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        private void ssp_CheckTransaction(
+            int communityID,
+            long transactNo,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                Hashtable rlt = new Hashtable();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@TransactNo", DbType.Int64, transactNo));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 IRAP..ssp_CheckTransaction，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|SysLogID={2}",
+                        communityID, transactNo, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        IRAPError error = conn.CallProc("IRAP..ssp_CheckTransaction", ref paramList);
+                        errCode = error.ErrCode;
+                        errText = error.ErrText;
+
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAP..ssp_CheckTransaction 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
 
         private long[] GetMaterialTrackID(
@@ -260,6 +414,7 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@WorkUnitLeaf", DbType.Int32, workUnitLeaf));
                 paramList.Add(new IRAPProcParameter("@WIPIDCode", DbType.String, wipIDCode));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@PWONo", DbType.String, ParameterDirection.Output, 18));
                 paramList.Add(new IRAPProcParameter("@WIPPattern", DbType.String, ParameterDirection.Output, 20));
                 paramList.Add(new IRAPProcParameter("@SrcT107LeafID", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@SrcT216LeafID", DbType.Int32, ParameterDirection.Output, 4));
@@ -443,6 +598,7 @@ namespace IRAP.BL.MES
         /// <param name="t102LeafID">产品叶标识</param>
         /// <param name="t107LeafID_Src">来源工位叶标识</param>
         /// <param name="wipIDCode">在制品主标识代码（个体）</param>
+        /// <param name="rsFactPK">行集事实分区键</param>
         /// <param name="qcFactID">检查或测试事实编号</param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult ufn_GetList_FailuresOfNGProduct(
@@ -450,6 +606,7 @@ namespace IRAP.BL.MES
             int t102LeafID,
             int t107LeafID_Src,
             string wipIDCode,
+            long rsFactPK,
             long qcFactID,
             long sysLogID,
             out int errCode,
@@ -472,15 +629,16 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
                 paramList.Add(new IRAPProcParameter("@T107LeafID_Src", DbType.Int32, t107LeafID_Src));
                 paramList.Add(new IRAPProcParameter("@WIPIDCode", DbType.String, wipIDCode));
+                paramList.Add(new IRAPProcParameter("@RSFactPK", DbType.Int64, rsFactPK));
                 paramList.Add(new IRAPProcParameter("@QCFactID", DbType.Int64, qcFactID));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMES..ufn_GetList_FailuresOfNGProduct，" +
                         "参数：CommunityID={0}|T102LeafID={1}|T107LeafID_Src={2}|" +
-                        "WIPIDCode={3}|QCFactID={4}|SysLogID={5}",
+                        "WIPIDCode={3}|RSFactPK={4}|QCFactID={5}|SysLogID={6}",
                         communityID, t102LeafID, t107LeafID_Src, wipIDCode,
-                        qcFactID, sysLogID),
+                        rsFactPK, qcFactID, sysLogID),
                     strProcedureName);
                 #endregion
 
@@ -492,7 +650,7 @@ namespace IRAP.BL.MES
                         string strSQL = "SELECT * " +
                             "FROM IRAPMES..ufn_GetList_FailuresOfNGProduct(" +
                             "@CommunityID, @T102LeafID, @T107LeafID_Src, " +
-                            "@WIPIDCode, @QCFactID, @SysLogID) " +
+                            "@WIPIDCode, @RSFactPK, @QCFactID, @SysLogID) " +
                             "ORDER BY Ordinal";
 
                         IList<FailuresOfNGProduct> lstDatas =
@@ -524,12 +682,173 @@ namespace IRAP.BL.MES
         }
 
         /// <summary>
+        /// 获取维修物料超市先进先出物料的SKUID
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t107LeafID_TS">维修工位叶标识</param>
+        /// <param name="t101LeafID">物料叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>string</returns>
+        public IRAPJsonResult ufn_GetFIFOSKUIDinTSSite(
+            int communityID,
+            int t107LeafID_TS,
+            int t101LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}", 
+                    className, 
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID_TS", DbType.Int32, t107LeafID_TS));
+                paramList.Add(new IRAPProcParameter("@T101LeafID", DbType.Int32, t101LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES.dbo.ufn_GetFIFOSKUIDinTSSite，参数："+
+                        "CommunityID={0}|T107LeafID_TS={1}|T101LeafID={2}|"+
+                        "SysLogID={3}",
+                        communityID,
+                        t107LeafID_TS,
+                        t101LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string rlt = 
+                            (string)conn.CallScalarFunc(
+                                "IRAPMES.dbo.ufn_GetFIFOSKUIDinTSSite", 
+                                paramList);
+                        errCode = 0;
+                        errText = "调用成功！";
+                        WriteLog.Instance.Write(errText, strProcedureName);
+
+                        return Json(rlt);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 IRAPMES.dbo.ufn_GetFIFOSKUIDinTSSite 函数发生异常：{0}", 
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                    return Json(0);
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据器件位号或物料代码获取追溯标签序列号
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="wipCode">在制品主标识代码</param>
+        /// <param name="t110LeafID">器件位置叶标识</param>
+        /// <param name="t101LeafID">原辅材料叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>string</returns>
+        public IRAPJsonResult ufn_GetMaterialSKUIDBySymbol(
+            int communityID,
+            string wipCode,
+            int t110LeafID,
+            int t101LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@WIPCode", DbType.String, wipCode));
+                paramList.Add(new IRAPProcParameter("@T110LeafID", DbType.Int32, t110LeafID));
+                paramList.Add(new IRAPProcParameter("@T101LeafID", DbType.Int32, t101LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES.dbo.ufn_GetMaterialSKUIDBySymbol，参数：" +
+                        "CommunityID={0}|WIPCode={1}|T110LeafID={2}|" +
+                        "T101LeafID={3}|SysLogID={4}",
+                        communityID,
+                        wipCode,
+                        t110LeafID,
+                        t101LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string rlt =
+                            (string)conn.CallScalarFunc(
+                                "IRAPMES.dbo.ufn_GetMaterialSKUIDBySymbol",
+                                paramList);
+                        errCode = 0;
+                        errText = "调用成功！";
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                        return Json(rlt);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES.dbo.ufn_GetMaterialSKUIDBySymbol 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                    return Json(0);
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 保存在制品故障维修事实
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="userCode">维修人员工号</param>
         /// <param name="productLeaf">产品叶标识</param>
         /// <param name="workUnitLeaf">工位叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="t216Code">工序代码</param>
         /// <param name="destT216LeafID">修复转出目前工序</param>
         /// <param name="subWIPIDCodes">在制品维修内容清单</param>
         /// <param name="sysLogID">系统登录标识</param>
@@ -538,6 +857,8 @@ namespace IRAP.BL.MES
             string userCode,
             int productLeaf,
             int workUnitLeaf,
+            int t216LeafID,
+            string t216Code,
             int destT216LeafID,
             List<SubWIPIDCode_TroubleShooting> subWIPIDCodes,
             long sysLogID,
@@ -578,20 +899,35 @@ namespace IRAP.BL.MES
                 #endregion
 
                 #region 申请交易号
+                WriteLog.Instance.Write("开始申请交易号", strProcedureName);
                 long transactNo = 0;
                 try
                 {
-                    transactNo = IRAPDAL.UTS.Instance.msp_GetTransactNo(
+                    ssp_GetSequenceNo(
                         communityID,
+                        "NextTransactNo",
                         1,
-                        "IRAPMES..stb010",
-                        userCode,
                         sysLogID,
+                        "-11",
                         "",
-                        "",
+                        ref transactNo,
                         out errCode,
-                        out errText,
-                        true);
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText),
+                        strProcedureName);
+                    if (errCode == 0)
+                    {
+                        WriteLog.Instance.Write(string.Format("申请到的交易号：{0}", transactNo),
+                            strProcedureName);
+                    }
+                    else
+                    {
+                        errCode = 99001;
+                        errText = string.Format("申请交易号出错：{0}", errText);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                        return Json(errCode);
+                    }
                 }
                 catch (Exception error)
                 {
@@ -601,23 +937,13 @@ namespace IRAP.BL.MES
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                     return Json(errCode);
                 }
-                if (errCode != 0)
-                {
-                    errCode = 99001;
-                    errText = string.Format("申请交易号出错：{0}", errText);
-                    WriteLog.Instance.Write(errText, strProcedureName);
-                    return Json(errCode);
-                }
-                else
-                {
-                    WriteLog.Instance.Write(string.Format("申请到的交易号：{0}", transactNo),
-                        strProcedureName);
-                }
                 #endregion
 
 
                 // 开始新事务保存
+                WriteLog.Instance.Write("开始新事务保存", strProcedureName);
                 conn.BeginTran();
+                WriteLog.Instance.Write("新事务保存开始了", strProcedureName);
                 {
                     #region 保存事实
                     foreach (SubWIPIDCode_TroubleShooting wipIDCode in subWIPIDCodes)
@@ -638,18 +964,19 @@ namespace IRAP.BL.MES
                         TBL_FixedFact_MES tempFact = new TBL_FixedFact_MES();
                         tempFact.FactID = factID;
                         tempFact.TransactNo = transactNo;
-                        tempFact.PartitionPolicy = factPartitionPolicy;
+                        tempFact.PartitioningKey = factPartitionPolicy;
                         tempFact.OpID = 11;
                         tempFact.OpType = wipIDCode.RepairStatus;
                         tempFact.BusinessDate = DateTime.Now;
-                        tempFact.Leaf01 = productLeaf;        //产品
-                        tempFact.Leaf02 = dimesion.T120Leaf;  //流程（返工流程）
-                        tempFact.Leaf03 = workUnitLeaf;       //工位
-                        tempFact.Leaf04 = dimesion.T126Leaf;  //班次
-                        tempFact.Leaf05 = dimesion.T1Leaf;    //班组
-                        tempFact.Leaf06 = dimesion.T134Leaf;  //产线
-                        tempFact.Leaf07 = dimesion.T181Leaf;  //工厂
-                        tempFact.Leaf08 = dimesion.T1002Leaf; //所属公司
+                        tempFact.Leaf01 = productLeaf;          // 产品
+                        tempFact.Leaf02 = dimesion.T120Leaf;    // 流程（返工流程）
+                        tempFact.Leaf03 = workUnitLeaf;         // 工位
+                        tempFact.Leaf04 = dimesion.T126Leaf;    // 班次
+                        tempFact.Leaf05 = dimesion.T1Leaf;      // 班组
+                        tempFact.Leaf06 = dimesion.T134Leaf;    // 产线
+                        tempFact.Leaf07 = dimesion.T181Leaf;    // 工厂
+                        tempFact.Leaf08 = dimesion.T1002Leaf;   // 所属公司
+                        tempFact.Leaf09 = t216LeafID;           // 工序
                         tempFact.Code01 = wipIDCode.PartNumber;
                         tempFact.Code02 = dimesion.T120Code;
                         tempFact.Code03 = dimesion.T107Code;
@@ -658,26 +985,31 @@ namespace IRAP.BL.MES
                         tempFact.Code06 = dimesion.T134Code;
                         tempFact.Code07 = dimesion.T181Code;
                         tempFact.Code08 = dimesion.T1002Code;
+                        tempFact.Code09 = t216Code;
                         tempFact.IsFixed = 1;
                         tempFact.Metric01 = 1;
                         tempFact.WFInstanceID = wipIDCode.SubWIPIDCode;
                         tempFact.LinkedFactID = wipIDCode.LinkedFactID;
                         tempFact.Remark = "故障维修";
+                        WriteLog.Instance.Write("开始保存主事实", strProcedureName);
                         conn.Insert(tempFact);
+                        WriteLog.Instance.Write("保存主事实完成", strProcedureName);
                         #endregion
 
                         #region  保存辅助事实
                         TBL_AuxFact_PDC auxFact = new TBL_AuxFact_PDC();
                         auxFact.FactID = factID;
-                        auxFact.PartitionPolicy = auxPartitioning;
+                        auxFact.PartitioningKey = auxPartitioning;
                         auxFact.FactPartitioningKey = factPartitionPolicy;
-                        auxFact.WFInstanceID = dimesion.PWONo;
+                        auxFact.WFInstanceID = wipIDCode.PWONo;
                         auxFact.WIPCode = wipIDCode.SubWIPIDCode;
                         auxFact.AltWIPCode = "";
                         auxFact.SerialNumber = "";
                         auxFact.LotNumber = "";
                         auxFact.ContainerNo = "";
+                        WriteLog.Instance.Write("开始保存辅助事实", strProcedureName);
                         conn.Insert(auxFact);
+                        WriteLog.Instance.Write("保存辅助事实完成", strProcedureName);
                         #endregion
 
                         #region 更新路由
@@ -690,11 +1022,12 @@ namespace IRAP.BL.MES
 
                             IList<IDataParameter> paramSet = new List<IDataParameter>();
                             paramSet.Add(new IRAPProcParameter("@DstT216LeafID", DbType.Int32, destT216LeafID));
-                            paramSet.Add(new IRAPProcParameter("@PartitioningKey", DbType.Int64, wipPartition));
+                            paramSet.Add(new IRAPProcParameter("@PartitioningKey", DbType.Int64, communityID * 10000));
                             paramSet.Add(new IRAPProcParameter("@EntityID", DbType.Int32, workUnitLeaf));
                             paramSet.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, productLeaf));
                             paramSet.Add(new IRAPProcParameter("@WIPCode", DbType.String, wipIDCode.SubWIPIDCode));
 
+                            WriteLog.Instance.Write("开始更新路由", strProcedureName);
                             conn.Update(
                                 "UPDATE IRAPMES..utb_WIPs_TroubleShooting " +
                                 "SET DstT216LeafID=@DstT216LeafID " +
@@ -703,6 +1036,7 @@ namespace IRAP.BL.MES
                                 "T102LeafID=@T102LeafID AND " +
                                 "WIPCode=@WIPCode ",
                                 paramSet);
+                            WriteLog.Instance.Write("更新路由完成", strProcedureName);
                         }
                         #endregion
 
@@ -724,7 +1058,7 @@ namespace IRAP.BL.MES
 
                             ordinal++;
                             TBL_RSFact_TSDataCollecting rsfact = new TBL_RSFact_TSDataCollecting();
-                            rsfact.PartitionPolicy = factPartitionPolicy;
+                            rsfact.PartitioningKey = factPartitionPolicy;
                             rsfact.FactID = factID;
                             rsfact.WFInstanceID = wipIDCode.SubWIPIDCode;
                             rsfact.Ordinal = ordinal;
@@ -735,44 +1069,12 @@ namespace IRAP.BL.MES
                             rsfact.T184LeafID = item.T184LeafID;
                             rsfact.T101LeafID = item.T101LeafID;
                             rsfact.T216LeafID = item.T216LeafID;
-
                             rsfact.CntDefect = item.FailurePointCount;
-                            long[] materialArray =
-                                GetMaterialTrackID(
-                                    communityID,
-                                    wipIDCode.SubWIPIDCode,
-                                    productLeaf,
-                                    workUnitLeaf,
-                                    item.T101LeafID,
-                                    sysLogID);
-                            rsfact.MaterialTrackID0 = materialArray[0];
-                            rsfact.MaterialTrackID1 = materialArray[1];
+                            rsfact.MaterialLabelSN0 = item.SKUID1;
+                            rsfact.MaterialLabelSN1 = item.SKUID2;
                             rsfact.TrackRef = item.TrackReferenceValue;
                             conn.Insert(rsfact);
-
-                            IList<IDataParameter> paramProcList = new List<IDataParameter>();
-                            paramProcList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
-                            paramProcList.Add(new IRAPProcParameter("@MaterialTrackID0", DbType.Int64, materialArray[0]));
-                            paramProcList.Add(new IRAPProcParameter("@MaterialTrackID1", DbType.Int64, materialArray[1]));
-                            paramProcList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, productLeaf));
-                            paramProcList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, workUnitLeaf));
-                            paramProcList.Add(new IRAPProcParameter("@T101LeafID", DbType.Int32, item.T101LeafID));
-                            paramProcList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
-                            paramProcList.Add(new IRAPProcParameter("@ErrCode", DbType.Int64, ParameterDirection.Output, 4));
-                            paramProcList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
-
-                            IRAPError saveError =
-                                conn.CallProc(
-                                    "IRAPMES..usp_SaveFact_TroubleShootingTrace",
-                                    ref paramProcList);
-                            if (saveError.ErrCode != 0)
-                            {
-                                conn.RollBack();
-                                errCode = saveError.ErrCode;
-                                errText = saveError.ErrText;
-                                return Json(errCode);
-                            }
-                            //Console.WriteLine(item.T110LeafID + " " + item.T118LeafID);
+                            WriteLog.Instance.Write("行集事实保存成功", strProcedureName);
                         }
                         #endregion
 
@@ -787,7 +1089,7 @@ namespace IRAP.BL.MES
                             TBL_FixedFact_MES scrappingOLTP = new TBL_FixedFact_MES();
                             scrappingOLTP.FactID = factID;
                             scrappingOLTP.TransactNo = transactNo;
-                            scrappingOLTP.PartitionPolicy = factPartitionPolicy;
+                            scrappingOLTP.PartitioningKey = factPartitionPolicy;
                             scrappingOLTP.OpID = 17;
                             scrappingOLTP.OpType = 1;
                             scrappingOLTP.BusinessDate = DateTime.Now;
@@ -799,6 +1101,7 @@ namespace IRAP.BL.MES
                             scrappingOLTP.Leaf06 = dimesion.T134Leaf;  //产线
                             scrappingOLTP.Leaf07 = dimesion.T181Leaf;  //工厂
                             scrappingOLTP.Leaf08 = dimesion.T1002Leaf; //所属公司
+                            scrappingOLTP.Leaf09 = t216LeafID;
                             scrappingOLTP.Code01 = wipIDCode.PartNumber;
                             scrappingOLTP.Code02 = dimesion.T120Code;
                             scrappingOLTP.Code03 = dimesion.T107Code;
@@ -807,6 +1110,7 @@ namespace IRAP.BL.MES
                             scrappingOLTP.Code06 = dimesion.T134Code;
                             scrappingOLTP.Code07 = dimesion.T181Code;
                             scrappingOLTP.Code08 = dimesion.T1002Code;
+                            scrappingOLTP.Code09 = t216Code;
                             scrappingOLTP.IsFixed = 1;
                             scrappingOLTP.Metric01 = 1;
                             scrappingOLTP.WFInstanceID = wipIDCode.SubWIPIDCode;
@@ -818,9 +1122,9 @@ namespace IRAP.BL.MES
                             #region 保存报废辅助事实
                             TBL_AuxFact_PDC scrappingAuxFact = new TBL_AuxFact_PDC();
                             scrappingAuxFact.FactID = factID;
-                            scrappingAuxFact.PartitionPolicy = auxPartitioning;
+                            scrappingAuxFact.PartitioningKey = auxPartitioning;
                             scrappingAuxFact.FactPartitioningKey = factPartitionPolicy;
-                            scrappingAuxFact.WFInstanceID = dimesion.PWONo;
+                            scrappingAuxFact.WFInstanceID = wipIDCode.PWONo;
                             scrappingAuxFact.WIPCode = wipIDCode.SubWIPIDCode;
                             scrappingAuxFact.AltWIPCode = "";
                             scrappingAuxFact.SerialNumber = "";
@@ -844,7 +1148,7 @@ namespace IRAP.BL.MES
 
                                 ordinal++;
                                 TBL_RSFact_WIPScrapping rsfact = new TBL_RSFact_WIPScrapping();
-                                rsfact.PartitionPolicy = factPartitionPolicy;
+                                rsfact.PartitioningKey = factPartitionPolicy;
                                 rsfact.FactID = factID;
                                 rsfact.WFInstanceID = wipIDCode.SubWIPIDCode;
                                 rsfact.Ordinal = ordinal;
@@ -869,8 +1173,7 @@ namespace IRAP.BL.MES
                     #endregion
 
                     #region 复核交易
-                    UTS.IRAPUTS uts = new UTS.IRAPUTS();
-                    uts.ssp_CheckTransaction(
+                    ssp_CheckTransaction(
                         communityID,
                         transactNo,
                         sysLogID,
@@ -880,6 +1183,7 @@ namespace IRAP.BL.MES
                         string.Format("复核交易结果：({0}){1}", errCode, errText),
                         strProcedureName);
 
+                    //errCode = 0;
                     if (errCode == 0)
                     {
                         conn.Commit();

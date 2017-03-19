@@ -47,6 +47,14 @@ namespace IRAP.Entities.MES
         /// 是否检查失效项
         /// </summary>
         public bool IsInspectItem { get; set; }
+        /// <summary>
+        /// 更换前的 SKUID
+        /// </summary>
+        public string SKUID1 { get; set; }
+        /// <summary>
+        /// 更换后的 SKUID
+        /// </summary>
+        public string SKUID2 { get; set; }
 
         public SubWIPIDCode_TSItem Clone()
         {

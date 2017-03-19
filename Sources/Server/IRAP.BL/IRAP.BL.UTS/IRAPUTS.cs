@@ -341,7 +341,7 @@ namespace IRAP.BL.UTS
         }
 
         /// <summary>
-        /// 
+        /// 通用交易复核
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="transactNo">待复核交易号</param>

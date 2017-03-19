@@ -4813,7 +4813,7 @@ namespace IRAP.BL.MDM
                     string.Format(
                         "调用函数 IRAPMDM..ufn_GetList_FailureModes，" +
                         "参数：CommunityID={0}|ProductLeaf={1}|WorkUnitLeaf={2}|" +
-                        "SysLogID={4}",
+                        "SysLogID={3}",
                         communityID, productLeaf, workUnitLeaf, sysLogID),
                     strProcedureName);
                 #endregion

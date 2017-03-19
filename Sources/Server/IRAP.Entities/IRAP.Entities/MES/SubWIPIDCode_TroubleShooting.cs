@@ -25,6 +25,9 @@ namespace IRAP.Entities.MES
             tsItemsDT.Columns.Add("T119LeafID", typeof(int));
             tsItemsDT.Columns.Add("TrackReferenceValue", typeof(string));
             tsItemsDT.Columns.Add("IsInspectItem", typeof(bool));
+            tsItemsDT.Columns.Add("SKUID1", typeof(string));
+            tsItemsDT.Columns.Add("SKUID2", typeof(string));
+            tsItemsDT.Columns.Add("T10xLeafID", typeof(int));
         }
 
         /// <summary>
@@ -35,6 +38,11 @@ namespace IRAP.Entities.MES
             get { return repairStatus; }
             set { repairStatus = value; }
         }
+
+        /// <summary>
+        /// 生产工单号
+        /// </summary>
+        public string PWONo { get; set; }
 
         public List<SubWIPIDCode_TSItem> TSItems
         {
@@ -59,18 +67,14 @@ namespace IRAP.Entities.MES
                 try { itemLeafTreeID = (int)dr["ItemLeafTreeID"]; }
                 catch { itemLeafTreeID = 0; }
 
-                switch (itemLeafTreeID)
+                if (itemLeafTreeID == 110)
                 {
-                    case 101:
-                        try { item.T101LeafID = (int)dr["T101LeafID"]; }
-                        catch { item.T101LeafID = 0; }
-                        break;
-                    case 110:
-                        try { item.T110LeafID = (int)dr["T110LeafID"]; }
-                        catch { item.T110LeafID = 0; }
-                        break;
+                    try { item.T110LeafID = (int)dr["ItemLeafID"]; }
+                    catch { item.T110LeafID = 0; }
                 }
 
+                try { item.T101LeafID = (int)dr["T10xLeafID"]; }
+                catch { item.T101LeafID = 0; }
                 try { item.T118LeafID = (int)dr["T118LeafID"]; }
                 catch { item.T118LeafID = 0; }
                 try { item.T119LeafID = (int)dr["T119LeafID"]; }
@@ -87,6 +91,10 @@ namespace IRAP.Entities.MES
                 catch { item.TrackReferenceValue = ""; }
                 try { item.IsInspectItem = (bool)dr["IsInspectItem"]; }
                 catch { item.IsInspectItem = false; }
+                try { item.SKUID1 = dr["SKUID1"].ToString(); }
+                catch { item.SKUID1 = ""; }
+                try { item.SKUID2 = dr["SKUID2"].ToString(); }
+                catch { item.SKUID2 = ""; }
 
                 this.tsItems.Add(item);
             }
@@ -111,6 +119,9 @@ namespace IRAP.Entities.MES
                             item.T119LeafID,
                             item.TrackReferenceValue,
                             item.IsInspectItem,
+                            item.SKUID1,
+                            item.SKUID2,
+                            item.T101LeafID,
                         });
                 }
                 else
@@ -127,6 +138,9 @@ namespace IRAP.Entities.MES
                             item.T119LeafID,
                             item.TrackReferenceValue,
                             item.IsInspectItem,
+                            item.SKUID1,
+                            item.SKUID2,
+                            item.T101LeafID,
                         });
                 }
             }
