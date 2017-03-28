@@ -117,44 +117,100 @@ namespace IRAP.Client.GUI.CAS
                         switch (lineEventStatus.T179Code)
                         {
                             case "M":
-                                pdtLine.MaterialStatus = lineEventStatus.ResourceStatus;
-                                pdtLine.MaterialTimeElapsed = lineEventStatus.ElapsedSeconds;
-                                pdtLine.MaterialResponded = lineEventStatus.OnSiteResponded;
+                                if (lineEventStatus.ResourceStatus == 0)
+                                {
+                                    grdbndMaterial.Visible = false;
+                                }
+                                else
+                                {
+                                    pdtLine.MaterialStatus = lineEventStatus.ResourceStatus;
+                                    pdtLine.MaterialTimeElapsed = lineEventStatus.ElapsedSeconds;
+                                    pdtLine.MaterialResponded = lineEventStatus.OnSiteResponded;
+                                }
                                 break;
                             case "R":
-                                pdtLine.EquipmentStatus = lineEventStatus.ResourceStatus;
-                                pdtLine.EquipmentTimeElapsed = lineEventStatus.ElapsedSeconds;
-                                pdtLine.EquipmentResponded = lineEventStatus.OnSiteResponded;
+                                if (lineEventStatus.ResourceStatus == 0)
+                                {
+                                    grdbndEquipment.Visible = false;
+                                }
+                                else
+                                {
+                                    pdtLine.EquipmentStatus = lineEventStatus.ResourceStatus;
+                                    pdtLine.EquipmentTimeElapsed = lineEventStatus.ElapsedSeconds;
+                                    pdtLine.EquipmentResponded = lineEventStatus.OnSiteResponded;
+                                }
                                 break;
                             case "Q":
-                                pdtLine.QualifyStatus = lineEventStatus.ResourceStatus;
-                                pdtLine.QualifyTimeElapsed = lineEventStatus.ElapsedSeconds;
-                                pdtLine.QualifyResponded = lineEventStatus.OnSiteResponded;
+                                if (lineEventStatus.ResourceStatus == 0)
+                                {
+                                    grdbndQuality.Visible = false;
+                                }
+                                else
+                                {
+                                    pdtLine.QualifyStatus = lineEventStatus.ResourceStatus;
+                                    pdtLine.QualifyTimeElapsed = lineEventStatus.ElapsedSeconds;
+                                    pdtLine.QualifyResponded = lineEventStatus.OnSiteResponded;
+                                }
                                 break;
                             case "O":
-                                pdtLine.OtherStatus = lineEventStatus.ResourceStatus;
-                                pdtLine.OtherTimeElapsed = lineEventStatus.ElapsedSeconds;
-                                pdtLine.OtherResponded = lineEventStatus.OnSiteResponded;
+                                if (lineEventStatus.ResourceStatus == 0)
+                                {
+                                    grdbndOther.Visible = false;
+                                }
+                                else
+                                {
+                                    pdtLine.OtherStatus = lineEventStatus.ResourceStatus;
+                                    pdtLine.OtherTimeElapsed = lineEventStatus.ElapsedSeconds;
+                                    pdtLine.OtherResponded = lineEventStatus.OnSiteResponded;
+                                }
                                 break;
                             case "S":
-                                pdtLine.SecurityStatus = lineEventStatus.ResourceStatus;
-                                pdtLine.SecurityTimeElapsed = lineEventStatus.ElapsedSeconds;
-                                pdtLine.SecurityResponded = lineEventStatus.OnSiteResponded;
+                                if (lineEventStatus.ResourceStatus == 0)
+                                {
+                                    grdbndSafety.Visible = false;
+                                }
+                                else
+                                {
+                                    pdtLine.SecurityStatus = lineEventStatus.ResourceStatus;
+                                    pdtLine.SecurityTimeElapsed = lineEventStatus.ElapsedSeconds;
+                                    pdtLine.SecurityResponded = lineEventStatus.OnSiteResponded;
+                                }
                                 break;
                             case "T":
-                                pdtLine.ToolingStatus = lineEventStatus.ResourceStatus;
-                                pdtLine.ToolingTimeElapsed = lineEventStatus.ElapsedSeconds;
-                                pdtLine.ToolingResponded = lineEventStatus.OnSiteResponded;
+                                if (lineEventStatus.ResourceStatus == 0)
+                                {
+                                    grdbndTooling.Visible = false;
+                                }
+                                else
+                                {
+                                    pdtLine.ToolingStatus = lineEventStatus.ResourceStatus;
+                                    pdtLine.ToolingTimeElapsed = lineEventStatus.ElapsedSeconds;
+                                    pdtLine.ToolingResponded = lineEventStatus.OnSiteResponded;
+                                }
                                 break;
                             case "D":
-                                pdtLine.DesignStatus = lineEventStatus.ResourceStatus;
-                                pdtLine.DesignTimeElapsed = lineEventStatus.ElapsedSeconds;
-                                pdtLine.DesignResponded = lineEventStatus.OnSiteResponded;
+                                if (lineEventStatus.ResourceStatus == 0)
+                                {
+                                    grdbndDesign.Visible = false;
+                                }
+                                else
+                                {
+                                    pdtLine.DesignStatus = lineEventStatus.ResourceStatus;
+                                    pdtLine.DesignTimeElapsed = lineEventStatus.ElapsedSeconds;
+                                    pdtLine.DesignResponded = lineEventStatus.OnSiteResponded;
+                                }
                                 break;
                             case "X":
-                                pdtLine.TechnologyStatus = lineEventStatus.ResourceStatus;
-                                pdtLine.TechnologyTimeElapsed = lineEventStatus.ElapsedSeconds;
-                                pdtLine.TechnologyResponded = lineEventStatus.OnSiteResponded;
+                                if (lineEventStatus.ResourceStatus == 0)
+                                {
+                                    grdbndTechnology.Visible = false;
+                                }
+                                else
+                                {
+                                    pdtLine.TechnologyStatus = lineEventStatus.ResourceStatus;
+                                    pdtLine.TechnologyTimeElapsed = lineEventStatus.ElapsedSeconds;
+                                    pdtLine.TechnologyResponded = lineEventStatus.OnSiteResponded;
+                                }
                                 break;
                         }
                     }
