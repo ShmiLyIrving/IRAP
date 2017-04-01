@@ -62,6 +62,7 @@
             this.grdclmnScheduleStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.lblNoneMaterialInStore = new DevExpress.XtraEditors.LabelControl();
+            this.report1 = new FastReport.Report();
             ((System.ComponentModel.ISupportInitialize)(this.grdMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.report)).BeginInit();
@@ -71,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdvOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.report1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTipController
@@ -650,6 +652,10 @@
             this.lblNoneMaterialInStore.Text = "当前工单所需的物料无库存！";
             this.lblNoneMaterialInStore.Visible = false;
             // 
+            // report1
+            // 
+            this.report1.ReportResourceString = resources.GetString("report1.ReportResourceString");
+            // 
             // frmMaterialsToDeliver
             // 
             this.Appearance.Options.UseFont = true;
@@ -676,6 +682,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.report1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -715,5 +722,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnScheduleStartTime;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.LabelControl lblNoneMaterialInStore;
+        private FastReport.Report report1;
     }
 }

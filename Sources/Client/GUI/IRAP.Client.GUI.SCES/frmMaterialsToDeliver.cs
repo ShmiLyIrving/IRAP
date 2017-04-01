@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using DevExpress.XtraEditors;
 using System.Reflection;
+using System.Configuration;
+
+using DevExpress.XtraEditors;
 
 using IRAP.Global;
 using IRAP.Client.User;
@@ -30,6 +32,8 @@ namespace IRAP.Client.GUI.SCES
         /// 需要打印配送单的排产订单事实编号
         /// </summary>
         private long orderFactID = 0;
+
+        private bool printWIPProductInfoTrack = false;
 
         public frmMaterialsToDeliver()
         {
@@ -83,6 +87,13 @@ namespace IRAP.Client.GUI.SCES
             for (int i = 0; i < grdvOrders.Columns.Count; i++)
             {
                 grdvOrders.Columns[i].BestFit();
+            }
+
+            if (IRAPUser.Instance.CommunityID == 60010)
+            {
+                if (ConfigurationManager.AppSettings["PrintProductInfoTrack"] != null)
+                    printWIPProductInfoTrack =
+                        ConfigurationManager.AppSettings["PrintProductInfoTrack"].ToUpper() == "TRUE";
             }
         }
 
@@ -232,6 +243,12 @@ namespace IRAP.Client.GUI.SCES
                     }
                     report.Load(ms);
 
+                    if (printWIPProductInfoTrack && IRAPUser.Instance.CommunityID == 60010)
+                    {
+                        ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
+                        report1.Load(ms);
+                    }
+
                     try
                     {
                         switch (IRAPUser.Instance.CommunityID)
@@ -344,6 +361,40 @@ namespace IRAP.Client.GUI.SCES
                                 report.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
                                 break;
                         }
+
+                        if (printWIPProductInfoTrack && IRAPUser.Instance.CommunityID == 60010)
+                        {
+                            report1.Parameters.FindByName("BarCode").Value = order.PWONo;
+                            report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
+                            report1.Parameters.FindByName("StorehouseCode").Value =
+                                string.Format(
+                                    "{0}({1})",
+                                    materials[0].T173Name,
+                                    materials[0].T173Code);
+                            report1.Parameters.FindByName("T106Code").Value = materials[0].AtStoreLocCode;
+                            report1.Parameters.FindByName("WorkshopName").Value = materials[0].DstWorkShopCode;
+                            report1.Parameters.FindByName("ProductLine").Value = order.T134Name;
+                            report1.Parameters.FindByName("AdvicedPickedQty").Value = materials[0].SuggestedQuantityToPick;
+                            report1.Parameters.FindByName("StartingDate").Value = order.PlannedStartDate.Substring(6, 5);
+                            report1.Parameters.FindByName("CompletingDate").Value = order.PlannedCloseDate.Substring(6, 5);
+                            report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
+                            report1.Parameters.FindByName("Unit").Value = materials[0].UnitOfMeasure;
+                            report1.Parameters.FindByName("MONo").Value = order.MONumber;
+                            report1.Parameters.FindByName("LineNo").Value = order.MOLineNo;
+                            report1.Parameters.FindByName("LotNumber").Value = materials[0].LotNumber;
+                            report1.Parameters.FindByName("MaterialTexture").Value = materials[0].T131Code;
+                            report1.Parameters.FindByName("ActualPickedBars").Value = materials[0].ActualQtyDecompose;
+                            report1.Parameters.FindByName("OrderQty").Value = order.PlannedQuantity.IntValue.ToString();
+                            report1.Parameters.FindByName("MaterialCode").Value =
+                                materials[0].MaterialCode.Substring(2, materials[0].MaterialCode.Length - 2);
+                            report1.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
+                            report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
+                            report1.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.IntValue.ToString();
+                            report1.Parameters.FindByName("FatherMaterialCode").Value = 
+                                order.ProductNo.Substring(2, order.ProductNo.Length - 2);
+                            report1.Parameters.FindByName("FatherMaterialName").Value = order.ProductDesc;
+                            report1.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
+                        }
                     }
                     catch (Exception error)
                     {
@@ -352,10 +403,10 @@ namespace IRAP.Client.GUI.SCES
                         return;
                     }
 
+                    System.Drawing.Printing.PrinterSettings prnSetting =
+                        new System.Drawing.Printing.PrinterSettings();
                     if (report.Prepare())
                     {
-                        System.Drawing.Printing.PrinterSettings prnSetting = 
-                            new System.Drawing.Printing.PrinterSettings();
                         bool rePrinter = false;
                         do
                         {
@@ -372,6 +423,33 @@ namespace IRAP.Client.GUI.SCES
                             }
                         } while (rePrinter);
                     }
+
+                    if (IRAPUser.Instance.CommunityID == 60010 && printWIPProductInfoTrack)
+                    {
+                        IRAPMessageBox.Instance.ShowInformation(
+                            "请将打印机中的打印纸更换为【产品信息跟踪卡】，更换完毕后点击确认开始打印");
+
+                        if (report1.Prepare())
+                        {
+                            bool rePrint = false;
+                            do
+                            {
+                                if (report1.ShowPrintDialog(out prnSetting))
+                                {
+                                    report1.PrintPrepared(prnSetting);
+                                    rePrint =
+                                        (
+                                            ShowMessageBox.Show(
+                                                "【产品信息跟踪卡】已经打印完成，是否需要重新打印？",
+                                                "系统信息",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question,
+                                                MessageBoxDefaultButton.Button2) == DialogResult.Yes
+                                        );
+                                }
+                            } while (rePrint);
+                        }
+                    } 
                     btnClose.PerformClick();
                     #endregion
                 }

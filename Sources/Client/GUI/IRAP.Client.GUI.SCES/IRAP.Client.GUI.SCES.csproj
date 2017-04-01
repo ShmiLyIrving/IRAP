@@ -131,6 +131,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\WIPProductInfoTrack.frx" />
     <None Include="Resources\WIPTransferTrackSheet.frx" />
     <None Include="Resources\WIPTransferTrackSheet_60023.frx" />
   </ItemGroup>
