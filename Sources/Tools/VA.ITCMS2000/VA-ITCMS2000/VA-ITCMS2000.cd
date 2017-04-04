@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VA_ITCMS2000.SysParams" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgEgAAAAAEACAAAAAAAAQAAAAAAAAAAwAAAAAAAAAA=</HashCode>
+      <FileName>SysParams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VA_ITCMS2000.Param" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAABAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Param.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VA_ITCMS2000.ITCMS2000Param" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAQAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ITCMS2000Param.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VA_ITCMS2000.DBConnectParam" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAABAIBAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>DBConnectParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VA_ITCMS2000.VAThread">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="VA_ITCMS2000.VAThread.InvokeAddMessage" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>VAThread.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VA_ITCMS2000.VAThread.InvokeClearLogs" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>VAThread.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAQEAIAQAAAAoJEAAEAABIgACAAEAAAA4AAEAAAAAAA=</HashCode>
+      <FileName>VAThread.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="VA_ITCMS2000.ThreadLogEventHandler">
+    <Position X="4.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ThreadLogEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
