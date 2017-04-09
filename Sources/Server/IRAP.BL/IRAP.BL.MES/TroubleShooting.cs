@@ -111,7 +111,7 @@ namespace IRAP.BL.MES
         }
 
         /// <summary>
-        /// 通用交易复核
+        /// 故障维修交易复核
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="transactNo">待复核交易号</param>
@@ -119,7 +119,7 @@ namespace IRAP.BL.MES
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
         /// <returns></returns>
-        private void ssp_CheckTransaction(
+        private void usp_CheckTransaction_11(
             int communityID,
             long transactNo,
             long sysLogID,
@@ -146,7 +146,7 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用 IRAP..ssp_CheckTransaction，输入参数：" +
+                        "调用 IRAPMES..usp_CheckTransaction_11，输入参数：" +
                         "CommunityID={0}|TransactNo={1}|SysLogID={2}",
                         communityID, transactNo, sysLogID),
                     strProcedureName);
@@ -157,17 +157,15 @@ namespace IRAP.BL.MES
                 {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
-                        IRAPError error = conn.CallProc("IRAP..ssp_CheckTransaction", ref paramList);
+                        IRAPError error = conn.CallProc("IRAPMES..usp_CheckTransaction_11", ref paramList);
                         errCode = error.ErrCode;
                         errText = error.ErrText;
-
-                        rlt = DBUtils.DBParamsToHashtable(paramList);
                     }
                 }
                 catch (Exception error)
                 {
                     errCode = 99000;
-                    errText = string.Format("调用 IRAP..ssp_CheckTransaction 函数发生异常：{0}", error.Message);
+                    errText = string.Format("调用 IRAPMES..usp_CheckTransaction_11 函数发生异常：{0}", error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }
@@ -944,6 +942,8 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write("开始新事务保存", strProcedureName);
                 conn.BeginTran();
                 WriteLog.Instance.Write("新事务保存开始了", strProcedureName);
+
+                try
                 {
                     #region 保存事实
                     foreach (SubWIPIDCode_TroubleShooting wipIDCode in subWIPIDCodes)
@@ -1073,7 +1073,21 @@ namespace IRAP.BL.MES
                             rsfact.MaterialLabelSN0 = item.SKUID1;
                             rsfact.MaterialLabelSN1 = item.SKUID2;
                             rsfact.TrackRef = item.TrackReferenceValue;
-                            conn.Insert(rsfact);
+                            try
+                            {
+                                conn.Insert(rsfact);
+                            }
+                            catch (Exception error)
+                            {
+                                WriteLog.Instance.Write(error.Message, strProcedureName);
+
+                                conn.RollBack();
+
+                                errCode = 999001;
+                                errText = string.Format("行集事实保存失败：{0}", error.Message);
+
+                                return Json(errCode);
+                            }
                             WriteLog.Instance.Write("行集事实保存成功", strProcedureName);
                         }
                         #endregion
@@ -1170,44 +1184,40 @@ namespace IRAP.BL.MES
                         }
                         #endregion
                     }
+
+                    conn.Commit();
                     #endregion
-
-                    #region 复核交易
-                    ssp_CheckTransaction(
-                        communityID,
-                        transactNo,
-                        sysLogID,
-                        out errCode,
-                        out errText);
-                    WriteLog.Instance.Write(
-                        string.Format("复核交易结果：({0}){1}", errCode, errText),
-                        strProcedureName);
-
-                    //errCode = 0;
-                    if (errCode == 0)
-                    {
-                        conn.Commit();
-
-                        errCode = 0;
-                        errText = "故障维修事实保存成功";
-                    }
-                    else
-                    {
-                        conn.RollBack();
-
-                        errCode = 9999;
-                        errText = string.Format("故障维修事实保存失败：{0}", errText);
-                    }
-                   #endregion
+                }
+                catch (Exception err)
+                {
+                    errCode = 9999;
+                    errText = "保存事实失败：" + err.Message;
+                    conn.RollBack();
+                    return Json(errCode);
                 }
 
-                return Json(errCode);
-            }
-            catch (Exception err)
-            {
-                errCode = 9999;
-                errText = "保存事实失败：" + err.Message;
-                conn.RollBack();
+                #region 复核交易
+                usp_CheckTransaction_11(
+                    communityID,
+                    transactNo,
+                    sysLogID,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("复核交易结果：({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode == 0)
+                {
+                    errCode = 0;
+                    errText = "故障维修事实保存成功";
+                }
+                else
+                {
+                    errCode = 9999;
+                    errText = string.Format("故障维修事实保存成功，复核交易失败：{0}", errText);
+                }
+                #endregion
+
                 return Json(errCode);
             }
             finally

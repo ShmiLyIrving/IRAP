@@ -55,9 +55,13 @@
       <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
       <Name>IRAPShared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entity.APS\IRAP.Entity.APS.csproj">
-      <Project>{70f72616-3f21-401c-803b-c93fec517d73}</Project>
-      <Name>IRAP.Entity.APS</Name>
+    <ProjectReference Include="..\..\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+      <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
+      <Name>IRAP.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAPORM\IRAPORM.csproj">
+      <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
+      <Name>IRAPORM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

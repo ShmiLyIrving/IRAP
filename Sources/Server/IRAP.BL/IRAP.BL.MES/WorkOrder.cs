@@ -682,5 +682,87 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 辅助事实分区键
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="af482PK">辅助事实分区键</param>
+        /// <param name="pwoNo">生产工单号</param>
+        /// <returns>string</returns>
+        public IRAPJsonResult ufn_GetLotNumberFromPWO(
+            int communityID,
+            long af482PK,
+            string pwoNo,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                string rlt = "";
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@AF482PK", DbType.Int64, af482PK));
+                paramList.Add(new IRAPProcParameter("@PWONo", DbType.String, pwoNo));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES.dbo.ufn_GetLotNumberFromPWO，参数：" +
+                        "CommunityID={0}|AF482PK={1}|PWONo={2}",
+                        communityID,
+                        af482PK,
+                        pwoNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        rlt =
+                            (string)conn.CallScalarFunc(
+                                "IRAPMES.dbo.ufn_GetLotNumberFromPWO",
+                                paramList);
+                        if (rlt != "")
+                        {
+                            errCode = 0;
+                            errText = string.Format("调用成功！获得 LotNumber={0}", rlt);
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                        }
+                        else
+                        {
+                            errCode = 99999;
+                            errText = "未得到 LotNumber 的值";
+                        }
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES.dbo.ufn_GetLotNumberFromPWO 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(rlt);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                WriteLog.Instance.Write("");
+            }
+        }
     }
 }
