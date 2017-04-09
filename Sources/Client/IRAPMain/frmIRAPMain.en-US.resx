@@ -139,10 +139,7 @@
 </value>
   </data>
   <data name="ribbonControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1018, 55</value>
-  </data>
-  <data name="ucOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 55</value>
+    <value>1018, 50</value>
   </data>
   <data name="ucOptions.Size" type="System.Drawing.Size, System.Drawing">
     <value>1018, 47</value>

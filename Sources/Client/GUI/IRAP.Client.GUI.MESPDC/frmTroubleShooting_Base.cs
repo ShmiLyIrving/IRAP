@@ -5,31 +5,31 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Threading;
 using System.Reflection;
+using System.Threading;
 
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
 
 using IRAP.Global;
 using IRAP.Client.Global;
 using IRAP.Client.User;
 using IRAP.Client.SubSystem;
-using IRAP.Entities.MDM;
 using IRAP.Entities.MES;
 using IRAP.Entities.UTS;
+using IRAP.Entities.MDM;
 using IRAP.Entity.Kanban;
 using IRAP.Entity.SSO;
+using IRAP.Entity.MES;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MESPDC
 {
-    public partial class frmTroubleShooting : IRAP.Client.Global.GUI.frmCustomFuncBase
+    public partial class frmTroubleShooting_Base : IRAP.Client.Global.GUI.frmCustomFuncBase
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
-
-        private string cultureName;
-        private string caption;
 
         private List<SymbolInspecting> symbols = new List<SymbolInspecting>();
         private List<OperTypeInfo> repairActions = new List<OperTypeInfo>();
@@ -45,12 +45,8 @@ namespace IRAP.Client.GUI.MESPDC
         private List<LeafSetEx> failureNatures = new List<LeafSetEx>();
         private List<LeafSetEx> failureDuties = new List<LeafSetEx>();
         private List<LeafSetEx> repairModes = new List<LeafSetEx>();
-
-        /// <summary>
-        /// 测试数据集
-        /// </summary>
-        private List<RSFactTestData> dataTests = new List<RSFactTestData>();
-
+        private int currentProductLeaf = 0;
+        private int currentWorkUnitLeaf = 0;
         /// <summary>
         /// 来源工位
         /// </summary>
@@ -76,15 +72,12 @@ namespace IRAP.Client.GUI.MESPDC
         /// </summary>
         private string pwoNo = "";
 
-        public frmTroubleShooting()
+        private string caption = "";
+        private string cultureName = "";
+
+        public frmTroubleShooting_Base()
         {
             InitializeComponent();
-
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
 
             cultureName = Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2).ToUpper();
             if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
@@ -93,12 +86,31 @@ namespace IRAP.Client.GUI.MESPDC
                 caption = "系统信息";
         }
 
-        #region 自定义函数
-        private void FormComponentsInit()
+        public void FormComponentsInit()
         {
+            if (Options.SelectStation != null)
+            {
+                currentWorkUnitLeaf = Options.SelectStation.T107LeafID;
+            }
+            else
+            {
+                currentWorkUnitLeaf = 0;
+            }
+            if (Options.SelectProduct != null)
+            {
+                currentProductLeaf = Options.SelectProduct.T102LeafID;
+            }
+            else
+            {
+                currentProductLeaf = 0;
+            }
+
             if (dtRepairWIPs != null)
             {
                 grdProducts.DataSource = dtRepairWIPs;
+
+                grdvProducts.OptionsBehavior.Editable = true;
+                grdvProducts.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
             }
 
             if (dtRepairItems != null)
@@ -138,54 +150,9 @@ namespace IRAP.Client.GUI.MESPDC
             riluRepairMode.NullText = "";
         }
 
-        private void Clear()
-        {
-            repairWIPIDs.Clear();
-            dtRepairWIPs.Clear();
-            dtRepairItems.Clear();
-
-            lblStatus.Text = "";
-
-            grdRepairItems.DataSource = null;
-
-            tpShowTestData.PageEnabled = false;
-            btnBarCodeConf.Enabled = false;
-
-            dataTests.Clear();
-            for (int i = 0; i < 32; i++)
-            {
-                grdvTestDatas.Columns[i + 5].Visible = false;
-            }
-        }
-
-        private void AfterOptionChanged(object sender, EventArgs e)
-        {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                edtBarCode.Text = "";
-                Clear();
-                edtBarCode.Focus();
-
-                FormComponentsInit();
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
         /// <summary>
         /// 创建临时表
         /// </summary>
-        /// <param name="tableName"></param>
-        /// <returns></returns>
         private DataTable InitializeDataTable(string tableName)
         {
             DataTable dt = new DataTable(tableName);
@@ -227,8 +194,8 @@ namespace IRAP.Client.GUI.MESPDC
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                if (Options.SelectStation == null ||
-                    Options.SelectProduct == null)
+                if (CurrentOptions.Instance.OptionOne == null ||
+                    CurrentOptions.Instance.OptionTwo == null)
                 {
                     WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
                     IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
@@ -241,7 +208,7 @@ namespace IRAP.Client.GUI.MESPDC
                 IRAPMDMClient.Instance.ufn_GetList_Symbols_Inspecting(
                     IRAPUser.Instance.CommunityID,
                     IRAPUser.Instance.SysLogID,
-                    Options.SelectProduct.T102LeafID,
+                    CurrentOptions.Instance.OptionTwo.T102LeafID,
                     0,
                     ref symbols,
                     out errCode,
@@ -329,7 +296,11 @@ namespace IRAP.Client.GUI.MESPDC
             return rlt;
         }
 
-        private void GetRepairActions()
+        /// <summary>
+        /// 获取指定工位的失效模式清单
+        /// </summary>
+        /// <param name="srcWorkUnitLeaf"></param>
+        private void GetFailureModes(int srcWorkUnitLeaf)
         {
             string strProcedureName =
                 string.Format(
@@ -337,34 +308,29 @@ namespace IRAP.Client.GUI.MESPDC
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
+            if (CurrentOptions.Instance.OptionOne == null ||
+                CurrentOptions.Instance.OptionTwo == null)
+            {
+                WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
+                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
+                return;
+            }
+
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
                 int errCode = 0;
                 string errText = "";
 
-                IRAPUTSClient.Instance.sfn_OperTypes(
-                    11,
-                    IRAPUser.Instance.LanguageID,
-                    ref repairActions,
+                IRAPMDMClient.Instance.ufn_GetList_FailureModes(
+                    IRAPUser.Instance.CommunityID,
+                    currentProductLeaf,
+                    srcWorkUnitLeaf,
+                    IRAPUser.Instance.SysLogID,
+                    ref failureModes,
                     out errCode,
                     out errText);
-                WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
-                    strProcedureName);
-
-                if (errCode == 0)
-                {
-                    dtRepairActions.Clear();
-                    foreach (OperTypeInfo action in repairActions)
-                    {
-                        dtRepairActions.Rows.Add(new object[]
-                            {
-                                action.OpType,
-                                action.OpTypeName,
-                            });
-                    }
-                }
+                WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
             }
             catch (Exception error)
             {
@@ -385,8 +351,8 @@ namespace IRAP.Client.GUI.MESPDC
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            if (Options.SelectStation == null ||
-                Options.SelectProduct == null)
+            if (CurrentOptions.Instance.OptionOne == null ||
+                CurrentOptions.Instance.OptionTwo == null)
             {
                 WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
                 IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
@@ -402,7 +368,7 @@ namespace IRAP.Client.GUI.MESPDC
                 IRAPMDMClient.Instance.ufn_GetList_DefectRootCauses(
                     IRAPUser.Instance.CommunityID,
                     IRAPUser.Instance.SysLogID,
-                    Options.SelectProduct.T102LeafID,
+                    currentProductLeaf,
                     0,
                     ref defectRootCauses,
                     out errCode,
@@ -418,6 +384,19 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        private List<DefectRootCause> GetFailureSrcOperation(
+            int pwoCategoryLeaf, 
+            List<DefectRootCause> sources)
+        {
+            List<DefectRootCause> rlt = new List<DefectRootCause>();
+            foreach (DefectRootCause causes in sources)
+            {
+                if (causes.PWOCategoryLeaf == pwoCategoryLeaf)
+                    rlt.Add(causes.Clone());
+            }
+            return rlt;
         }
 
         public void GetFailureNature()
@@ -444,7 +423,7 @@ namespace IRAP.Client.GUI.MESPDC
                     out errText);
                 WriteLog.Instance.Write(
                     string.Format(
-                        "({0}){1}", errCode, errText),
+                        "({0}){1}", errCode, errText), 
                     strProcedureName);
 
                 for (int i = failureNatures.Count - 1; i >= 0; i--)
@@ -487,7 +466,7 @@ namespace IRAP.Client.GUI.MESPDC
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
+                    string.Format("({0}){1}", errCode, errText), 
                     strProcedureName);
 
                 for (int i = failureDuties.Count - 1; i >= 0; i--)
@@ -530,7 +509,7 @@ namespace IRAP.Client.GUI.MESPDC
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
+                    string.Format("({0}){1}", errCode, errText), 
                     strProcedureName);
             }
             catch (Exception error)
@@ -544,55 +523,7 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
-        /// <summary>
-        /// 获取指定工位的失效模式清单
-        /// </summary>
-        /// <param name="srcWorkUnitLeaf"></param>
-        private void GetFailureModes(int srcWorkUnitLeaf)
-        {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-
-            if (Options.SelectStation == null ||
-                Options.SelectProduct == null)
-            {
-                WriteLog.Instance.Write("还没有配置工位列表和产品列表", strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置工位列表和产品列表", caption);
-                return;
-            }
-
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                int errCode = 0;
-                string errText = "";
-
-                IRAPMDMClient.Instance.ufn_GetList_FailureModes(
-                    IRAPUser.Instance.CommunityID,
-                    Options.SelectProduct.T102LeafID,
-                    srcWorkUnitLeaf,
-                    IRAPUser.Instance.SysLogID,
-                    ref failureModes,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
-            }
-            catch (Exception error)
-            {
-                WriteLog.Instance.Write(error.Message, strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage(error.Message, caption);
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
-        private void GetFailuresOfNGProduct(
-            SubWIPIDCode_TroubleShooting subWIPIDCode_TroubleShooting)
+        private void GetRepairActions()
         {
             string strProcedureName =
                 string.Format(
@@ -605,49 +536,32 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 int errCode = 0;
                 string errText = "";
-                List<FailuresOfNGProduct> failures = new List<FailuresOfNGProduct>();
 
-                IRAPMESTSClient.Instance.ufn_GetList_FailuresOfNGProduct(
-                    IRAPUser.Instance.CommunityID,
-                    Options.SelectProduct.T102LeafID,
-                    0,
-                    subWIPIDCode_TroubleShooting.SubWIPIDCode,
-                    rsFactPK,
-                    subWIPIDCode_TroubleShooting.LinkedFactID,
-                    IRAPUser.Instance.SysLogID,
-                    ref failures,
+                IRAPUTSClient.Instance.sfn_OperTypes(
+                    11,
+                    IRAPUser.Instance.LanguageID,
+                    ref repairActions,
                     out errCode,
                     out errText);
-                WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText), 
+                    strProcedureName);
 
-                subWIPIDCode_TroubleShooting.TSItems.Clear();
                 if (errCode == 0)
                 {
-                    foreach (FailuresOfNGProduct failure in failures)
+                    dtRepairActions.Clear();
+                    foreach (OperTypeInfo action in repairActions)
                     {
-                        subWIPIDCode_TroubleShooting.TSItems.Add(new SubWIPIDCode_TSItem()
-                        {
-                            T101LeafID = failure.T101LeafID,
-                            T110LeafID = failure.T110LeafID,
-                            T118LeafID = failure.T118LeafID,
-                            FailurePointCount = failure.CntDefect,
-                            T216LeafID = failure.T216LeafID,
-                            T183LeafID = failure.T183LeafID,
-                            T184LeafID = failure.T184LeafID,
-                            IsInspectItem = true,
-                        });
+                        dtRepairActions.Rows.Add(new object[]
+                            {
+                                action.OpType,
+                                action.OpTypeName,
+                            });
                     }
-                    subWIPIDCode_TroubleShooting.PutListIntoDataTable();
-                }
-                else
-                {
-                    subWIPIDCode_TroubleShooting.TSItemsDT.Clear();
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText, caption);
                 }
             }
             catch (Exception error)
             {
-                subWIPIDCode_TroubleShooting.TSItemsDT.Clear();
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 IRAPMessageBox.Instance.ShowErrorMessage(error.Message, caption);
             }
@@ -655,19 +569,6 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-        }
-
-        private List<DefectRootCause> GetFailureSrcOperation(
-            int pwoCategoryLeaf,
-            List<DefectRootCause> sources)
-        {
-            List<DefectRootCause> rlt = new List<DefectRootCause>();
-            foreach (DefectRootCause causes in sources)
-            {
-                if (causes.PWOCategoryLeaf == pwoCategoryLeaf)
-                    rlt.Add(causes.Clone());
-            }
-            return rlt;
         }
 
         private void RefreshRepairItemColumns()
@@ -695,7 +596,7 @@ namespace IRAP.Client.GUI.MESPDC
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
+                    string.Format("({0}){1}", errCode, errText), 
                     strProcedureName);
                 if (errCode == 0)
                 {
@@ -743,24 +644,21 @@ namespace IRAP.Client.GUI.MESPDC
                 IRAPMESTSClient.Instance.ufn_GetList_SubWIPIDCodes_TS(
                     IRAPUser.Instance.CommunityID,
                     wipPattern,
-                    Options.SelectProduct.T102LeafID,
-                    Options.SelectStation.T107LeafID,
+                    currentProductLeaf,
+                    currentWorkUnitLeaf,
                     IRAPUser.Instance.SysLogID,
                     ref subIDs,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
+                    string.Format("({0}){1}", errCode, errText), 
                     strProcedureName);
                 if (errCode == 0)
                 {
                     foreach (SubWIPIDCodes_TS subID in subIDs)
                     {
                         SubWIPIDCode_TroubleShooting repairWIPIDCode = new SubWIPIDCode_TroubleShooting();
-
                         repairWIPIDCode.CopyFrom(subID);
-                        repairWIPIDCode.RepairStatus = 3;
-
                         repairWIPIDs.Add(repairWIPIDCode);
                     }
                 }
@@ -776,108 +674,104 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
-        private void NewRepairItem()
+        private WIPIDCode GetBarCodeInfo()
         {
-            if (grdvProducts.GetFocusedDataSourceRowIndex() < 0)
-            {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "还没有选择需要维修的子在制品！",
-                    caption);
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
 
-                grdvProducts.Focus();
-                return;
+            WIPIDCode rlt = new WIPIDCode();
+
+            if (Options.SelectStation == null ||
+                Options.SelectProduct == null)
+            {
+                WriteLog.Instance.Write("还没有配置产品列表和工位列表", strProcedureName);
+                IRAPMessageBox.Instance.ShowErrorMessage("还没有配置产品列表和工位列表", caption);
+                return null;
             }
 
-            int idx = grdvProducts.GetFocusedDataSourceRowIndex();
-            using (Dialogs.frmRepairItemEditor formEditor = 
-                new Dialogs.frmRepairItemEditor(Global.Enums.EditStatus.New))
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
             {
-                formEditor.Symbols = risluSymbol.DataSource as DataTable;
-                formEditor.FailureModes = failureModes;
-                formEditor.DefectRootCauses = riluDefectRootCauses.DataSource as List<DefectRootCause>;
-                formEditor.FailureNatures = failureNatures;
-                formEditor.FailureDuties = failureDuties;
-                formEditor.RepairModes = repairModes;
-                formEditor.WIPCode = repairWIPIDs[idx].SubWIPIDCode;
+                int errCode = 0;
+                string errText = "";
 
-                if (formEditor.ShowDialog() == DialogResult.OK)
+                IRAPMESClient.Instance.ufn_GetInfo_WIPIDCode(
+                    IRAPUser.Instance.CommunityID,
+                    edtBarCode.Text.Trim(),
+                    currentProductLeaf,
+                    currentWorkUnitLeaf,
+                    false,
+                    IRAPUser.Instance.SysLogID,
+                    ref rlt,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText), 
+                    strProcedureName);
+
+                if (errCode != 0)
                 {
-                    repairWIPIDs[idx].TSItems.Add(formEditor.RepairItem);
-                    repairWIPIDs[idx].PutListIntoDataTable();
-
-                    grdvRepairItems.RefreshData();
-                    grdvRepairItems.BestFitColumns();
+                    IRAPMessageBox.Instance.ShowErrorMessage(errText, caption);
                 }
+
+                return rlt;
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                IRAPMessageBox.Instance.ShowErrorMessage(error.Message, caption);
+                return null;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
 
-        private void EditRepairItem()
+        private void Clear()
         {
-            if (grdvRepairItems.GetFocusedDataSourceRowIndex() < 0)
-            {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "没有选中的维修项，不能修改！",
-                    caption);
+            repairWIPIDs.Clear();
+            dtRepairWIPs.Clear();
+            dtRepairItems.Clear();
 
-                grdvRepairItems.Focus();
-                return;
-            }
+            lblStatus.Text = "";
 
-            int idxPrdt = grdvProducts.GetFocusedDataSourceRowIndex();
-            int idxItem = grdvRepairItems.GetFocusedDataSourceRowIndex();
-            using (Dialogs.frmRepairItemEditor formEditor =
-                new Dialogs.frmRepairItemEditor(Global.Enums.EditStatus.Edit))
-            {
-                formEditor.Symbols = risluSymbol.DataSource as DataTable;
-                formEditor.FailureModes = failureModes;
-                formEditor.DefectRootCauses = riluDefectRootCauses.DataSource as List<DefectRootCause>;
-                formEditor.FailureNatures = failureNatures;
-                formEditor.FailureDuties = failureDuties;
-                formEditor.RepairModes = repairModes;
-                formEditor.WIPCode = repairWIPIDs[idxPrdt].SubWIPIDCode;
+            grdRepairItems.DataSource = null;
+            grdvRepairItems.OptionsBehavior.Editable = false;
+            grdvRepairItems.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
+            grdRepairItems.UseEmbeddedNavigator = false;
 
-                formEditor.RepairItem = repairWIPIDs[idxPrdt].TSItems[idxItem];
-
-                if (formEditor.ShowDialog() == DialogResult.OK)
-                {
-                    repairWIPIDs[idxPrdt].PutListIntoDataTable();
-
-                    grdvRepairItems.RefreshData();
-                    grdvRepairItems.BestFitColumns();
-                }
-            }
+            btnShowTestData.Enabled = false;
+            btnBarCodeConf.Enabled = false;
         }
 
-        private void DeleteRepairItem()
+        private void AfterOptionChanged(object sender, EventArgs e)
         {
-            if (grdvRepairItems.GetFocusedDataSourceRowIndex() < 0)
-            {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "没有选中的维修项，不能删除！",
-                    caption);
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
 
-                grdvRepairItems.Focus();
-                return;
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                edtBarCode.Text = "";
+                Clear();
+                edtBarCode.Focus();
+
+                FormComponentsInit();
             }
-
-            int idxPrdt = grdvProducts.GetFocusedDataSourceRowIndex();
-            int idxItem = grdvRepairItems.GetFocusedDataSourceRowIndex();
-            if (XtraMessageBox.Show(
-                "请确定是否要删除当前选择的维修项目？",
-                "系统信息",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            finally
             {
-                repairWIPIDs[idxPrdt].TSItems.RemoveAt(idxItem);
-                repairWIPIDs[idxPrdt].PutListIntoDataTable();
-
-                grdvRepairItems.RefreshData();
-                grdvRepairItems.BestFitColumns();
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
 
-        private void GetTestData(long rsFactPK, long linkedFactID)
+        private void GetFailuresOfNGProduct(SubWIPIDCode_TroubleShooting subWIPIDCode_TroubleShooting)
         {
             string strProcedureName =
                 string.Format(
@@ -890,122 +784,62 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 int errCode = 0;
                 string errText = "";
+                List<FailuresOfNGProduct> failures = new List<FailuresOfNGProduct>();
 
-                IRAPMESClient.Instance.ufn_GetRSFact_TestData(
+                IRAPMESTSClient.Instance.ufn_GetList_FailuresOfNGProduct(
                     IRAPUser.Instance.CommunityID,
+                    currentProductLeaf,
+                    0,
+                    subWIPIDCode_TroubleShooting.SubWIPIDCode,
                     rsFactPK,
-                    linkedFactID,
-                    chkFailOnly.Checked,
+                    subWIPIDCode_TroubleShooting.LinkedFactID,
                     IRAPUser.Instance.SysLogID,
-                    ref dataTests,
+                    ref failures,
                     out errCode,
                     out errText);
-                WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
-                    strProcedureName);
-
+                WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                 if (errCode == 0)
                 {
-                    grdTestDatas.DataSource = dataTests;
-                    grdvTestDatas.BestFitColumns();
+                    foreach (FailuresOfNGProduct failure in failures)
+                    {
+                        subWIPIDCode_TroubleShooting.TSItems.Add(new SubWIPIDCode_TSItem()
+                        {
+                            T101LeafID = failure.T101LeafID,
+                            T110LeafID = failure.T110LeafID,
+                            T118LeafID = failure.T118LeafID,
+                            FailurePointCount = failure.CntDefect,
+                            T216LeafID = failure.T216LeafID,
+                            T183LeafID = failure.T183LeafID,
+                            T184LeafID = failure.T184LeafID,
+                            IsInspectItem = true,
+                        });
+                    }
+                    subWIPIDCode_TroubleShooting.PutListIntoDataTable();
                 }
                 else
                 {
-                    grdTestDatas.DataSource = null;
-                    grdvTestDatas.BestFitColumns();
-
-                    XtraMessageBox.Show(
-                        string.Format(
-                            "获取检查失效或者测试失败数据时发生错误：\n{0}",
-                            errText),
-                        "系统信息",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    subWIPIDCode_TroubleShooting.TSItemsDT.Clear();
+                    IRAPMessageBox.Instance.ShowErrorMessage(errText, caption);
                 }
+            }
+            catch (Exception error)
+            {
+                subWIPIDCode_TroubleShooting.TSItemsDT.Clear();
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                IRAPMessageBox.Instance.ShowErrorMessage(error.Message, caption);
             }
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
-        #endregion
-
-        private void frmTroubleShooting_Load(object sender, EventArgs e)
-        {
-            Options.Visible = true;
-
-            #region 刷新维修情况中的项目
-            RefreshRepairItemColumns();
-            #endregion
-
-            dtRepairItems = InitializeDataTable("RepairItems");
-            dtSymbols = InitializeDataTable("Symbols");
-            dtRepairActions = InitializeDataTable("RepairActions");
-            dtRepairWIPs = InitializeDataTable("RepairWIPs");
-            dtInspectStatus = InitializeDataTable("InspectStatus");
-
-            dtInspectStatus.Rows.Add(new object[] { "正常", 0 });
-            dtInspectStatus.Rows.Add(new object[] { "待修", 1 });
-            riluInspectStatus.DataSource = dtInspectStatus;
-            riluInspectStatus.NullText = "";
-
-            switch (IRAPUser.Instance.CommunityID)
-            {
-                case 60013:
-                    grdclmnT118LeafID.Caption = "不良现象";
-                    grdclmnT216LeafID.Visible = false;
-                    grdclmnT183LeafID.Caption = "责任区分";
-                    grdclmnT184LeafID.Caption = "责任部门";
-                    grdclmnTrackReferenceValue.Visible = false;
-                    break;
-            }
-
-            Options.OptionChanged += AfterOptionChanged;
-
-            FormComponentsInit();
-        }
 
         private void frmTroubleShooting_Activated(object sender, EventArgs e)
         {
-            if (!Options.Visible)
-                Options.Visible = true;
+            Options.Visible = true;
             Options.ShowSwitchButton(true);
 
             FormComponentsInit();
-        }
-
-        private void frmTroubleShooting_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.F2:
-                    NewRepairItem();
-                    break;
-                case Keys.F3:
-                    EditRepairItem();
-                    break;
-                case Keys.F4:
-                    DeleteRepairItem();
-                    break;
-                case Keys.F5:
-                    edtBarCode.Focus();
-                    break;
-                case Keys.F6:
-                    grdProducts.Focus();
-                    break;
-                case Keys.F7:
-                    tcMainControl.SelectedTabPage = tpRepairItems;
-                    grdRepairItems.Focus();
-                    break;
-                case Keys.F8:
-                    if (tpShowTestData.PageEnabled && tpShowTestData.PageVisible)
-                        tcMainControl.SelectedTabPage = tpShowTestData;
-                    break;
-                case Keys.F9:
-                    if (xtraTabPage3.PageEnabled && xtraTabPage3.PageVisible)
-                        tcMainControl.SelectedTabPage = xtraTabPage3;
-                    break;
-            }
         }
 
         private void edtBarCode_KeyDown(object sender, KeyEventArgs e)
@@ -1038,16 +872,15 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     int errCode = 0;
                     string errText = "";
-                    int productLeaf = CurrentOptions.Instance.OptionTwo.T102LeafID;
+                    int productLeaf = currentProductLeaf;
                     string wipPattern = "";
                     string barCode = edtBarCode.Text.Trim();
 
-                    #region 不良在制品路由校验
                     WriteLog.Instance.Write("不良在制品路由校验", strProcedureName);
                     IRAPMESTSClient.Instance.usp_PokaYoke_TroubleShooting(
                         IRAPUser.Instance.CommunityID,
                         ref productLeaf,
-                        Options.SelectStation.T107LeafID,
+                        currentWorkUnitLeaf,
                         edtBarCode.Text.Trim(),
                         IRAPUser.Instance.SysLogID,
                         out pwoNo,
@@ -1060,7 +893,7 @@ namespace IRAP.Client.GUI.MESPDC
                         out errCode,
                         out errText);
                     WriteLog.Instance.Write(
-                        string.Format("({0}){1}", errCode, errText),
+                        string.Format("({0}){1}", errCode, errText), 
                         strProcedureName);
                     WriteLog.Instance.Write(
                         string.Format(
@@ -1077,36 +910,29 @@ namespace IRAP.Client.GUI.MESPDC
                             pwoNo),
                         strProcedureName);
 
-                    if (errCode != 0)
-                    {
-                        tpShowTestData.PageEnabled = false;
-                        lblStatus.Text = errText;
-                        lblStatus.ForeColor = Color.Red;
-                        edtBarCode.SelectAll();
-                        edtBarCode.Focus();
-                        return;
-                    }
-                    #endregion
+                    btnShowTestData.Enabled = (rsFactPK != 0 && linkedFactID != 0);
 
+                    if (errCode == 0)
                     {
                         lblStatus.Text = errText;
                         lblStatus.ForeColor = Color.Blue;
 
                         #region 当前产品和扫描条码的产品是否一致？如果不一致则自动切换，如果切换失败，则报错
-                        if (Options.SelectProduct.T102LeafID != productLeaf)
+                        if (currentProductLeaf != productLeaf)
                         {
                             Options.RefreshOptionTwo(productLeaf);
                             if (Options.SelectProduct.T102LeafID != productLeaf)
                             {
                                 WriteLog.Instance.Write("产品切换失败！", strProcedureName);
                                 IRAPMessageBox.Instance.ShowErrorMessage(
-                                    "产品切换失败，当前被扫描的在制品不能在本工位进行维修！",
+                                    "产品切换失败，当前被扫描的在制品不能在本工位进行维修！", 
                                     caption);
-                                lblStatus.Text = "";
                                 return;
                             }
                             else
                             {
+                                currentProductLeaf = productLeaf;
+
                                 edtBarCode.Text = barCode;
                                 lblStatus.Text = errText;
                                 lblStatus.ForeColor = Color.Blue;
@@ -1140,11 +966,15 @@ namespace IRAP.Client.GUI.MESPDC
                         }
                         grdvProducts.BestFitColumns();
 
-                        if (dtRepairWIPs.Rows.Count > 0)
-                            grdvProducts.Focus();
-
-                        tpShowTestData.PageEnabled = (rsFactPK != 0 && linkedFactID != 0);
                         btnBarCodeConf.Enabled = true;
+                    }
+                    else
+                    {
+                        lblStatus.Text = errText;
+                        lblStatus.ForeColor = Color.Red;
+                        edtBarCode.SelectAll();
+                        edtBarCode.Focus();
+                        return;
                     }
                 }
                 finally
@@ -1152,10 +982,39 @@ namespace IRAP.Client.GUI.MESPDC
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
             }
-            else
+        }
+
+        private void frmTroubleShooting_Load(object sender, EventArgs e)
+        {
+            #region 刷新维修情况中的项目
+            RefreshRepairItemColumns();
+            #endregion
+
+            dtRepairItems = InitializeDataTable("RepairItems");
+            dtSymbols = InitializeDataTable("Symbols");
+            dtRepairActions = InitializeDataTable("RepairActions");
+            dtRepairWIPs = InitializeDataTable("RepairWIPs");
+            dtInspectStatus = InitializeDataTable("InspectStatus");
+
+            dtInspectStatus.Rows.Add(new object[] { "正常", 0 });
+            dtInspectStatus.Rows.Add(new object[] { "待修", 1 });
+            riluInspectStatus.DataSource = dtInspectStatus;
+            riluInspectStatus.NullText = "";
+
+            switch (IRAPUser.Instance.CommunityID)
             {
-                frmTroubleShooting_KeyDown(this, e);
+                case 60013:
+                    grdclmnT118LeafID.Caption = "不良现象";
+                    grdclmnT216LeafID.Visible = false;
+                    grdclmnT183LeafID.Caption = "责任区分";
+                    grdclmnT184LeafID.Caption = "责任部门";
+                    grdclmnTrackReferenceValue.Visible = false;
+                    break;
             }
+
+            Options.OptionChanged += AfterOptionChanged;
+
+            FormComponentsInit();
         }
 
         private void grdvProducts_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
@@ -1165,7 +1024,7 @@ namespace IRAP.Client.GUI.MESPDC
             if (index >= 0 && index < repairWIPIDs.Count)
             {
                 #region 获取检查失效项
-                if (repairWIPIDs[index].LinkedFactID != 0 &&
+                if (repairWIPIDs[index].LinkedFactID != 0 && 
                     repairWIPIDs[index].TSItemsDT.Rows.Count <= 0)
                 {
                     GetFailuresOfNGProduct(repairWIPIDs[index]);
@@ -1179,48 +1038,55 @@ namespace IRAP.Client.GUI.MESPDC
                         grdvRepairItems.Columns[i].BestFit();
                 }
 
-                risluSymbol.DataSource =
+                risluSymbol.DataSource = 
                     GetSymbols(
-                        repairWIPIDs[index].PWOCategoryLeaf,
+                        repairWIPIDs[index].PWOCategoryLeaf, 
                         symbols);
-                riluDefectRootCauses.DataSource =
+                riluDefectRootCauses.DataSource = 
                     GetFailureSrcOperation(
-                        repairWIPIDs[index].PWOCategoryLeaf,
+                        repairWIPIDs[index].PWOCategoryLeaf, 
                         defectRootCauses);
 
-                grdvRepairItems.OptionsBehavior.Editable = false;
+                grdvRepairItems.OptionsBehavior.Editable = true;
+                grdvRepairItems.OptionsView.NewItemRowPosition = NewItemRowPosition.Bottom;
+                grdRepairItems.UseEmbeddedNavigator = true;
             }
             else
             {
-                grdRepairItems.DataSource = null;
                 grdvRepairItems.OptionsBehavior.Editable = false;
                 return;
             }
             #endregion
         }
 
-        private void grdvProducts_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private void grdvRepairItems_InitNewRow(object sender, InitNewRowEventArgs e)
         {
-            grdvProducts_RowClick(grdvProducts, null);
+            DataRow dr = grdvRepairItems.GetDataRow(e.RowHandle);
+            dr["ItemLeafID"] = 0;
+            dr["ItemLeafTreeID"] = 0;
+            dr["T118LeafID"] = 0;
+            dr["FailurePointCount"] = 0;
+            dr["T216LeafID"] = 0;
+            dr["T183LeafID"] = 0;
+            dr["T184LeafID"] = 0;
+            dr["TrackReferenceValue"] = "";
+            dr["IsInspectItem"] = false;
+            grdvRepairItems.LayoutChanged();
         }
 
         private void btnBarCodeConf_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < repairWIPIDs.Count; i++)
             {
-                if ((int)dtRepairWIPs.Rows[i]["RepairStatus"] == 3 &&
-                    repairWIPIDs[i].TSItems.Count > 0)
+                if ((int)dtRepairWIPs.Rows[i]["RepairStatus"] <= 0)
                 {
                     XtraMessageBox.Show(
-                        "还有子在制品有维修项目，但是维修状态为“无故障”",
+                        "还有子在制品没有选择“维修状态”",
                         caption,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    grdvProducts.FocusedRowHandle = i;
-
                     return;
                 }
-
                 repairWIPIDs[i].RepairStatus = (int)dtRepairWIPs.Rows[i]["RepairStatus"];
             }
 
@@ -1240,7 +1106,7 @@ namespace IRAP.Client.GUI.MESPDC
                     destT216LeafID =
                         Dialogs.frmSelectDestT216LeafID.Instance.DestT216LeafID(
                             IRAPUser.Instance.CommunityID,
-                            Options.SelectProduct.T102LeafID,
+                            currentProductLeaf,
                             srcT107LeafID,
                             IRAPUser.Instance.SysLogID);
                     if (destT216LeafID < 0)
@@ -1260,16 +1126,16 @@ namespace IRAP.Client.GUI.MESPDC
                 int errCode = 0;
                 string errText = "";
 
-                //foreach (SubWIPIDCode_TroubleShooting item in repairWIPIDs)
-                //{
-                //    item.GetListFromDataTable();
-                //}
+                foreach (SubWIPIDCode_TroubleShooting item in repairWIPIDs)
+                {
+                    item.GetListFromDataTable();
+                }
 
                 IRAPMESTSClient.Instance.usp_SaveFact_TroubleShooting(
                     IRAPUser.Instance.CommunityID,
                     IRAPUser.Instance.UserCode,
-                    Options.SelectProduct.T102LeafID,
-                    Options.SelectStation.T107LeafID,
+                    currentProductLeaf,
+                    currentWorkUnitLeaf,
                     CurrentOptions.Instance.OptionOne.T216LeafID,
                     CurrentOptions.Instance.OptionOne.T216Code,
                     destT216LeafID,
@@ -1301,29 +1167,243 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
-        private void tcMainControl_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        private void grdvProducts_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            if (e.Page == tpShowTestData)
-            {
-                if (dataTests.Count == 0)
-                {
-                    for (int i = 0; i < numOfTestChannels; i++)
-                    {
-                        int idx = i + 5;
-                        if (idx < grdvTestDatas.Columns.Count)
-                        {
-                            grdvTestDatas.Columns[i].Visible = true;
-                        }
-                    }
+            grdvProducts_RowClick(grdvProducts, null);
+        }
 
-                    GetTestData(rsFactPK, linkedFactID);
-                }
+        private void frmTroubleShooting_Enter(object sender, EventArgs e)
+        {
+            if (Options.SelectStation != null)
+            {
+                currentWorkUnitLeaf = Options.SelectStation.T107LeafID;
+            }
+            else
+            {
+                currentWorkUnitLeaf = 0;
+            }
+            if (Options.SelectProduct != null)
+            {
+                currentProductLeaf = Options.SelectProduct.T102LeafID;
+            }
+            else
+            {
+                currentProductLeaf = 0;
             }
         }
 
-        private void chkFailOnly_CheckedChanged(object sender, EventArgs e)
+        private void frmTroubleShooting_FormClosed(object sender, FormClosedEventArgs e)
         {
-            GetTestData(rsFactPK, linkedFactID);
+            Options.OptionChanged -= AfterOptionChanged;
+        }
+
+        private void btnShowTestData_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.frmRSFactListTestData formTestData = 
+                new Dialogs.frmRSFactListTestData())
+            {
+                formTestData.ShowDialog(rsFactPK, linkedFactID, numOfTestChannels);
+            }
+        }
+
+        private void riteFailureMode_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
+        {
+            if (e.Value is int)
+            {
+                foreach (FailureMode fMode in failureModes)
+                {
+                    if (fMode.FailureLeaf == (int)e.Value)
+                    {
+                        e.DisplayText = fMode.FailureCode;
+                        break;
+                    }
+                }
+            }
+
+            e.DisplayText = "";
+        }
+
+        private void riteFailureMode_ParseEditValue(object sender, DevExpress.XtraEditors.Controls.ConvertEditValueEventArgs e)
+        {
+            if (e.Value is string)
+            {
+                foreach (FailureMode fMode in failureModes)
+                {
+                    if (fMode.FailureCode == e.Value.ToString())
+                    {
+                        e.Value = fMode.FailureLeaf;
+                        e.Handled = true;
+
+                        return;
+                    }
+                }
+                e.Value = 0;
+            }
+            else
+            {
+                e.Value = 0;
+            }
+        }
+
+        private void grdvRepairItems_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            GridView view = sender as GridView;
+            GridColumn colT119LeafID = view.Columns["T119LeafID"];
+            GridColumn colT110LeafID = view.Columns["ItemLeafID"];
+            GridColumn colT10xLeafID = view.Columns["T10xLeafID"];
+            GridColumn colItemTreeID = view.Columns["ItemLeafTreeID"];
+            GridColumn colSKUID1 = view.Columns["SKUID1"];
+            GridColumn colSKUID2 = view.Columns["SKUID2"];
+
+            int t119LeafID = (int)view.GetRowCellValue(e.RowHandle, colT119LeafID);
+            int t110LeafID = (int)view.GetRowCellValue(e.RowHandle, colT110LeafID);
+            int t101LeafID = 0;
+            int itemTreeID = 0;
+
+            foreach (SymbolInspecting symbol in symbols)
+            {
+                if (symbol.T110LeafID == t110LeafID)
+                {
+                    t101LeafID = symbol.ComponentLeafID;
+                    view.SetRowCellValue(e.RowHandle, colT10xLeafID, t101LeafID);
+
+                    itemTreeID = 110;
+                    view.SetRowCellValue(e.RowHandle, colItemTreeID, itemTreeID);
+
+                    view.UpdateCurrentRow();
+                    break;
+                }
+                if (symbol.ComponentLeafID == t110LeafID)
+                {
+                    t101LeafID = symbol.ComponentLeafID;
+                    view.SetRowCellValue(e.RowHandle, colT10xLeafID, t101LeafID);
+
+                    itemTreeID = symbol.ComponentTreeID;
+                    view.SetRowCellValue(e.RowHandle, colItemTreeID, itemTreeID);
+
+                    view.UpdateCurrentRow();
+                    break;
+                }
+            }
+
+            if (t119LeafID == 10700)
+            {
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                try
+                {
+                    int errCode = 0;
+                    string errText = "";
+                    string skuID = "";
+
+                    #region 获取更换后的 SKUID
+                    IRAPMESTSClient.Instance.ufn_GetFIFOSKUIDinTSSite(
+                        IRAPUser.Instance.CommunityID,
+                        CurrentOptions.Instance.OptionOne.T107LeafID,
+                        t101LeafID,
+                        IRAPUser.Instance.SysLogID,
+                        ref skuID,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText),
+                        strProcedureName);
+                    if (errCode != 0)
+                    {
+                        XtraMessageBox.Show(
+                            errText,
+                            caption,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        view.SetColumnError(colT110LeafID, errText);
+                        e.Valid = false;
+
+                        return;
+                    }
+                    else
+                    {
+                        if (skuID == "")
+                        {
+                            XtraMessageBox.Show(
+                                "维修库位没有可用库存，请先进行维修领料！",
+                                caption,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                            view.SetColumnError(colT110LeafID, "维修库位没有可用库存，请先进行维修领料！");
+                            e.Valid = false;
+
+                            return;
+                        }
+                        else
+                        {
+                            view.SetRowCellValue(e.RowHandle, colSKUID2, skuID);
+                            view.UpdateCurrentRow();
+                        }
+                    }
+                    #endregion
+
+                    #region 获取原物料的 SKUID
+                    string wipCode =
+                    grdvProducts.GetFocusedRowCellValue(
+                        grdvProducts.Columns["WIPCode"]).ToString();
+
+                    IRAPMESTSClient.Instance.ufn_GetMaterialSKUIDBySymbol(
+                        IRAPUser.Instance.CommunityID,
+                        wipCode,
+                        t110LeafID,
+                        t101LeafID,
+                        IRAPUser.Instance.SysLogID,
+                        ref skuID,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText),
+                        strProcedureName);
+                    if (errCode != 0)
+                    {
+                        XtraMessageBox.Show(
+                            errText,
+                            caption,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        view.SetColumnError(colT110LeafID, errText);
+                        e.Valid = false;
+
+                        return;
+                    }
+                    else
+                    {
+                        view.SetRowCellValue(e.RowHandle, colSKUID1, skuID);
+                        view.UpdateCurrentRow();
+                    }
+                    #endregion
+                }
+                finally
+                {
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
+            }
+            else
+            {
+                view.SetRowCellValue(e.RowHandle, colSKUID1, "");
+                view.SetRowCellValue(e.RowHandle, colSKUID2, "");
+                view.UpdateCurrentRow();
+            }
+
+            e.Valid = true;
+        }
+
+        private void grdvRepairItems_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
         }
     }
 }

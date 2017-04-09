@@ -88,6 +88,10 @@ namespace IRAP.Entities.SCES
         /// 排定投产时间
         /// </summary>
         public string ScheduledStartTime { get; set; }
+        /// <summary>
+        /// 辅助事实分区键
+        /// </summary>
+        public long AF482PK { get; set; }
 
         [IRAPORMMap(ORMMap =false)]
         public Quantity PlannedQuantity

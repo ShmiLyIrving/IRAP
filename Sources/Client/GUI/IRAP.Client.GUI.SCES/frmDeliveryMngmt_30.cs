@@ -218,7 +218,12 @@ namespace IRAP.Client.GUI.SCES
             {
                 DstDeliveryStoreSite dstStoreSite = cboDstStoreSites.SelectedItem as DstDeliveryStoreSite;
                 string opNode = ((MenuInfo)Tag).OpNode;
-                using (frmMaterialsToDeliver showMaterisl = new frmMaterialsToDeliver(orders[index].FactID, dstStoreSite, opNode))
+                using (frmMaterialsToDeliver showMaterisl = 
+                    new frmMaterialsToDeliver(
+                        orders[index].FactID, 
+                        orders[index].AF482PK,
+                        dstStoreSite, 
+                        opNode))
                 {
                     showMaterisl.ShowDialog();
                 }

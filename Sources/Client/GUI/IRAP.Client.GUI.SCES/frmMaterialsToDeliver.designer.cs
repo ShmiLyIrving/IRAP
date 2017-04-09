@@ -77,9 +77,9 @@
             // 
             // toolTipController
             // 
-            this.toolTipController.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolTipController.Appearance.Options.UseFont = true;
-            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
             // grdMaterials
@@ -117,12 +117,12 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn1.AppearanceCell.Options.UseFont = true;
             this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn1.AppearanceHeader.Options.UseFont = true;
             this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -135,12 +135,12 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn2.AppearanceCell.Options.UseFont = true;
             this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn2.AppearanceHeader.Options.UseFont = true;
             this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -153,12 +153,12 @@
             // 
             // gridColumn3
             // 
-            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn3.AppearanceCell.Options.UseFont = true;
             this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn3.AppearanceHeader.Options.UseFont = true;
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -171,12 +171,12 @@
             // 
             // gridColumn4
             // 
-            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn4.AppearanceCell.Options.UseFont = true;
             this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn4.AppearanceHeader.Options.UseFont = true;
             this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -189,12 +189,12 @@
             // 
             // gridColumn5
             // 
-            this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn5.AppearanceCell.Options.UseFont = true;
             this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn5.AppearanceHeader.Options.UseFont = true;
             this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -207,11 +207,11 @@
             // 
             // gridColumn6
             // 
-            this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn6.AppearanceCell.Options.UseFont = true;
             this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn6.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn6.AppearanceHeader.Options.UseFont = true;
             this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -224,12 +224,12 @@
             // 
             // gridColumn7
             // 
-            this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn7.AppearanceCell.Options.UseFont = true;
             this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn7.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn7.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn7.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn7.AppearanceHeader.Options.UseFont = true;
             this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -242,12 +242,12 @@
             // 
             // gridColumn8
             // 
-            this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn8.AppearanceCell.Options.UseFont = true;
             this.gridColumn8.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn8.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn8.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn8.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn8.AppearanceHeader.Options.UseFont = true;
             this.gridColumn8.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -260,12 +260,12 @@
             // 
             // gridColumn9
             // 
-            this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn9.AppearanceCell.Options.UseFont = true;
             this.gridColumn9.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn9.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn9.AppearanceHeader.Options.UseFont = true;
             this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -278,11 +278,11 @@
             // 
             // gridColumn10
             // 
-            this.gridColumn10.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn10.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn10.AppearanceCell.Options.UseFont = true;
             this.gridColumn10.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn10.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn10.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.gridColumn10.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gridColumn10.AppearanceHeader.Options.UseFont = true;
             this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -296,7 +296,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(897, 517);
@@ -313,7 +313,7 @@
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Appearance.Options.UseFont = true;
             this.btnPrint.Location = new System.Drawing.Point(577, 517);
             this.btnPrint.Name = "btnPrint";
@@ -326,7 +326,7 @@
             // btnSpiliteOrderNotify
             // 
             this.btnSpiliteOrderNotify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSpiliteOrderNotify.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpiliteOrderNotify.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSpiliteOrderNotify.Appearance.Options.UseFont = true;
             this.btnSpiliteOrderNotify.Location = new System.Drawing.Point(674, 517);
             this.btnSpiliteOrderNotify.Name = "btnSpiliteOrderNotify";
@@ -339,7 +339,7 @@
             // btnSpilitePKGNotify
             // 
             this.btnSpilitePKGNotify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSpilitePKGNotify.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpilitePKGNotify.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSpilitePKGNotify.Appearance.Options.UseFont = true;
             this.btnSpilitePKGNotify.Location = new System.Drawing.Point(771, 517);
             this.btnSpilitePKGNotify.Name = "btnSpilitePKGNotify";
@@ -353,9 +353,9 @@
             // 
             this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl1.Appearance.Font = new System.Drawing.Font("等线", 10.5F);
+            this.groupControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.groupControl1.Appearance.Options.UseFont = true;
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F);
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.Controls.Add(this.grdOrders);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
@@ -406,13 +406,13 @@
             // 
             // grdclmnPWONo
             // 
-            this.grdclmnPWONo.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnPWONo.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnPWONo.AppearanceCell.Options.UseFont = true;
             this.grdclmnPWONo.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnPWONo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.grdclmnPWONo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnPWONo.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.grdclmnPWONo.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnPWONo.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnPWONo.AppearanceHeader.Options.UseFont = true;
             this.grdclmnPWONo.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnPWONo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -428,13 +428,13 @@
             // 
             // grdclmnMONumber
             // 
-            this.grdclmnMONumber.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnMONumber.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnMONumber.AppearanceCell.Options.UseFont = true;
             this.grdclmnMONumber.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnMONumber.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.grdclmnMONumber.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnMONumber.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.grdclmnMONumber.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnMONumber.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnMONumber.AppearanceHeader.Options.UseFont = true;
             this.grdclmnMONumber.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnMONumber.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -450,12 +450,12 @@
             // 
             // grdclmnMOLineNo
             // 
-            this.grdclmnMOLineNo.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnMOLineNo.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnMOLineNo.AppearanceCell.Options.UseFont = true;
             this.grdclmnMOLineNo.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnMOLineNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.grdclmnMOLineNo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnMOLineNo.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnMOLineNo.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnMOLineNo.AppearanceHeader.Options.UseFont = true;
             this.grdclmnMOLineNo.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnMOLineNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -470,11 +470,11 @@
             // 
             // grdclmnProductNo
             // 
-            this.grdclmnProductNo.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnProductNo.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnProductNo.AppearanceCell.Options.UseFont = true;
             this.grdclmnProductNo.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnProductNo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnProductNo.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnProductNo.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnProductNo.AppearanceHeader.Options.UseFont = true;
             this.grdclmnProductNo.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnProductNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -489,12 +489,12 @@
             // 
             // grdclmnProductDescription
             // 
-            this.grdclmnProductDescription.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnProductDescription.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnProductDescription.AppearanceCell.Options.UseFont = true;
             this.grdclmnProductDescription.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnProductDescription.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.grdclmnProductDescription.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnProductDescription.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnProductDescription.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnProductDescription.AppearanceHeader.Options.UseFont = true;
             this.grdclmnProductDescription.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnProductDescription.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -509,12 +509,12 @@
             // 
             // grdclmnT134Code
             // 
-            this.grdclmnT134Code.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnT134Code.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnT134Code.AppearanceCell.Options.UseFont = true;
             this.grdclmnT134Code.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnT134Code.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.grdclmnT134Code.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnT134Code.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnT134Code.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnT134Code.AppearanceHeader.Options.UseFont = true;
             this.grdclmnT134Code.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnT134Code.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -529,11 +529,11 @@
             // 
             // grdclmnT134Name
             // 
-            this.grdclmnT134Name.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnT134Name.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnT134Name.AppearanceCell.Options.UseFont = true;
             this.grdclmnT134Name.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnT134Name.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnT134Name.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnT134Name.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnT134Name.AppearanceHeader.Options.UseFont = true;
             this.grdclmnT134Name.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnT134Name.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -548,12 +548,12 @@
             // 
             // grdclmnPlannedQuantityString
             // 
-            this.grdclmnPlannedQuantityString.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnPlannedQuantityString.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnPlannedQuantityString.AppearanceCell.Options.UseFont = true;
             this.grdclmnPlannedQuantityString.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnPlannedQuantityString.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.grdclmnPlannedQuantityString.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnPlannedQuantityString.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnPlannedQuantityString.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnPlannedQuantityString.AppearanceHeader.Options.UseFont = true;
             this.grdclmnPlannedQuantityString.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnPlannedQuantityString.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -566,13 +566,13 @@
             // 
             // grdclmnPlannedStartDate
             // 
-            this.grdclmnPlannedStartDate.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnPlannedStartDate.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnPlannedStartDate.AppearanceCell.Options.UseFont = true;
             this.grdclmnPlannedStartDate.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnPlannedStartDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnPlannedStartDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnPlannedStartDate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.grdclmnPlannedStartDate.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnPlannedStartDate.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnPlannedStartDate.AppearanceHeader.Options.UseFont = true;
             this.grdclmnPlannedStartDate.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnPlannedStartDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -585,12 +585,12 @@
             // 
             // grdclmnPlannedCloseDate
             // 
-            this.grdclmnPlannedCloseDate.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnPlannedCloseDate.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnPlannedCloseDate.AppearanceCell.Options.UseFont = true;
             this.grdclmnPlannedCloseDate.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnPlannedCloseDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnPlannedCloseDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnPlannedCloseDate.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnPlannedCloseDate.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnPlannedCloseDate.AppearanceHeader.Options.UseFont = true;
             this.grdclmnPlannedCloseDate.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnPlannedCloseDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -604,13 +604,13 @@
             // 
             // grdclmnScheduleStartTime
             // 
-            this.grdclmnScheduleStartTime.AppearanceCell.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdclmnScheduleStartTime.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdclmnScheduleStartTime.AppearanceCell.Options.UseFont = true;
             this.grdclmnScheduleStartTime.AppearanceCell.Options.UseTextOptions = true;
             this.grdclmnScheduleStartTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdclmnScheduleStartTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnScheduleStartTime.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.grdclmnScheduleStartTime.AppearanceHeader.Font = new System.Drawing.Font("等线", 10.5F);
+            this.grdclmnScheduleStartTime.AppearanceHeader.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdclmnScheduleStartTime.AppearanceHeader.Options.UseFont = true;
             this.grdclmnScheduleStartTime.AppearanceHeader.Options.UseTextOptions = true;
             this.grdclmnScheduleStartTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -628,9 +628,9 @@
             this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl2.Appearance.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl2.Appearance.Options.UseFont = true;
-            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("等线", 10.5F);
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.Controls.Add(this.lblNoneMaterialInStore);
             this.groupControl2.Controls.Add(this.grdMaterials);
@@ -643,7 +643,7 @@
             // lblNoneMaterialInStore
             // 
             this.lblNoneMaterialInStore.Appearance.BackColor = System.Drawing.Color.White;
-            this.lblNoneMaterialInStore.Appearance.Font = new System.Drawing.Font("等线", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoneMaterialInStore.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoneMaterialInStore.Appearance.ForeColor = System.Drawing.Color.Red;
             this.lblNoneMaterialInStore.Location = new System.Drawing.Point(355, 181);
             this.lblNoneMaterialInStore.Name = "lblNoneMaterialInStore";
@@ -667,7 +667,7 @@
             this.Controls.Add(this.btnSpiliteOrderNotify);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnClose);
-            this.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Name = "frmMaterialsToDeliver";
             this.Text = "物料配送";

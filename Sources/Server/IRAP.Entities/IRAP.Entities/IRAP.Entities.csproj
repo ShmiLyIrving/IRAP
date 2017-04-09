@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AndonCallPerson.cs" />
     <Compile Include="AndonRspedEventInfo.cs" />
+    <Compile Include="APS\ManufacturingOrder.cs" />
     <Compile Include="DPA\xdr_MethodParams.cs" />
     <Compile Include="FVS\AndonCancelReason.cs" />
     <Compile Include="FVS\PeriodAndonEvent.cs" />

@@ -27,11 +27,15 @@ namespace IRAP.Client.GUI.SCES
         private ProductionWorkOrder order = null;
         private List<MaterialToDeliver> materials = new List<MaterialToDeliver>();
         private DstDeliveryStoreSite dstStoreSite = null;
-        private string OpNode = "";
+        private string opNode = "";
         /// <summary>
         /// 需要打印配送单的排产订单事实编号
         /// </summary>
         private long orderFactID = 0;
+        /// <summary>
+        /// 需要打印配送单的辅助事实分区键
+        /// </summary>
+        private long af482PK = 0;
 
         private bool printWIPProductInfoTrack = false;
 
@@ -40,14 +44,19 @@ namespace IRAP.Client.GUI.SCES
             InitializeComponent();
         }
 
-        public frmMaterialsToDeliver(long orderFactID, DstDeliveryStoreSite storeSite, string opNode)
+        public frmMaterialsToDeliver(
+            long orderFactID, 
+            long af482PK,
+            DstDeliveryStoreSite storeSite, 
+            string opNode)
             : this()
         {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             this.orderFactID = orderFactID;
-            this.dstStoreSite = storeSite;
-            this.OpNode = opNode;
+            this.af482PK = af482PK;
+            dstStoreSite = storeSite;
+            this.opNode = opNode;
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -223,6 +232,8 @@ namespace IRAP.Client.GUI.SCES
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                string lotNumber = "";
+
                 #region 调用存储过程，在系统中登记当前生产工单的物料配送信息已经被打印
                 bool saveSucccessed = false;
                 saveSucccessed = SavePWOMaterialDeliver();
@@ -230,6 +241,24 @@ namespace IRAP.Client.GUI.SCES
 
                 if (saveSucccessed)
                 {
+                    #region 获取当前工单的生产批次号
+                    {
+                        int errCode = 0;
+                        string errText = "";
+
+                        IRAPMESClient.Instance.ufn_GetLotNumberFromPWO(
+                            IRAPUser.Instance.CommunityID,
+                            order.AF482PK,
+                            order.PWONo,
+                            ref lotNumber,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            string.Format("({0}){1}", errCode, errText),
+                            strProcedureName);
+                    }
+                    #endregion
+
                     #region 打印
                     MemoryStream ms;
                     switch (IRAPUser.Instance.CommunityID)
@@ -348,14 +377,17 @@ namespace IRAP.Client.GUI.SCES
                                 report.Parameters.FindByName("Unit").Value = materials[0].UnitOfMeasure;
                                 report.Parameters.FindByName("MONo").Value = order.MONumber;
                                 report.Parameters.FindByName("LineNo").Value = order.MOLineNo;
-                                report.Parameters.FindByName("LotNumber").Value = materials[0].LotNumber;
+                                report.Parameters.FindByName("LotNumber").Value = lotNumber;
                                 report.Parameters.FindByName("MaterialTexture").Value = materials[0].T131Code;
                                 report.Parameters.FindByName("ActualPickedBars").Value = materials[0].ActualQtyDecompose;
                                 report.Parameters.FindByName("OrderQty").Value = order.PlannedQuantity;
                                 report.Parameters.FindByName("MaterialCode").Value = materials[0].MaterialCode;
                                 report.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
                                 report.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
-                                report.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
+                                if (materials[0].ActualQuantityToDeliver.IntValue != 0)
+                                    report.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
+                                else
+                                    report.Parameters.FindByName("InQuantity").Value = "";
                                 report.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;
                                 report.Parameters.FindByName("FatherMaterialName").Value = order.ProductDesc;
                                 report.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
@@ -375,23 +407,24 @@ namespace IRAP.Client.GUI.SCES
                             report1.Parameters.FindByName("WorkshopName").Value = materials[0].DstWorkShopCode;
                             report1.Parameters.FindByName("ProductLine").Value = order.T134Name;
                             report1.Parameters.FindByName("AdvicedPickedQty").Value = materials[0].SuggestedQuantityToPick;
-                            report1.Parameters.FindByName("StartingDate").Value = order.PlannedStartDate.Substring(6, 5);
-                            report1.Parameters.FindByName("CompletingDate").Value = order.PlannedCloseDate.Substring(6, 5);
+                            report1.Parameters.FindByName("StartingDate").Value = order.PlannedStartDate.Substring(5, 5);
+                            report1.Parameters.FindByName("CompletingDate").Value = order.PlannedCloseDate.Substring(5, 5);
                             report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
                             report1.Parameters.FindByName("Unit").Value = materials[0].UnitOfMeasure;
                             report1.Parameters.FindByName("MONo").Value = order.MONumber;
                             report1.Parameters.FindByName("LineNo").Value = order.MOLineNo;
-                            report1.Parameters.FindByName("LotNumber").Value = materials[0].LotNumber;
+                            report1.Parameters.FindByName("LotNumber").Value = lotNumber;
                             report1.Parameters.FindByName("MaterialTexture").Value = materials[0].T131Code;
                             report1.Parameters.FindByName("ActualPickedBars").Value = materials[0].ActualQtyDecompose;
                             report1.Parameters.FindByName("OrderQty").Value = order.PlannedQuantity.IntValue.ToString();
-                            report1.Parameters.FindByName("MaterialCode").Value =
-                                materials[0].MaterialCode.Substring(2, materials[0].MaterialCode.Length - 2);
+                            report1.Parameters.FindByName("MaterialCode").Value = materials[0].MaterialCode;
                             report1.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
                             report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
-                            report1.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.IntValue.ToString();
-                            report1.Parameters.FindByName("FatherMaterialCode").Value = 
-                                order.ProductNo.Substring(2, order.ProductNo.Length - 2);
+                            if (materials[0].ActualQuantityToDeliver.IntValue != 0)
+                                report1.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
+                            else
+                                report1.Parameters.FindByName("InQuantity").Value = "";
+                            report1.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;
                             report1.Parameters.FindByName("FatherMaterialName").Value = order.ProductDesc;
                             report1.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
                         }
@@ -520,7 +553,7 @@ namespace IRAP.Client.GUI.SCES
                                 IRAPUser.Instance.CommunityID, 
                                 1, 
                                 IRAPUser.Instance.SysLogID, 
-                                this.OpNode);
+                                this.opNode);
                     }
                     catch (Exception error)
                     {

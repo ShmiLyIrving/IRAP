@@ -1181,5 +1181,83 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 辅助事实分区键
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="af482PK">辅助事实分区键</param>
+        /// <param name="pwoNo">生产工单号</param>
+        public void ufn_GetLotNumberFromPWO(
+            int communityID,
+            long af482PK,
+            string pwoNo,
+            ref string lotNumber,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                lotNumber = "";
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("af482PK", af482PK);
+                hashParams.Add("pwoNo", pwoNo);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetLotNumberFromPWO 函数， " +
+                        "参数：CommunityID={0}|AF482PK={1}|" +
+                        "PWONo={2}",
+                        communityID,
+                        af482PK,
+                        pwoNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WorkOrder",
+                            "ufn_GetLotNumberFromPWO",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        lotNumber = rlt as string;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

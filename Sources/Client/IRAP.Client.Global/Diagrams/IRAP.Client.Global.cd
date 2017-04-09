@@ -1,17 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="IRAP.Client.Global.AppOperationLog">
+  <Class Name="IRAP.Client.Global.AppOperationLog" Collapsed="true">
     <Position X="3" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAQA=</HashCode>
       <FileName>AppOperationLog.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="IRAP.Client.Global.Enums.KPIStatus">
-    <Position X="6.25" Y="1" Width="1.5" />
+  <Enum Name="IRAP.Client.Global.Enums.KPIStatus" Collapsed="true">
+    <Position X="4.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAIAAAAAACAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enums\KPIStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="IRAP.Client.Global.Enums.EditStatus" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAEAAAACAAAAAAAAABA=</HashCode>
+      <FileName>Enums\EditStatus.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Microsoft YaHei UI" Size="9" />

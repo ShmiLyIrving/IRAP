@@ -254,6 +254,8 @@ namespace IRAP.Client.GUI.CAS
                     btnEventCauseConfirm.Visible = false;
                     btnEventClose.Visible = true;
 
+                    btnEventClose.Enabled = true;
+
                     btnEventClose.Location = btnEventCauseConfirm.Location;
 
                     break;
