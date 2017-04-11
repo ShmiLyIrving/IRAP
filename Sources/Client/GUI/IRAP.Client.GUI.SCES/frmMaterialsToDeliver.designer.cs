@@ -86,10 +86,10 @@
             // 
             this.grdMaterials.Cursor = System.Windows.Forms.Cursors.Default;
             this.grdMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdMaterials.Location = new System.Drawing.Point(2, 21);
+            this.grdMaterials.Location = new System.Drawing.Point(2, 27);
             this.grdMaterials.MainView = this.grdvMaterials;
             this.grdMaterials.Name = "grdMaterials";
-            this.grdMaterials.Size = new System.Drawing.Size(972, 355);
+            this.grdMaterials.Size = new System.Drawing.Size(972, 349);
             this.grdMaterials.TabIndex = 0;
             this.grdMaterials.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvMaterials});
@@ -109,6 +109,7 @@
             this.gridColumn10});
             this.grdvMaterials.GridControl = this.grdMaterials;
             this.grdvMaterials.Name = "grdvMaterials";
+            this.grdvMaterials.OptionsBehavior.Editable = false;
             this.grdvMaterials.OptionsCustomization.AllowFilter = false;
             this.grdvMaterials.OptionsCustomization.AllowSort = false;
             this.grdvMaterials.OptionsMenu.EnableColumnMenu = false;
@@ -368,10 +369,10 @@
             // 
             this.grdOrders.Cursor = System.Windows.Forms.Cursors.Default;
             this.grdOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdOrders.Location = new System.Drawing.Point(2, 21);
+            this.grdOrders.Location = new System.Drawing.Point(2, 27);
             this.grdOrders.MainView = this.grdvOrders;
             this.grdOrders.Name = "grdOrders";
-            this.grdOrders.Size = new System.Drawing.Size(972, 82);
+            this.grdOrders.Size = new System.Drawing.Size(972, 76);
             this.grdOrders.TabIndex = 2;
             this.grdOrders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvOrders});
@@ -647,7 +648,7 @@
             this.lblNoneMaterialInStore.Appearance.ForeColor = System.Drawing.Color.Red;
             this.lblNoneMaterialInStore.Location = new System.Drawing.Point(355, 181);
             this.lblNoneMaterialInStore.Name = "lblNoneMaterialInStore";
-            this.lblNoneMaterialInStore.Size = new System.Drawing.Size(247, 19);
+            this.lblNoneMaterialInStore.Size = new System.Drawing.Size(247, 25);
             this.lblNoneMaterialInStore.TabIndex = 1;
             this.lblNoneMaterialInStore.Text = "当前工单所需的物料无库存！";
             this.lblNoneMaterialInStore.Visible = false;
