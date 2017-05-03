@@ -3394,29 +3394,82 @@ namespace IRAP.WCF.Client.Method
                         datas = rlt as List<PeriodStopEvent>;
                     }
                     #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
 
-#if DEBUG
-                    datas.Add(
-                        new PeriodStopEvent()
-                        {
-                            Ordinal = 1,
-                            EventFactID = 100,
-                            AndonFactID = 102,
-                            Remark = "",
-                            CallTime = "2016-12-28 8:23:43",
-                            EndTime = "2016-12-28 9:30.12",
-                        });
-                    datas.Add(
-                        new PeriodStopEvent()
-                        {
-                            Ordinal = 2,
-                            EventFactID = 101,
-                            AndonFactID = 104,
-                            Remark = "",
-                            CallTime = "2016-12-28 12:10:32",
-                            EndTime = "2016-12-28 14:21:45",
-                        });
-#endif
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据指定的生产任务种类标识获取生产工单列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t103LeafID">生产任务种类标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetKanban_PWOSurveillance(
+            int communityID,
+            int t103LeafID,
+            long sysLogID,
+            ref List<PWOSurveillance> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+              string.Format(
+                  "{0}.{1}",
+                  className,
+                  MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("t103LeafID", t103LeafID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_GetKanban_PWOSurveillance，输入参数：" +
+                            "CommunityID={0}|T103LeafID={1}|SysLogID={2}",
+                            communityID, t103LeafID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Kanbans",
+                            "ufn_GetKanban_PWOSurveillance",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<PWOSurveillance>;
+                    }
+                    #endregion
                 }
             }
             catch (Exception error)

@@ -52,6 +52,7 @@
             this.grdclmnClosingTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnCancelTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.grdclmnMPNo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -273,6 +274,7 @@
             this.grdclmnEventDescription,
             this.grdclmnCallUserName,
             this.grdclmnRespondUserName,
+            this.grdclmnMPNo,
             this.grdclmnCallingTime,
             this.grdclmnRespondingTime,
             this.grdclmnClosingTime,
@@ -291,7 +293,6 @@
             this.grdlcmnEventName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdlcmnEventName.Caption = "事件类型";
             this.grdlcmnEventName.FieldName = "EventName";
-            this.grdlcmnEventName.MaxWidth = 80;
             this.grdlcmnEventName.MinWidth = 80;
             this.grdlcmnEventName.Name = "grdlcmnEventName";
             this.grdlcmnEventName.Visible = true;
@@ -322,7 +323,6 @@
             this.grdclmnCallUserName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnCallUserName.Caption = "呼叫人";
             this.grdclmnCallUserName.FieldName = "CallUserName";
-            this.grdclmnCallUserName.MaxWidth = 100;
             this.grdclmnCallUserName.MinWidth = 100;
             this.grdclmnCallUserName.Name = "grdclmnCallUserName";
             this.grdclmnCallUserName.Visible = true;
@@ -336,7 +336,6 @@
             this.grdclmnRespondUserName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnRespondUserName.Caption = "责任响应人";
             this.grdclmnRespondUserName.FieldName = "RespondUserName";
-            this.grdclmnRespondUserName.MaxWidth = 100;
             this.grdclmnRespondUserName.MinWidth = 100;
             this.grdclmnRespondUserName.Name = "grdclmnRespondUserName";
             this.grdclmnRespondUserName.Visible = true;
@@ -352,7 +351,6 @@
             this.grdclmnCallingTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.grdclmnCallingTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.grdclmnCallingTime.FieldName = "CallingTime";
-            this.grdclmnCallingTime.MaxWidth = 160;
             this.grdclmnCallingTime.MinWidth = 160;
             this.grdclmnCallingTime.Name = "grdclmnCallingTime";
             this.grdclmnCallingTime.Visible = true;
@@ -366,7 +364,6 @@
             this.grdclmnRespondingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnRespondingTime.Caption = "响应时间";
             this.grdclmnRespondingTime.FieldName = "RespondingTime";
-            this.grdclmnRespondingTime.MaxWidth = 160;
             this.grdclmnRespondingTime.MinWidth = 160;
             this.grdclmnRespondingTime.Name = "grdclmnRespondingTime";
             this.grdclmnRespondingTime.Visible = true;
@@ -380,11 +377,10 @@
             this.grdclmnClosingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnClosingTime.Caption = "关闭时间";
             this.grdclmnClosingTime.FieldName = "EventClosingTime";
-            this.grdclmnClosingTime.MaxWidth = 160;
             this.grdclmnClosingTime.MinWidth = 160;
             this.grdclmnClosingTime.Name = "grdclmnClosingTime";
             this.grdclmnClosingTime.Visible = true;
-            this.grdclmnClosingTime.VisibleIndex = 6;
+            this.grdclmnClosingTime.VisibleIndex = 7;
             this.grdclmnClosingTime.Width = 160;
             // 
             // grdclmnCancelTime
@@ -394,11 +390,10 @@
             this.grdclmnCancelTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdclmnCancelTime.Caption = "撤销时间";
             this.grdclmnCancelTime.FieldName = "EventCancelTime";
-            this.grdclmnCancelTime.MaxWidth = 160;
             this.grdclmnCancelTime.MinWidth = 160;
             this.grdclmnCancelTime.Name = "grdclmnCancelTime";
             this.grdclmnCancelTime.Visible = true;
-            this.grdclmnCancelTime.VisibleIndex = 7;
+            this.grdclmnCancelTime.VisibleIndex = 8;
             this.grdclmnCancelTime.Width = 160;
             // 
             // splitContainerControl2
@@ -416,6 +411,15 @@
             this.splitContainerControl2.SplitterPosition = 104;
             this.splitContainerControl2.TabIndex = 5;
             this.splitContainerControl2.Text = "splitContainerControl2";
+            // 
+            // grdclmnMPNo
+            // 
+            this.grdclmnMPNo.Caption = "责任人电话号码";
+            this.grdclmnMPNo.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.grdclmnMPNo.FieldName = "MPNo";
+            this.grdclmnMPNo.Name = "grdclmnMPNo";
+            this.grdclmnMPNo.Visible = true;
+            this.grdclmnMPNo.VisibleIndex = 6;
             // 
             // frmGetHisAndonEvents
             // 
@@ -467,5 +471,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnClosingTime;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnCancelTime;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnMPNo;
     }
 }

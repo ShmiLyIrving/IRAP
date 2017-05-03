@@ -1259,5 +1259,95 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 保存人工外观检查事实记录，记录失效模式清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="transactNo">申请到的交易号</param>
+        /// <param name="factID">申请到的事实编号</param>
+        /// <param name="productLeaf">产品叶标识（T102LeafID）</param>
+        /// <param name="workUnitLeaf">工位叶标识（T107LeafID）</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="barCode">产品条码</param>
+        /// <param name="scrapCode">失效模式代码清单</param>
+        public void usp_SaveFact_Inspecting(
+            int communityID,
+            long transactNo,
+            long factID,
+            int productLeaf,
+            int workUnitLeaf,
+            long sysLogID,
+            string barCode,
+            string scrapCode,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("transactNo", transactNo);
+                hashParams.Add("factID", factID);
+                hashParams.Add("productLeaf", productLeaf);
+                hashParams.Add("workUnitLeaf", workUnitLeaf);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("barCode", barCode);
+                hashParams.Add("scrapCode", scrapCode);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveFact_Inspecting，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|FactID={2}|" +
+                        "ProductLeaf={3}|WorkUnitLeaf={4}|SysLogID={5}|" +
+                        "BarCode={6}|ScrapCode={7}|",
+                        communityID,
+                        transactNo,
+                        factID,
+                        productLeaf,
+                        workUnitLeaf,
+                        sysLogID,
+                        barCode,
+                        scrapCode),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.IRAPMES",
+                        "usp_SaveFact_Inspecting",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

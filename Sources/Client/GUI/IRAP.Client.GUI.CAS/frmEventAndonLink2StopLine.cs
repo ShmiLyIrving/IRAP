@@ -219,6 +219,8 @@ namespace IRAP.Client.GUI.CAS
         {
             GetAndonEvents();
             GetStopEvents();
+
+            grdvStopEvents_FocusedRowChanged(null, null);
         }
 
         private void grdvAndonEvents_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
@@ -378,6 +380,11 @@ namespace IRAP.Client.GUI.CAS
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            frmEventAndonLink2StopLine_Activated(null, null);
         }
     }
 

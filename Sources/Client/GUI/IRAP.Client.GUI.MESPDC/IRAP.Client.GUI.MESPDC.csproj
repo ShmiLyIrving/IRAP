@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -86,6 +87,12 @@
     <Compile Include="Dialogs\frmRSFactListTestData.Designer.cs">
       <DependentUpon>frmRSFactListTestData.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAppearanceInspection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAppearanceInspection.Designer.cs">
+      <DependentUpon>frmAppearanceInspection.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCargoTransfer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +128,12 @@
     </Compile>
     <Compile Include="frmProcessFIFO.Designer.cs">
       <DependentUpon>frmProcessFIFO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductionParamsCollection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductionParamsCollection.Designer.cs">
+      <DependentUpon>frmProductionParamsCollection.cs</DependentUpon>
     </Compile>
     <Compile Include="frmProductPackage.cs">
       <SubType>Form</SubType>
@@ -183,6 +196,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucProduction.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucProduction.Designer.cs">
+      <DependentUpon>ucProduction.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -241,6 +260,9 @@
     <EmbeddedResource Include="Dialogs\frmRSFactListTestData.resx">
       <DependentUpon>frmRSFactListTestData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAppearanceInspection.resx">
+      <DependentUpon>frmAppearanceInspection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCargoTransfer.resx">
       <DependentUpon>frmCargoTransfer.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcessFIFO.resx">
       <DependentUpon>frmProcessFIFO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductionParamsCollection.resx">
+      <DependentUpon>frmProductionParamsCollection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductPackage.resx">
       <DependentUpon>frmProductPackage.cs</DependentUpon>
@@ -293,6 +318,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucProduction.resx">
+      <DependentUpon>ucProduction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@ namespace IRAP.Entities.FVS
     {
         private string respondUserCode = "";
         private string respondUserName = "";
+        private string mpNo = "";
 
         /// <summary>
         /// 事件标识
@@ -67,6 +68,20 @@ namespace IRAP.Entities.FVS
                     return respondUserName;
             }
             set { respondUserName = value; }
+        }
+        /// <summary>
+        /// 责任人电话号码
+        /// </summary>
+        public string MPNo
+        {
+            get
+            {
+                if (RespondingTime.Trim() == "")
+                    return "";
+                else
+                    return mpNo;
+            }
+            set { mpNo = value; }
         }
         /// <summary>
         /// 呼叫时间

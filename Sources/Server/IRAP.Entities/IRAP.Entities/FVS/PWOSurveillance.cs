@@ -1,6 +1,6 @@
 ﻿using IRAP.Global;
 
-namespace IRAP.Entity.FVS
+namespace IRAP.Entities.FVS
 {
     /// <summary>
     /// 生产工单监控信息

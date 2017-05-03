@@ -29,6 +29,18 @@ namespace IRAP.Client.GUI.CAS
         public frmGetHisAndonEvents()
         {
             InitializeComponent();
+
+            #region 新康达（60023）要求显示责任人的电话号码
+            switch (IRAPUser.Instance.CommunityID)
+            {
+                case 60023:
+                    grdclmnMPNo.Visible = true;
+                    break;
+                default:
+                    grdclmnMPNo.Visible = false;
+                    break;
+            }
+            #endregion
         }
 
         private void GetPeriodTypes()
