@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAppearanceInspection));
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
@@ -37,7 +38,7 @@
             this.grdvFailureModes = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnSelected = new DevExpress.XtraGrid.Columns.GridColumn();
             this.riceSelected = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.imageCollection = new DevExpress.Utils.ImageCollection();
+            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.grdclmnFailureName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -118,6 +119,7 @@
             // 
             // edtWIPBarCode
             // 
+            this.edtWIPBarCode.EnterMoveNextControl = true;
             this.edtWIPBarCode.Location = new System.Drawing.Point(144, 11);
             this.edtWIPBarCode.Name = "edtWIPBarCode";
             this.edtWIPBarCode.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);

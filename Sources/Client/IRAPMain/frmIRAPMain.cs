@@ -737,7 +737,7 @@ namespace IRAP
 
                             IRAPMessageBox.Instance.ShowErrorMessage(
                                 string.Format(
-                                    "",
+                                    message,
                                     error.Message),
                                 caption);
                             isQuitSilent = true;

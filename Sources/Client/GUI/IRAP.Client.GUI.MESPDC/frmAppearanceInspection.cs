@@ -44,6 +44,25 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void GetFailureModes()
         {
+            if (Options.SelectStation == null)
+            {
+                XtraMessageBox.Show(
+                    "未选择选项一！",
+                    caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            if (Options.SelectProduct==null)
+            {
+                XtraMessageBox.Show(
+                    "未选择选项二！",
+                    caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
@@ -394,8 +413,8 @@ namespace IRAP.Client.GUI.MESPDC
                 foreach (FailureMode mode in selectModes)
                 {
                     if (scrapCode != "")
-                        scrapCode += ", ";
-                    scrapCode += string.Format(", {0}", mode.FailureCode);
+                        scrapCode += ",";
+                    scrapCode += string.Format("{0}", mode.FailureLeaf);
                 }
 
                 #region 保存外观检查事实
@@ -433,6 +452,12 @@ namespace IRAP.Client.GUI.MESPDC
                 }
                 else
                 {
+                    XtraMessageBox.Show(
+                        errText,
+                        caption,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
                     edtWIPBarCode.Text = "";
                     CleanFailureModesSelected();
 
