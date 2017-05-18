@@ -35,7 +35,7 @@ namespace IRAP.Client.Global.GUI
         /// <summary>
         /// 是否需要重新获取下一个切换的功能号信息
         /// </summary>
-        private bool needRegetNextFunctionInfo;
+        private bool needRegetNextFunctionInfo = true;
         /// <summary>
         /// 自动切换其它功能
         /// </summary>

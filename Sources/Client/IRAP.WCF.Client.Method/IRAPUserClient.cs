@@ -1046,7 +1046,7 @@ namespace IRAP.WCF.Client.Method
                     WriteLog.Instance.Write(
                         string.Format(
                             "执行存储过程 ssp_ReplaceTranOperator，输入参数：" +
-                            "CommunityID={0}|TransactNo={1}|OperatorUserCode={2}|"+
+                            "CommunityID={0}|TransactNo={1}|OperatorUserCode={2}|" +
                             "SysLogID={3}",
                             communityID, transactNo, operatorUserCode, sysLogID),
                         strProcedureName);
@@ -1074,6 +1074,80 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据社区号获取系统登记的用户列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="userCode">需要检索的用户代码</param>
+        /// <param name="userBarcode">需要检索的用户替代代码</param>
+        public void sfn_GetList_UsersOfACommunity(
+            int communityID,
+            string userCode,
+            string userBarcode,
+            ref List<UserDetailInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("userCode", userCode);
+                hashParams.Add("userBarcode", userBarcode);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_GetList_UsersOfACommunity，输入参数：" +
+                        "CommunityID={0}|UserCode={1}|UserBarCode={2}",
+                        communityID,
+                        userCode,
+                        userBarcode),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.SSO.dll",
+                        "IRAP.BL.SSO.IRAPUser",
+                        "sfn_GetList_UsersOfACommunity",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<UserDetailInfo>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
             }
             finally
             {

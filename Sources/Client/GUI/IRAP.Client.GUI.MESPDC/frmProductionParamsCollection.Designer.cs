@@ -72,13 +72,14 @@
             this.tcMain.Size = new System.Drawing.Size(961, 541);
             this.tcMain.TabIndex = 1;
             // 
-            // frmProduction
+            // frmProductionParamsCollection
             // 
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(961, 597);
             this.Controls.Add(this.tcMain);
-            this.Name = "frmProduction";
+            this.Name = "frmProductionParamsCollection";
             this.Text = "生产";
+            this.Shown += new System.EventHandler(this.frmProductionParamsCollection_Shown);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.tcMain, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

@@ -196,11 +196,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucProduction.cs">
+    <Compile Include="UserControls\ucBatchSysProduction.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucProduction.Designer.cs">
-      <DependentUpon>ucProduction.cs</DependentUpon>
+    <Compile Include="UserControls\ucBatchSysProduction.Designer.cs">
+      <DependentUpon>ucBatchSysProduction.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -319,8 +319,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucProduction.resx">
-      <DependentUpon>ucProduction.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\ucBatchSysProduction.resx">
+      <DependentUpon>ucBatchSysProduction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
 
 using IRAP.Client.Global;
 using IRAP.Global;
@@ -21,9 +22,16 @@ namespace IRAP.Client.Global.GUI
         private ucOptions barOptions = null;
         private bool refreshGUIOptions = false;
 
+        protected string caption = "";
+
         public frmCustomFuncBase()
         {
             InitializeComponent();
+
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                caption = "System information";
+            else
+                caption = "系统信息";
         }
 
         [Browsable(true), Description("界面激活后，是否需要刷新“选项一”和“选项二”")]

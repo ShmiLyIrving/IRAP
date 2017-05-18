@@ -47,6 +47,7 @@
     <Compile Include="APS\ManufacturingOrder.cs" />
     <Compile Include="DPA\xdr_MethodParams.cs" />
     <Compile Include="FVS\AndonCancelReason.cs" />
+    <Compile Include="FVS\Dashboard_MODelivery.cs" />
     <Compile Include="FVS\PeriodAndonEvent.cs" />
     <Compile Include="FVS\PeriodStopEvent.cs" />
     <Compile Include="FVS\PWOSurveillance.cs" />
@@ -55,8 +56,10 @@
     <Compile Include="MDM\DefectRootCause.cs" />
     <Compile Include="MDM\FailureModeByWorkUnit.cs" />
     <Compile Include="MDM\ProductViaStation.cs" />
+    <Compile Include="MDM\Shift.cs" />
     <Compile Include="MDM\WIPStation.cs" />
     <Compile Include="MES\FactPackaging.cs" />
+    <Compile Include="MES\FailureModeOfPallet.cs" />
     <Compile Include="MES\FailuresOfNGProduct.cs" />
     <Compile Include="FVS\AndonEventFact.cs" />
     <Compile Include="FVS\EventStakeholder.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="SCES\ProductionWorkOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MDM\TemplateContent.cs" />
+    <Compile Include="SSO\UserDetailInfo.cs" />
     <Compile Include="SSO\UserInfo.cs" />
     <Compile Include="SymbolInspecting.cs" />
     <Compile Include="UTS\OperTypeInfo.cs" />

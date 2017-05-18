@@ -282,6 +282,7 @@ namespace IRAP.Client.User
         public long SysLogID
         {
             get { return sysLogID; }
+            set { sysLogID = value; }
         }
 
         /// <summary>

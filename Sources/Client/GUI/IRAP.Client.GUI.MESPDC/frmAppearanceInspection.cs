@@ -27,7 +27,6 @@ namespace IRAP.Client.GUI.MESPDC
         private EventHandler afterOptionChanged = null;
 
         private WIPIDCode wip = new WIPIDCode();
-        private List<FailureMode> failureModes = new List<FailureMode>();
         private List<SelectFailureMode> selectedFModes = new List<SelectFailureMode>();
 
         public frmAppearanceInspection()
@@ -42,27 +41,8 @@ namespace IRAP.Client.GUI.MESPDC
             afterOptionChanged = new EventHandler(frmApperanceInspetion_AfterOptionChanged);
         }
 
-        private void GetFailureModes()
+        private void GetFailureModes(int productLeaf, int workUnitLeaf)
         {
-            if (Options.SelectStation == null)
-            {
-                XtraMessageBox.Show(
-                    "未选择选项一！",
-                    caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return;
-            }
-            if (Options.SelectProduct==null)
-            {
-                XtraMessageBox.Show(
-                    "未选择选项二！",
-                    caption,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return;
-            }
-
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
@@ -75,14 +55,13 @@ namespace IRAP.Client.GUI.MESPDC
                 int errCode = 0;
                 string errText = "";
 
-                failureModes.Clear();
-
+                List<FailureMode> failureModes = new List<FailureMode>();
                 try
                 {
                     IRAPMDMClient.Instance.ufn_GetList_FailureModes(
                         IRAPUser.Instance.CommunityID,
-                        Options.SelectProduct.T102LeafID,
-                        Options.SelectStation.T107LeafID,
+                        productLeaf,
+                        workUnitLeaf,
                         IRAPUser.Instance.SysLogID,
                         ref failureModes,
                         out errCode,
@@ -115,6 +94,9 @@ namespace IRAP.Client.GUI.MESPDC
                             Selected = false,
                         });
                 }
+
+                grdFailureModes.DataSource = selectedFModes;
+                grdvFailureModes.BestFitColumns();
             }
             finally
             {
@@ -122,14 +104,10 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
-        private void CleanFailureModesSelected()
+        private void CleanFailureModes()
         {
-            grdvFailureModes.BeginDataUpdate();
-            foreach (SelectFailureMode mode in selectedFModes)
-            {
-                mode.Selected = false;
-            }
-            grdvFailureModes.EndDataUpdate();
+            selectedFModes.Clear();
+            grdFailureModes.DataSource = null;
         }
 
         private int FailureModeSelectCount()
@@ -156,10 +134,8 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void frmApperanceInspetion_AfterOptionChanged(object sender, EventArgs e)
         {
-            GetFailureModes();
-
-            grdvFailureModes.RefreshData();
-            grdvFailureModes.BestFitColumns();
+            edtWIPBarCode.Text = "";
+            CleanFailureModes();
         }
 
         private void frmAppearanceInspection_Activated(object sender, EventArgs e)
@@ -185,7 +161,26 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void edtWIPBarCode_Validating(object sender, CancelEventArgs e)
         {
-            CleanFailureModesSelected();
+            CleanFailureModes();
+
+            if (Options.SelectStation == null)
+            {
+                XtraMessageBox.Show(
+                    "未选择选项一！",
+                    caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            if (Options.SelectProduct == null)
+            {
+                XtraMessageBox.Show(
+                    "未选择选项二！",
+                    caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
 
             if (edtWIPBarCode.Text.Trim() != "")
             {
@@ -269,6 +264,8 @@ namespace IRAP.Client.GUI.MESPDC
                                     "得到产品标签：[{0}]",
                                     wip.WIPPattern),
                                 strProcedureName);
+
+                            GetFailureModes(wip.ProductLeaf, wip.WorkUnitLeaf);
 
                             e.Cancel = false;
                             return;
@@ -459,7 +456,7 @@ namespace IRAP.Client.GUI.MESPDC
                         MessageBoxIcon.Information);
 
                     edtWIPBarCode.Text = "";
-                    CleanFailureModesSelected();
+                    CleanFailureModes();
 
                     edtWIPBarCode.Focus();
                 }

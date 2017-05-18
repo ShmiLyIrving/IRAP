@@ -1053,7 +1053,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 usp_PokaYoke_PalletRouting，输入参数：" +
-                        "CommunityID={0}|T102LeafID={1}|T107LeafID={2}|"+
+                        "CommunityID={0}|T102LeafID={1}|T107LeafID={2}|" +
                         "PWONo={3}|SysLogID={4}",
                         communityID,
                         t102LeafID,
@@ -1283,7 +1283,7 @@ namespace IRAP.WCF.Client.Method
             out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
                     "{0}.{1}",
                     className,
@@ -1343,6 +1343,91 @@ namespace IRAP.WCF.Client.Method
                 errText = error.Message;
                 WriteLog.Instance.Write(errText, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取失效模式的质量问题柏拉图数据清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="productLeaf">产品叶标识</param>
+        /// <param name="workUnitLeaf">工位叶标识</param>
+        /// <param name="pwoNo">生产工单号</param>
+        public void ufn_GetPallet_FailureMode(
+           int communityID,
+           int productLeaf,
+           int workUnitLeaf,
+           string pwoNo,
+           long sysLogID,
+           ref List<FailureModeOfPallet> datas,
+           out int errCode,
+           out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("productLeaf", productLeaf);
+                hashParams.Add("workUnitLeaf", workUnitLeaf);
+                hashParams.Add("pwoNo", pwoNo);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetPallet_FailureMode 函数， " +
+                        "参数：CommunityID={0}|ProductLeaf={1}|" +
+                        "WorkUnitLeaf={2}|PWONo={3}|SysLogID={4}",
+                        communityID,
+                        productLeaf,
+                        workUnitLeaf,
+                        pwoNo,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.IRAPMES",
+                            "ufn_GetPallet_FailureMode",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<FailureModeOfPallet>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
             }
             finally
             {

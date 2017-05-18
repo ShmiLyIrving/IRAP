@@ -63,6 +63,12 @@
     <Compile Include="frmMethodAndQualityStandardsWithProduct.Designer.cs">
       <DependentUpon>frmMethodAndQualityStandardsWithProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPWODeliveryMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPWODeliveryMonitor.Designer.cs">
+      <DependentUpon>frmPWODeliveryMonitor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,7 +128,13 @@
     <EmbeddedResource Include="frmMethodAndQualityStandardsWithProduct.resx">
       <DependentUpon>frmMethodAndQualityStandardsWithProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPWODeliveryMonitor.resx">
+      <DependentUpon>frmPWODeliveryMonitor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Kanban\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
