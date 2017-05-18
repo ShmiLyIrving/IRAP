@@ -28,17 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.grdclmProductionStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.grdMOTracks = new DevExpress.XtraGrid.GridControl();
             this.grdvMOTracks = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnOrdinal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnMONumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.grdclmnMOLineNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmMaterialCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmMaterialName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -53,7 +52,7 @@
             this.grdclmWIPQty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmScrapRate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmBackgroundColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer();
             this.pnlRemark = new DevExpress.XtraEditors.PanelControl();
             this.lblStatus6 = new DevExpress.XtraEditors.LabelControl();
             this.lblStatus5 = new DevExpress.XtraEditors.LabelControl();
@@ -62,12 +61,12 @@
             this.lblStatus2 = new DevExpress.XtraEditors.LabelControl();
             this.lblStatus1 = new DevExpress.XtraEditors.LabelControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.tmrPage = new System.Windows.Forms.Timer(this.components);
+            this.tmrPage = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdMOTracks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMOTracks)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRemark)).BeginInit();
             this.pnlRemark.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
@@ -109,6 +108,10 @@
             this.grdclmProductionStatus.Visible = true;
             this.grdclmProductionStatus.VisibleIndex = 8;
             this.grdclmProductionStatus.Width = 120;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // grdMOTracks
             // 
@@ -219,10 +222,6 @@
             this.grdclmnMONumber.Visible = true;
             this.grdclmnMONumber.VisibleIndex = 0;
             this.grdclmnMONumber.Width = 73;
-            // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // grdclmnMOLineNo
             // 
@@ -350,15 +349,28 @@
             // 
             // grdclmOperationName
             // 
-            this.grdclmOperationName.Caption = "gridColumn12";
+            this.grdclmOperationName.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmOperationName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.grdclmOperationName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmOperationName.Caption = "当前工序";
+            this.grdclmOperationName.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.grdclmOperationName.FieldName = "OperationName";
+            this.grdclmOperationName.MaxWidth = 140;
+            this.grdclmOperationName.MinWidth = 140;
             this.grdclmOperationName.Name = "grdclmOperationName";
             this.grdclmOperationName.Visible = true;
             this.grdclmOperationName.VisibleIndex = 10;
-            this.grdclmOperationName.Width = 65;
+            this.grdclmOperationName.Width = 140;
             // 
             // grdclmOrderQty
             // 
-            this.grdclmOrderQty.Caption = "gridColumn13";
+            this.grdclmOrderQty.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmOrderQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmOrderQty.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmOrderQty.Caption = "订单数量";
+            this.grdclmOrderQty.FieldName = "OrderQty";
+            this.grdclmOrderQty.MaxWidth = 75;
+            this.grdclmOrderQty.MinWidth = 45;
             this.grdclmOrderQty.Name = "grdclmOrderQty";
             this.grdclmOrderQty.Visible = true;
             this.grdclmOrderQty.VisibleIndex = 11;
@@ -366,7 +378,14 @@
             // 
             // grdclmMaterialQty
             // 
-            this.grdclmMaterialQty.Caption = "gridColumn14";
+            this.grdclmMaterialQty.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmMaterialQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmMaterialQty.AppearanceCell.TextOptions.Trimming = DevExpress.Utils.Trimming.Character;
+            this.grdclmMaterialQty.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmMaterialQty.Caption = "提料数量";
+            this.grdclmMaterialQty.FieldName = "MaterialQty";
+            this.grdclmMaterialQty.MaxWidth = 75;
+            this.grdclmMaterialQty.MinWidth = 45;
             this.grdclmMaterialQty.Name = "grdclmMaterialQty";
             this.grdclmMaterialQty.Visible = true;
             this.grdclmMaterialQty.VisibleIndex = 12;
@@ -374,7 +393,13 @@
             // 
             // grdclmWIPQty
             // 
-            this.grdclmWIPQty.Caption = "gridColumn15";
+            this.grdclmWIPQty.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmWIPQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmWIPQty.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmWIPQty.Caption = "正品数量";
+            this.grdclmWIPQty.FieldName = "WIPQty";
+            this.grdclmWIPQty.MaxWidth = 75;
+            this.grdclmWIPQty.MinWidth = 45;
             this.grdclmWIPQty.Name = "grdclmWIPQty";
             this.grdclmWIPQty.Visible = true;
             this.grdclmWIPQty.VisibleIndex = 13;
@@ -382,7 +407,13 @@
             // 
             // grdclmScrapRate
             // 
-            this.grdclmScrapRate.Caption = "gridColumn16";
+            this.grdclmScrapRate.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmScrapRate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmScrapRate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmScrapRate.Caption = "废品率(%)";
+            this.grdclmScrapRate.FieldName = "ScrapRate";
+            this.grdclmScrapRate.MaxWidth = 75;
+            this.grdclmScrapRate.MinWidth = 45;
             this.grdclmScrapRate.Name = "grdclmScrapRate";
             this.grdclmScrapRate.Visible = true;
             this.grdclmScrapRate.VisibleIndex = 14;
@@ -390,10 +421,8 @@
             // 
             // grdclmBackgroundColor
             // 
-            this.grdclmBackgroundColor.Caption = "gridColumn17";
+            this.grdclmBackgroundColor.Caption = "BackgroundColor";
             this.grdclmBackgroundColor.Name = "grdclmBackgroundColor";
-            this.grdclmBackgroundColor.Visible = true;
-            this.grdclmBackgroundColor.VisibleIndex = 15;
             this.grdclmBackgroundColor.Width = 95;
             // 
             // timer
@@ -541,9 +570,9 @@
             this.Controls.SetChildIndex(this.grdMOTracks, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdMOTracks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMOTracks)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRemark)).EndInit();
             this.pnlRemark.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
