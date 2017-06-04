@@ -42,12 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndonCallPerson.cs" />
-    <Compile Include="AndonRspedEventInfo.cs" />
+    <Compile Include="MDM\AndonCallPerson.cs" />
+    <Compile Include="FVS\AndonRspedEventInfo.cs" />
     <Compile Include="APS\ManufacturingOrder.cs" />
     <Compile Include="DPA\xdr_MethodParams.cs" />
     <Compile Include="FVS\AndonCancelReason.cs" />
     <Compile Include="FVS\Dashboard_MODelivery.cs" />
+    <Compile Include="FVS\Dashboard_WIPWaiting.cs" />
+    <Compile Include="FVS\EmployeeAtWork.cs" />
     <Compile Include="FVS\PeriodAndonEvent.cs" />
     <Compile Include="FVS\PeriodStopEvent.cs" />
     <Compile Include="FVS\PWOSurveillance.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="MDM\BWI_SKUIDInfo.cs" />
     <Compile Include="MDM\DefectRootCause.cs" />
     <Compile Include="MDM\FailureModeByWorkUnit.cs" />
+    <Compile Include="MDM\MFGOperation.cs" />
     <Compile Include="MDM\ProductViaStation.cs" />
     <Compile Include="MDM\Shift.cs" />
     <Compile Include="MDM\WIPStation.cs" />
@@ -73,12 +76,14 @@
     <Compile Include="MDM\AvailableSite.cs" />
     <Compile Include="MDM\CustomerOfAProduction.cs" />
     <Compile Include="MDM\FailureMode.cs" />
+    <Compile Include="MES\Inspecting.cs" />
     <Compile Include="MES\LabelFMTStr.cs" />
     <Compile Include="MES\PackageType.cs" />
     <Compile Include="MES\ProducingPWOFromWorkUnit.cs" />
     <Compile Include="MES\RSFactTestData.cs" />
-    <Compile Include="MES\TBL_AuxFact_PDC.cs" />
-    <Compile Include="MES\TBL_FixedFact_MES.cs" />
+    <Compile Include="MES\Tables\AuxFact_PDC.cs" />
+    <Compile Include="MES\Tables\FixedFact_MES.cs" />
+    <Compile Include="MES\Tables\RSFact_Inspecting.cs" />
     <Compile Include="MES\SubWIPIDCodes_TS.cs" />
     <Compile Include="MES\SubWIPIDCode_TroubleShooting.cs" />
     <Compile Include="MES\SubWIPIDCode_TSItem.cs" />
@@ -97,7 +102,7 @@
     <Compile Include="MDM\TemplateContent.cs" />
     <Compile Include="SSO\UserDetailInfo.cs" />
     <Compile Include="SSO\UserInfo.cs" />
-    <Compile Include="SymbolInspecting.cs" />
+    <Compile Include="MDM\SymbolInspecting.cs" />
     <Compile Include="UTS\OperTypeInfo.cs" />
     <Compile Include="UTS\STB010.cs" />
   </ItemGroup>

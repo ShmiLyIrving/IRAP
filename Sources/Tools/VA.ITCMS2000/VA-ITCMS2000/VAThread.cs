@@ -247,7 +247,7 @@ namespace VA_ITCMS2000
                             string.Format(
                                 "SELECT TOP 5 * FROM IRAPDWforMES..utb_Log_CRPlaying " +
                                 "WHERE Conclusion=0 AND StationID='{0}' " +
-                                "AND ScheduledPlayTime <= '{1}' " +
+                                //"AND ScheduledPlayTime <= '{1}' " +
                                 // "AND ScheduledExpireTime >= '{1}' " + 暂时忽略过期广播消息的设置
                                 "ORDER BY CreatedTime ASC",
                                 SysParams.Instance.StationID,
@@ -276,54 +276,13 @@ namespace VA_ITCMS2000
 
                             WriteLogInThread(cmdPlay);
 
-                            #region 生成待广播的声音文件集（mp3格式）
-                            IPCast.PlayFile[] files;
-                            int fileCount = GenerateVoices(cmdPlay, out files);
-                            #endregion
-
                             #region 生成目标终端集
                             int[] terms = GenerateTermIDs(valueCHControl);
                             #endregion
 
-                            #region 发送消息广播
-                            if (!IPCast.IPCAST_ServerStatus())
+                            if (terms.Length == 0)
                             {
-                                ConnectToITCSM2000Serv();
-                            }
-                            if (!IPCast.IPCAST_ServerStatus())
-                            {
-                                WriteLogInThread(
-                                    string.Format(
-                                        "无法连接广播服务器[{0}]，不能播放广播",
-                                        SysParams.Instance.VAParams.Address));
-                                continue;
-                            }
-
-                            if (TermsIdle(terms))
-                            {
-                                try
-                                {
-                                    IPCast.FilePlayStart(
-                                        ref files,
-                                        fileCount,
-                                        terms,
-                                        terms.Length,
-                                        500,
-                                        3,
-                                        0,
-                                        0);
-                                }
-                                catch (Exception error)
-                                {
-                                    WriteLogInThread(
-                                        string.Format(
-                                            "播放消息广播时发生错误：[{0}]。\r\n" +
-                                            "可能没有找到需要播放的 MP3 文件。",
-                                            error.Message));
-                                }
-                                #endregion
-
-                                #region 将数据库中消息记录状态更新为已广播
+                                #region 没有设置广播播放的通道，忽略该条消息，将数据库中消息记录状态更新为已广播
                                 SqlCommand cmd =
                                     new SqlCommand(
                                         string.Format(
@@ -343,6 +302,73 @@ namespace VA_ITCMS2000
                                     WriteLogInThread(error.Message);
                                 }
                                 #endregion
+                            }
+                            else
+                            {
+                                #region 生成待广播的声音文件集（mp3格式）
+                                IPCast.PlayFile[] files;
+                                int fileCount = GenerateVoices(cmdPlay, out files);
+                                #endregion
+
+                                #region 发送消息广播
+                                if (!IPCast.IPCAST_ServerStatus())
+                                {
+                                    ConnectToITCSM2000Serv();
+                                }
+                                if (!IPCast.IPCAST_ServerStatus())
+                                {
+                                    WriteLogInThread(
+                                        string.Format(
+                                            "无法连接广播服务器[{0}]，不能播放广播",
+                                            SysParams.Instance.VAParams.Address));
+                                    continue;
+                                }
+
+                                if (TermsIdle(terms))
+                                {
+                                    try
+                                    {
+                                        IPCast.FilePlayStart(
+                                            ref files,
+                                            fileCount,
+                                            terms,
+                                            terms.Length,
+                                            500,
+                                            3,
+                                            0,
+                                            0);
+                                    }
+                                    catch (Exception error)
+                                    {
+                                        WriteLogInThread(
+                                            string.Format(
+                                                "播放消息广播时发生错误：[{0}]。\r\n" +
+                                                "可能没有找到需要播放的 MP3 文件。",
+                                                error.Message));
+                                    }
+                                    #endregion
+
+                                    #region 将数据库中消息记录状态更新为已广播
+                                    SqlCommand cmd =
+                                        new SqlCommand(
+                                            string.Format(
+                                                "UPDATE IRAPDWforMES..utb_Log_CRPlaying " +
+                                                "SET Conclusion=1 WHERE LogID={0}",
+                                                logID),
+                                            dbConnection)
+                                        {
+                                            CommandType = CommandType.Text,
+                                        };
+                                    try
+                                    {
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                    catch (Exception error)
+                                    {
+                                        WriteLogInThread(error.Message);
+                                    }
+                                    #endregion
+                                }
                             }
 
                             Thread.Sleep(10);
@@ -505,11 +531,8 @@ namespace VA_ITCMS2000
             p.Dispose();
 
             Thread.Sleep(500);
-            File.Delete(fileMP3);
-            File.Copy(fileMP3L, fileMP3);
-            File.Delete(fileMP3L);
 
-            while (!File.Exists(fileMP3))
+            while (!File.Exists(fileMP3L))
                 Thread.Sleep(10);
 
             while (true)
@@ -522,7 +545,7 @@ namespace VA_ITCMS2000
                 catch { ; }
             }
 
-            return fileMP3;
+            return fileMP3L;
         }
 
         private int[] GenerateTermIDs(int chControls)

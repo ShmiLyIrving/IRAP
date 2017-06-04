@@ -105,6 +105,12 @@
     <Compile Include="frmFailureInspect_BWI.Designer.cs">
       <DependentUpon>frmFailureInspect_BWI.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmManualInspect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManualInspect.Designer.cs">
+      <DependentUpon>frmManualInspect.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmManufactureRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -268,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFailureInspect_BWI.resx">
       <DependentUpon>frmFailureInspect_BWI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManualInspect.resx">
+      <DependentUpon>frmManualInspect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmManufactureRecord.resx">
       <DependentUpon>frmManufactureRecord.cs</DependentUpon>

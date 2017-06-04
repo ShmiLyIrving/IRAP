@@ -16,7 +16,7 @@ namespace IRAP.PLC.Collection
     /// </summary>
     internal class DC_Baking_NB : CustomDataCollection
     {
-        private string operationCode = "CN11010001030102W";
+        private string operationCode = "120102W1";
         private string paramCode = "";
         private string paramName = "温度";
 
@@ -36,6 +36,9 @@ namespace IRAP.PLC.Collection
                     "WHERE CDATE(出线时间) BETWEEN #{0}# AND #{1}#",
                     beginDT,
                     endDT);
+
+            if (SystemParams.Instance.T216Code != "")
+                operationCode = SystemParams.Instance.T216Code;
 
             DataTable dt = GetData(sql);
 
@@ -133,26 +136,43 @@ namespace IRAP.PLC.Collection
             node.Attributes.Append(CreateAttr(xml, "ParamCode", paramCode));
             node.Attributes.Append(CreateAttr(xml, "ParamName", paramName));
 
-            int low = 0;
-            int high = 0;
-            SplitterTempString(dr["设定温度波形"].ToString().Trim(), ref low, ref high);
+            //int low = 0;
+            //int high = 0;
+            //SplitterTempString(dr["设定温度波形"].ToString().Trim(), ref low, ref high);
 
-            node.Attributes.Append(CreateAttr(xml, "LowLimit", low.ToString()));
+            //node.Attributes.Append(CreateAttr(xml, "LowLimit", low.ToString()));
+            node.Attributes.Append(CreateAttr(xml, "LowLimit", "0"));
             node.Attributes.Append(CreateAttr(xml, "Criterion", "GELE"));
-            node.Attributes.Append(CreateAttr(xml, "HighLimit", high.ToString()));
-            node.Attributes.Append(CreateAttr(xml, "Scale", "2"));
+            //node.Attributes.Append(CreateAttr(xml, "HighLimit", high.ToString()));
+            node.Attributes.Append(CreateAttr(xml, "HighLimit", "0"));
+            node.Attributes.Append(CreateAttr(xml, "Scale", "0"));
             node.Attributes.Append(CreateAttr(xml, "UnitOfMeasure", "℃"));
             node.Attributes.Append(CreateAttr(xml, "Conclusion", ""));
 
-            int metric01 = 0;
-            int metric02 = 0;
-            SplitterTempString(dr["实际温度波形"].ToString().Trim(), ref metric01, ref metric02);
+            //int metric01 = 0;
+            //int metric02 = 0;
+            //SplitterTempString(dr["实际温度波形"].ToString().Trim(), ref metric01, ref metric02);
 
-            node.Attributes.Append(CreateAttr(xml, "Metric01", metric01.ToString()));
-            node.Attributes.Append(CreateAttr(xml, "Metric02", metric02.ToString()));
+            //node.Attributes.Append(CreateAttr(xml, "Metric01", metric01.ToString()));
+            node.Attributes.Append(CreateAttr(xml, "Metric01", "0"));
+            //node.Attributes.Append(CreateAttr(xml, "Metric02", metric02.ToString()));
+            node.Attributes.Append(CreateAttr(xml, "Metric02", "0"));
             node.Attributes.Append(CreateAttr(xml, "Metric03", "0"));
             node.Attributes.Append(CreateAttr(xml, "Metric04", "0"));
             node.Attributes.Append(CreateAttr(xml, "Metric05", "0"));
+            node.Attributes.Append(
+                CreateAttr(
+                    xml,
+                    "Remark",
+                    string.Format(
+                        "运行工步={0}|槽位名称={1}|设定时间={2}|入槽时间={3}|" +
+                        "设定波形={4}|实际波形={5}",
+                        dr["运行工步"].ToString().Trim(),
+                        dr["槽位名称"].ToString().Trim(),
+                        dr["设定时间"].ToString().Trim(),
+                        dr["入槽时间"].ToString().Trim(),
+                        dr["设定温度波形"].ToString().Trim(),
+                        dr["实际温度波形"].ToString().Trim())));
 
             return node;
         }

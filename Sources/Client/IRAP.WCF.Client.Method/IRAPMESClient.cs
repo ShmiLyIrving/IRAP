@@ -1434,5 +1434,90 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取用于人工检查的在制品以及子在制品信息
+        /// </summary>
+        public void mfn_GetInfo_WIPIDCode(
+            int communityID,
+            string wipIDCode,
+            int productLeaf,
+            int workUnitLeaf,
+            bool isEnhanced,
+            long sysLogID,
+            ref Inspecting data,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                data = new Inspecting();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("wipIDCode", wipIDCode);
+                hashParams.Add("productLeaf", productLeaf);
+                hashParams.Add("workUnitLeaf", workUnitLeaf);
+                hashParams.Add("isEnhanced", isEnhanced);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 mfn_GetInfo_WIPIDCode 函数， " +
+                        "参数：CommunityID={0}|WIPIDCode={1}|" +
+                        "ProductLeaf={2}|WorkUnitLeaf={3}|" +
+                        "IsEnhanced={4}|SysLogID={5}",
+                        communityID,
+                        wipIDCode,
+                        productLeaf,
+                        workUnitLeaf,
+                        isEnhanced,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WIP",
+                            "mfn_GetInfo_WIPIDCode",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        data = rlt as Inspecting;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

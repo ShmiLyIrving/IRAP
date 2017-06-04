@@ -133,8 +133,8 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMES..ufn_GetInfo_UncompletedPackage，参数：CommunityID={0}|" +
-                        "ProductLeaf={1}|WorkUnitLeaf={2}|PackagingSpecNo={4}|" +
-                        "SysLogID={5}",
+                        "ProductLeaf={1}|WorkUnitLeaf={2}|PackagingSpecNo={3}|" +
+                        "SysLogID={4}",
                         communityID, productLeaf, workUnitLeaf, packagingSpecNo,
                         sysLogID),
                     strProcedureName);

@@ -3,14 +3,14 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPUserClient" Collapsed="true">
     <Position X="2.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAEAYgGAAAAAYAACAAAAACAAAAgAAAAQBAAAAAgAgE=</HashCode>
+      <HashCode>GAAEAYgGAAAAAYAACAAAAACAAAAgAAAAQBAAAAAgAgE=</HashCode>
       <FileName>IRAPUserClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPFVSClient" Collapsed="true">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAQHAIJQgOgoSADEDAOAIgGQkBAACAAIQIABEQAgIJA=</HashCode>
+      <HashCode>QBQHAIJQgOgoSADEDAOAIgGQkBAACIAIwIBBEQAgIJA=</HashCode>
       <FileName>IRAPFVSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -24,14 +24,14 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPMDMClient" Collapsed="true">
     <Position X="1" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAFAdgAIAAAGAUACRhIADwUAARAQAAKUHCIAIQ5oAA=</HashCode>
+      <HashCode>AAEVAdgEIAAAHBUACxhIADwUAARAQAAKUHKIAIQ5oIA=</HashCode>
       <FileName>IRAPMDMClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMESClient" Collapsed="true">
     <Position X="2.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>JAAEAIAAASACAAAAAAAAAAIAABAAAAACQAAgCAACAAA=</HashCode>
+      <HashCode>JAAUAIABASACAAAAQAAgAAIAABEAAABCQAggCAACAAA=</HashCode>
       <FileName>IRAPMESClient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPMESTSClient" Collapsed="true">
     <Position X="2.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAIEAIBAAAAAAIAAACAAACACAIAAAAAAQABACAAAAAA=</HashCode>
+      <HashCode>EAIEAIBAACAAAIAAAAAAACAAAAAAAAAAQAAACAAAAAA=</HashCode>
       <FileName>IRAPMESTSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -59,7 +59,7 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPSystemClient" Collapsed="true">
     <Position X="6.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEEIAACAADAAAABAAAAAAEBAQIAAAAQgAAAAAAAAA=</HashCode>
+      <HashCode>AAAEEIAACAADAAAABAAAAAAEBAQIAQAAQgAAAAAAAAA=</HashCode>
       <FileName>IRAPSystemClient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -87,22 +87,29 @@
   <Class Name="IRAP.WCF.Client.Method.IRAPUTSClient" Collapsed="true">
     <Position X="4.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAIAAAACAIAAAACAAAABQAAAAAAgAQAAAAAAAAAg=</HashCode>
+      <HashCode>AAAEAIAAAACAIAAAACAAAABQAAAAAAgAYAAAAAAAAAo=</HashCode>
       <FileName>IRAPUTSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPAPSClient" Collapsed="true">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAIAAAAAAAAAAAAAAAAAAAAAACAAAQAIAAAAAAAA=</HashCode>
+      <HashCode>AAAUAIAAAAAAAAAABAAAAAAAAAAACAAAQAIAAAAAAAA=</HashCode>
       <FileName>IRAPAPSClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.WCF.Client.Method.IRAPMESPKGClient" Collapsed="true">
     <Position X="4.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAIAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAEAIQQAQABAEAAAAAAAAAAAAAAAAACQAAAAAAAAAA=</HashCode>
       <FileName>IRAPMESPKGClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.WCF.Client.Method.IRAPMESMIClient">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAEAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>IRAPMESMIClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

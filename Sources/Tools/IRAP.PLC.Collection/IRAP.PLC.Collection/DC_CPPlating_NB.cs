@@ -11,7 +11,7 @@ namespace IRAP.PLC.Collection
 {
     internal class DC_CPPlating_NB : CustomDataCollection
     {
-        private string operationCode = "CN11010001030102W";
+        private string operationCode = "120101M1";
 
         public DC_CPPlating_NB(MemoEdit mmoLog):base(mmoLog) { }
 
@@ -30,6 +30,9 @@ namespace IRAP.PLC.Collection
                     "WHERE CDATE(出线时间) BETWEEN #{0}# AND #{1}#",
                     beginDT,
                     endDT);
+
+            if (SystemParams.Instance.T216Code != "")
+                operationCode = SystemParams.Instance.T216Code;
 
             DataTable dt = GetData(sql);
 
@@ -90,7 +93,7 @@ namespace IRAP.PLC.Collection
                                         "",
                                         "温度",
                                         string.Format(
-                                            "{0}|设定温度波形={1}|实际温度波形={2}",
+                                            "{0}|设定波形={1}|实际波形={2}",
                                             remark,
                                             drd["设定温度波形"].ToString().Trim(),
                                             drd["实际温度波形"].ToString().Trim())));
@@ -102,10 +105,20 @@ namespace IRAP.PLC.Collection
                                         "",
                                         "电流",
                                         string.Format(
-                                            "{0}|设定电流波形{1}|实际电流波形={2}|实际电压波形={3}",
+                                            "{0}|设定波形={1}|实际波形={2}",
                                             remark,
                                             drd["设定电流波形"].ToString().Trim(),
-                                            drd["实际电流波形"].ToString().Trim(),
+                                            drd["实际电流波形"].ToString().Trim())));
+                            if (drd["实际电压波形"].ToString().Trim() != "")
+                                root.AppendChild(
+                                    CreateDataRow(
+                                        xml,
+                                        drd,
+                                        "",
+                                        "电压",
+                                        string.Format(
+                                            "{0}|设定波形=|实际波形={1}",
+                                            remark,
                                             drd["实际电压波形"].ToString().Trim())));
                         }
                     }

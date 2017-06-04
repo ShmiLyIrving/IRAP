@@ -65,6 +65,7 @@
             this.splitContainerBody = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerLeft = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerRight = new DevExpress.XtraEditors.SplitContainerControl();
+            this.ucPallet = new IRAP_FVS_LSSIVO.UserControls.ucPallet();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFirstQuadrant)).BeginInit();
             this.pnlFirstQuadrant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomLogo)).BeginInit();
@@ -259,6 +260,7 @@
             this.pnlThirdQuadrant.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pnlThirdQuadrant.Appearance.Options.UseBackColor = true;
             this.pnlThirdQuadrant.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnlThirdQuadrant.Controls.Add(this.ucPallet);
             this.pnlThirdQuadrant.Controls.Add(this.ucOnePointLessons);
             this.pnlThirdQuadrant.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlThirdQuadrant.Location = new System.Drawing.Point(0, 0);
@@ -468,6 +470,17 @@
             this.splitContainerRight.TabIndex = 8;
             this.splitContainerRight.Text = "splitContainerControl3";
             // 
+            // ucPallet
+            // 
+            this.ucPallet.Appearance.BackColor = System.Drawing.Color.White;
+            this.ucPallet.Appearance.Options.UseBackColor = true;
+            this.ucPallet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPallet.Location = new System.Drawing.Point(5, 5);
+            this.ucPallet.Name = "ucPallet";
+            this.ucPallet.Padding = new System.Windows.Forms.Padding(10);
+            this.ucPallet.Size = new System.Drawing.Size(540, 454);
+            this.ucPallet.TabIndex = 1;
+            // 
             // frmFVSCell_Visteon
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -555,5 +568,6 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerBody;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerLeft;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerRight;
+        private UserControls.ucPallet ucPallet;
     }
 }

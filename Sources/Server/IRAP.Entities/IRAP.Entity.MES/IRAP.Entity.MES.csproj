@@ -44,8 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chart\EntitySPCChart.cs" />
-    <Compile Include="Inspecting.cs" />
-    <Compile Include="InspectingFailureItem.cs" />
     <Compile Include="OpenChangeInfo.cs" />
     <Compile Include="OpenChangeSummary.cs" />
     <Compile Include="OpenProductionWorkOrder.cs" />
@@ -56,10 +54,7 @@
     <Compile Include="Report_MOExecution.cs" />
     <Compile Include="ReworkPWOUnloadingSheetItem.cs" />
     <Compile Include="ReworkRouter.cs" />
-    <Compile Include="SubWIPIDCodeInfo.cs" />
-    <Compile Include="SubWIPIDCodeInfo_Inspecting.cs" />
     <Compile Include="WIPBarCodeInfo.cs" />
-    <Compile Include="WIPIDCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Entity.MES.cd" />

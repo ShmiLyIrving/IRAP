@@ -67,6 +67,7 @@ namespace IRAP.PLC.Collection
             edtDeltaTimeSpan.Text = SystemParams.Instance.DeltaTimeSpan.ToString();
             cboDeviceType.SelectedIndex = SystemParams.Instance.DeviceType;
             edtLastCheckPoint.Value = SystemParams.Instance.BeginDT;
+            edtT216Code.Text = SystemParams.Instance.T216Code;
         }
 
         private void edtBrokeURI_Validated(object sender, EventArgs e)

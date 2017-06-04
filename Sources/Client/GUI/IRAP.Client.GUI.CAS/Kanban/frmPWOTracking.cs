@@ -33,12 +33,16 @@ namespace IRAP.Client.GUI.CAS
 
         private void SetWOStatusPanelColor()
         {
-            this.lblStatus1.BackColor = System.Drawing.ColorTranslator.FromHtml("#4567AA");
-            this.lblStatus2.BackColor = System.Drawing.ColorTranslator.FromHtml("#00FF00");
-            this.lblStatus3.BackColor = System.Drawing.ColorTranslator.FromHtml("#24F0E1");
-            this.lblStatus4.BackColor = System.Drawing.ColorTranslator.FromHtml("#3867F3");
-            this.lblStatus5.BackColor = System.Drawing.ColorTranslator.FromHtml("#FBF179");
-            this.lblStatus6.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF0000");
+            lblStatus1.BackColor = ColorTranslator.FromHtml("#4567AA");
+            lblStatus2.BackColor = ColorTranslator.FromHtml("#00FF00");
+            lblStatus3.BackColor = ColorTranslator.FromHtml("#24F0E1");
+            lblStatus4.BackColor = ColorTranslator.FromHtml("#3867F3");
+            lblStatus5.BackColor = ColorTranslator.FromHtml("#FBF179");
+            lblStatus6.BackColor = ColorTranslator.FromHtml("#FF0000");
+
+            lblStatus2.ForeColor = Color.Black;
+            lblStatus3.ForeColor = Color.Black;
+            lblStatus5.ForeColor = Color.Black;
 
             //grdclmnOrdinal.Caption = "项目\nItem";
             //grdclmnMONumber.Caption = "订单号\nMO No.";

@@ -468,6 +468,18 @@ namespace IRAP_FVS_LSSIVO
                         picCustomLogo.Image = images.CustomerLogo;
                         picProduction.Image = images.CustomerProduct;
 
+                        switch (stationUser.CommunityID)
+                        {
+                            case 60026:
+                                ucPallet.Visible = true;
+                                ucOnePointLessons.Visible = false;
+                                break;
+                            default:
+                                ucPallet.Visible = false;
+                                ucOnePointLessons.Visible = true;
+                                break;
+                        }
+
                         if (!canClose)
                             // 当前工单执行的瞬时达成率
                             RefreshExecutePWOInfo(line);
@@ -505,12 +517,21 @@ namespace IRAP_FVS_LSSIVO
                                 "",
                                 stationUser.SysLogID);
 
-                        if (!canClose)
+                        if (!canClose && ucOnePointLessons.Visible)
                             // 一点课
                             ucOnePointLessons.SetSearchCondition(
                                 stationUser.CommunityID,
                                 line.T102LeafID_InProduction,
                                 "",
+                                stationUser.SysLogID);
+
+                        if (!canClose && ucPallet.Visible)
+                            // 质量问题柏拉图
+                            ucPallet.SetSearchCondition(
+                                stationUser.CommunityID,
+                                line.T102LeafID_InProduction,
+                                0,
+                                pwoNo,
                                 stationUser.SysLogID);
 
                         if (!canClose)

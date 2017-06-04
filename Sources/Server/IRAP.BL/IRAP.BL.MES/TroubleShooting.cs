@@ -8,6 +8,7 @@ using System.Collections;
 
 using IRAP.Global;
 using IRAP.Entities.MES;
+using IRAP.Entities.MES.Tables;
 using IRAPORM;
 using IRAPShared;
 using IRAPDAL;
@@ -961,7 +962,7 @@ namespace IRAP.BL.MES
                                 wipIDCode.PWOCategoryLeaf);
 
                         #region 保存主事实
-                        TBL_FixedFact_MES tempFact = new TBL_FixedFact_MES();
+                        FixedFact_MES tempFact = new FixedFact_MES();
                         tempFact.FactID = factID;
                         tempFact.TransactNo = transactNo;
                         tempFact.PartitioningKey = factPartitionPolicy;
@@ -997,7 +998,7 @@ namespace IRAP.BL.MES
                         #endregion
 
                         #region  保存辅助事实
-                        TBL_AuxFact_PDC auxFact = new TBL_AuxFact_PDC();
+                        AuxFact_PDC auxFact = new AuxFact_PDC();
                         auxFact.FactID = factID;
                         auxFact.PartitioningKey = auxPartitioning;
                         auxFact.FactPartitioningKey = factPartitionPolicy;
@@ -1100,7 +1101,7 @@ namespace IRAP.BL.MES
                             #endregion
 
                             #region 保存报废主事实
-                            TBL_FixedFact_MES scrappingOLTP = new TBL_FixedFact_MES();
+                            FixedFact_MES scrappingOLTP = new FixedFact_MES();
                             scrappingOLTP.FactID = factID;
                             scrappingOLTP.TransactNo = transactNo;
                             scrappingOLTP.PartitioningKey = factPartitionPolicy;
@@ -1134,7 +1135,7 @@ namespace IRAP.BL.MES
                             #endregion
 
                             #region 保存报废辅助事实
-                            TBL_AuxFact_PDC scrappingAuxFact = new TBL_AuxFact_PDC();
+                            AuxFact_PDC scrappingAuxFact = new AuxFact_PDC();
                             scrappingAuxFact.FactID = factID;
                             scrappingAuxFact.PartitioningKey = auxPartitioning;
                             scrappingAuxFact.FactPartitioningKey = factPartitionPolicy;

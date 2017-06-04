@@ -187,6 +187,15 @@
   <data name="groupBox2.Text" xml:space="preserve">
     <value>IRAP Parameters</value>
   </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>288, 73</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 15</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>OperationCode:</value>
+  </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9pt</value>
   </data>

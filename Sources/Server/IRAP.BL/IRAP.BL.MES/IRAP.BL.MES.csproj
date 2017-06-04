@@ -87,6 +87,10 @@
       <Project>{954debc1-2fec-4b7b-b32d-25287e1df873}</Project>
       <Name>IRAPORM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IRAP.BL.MDM\IRAP.BL.MDM.csproj">
+      <Project>{b27ef7ef-6f4b-462f-96cc-a64ea0e82ad2}</Project>
+      <Name>IRAP.BL.MDM</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.BL.UTS\IRAP.BL.UTS.csproj">
       <Project>{47a46432-15cd-4697-a024-1ed7976b7481}</Project>
       <Name>IRAP.BL.UTS</Name>

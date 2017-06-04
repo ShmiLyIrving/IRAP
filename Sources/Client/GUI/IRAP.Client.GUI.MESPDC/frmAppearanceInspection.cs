@@ -12,8 +12,8 @@ using DevExpress.XtraEditors;
 
 using IRAP.Global;
 using IRAP.Client.User;
-using IRAP.Entity.MES;
 using IRAP.Entities.MDM;
+using IRAP.Entities.MES;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MESPDC

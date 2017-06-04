@@ -1019,5 +1019,87 @@ namespace IRAP.BL.SSO
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 根据社区号获取系统登记的用户列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="userCode">需要检索的用户代码</param>
+        /// <param name="userBarcode">需要检索的用户替代代码</param>
+        /// <returns>List[UserDetailInfo]</returns>
+        public IRAPJsonResult sfn_GetList_UsersOfACommunity(
+            int communityID,
+            string userCode,
+            string userBarcode,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<UserDetailInfo> datas = new List<UserDetailInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..sfn_GetList_UsersOfACommunity，" +
+                        "参数：CommunityID={0}|UserCode={1}|UserCodeBarcode={2}",
+                        communityID,
+                        userCode,
+                        userBarcode),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAP..sfn_GetList_UsersOfACommunity(" +
+                            "@CommunityID) ";
+
+                        if (userCode != "")
+                            strSQL +=
+                                string.Format("WHERE UserCode='{0}'", userCode);
+                        else if (userBarcode != "")
+                            strSQL +=
+                                string.Format("WHERE UserCodeBarcode='{0}'", userBarcode);
+
+                        IList<UserDetailInfo> lstDatas =
+                            conn.CallTableFunc<UserDetailInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAP..sfn_GetList_UsersOfACommunity 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

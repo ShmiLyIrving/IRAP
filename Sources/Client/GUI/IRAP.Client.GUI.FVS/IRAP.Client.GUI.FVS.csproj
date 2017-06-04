@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmEmployeesAtWorking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmployeesAtWorking.Designer.cs">
+      <DependentUpon>frmEmployeesAtWorking.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKanbanPWOExec_30.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +68,18 @@
     </Compile>
     <Compile Include="frmMethodAndQualityStandardsWithProduct.Designer.cs">
       <DependentUpon>frmMethodAndQualityStandardsWithProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kanban\frmWIPWaitingMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmWIPWaitingMonitor.Designer.cs">
+      <DependentUpon>frmWIPWaitingMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kanban\frmMFGProgressMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmMFGProgressMonitor.Designer.cs">
+      <DependentUpon>frmMFGProgressMonitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Kanban\frmPWODeliveryMonitor.cs">
       <SubType>Form</SubType>
@@ -122,11 +140,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmEmployeesAtWorking.resx">
+      <DependentUpon>frmEmployeesAtWorking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKanbanPWOExec_30.resx">
       <DependentUpon>frmKanbanPWOExec_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMethodAndQualityStandardsWithProduct.resx">
       <DependentUpon>frmMethodAndQualityStandardsWithProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kanban\frmWIPWaitingMonitor.resx">
+      <DependentUpon>frmWIPWaitingMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kanban\frmMFGProgressMonitor.resx">
+      <DependentUpon>frmMFGProgressMonitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kanban\frmPWODeliveryMonitor.resx">
       <DependentUpon>frmPWODeliveryMonitor.cs</DependentUpon>

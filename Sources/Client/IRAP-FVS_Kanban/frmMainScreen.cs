@@ -32,8 +32,8 @@ namespace IRAP_FVS_Kanban
             {
                 if (screen.Detected && screen.Show)
                 {
-                    //frmMain frmDisplay = new frmMain(screen);
-                    //frmDisplay.Show();
+                    frmMain frmDisplay = new frmMain(screen);
+                    frmDisplay.Show();
                 }
             }
 

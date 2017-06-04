@@ -3637,5 +3637,227 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取工单物料配送监控看板
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t134ClickStream">产线点击流</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_Dashboard_WorkUnitProductionProgress(
+            int communityID,
+            string t134ClickStream,
+            long sysLogID,
+            ref List<Dashboard_WorkUnitProductionProgress> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+              string.Format(
+                  "{0}.{1}",
+                  className,
+                  MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("t134ClickStream", t134ClickStream);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_Dashboard_WorkUnitProductionProgress，输入参数：" +
+                            "CommunityID={0}|T134ClickStream={1}|SysLogID={2}",
+                            communityID, t134ClickStream, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Dashboards",
+                            "ufn_Dashboard_WorkUnitProductionProgress",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<Dashboard_WorkUnitProductionProgress>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t132ClickStream">产品族点击流</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_Dashboard_WIPWaiting(
+            int communityID,
+            string t132ClickStream,
+            long sysLogID,
+            ref List<Dashboard_WIPWaiting> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+              string.Format(
+                  "{0}.{1}",
+                  className,
+                  MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("t132ClickStream", t132ClickStream);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_Dashboard_WIPWaiting，输入参数：" +
+                            "CommunityID={0}|T132ClickStream={1}|SysLogID={2}",
+                            communityID, t132ClickStream, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.Dashboards",
+                            "ufn_Dashboard_WIPWaiting",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<Dashboard_WIPWaiting>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取当前签到的员工
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        public void ufn_GetInfo_AtWork(
+            int communityID,
+            ref List<EmployeeAtWork> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+              string.Format(
+                  "{0}.{1}",
+                  className,
+                  MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "执行函数 ufn_GetInfo_AtWork，输入参数：" +
+                            "CommunityID={0}",
+                            communityID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 执行存储过程或者函数
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.FVS.dll",
+                            "IRAP.BL.FVS.IRAPFVS",
+                            "ufn_GetInfo_AtWork",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<EmployeeAtWork>;
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

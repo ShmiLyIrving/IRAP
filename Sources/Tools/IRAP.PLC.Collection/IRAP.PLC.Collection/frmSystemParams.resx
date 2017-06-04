@@ -117,8 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;edtLastCheckPoint.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnSwitch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
@@ -130,18 +131,20 @@
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
   </data>
+  <data name="&gt;&gt;edtT216Code.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cboDeviceType.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 18</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;edtLastCheckPoint.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 305</value>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;chkWriteLog.Parent" xml:space="preserve">
     <value>$this</value>
@@ -152,23 +155,27 @@
   <data name="gpxESBParams.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;edtLastCheckPoint.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboDeviceType.Name" xml:space="preserve">
-    <value>cboDeviceType</value>
-  </data>
   <data name="&gt;&gt;edtBrokeURI.Parent" xml:space="preserve">
     <value>gpxESBParams</value>
   </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 73</value>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;edtQueueName.Name" xml:space="preserve">
+    <value>edtQueueName</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -176,8 +183,8 @@
   <data name="lblBrokeURI.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>采集起始时间：</value>
+  <data name="edtLastCheckPoint.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 109</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -191,33 +198,38 @@
   <data name="lblBrokeURI.Location" type="System.Drawing.Point, System.Drawing">
     <value>65, 20</value>
   </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>304, 73</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="edtLastCheckPoint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 21</value>
+  <data name="&gt;&gt;gpxESBParams.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;edtT216Code.Name" xml:space="preserve">
+    <value>edtT216Code</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="edtT216Code.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="btnSelectFile.Text" xml:space="preserve">
     <value>...</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
-  </data>
-  <data name="&gt;&gt;openFileDialog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -229,7 +241,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;edtDBFileName.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;btnSwitch.Name" xml:space="preserve">
     <value>btnSwitch</value>
@@ -249,11 +261,14 @@
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnOK.Text" xml:space="preserve">
-    <value>确定</value>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 25</value>
   </data>
   <data name="lblBrokeURI.Text" xml:space="preserve">
     <value>地址：</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -283,13 +298,13 @@
     <value>282, 109</value>
   </data>
   <data name="&gt;&gt;edtT133Code.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="chkWriteLog.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="&gt;&gt;edtDeltaTimeSpan.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="cboDeviceType.Properties.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>
@@ -315,8 +330,8 @@
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
-  <data name="edtT133Code.Location" type="System.Drawing.Point, System.Drawing">
-    <value>375, 18</value>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="gpxESBParams.Size" type="System.Drawing.Size, System.Drawing">
     <value>492, 77</value>
@@ -342,6 +357,9 @@
   <data name="&gt;&gt;btnSelectFile.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>429, 305</value>
+  </data>
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
@@ -352,7 +370,7 @@
     <value>DevExpress.XtraEditors.ComboBoxEdit, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="cboDeviceType.Properties.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -369,6 +387,12 @@
   <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="edtT216Code.Location" type="System.Drawing.Point, System.Drawing">
+    <value>375, 70</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>工序代码：</value>
+  </data>
   <data name="&gt;&gt;openFileDialog.Name" xml:space="preserve">
     <value>openFileDialog</value>
   </data>
@@ -381,8 +405,8 @@
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 25</value>
+  <data name="&gt;&gt;edtLastCheckPoint.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;edtBrokeURI.Name" xml:space="preserve">
     <value>edtBrokeURI</value>
@@ -402,20 +426,20 @@
   <data name="cboDeviceType.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;gpxESBParams.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>41, 20</value>
   </data>
-  <data name="&gt;&gt;edtQueueName.Name" xml:space="preserve">
-    <value>edtQueueName</value>
+  <data name="edtT216Code.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;edtBrokeURI.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
   </data>
   <data name="&gt;&gt;btnOK.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -429,14 +453,17 @@
   <data name="btnSelectFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>452, 44</value>
   </data>
-  <data name="lblBrokeURI.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="edtLastCheckPoint.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 21</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="&gt;&gt;openFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -444,14 +471,11 @@
   <data name="btnSelectFile.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="btnSwitch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
   <data name="cboDeviceType.Properties.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -460,7 +484,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnSelectFile.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;edtLastCheckPoint.Name" xml:space="preserve">
     <value>edtLastCheckPoint</value>
@@ -483,11 +507,14 @@
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;edtLastCheckPoint.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="edtUpgradeURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>374, 21</value>
+  </data>
+  <data name="&gt;&gt;edtT216Code.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="edtQueueName.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -502,13 +529,19 @@
     <value>CenterScreen</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="btnSwitch.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 23</value>
+  </data>
+  <data name="btnOK.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="chkWriteLog.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;gpxESBParams.Parent" xml:space="preserve">
     <value>$this</value>
@@ -528,8 +561,14 @@
   <data name="&gt;&gt;edtT133Code.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
+  <data name="label8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 95</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnSelectFile.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -541,14 +580,17 @@
   <data name="cboDeviceType.Properties.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v15.2">
     <value>Combo</value>
   </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>采集起始时间：</value>
+  </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
   </data>
-  <data name="openFileDialog.Filter" xml:space="preserve">
-    <value>Access 数据库文件|*.mdb</value>
+  <data name="btnOK.Text" xml:space="preserve">
+    <value>确定</value>
   </data>
   <data name="chkWriteLog.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 309</value>
@@ -589,14 +631,14 @@
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;btnSwitch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="edtQueueName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="edtT133Code.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -622,8 +664,8 @@
   <data name="&gt;&gt;edtT133Code.Name" xml:space="preserve">
     <value>edtT133Code</value>
   </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;edtDeltaTimeSpan.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -631,14 +673,14 @@
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cboDeviceType.Name" xml:space="preserve">
+    <value>cboDeviceType</value>
   </data>
   <data name="&gt;&gt;lblQueueName.Parent" xml:space="preserve">
     <value>gpxESBParams</value>
   </data>
-  <data name="btnOK.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -661,8 +703,8 @@
   <data name="&gt;&gt;lblQueueName.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;edtDBFileName.Name" xml:space="preserve">
-    <value>edtDBFileName</value>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;gpxESBParams.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -673,11 +715,14 @@
   <data name="edtBrokeURI.Size" type="System.Drawing.Size, System.Drawing">
     <value>374, 21</value>
   </data>
-  <data name="gpxESBParams.Text" xml:space="preserve">
-    <value>ESB 参数</value>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
   </data>
   <data name="&gt;&gt;edtDeltaTimeSpan.Name" xml:space="preserve">
     <value>edtDeltaTimeSpan</value>
+  </data>
+  <data name="&gt;&gt;edtDBFileName.Name" xml:space="preserve">
+    <value>edtDBFileName</value>
   </data>
   <data name="&gt;&gt;lblQueueName.Name" xml:space="preserve">
     <value>lblQueueName</value>
@@ -685,11 +730,11 @@
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>41, 21</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
+  <data name="edtQueueName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="edtDBFileName.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -700,29 +745,32 @@
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 152</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>304, 21</value>
-  </data>
-  <data name="edtLastCheckPoint.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 109</value>
-  </data>
-  <data name="&gt;&gt;cboDeviceType.ZOrder" xml:space="preserve">
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;cboDeviceType.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="edtT133Code.Location" type="System.Drawing.Point, System.Drawing">
+    <value>375, 18</value>
+  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>更新地址：</value>
   </data>
-  <data name="&gt;&gt;btnSwitch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
-  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btnSwitch.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 12</value>
@@ -754,8 +802,8 @@
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="&gt;&gt;btnSwitch.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>304, 21</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>516, 340</value>
@@ -763,26 +811,26 @@
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="chkWriteLog.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="lblBrokeURI.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;lblBrokeURI.Name" xml:space="preserve">
     <value>lblBrokeURI</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="edtT216Code.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 21</value>
   </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="openFileDialog.Filter" xml:space="preserve">
+    <value>Access 数据库文件|*.mdb</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>492, 51</value>
   </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="cboDeviceType.Properties.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
     <value>Horizontal</value>
@@ -800,7 +848,7 @@
     <value>3, 314</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
     <value>新宋体, 9pt, style=Bold</value>
@@ -823,6 +871,9 @@
   <data name="btnOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
+  <data name="gpxESBParams.Text" xml:space="preserve">
+    <value>ESB 参数</value>
+  </data>
   <data name="cboDeviceType.Properties.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -832,8 +883,14 @@
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>492, 143</value>
   </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 73</value>
+  </data>
   <data name="gpxESBParams.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;edtT216Code.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>groupBox2</value>

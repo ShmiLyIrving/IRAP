@@ -40,7 +40,7 @@ namespace IRAP.Client.GUI.MESPDC
         /// </summary>
         private DataTable dtPackageTypes = null;
         private PackageType objPackageType = null;
-        private List<PackageType> packageTypeList = null;
+        private List<PackageType> packageTypeList = new List<PackageType>();
         private int allBoxNum = 0;
         private int allNumCartonsInPallet = 0;
         private long transactNo = 0;
@@ -2022,7 +2022,7 @@ namespace IRAP.Client.GUI.MESPDC
         {
             if (lpPackage.ItemIndex != -1)
             {
-                if (packageTypeList != null)
+                if (packageTypeList.Count > lpPackage.ItemIndex)
                 {
                     objPackageType = packageTypeList[lpPackage.ItemIndex];
                     lblSmallPackageType.Text = string.Format("小包装： {0} 层 {1} 行 {2} 列",

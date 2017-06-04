@@ -10,7 +10,7 @@ using IRAP.Global;
 using IRAPORM;
 using IRAPShared;
 using IRAPShared.Json;
-using IRAP.Entity.MES;
+using IRAP.Entities.MES;
 
 namespace IRAP.BL.MES
 {

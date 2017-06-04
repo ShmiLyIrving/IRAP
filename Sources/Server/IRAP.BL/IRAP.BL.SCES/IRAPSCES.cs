@@ -69,7 +69,8 @@ namespace IRAP.BL.SCES
                         string strSQL =
                                 "SELECT * " +
                                 "FROM IRAPSCES..ufn_GetList_ProductionWorkOrdersToDeliverMaterial(" +
-                                "@CommunityID, @DstT173LeafID, @SysLogID)";
+                                "@CommunityID, @DstT173LeafID, @SysLogID) " +
+                                "ORDER BY ScheduledStartTime";
                         WriteLog.Instance.Write(strSQL, strProcedureName);
 
                         IList<ProductionWorkOrder> lstDatas =

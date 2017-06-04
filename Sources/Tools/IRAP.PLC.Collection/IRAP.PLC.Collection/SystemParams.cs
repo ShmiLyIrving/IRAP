@@ -86,6 +86,12 @@ namespace IRAP.PLC.Collection
             set { IniFile.WriteString("System", "DataFileName", value, attrFileName); }
         }
 
+        public string T216Code
+        {
+            get { return IniFile.ReadString("System", "T216Code", "", attrFileName); }
+            set { IniFile.WriteString("System", "T216Code", value, attrFileName); }
+        }
+
         /// <summary>
         /// 查询开始时间
         /// </summary>

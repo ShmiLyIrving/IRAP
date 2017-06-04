@@ -28,21 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             this.SuspendLayout();
             // 
-            // ribbon
+            // ribbonControl
             // 
-            this.ribbon.ApplicationIcon = null;
-            this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Name = "ribbon";
-            this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonControl.ExpandCollapseItem.Id = 0;
+            this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbonControl.ExpandCollapseItem});
+            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl.MaxItemId = 1;
+            this.ribbonControl.Name = "ribbonControl";
+            this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
-            this.ribbon.SelectedPage = this.ribbonPage1;
-            this.ribbon.Size = new System.Drawing.Size(442, 141);
+            this.ribbonControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
+            this.ribbonControl.Size = new System.Drawing.Size(995, 147);
+            this.ribbonControl.StatusBar = this.ribbonStatusBar;
+            this.ribbonControl.Visible = false;
             // 
             // ribbonPage1
             // 
@@ -58,26 +64,37 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 425);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 488);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(442, 24);
+            this.ribbonStatusBar.Ribbon = this.ribbonControl;
+            this.ribbonStatusBar.Size = new System.Drawing.Size(995, 27);
+            this.ribbonStatusBar.Visible = false;
             // 
             // frmMain
             // 
-            this.ClientSize = new System.Drawing.Size(442, 449);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(995, 515);
+            this.ControlBox = false;
             this.Controls.Add(this.ribbonStatusBar);
-            this.Controls.Add(this.ribbon);
-            this.Ribbon = this.ribbon;
+            this.Controls.Add(this.ribbonControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.IsMdiContainer = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmMain";
+            this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
-            this.Text = "frmMain";
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Shown += new System.EventHandler(this.frmMain_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
+        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;

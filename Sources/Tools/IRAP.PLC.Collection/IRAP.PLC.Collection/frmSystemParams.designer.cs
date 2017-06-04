@@ -42,6 +42,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.edtT216Code = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.edtLastCheckPoint = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
@@ -144,6 +146,8 @@
             // groupBox2
             // 
             resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Controls.Add(this.edtT216Code);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.edtLastCheckPoint);
             this.groupBox2.Controls.Add(this.label6);
@@ -158,6 +162,16 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // edtT216Code
+            // 
+            resources.ApplyResources(this.edtT216Code, "edtT216Code");
+            this.edtT216Code.Name = "edtT216Code";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
             // 
             // label7
             // 
@@ -307,5 +321,7 @@
         private System.Windows.Forms.DateTimePicker edtLastCheckPoint;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox edtT216Code;
+        private System.Windows.Forms.Label label8;
     }
 }

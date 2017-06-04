@@ -5,10 +5,14 @@ using System.Text;
 
 using IRAPShared;
 
-namespace IRAP.Entities.MES
+namespace IRAP.Entities.MES.Tables
 {
+
+    /// <summary>
+    /// 辅助事实表
+    /// </summary>
     [IRAPDB(TableName = "IRAPMES..AuxFact_PDC")]
-    public class TBL_AuxFact_PDC
+    public class AuxFact_PDC
     {
         [IRAPKey()]
         public long FactID { get; set; }
@@ -20,11 +24,15 @@ namespace IRAP.Entities.MES
         public string AltWIPCode { get; set; }
         public string SerialNumber { get; set; }
         public string LotNumber { get; set; }
-        public string OvenNumber { get; set; }
         public string ContainerNo { get; set; }
         public string FakePreventingCode { get; set; }
         public string CustomerAssignedID { get; set; }
         public string ElectronicProductCode { get; set; }
         public long QCStatus { get; set; }
+
+        public AuxFact_PDC Clone()
+        {
+            return MemberwiseClone() as AuxFact_PDC;
+        }
     }
 }

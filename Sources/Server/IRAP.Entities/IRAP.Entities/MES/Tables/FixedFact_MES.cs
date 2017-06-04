@@ -5,55 +5,12 @@ using System.Text;
 
 using IRAPShared;
 
-namespace IRAP.Entities.MES
+namespace IRAP.Entities.MES.Tables
 {
+    [Serializable]
     [IRAPDB(TableName = "IRAPMES..FixedFact_MES")]
-    public class TBL_FixedFact_MES
+    public class FixedFact_MES
     {
-        public TBL_FixedFact_MES()
-        {
-            FactID = 0;
-            PartitioningKey = 0;
-            TransactNo = 0;
-            IsFixed = 0;
-            OpID = 0;
-            OpType = 0;
-            BusinessDate = DateTime.Now;
-            Code01 = "";
-            Code02 = "";
-            Code03 = "";
-            Code04 = "";
-            Code05 = "";
-            Code06 = "";
-            Code07 = "";
-            Code08 = "";
-            Leaf01 = 0;
-            Leaf02 = 0;
-            Leaf03 = 0;
-            Leaf04 = 0;
-            Leaf05 = 0;
-            Leaf06 = 0;
-            Leaf07 = 0;
-            Leaf08 = 0;
-            AChecksum = 0;
-            CorrelationID = 0;
-            Metric01 = 0;
-            Metric02 = 0;
-            Metric03 = 0;
-            Metric04 = 0;
-            Metric05 = 0;
-            Metric06 = 0;
-            Metric07 = 0;
-            Metric08 = 0;
-            Metric09 = 0;
-            Metric10 = 0;
-            BChecksum = 0;
-            MeasurementID = 0;
-            WFInstanceID = "";
-            Remark = "";
-            LinkedFactID = 0;
-        }
-
         [IRAPKey]
         public long FactID { get; set; }
         [IRAPKey]
@@ -103,9 +60,9 @@ namespace IRAP.Entities.MES
         public string Remark { get; set; }
         public long LinkedFactID { get; set; }
 
-        public TBL_FixedFact_MES Clone()
+        public FixedFact_MES Clone()
         {
-            return MemberwiseClone() as TBL_FixedFact_MES;
+            return MemberwiseClone() as FixedFact_MES;
         }
     }
 }

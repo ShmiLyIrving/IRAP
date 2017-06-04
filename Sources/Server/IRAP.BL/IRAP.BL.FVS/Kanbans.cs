@@ -403,9 +403,13 @@ namespace IRAP.BL.FVS
             }
         }
 
+        /// <summary>
+        /// 根据指定的生产任务种类标识获取生产工单列表
+        /// </summary>
         /// <param name="communityID">社区标识</param>
-        /// <param name="t103LeafID">生产任务种类叶标识</param>
+        /// <param name="t103LeafID">生产任务种类标识</param>
         /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[PWOSurveillance]</returns>
         public IRAPJsonResult ufn_GetKanban_PWOSurveillance(
             int communityID,
             int t103LeafID,
@@ -444,7 +448,8 @@ namespace IRAP.BL.FVS
                     {
                         string strSQL = "SELECT * " +
                             "FROM IRAPFVS..ufn_GetKanban_PWOSurveillance(" +
-                            "@CommunityID, @T103LeafID, @SysLogID)";
+                            "@CommunityID, @T103LeafID, @SysLogID)"+
+                            "ORDER BY PWONo";
 
                         IList<PWOSurveillance> lstDatas =
                             conn.CallTableFunc<PWOSurveillance>(strSQL, paramList);
@@ -457,7 +462,10 @@ namespace IRAP.BL.FVS
                 catch (Exception error)
                 {
                     errCode = 99000;
-                    errText = string.Format("调用 IRAPFVS..ufn_GetKanban_PWOSurveillance 函数发生异常：{0}", error.Message);
+                    errText = 
+                        string.Format(
+                            "调用 IRAPFVS..ufn_GetKanban_PWOSurveillance 函数发生异常：{0}", 
+                            error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }
