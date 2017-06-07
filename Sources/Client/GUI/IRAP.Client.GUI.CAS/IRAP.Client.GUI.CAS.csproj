@@ -255,6 +255,8 @@
     <Compile Include="UserControls\ucFailureModes.Designer.cs">
       <DependentUpon>ucFailureModes.cs</DependentUpon>
     </Compile>
+    <Compile Include="WarningLight\WarningLight.cs" />
+    <Compile Include="WarningLight\ZLan6042.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.GUI.CAS.cd" />

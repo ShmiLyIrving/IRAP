@@ -532,7 +532,8 @@ namespace IRAP.Client.GUI.CAS
                     yellow = 1;
                 if ((int)picGreen.Tag == (int)Enums.LightStatus.On)
                     green = 1;
-                CH375.CH375Control.SetLightStatus(red, yellow, green);
+                //CH375.CH375Control.SetLightStatus(red, yellow, green);
+                WarningLight.ZLan6042.Instance.SetLightStatus(red, yellow, green);
             }
             catch (Exception error)
             {
@@ -563,7 +564,8 @@ namespace IRAP.Client.GUI.CAS
         private void frmAndonEventCall_30_FormClosed(object sender, FormClosedEventArgs e)
         {
             // 窗体关闭的时候，同时关闭三色告警灯
-            CH375.CH375Control.SetLightStatus(0, 0, 0);
+            //CH375.CH375Control.SetLightStatus(0, 0, 0);
+            WarningLight.ZLan6042.Instance.SetLightStatus(0, 0, 0);
         }
     }
 }
