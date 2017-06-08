@@ -31,10 +31,10 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.grdEmployees = new DevExpress.XtraGrid.GridControl();
             this.grdvEmployees = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.grdclmnUserCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnUserName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnQdTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -112,6 +112,33 @@
             this.grdvEmployees.OptionsView.ColumnAutoWidth = false;
             this.grdvEmployees.OptionsView.ShowGroupPanel = false;
             // 
+            // grdclmnUserCode
+            // 
+            this.grdclmnUserCode.Caption = "工号";
+            this.grdclmnUserCode.FieldName = "UserCode";
+            this.grdclmnUserCode.Name = "grdclmnUserCode";
+            this.grdclmnUserCode.Visible = true;
+            this.grdclmnUserCode.VisibleIndex = 0;
+            // 
+            // grdclmnUserName
+            // 
+            this.grdclmnUserName.Caption = "姓名";
+            this.grdclmnUserName.FieldName = "UserName";
+            this.grdclmnUserName.Name = "grdclmnUserName";
+            this.grdclmnUserName.Visible = true;
+            this.grdclmnUserName.VisibleIndex = 1;
+            // 
+            // grdclmnQdTime
+            // 
+            this.grdclmnQdTime.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnQdTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdclmnQdTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnQdTime.Caption = "签到时间";
+            this.grdclmnQdTime.FieldName = "QdTime";
+            this.grdclmnQdTime.Name = "grdclmnQdTime";
+            this.grdclmnQdTime.Visible = true;
+            this.grdclmnQdTime.VisibleIndex = 2;
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -123,30 +150,6 @@
             this.btnRefresh.TabIndex = 0;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // grdclmnUserCode
-            // 
-            this.grdclmnUserCode.Caption = "工号";
-            this.grdclmnUserCode.Name = "grdclmnUserCode";
-            this.grdclmnUserCode.Visible = true;
-            this.grdclmnUserCode.VisibleIndex = 0;
-            // 
-            // grdclmnUserName
-            // 
-            this.grdclmnUserName.Caption = "姓名";
-            this.grdclmnUserName.Name = "grdclmnUserName";
-            this.grdclmnUserName.Visible = true;
-            this.grdclmnUserName.VisibleIndex = 1;
-            // 
-            // grdclmnQdTime
-            // 
-            this.grdclmnQdTime.AppearanceCell.Options.UseTextOptions = true;
-            this.grdclmnQdTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdclmnQdTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.grdclmnQdTime.Caption = "签到时间";
-            this.grdclmnQdTime.Name = "grdclmnQdTime";
-            this.grdclmnQdTime.Visible = true;
-            this.grdclmnQdTime.VisibleIndex = 2;
             // 
             // frmEmployeesAtWorking
             // 
