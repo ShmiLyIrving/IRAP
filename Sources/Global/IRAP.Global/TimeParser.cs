@@ -72,5 +72,16 @@ namespace IRAP.Global
             DateTime sTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             return (long)(datetime - sTime).TotalSeconds;
         }
+
+        /// <summary>
+        /// Unix 时间转换成当地时间
+        /// </summary>
+        /// <param name="unixTime"></param>
+        /// <returns></returns>
+        public static DateTime UnixToLocalTime(long unixTime)
+        {
+            DateTime sTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return sTime.AddSeconds(unixTime);
+        }
     }
 }
