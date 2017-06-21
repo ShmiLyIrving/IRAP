@@ -147,7 +147,7 @@ namespace ESBtoxFile
                     XmlDocument readXml = new XmlDocument();
                     readXml.LoadXml(message);
 
-                    XmlNode node = readXml.SelectSingleNode("Softland/Head/CorrelationID");
+                    XmlNode node = readXml.SelectSingleNode("/Softland/Head/CorrelationID");
                     if (node == null)
                     {
                         OutputLog(
@@ -156,9 +156,9 @@ namespace ESBtoxFile
                             ToolTipIcon.Error);
                         return;
                     }
-                    string correlationID = node.Value;
+                    string correlationID = node.InnerText;
 
-                    node = readXml.SelectSingleNode("Softland/Head/UnixTime");
+                    node = readXml.SelectSingleNode("/Softland/Head/UnixTime");
                     if (node == null)
                     {
                         OutputLog(
@@ -167,40 +167,69 @@ namespace ESBtoxFile
                             ToolTipIcon.Error);
                         return;
                     }
-                    DateTime msgTime = TimeParser.UnixToLocalTime(Convert.ToInt64(node.Value));
-
-                    fileNameTemp.Replace("[ExCode]", SysParams.Instance.ExCode);
-                    fileNameTemp.Replace("[CorrelationID", correlationID);
-                    fileNameTemp.Replace("[DateTime]", msgTime.ToString("yyyyMMddHHmmss"));
+                    DateTime msgTime = TimeParser.UnixToLocalTime(Convert.ToInt64(node.InnerText));
+                   msgTime= msgTime.AddSeconds(8 * 60 * 60);
+                   fileNameTemp= fileNameTemp.Replace("[ExCode]", SysParams.Instance.ExCode);
+                   fileNameTemp= fileNameTemp.Replace("[CorrelationID]", correlationID);
+                   fileNameTemp= fileNameTemp.Replace("[DateTime]", msgTime.ToString("yyyyMMddHHmmss"));
                     string fileFullPathName =
                         string.Format(
-                            @"{0}\{1}.xml",
+                            @"{0}\{1}.xml.tmp",
                             SysParams.Instance.LocalFileSaveLocation,
                             fileNameTemp);
                     fileFullPathName.Replace(@"\\", @"\");
 
-                    XmlNodeList nodes = readXml.SelectNodes("Softland/Body");
+                    XmlNode nodeBody = readXml.SelectNodes("/Softland/Body")[0];
 
                     XmlDocument writeXml = new XmlDocument();
-                    writeXml.CreateXmlDeclaration("1.0", "utf-8", "yes");
-
+                    XmlDeclaration xmldec = writeXml.CreateXmlDeclaration("1.0", "utf-8", "yes");
+                    
                     XmlNode writeRootNode = null;
                     if (SysParams.Instance.XmlRootNodeName != "")
                         writeRootNode = writeXml.CreateElement("GLOBAL");
                     else
-                        writeRootNode = writeXml.CreateElement("Root");   
-                    foreach (XmlNode child in nodes)
-                    {
-                        writeRootNode.AppendChild(child);
-                    }
-                    writeXml.Save(fileFullPathName);
+                        writeRootNode = writeXml.CreateElement("Root");
 
-                    OutputLog(
+                    writeRootNode.InnerXml = nodeBody.InnerXml;
+                    //writeXml.InsertAfter(writeRootNode, xmldec);
+                    writeXml.AppendChild(xmldec);
+                    writeXml.AppendChild(writeRootNode);
+                    
+                    string fileName = fileFullPathName;
+                    string trueFileName = fileFullPathName.Substring(0, fileFullPathName.Length - 4);
+
+                    //writeXml.Save(fileName);
+                    var utf8WithBom = new System.Text.UTF8Encoding(false);  // 用true来指定包含bom
+                    StreamWriter swr = null;
+                    try
+                    {
+                        //更新数据库状态不需要再打了
+   
+                        swr = new StreamWriter(fileName, false, utf8WithBom);
+                        writeXml.Save(swr);
+                        OutputLog(
                         string.Format(
                             "[{0}] 生成完毕！",
-                            fileFullPathName),
+                            trueFileName),
                         strProcedureName,
                         ToolTipIcon.Info);
+                    }
+                    catch (Exception e)
+                    {
+                        
+                        OutputLog( "生成文件错误：" + e.Message,strProcedureName,ToolTipIcon.Error);
+                      
+                    }
+                    finally
+                    {
+                        if (swr != null)
+                        {
+                            swr.Close();
+                            swr.Dispose();
+                        }
+                    }
+                    //重命名文件
+                    File.Move(fileName, trueFileName);     
                 }
                 catch (Exception error)
                 {
