@@ -22,6 +22,7 @@ namespace ESBtoxFile
         private string esbUri = "";
         private string esbQueueName = "";
         private string esbExCode = "";
+        private string esbFilter = "";
 
         private IConnectionFactory factory = null;
         private IConnection connection = null;
@@ -45,12 +46,12 @@ namespace ESBtoxFile
 
         private Timer tmrReconnect = new Timer();
 
-        public DoActionFromESB(string uri, string queueName, string exCode)
+        public DoActionFromESB(string uri, string queueName, string exCode,string filter)
         {
             esbUri = uri;
             esbQueueName = queueName;
             esbExCode = exCode;
-
+            esbFilter = filter;
             tmrReconnect.Interval = 100;
             tmrReconnect.Tick += TmrReconnect_Tick;
         }
@@ -124,9 +125,7 @@ namespace ESBtoxFile
                 consumer =
                     session.CreateConsumer(
                         new ActiveMQQueue(esbQueueName),
-                        string.Format(
-                            "ExCode='{0}'",
-                            esbExCode));
+                        string.Format( "Filter='{0}' AND ExCode='{1}'",  esbFilter,esbExCode));
                 consumer.Listener += new MessageListener(consumer_Listener);
 
                 esbConnectStatus = 2;

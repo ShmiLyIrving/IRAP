@@ -60,7 +60,8 @@ namespace ESBtoxFile
                 new DoActionFromESB(
                     SysParams.Instance.ActiveMQ_URI,
                     SysParams.Instance.ActiveMQ_QueueName,
-                    SysParams.Instance.ExCode);
+                    SysParams.Instance.ExCode,
+                    SysParams.Instance.FilterString);
             consumer.OutputLog += OutputLog;
             consumer.Write2Queue += WriteToContextQueue;
 
@@ -114,6 +115,8 @@ namespace ESBtoxFile
 
         private void HideForm()
         {
+            //方便操作工不隐藏窗口
+            return;
             formStatus = FormWindowState.Minimized;
 
             if (WindowState == FormWindowState.Maximized)
@@ -253,6 +256,8 @@ namespace ESBtoxFile
         private void frmESBtoxFileMain_Load(object sender, EventArgs e)
         {
             defaultLookAndFeel.LookAndFeel.SkinName = "Blue";
+            //方便操作工自动开始采集 
+            btnStart_Click(sender, e);
         }
 
         private void frmESBtoxFileMain_Shown(object sender, EventArgs e)
@@ -318,7 +323,15 @@ namespace ESBtoxFile
                 {
                     return;
                 }
-
+                string _dataDir = SysParams.Instance.LocalFileSaveLocation;
+                string[] fileList = Directory.GetFiles(_dataDir, "*.xml" );
+                if (fileList.Length > 0)
+                {
+                    Thread.Sleep(500);               
+                    //目录下有文件就不继续生成文件了！
+                    return;
+                }
+               
                 string temp = wait4WriteToxFile[0];
                 lock (lockArea)
                 {
