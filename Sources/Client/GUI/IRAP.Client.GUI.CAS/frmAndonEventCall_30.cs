@@ -14,6 +14,7 @@ using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
 using IRAP.Global;
+using IRAP.Client.Global;
 using IRAP.Client.Global.WarningLight;
 using IRAP.Client.User;
 using IRAP.Entity.MDM;
@@ -533,8 +534,20 @@ namespace IRAP.Client.GUI.CAS
                     yellow = 1;
                 if ((int)picGreen.Tag == (int)Enums.LightStatus.On)
                     green = 1;
-                //CH375.CH375Control.SetLightStatus(red, yellow, green);
-                ZLan6042.Instance.SetLightStatus(red, yellow, green);
+
+                switch (IRAPConst.Instance.WarningLightCtrlBoxType)
+                {
+                    case "CH375":
+                        CH375.CH375Control.SetLightStatus(red, yellow, green);
+                        break;
+                    case "ZLAN6042":
+                        ZLan6042.Instance.SetLightStatus(
+                            IRAPConst.Instance.Zlan6042IPAddress, 
+                            red, 
+                            yellow, 
+                            green);
+                        break;
+                }
             }
             catch (Exception error)
             {
@@ -565,8 +578,19 @@ namespace IRAP.Client.GUI.CAS
         private void frmAndonEventCall_30_FormClosed(object sender, FormClosedEventArgs e)
         {
             // 窗体关闭的时候，同时关闭三色告警灯
-            //CH375.CH375Control.SetLightStatus(0, 0, 0);
-            ZLan6042.Instance.SetLightStatus(0, 0, 0);
+            switch (IRAPConst.Instance.WarningLightCtrlBoxType)
+            {
+                case "CH375":
+                    CH375.CH375Control.SetLightStatus(0, 0, 0);
+                    break;
+                case "ZLAN6042":
+                    ZLan6042.Instance.SetLightStatus(
+                        IRAPConst.Instance.Zlan6042IPAddress,
+                        0, 
+                        0, 
+                        0);
+                    break;
+            }
         }
     }
 }
