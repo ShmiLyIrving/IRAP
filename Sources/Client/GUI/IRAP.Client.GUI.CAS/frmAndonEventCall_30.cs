@@ -14,6 +14,7 @@ using DevExpress.XtraTab;
 using DevExpress.XtraEditors;
 
 using IRAP.Global;
+using IRAP.Client.Global.WarningLight;
 using IRAP.Client.User;
 using IRAP.Entity.MDM;
 using IRAP.Entity.SSO;
@@ -533,7 +534,7 @@ namespace IRAP.Client.GUI.CAS
                 if ((int)picGreen.Tag == (int)Enums.LightStatus.On)
                     green = 1;
                 //CH375.CH375Control.SetLightStatus(red, yellow, green);
-                WarningLight.ZLan6042.Instance.SetLightStatus(red, yellow, green);
+                ZLan6042.Instance.SetLightStatus(red, yellow, green);
             }
             catch (Exception error)
             {
@@ -565,7 +566,7 @@ namespace IRAP.Client.GUI.CAS
         {
             // 窗体关闭的时候，同时关闭三色告警灯
             //CH375.CH375Control.SetLightStatus(0, 0, 0);
-            WarningLight.ZLan6042.Instance.SetLightStatus(0, 0, 0);
+            ZLan6042.Instance.SetLightStatus(0, 0, 0);
         }
     }
 }

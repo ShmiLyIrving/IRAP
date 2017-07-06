@@ -9,9 +9,9 @@ using System.Threading;
 
 using IRAP.Global;
 
-namespace IRAP.Client.GUI.CAS.WarningLight
+namespace IRAP.Client.Global.WarningLight
 {
-    internal class ZLan6042 : WarningLight
+    public class ZLan6042 : WarningLight
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -82,6 +82,19 @@ namespace IRAP.Client.GUI.CAS.WarningLight
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
+            SetLeghtStatus("192.168.57.150", red, yellow, green);
+        }
+
+        public override void SetLeghtStatus(string ipAddress, int red, int yellow, int green)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            int port = 4196;
+
             if (clientSocket == null)
             {
                 clientSocket =
@@ -95,13 +108,17 @@ namespace IRAP.Client.GUI.CAS.WarningLight
             {
                 try
                 {
-                    IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("192.168.57.150"), 4196);
+                    IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(ipAddress), port);
                     clientSocket.Connect(ipep);
                 }
                 catch (SocketException ex)
                 {
                     WriteLog.Instance.Write(
-                        string.Format("无法连接告警灯控制盒，原因：[{0}]", ex.Message),
+                        string.Format(
+                            "无法连接告警灯控制盒[{0}:{1}]，原因：[{2}]", 
+                            ipAddress,
+                            port,
+                            ex.Message),
                         strProcedureName);
                     return;
                 }

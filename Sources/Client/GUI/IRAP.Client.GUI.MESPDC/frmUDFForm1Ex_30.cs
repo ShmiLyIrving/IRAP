@@ -503,7 +503,9 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     for (int i = 0; i < _edits.Count; i++)
                     {
-                        if (_edits[i].Text.Trim() == "")
+                        if (_edits[i].Text.Trim() == ""
+                            && _edits[i].Visible 
+                            && _edits[i].Enabled)
                         //    busUDFForm.SetStrParameterValue(_edits[i].Text.Trim(), i + 1);
                         //else
                         {

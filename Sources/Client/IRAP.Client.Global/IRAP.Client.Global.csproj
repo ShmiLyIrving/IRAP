@@ -59,6 +59,8 @@
     <Compile Include="IRAPConst.cs" />
     <Compile Include="Enums\KPIStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WarningLight\WarningLight.cs" />
+    <Compile Include="WarningLight\ZLan6042.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmCustomBase.resx">
