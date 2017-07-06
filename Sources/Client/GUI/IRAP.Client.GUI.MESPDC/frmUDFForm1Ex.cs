@@ -223,6 +223,7 @@ namespace IRAP.Client.GUI.MESPDC
         #region 自定义事件
         private void TextEditGotFocus(object sender, EventArgs e)
         {
+            #region 如果当前站点是 Pad 则自动打开操作系统自带的软键盘
             if (IRAPUser.Instance.HostName.Substring(0, 2) == "04")
             {
                 Process[] processes = Process.GetProcesses();
@@ -255,6 +256,7 @@ namespace IRAP.Client.GUI.MESPDC
                         3);
                 }
             }
+            #endregion
         }
 
         private void TextEditKeyDown(object sender, KeyEventArgs e)
@@ -583,7 +585,9 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     for (int i = 0; i < _edits.Count; i++)
                     {
-                        if (_edits[i].Text.Trim() == "")
+                        if (_edits[i].Text.Trim() == "" 
+                            && _edits[i].Visible 
+                            && _edits[i].Enabled)
                         //    busUDFForm.SetStrParameterValue(_edits[i].Text.Trim(), i + 1);
                         //else
                         {
