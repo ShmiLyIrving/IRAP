@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Configuration;
 
 namespace IRAP.Client.Global
 {
@@ -40,5 +38,58 @@ namespace IRAP.Client.Global
         /// UDP 通讯消息发送端口号
         /// </summary>
         public int MESSAGE_SEND_PORT { get { return 17002; } }
+
+        /// <summary>
+        /// 三色告警灯控制盒类型
+        /// </summary>
+        public string WarningLightCtrlBoxType
+        {
+            get { return GetString("ControlBoxType"); }
+            set { SaveParams("ControlBoxType", value); }
+        }
+
+        /// <summary>
+        /// ZLAN6042控制盒的 IP 地址
+        /// </summary>
+        public string Zlan6042IPAddress
+        {
+            get { return GetString("ZLan6042IPAddr"); }
+            set { SaveParams("ZLan6042IPAddr", value); }
+        }
+
+        private string GetString(string key)
+        {
+            string rlt = "";
+            if (ConfigurationManager.AppSettings[key] != null)
+            {
+                rlt = ConfigurationManager.AppSettings[key];
+            }
+            return rlt;
+        }
+
+        private bool GetBoolean(string key)
+        {
+            bool rlt = false;
+            if (ConfigurationManager.AppSettings[key] != null)
+            {
+                try { rlt = Convert.ToBoolean(ConfigurationManager.AppSettings[key]); }
+                catch { rlt = false; }
+            }
+            return rlt;
+        }
+
+        private void SaveParams(string key, string value)
+        {
+            Configuration config =
+                ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            if (config.AppSettings.Settings[key] == null)
+                config.AppSettings.Settings.Add(key, value);
+            else
+                config.AppSettings.Settings[key].Value = value;
+
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
     }
 }

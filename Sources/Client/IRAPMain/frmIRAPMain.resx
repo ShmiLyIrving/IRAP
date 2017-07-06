@@ -208,6 +208,9 @@
   <data name="barStaticItem1.Description" xml:space="preserve">
     <value>江苏芍园科技有限责任公司 版权所有</value>
   </data>
+  <data name="btnItemParams.Caption" xml:space="preserve">
+    <value>配置</value>
+  </data>
   <data name="ribbonControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -267,7 +270,7 @@
     <value>ucOptions</value>
   </data>
   <data name="&gt;&gt;ucOptions.Type" xml:space="preserve">
-    <value>IRAP.Client.SubSystem.ucOptions, IRAP.Client.SubSystem, Version=6.2.6294.20635, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.SubSystem.ucOptions, IRAP.Client.SubSystem, Version=6.2.6396.27262, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucOptions.Parent" xml:space="preserve">
     <value>$this</value>
@@ -384,6 +387,12 @@
   </data>
   <data name="&gt;&gt;barStaticItem1.Type" xml:space="preserve">
     <value>DevExpress.XtraBars.BarStaticItem, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;btnItemParams.Name" xml:space="preserve">
+    <value>btnItemParams</value>
+  </data>
+  <data name="&gt;&gt;btnItemParams.Type" xml:space="preserve">
+    <value>DevExpress.XtraBars.BarButtonItem, DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;defaultLookAndFeel.Name" xml:space="preserve">
     <value>defaultLookAndFeel</value>

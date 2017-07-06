@@ -862,5 +862,13 @@ namespace IRAP
                     @"{0}\IRAP.ini",
                     AppDomain.CurrentDomain.SetupInformation.ApplicationBase));
         }
+
+        private void btnItemParams_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            using (frmSysParams formSysParams = new frmSysParams())
+            {
+                formSysParams.ShowDialog();
+            }
+        }
     }
 }

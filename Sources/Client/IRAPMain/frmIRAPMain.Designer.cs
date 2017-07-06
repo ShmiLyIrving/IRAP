@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIRAPMain));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
@@ -35,12 +36,13 @@
             this.cmdAbout = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
             this.backstageViewItemSeparator1 = new DevExpress.XtraBars.Ribbon.BackstageViewItemSeparator();
             this.cmdQuitSubSystem = new DevExpress.XtraBars.Ribbon.BackstageViewButtonItem();
-            this.imageCollection = new DevExpress.Utils.ImageCollection();
+            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.skinBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.ucOptions = new IRAP.Client.SubSystem.ucOptions();
+            this.btnItemParams = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.ucOptions = new IRAP.Client.SubSystem.ucOptions();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             this.backstageViewControl1.SuspendLayout();
@@ -58,13 +60,15 @@
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
             this.skinBarItem,
-            this.barStaticItem1});
+            this.barStaticItem1,
+            this.btnItemParams});
             this.ribbonControl.LargeImages = this.imageCollection;
-            this.ribbonControl.MaxItemId = 3;
+            this.ribbonControl.MaxItemId = 4;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.StatusBar = this.ribbonStatusBar1;
             this.ribbonControl.Toolbar.ItemLinks.Add(this.skinBarItem);
+            this.ribbonControl.Toolbar.ItemLinks.Add(this.btnItemParams);
             // 
             // backstageViewControl1
             // 
@@ -132,6 +136,20 @@
             this.barStaticItem1.Name = "barStaticItem1";
             this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
+            // btnItemParams
+            // 
+            resources.ApplyResources(this.btnItemParams, "btnItemParams");
+            this.btnItemParams.Glyph = global::IRAP.Properties.Resources.Config_App;
+            this.btnItemParams.Id = 3;
+            this.btnItemParams.Name = "btnItemParams";
+            this.btnItemParams.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItemParams_ItemClick);
+            // 
+            // ribbonStatusBar1
+            // 
+            resources.ApplyResources(this.ribbonStatusBar1, "ribbonStatusBar1");
+            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
+            this.ribbonStatusBar1.Ribbon = this.ribbonControl;
+            // 
             // defaultLookAndFeel
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Blue";
@@ -140,12 +158,6 @@
             // 
             resources.ApplyResources(this.ucOptions, "ucOptions");
             this.ucOptions.Name = "ucOptions";
-            // 
-            // ribbonStatusBar1
-            // 
-            resources.ApplyResources(this.ribbonStatusBar1, "ribbonStatusBar1");
-            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
-            this.ribbonStatusBar1.Ribbon = this.ribbonControl;
             // 
             // frmIRAPMain
             // 
@@ -186,5 +198,6 @@
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private Client.SubSystem.ucOptions ucOptions;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
+        private DevExpress.XtraBars.BarButtonItem btnItemParams;
     }
 }

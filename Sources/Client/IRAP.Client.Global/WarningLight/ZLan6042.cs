@@ -82,10 +82,10 @@ namespace IRAP.Client.Global.WarningLight
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            SetLeghtStatus("192.168.57.150", red, yellow, green);
+            SetLightStatus("192.168.57.150", red, yellow, green);
         }
 
-        public override void SetLeghtStatus(string ipAddress, int red, int yellow, int green)
+        public override void SetLightStatus(string ipAddress, int red, int yellow, int green)
         {
             string strProcedureName =
                 string.Format(
