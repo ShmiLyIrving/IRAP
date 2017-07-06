@@ -116,10 +116,18 @@ namespace IRAP.Client.Global.GUI
                         strProcedureName);
                     if (errCode == 0 && functions.Count >= 1)
                     {
-                        nextFunction = functions[0].Clone();
-                        autoSwtich = true;
+                        if (functions[0].JumpToT3LeafID != 0)
+                        {
+                            nextFunction = functions[0].Clone();
+                            autoSwtich = true;
 
-                        SystemMenu.Visible = false;
+                            SystemMenu.Visible = false;
+                        }
+                        else
+                        {
+                            SystemMenu.Visible = true;
+                            autoSwtich = false;
+                        }
                     }
                     else
                     {
