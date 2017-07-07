@@ -116,7 +116,7 @@ namespace ESBtoxFile
         private void HideForm()
         {
             //方便操作工不隐藏窗口
-            return;
+            //return;
             formStatus = FormWindowState.Minimized;
 
             if (WindowState == FormWindowState.Maximized)
