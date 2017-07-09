@@ -419,7 +419,7 @@ namespace IRAP.BL.SCES
                         400));
                 WriteLog.Instance.Write(
                     string.Format("执行存储过程 IRAPSCES..usp_PokaYoke_PallPrint，参数：" +
-                        "CommunityID={0}|MaterialCode={1}|CustomerCode={2}"+
+                        "CommunityID={0}|MaterialCode={1}|CustomerCode={2}|"+
                         "ShipToParty={3}|QtyInStore={4}|DateCode={5}|SysLogID={6}",
                         communityID, materialCode, customerCode, shipToParty,
                         qtyInStore, dateCode, sysLogID),
@@ -466,6 +466,183 @@ namespace IRAP.BL.SCES
             {
                 errCode = 99000;
                 errText = string.Format("调用 IRAPSCES..usp_PokaYoke_PallPrint 时发生异常：{0}", error.Message);
+                return Json(new Hashtable());
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取生产工单发料的未结配送指令清单，包括：
+        /// ⒈ 已排产但尚未配送的
+        /// ⒉ 已配送但尚未接收的 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="dstT173LeafID">目标仓储地点叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult ufn_GetList_UnclosedDeliveryOrdersForPWO(
+            int communityID,
+            int dstT173LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<UnclosedDeliveryOrdersForPWO> datas = 
+                    new List<UnclosedDeliveryOrdersForPWO>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@DstT173LeafID", DbType.Int32, dstT173LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPSCES..ufn_GetList_UnclosedDeliveryOrdersForPWO，" +
+                        "参数：CommunityID={0}|DstT173LeafID={1}|SysLogID={2}",
+                        communityID,
+                        dstT173LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAPSCES..ufn_GetList_UnclosedDeliveryOrdersForPWO(" +
+                                "@CommunityID, @DstT173LeafID, @SysLogID)";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<UnclosedDeliveryOrdersForPWO> lstDatas =
+                            conn.CallTableFunc<UnclosedDeliveryOrdersForPWO>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPSCES..ufn_GetList_UnclosedDeliveryOrdersForPWO 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 生产工单配送流转卡打印后实际配送操作前撤销
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="af482PK">辅助事实分区键</param>
+        /// <param name="pwoIssuingFactID">工单签发事实编号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult usp_UndoPrintVoucher_PWOMaterialDelivery(
+            int communityID,
+            long af482PK,
+            long pwoIssuingFactID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@AF482PK", DbType.Int64, af482PK));
+                paramList.Add(new IRAPProcParameter("@PWOIssuingFactID", DbType.Int64, pwoIssuingFactID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrCode",
+                        DbType.Int32,
+                        ParameterDirection.Output,
+                        4));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrText",
+                        DbType.String,
+                        ParameterDirection.Output,
+                        400));
+                WriteLog.Instance.Write(
+                    string.Format("执行存储过程 IRAPSCES..usp_UndoPrintVoucher_PWOMaterialDelivery，参数：" +
+                        "CommunityID={0}|AF482PK={1}|PWOIssuingFactID={2}|" +
+                        "SysLogID={3}",
+                        communityID, af482PK, pwoIssuingFactID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error =
+                        conn.CallProc(
+                            "IRAPSCES..usp_UndoPrintVoucher_PWOMaterialDelivery",
+                            ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    Hashtable rtnParams = new Hashtable();
+                    if (errCode == 0)
+                    {
+                        foreach (IRAPProcParameter param in paramList)
+                        {
+                            if (param.Direction == ParameterDirection.InputOutput ||
+                                param.Direction == ParameterDirection.Output)
+                            {
+                                if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), 0);
+                                else
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
+                            }
+                        }
+                    }
+
+                    return Json(rtnParams);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText = string.Format("调用 IRAPSCES..usp_UndoPrintVoucher_PWOMaterialDelivery 时发生异常：{0}", error.Message);
                 return Json(new Hashtable());
             }
             finally
