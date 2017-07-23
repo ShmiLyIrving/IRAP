@@ -5551,13 +5551,248 @@ namespace IRAP.BL.MDM
                     errCode = 99000;
                     errText =
                         string.Format(
-                            "调用 IRAP.dbo.ufn_GetStdCycleTimeOfOperation 函数发生异常：{0}",
+                            "调用 IRAPMDM.dbo.ufn_GetStdCycleTimeOfOperation 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                     return Json(0);
                 }
                 #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据物料号（原材料/半成品/产成品）获取材质
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="materialCode">物料号（原材料/半成品/产成品）</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>string</returns>
+        public IRAPJsonResult ufn_GetMaterialTextureCodeFromERP_FourthShift(
+            int communityID,
+            string materialCode,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@MaterialCode", DbType.String, materialCode));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPDPA.dbo.ufn_GetMaterialTextureCodeFromERP_FourthShift，" +
+                        "参数：CommunityID={0}|MaterialCode={1}",
+                        communityID,
+                        materialCode),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string rlt =
+                            (string)conn.CallScalarFunc(
+                                "IRAPDPA.dbo.ufn_GetMaterialTextureCodeFromERP_FourthShift",
+                                paramList);
+                        errCode = 0;
+                        errText = "调用成功！";
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                        return Json(rlt);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPDPA.dbo.ufn_GetMaterialTextureCodeFromERP_FourthShift 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                    return Json(0);
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定产品叶标识的产品类别 T133
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List[BatchRingCategory]</returns>
+        public IRAPJsonResult ufn_GetList_BatchRingCategory(
+            int communityID,
+            int t102LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<BatchRingCategory> datas = new List<BatchRingCategory>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_BatchRingCategory，" +
+                        "参数：CommunityID={0}|T102LeafID={1}|SysLogID={2}",
+                        communityID, t102LeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_BatchRingCategory(" +
+                            "@CommunityID, @T102LeafID, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<BatchRingCategory> lstDatas =
+                            conn.CallTableFunc<BatchRingCategory>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetList_BatchRingCategory 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定工序、环别、炉次号的检验项目及检验记录值
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t131LeafID">环别叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="batchNumber">炉次号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List{ProductionProcessParam]</returns>
+        public IRAPJsonResult ufn_GetList_MethodItems(
+            int communityID,
+            int t131LeafID,
+            int t216LeafID,
+            string batchNumber,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<ProductionProcessParam> datas = 
+                    new List<ProductionProcessParam>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T131LeafID", DbType.Int32, t131LeafID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_MethodItems，" +
+                        "参数：CommunityID={0}|T131LeafID={1}|T216LeafID={2}|"+
+                        "BatchNumber={3}|SysLogID={4}",
+                        communityID, t131LeafID, t216LeafID, batchNumber, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_MethodItems(" +
+                            "@CommunityID, @T131LeafID, @T216LeafID, "+
+                            "@BatchNumber, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<ProductionProcessParam> lstDatas =
+                            conn.CallTableFunc<ProductionProcessParam>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetList_MethodItems 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
             }
             finally
             {

@@ -54,13 +54,17 @@
     <Compile Include="FVS\PeriodStopEvent.cs" />
     <Compile Include="FVS\PWOSurveillance.cs" />
     <Compile Include="IRAP\STB009.cs" />
+    <Compile Include="MDM\BatchRingCategory.cs" />
     <Compile Include="MDM\BWI_SKUIDInfo.cs" />
     <Compile Include="MDM\DefectRootCause.cs" />
     <Compile Include="MDM\FailureModeByWorkUnit.cs" />
     <Compile Include="MDM\MFGOperation.cs" />
+    <Compile Include="MDM\ProductionProcessParam.cs" />
     <Compile Include="MDM\ProductViaStation.cs" />
     <Compile Include="MDM\Shift.cs" />
     <Compile Include="MDM\WIPStation.cs" />
+    <Compile Include="MES\BatchByEquipment.cs" />
+    <Compile Include="MES\BatchProductInfo.cs" />
     <Compile Include="MES\FactPackaging.cs" />
     <Compile Include="MES\FailureModeOfPallet.cs" />
     <Compile Include="MES\FailuresOfNGProduct.cs" />

@@ -764,5 +764,269 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write("");
             }
         }
+
+        /// <summary>
+        /// 生产开始
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="rsFactXML">
+        /// 工单信息列表
+        /// [RSFact]
+        ///     [RF25
+        ///         Ordinal=""
+        ///         T102LeafID=""
+        ///         T216LeafID=""
+        ///         WIPCode=""
+        ///         LotNumber=""
+        ///         Texture=""
+        ///         PWONo=""
+        ///         BatchLot=""
+        ///         Qty=""
+        ///         Scale="" /]
+        /// [/RSFact]
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult usp_SaveFact_BatchProductionStart(
+            int communityID,
+            int t216LeafID,
+            int t107LeafID,
+            string rsFactXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@RSFactXML", DbType.String, rsFactXML));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, ParameterDirection.Output, 50));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 IRAPMES..usp_SaveFact_BatchProductionStart，" +
+                        "参数：CommunityID={0}|T216LeafID={1}|T107LeafID={2}|" +
+                        "RSFactXML={3}|SysLogID={4}",
+                        communityID, t216LeafID, t107LeafID, rsFactXML, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error =
+                        conn.CallProc("IRAPMES..usp_SaveFact_BatchProductionStart", ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+                    return Json(error);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText =
+                    string.Format(
+                        "调用 IRAPMES..usp_SaveFact_BatchProductionStart 过程发生异常：{0}",
+                        error.Message);
+                return Json(
+                    new IRAPError()
+                    {
+                        ErrCode = errCode,
+                        ErrText = errText,
+                    });
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定工序设备的当前状态
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="t133LeafID">设备叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>BatchProductInfo</returns>
+        public IRAPJsonResult ufn_GetInfo_BatchProduct(
+            int communityID,
+            int t107LeafID,
+            int t216LeafID,
+            int t133LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                BatchProductInfo data = new BatchProductInfo()
+                {
+                    BatchStartDate = DateTime.Now,
+                };
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@T133LeafID", DbType.Int32, t133LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES..ufn_GetInfo_BatchProduct，" +
+                        "参数：CommunityID={0}|T107LeafID={1}|T216LeafID={2}|"+
+                        "T133LeafID={3}|SysLogID={4}",
+                        communityID, t107LeafID, t216LeafID, t133LeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * FROM IRAPMES..ufn_GetInfo_BatchProduct(" +
+                            "@CommunityID, @T107LeafID, @T216LeafID, @T133LeafID, @SysLogID)";
+
+                        IList<BatchProductInfo> lstDatas =
+                            conn.CallTableFunc<BatchProductInfo>(strSQL, paramList);
+                        if (lstDatas.Count > 0)
+                        {
+                            data = lstDatas[0].Clone();
+                        }
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", lstDatas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetInfo_BatchProduct 函数发生异常：{0}", 
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(data);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定设备的待检炉次号
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t133LeafID">设备叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List[BatchByEquipment]</returns>
+        public IRAPJsonResult ufn_GetList_BatchByEquipment(
+            int communityID,
+            int t133LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<BatchByEquipment> datas =
+                    new List<BatchByEquipment>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T133LeafID", DbType.Int32, t133LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES..ufn_GetList_BatchByEquipment，" +
+                        "参数：CommunityID={0}|T133LeafID={1}|SysLogID={2}",
+                        communityID,
+                        t133LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetList_BatchByEquipment(" +
+                            "@CommunityID, @T133LeafID, @SysLogID)";
+
+                        IList<BatchByEquipment> lstDatas =
+                            conn.CallTableFunc<BatchByEquipment>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetList_BatchByEquipment 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

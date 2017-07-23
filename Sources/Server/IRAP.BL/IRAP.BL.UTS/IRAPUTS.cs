@@ -165,7 +165,7 @@ namespace IRAP.BL.UTS
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 IRAP..ssp_OLTP_UDFForm，输入参数：" +
-                        "CommunityID={0}|TransactNo={1}|FactID={2}|CtrlParameter1={3}" +
+                        "CommunityID={0}|TransactNo={1}|FactID={2}|CtrlParameter1={3}|" +
                         "CtrlParameter2={4}|CtrlParameter3={5}|SysLogID={6}|StrParameter1={7}|" +
                         "StrParameter2={8}|StrParameter3={9}|StrParameter4={10}|StrParameter5={11}|" +
                         "StrParameter6={12}|StrParameter7={13}|StrParameter8={14}",
@@ -191,6 +191,118 @@ namespace IRAP.BL.UTS
                 {
                     errCode = 99000;
                     errText = string.Format("调用 IRAP..ssp_OLTP_UDFForm 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(rlt);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 万能表单统一防错入口
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="ctrlParameter1">个性功能号</param>
+        /// <param name="ctrlParameter2">选项一标识</param>
+        /// <param name="ctrlParameter3">选项二标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="strParameter1">字串参数1</param>
+        /// <param name="strParameter2">字串参数2</param>
+        /// <param name="strParameter3">字串参数3</param>
+        /// <param name="strParameter4">字串参数4</param>
+        /// <param name="strParameter5">字串参数5</param>
+        /// <param name="strParameter6">字串参数6</param>
+        /// <param name="strParameter7">字串参数7</param>
+        /// <param name="strParameter8">字串参数8</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>OutputStr</returns>
+        public IRAPJsonResult ssp_PokaYoke_UDFForm(
+            int communityID,
+            int ctrlParameter1,
+            int ctrlParameter2,
+            int ctrlParameter3,
+            long sysLogID,
+            string strParameter1,
+            string strParameter2,
+            string strParameter3,
+            string strParameter4,
+            string strParameter5,
+            string strParameter6,
+            string strParameter7,
+            string strParameter8,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                Hashtable rlt = new Hashtable();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@CtrlParameter1", DbType.Int32, ctrlParameter1));
+                paramList.Add(new IRAPProcParameter("@CtrlParameter2", DbType.Int32, ctrlParameter2));
+                paramList.Add(new IRAPProcParameter("@CtrlParameter3", DbType.Int32, ctrlParameter3));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@OutputStr", DbType.String, ParameterDirection.Output, 2147483647));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                paramList.Add(new IRAPProcParameter("@StrParameter1", DbType.String, strParameter1));
+                paramList.Add(new IRAPProcParameter("@StrParameter2", DbType.String, strParameter2));
+                paramList.Add(new IRAPProcParameter("@StrParameter3", DbType.String, strParameter3));
+                paramList.Add(new IRAPProcParameter("@StrParameter4", DbType.String, strParameter4));
+                paramList.Add(new IRAPProcParameter("@StrParameter5", DbType.String, strParameter5));
+                paramList.Add(new IRAPProcParameter("@StrParameter6", DbType.String, strParameter6));
+                paramList.Add(new IRAPProcParameter("@StrParameter7", DbType.String, strParameter7));
+                paramList.Add(new IRAPProcParameter("@StrParameter8", DbType.String, strParameter8));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 IRAP..ssp_PokaYoke_UDFForm，输入参数：" +
+                        "CommunityID={0}|CtrlParameter1={1}|CtrlParameter2={2}|" +
+                        "CtrlParameter3={3}|SysLogID={4}|StrParameter1={5}|" +
+                        "StrParameter2={6}|StrParameter3={7}|StrParameter4={8}|" +
+                        "StrParameter5={9}|StrParameter6={10}|StrParameter7={11}|" +
+                        "StrParameter8={12}",
+                        communityID, ctrlParameter1, ctrlParameter2,
+                        ctrlParameter3, sysLogID, strParameter1, strParameter2,
+                        strParameter3, strParameter4, strParameter5, strParameter6, 
+                        strParameter7, strParameter8),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        IRAPError error = conn.CallProc("IRAP..ssp_PokaYoke_UDFForm", ref paramList);
+                        errCode = error.ErrCode;
+                        errText = error.ErrText;
+
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = 
+                        string.Format(
+                            "调用 IRAP..ssp_PokaYoke_UDFForm 函数发生异常：{0}", 
+                            error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }

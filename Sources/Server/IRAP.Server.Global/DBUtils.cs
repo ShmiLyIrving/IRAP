@@ -15,17 +15,26 @@ namespace IRAP.Server.Global
 
             foreach (IDataParameter param in paramList)
             {
-                if (param.Direction == ParameterDirection.InputOutput || param.Direction == ParameterDirection.Output)
+                if (param.Direction == ParameterDirection.InputOutput ||
+                    param.Direction == ParameterDirection.Output)
                 {
                     if (param.Value == DBNull.Value)
                     {
-                        if (param.GetType() == typeof(int) || param.GetType() == typeof(long))
+                        if (param.DbType == DbType.Int32 ||
+                            param.DbType == DbType.Int64 ||
+                            param.DbType == DbType.Int16)
                             rlt.Add(param.ParameterName.Replace("@", ""), 0);
-                        else if (param.GetType() == typeof(bool))
+                        else
+                        if (param.DbType == DbType.Boolean)
                             rlt.Add(param.ParameterName.Replace("@", ""), false);
-                        else if (param.GetType() == typeof(string))
+                        else
+                        if (param.DbType == DbType.String ||
+                            param.DbType == DbType.Xml)
                             rlt.Add(param.ParameterName.Replace("@", ""), "");
-                        else if (param.GetType() == typeof(DateTime))
+                        else
+                        if (param.DbType == DbType.Date ||
+                            param.DbType == DbType.DateTime ||
+                            param.DbType == DbType.DateTime2)
                             rlt.Add(param.ParameterName.Replace("@", ""), new DateTime(0));
                     }
                     else
