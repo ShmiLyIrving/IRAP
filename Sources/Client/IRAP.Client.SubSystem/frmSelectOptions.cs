@@ -213,7 +213,10 @@ namespace IRAP.Client.SubSystem
             CurrentOptions.Instance.OptionOne = (WIPStation)lstOptionOnes.SelectedItem;
             try
             {
-                CurrentOptions.Instance.OptionTwo = (ProductViaStation)lstOptionTwos.SelectedItem;
+                if (lstOptionTwos.SelectedItem == null)
+                    CurrentOptions.Instance.OptionTwo = new ProductViaStation();
+                else
+                    CurrentOptions.Instance.OptionTwo = (ProductViaStation)lstOptionTwos.SelectedItem;
             }
             catch (Exception error)
             {
@@ -229,8 +232,7 @@ namespace IRAP.Client.SubSystem
         private void frmSelectOptions_Paint(object sender, PaintEventArgs e)
         {
             btnSelect.Enabled =
-                (lstOptionOnes.SelectedItem != null) &&
-                (lstOptionTwos.SelectedItem != null);
+                (lstOptionOnes.SelectedItem != null);
         }
 
         private void lstWorkUnits_Click(object sender, EventArgs e)

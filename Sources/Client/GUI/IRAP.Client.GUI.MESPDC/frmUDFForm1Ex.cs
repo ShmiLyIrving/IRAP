@@ -150,7 +150,7 @@ namespace IRAP.Client.GUI.MESPDC
             rlt.ImeMode = ImeMode.Disable;
             rlt.Enabled = ctrlInfo.Enabled;
             rlt.Visible = ctrlInfo.Visible;
-            rlt.EnterMoveNextControl = false;
+            rlt.EnterMoveNextControl = true;
 
             rlt.Text = ctrlInfo.DefaultValueStr;
 
@@ -275,13 +275,13 @@ namespace IRAP.Client.GUI.MESPDC
                         int idxEdit = _edits.IndexOf(edit);
                         busUDFForm.SetStrParameterValue(edit.Text.Trim(), idxEdit + 1);
 
-                        if (idxEdit == _edits.Count - 1)
+                        if (IsNoEmptyInput())
                         {
                             mustAllInputButton.PerformClick();
                         }
                         else
                         {
-                            _edits[idxEdit + 1].Focus();
+                            SelectNextControl(edit, false, false, false, true);
                         }
                     }
                 }
@@ -312,6 +312,19 @@ namespace IRAP.Client.GUI.MESPDC
         #endregion
 
         #region 自定义函数
+        private bool IsNoEmptyInput()
+        {
+            foreach (TextEdit edit in _edits)
+            {
+                if (edit.Visible && edit.Enabled && edit.Text == "")
+                {
+                    return false;
+
+                }
+            }
+            return true;
+        }
+
         private void CreateDynamicControls()
         {
             string strProcedureName =
@@ -568,9 +581,11 @@ namespace IRAP.Client.GUI.MESPDC
         {
             if (sender is SimpleButton)
             {
-                string strProcedureName = string.Format("{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
+                string strProcedureName = 
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
 
                 WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                 (sender as SimpleButton).Enabled = false;

@@ -119,7 +119,7 @@ namespace IRAP.Client.GUI.MESPDC
 
             rlt.Enabled = ctrlInfo.Enabled;
             rlt.Visible = ctrlInfo.Visible;
-            rlt.EnterMoveNextControl = false;
+            rlt.EnterMoveNextControl = true;
 
             rlt.Text = ctrlInfo.DefaultValueStr;
 
@@ -193,13 +193,13 @@ namespace IRAP.Client.GUI.MESPDC
                         int idxEdit = _edits.IndexOf(edit);
                         busUDFForm.SetStrParameterValue(edit.Text.Trim(), idxEdit + 1);
 
-                        if (idxEdit == _edits.Count - 1)
+                        if (IsNoEmptyInput())
                         {
                             mustAllInputButton.PerformClick();
                         }
                         else
                         {
-                            _edits[idxEdit + 1].Focus();
+                            SelectNextControl(edit, false, false, false, true);
                         }
                     }
                 }
@@ -230,6 +230,19 @@ namespace IRAP.Client.GUI.MESPDC
         #endregion
 
         #region 自定义函数
+        private bool IsNoEmptyInput()
+        {
+            foreach (TextEdit edit in _edits)
+            {
+                if (edit.Visible && edit.Enabled && edit.Text == "")
+                {
+                    return false;
+                    
+                }
+            }
+            return true;
+        }
+
         private void CreateDynamicControls()
         {
             string strProcedureName =
@@ -772,17 +785,19 @@ namespace IRAP.Client.GUI.MESPDC
                 Application.DoEvents();
             }
 
-            if (firstFocusedObject != null)
-            {
-                foreach (TextEdit edit in _edits)
-                {
-                    if (edit.Enabled && edit.Visible)
-                    {
-                        edit.Focus();
-                        return;
-                    }
-                }
-            }
+            SelectNextControl(this, false, false, false, true);
+
+            //if (firstFocusedObject != null)
+            //{
+            //    foreach (TextEdit edit in _edits)
+            //    {
+            //        if (edit.Enabled && edit.Visible)
+            //        {
+            //            edit.Focus();
+            //            return;
+            //        }
+            //    }
+            //}
         }
         #endregion
 

@@ -75,7 +75,13 @@ namespace IRAP.Client.SubSystem
         /// </summary>
         public WIPStation OptionOne
         {
-            get { return optionOne; }
+            get
+            {
+                if (optionOne != null)
+                    return optionOne;
+                else
+                    return new WIPStation();
+            }
             set
             {
                 if (value != null)
@@ -110,7 +116,13 @@ namespace IRAP.Client.SubSystem
         /// </summary>
         public ProductViaStation OptionTwo
         {
-            get { return optionTwo; }
+            get
+            {
+                if (optionTwo != null)
+                    return optionTwo;
+                else
+                    return new ProductViaStation();
+            }
             set
             {
                 if (optionTwo == null ||
@@ -121,15 +133,27 @@ namespace IRAP.Client.SubSystem
                         if (optionTwos[i].T102LeafID == value.T102LeafID)
                         {
                             optionTwo = optionTwos[i];
-                            IndexOfOptionTwo = i;
+                            indexOfOptionTwo = i;
                             return;
                         }
                     }
 
-                    if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
-                        throw new Exception("The product/process to switch is not in the list of the current position/process");
+                    if (value.T102LeafID != 0)
+                    {
+                        if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+                            throw new Exception("The product/process to switch is not in the list of the current position/process");
+                        else
+                            throw new Exception("要切换产品/流程的不在当前工位/工序允许的列表中");
+                    }
                     else
-                        throw new Exception("要切换产品/流程的不在当前工位/工序允许的列表中");
+                    {
+                        optionTwo = value;
+                        indexOfOptionTwo = -1;
+                    }
+                }
+                else
+                {
+                    optionTwo = new ProductViaStation();
                 }
             }
         }

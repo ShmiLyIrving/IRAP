@@ -66,6 +66,18 @@
     <Compile Include="frmDeliveryMngmt_30.designer.cs">
       <DependentUpon>frmDeliveryMngmt_30.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFactTrack_RMDelivery_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFactTrack_RMDelivery_30.Designer.cs">
+      <DependentUpon>frmFactTrack_RMDelivery_30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLST_UnclosedRMDelivery_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLST_UnclosedRMDelivery_30.Designer.cs">
+      <DependentUpon>frmLST_UnclosedRMDelivery_30.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMaterialsToDeliver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +120,10 @@
       <Project>{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}</Project>
       <Name>IRAP.Client.Global</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.SubSystem\IRAP.Client.SubSystem.csproj">
+      <Project>{6CB866DC-64BF-4B72-A5D8-81767B077AA2}</Project>
+      <Name>IRAP.Client.SubSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IRAP.Client.User\IRAP.Client.User.csproj">
       <Project>{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}</Project>
       <Name>IRAP.Client.User</Name>
@@ -120,6 +136,12 @@
   <ItemGroup>
     <EmbeddedResource Include="frmDeliveryMngmt_30.resx">
       <DependentUpon>frmDeliveryMngmt_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFactTrack_RMDelivery_30.resx">
+      <DependentUpon>frmFactTrack_RMDelivery_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLST_UnclosedRMDelivery_30.resx">
+      <DependentUpon>frmLST_UnclosedRMDelivery_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMaterialsToDeliver.resx">
       <DependentUpon>frmMaterialsToDeliver.cs</DependentUpon>

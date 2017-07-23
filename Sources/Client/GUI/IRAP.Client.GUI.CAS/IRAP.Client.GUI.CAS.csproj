@@ -147,6 +147,12 @@
     <Compile Include="frmGetHisAndonEvents.designer.cs">
       <DependentUpon>frmGetHisAndonEvents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kanban\frmKanbanPS_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kanban\frmKanbanPS_30.Designer.cs">
+      <DependentUpon>frmKanbanPS_30.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kanban\frmPWOTracking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGetHisAndonEvents.resx">
       <DependentUpon>frmGetHisAndonEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kanban\frmKanbanPS_30.resx">
+      <DependentUpon>frmKanbanPS_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kanban\frmPWOTracking.resx">
       <DependentUpon>frmPWOTracking.cs</DependentUpon>

@@ -110,7 +110,11 @@ namespace IRAP.Client.GUI.MESPDC
         protected void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string buffer = serialPort.ReadLine();
-            buffer = string.Format("{0}|{1}", portInfo.CommPort, buffer);
+            buffer = 
+                string.Format(
+                    "{0}|{1}", 
+                    portInfo.CommPort, 
+                    buffer.Replace((char)13, (char)0).Replace((char)10, (char)0));
 
             barCodes.Invoke(new EventHandler(delegate { barCodes.Items.Add(buffer); }));
         }

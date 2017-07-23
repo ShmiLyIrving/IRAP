@@ -75,6 +75,12 @@
     <Compile Include="Actions\SelectChoice1.cs" />
     <Compile Include="Actions\UDFActions.cs" />
     <Compile Include="Actions\Upload.cs" />
+    <Compile Include="Dialogs\frmPWOInProductionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmPWOInProductionEditor.Designer.cs">
+      <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmRepairItemEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,8 @@
     <Compile Include="Dialogs\frmRSFactListTestData.Designer.cs">
       <DependentUpon>frmRSFactListTestData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\EntityMethodStarndardParams.cs" />
+    <Compile Include="Entities\EntityPWO.cs" />
     <Compile Include="frmAppearanceInspection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +154,12 @@
     </Compile>
     <Compile Include="frmProductPackage.Designer.cs">
       <DependentUpon>frmProductPackage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQualityInspecting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQualityInspecting.Designer.cs">
+      <DependentUpon>frmQualityInspecting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTestStandards_30.cs">
       <SubType>Form</SubType>
@@ -261,6 +275,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor.resx">
+      <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmRepairItemEditor.resx">
       <DependentUpon>frmRepairItemEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductPackage.resx">
       <DependentUpon>frmProductPackage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQualityInspecting.resx">
+      <DependentUpon>frmQualityInspecting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTestStandards_30.resx">
       <DependentUpon>frmTestStandards_30.cs</DependentUpon>

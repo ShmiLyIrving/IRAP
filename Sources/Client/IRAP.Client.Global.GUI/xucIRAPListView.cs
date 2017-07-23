@@ -44,7 +44,7 @@ namespace IRAP.Client.Global.GUI
             // 根据最大行数，清除多余日志行
             if (tlLogs.Nodes.Count > maxLineNumber)
             {
-                for (int i = tlLogs.Nodes.Count - 1; i > 1000; i--)
+                for (int i = tlLogs.Nodes.Count - 1; i >= maxLineNumber; i--)
                     tlLogs.Nodes.Remove(tlLogs.Nodes[i]);
             }
 
@@ -56,6 +56,7 @@ namespace IRAP.Client.Global.GUI
                     errText
                 },
                 null);
+            tlLogs.SetNodeIndex(newNode, 0);
 
             tlLogs.BestFitColumns();
             tlLogs.FocusedNode = newNode;

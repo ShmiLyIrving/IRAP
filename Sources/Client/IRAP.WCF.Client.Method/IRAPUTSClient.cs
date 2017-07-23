@@ -369,7 +369,7 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("strParameter8", strParameter8);
                 WriteLog.Instance.Write(
                     string.Format(
-                        "执行存储过程 ssp_GetSequenceNo，输入参数：" +
+                        "执行存储过程 ssp_OLTP_UDFForm，输入参数：" +
                         "CommunityID={0}|TransactNo={1}|FactID={2}|CtrlParameter1={3}|" +
                         "CtrlParameter2={4}|CtrlParameter3={5}|SysLogID={6}|" +
                         "StrParameter1={7}|StrParameter2={8}|StrParameter3={9}|" +
@@ -419,6 +419,138 @@ namespace IRAP.WCF.Client.Method
                         {
                             errCode = -1002;
                             errText = "应用服务 ssp_OLTP_UDFForm 返回的不是 Hashtable！";
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                        }
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 万能表单统一防错入口
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="ctrlParameter1">个性功能号</param>
+        /// <param name="ctrlParameter2">选项一标识</param>
+        /// <param name="ctrlParameter3">选项二标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="strParameter1">字串参数1</param>
+        /// <param name="strParameter2">字串参数2</param>
+        /// <param name="strParameter3">字串参数3</param>
+        /// <param name="strParameter4">字串参数4</param>
+        /// <param name="strParameter5">字串参数5</param>
+        /// <param name="strParameter6">字串参数6</param>
+        /// <param name="strParameter7">字串参数7</param>
+        /// <param name="strParameter8">字串参数8</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void ssp_PokaYoke_UDFForm(
+            int communityID,
+            int ctrlParameter1,
+            int ctrlParameter2,
+            int ctrlParameter3,
+            long sysLogID,
+            string strParameter1,
+            string strParameter2,
+            string strParameter3,
+            string strParameter4,
+            string strParameter5,
+            string strParameter6,
+            string strParameter7,
+            string strParameter8,
+            ref string outputStr,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            outputStr = "";
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("ctrlParameter1", ctrlParameter1);
+                hashParams.Add("ctrlParameter2", ctrlParameter2);
+                hashParams.Add("ctrlParameter3", ctrlParameter3);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("strParameter1", strParameter1);
+                hashParams.Add("strParameter2", strParameter2);
+                hashParams.Add("strParameter3", strParameter3);
+                hashParams.Add("strParameter4", strParameter4);
+                hashParams.Add("strParameter5", strParameter5);
+                hashParams.Add("strParameter6", strParameter6);
+                hashParams.Add("strParameter7", strParameter7);
+                hashParams.Add("strParameter8", strParameter8);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 ssp_PokaYoke_UDFForm，输入参数：" +
+                        "CommunityID={0}|CtrlParameter1={1}|" +
+                        "CtrlParameter2={2}|CtrlParameter3={3}|SysLogID={4}|" +
+                        "StrParameter1={5}|StrParameter2={6}|StrParameter3={7}|" +
+                        "StrParameter4={8}|StrParameter5={9}|StrParameter6={10}|" +
+                        "StrParameter7={11}|StrParameter8={12}",
+                        communityID, ctrlParameter1, ctrlParameter2,
+                        ctrlParameter3, sysLogID, strParameter1, strParameter2,
+                        strParameter3, strParameter4, strParameter5, strParameter6,
+                        strParameter7, strParameter8),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.UTS.dll",
+                        "IRAP.BL.UTS.IRAPUTS",
+                        "ssp_PokaYoke_UDFForm",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    if (errCode == 0)
+                    {
+                        if (rlt is Hashtable)
+                        {
+                            Hashtable rltHash = (Hashtable)rlt;
+                            try
+                            {
+                                HashtableTools.Instance.GetValue(rltHash, "OutputStr", out outputStr);
+                            }
+                            catch (Exception error)
+                            {
+                                errCode = -1003;
+                                errText = error.Message;
+                                WriteLog.Instance.Write(errText, strProcedureName);
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            errCode = -1002;
+                            errText = "应用服务 ssp_PokaYoke_UDFForm 返回的不是 Hashtable！";
                             WriteLog.Instance.Write(errText, strProcedureName);
                         }
                     }

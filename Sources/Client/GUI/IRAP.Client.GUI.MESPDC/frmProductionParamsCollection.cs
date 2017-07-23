@@ -72,23 +72,6 @@ namespace IRAP.Client.GUI.MESPDC
         {
             GetStations();
 
-#if DEBUG
-            stations.Add(
-                new WIPStation()
-                {
-                    T107Code = "123456",
-                    T107Name = "热定型设备 1",
-                    T134LeafID = 5357576,
-                });
-            stations.Add(
-                new WIPStation()
-                {
-                    T107Code = "123457",
-                    T107Name = "热定型设备 2",
-                    T134LeafID = 5357576,
-                });
-#endif
-
             foreach (WIPStation station in stations)
             {
                 XtraTabPage page = new XtraTabPage();

@@ -406,7 +406,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 usp_PokaYoke_PallPrint，输入参数：" +
-                        "CommunityID={0}|MaterialCode={1}|CustomerCode={2}" +
+                        "CommunityID={0}|MaterialCode={1}|CustomerCode={2}|" +
                         "ShipToParty={3}|QtyInStore={4}|DateCode={5}|SysLogID={6}",
                         communityID, materialCode, customerCode, shipToParty,
                         qtyInStore, dateCode, sysLogID),
@@ -420,6 +420,154 @@ namespace IRAP.WCF.Client.Method
                         "IRAP.BL.SCES.dll",
                         "IRAP.BL.SCES.IRAPSCES",
                         "usp_PokaYoke_PallPrint",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取生产工单发料的未结配送指令清单，包括：
+        /// ⒈ 已排产但尚未配送的
+        /// ⒉ 已配送但尚未接收的 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="dstT173LeafID">目标仓储地点叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_UnclosedDeliveryOrdersForPWO(
+            int communityID,
+            int dstT173LeafID,
+            long sysLogID,
+            ref List<UnclosedDeliveryOrdersForPWO> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("dstT173LeafID", dstT173LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_UnclosedDeliveryOrdersForPWO 函数， " +
+                        "参数：CommunityID={0}|DstT173LeafID={1}|SysLogID={2}",
+                        communityID,
+                        dstT173LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.SCES.dll",
+                            "IRAP.BL.SCES.IRAPSCES",
+                            "ufn_GetList_UnclosedDeliveryOrdersForPWO",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<UnclosedDeliveryOrdersForPWO>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 生产工单配送流转卡打印后实际配送操作前撤销
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="af482PK">辅助事实分区键</param>
+        /// <param name="pwoIssuingFactID">工单签发事实编号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_UndoPrintVoucher_PWOMaterialDelivery(
+            int communityID,
+            long af482PK,
+            long pwoIssuingFactID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("af482PK", af482PK);
+                hashParams.Add("pwoIssuingFactID", pwoIssuingFactID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_UndoPrintVoucher_PWOMaterialDelivery，输入参数：" +
+                        "CommunityID={0}|AF482PK={1}|PWOIssuingFactID={2}|" +
+                        "SysLogID={3}",
+                        communityID, af482PK, pwoIssuingFactID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.SCES.dll",
+                        "IRAP.BL.SCES.IRAPSCES",
+                        "usp_UndoPrintVoucher_PWOMaterialDelivery",
                         hashParams,
                         out errCode,
                         out errText);

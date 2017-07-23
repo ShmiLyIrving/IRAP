@@ -19,7 +19,7 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.CAS
 {
-    public partial class frmKanbanPS : IRAP.Client.Global.GUI.frmCustomKanbanBase
+    public partial class frmKanbanPS_30 : IRAP.Client.Global.GUI.frmCustomKanbanBase
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -38,7 +38,7 @@ namespace IRAP.Client.GUI.CAS
         /// </summary>
         private List<AndonProductionLineStatus> pdtLinesToShow = new List<AndonProductionLineStatus>();
 
-        public frmKanbanPS()
+        public frmKanbanPS_30()
         {
             InitializeComponent();
 
@@ -284,7 +284,7 @@ namespace IRAP.Client.GUI.CAS
                 string errText = "";
 
                 WriteLog.Instance.Write(
-                    "调用 ufn_GetKanban_ProductionSurveillance 函数，获取产线 Andon 状态信息", 
+                    "调用 ufn_GetKanban_ProductionSurveillance 函数，获取产线 Andon 状态信息",
                     strProcedureName);
                 IRAPFVSClient.Instance.ufn_GetKanban_ProductionSurveillance(
                     IRAPUser.Instance.CommunityID,
@@ -296,7 +296,7 @@ namespace IRAP.Client.GUI.CAS
                     out errText);
                 WriteLog.Instance.Write(
                     string.Format(
-                        "({0}){1}", errCode, errText), 
+                        "({0}){1}", errCode, errText),
                     strProcedureName);
 
                 if (errCode != 0)

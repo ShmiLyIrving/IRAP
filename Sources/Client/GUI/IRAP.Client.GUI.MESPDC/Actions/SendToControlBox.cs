@@ -36,6 +36,12 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                 controlBoxType = actionParams.Attributes["ControlBoxType"].Value.ToUpper();
             }
 
+            WriteLog.Instance.Write(
+                string.Format(
+                    "ControlBoxType={0}",
+                    controlBoxType),
+                strProcedureName);
+
             if (controlBoxType == "")
                 return;
 
@@ -51,7 +57,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                             (ICustomCtrlBox)Assembly.Load(
                                 "IRAP.Client.GUI.MESPDC").CreateInstance(
                                 string.Format(
-                                    "IRAP.Client.GUI.MESPDC.Actions.{0}",
+                                    "IRAP.Client.GUI.MESPDC.Actions.CtrlBox_{0}",
                                     controlBoxType));
                         if (controlBox != null)
                         {
@@ -100,7 +106,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         }
     }
 
-    public class SendToControlBoxFacory : CustomActionFactory, IUDFActionFactory
+    public class SendToControlBoxFactory : CustomActionFactory, IUDFActionFactory
     {
         public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction)
         {
@@ -116,18 +122,37 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     internal class CtrlBox_ZLAN6042 : ICustomCtrlBox
     {
+        private string className =
+            MethodBase.GetCurrentMethod().DeclaringType.FullName;
+
         private string strIPAddress = "";
 
         public void Init(XmlNode node)
         {
-            if (node.Attributes["IPAddress"]!= null)
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            if (node.Attributes["IPAddress"] != null)
             {
                 strIPAddress = node.Attributes["IPAddress"].Value;
             }
+
+            WriteLog.Instance.Write(
+                string.Format("IPAddress={0}", strIPAddress),
+                strProcedureName);
         }
 
         public void Send(List<int> relaies)
         {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
             int red = 0;
             int yellow = 0;
             int green = 0;
@@ -139,6 +164,11 @@ namespace IRAP.Client.GUI.MESPDC.Actions
             if (relaies.Count >= 3)
                 green = relaies[2];
 
+            WriteLog.Instance.Write(
+                string.Format(
+                    "设置控制盒继电器触点状态：Red={0}|Yellow={1}|Green={2}",
+                    red, yellow, green),
+                strProcedureName);
             ZLan6042.Instance.SetLightStatus(strIPAddress, red, yellow, green);
         }
     }

@@ -95,6 +95,9 @@ namespace IRAP.Client.Global.WarningLight
 
             int port = 4196;
 
+            WriteLog.Instance.Write(
+                string.Format("建立 [{0}:{1}] 的 Socket 连接", ipAddress, port),
+                strProcedureName);
             if (clientSocket == null)
             {
                 clientSocket =
@@ -134,6 +137,8 @@ namespace IRAP.Client.Global.WarningLight
 
                 if (red != redStatus)
                 {
+                    WriteLog.Instance.Write("发送控制红灯的继电器触点状态", strProcedureName);
+
                     redStatus = red;
 
                     data[9] = 0x10;
@@ -145,6 +150,8 @@ namespace IRAP.Client.Global.WarningLight
 
                 if (yellow != yellowStatus)
                 {
+                    WriteLog.Instance.Write("发送控制黄灯的继电器触点状态", strProcedureName);
+
                     yellowStatus = yellow;
 
                     data[9] = 0x11;
@@ -156,6 +163,8 @@ namespace IRAP.Client.Global.WarningLight
 
                 if (green != greenStatus)
                 {
+                    WriteLog.Instance.Write("发送控制绿灯的继电器触点状态", strProcedureName);
+
                     greenStatus = green;
 
                     data[9] = 0x12;

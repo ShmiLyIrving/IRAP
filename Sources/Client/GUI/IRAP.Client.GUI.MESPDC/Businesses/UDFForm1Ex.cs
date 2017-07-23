@@ -155,6 +155,60 @@ namespace IRAP.Client.GUI.MESPDC
                 long intTransactNo = 0;
                 long intFactID = 0;
 
+                #region 统一防错校验
+                try
+                {
+                    if (ctrlParameter2 >= 0)
+                    {
+                        IRAPUTSClient.Instance.ssp_PokaYoke_UDFForm(
+                            IRAPUser.Instance.CommunityID,
+                            ctrlParameter1,
+                            ctrlParameter2,
+                            ctrlParameter3,
+                            IRAPUser.Instance.SysLogID,
+                            strParameter1,
+                            strParameter2,
+                            strParameter3,
+                            strParameter4,
+                            strParameter5,
+                            strParameter6,
+                            strParameter7,
+                            strParameter8,
+                            ref outputStr,
+                            out errorCode,
+                            out errorMessage);
+                    }
+                    else
+                    {
+                        IRAPUTSClient.Instance.ssp_PokaYoke_UDFForm(
+                            IRAPUser.Instance.CommunityID,
+                            ctrlParameter1,
+                            processLeaf,
+                            workUnitLeaf,
+                            IRAPUser.Instance.SysLogID,
+                            strParameter1,
+                            strParameter2,
+                            strParameter3,
+                            strParameter4,
+                            strParameter5,
+                            strParameter6,
+                            strParameter7,
+                            strParameter8,
+                            ref outputStr,
+                            out errorCode,
+                            out errorMessage);
+                    }
+                }
+                catch (Exception err)
+                {
+                    outputStr = "";
+                    WriteLog.Instance.Write(err.Message, strProcedureName);
+                    throw err;
+                }
+                if (errorCode != 0)
+                    return;
+                #endregion
+
                 #region 申请交易号和事实编号
                 try
                 {
@@ -258,6 +312,60 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 long intTransactNo = 0;
                 long intFactID = 0;
+
+                #region 统一防错校验
+                try
+                {
+                    if (ctrlParameter2 >= 0)
+                    {
+                        IRAPUTSClient.Instance.ssp_PokaYoke_UDFForm(
+                            IRAPUser.Instance.CommunityID,
+                            ctrlParameter1,
+                            ctrlParameter2,
+                            ctrlParameter3,
+                            IRAPUser.Instance.SysLogID,
+                            strParameter1,
+                            strParameter2,
+                            strParameter3,
+                            strParameter4,
+                            strParameter5,
+                            strParameter6,
+                            strParameter7,
+                            strParameter8,
+                            ref outputStr,
+                            out errorCode,
+                            out errorMessage);
+                    }
+                    else
+                    {
+                        IRAPUTSClient.Instance.ssp_PokaYoke_UDFForm(
+                            IRAPUser.Instance.CommunityID,
+                            ctrlParameter1,
+                            processLeaf,
+                            workUnitLeaf,
+                            IRAPUser.Instance.SysLogID,
+                            strParameter1,
+                            strParameter2,
+                            strParameter3,
+                            strParameter4,
+                            strParameter5,
+                            strParameter6,
+                            strParameter7,
+                            strParameter8,
+                            ref outputStr,
+                            out errorCode,
+                            out errorMessage);
+                    }
+                }
+                catch (Exception err)
+                {
+                    outputStr = "";
+                    WriteLog.Instance.Write(err.Message, strProcedureName);
+                    throw err;
+                }
+                if (errorCode != 0)
+                    return;
+                #endregion
 
                 #region 保存
                 try

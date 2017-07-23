@@ -151,10 +151,14 @@ namespace IRAP.Client.SubSystem
             cboOptionsOne.SelectedIndex = 0;
 
             cboOptionsTwo.Properties.Items.Clear();
-            foreach (ProductViaStation product in CurrentOptions.Instance.OptionTwos)
-                cboOptionsTwo.Properties.Items.Add(product);
-            if (CurrentOptions.Instance.OptionTwo.T102LeafID != 0)
-                cboOptionsTwo.SelectedIndex = CurrentOptions.Instance.IndexOfOptionTwo;
+            cboOptionsTwo.Properties.Items.Add(CurrentOptions.Instance.OptionTwo);
+            cboOptionsTwo.SelectedIndex = 0;
+            //foreach (ProductViaStation product in CurrentOptions.Instance.OptionTwos)
+            //    cboOptionsTwo.Properties.Items.Add(product);
+            //if (CurrentOptions.Instance.OptionTwo.T102LeafID != 0)
+            //    cboOptionsTwo.SelectedIndex = CurrentOptions.Instance.IndexOfOptionTwo;
+            //else
+            //    cboOptionsTwo.SelectedIndex = -1;
 
             if (OptionChanged != null)
                 OptionChanged(this, new EventArgs());
