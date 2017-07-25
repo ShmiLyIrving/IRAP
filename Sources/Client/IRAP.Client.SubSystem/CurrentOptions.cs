@@ -103,8 +103,23 @@ namespace IRAP.Client.SubSystem
 
                         if (OptionTwos.Count > 0)
                         {
+                            foreach (ProductViaStation prdt in optionTwos)
+                            {
+                                if (prdt.T102LeafID == optionTwo.T102LeafID)
+                                {
+                                    optionTwo = prdt;
+                                    indexOfOptionTwo = optionTwos.IndexOf(prdt);
+                                    return;
+                                }
+                            }
+
                             indexOfOptionTwo = 0;
                             optionTwo = optionTwos[0];
+                        }
+                        else
+                        {
+                            indexOfOptionTwo = -1;
+                            OptionTwo = new ProductViaStation();
                         }
                     }
                 }
@@ -151,7 +166,8 @@ namespace IRAP.Client.SubSystem
                         indexOfOptionTwo = -1;
                     }
                 }
-                else
+                
+                if (optionTwo == null)
                 {
                     optionTwo = new ProductViaStation();
                 }

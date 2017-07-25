@@ -110,6 +110,9 @@ namespace IRAP.Client.SubSystem
                         foreach (ProductViaStation product in CurrentOptions.Instance.OptionTwos)
                             cboOptionsTwo.Properties.Items.Add(product);
                         cboOptionsTwo.SelectedIndex = CurrentOptions.Instance.IndexOfOptionTwo;
+                        if (cboOptionsTwo.SelectedItem != null)
+                            CurrentOptions.Instance.OptionTwo =
+                                (ProductViaStation)cboOptionsTwo.SelectedItem;
                     }
                     catch (Exception error)
                     {
@@ -134,9 +137,11 @@ namespace IRAP.Client.SubSystem
             {
                 if (product.T102LeafID == t102LeafID)
                 {
-                    CurrentOptions.Instance.OptionTwo = product;
+                    CurrentOptions.Instance.OptionTwo = product.Clone();
 
-                    cboOptionsTwo.SelectedIndex = CurrentOptions.Instance.IndexOfOptionTwo;
+                    cboOptionsTwo.Properties.Items.Clear();
+                    cboOptionsTwo.Properties.Items.Add(CurrentOptions.Instance.OptionTwo);
+                    cboOptionsTwo.SelectedIndex = 0;
 
                     if (OptionChanged != null)
                         OptionChanged(this, new EventArgs());

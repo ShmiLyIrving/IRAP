@@ -83,6 +83,7 @@ namespace IRAP.Client.GUI.MESPDC
                                     PortName = port.CommPort,
                                     WorkUnitCode = port.WorkUnitCode,
                                     WorkUnitName = port.WorkUnitName,
+                                    WorkUnitLeafID = port.WorkUnitLeaf,
                                 });
                         }
                     }
@@ -227,7 +228,7 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     if (view.PortName == splitString[0])
                     {
-                        view.BarCode = splitString[1];
+                        view.BarCode = splitString[1].TrimEnd('\0');
                         grdvSerialPortScanners.BestFitColumns();
 
                         if (Options.SelectStation == null ||
@@ -249,7 +250,7 @@ namespace IRAP.Client.GUI.MESPDC
                             busUDFForm.SetStrParameterValue(view.BarCode, 1);
                             busUDFForm.SaveOLTPUDFFormData(
                                 CurrentOptions.Instance.OptionTwo.T102LeafID,
-                                CurrentOptions.Instance.OptionOne.T107LeafID);
+                                view.WorkUnitLeafID);
                             WriteLog.Instance.Write(
                                 string.Format(
                                     "{0}.{1}",

@@ -99,7 +99,7 @@
             this.lstOptionOnes.Appearance.Options.UseFont = true;
             this.lstOptionOnes.HorizontalScrollbar = true;
             this.lstOptionOnes.Name = "lstOptionOnes";
-            this.lstOptionOnes.SelectedIndexChanged += new System.EventHandler(this.lstOptionTwos_SelectedIndexChanged);
+            this.lstOptionOnes.SelectedIndexChanged += new System.EventHandler(this.lstOptionOnes_SelectedIndexChanged);
             // 
             // lstOptionTwos
             // 

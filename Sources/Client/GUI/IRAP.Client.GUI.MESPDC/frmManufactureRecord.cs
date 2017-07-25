@@ -368,6 +368,7 @@ namespace IRAP.Client.GUI.MESPDC
         public string PortName { get; set; }
         public string WorkUnitCode { get; set; }
         public string WorkUnitName { get; set; }
+        public int WorkUnitLeafID { get; set; }
         public string BarCode { get; set; }
     }
 }

@@ -79,6 +79,25 @@ namespace IRAP.Client.SubSystem
             }
         }
 
+        private int IndexOfOptionOne(WIPStation station, List<WIPStation> stations)
+        {
+            if (station == null || stations == null)
+            {
+                return -1;
+            }
+
+            int rlt = -1;
+            for (int i = 0; i < stations.Count; i++)
+            {
+                if (stations[i].T107LeafID == station.T107LeafID)
+                {
+                    rlt = i;
+                    break;
+                }
+            }
+            return rlt;
+        }
+
         private void frmSelectOptions_Load(object sender, EventArgs e)
         {
             string strProcedureName =
@@ -94,11 +113,14 @@ namespace IRAP.Client.SubSystem
                         IRAPUser.Instance.CommunityID,
                         IRAPUser.Instance.SysLogID);
 
+                WIPStation station = CurrentOptions.Instance.OptionOne;
+
                 lstOptionOnes.DataSource = AvailableWIPStations.Instance.Stations;
                 lstOptionOnes.DisplayMember = "WIPStationName";
                 lstOptionOnes.SelectedIndex =
-                    AvailableWIPStations.Instance.IndexOf(
-                        CurrentOptions.Instance.OptionOne);
+                    IndexOfOptionOne(
+                        station,
+                        AvailableWIPStations.Instance.Stations);
 
                 ShowCaption(CurrentOptions.Instance.OptionOne);
             }
@@ -116,21 +138,23 @@ namespace IRAP.Client.SubSystem
             }
         }
 
-        private void lstOptionTwos_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstOptionOnes_SelectedIndexChanged(object sender, EventArgs e)
         {
             lstOptionTwos.Items.Clear();
             if (lstOptionOnes.SelectedItem != null)
             {
                 WIPStation station = lstOptionOnes.SelectedItem as WIPStation;
+
                 try
                 {
                     ShowCaption(station);
 
-                    AvailableProducts.Instance.GetProducts(
-                        IRAPUser.Instance.CommunityID,
-                        IRAPUser.Instance.SysLogID,
-                        station.T107LeafID,
-                        station.IsWorkFlowNode);
+                    CurrentOptions.Instance.OptionOne = station.Clone();
+                    //AvailableProducts.Instance.GetProducts(
+                    //    IRAPUser.Instance.CommunityID,
+                    //    IRAPUser.Instance.SysLogID,
+                    //    station.T107LeafID,
+                    //    station.IsWorkFlowNode);
 
                     lstOptionTwos.DataSource = AvailableProducts.Instance.Products;
                     lstOptionTwos.DisplayMember = "ProductViaStationName";
@@ -210,7 +234,6 @@ namespace IRAP.Client.SubSystem
             #endregion
 #endif
 
-            CurrentOptions.Instance.OptionOne = (WIPStation)lstOptionOnes.SelectedItem;
             try
             {
                 if (lstOptionTwos.SelectedItem == null)
@@ -254,7 +277,7 @@ namespace IRAP.Client.SubSystem
             lstOptionTwos.SelectedIndex =
                 AvailableProducts.Instance.IndexOf(
                     CurrentOptions.Instance.OptionTwo);
-            lstOptionTwos_SelectedIndexChanged(null, null);
+            lstOptionOnes_SelectedIndexChanged(null, null);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
