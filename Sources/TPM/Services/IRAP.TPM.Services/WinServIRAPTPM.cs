@@ -176,6 +176,7 @@ namespace IRAP.TPM.Services
                     string cancelUserCode = node.Attributes["CancelUserCode"].Value;
                     string cancelUserName = node.Attributes["CancelUserName"].Value;
                     string cancelReason = node.Attributes["CancelReason"].Value;
+                    int andonScore = Convert.ToInt32(node.Attributes["AndonScore"].Value);
 
                     if (responseTime.Trim() == "")
                         responseTime = "1900-01-01 00:00:00.000";
@@ -248,12 +249,13 @@ namespace IRAP.TPM.Services
                                     case 2:
                                         sqlCmd.CommandText =
                                             "UPDATE utb_RWO_Info " +
-                                            "SET EventStatus=2, CloseTime=@CloseTime " +
+                                            "SET EventStatus=2, CloseTime=@CloseTime, AndonScore=@AndonScore " +
                                             "WHERE FactID=@FactID AND TransactNo=@TransactNo";
 
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.BigInt, 8, ParameterDirection.Input, "@FactID", factID));
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.BigInt, 8, ParameterDirection.Input, "@TransactNo", transactNo));
                                         sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.VarChar, 24, ParameterDirection.Input, "@CloseTime", closeTime));
+                                        sqlCmd.Parameters.Add(CreateParam(sqlCmd, SqlDbType.Int, 4, ParameterDirection.Input, "@AndonScore", andonScore));
 
                                         break;
                                     case 3:
