@@ -619,7 +619,8 @@ namespace IRAP.Client.GUI.MESPDC
                     {
                         busUDFForm.SaveOLTPUDFFormData(
                             CurrentOptions.Instance.OptionTwo.T102LeafID,
-                            CurrentOptions.Instance.OptionOne.T107LeafID);
+                            CurrentOptions.Instance.OptionOne.T107LeafID,
+                            new ExtendEventHandler(RefreshForm));
                         WriteLog.Instance.Write(
                             string.Format(
                                 "{0}.{1}",

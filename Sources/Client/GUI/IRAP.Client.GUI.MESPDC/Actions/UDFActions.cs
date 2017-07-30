@@ -51,7 +51,13 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
                         try
                         {
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "执行类[{0}]中的动作",
+                                    action.GetType().Name),
+                                strProcedureName);
                             action.DoAction();
+                            WriteLog.Instance.Write("执行完成", strProcedureName);
                         }
                         catch (Exception error)
                         {

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Reflection;
 
 using DevExpress.XtraEditors;
+using DevExpress.XtraVerticalGrid.Rows;
 
 using IRAP.Global;
 using IRAP.Client.User;
@@ -26,6 +27,10 @@ namespace IRAP.Client.GUI.MESPDC
         private UserDetailInfo currentOperator = null;
         private List<WIPStation> stations = new List<WIPStation>();
         private List<BatchByEquipment> batchs = new List<BatchByEquipment>();
+        private List<BatchPWOInfo> pwos = new List<BatchPWOInfo>();
+        private List<InspectionItem> inspectionItems = new List<InspectionItem>();
+
+        private DataTable dtInspection = new DataTable();
 
         public frmQualityInspecting()
         {
@@ -75,10 +80,16 @@ namespace IRAP.Client.GUI.MESPDC
         {
             batchs.Clear();
             grdvBatchNos.UpdateCurrentRow();
+
+            pwos.Clear();
+            grdvPWOs.UpdateCurrentRow();
         }
 
         private void RefreshCtrlInForm()
         {
+            grdBatchNos.RefreshDataSource();
+            grdPWOs.RefreshDataSource();
+
             if (currentOperator == null)
             {
                 cboWorkUnit.Enabled = false;
@@ -133,6 +144,7 @@ namespace IRAP.Client.GUI.MESPDC
                 IRAPMESClient.Instance.ufn_GetList_BatchByEquipment(
                     IRAPUser.Instance.CommunityID,
                     station.T133LeafID,
+                    "IQ",
                     IRAPUser.Instance.SysLogID,
                     ref batchs,
                     out errCode,
@@ -213,6 +225,93 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
+        /// <summary>
+        /// 根据生产容器批次号获取工单信息列表
+        /// </summary>
+        /// <param name="batchNumber">生产容器批次号</param>
+        /// <returns></returns>
+        private List<BatchPWOInfo> GetPWOWithBatchNo(string batchNumber)
+        {
+            List<BatchPWOInfo> rlt = new List<BatchPWOInfo>();
+
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPMESClient.Instance.ufn_GetList_BatchPWONo(
+                    IRAPUser.Instance.CommunityID,
+                    batchNumber,
+                    IRAPUser.Instance.SysLogID,
+                    ref rlt,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception error)
+            {
+                string errMsg =
+                    string.Format(
+                        "获取工单信息列表时发生错误：[{0}]",
+                        error.Message);
+                WriteLog.Instance.Write(errMsg, strProcedureName);
+
+                XtraMessageBox.Show(
+                    errMsg,
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+
+            return rlt;
+        }
+
+        /// <summary>
+        /// 生成质量检验值临时表
+        /// </summary>
+        /// <param name="items"></param>
+        private void InitInspectionItemsGrid(List<InspectionItem> items)
+        {
+            dtInspection.Clear();
+            dtInspection.Columns.Clear();
+
+            vgrdInspectParams.Rows.Clear();
+
+            foreach (InspectionItem item in items)
+            {
+                string colName = string.Format("Column{0}", item.Ordinal);
+                dtInspection.Columns.Add(colName, typeof(long));
+
+                EditorRow row = new EditorRow();
+                row.Properties.Caption = item.T20Name;
+                row.Properties.FieldName = colName;
+                vgrdInspectParams.Rows.Add(row);
+            }
+
+            vgrdInspectParams.DataSource = dtInspection;
+            vgrdInspectParams.BestFit();
+        }
+
         private void frmQualityInspecting_Load(object sender, EventArgs e)
         {
             GetStations();
@@ -222,6 +321,7 @@ namespace IRAP.Client.GUI.MESPDC
             }
 
             grdBatchNos.DataSource = batchs;
+            grdPWOs.DataSource = pwos;
         }
 
         private void edtOperatorCode_KeyDown(object sender, KeyEventArgs e)
@@ -254,10 +354,6 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
-        private void edtOperatorCode_Validating(object sender, CancelEventArgs e)
-        {
-        }
-
         private void cboWorkUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearAll();
@@ -267,10 +363,68 @@ namespace IRAP.Client.GUI.MESPDC
                 WIPStation station = cboWorkUnit.SelectedItem as WIPStation;
                 GetBatchsFromEquipment(station);
 
-
+                grdBatchNos.DataSource = batchs;
+                grdvBatchNos.UpdateCurrentRow();
+                grdvBatchNos.BestFitColumns();
             }
 
             RefreshCtrlInForm();
+        }
+
+        private void grdvBatchNos_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
+        {
+            grdPWOs.DataSource = null;
+
+            int idx = grdvBatchNos.GetFocusedDataSourceRowIndex();
+            if (idx >= 0 && idx < batchs.Count)
+            {
+                BatchByEquipment batch = batchs[idx];
+                pwos = GetPWOWithBatchNo(batch.BatchNumber);
+                grdPWOs.DataSource = pwos;
+            }
+            else
+            {
+                pwos.Clear();
+                grdPWOs.DataSource = null;
+            }
+
+            grdPWOs.RefreshDataSource();
+            grdvPWOs.BestFitColumns();
+        }
+
+        private void grdvPWOs_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
+        {
+            int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
+            if (idx >=0 && idx < pwos.Count)
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPMDMClient.Instance.ufn_GetList_InspectionItems(
+                    IRAPUser.Instance.CommunityID,
+                    pwos[idx].T102LeafID,
+                    ((WIPStation)cboWorkUnit.SelectedItem).T216LeafID,
+                    pwos[idx].PWONo,
+                    pwos[idx].BatchNumber,
+                    IRAPUser.Instance.SysLogID,
+                    ref inspectionItems,
+                    out errCode,
+                    out errText);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                inspectionItems.Clear();
+            }
+
+            InitInspectionItemsGrid(inspectionItems);
         }
     }
 }

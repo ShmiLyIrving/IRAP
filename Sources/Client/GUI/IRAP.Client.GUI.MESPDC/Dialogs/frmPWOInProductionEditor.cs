@@ -14,6 +14,7 @@ using IRAP.Client.Global.Enums;
 using IRAP.Client.GUI.MESPDC.Entities;
 using IRAP.Client.User;
 using IRAP.Entity.MES;
+using IRAP.Entities.MES;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MESPDC.Dialogs
@@ -28,8 +29,8 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
         private int t134LeafID = 0;
         private int t216LeafID = 0;
         private int t131LeafID = 0;
-        private List<EntityPWO> datas = null;
-        private EntityPWO data = null;
+        private List<EntityBatchPWO> datas = null;
+        private EntityBatchPWO data = null;
 
         public frmPWOInProductionEditor()
         {
@@ -41,8 +42,8 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             int t134LeafID,
             int t216LeafID,
             int t131LeafID,
-            List<EntityPWO> pwos, 
-            ref EntityPWO pwo) :
+            List<EntityBatchPWO> pwos, 
+            ref EntityBatchPWO pwo) :
             this()
         {
             editStatus = status;
@@ -63,10 +64,10 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                     Text = "修改";
 
                     edtPWONo.Text = data.PWONo;
-                    edtProductNo.Text = data.ProductNo;
-                    edtProductName.Text = data.ProductName;
-                    edtBatchNo.Text = data.BatchNo;
-                    edtTextureCode.Text = data.TextureCode;
+                    edtProductNo.Text = data.T102Code;
+                    edtProductName.Text = data.T102Name;
+                    edtBatchNo.Text = data.LotNumber;
+                    edtTextureCode.Text = data.Texture;
                     edtQuantity.Value = Convert.ToDecimal(data.Quantity);
 
                     edtPWONo.Enabled = false;
@@ -174,7 +175,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             }
         }
 
-        private string GeneratePokaYokeXML(List<EntityPWO> pwos, OpenPWO pwo)
+        private string GeneratePokaYokeXML(List<EntityBatchPWO> pwos, OpenPWO pwo)
         {
             string rlt = "";
             for (int i = 0; i < pwos.Count; i++)
@@ -205,7 +206,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
         {
             if (edtPWONo.Text == "")
             {
-                data = new EntityPWO();
+                data = new EntityBatchPWO();
 
                 edtProductNo.Text = "";
                 edtProductName.Text = "";
@@ -223,7 +224,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            foreach (EntityPWO pwo in datas)
+            foreach (EntityBatchPWO pwo in datas)
             {
                 if (pwo.PWONo == edtPWONo.Text)
                 {
@@ -331,18 +332,18 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 #endregion
 
                 if (data == null)
-                    data = new EntityPWO();
+                    data = new EntityBatchPWO();
                 data.PWONo = openPWO.PWONo;
-                data.ProductNo = openPWO.ProductNo;
-                data.ProductName = openPWO.ProductName;
+                data.T102Code = openPWO.ProductNo;
+                data.T102Name = openPWO.ProductName;
                 data.T102LeafID = openPWO.T102LeafID;
-                data.BatchNo = openPWO.LotNumber;
-                data.TextureCode = textureCode;
+                data.LotNumber = openPWO.LotNumber;
+                data.Texture = textureCode;
 
-                edtProductNo.Text = data.ProductNo;
-                edtProductName.Text = data.ProductName;
-                edtBatchNo.Text = data.BatchNo;
-                edtTextureCode.Text = data.TextureCode;
+                edtProductNo.Text = data.T102Code;
+                edtProductName.Text = data.T102Name;
+                edtBatchNo.Text = data.LotNumber;
+                edtTextureCode.Text = data.Texture;
             }
             finally
             {

@@ -128,6 +128,28 @@ namespace IRAP.Client.SubSystem
         }
 
         /// <summary>
+        /// 刷新当前的 OptionOne
+        /// </summary>
+        /// <param name="t107LeafID">在制品站位叶标识</param>
+        public void RefreshOptionOne(int t107LeafID)
+        {
+            foreach (WIPStation station in AvailableWIPStations.Instance.Stations)
+            {
+                if (station.T107LeafID == t107LeafID)
+                {
+                    CurrentOptions.Instance.OptionOne = station.Clone();
+
+                    cboOptionsOne.Properties.Items.Clear();
+                    cboOptionsOne.Properties.Items.Add(CurrentOptions.Instance.OptionOne);
+                    cboOptionsOne.SelectedIndex = 0;
+
+                    if (OptionChanged != null)
+                        OptionChanged(this, new EventArgs());
+                }
+            }
+        }
+
+        /// <summary>
         /// 刷新当前的 OptionsTwo
         /// </summary>
         /// <param name="t102LeafID">产品叶标识</param>

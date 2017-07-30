@@ -6,7 +6,6 @@ using System.Xml;
 using System.Reflection;
 
 using IRAP.Global;
-using IRAPShared;
 
 namespace IRAP.Entities.MDM
 {
@@ -15,9 +14,6 @@ namespace IRAP.Entities.MDM
     /// </summary>
     public class ProductionProcessParam
     {
-        private string dataXML = "";
-        private List<PPParamValue> values = new List<PPParamValue>();
-
         /// <summary>
         /// 序号
         /// </summary>
@@ -48,64 +44,57 @@ namespace IRAP.Entities.MDM
         ///     [Row FactID="" Metric01="" /]
         /// [/RF25]
         /// </summary>
-        public string DataXML
+        public string DataXML { get; set; }
+
+        public List<PPParamValue> ResolveDataXML()
         {
-            get { return dataXML; }
-            set
+            string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                        MethodBase.GetCurrentMethod().Name);
+
+            List<PPParamValue> rlt = new List<PPParamValue>();
+
+            XmlDocument xdoc = new XmlDocument();
+            try
             {
-                dataXML = value;
-
-                string strProcedureName =
-                        string.Format(
-                            "{0}.{1}",
-                            MethodBase.GetCurrentMethod().DeclaringType.FullName,
-                            MethodBase.GetCurrentMethod().Name);
-
-                values.Clear();
-
-                XmlDocument xdoc = new XmlDocument();
-                try
-                {
-                    xdoc.LoadXml(value);
-                }
-                catch (XmlException err)
-                {
-                    WriteLog.Instance.Write(err.Message, strProcedureName);
-                    return;
-                }
-
-                long factID = 0;
-                string metric01 = "";
-                foreach (XmlNode node in xdoc.SelectNodes("RF25/Row"))
-                {
-                    if (node.Attributes["FactID"] != null)
-                        factID = Tools.ConvertToInt64(node.Attributes["FactID"].Value, 0);
-                    else
-                        factID = 0;
-                    if (node.Attributes["Metric01"] != null)
-                        metric01 = node.Attributes["Metric01"].Value;
-                    else
-                        metric01 = "";
-
-                    values.Add(
-                        new PPParamValue()
-                        {
-                            FactID = factID,
-                            Metric01 = metric01,
-                        });
-                }
+                xdoc.LoadXml(DataXML);
             }
-        }
+            catch (XmlException err)
+            {
+                WriteLog.Instance.Write(err.Message, strProcedureName);
+                return new List<PPParamValue>();
+            }
 
-        [IRAPORMMap(ORMMap = false)]
-        public List<PPParamValue> Values
-        {
-            get { return values; }
+            long factID = 0;
+            string metric01 = "";
+            foreach (XmlNode node in xdoc.SelectNodes("RF25/Row"))
+            {
+                if (node.Attributes["FactID"] != null)
+                    factID = Tools.ConvertToInt64(node.Attributes["FactID"].Value, 0);
+                else
+                    factID = 0;
+                if (node.Attributes["Metric01"] != null)
+                    metric01 = node.Attributes["Metric01"].Value;
+                else
+                    metric01 = "";
+
+                rlt.Add(
+                    new PPParamValue()
+                    {
+                        FactID = factID,
+                        Metric01 = metric01,
+                    });
+            }
+            return rlt;
         }
 
         public ProductionProcessParam Clone()
         {
-            return MemberwiseClone() as ProductionProcessParam;
+            ProductionProcessParam rlt = MemberwiseClone() as ProductionProcessParam;
+
+            return rlt;
         }
     }
 

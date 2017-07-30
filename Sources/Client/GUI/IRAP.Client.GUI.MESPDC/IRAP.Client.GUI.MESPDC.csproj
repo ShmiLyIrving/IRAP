@@ -72,9 +72,15 @@
     <Compile Include="Actions\CustomActionFactory.cs" />
     <Compile Include="Actions\PrintToLPT.cs" />
     <Compile Include="Actions\RefreshForm.cs" />
-    <Compile Include="Actions\SelectChoice1.cs" />
+    <Compile Include="Actions\SelectChoice.cs" />
     <Compile Include="Actions\UDFActions.cs" />
     <Compile Include="Actions\Upload.cs" />
+    <Compile Include="Dialogs\frmItemsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmItemsEditor.Designer.cs">
+      <DependentUpon>frmItemsEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmPWOInProductionEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,7 +100,6 @@
       <DependentUpon>frmRSFactListTestData.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\EntityMethodStarndardParams.cs" />
-    <Compile Include="Entities\EntityPWO.cs" />
     <Compile Include="frmAppearanceInspection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +159,12 @@
     </Compile>
     <Compile Include="frmProductPackage.Designer.cs">
       <DependentUpon>frmProductPackage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQualityInspectConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQualityInspectConfirm.Designer.cs">
+      <DependentUpon>frmQualityInspectConfirm.cs</DependentUpon>
     </Compile>
     <Compile Include="frmQualityInspecting.cs">
       <SubType>Form</SubType>
@@ -275,6 +286,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frmItemsEditor.resx">
+      <DependentUpon>frmItemsEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor.resx">
       <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -314,6 +328,9 @@
     <EmbeddedResource Include="frmProductPackage.resx">
       <DependentUpon>frmProductPackage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmQualityInspectConfirm.resx">
+      <DependentUpon>frmQualityInspectConfirm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmQualityInspecting.resx">
       <DependentUpon>frmQualityInspecting.cs</DependentUpon>
     </EmbeddedResource>
@@ -337,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUDFForm1Ex_30.resx">
       <DependentUpon>frmUDFForm1Ex_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUDFFormWithCOMScanner.en-US.resx">
+      <DependentUpon>frmUDFFormWithCOMScanner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUDFFormWithCOMScanner.resx">
       <DependentUpon>frmUDFFormWithCOMScanner.cs</DependentUpon>

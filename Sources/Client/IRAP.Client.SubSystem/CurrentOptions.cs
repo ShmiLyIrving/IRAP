@@ -86,8 +86,7 @@ namespace IRAP.Client.SubSystem
             {
                 if (value != null)
                 {
-                    if (optionOne == null ||
-                        optionOne.T107LeafID != value.T107LeafID)
+                    if (value != null)
                     {
                         optionOne = value.Clone();
                         try
@@ -97,7 +96,7 @@ namespace IRAP.Client.SubSystem
                         catch
                         {
                             indexOfOptionTwo = -1;
-                            optionTwo = null;
+                            optionTwo = new ProductViaStation();
                             return;
                         }
 
@@ -121,6 +120,10 @@ namespace IRAP.Client.SubSystem
                             indexOfOptionTwo = -1;
                             OptionTwo = new ProductViaStation();
                         }
+                    }
+                    else
+                    {
+                        optionOne = new WIPStation();
                     }
                 }
             }

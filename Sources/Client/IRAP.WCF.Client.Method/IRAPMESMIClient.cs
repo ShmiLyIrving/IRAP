@@ -88,7 +88,7 @@ namespace IRAP.WCF.Client.Method
                     hashParams.Add("sysLogID", sysLogID);
                     WriteLog.Instance.Write(
                         string.Format(
-                            "执行存储过程 usp_SaveFact_TroubleShooting，输入参数：" +
+                            "执行存储过程 msp_SaveFact_ManualInspecting，输入参数：" +
                             "CommunityID={0}|UserCode={1}|AgencyLeaf={2}|"+
                             "ProductLeaf={3}|WorkUnitLeaf={4}|T107EntityID={5}|"+
                             "T132LeafID={6}|ContainerNo={7}|FunctionName={8}|" +

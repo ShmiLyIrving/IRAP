@@ -253,11 +253,16 @@
             this.cboPrdtType.Name = "cboPrdtType";
             this.cboPrdtType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPrdtType.Properties.Appearance.Options.UseFont = true;
+            this.cboPrdtType.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.cboPrdtType.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.cboPrdtType.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.cboPrdtType.Properties.AppearanceDisabled.Options.UseForeColor = true;
             this.cboPrdtType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboPrdtType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboPrdtType.Size = new System.Drawing.Size(131, 26);
             this.cboPrdtType.TabIndex = 3;
+            this.cboPrdtType.SelectedIndexChanged += new System.EventHandler(this.cboPrdtType_SelectedIndexChanged);
             // 
             // lblPrdtType
             // 
@@ -281,6 +286,10 @@
             this.edtOperatorCode.Name = "edtOperatorCode";
             this.edtOperatorCode.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtOperatorCode.Properties.Appearance.Options.UseFont = true;
+            this.edtOperatorCode.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.edtOperatorCode.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.edtOperatorCode.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.edtOperatorCode.Properties.AppearanceDisabled.Options.UseForeColor = true;
             this.edtOperatorCode.Size = new System.Drawing.Size(268, 26);
             this.edtOperatorCode.TabIndex = 1;
             this.edtOperatorCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtOperatorCode_KeyDown);
@@ -376,7 +385,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "产品物料号";
-            this.gridColumn2.FieldName = "ProductNo";
+            this.gridColumn2.FieldName = "T102Code";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
@@ -384,7 +393,7 @@
             // grdclmnProductName
             // 
             this.grdclmnProductName.Caption = "产品物料名称";
-            this.grdclmnProductName.FieldName = "ProductName";
+            this.grdclmnProductName.FieldName = "T102Name";
             this.grdclmnProductName.Name = "grdclmnProductName";
             this.grdclmnProductName.Visible = true;
             this.grdclmnProductName.VisibleIndex = 2;
@@ -392,7 +401,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "批次号";
-            this.gridColumn3.FieldName = "BatchNo";
+            this.gridColumn3.FieldName = "LotNumber";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;
@@ -400,7 +409,7 @@
             // gridColumn4
             // 
             this.gridColumn4.Caption = "材质";
-            this.gridColumn4.FieldName = "TextureCode";
+            this.gridColumn4.FieldName = "Texture";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 4;
@@ -426,12 +435,17 @@
             this.btnParamRemove.Size = new System.Drawing.Size(95, 30);
             this.btnParamRemove.TabIndex = 8;
             this.btnParamRemove.Text = "删除";
+            this.btnParamRemove.Click += new System.EventHandler(this.btnParamRemove_Click);
             // 
             // vgrdMethodParams
             // 
             this.vgrdMethodParams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.vgrdMethodParams.Appearance.FocusedRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.vgrdMethodParams.Appearance.FocusedRecord.ForeColor = System.Drawing.Color.Blue;
+            this.vgrdMethodParams.Appearance.FocusedRecord.Options.UseBackColor = true;
+            this.vgrdMethodParams.Appearance.FocusedRecord.Options.UseForeColor = true;
             this.vgrdMethodParams.Appearance.PressedRow.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vgrdMethodParams.Appearance.PressedRow.Options.UseFont = true;
             this.vgrdMethodParams.Appearance.RowHeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10.5F);
@@ -453,6 +467,7 @@
             this.btnParamNew.Size = new System.Drawing.Size(95, 30);
             this.btnParamNew.TabIndex = 6;
             this.btnParamNew.Text = "新增";
+            this.btnParamNew.Click += new System.EventHandler(this.btnParamNew_Click);
             // 
             // grdParams
             // 

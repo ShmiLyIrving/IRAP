@@ -13,8 +13,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraVerticalGrid.Rows;
 
 using IRAP.Global;
-using IRAP.Client.User;
 using IRAP.Client.Global.Enums;
+using IRAP.Client.User;
 using IRAP.Client.GUI.MESPDC.Entities;
 using IRAP.Entities.MDM;
 using IRAP.Entities.SSO;
@@ -42,11 +42,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         /// </summary>
         private List<BatchRingCategory> prdtTypes = new List<BatchRingCategory>();
 
-        private List<EntityPWO> pwos = new List<EntityPWO>();
+        private List<EntityBatchPWO> pwos = new List<EntityBatchPWO>();
         private List<MethodStandard> standards = new List<MethodStandard>();
         private List<ProductionProcessParam> ppp = new List<ProductionProcessParam>();
 
         private DataTable dtParams = new DataTable();
+        /// <summary>
+        /// 设备的当前生产状态
+        /// </summary>
+        private ProductionStatus prdtStatus = ProductionStatus.Idle;
 
         private string caption = "";
 
@@ -76,7 +80,44 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 cboPrdtType.Visible = false;
             }
 
-            GetMethodStandards(0, station.T216LeafID, "");
+            //GetMethodStandards(0, station.T216LeafID, "");
+        }
+
+        private void RefreshForm()
+        {
+            switch (prdtStatus)
+            {
+                case ProductionStatus.Idle:
+                    edtOperatorCode.Enabled = true;
+                    cboPrdtType.Enabled = true;
+
+                    btnPWONew.Enabled = true;
+                    btnPWOModify.Enabled = true;
+                    btnPWORemove.Enabled = true;
+
+                    btnParamNew.Enabled = false;
+                    btnParamRemove.Enabled = false;
+
+                    btnBegin.Enabled = true;
+                    btnEnd.Enabled = false;
+
+                    break;
+                case ProductionStatus.Busy:
+                    edtOperatorCode.Enabled = false;
+                    cboPrdtType.Enabled = false;
+
+                    btnPWONew.Enabled = false;
+                    btnPWOModify.Enabled = false;
+                    btnPWORemove.Enabled = false;
+
+                    btnParamNew.Enabled = true;
+                    btnParamRemove.Enabled = true;
+
+                    btnBegin.Enabled = false;
+                    btnEnd.Enabled = true;
+
+                    break;
+            }
         }
 
         private void GetPrdtTypes()
@@ -124,7 +165,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             foreach (ProductionProcessParam param in ppParams)
             {
                 string colName = string.Format("Column{0}", param.Ordinal);
-                dtParams.Columns.Add(colName, typeof(long));
+                DataColumn dc = dtParams.Columns.Add(colName, typeof(long));
+                dc.Caption = param.T20Name;
 
                 EditorRow row = new EditorRow();
                 row.Properties.Caption = param.T20Name;
@@ -132,13 +174,25 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 vgrdMethodParams.Rows.Add(row);
             }
 
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    DataRow dr = dtParams.NewRow();
-            //    for (int j = 0; j < dtParams.Columns.Count; j++)
-            //        dr[j] = (i + 1) * 1000 + (j + 1);
-            //    dtParams.Rows.Add(dr);
-            //}
+            for (int i = 0; i < dtParams.Columns.Count; i++)
+            {
+                List<PPParamValue> values = ppParams[i].ResolveDataXML();
+                for (int j = 0; j < values.Count; j++)
+                {
+                    DataRow dr = null;
+                    if (dtParams.Rows.Count < j + 1)
+                    {
+                        dr = dtParams.NewRow();
+                        dtParams.Rows.Add(dr);
+                    }
+                    else
+                    {
+                        dr = dtParams.Rows[j];
+                    }
+
+                    dr[i] = values[j].Metric01;
+                }
+            }
 
             vgrdMethodParams.DataSource = dtParams;
         }
@@ -240,6 +294,28 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 }
                 else
                 {
+#if DEBUG1
+                    if (ppp.Count <= 0)
+                    {
+                        ppp.Add(
+                            new ProductionProcessParam()
+                            {
+                                Ordinal = 1,
+                                T20LeafID = -1,
+                                T20Code = "SJBWWD",
+                                T20Name = "实际保温温度",
+                            });
+                        ppp.Add(
+                            new ProductionProcessParam()
+                            {
+                                Ordinal = 2,
+                                T20LeafID = -2,
+                                T20Code = "SJBWSJ",
+                                T20Name = "实际保温时间",
+                            });
+                    }
+#endif
+
                     InitMethodParamsGrid(ppp);
                 }
             }
@@ -249,11 +325,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             }
         }
 
-        private string GenerateBatchProductionStartXML(List<EntityPWO> pwos)
+        private string GenerateBatchProductionStartXML(List<EntityBatchPWO> pwos)
         {
             string rlt = "";
             int idx = 1;
-            foreach (EntityPWO pwo in pwos)
+            foreach (EntityBatchPWO pwo in pwos)
             {
                 rlt +=
                     string.Format(
@@ -264,8 +340,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         idx++,
                         pwo.T102LeafID,
                         stationInfo.T216LeafID,
-                        pwo.BatchNo,
-                        pwo.TextureCode,
+                        pwo.LotNumber,
+                        pwo.Texture,
                         pwo.PWONo,
                         pwo.Quantity);
             }
@@ -327,6 +403,97 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             }
         }
 
+        /// <summary>
+        /// 获取材质
+        /// </summary>
+        /// <param name="materialCode">物料号（原材料/半成品/产成品）</param>
+        /// <returns>string</returns>
+        private string GetTextureCodeFromMaterialCode(
+            string materialCode,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                string rlt = "";
+
+                IRAPMDMClient.Instance.ufn_GetMaterialTextureCodeFromERP_FourthShift(
+                    IRAPUser.Instance.CommunityID,
+                    materialCode,
+                    ref rlt,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+
+                return rlt;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 生成保存生产过程参数时的 XML
+        /// </summary>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        private string GenerateRSFactXML(DataRow dr)
+        {
+            string rlt = "";
+
+            for (int i = 0; i < dtParams.Columns.Count; i++)
+            {
+                rlt +=
+                    string.Format(
+                        "<RF25_1 Ordinal=\"{0}\" T20LeafID=\"{1}\" " +
+                        "ParameterName=\"{2}\" LowLimit=\"\" " +
+                        "Criterion=\"\" HighLimit=\"\" Scale=\"\" " +
+                        "UnitOfMeasure=\"\" Metric01=\"{3}\" />",
+                        ppp[i].Ordinal,
+                        ppp[i].T20LeafID,
+                        ppp[i].T20Name,
+                        dr[i].ToString());
+            }
+
+            rlt = string.Format("<RSFact>{0}</RSFact>", rlt);
+            return rlt;
+        }
+
+        private string GenerateDeleteRSFactXML(DataRow dr, int idx)
+        {
+            string rlt = "";
+
+            for (int i = 0; i < dtParams.Columns.Count; i++)
+            {
+                List<PPParamValue> values = ppp[i].ResolveDataXML();
+
+                rlt +=
+                    string.Format(
+                        "<RF25_1 Ordinal=\"{0}\" FactID=\"{1}\" " +
+                        "T20LeafID=\"{2}\" ParameterName=\"{3}\" " +
+                        "LowLimit=\"\" Criterion=\"\" HighLimit=\"\" " +
+                        "Scale=\"\" UnitOfMeasure=\"\" Metric01=\"{4}\" />",
+                        ppp[i].Ordinal,
+                        values[idx].FactID,
+                        ppp[i].T20LeafID,
+                        ppp[i].T20Name,
+                        dr[i].ToString());
+            }
+
+            rlt = string.Format("<RSFact>{0}</RSFact>", rlt);
+            return rlt;
+        }
+
         private void ucBatchSysProduction_Load(object sender, EventArgs e)
         {
             grdPWOs.DataSource = pwos;
@@ -341,49 +508,56 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 };
                 currentBatchNo = data.BatchNumber;
                 startDatetime = data.BatchStartDate;
+                if (data.InProduction == 0)
+                    prdtStatus = ProductionStatus.Idle;
+                else
+                    prdtStatus = ProductionStatus.Busy;
+
+                pwos = data.GetPWOsFromXML();
+                #region 遍历所有生产工单，获取生产工单的在制品的材质
+                //foreach (EntityBatchPWO pwo in pwos)
+                //{
+                //    int errCode = 0;
+                //    string errText = "";
+
+                //    string texture =
+                //        GetTextureCodeFromMaterialCode(
+                //            pwo.T102Code,
+                //            out errCode,
+                //            out errText);
+                //    if (errCode == 0)
+                //        pwo.Texture = texture;
+                //    else
+                //        pwo.Texture = "";
+                //}
+                #endregion
+                grdPWOs.DataSource = pwos;
+                grdvPWOs.BestFitColumns();
 
                 edtOperatorCode.Text =
                     string.Format(
                         "{0}[{1}]",
                         currentOperator.UserName,
                         currentOperator.UserCode);
+                lblBatchNo.Text = currentBatchNo;
+                lblStartTime.Text = startDatetime.ToString("yyyy-MM-dd HH:mm:ss");
 
-                GetMethodStandards(data.T131LeafID, stationInfo.T216LeafID, data.BatchNumber);
+                cboPrdtType.SelectedIndex = -1;
+                for (int i = 0; i < cboPrdtType.Properties.Items.Count; i++)
+                {
+                    BatchRingCategory prdtType =
+                        (BatchRingCategory)cboPrdtType.Properties.Items[i];
+                    if (prdtType.T131LeafID == data.T131LeafID)
+                    {
+                        cboPrdtType.SelectedIndex = i;
+                        break;
+                    }
+                }
+
+                //GetMethodStandards(data.T131LeafID, stationInfo.T216LeafID, data.BatchNumber);
             }
-        }
 
-        private void FormCtrlsWithWorkStatus(bool isWorking)
-        {
-            if (isWorking)
-            {
-                edtOperatorCode.Enabled = false;
-                cboPrdtType.Enabled = false;
-
-                btnPWONew.Enabled = false;
-                btnPWOModify.Enabled = false;
-                btnPWORemove.Enabled = false;
-
-                btnParamNew.Enabled = true;
-                btnParamRemove.Enabled = true;
-
-                btnBegin.Enabled = false;
-                btnEnd.Enabled = true;
-            }
-            else
-            {
-                edtOperatorCode.Enabled = true;
-                cboPrdtType.Enabled = true;
-
-                btnPWONew.Enabled = true;
-                btnPWOModify.Enabled = true;
-                btnPWORemove.Enabled = true;
-
-                btnParamNew.Enabled = false;
-                btnParamRemove.Enabled = false;
-
-                btnBegin.Enabled = true;
-                btnEnd.Enabled = false;
-            }
+            RefreshForm();
         }
 
         private void edtOperatorCode_KeyDown(object sender, KeyEventArgs e)
@@ -416,13 +590,13 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (!btnBegin.Enabled)
+            DateTime now = DateTime.Now;
+
+            lblCurrentTime.Text =
+                now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            if (prdtStatus == ProductionStatus.Busy)
             {
-                DateTime now = DateTime.Now;
-
-                lblCurrentTime.Text =
-                    now.ToString("yyyy-MM-dd HH:mm:ss");
-
                 TimeSpan span = now - startDatetime;
                 lblProductTimeSpan.Text = "";
                 if (span.Days != 0)
@@ -452,7 +626,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             if (cboPrdtType.SelectedIndex < 0)
             {
                 XtraMessageBox.Show(
-                    "请选择当前的班次！",
+                    "请选择！",
                     "系统信息",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -486,6 +660,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     IRAPUser.Instance.CommunityID,
                     stationInfo.T216LeafID,
                     stationInfo.T107LeafID,
+                    currentOperator.UserCode,
+                    ((BatchRingCategory)cboPrdtType.SelectedItem).T131LeafID,
                     GenerateBatchProductionStartXML(pwos),
                     IRAPUser.Instance.SysLogID,
                     out currentBatchNo,
@@ -513,14 +689,66 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             lblBatchNo.Text = currentBatchNo;
             lblStartTime.Text = startDatetime.ToString("yyyy-MM-dd HH:mm:ss");
 
-            btnBegin.Enabled = false;
-            btnEnd.Enabled = true;
+            prdtStatus = ProductionStatus.Busy;
+            RefreshForm();
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
-            btnBegin.Enabled = true;
-            btnEnd.Enabled = false;
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPMESClient.Instance.usp_SaveFact_BatchProductionEnd(
+                    IRAPUser.Instance.CommunityID,
+                    stationInfo.T216LeafID,
+                    stationInfo.T107LeafID,
+                    currentBatchNo,
+                    IRAPUser.Instance.SysLogID,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        string.Format("在生产结束时发生错误：[{0}]", errText),
+                        "系统信息",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    currentOperator = null;
+                    currentBatchNo = "";
+                    startDatetime = DateTime.Now;
+                    pwos.Clear();
+                    ppp.Clear();
+                    InitMethodParamsGrid(ppp);
+
+                    edtOperatorCode.Text = "";
+                    cboPrdtType.SelectedIndex = -1;
+
+                    grdvPWOs.UpdateCurrentRow();
+                    grdvParams.UpdateCurrentRow();
+
+                    prdtStatus = ProductionStatus.Idle;
+                    RefreshForm();
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
 
         private void btnPWONew_Click(object sender, EventArgs e)
@@ -538,7 +766,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
             BatchRingCategory prdtType = cboPrdtType.SelectedItem as BatchRingCategory;
 
-            EntityPWO newPWO = new EntityPWO();
+            EntityBatchPWO newPWO = new EntityBatchPWO();
 
             using (Dialogs.frmPWOInProductionEditor formEditor =
                 new Dialogs.frmPWOInProductionEditor(
@@ -574,7 +802,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
             if (idx >=0 && idx < pwos.Count)
             {
-                EntityPWO pwo = pwos[idx];
+                EntityBatchPWO pwo = pwos[idx];
 
                 using (Dialogs.frmPWOInProductionEditor formEditor =
                     new Dialogs.frmPWOInProductionEditor(
@@ -611,6 +839,155 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 pwos.Remove(pwos[idx]);
                 grdvPWOs.UpdateCurrentRow();
                 grdvPWOs.BestFitColumns();
+            }
+        }
+
+        private void cboPrdtType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboPrdtType.SelectedItem != null)
+            {
+                BatchRingCategory prdtType =
+                    (BatchRingCategory)cboPrdtType.SelectedItem;
+                GetMethodStandards(
+                    prdtType.T131LeafID,
+                    stationInfo.T216LeafID,
+                    currentBatchNo);
+            }
+            else
+            {
+                GetMethodStandards(
+                    0,
+                    0,
+                    "");
+            }
+        }
+
+        private void btnParamNew_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.frmItemsEditor formEditor =
+                new Dialogs.frmItemsEditor(
+                    dtParams,
+                    splitContainerControl1.Panel2.Text,
+                    EditStatus.New))
+            {
+                if (formEditor.ShowDialog() == DialogResult.OK)
+                {
+                    DataRow dr = dtParams.Rows[dtParams.Rows.Count - 1];
+
+                    string strProcedureName =
+                        string.Format(
+                            "{0}.{1}",
+                            className,
+                            MethodBase.GetCurrentMethod().Name);
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                    try
+                    {
+                        int errCode = 0;
+                        string errText = "";
+
+                        IRAPMESClient.Instance.usp_SaveFact_BatchMethodConfirming(
+                            IRAPUser.Instance.CommunityID,
+                            stationInfo.T216LeafID,
+                            stationInfo.T107LeafID,
+                            currentBatchNo,
+                            GenerateRSFactXML(dr),
+                            IRAPUser.Instance.SysLogID,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            string.Format("({0}){1}", errCode, errText),
+                            strProcedureName);
+                        if (errCode != 0)
+                        {
+                            XtraMessageBox.Show(
+                                errText,
+                                "",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+
+                        BatchRingCategory prdtType =
+                            (BatchRingCategory)cboPrdtType.SelectedItem;
+                        GetMethodStandards(
+                            prdtType.T131LeafID,
+                            stationInfo.T216LeafID,
+                            currentBatchNo);
+                        vgrdMethodParams.RefreshDataSource();
+                    }
+                    finally
+                    {
+                        WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                    }
+                }
+            }
+        }
+
+        private void btnParamRemove_Click(object sender, EventArgs e)
+        {
+            int idx = vgrdMethodParams.FocusedRecord;
+            if (idx >= 0)
+            {
+                if (XtraMessageBox.Show(
+                    string.Format(
+                        "是否要删除选择的第[{0}]组参数值？",
+                        idx + 1),
+                    "",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    DataRow dr = dtParams.Rows[idx];
+
+                    string strProcedureName =
+                        string.Format(
+                            "{0}.{1}",
+                            className,
+                            MethodBase.GetCurrentMethod().Name);
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                    try
+                    {
+                        int errCode = 0;
+                        string errText = "";
+                        List<PPParamValue> values = ppp[0].ResolveDataXML();
+
+                        IRAPMESClient.Instance.usp_SaveFact_BatchMethodCancel(
+                            IRAPUser.Instance.CommunityID,
+                            stationInfo.T216LeafID,
+                            stationInfo.T107LeafID,
+                            currentBatchNo,
+                            "D",
+                            values[idx].FactID,
+                            GenerateDeleteRSFactXML(dr, idx),
+                            IRAPUser.Instance.SysLogID,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            string.Format("({0}){1}", errCode, errText),
+                            strProcedureName);
+                        if (errCode != 0)
+                        {
+                            XtraMessageBox.Show(
+                                errText,
+                                "",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                    }
+                    finally
+                    {
+                        WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                    }
+
+                    #region 刷新生产过程参数列表
+                    BatchRingCategory prdtType =
+                        (BatchRingCategory)cboPrdtType.SelectedItem;
+                    GetMethodStandards(
+                        prdtType.T131LeafID,
+                        stationInfo.T216LeafID,
+                        currentBatchNo);
+                    vgrdMethodParams.RefreshDataSource();
+                    #endregion
+                }
             }
         }
     }

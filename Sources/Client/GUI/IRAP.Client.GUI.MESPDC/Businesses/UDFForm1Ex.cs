@@ -8,6 +8,7 @@ using System.Reflection;
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.WCF.Client.Method;
+using IRAP.Client.GUI.MESPDC.Actions;
 
 namespace IRAP.Client.GUI.MESPDC
 {
@@ -141,7 +142,10 @@ namespace IRAP.Client.GUI.MESPDC
             outputStr = "";
         }
 
-        public void SaveOLTPUDFFormData(int processLeaf, int workUnitLeaf)
+        public void SaveOLTPUDFFormData(
+            int processLeaf, 
+            int workUnitLeaf, 
+            ExtendEventHandler extendAction)
         {
             string strProcedureName =
                 string.Format(
@@ -198,6 +202,37 @@ namespace IRAP.Client.GUI.MESPDC
                             out errorCode,
                             out errorMessage);
                     }
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "{0}.{1}",
+                            errorCode,
+                            errorMessage),
+                        strProcedureName);
+
+                    WriteLog.Instance.Write(
+                        string.Format("Output={0}", outputStr),
+                        strProcedureName);
+                    if (outputStr != "")
+                    {
+                        try
+                        {
+                            UDFActions.DoActions(
+                                outputStr,
+                                extendAction);
+                        }
+                        catch (Exception error)
+                        {
+                            outputStr = "";
+                            WriteLog.Instance.Write(
+                                string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                                    error.Message,
+                                    error.StackTrace),
+                                strProcedureName);
+                            throw error;
+                        }
+                    }
+
+                    outputStr = "";
                 }
                 catch (Exception err)
                 {
@@ -356,6 +391,37 @@ namespace IRAP.Client.GUI.MESPDC
                             out errorCode,
                             out errorMessage);
                     }
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "{0}.{1}",
+                            errorCode,
+                            errorMessage),
+                        strProcedureName);
+
+                    WriteLog.Instance.Write(
+                        string.Format("Output={0}", outputStr),
+                        strProcedureName);
+                    if (outputStr != "")
+                    {
+                        try
+                        {
+                            UDFActions.DoActions(
+                                outputStr,
+                                null);
+                        }
+                        catch (Exception error)
+                        {
+                            outputStr = "";
+                            WriteLog.Instance.Write(
+                                string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                                    error.Message,
+                                    error.StackTrace),
+                                strProcedureName);
+                            throw error;
+                        }
+                    }
+
+                    outputStr = "";
                 }
                 catch (Exception err)
                 {

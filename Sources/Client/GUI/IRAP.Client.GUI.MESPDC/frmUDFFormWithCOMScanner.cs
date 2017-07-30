@@ -250,7 +250,8 @@ namespace IRAP.Client.GUI.MESPDC
                             busUDFForm.SetStrParameterValue(view.BarCode, 1);
                             busUDFForm.SaveOLTPUDFFormData(
                                 CurrentOptions.Instance.OptionTwo.T102LeafID,
-                                view.WorkUnitLeafID);
+                                view.WorkUnitLeafID,
+                                null);
                             WriteLog.Instance.Write(
                                 string.Format(
                                     "{0}.{1}",
