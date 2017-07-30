@@ -793,7 +793,7 @@ namespace IRAP.BL.MES
                                 IRAPJsonResult rlt = wip.usp_WIPForward(
                                     communityID,
                                     productLeaf,
-                                    wipInspecting.MainWIPIDCode.WIPCode,
+                                    wipInspecting.MainWIPIDCode.WIPPattern,
                                     wipInspecting.MainWIPIDCode.LotNumber,
                                     containerNo,
                                     wipInspecting.MainWIPIDCode.PWONo,
@@ -903,6 +903,39 @@ namespace IRAP.BL.MES
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="factID"></param>
+        /// <param name="t102LeafID"></param>
+        /// <param name="t107LeafID"></param>
+        /// <param name="batchNumber"></param>
+        /// <param name="lotNumber"></param>
+        /// <param name="pwoNo"></param>
+        /// <param name="qcStatus"></param>
+        /// <param name="rsFactXML"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult usp_SaveFact_BatchManualInspecting(
+            int communityID,
+            long factID,
+            int t102LeafID,
+            int t107LeafID,
+            string batchNumber,
+            string lotNumber,
+            string pwoNo,
+            int qcStatus,
+            string rsFactXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            throw new NotImplementedException();
         }
     }
 }

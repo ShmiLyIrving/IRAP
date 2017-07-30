@@ -562,5 +562,206 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 保存批次管理系统中的生产过程参数
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="batchNumber">容次号</param>
+        /// <param name="rsFactXML">
+        /// 生产过程参数 XML
+        /// [RSFact]
+        ///     [RF25_1
+        ///         Ordinal=""
+        ///         T20LeafID=""
+        ///         ParameterName=""
+        ///         LowLimit=""
+        ///         Criterion=""
+        ///         HighLimit=""
+        ///         Scale=""
+        ///         UnitOfMeasure=""
+        ///         Metric01="" /]
+        /// [/RSFact]
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult usp_SaveFact_BatchMethodConfirming(
+            int communityID,
+            int t216LeafID,
+            int t107LeafID,
+            string batchNumber,
+            string rsFactXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
+                paramList.Add(new IRAPProcParameter("@RSFactXML", DbType.String, rsFactXML));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 IRAPMES..usp_SaveFact_BatchMethodConfirming，参数："+
+                        "CommunityID={0}|T216LeafID={1}|T107LeafID={2}|BatchNumber={3}|"+
+                        "RSFactXML={4}|SysLogID={5}",
+                        communityID, t216LeafID, t107LeafID, batchNumber, rsFactXML,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error =
+                        conn.CallProc("IRAPMES..usp_SaveFact_BatchMethodConfirming", ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+                    return Json(error);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText =
+                    string.Format(
+                        "调用 IRAPMES..usp_SaveFact_BatchMethodConfirming 函数发生异常：{0}",
+                        error.Message);
+                return Json(
+                    new IRAPError()
+                    {
+                        ErrCode = errCode,
+                        ErrText = errText,
+                    });
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 编辑批次管理系统中的生产过程参数
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="batchNumber">容次号</param>
+        /// <param name="opType">
+        /// 操作标识：
+        /// D-删除；U-修改（目前仅支持删除）
+        /// </param>
+        /// <param name="factID">保存的生产过程参数事实号</param>
+        /// <param name="rsFactXML">
+        /// 生产过程参数 XML
+        /// [RSFact]
+        ///     [RF25_1
+        ///         Ordinal=""
+        ///         T20LeafID=""
+        ///         ParameterName=""
+        ///         LowLimit=""
+        ///         Criterion=""
+        ///         HighLimit=""
+        ///         Scale=""
+        ///         UnitOfMeasure=""
+        ///         Metric01="" /]
+        /// [/RSFact]
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult usp_SaveFact_BatchMethodCancel(
+            int communityID,
+            int t216LeafID,
+            int t107LeafID,
+            string batchNumber,
+            string opType,
+            long factID,
+            string rsFactXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
+                paramList.Add(new IRAPProcParameter("@OpType", DbType.String, opType));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@RSFactXML", DbType.String, rsFactXML));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 IRAPMES..usp_SaveFact_BatchMethodCancel，参数：" +
+                        "CommunityID={0}|T216LeafID={1}|T107LeafID={2}|BatchNumber={3}|" +
+                        "OpType={4}|FactID={5}|RSFactXML={6}|SysLogID={7}",
+                        communityID, t216LeafID, t107LeafID, batchNumber, opType, factID,
+                        rsFactXML, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error =
+                        conn.CallProc("IRAPMES..usp_SaveFact_BatchMethodCancel", ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+                    return Json(error);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText =
+                    string.Format(
+                        "调用 IRAPMES..usp_SaveFact_BatchMethodCancel 函数发生异常：{0}",
+                        error.Message);
+                return Json(
+                    new IRAPError()
+                    {
+                        ErrCode = errCode,
+                        ErrText = errText,
+                    });
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

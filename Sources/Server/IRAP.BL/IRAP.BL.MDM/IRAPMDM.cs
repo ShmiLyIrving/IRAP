@@ -5714,7 +5714,7 @@ namespace IRAP.BL.MDM
         }
 
         /// <summary>
-        /// 获取指定工序、环别、炉次号的检验项目及检验记录值
+        /// 获取指定工序、环别、炉次号的过程参数项目及过程参数记录值
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="t131LeafID">环别叶标识</param>
@@ -5786,6 +5786,97 @@ namespace IRAP.BL.MDM
                     errText =
                         string.Format(
                             "调用 IRAPMDM..ufn_GetList_MethodItems 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取质量检验项目及检验项目记录值
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="pwoNo">工单号</param>
+        /// <param name="batchNumber">容次号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List[InspectionItem]</returns>
+        public IRAPJsonResult ufn_GetList_InspectionItems(
+            int communityID,
+            int t102LeafID,
+            int t216LeafID,
+            string pwoNo,
+            string batchNumber,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<InspectionItem> datas =
+                    new List<InspectionItem>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@PWONo", DbType.String, pwoNo));
+                paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_InspectionItems，" +
+                        "参数：CommunityID={0}|T102LeafID={1}|T216LeafID={2}|" +
+                        "PWONo={3}|BatchNumber={4}|SysLogID={5}",
+                        communityID, t102LeafID, t216LeafID, pwoNo, batchNumber, 
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_InspectionItems(" +
+                            "@CommunityID, @T102LeafID, @T216LeafID, " +
+                            "@PWONo, @BatchNumber, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<InspectionItem> lstDatas =
+                            conn.CallTableFunc<InspectionItem>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetList_InspectionItems 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);

@@ -487,7 +487,7 @@ namespace IRAP.BL.MES
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="t102LeafID">产品叶标识</param>
-        /// <param name="wipCode">在制品个体标识</param>
+        /// <param name="wipPattern">在制品标识样式</param>
         /// <param name="lotNumber">在制品批次</param>
         /// <param name="containerNo">在制品容器号</param>
         /// <param name="pwoNo">生产工单号</param>
@@ -497,7 +497,7 @@ namespace IRAP.BL.MES
         public IRAPJsonResult usp_WIPForward(
             int communityID,
             int t102LeafID,
-            string wipCode,
+            string wipPattern,
             string lotNumber,
             string containerNo,
             string pwoNo,
@@ -521,7 +521,7 @@ namespace IRAP.BL.MES
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
-                paramList.Add(new IRAPProcParameter("@WIPCode", DbType.String, wipCode));
+                paramList.Add(new IRAPProcParameter("@WIPPattern", DbType.String, wipPattern));
                 paramList.Add(new IRAPProcParameter("@LotNumber", DbType.String, lotNumber));
                 paramList.Add(new IRAPProcParameter("@ContainerNo", DbType.String, containerNo));
                 paramList.Add(new IRAPProcParameter("@PWONo", DbType.String, pwoNo));
@@ -534,10 +534,10 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write(
                     string.Format(
                         "执行存储过程 IRAPMES..usp_WIPForward，参数：CommunityID={0}|" +
-                        "T102LeafID={1}|WIPCode={2}|LotNumber={3}|ContainerNo={4}|" +
+                        "T102LeafID={1}|WIPPattern={2}|LotNumber={3}|ContainerNo={4}|" +
                         "PWONo={5}|QCStatus={6}|T107LeafID={7}|RoutingCondition={8}|" +
                         "SysLogID={9}",
-                        communityID, t102LeafID, wipCode, lotNumber, containerNo,
+                        communityID, t102LeafID, wipPattern, lotNumber, containerNo,
                         pwoNo, qcStatus, t107LeafID, routingCondition, sysLogID),
                     strProcedureName);
                 #endregion
