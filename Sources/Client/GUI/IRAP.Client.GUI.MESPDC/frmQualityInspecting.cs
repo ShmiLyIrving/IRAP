@@ -11,10 +11,12 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraVerticalGrid.Rows;
 
 using IRAP.Global;
+using IRAP.Client.Global.Enums;
 using IRAP.Client.User;
 using IRAP.Entities.MDM;
 using IRAP.Entities.MES;
 using IRAP.Entities.SSO;
+using IRAP.Entities.IRAP;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.MESPDC
@@ -24,7 +26,7 @@ namespace IRAP.Client.GUI.MESPDC
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private UserDetailInfo currentOperator = null;
+        private STB006 currentOperator = null;
         private List<WIPStation> stations = new List<WIPStation>();
         private List<BatchByEquipment> batchs = new List<BatchByEquipment>();
         private List<BatchPWOInfo> pwos = new List<BatchPWOInfo>();
@@ -167,7 +169,7 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
-        private UserDetailInfo GetUserInfoWithIDCode(string idCode)
+        private STB006 GetUserInfoWithIDCode(string idCode)
         {
             string strProcedureName =
                 string.Format(
@@ -179,9 +181,9 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 int errCode = 0;
                 string errText = "";
-                List<UserDetailInfo> users = new List<UserDetailInfo>();
+                List<STB006> users = new List<STB006>();
 
-                IRAPUserClient.Instance.sfn_GetList_UsersOfACommunity(
+                IRAPUserClient.Instance.mfn_GetList_Users(
                     IRAPUser.Instance.CommunityID,
                     "",
                     idCode,
@@ -263,6 +265,14 @@ namespace IRAP.Client.GUI.MESPDC
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
+                else
+                {
+                    for (int i = rlt.Count - 1; i >= 0; i--)
+                    {
+                        if (rlt[i].QCStatus != 0)
+                            rlt.RemoveAt(i);
+                    }
+                }
             }
             catch (Exception error)
             {
@@ -300,7 +310,8 @@ namespace IRAP.Client.GUI.MESPDC
             foreach (InspectionItem item in items)
             {
                 string colName = string.Format("Column{0}", item.Ordinal);
-                dtInspection.Columns.Add(colName, typeof(long));
+                DataColumn dc = dtInspection.Columns.Add(colName, typeof(string));
+                dc.Caption = item.T20Name;
 
                 EditorRow row = new EditorRow();
                 row.Properties.Caption = item.T20Name;
@@ -308,13 +319,60 @@ namespace IRAP.Client.GUI.MESPDC
                 vgrdInspectParams.Rows.Add(row);
             }
 
+            //for (int i = 0; i < dtInspection.Columns.Count; i++)
+            //{
+            //    List<PPParamValue> values = items[i].ResolveDataXML();
+            //    for (int j = 0; j < values.Count; j++)
+            //    {
+            //        DataRow dr = null;
+            //        if (dtInspection.Rows.Count < j + 1)
+            //        {
+            //            dr = dtInspection.NewRow();
+            //            dtInspection.Rows.Add(dr);
+            //        }
+            //        else
+            //        {
+            //            dr = dtInspection.Rows[j];
+            //        }
+
+            //        dr[i] = values[j].Metric01;
+            //    }
+            //}
+
             vgrdInspectParams.DataSource = dtInspection;
             vgrdInspectParams.BestFit();
+        }
+
+        private string GenerateRSFactXML()
+        {
+            string rlt = "";
+
+            for (int i = 0; i < dtInspection.Rows.Count; i++)
+            {
+                int rowNo = i + 1;
+                for (int j = 0; j < dtInspection.Columns.Count; j++)
+                {
+                    rlt +=
+                        string.Format(
+                            "<RF6_2 RowNum=\"{0}\" Ordinal=\"{1}\" " +
+                            "T20LeafID=\"{2}\" LowLimit=\"\" " +
+                            "Criterion=\"\" HighLimit=\"\" UnitOfMeasure=\"\" " +
+                            "Metric01=\"{3}\" />",
+                            rowNo,
+                            inspectionItems[j].Ordinal,
+                            inspectionItems[j].T20LeafID,
+                            dtInspection.Rows[i][j].ToString());
+                }
+            }
+
+            rlt = string.Format("<RSFact>{0}</RSFact>", rlt);
+            return rlt;
         }
 
         private void frmQualityInspecting_Load(object sender, EventArgs e)
         {
             GetStations();
+            stations.Sort(new WIPStation_CompareByT133AltCode());
             foreach (WIPStation station in stations)
             {
                 cboWorkUnit.Properties.Items.Add(station);
@@ -397,26 +455,40 @@ namespace IRAP.Client.GUI.MESPDC
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
             if (idx >=0 && idx < pwos.Count)
             {
-                int errCode = 0;
-                string errText = "";
-
-                IRAPMDMClient.Instance.ufn_GetList_InspectionItems(
-                    IRAPUser.Instance.CommunityID,
-                    pwos[idx].T102LeafID,
-                    ((WIPStation)cboWorkUnit.SelectedItem).T216LeafID,
-                    pwos[idx].PWONo,
-                    pwos[idx].BatchNumber,
-                    IRAPUser.Instance.SysLogID,
-                    ref inspectionItems,
-                    out errCode,
-                    out errText);
-                if (errCode != 0)
+                string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                try
                 {
-                    XtraMessageBox.Show(
-                        errText,
-                        "",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+
+                    int errCode = 0;
+                    string errText = "";
+
+                    IRAPMDMClient.Instance.ufn_GetList_InspectionItems(
+                        IRAPUser.Instance.CommunityID,
+                        pwos[idx].T102LeafID,
+                        ((WIPStation)cboWorkUnit.SelectedItem).T216LeafID,
+                        pwos[idx].PWONo,
+                        pwos[idx].BatchNumber,
+                        IRAPUser.Instance.SysLogID,
+                        ref inspectionItems,
+                        out errCode,
+                        out errText);
+                    if (errCode != 0)
+                    {
+                        XtraMessageBox.Show(
+                            errText,
+                            "",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+                finally
+                {
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
             }
             else
@@ -425,6 +497,167 @@ namespace IRAP.Client.GUI.MESPDC
             }
 
             InitInspectionItemsGrid(inspectionItems);
+        }
+
+        private void btnPWONew_Click(object sender, EventArgs e)
+        {
+            if (dtInspection.Columns.Count < 0)
+            {
+                XtraMessageBox.Show(
+                    "当前生产工单的在制品没有配置检验项",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            using (Dialogs.frmItemsEditor formEditor =
+                new Dialogs.frmItemsEditor(
+                    EditStatus.New,
+                    splitContainerControl1.Panel2.Text,
+                    dtInspection,
+                    -1))
+            {
+                if (formEditor.ShowDialog() == DialogResult.OK)
+                {
+                    vgrdInspectParams.RefreshDataSource();
+                }
+            }
+        }
+
+        private void btnPWOModify_Click(object sender, EventArgs e)
+        {
+            if (dtInspection.Columns.Count < 0)
+            {
+                XtraMessageBox.Show(
+                    "当前生产工单的在制品没有配置检验项",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            int idx = vgrdInspectParams.FocusedRecord;
+            if (idx < 0)
+            {
+                XtraMessageBox.Show(
+                    "当前没有需要修改的检验项值",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            using (Dialogs.frmItemsEditor formEditor =
+                new Dialogs.frmItemsEditor(
+                    EditStatus.Edit,
+                    splitContainerControl1.Panel2.Text,
+                    dtInspection,
+                    idx))
+            {
+                if (formEditor.ShowDialog() == DialogResult.OK)
+                {
+                    vgrdInspectParams.RefreshDataSource();
+                }
+            }
+        }
+
+        private void btnPWORemove_Click(object sender, EventArgs e)
+        {
+            int idx = vgrdInspectParams.FocusedRecord;
+            if (idx >= 0)
+            {
+                if (XtraMessageBox.Show(
+                    string.Format(
+                        "是否要删除选择的第[{0}]组参数值？",
+                        idx + 1),
+                    "",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    dtInspection.Rows.RemoveAt(idx);
+
+                    vgrdInspectParams.RefreshDataSource();
+                }
+            }
+        }
+
+        private void btnSaveParams_Click(object sender, EventArgs e)
+        {
+            if (dtInspection.Columns.Count < 0)
+            {
+                XtraMessageBox.Show(
+                    "当前生产工单的在制品没有配置检验项",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            if (dtInspection.Rows.Count < 0)
+            {
+                XtraMessageBox.Show(
+                    "当前生产工单还没有输入检验值",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                long factID = 0;
+
+                int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
+                if (idx >= 0 && idx < pwos.Count)
+                    factID = pwos[idx].FactID;
+
+                IRAPMESClient.Instance.usp_SaveFact_BatchManualInspecting(
+                    IRAPUser.Instance.CommunityID,
+                    pwos[idx].FactID,
+                    pwos[idx].T102LeafID,
+                    ((WIPStation)cboWorkUnit.SelectedItem).T107LeafID,
+                    pwos[idx].BatchNumber,
+                    pwos[idx].LotNumber,
+                    pwos[idx].PWONo,
+                    1,
+                    GenerateRSFactXML(),
+                    IRAPUser.Instance.SysLogID,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    cboWorkUnit_SelectedIndexChanged(null, null);
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
     }
 }

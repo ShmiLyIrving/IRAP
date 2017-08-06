@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
+using System.Xml;
+
+using IRAP.Global;
 
 namespace IRAP.Entities.MDM
 {
@@ -41,6 +45,50 @@ namespace IRAP.Entities.MDM
         /// [/RF25]
         /// </summary>
         public string DataXML { get; set; }
+
+        public List<PPParamValue> ResolveDataXML()
+        {
+            string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                        MethodBase.GetCurrentMethod().Name);
+
+            List<PPParamValue> rlt = new List<PPParamValue>();
+
+            XmlDocument xdoc = new XmlDocument();
+            try
+            {
+                xdoc.LoadXml(DataXML);
+            }
+            catch (XmlException err)
+            {
+                WriteLog.Instance.Write(err.Message, strProcedureName);
+                return new List<PPParamValue>();
+            }
+
+            long factID = 0;
+            string metric01 = "";
+            foreach (XmlNode node in xdoc.SelectNodes("RF25/Row"))
+            {
+                if (node.Attributes["FactID"] != null)
+                    factID = Tools.ConvertToInt64(node.Attributes["FactID"].Value, 0);
+                else
+                    factID = 0;
+                if (node.Attributes["Metric01"] != null)
+                    metric01 = node.Attributes["Metric01"].Value;
+                else
+                    metric01 = "";
+
+                rlt.Add(
+                    new PPParamValue()
+                    {
+                        FactID = factID,
+                        Metric01 = metric01,
+                    });
+            }
+            return rlt;
+        }
 
         public InspectionItem Clone()
         {

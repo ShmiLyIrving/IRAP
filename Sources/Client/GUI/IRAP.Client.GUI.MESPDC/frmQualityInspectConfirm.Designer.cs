@@ -74,7 +74,7 @@
             this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblFuncName.Text = "frmCustomBase";
+            this.lblFuncName.Text = "检验员确认";
             // 
             // toolTipController
             // 
@@ -164,6 +164,7 @@
             this.grdvBatchNos.Name = "grdvBatchNos";
             this.grdvBatchNos.OptionsBehavior.Editable = false;
             this.grdvBatchNos.OptionsView.ShowGroupPanel = false;
+            this.grdvBatchNos.FocusedRowObjectChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventHandler(this.grdvBatchNos_FocusedRowObjectChanged);
             // 
             // grdclmnBatchNo
             // 
@@ -205,6 +206,7 @@
             this.grdvPWOs.OptionsBehavior.Editable = false;
             this.grdvPWOs.OptionsView.ColumnAutoWidth = false;
             this.grdvPWOs.OptionsView.ShowGroupPanel = false;
+            this.grdvPWOs.FocusedRowObjectChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventHandler(this.grdvPWOs_FocusedRowObjectChanged);
             // 
             // grdclmnPWONo
             // 
@@ -217,7 +219,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "产品物料号";
-            this.gridColumn2.FieldName = "ProductNo";
+            this.gridColumn2.FieldName = "T102Code";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
@@ -225,7 +227,7 @@
             // grdclmnProductName
             // 
             this.grdclmnProductName.Caption = "产品物料名称";
-            this.grdclmnProductName.FieldName = "ProductName";
+            this.grdclmnProductName.FieldName = "T102Name";
             this.grdclmnProductName.Name = "grdclmnProductName";
             this.grdclmnProductName.Visible = true;
             this.grdclmnProductName.VisibleIndex = 2;
@@ -233,7 +235,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "批次号";
-            this.gridColumn3.FieldName = "BatchNo";
+            this.gridColumn3.FieldName = "LotNumber";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;
@@ -241,7 +243,7 @@
             // gridColumn4
             // 
             this.gridColumn4.Caption = "材质";
-            this.gridColumn4.FieldName = "TextureCode";
+            this.gridColumn4.FieldName = "Texture";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 4;
@@ -252,7 +254,7 @@
             this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn5.Caption = "生产数量";
-            this.gridColumn5.FieldName = "Quantity";
+            this.gridColumn5.FieldName = "Qty";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
@@ -267,6 +269,7 @@
             this.edtOperatorCode.Properties.Appearance.Options.UseFont = true;
             this.edtOperatorCode.Size = new System.Drawing.Size(219, 26);
             this.edtOperatorCode.TabIndex = 3;
+            this.edtOperatorCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtOperatorCode_KeyDown);
             // 
             // cboWorkUnit
             // 
@@ -282,6 +285,7 @@
             this.cboWorkUnit.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboWorkUnit.Size = new System.Drawing.Size(417, 26);
             this.cboWorkUnit.TabIndex = 5;
+            this.cboWorkUnit.SelectedIndexChanged += new System.EventHandler(this.cboWorkUnit_SelectedIndexChanged);
             // 
             // labelControl1
             // 
@@ -319,6 +323,7 @@
             this.btnInspectConfirm.Size = new System.Drawing.Size(95, 30);
             this.btnInspectConfirm.TabIndex = 12;
             this.btnInspectConfirm.Text = "确认";
+            this.btnInspectConfirm.Click += new System.EventHandler(this.btnInspectConfirm_Click);
             // 
             // groupControl1
             // 
@@ -400,6 +405,7 @@
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "frmQualityInspectConfirm";
             this.Text = "检验员确认";
+            this.Load += new System.EventHandler(this.frmQualityInspectConfirm_Load);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.splitContainerControl1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

@@ -83,6 +83,7 @@
             // frmItemsEditor
             // 
             this.Appearance.Options.UseFont = true;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(587, 311);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);

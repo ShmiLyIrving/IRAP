@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRAP\STB006.cs" />
     <Compile Include="MDM\AndonCallPerson.cs" />
     <Compile Include="FVS\AndonRspedEventInfo.cs" />
     <Compile Include="APS\ManufacturingOrder.cs" />

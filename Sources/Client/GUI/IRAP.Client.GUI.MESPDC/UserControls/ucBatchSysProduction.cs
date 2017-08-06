@@ -19,6 +19,7 @@ using IRAP.Client.GUI.MESPDC.Entities;
 using IRAP.Entities.MDM;
 using IRAP.Entities.SSO;
 using IRAP.Entities.MES;
+using IRAP.Entities.IRAP;
 using IRAP.Entity.MDM;
 using IRAP.WCF.Client.Method;
 
@@ -31,7 +32,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
         private WIPStation stationInfo = null;
 
-        private UserDetailInfo currentOperator = null;
+        private STB006 currentOperator = null;
         private DateTime startDatetime = DateTime.Now;
         /// <summary>
         /// 当前的生产炉次号
@@ -73,12 +74,18 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 GetPrdtTypes();
             }
 
-            if (station.T216LeafID == 5258694) { }
-            else
-            {
-                lblPrdtType.Visible = false;
-                cboPrdtType.Visible = false;
-            }
+            //switch (station.T216LeafID)
+            //{
+            //    case 5258694:
+            //    case 5258676:
+            //        lblPrdtType.Visible = true;
+            //        cboPrdtType.Visible = true;
+            //        break;
+            //    default:
+            //        lblPrdtType.Visible = false;
+            //        cboPrdtType.Visible = false;
+            //        break;
+            //}
 
             //GetMethodStandards(0, station.T216LeafID, "");
         }
@@ -165,7 +172,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             foreach (ProductionProcessParam param in ppParams)
             {
                 string colName = string.Format("Column{0}", param.Ordinal);
-                DataColumn dc = dtParams.Columns.Add(colName, typeof(long));
+                DataColumn dc = dtParams.Columns.Add(colName, typeof(string));
                 dc.Caption = param.T20Name;
 
                 EditorRow row = new EditorRow();
@@ -197,7 +204,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             vgrdMethodParams.DataSource = dtParams;
         }
 
-        private UserDetailInfo GetUserInfoWithIDCode(string idCode)
+        private STB006 GetUserInfoWithIDCode(string idCode)
         {
             string strProcedureName =
                 string.Format(
@@ -209,9 +216,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             {
                 int errCode = 0;
                 string errText = "";
-                List<UserDetailInfo> users = new List<UserDetailInfo>();
+                List<STB006> users = new List<STB006>();
 
-                IRAPUserClient.Instance.sfn_GetList_UsersOfACommunity(
+                IRAPUserClient.Instance.mfn_GetList_Users(
                     IRAPUser.Instance.CommunityID,
                     "",
                     idCode,
@@ -501,7 +508,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             BatchProductInfo data = GetWorkUnitProductionInfo();
             if (data != null)
             {
-                currentOperator = new UserDetailInfo()
+                currentOperator = new STB006()
                 {
                     UserCode = data.OperatorCode,
                     UserName = data.OperatorName,
@@ -737,9 +744,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
                     edtOperatorCode.Text = "";
                     cboPrdtType.SelectedIndex = -1;
+                    lblBatchNo.Text = "";
+                    lblProductTimeSpan.Text = "";
+                    lblStartTime.Text = "";
 
-                    grdvPWOs.UpdateCurrentRow();
-                    grdvParams.UpdateCurrentRow();
+                    grdParams.RefreshDataSource();
+                    grdPWOs.RefreshDataSource();
 
                     prdtStatus = ProductionStatus.Idle;
                     RefreshForm();
@@ -866,9 +876,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         {
             using (Dialogs.frmItemsEditor formEditor =
                 new Dialogs.frmItemsEditor(
-                    dtParams,
+                    EditStatus.New,
                     splitContainerControl1.Panel2.Text,
-                    EditStatus.New))
+                    dtParams,
+                    -1))
             {
                 if (formEditor.ShowDialog() == DialogResult.OK)
                 {

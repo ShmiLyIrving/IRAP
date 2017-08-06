@@ -8,6 +8,7 @@ using System.Collections;
 using IRAP.Global;
 using IRAP.Entity.SSO;
 using IRAP.Entities.SSO;
+using IRAP.Entities.IRAP;
 
 namespace IRAP.WCF.Client.Method
 {
@@ -1139,6 +1140,74 @@ namespace IRAP.WCF.Client.Method
 
                     if (errCode == 0)
                         datas = rlt as List<UserDetailInfo>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void mfn_GetList_Users(
+            int communityID,
+            string userCode,
+            string idCardNo,
+            ref List<STB006> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("userCode", userCode);
+                hashParams.Add("idCardNo", idCardNo);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 mfn_GetList_Users，输入参数：" +
+                        "CommunityID={0}|UserCode={1}|IDCardNo={2}",
+                        communityID,
+                        userCode,
+                        idCardNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.SSO.dll",
+                        "IRAP.BL.SSO.IRAPUser",
+                        "mfn_GetList_Users",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<STB006>;
                 }
                 #endregion
             }

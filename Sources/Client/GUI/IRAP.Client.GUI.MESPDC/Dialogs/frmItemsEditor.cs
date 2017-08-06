@@ -23,6 +23,8 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
         private EditStatus editStatus = EditStatus.Browse;
         private DataTable dtParams = new DataTable();
 
+        private int recordNo = 0;
+
         private List<TextEdit> edits = new List<TextEdit>();
 
         public frmItemsEditor()
@@ -31,13 +33,16 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
         }
 
         public frmItemsEditor(
-            DataTable dt,
+            EditStatus editStatus,
             string caption,
-            EditStatus editStatus) :
+            DataTable dt,
+            int recordNo) :
             this()
         {
             dtParams = dt;
-            InitEditorGUI(dtParams);
+            this.recordNo = recordNo;
+
+            InitEditorGUI(dtParams, recordNo);
 
             groupControl1.Text = caption;
 
@@ -46,13 +51,19 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             {
                 case EditStatus.New:
                     Text = "新增";
-
+                    break;
+                case EditStatus.Edit:
+                    Text = "修改";
                     break;
             }
         }
 
-        private void InitEditorGUI(DataTable items)
+        private void InitEditorGUI(DataTable items, int recordNo)
         {
+            DataRow dr = null;
+            if (recordNo >= 0 && recordNo < items.Rows.Count)
+                dr = items.Rows[recordNo];
+
             for (int i = 0; i < items.Columns.Count; i++)
             {
                 LabelControl label =
@@ -79,6 +90,8 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                         Size = new Size(300, 26),
                         Parent = groupControl1,
                     };
+                if (dr != null)
+                    textEdit.Text = dr[i].ToString();
                 edits.Add(textEdit);
             }
 
@@ -87,14 +100,27 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DataRow dr = dtParams.NewRow();
-            for (int i = 0; i < edits.Count; i++)
+            DataRow dr = null;
+            switch (editStatus)
             {
-                dr[i] = edits[i].Text;
-            }
-            dtParams.Rows.Add(dr);
+                case EditStatus.New:
+                    dr = dtParams.NewRow();
+                    for (int i = 0; i < edits.Count; i++)
+                    {
+                        dr[i] = edits[i].Text;
+                    }
+                    dtParams.Rows.Add(dr);
 
-            DialogResult = DialogResult.OK;
+                    DialogResult = DialogResult.OK;
+                    break;
+                case EditStatus.Edit:
+                    dr = dtParams.Rows[recordNo];
+                    for (int i = 0; i < edits.Count; i++)
+                        dr[i] = edits[i].Text;
+
+                    DialogResult = DialogResult.OK;
+                    break;
+            }
         }
     }
 }

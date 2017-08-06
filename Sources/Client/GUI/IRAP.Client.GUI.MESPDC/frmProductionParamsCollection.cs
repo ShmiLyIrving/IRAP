@@ -72,13 +72,15 @@ namespace IRAP.Client.GUI.MESPDC
         {
             GetStations();
 
+            stations.Sort(new WIPStation_CompareByT133AltCode());
+
             foreach (WIPStation station in stations)
             {
                 XtraTabPage page = new XtraTabPage();
                 page.Text =
                     string.Format(
                         "[{0}]{1}",
-                        station.T107Code,
+                        station.T133AltCode,
                         station.T107Name);
 
                 UserControls.ucBatchSysProduction prdt = new UserControls.ucBatchSysProduction(station);

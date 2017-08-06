@@ -309,12 +309,41 @@ namespace IRAP.Entities.MDM
         }
         public override string ToString()
         {
-            return string.Format("{2}[{0}]【{1}】", T107Code, T216Code, T107Name);
+            return string.Format("[{0}]{1}", T133AltCode, T107Name);
         }
 
         public WIPStation Clone()
         {
             return MemberwiseClone() as WIPStation;
+        }
+    }
+
+    public class WIPStation_CompareByT133AltCode : IComparer<WIPStation>
+    {
+        public int Compare(WIPStation x, WIPStation y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (y == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return x.T133AltCode.CompareTo(y.T133AltCode);
+                }
+            }
         }
     }
 }

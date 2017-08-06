@@ -323,6 +323,7 @@
             this.btnSaveParams.Size = new System.Drawing.Size(95, 30);
             this.btnSaveParams.TabIndex = 12;
             this.btnSaveParams.Text = "保存";
+            this.btnSaveParams.Click += new System.EventHandler(this.btnSaveParams_Click);
             // 
             // groupControl1
             // 
@@ -352,6 +353,7 @@
             this.btnPWORemove.Size = new System.Drawing.Size(95, 30);
             this.btnPWORemove.TabIndex = 11;
             this.btnPWORemove.Text = "删除";
+            this.btnPWORemove.Click += new System.EventHandler(this.btnPWORemove_Click);
             // 
             // btnPWOModify
             // 
@@ -364,6 +366,7 @@
             this.btnPWOModify.Size = new System.Drawing.Size(95, 30);
             this.btnPWOModify.TabIndex = 10;
             this.btnPWOModify.Text = "修改";
+            this.btnPWOModify.Click += new System.EventHandler(this.btnPWOModify_Click);
             // 
             // btnPWONew
             // 
@@ -376,12 +379,17 @@
             this.btnPWONew.Size = new System.Drawing.Size(95, 30);
             this.btnPWONew.TabIndex = 9;
             this.btnPWONew.Text = "新增";
+            this.btnPWONew.Click += new System.EventHandler(this.btnPWONew_Click);
             // 
             // vgrdInspectParams
             // 
             this.vgrdInspectParams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.vgrdInspectParams.Appearance.FocusedRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.vgrdInspectParams.Appearance.FocusedRecord.ForeColor = System.Drawing.Color.Blue;
+            this.vgrdInspectParams.Appearance.FocusedRecord.Options.UseBackColor = true;
+            this.vgrdInspectParams.Appearance.FocusedRecord.Options.UseForeColor = true;
             this.vgrdInspectParams.Appearance.PressedRow.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vgrdInspectParams.Appearance.PressedRow.Options.UseFont = true;
             this.vgrdInspectParams.Appearance.RowHeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10.5F);
