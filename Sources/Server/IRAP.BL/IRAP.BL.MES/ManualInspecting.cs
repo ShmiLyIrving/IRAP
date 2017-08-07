@@ -867,13 +867,13 @@ namespace IRAP.BL.MES
                         paramList.Add(new IRAPProcParameter("@AgencyLeaf2", DbType.Int32, agencyLeaf));
                         paramList.Add(new IRAPProcParameter("@Checked", DbType.String, userCode));
                         paramList.Add(new IRAPProcParameter("@TransactNo", DbType.Int64, transactNo));
-                        paramList.Add(new IRAPProcParameter("@PartitionPolicy", DbType.Int64, partitionPolicy));
+                        paramList.Add(new IRAPProcParameter("@PartitioningKey", DbType.Int64, partitionPolicy));
                         try
                         {
                             conn.Update("UPDATE IRAPMES..stb010 SET OkayTime = @OkayTime, " +
                                 "AgencyLeaf2 = @AgencyLeaf2, Checked = @Checked, " +
                                 "Status = 5 WHERE TransactNo = @TransactNo AND " +
-                                "PartitionPolicy = @PartitionPolicy",
+                                "PartitioningKey = @PartitioningKey",
                                 paramList);
                         }
                         catch (Exception error)
@@ -903,39 +903,6 @@ namespace IRAP.BL.MES
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="communityID"></param>
-        /// <param name="factID"></param>
-        /// <param name="t102LeafID"></param>
-        /// <param name="t107LeafID"></param>
-        /// <param name="batchNumber"></param>
-        /// <param name="lotNumber"></param>
-        /// <param name="pwoNo"></param>
-        /// <param name="qcStatus"></param>
-        /// <param name="rsFactXML"></param>
-        /// <param name="sysLogID"></param>
-        /// <param name="errCode"></param>
-        /// <param name="errText"></param>
-        /// <returns></returns>
-        public IRAPJsonResult usp_SaveFact_BatchManualInspecting(
-            int communityID,
-            long factID,
-            int t102LeafID,
-            int t107LeafID,
-            string batchNumber,
-            string lotNumber,
-            string pwoNo,
-            int qcStatus,
-            string rsFactXML,
-            long sysLogID,
-            out int errCode,
-            out string errText)
-        {
-            throw new NotImplementedException();
         }
     }
 }

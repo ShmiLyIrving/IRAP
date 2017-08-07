@@ -255,20 +255,100 @@ namespace IRAP.BL.UTS
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@CtrlParameter1", DbType.Int32, ctrlParameter1));
-                paramList.Add(new IRAPProcParameter("@CtrlParameter2", DbType.Int32, ctrlParameter2));
-                paramList.Add(new IRAPProcParameter("@CtrlParameter3", DbType.Int32, ctrlParameter3));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@CtrlParameter2",
+                        DbType.Int32,
+                        ParameterDirection.InputOutput,
+                        4)
+                    {
+                        Value = ctrlParameter2,
+                    });
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@CtrlParameter3",
+                        DbType.Int32,
+                        ParameterDirection.InputOutput,
+                        4)
+                    {
+                        Value = ctrlParameter3,
+                    });
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@OutputStr", DbType.String, ParameterDirection.Output, 2147483647));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
-                paramList.Add(new IRAPProcParameter("@StrParameter1", DbType.String, strParameter1));
-                paramList.Add(new IRAPProcParameter("@StrParameter2", DbType.String, strParameter2));
-                paramList.Add(new IRAPProcParameter("@StrParameter3", DbType.String, strParameter3));
-                paramList.Add(new IRAPProcParameter("@StrParameter4", DbType.String, strParameter4));
-                paramList.Add(new IRAPProcParameter("@StrParameter5", DbType.String, strParameter5));
-                paramList.Add(new IRAPProcParameter("@StrParameter6", DbType.String, strParameter6));
-                paramList.Add(new IRAPProcParameter("@StrParameter7", DbType.String, strParameter7));
-                paramList.Add(new IRAPProcParameter("@StrParameter8", DbType.String, strParameter8));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@StrParameter1",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = strParameter1,
+                    });
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@StrParameter2",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = strParameter2,
+                    });
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@StrParameter3",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = strParameter3,
+                    });
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@StrParameter4",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = strParameter4,
+                    });
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@StrParameter5",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = strParameter5,
+                    });
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@StrParameter6",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = strParameter6,
+                    });
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@StrParameter7",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = strParameter7,
+                    });
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@StrParameter8",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = strParameter8,
+                    });
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 IRAP..ssp_PokaYoke_UDFForm，输入参数：" +

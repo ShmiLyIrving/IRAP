@@ -12,6 +12,7 @@ using IRAPShared;
 using IRAPORM;
 using IRAP.Entity.SSO;
 using IRAP.Entities.SSO;
+using IRAP.Entities.IRAP;
 
 namespace IRAP.BL.SSO
 {
@@ -1088,6 +1089,83 @@ namespace IRAP.BL.SSO
                     errText =
                         string.Format(
                             "调用 IRAP..sfn_GetList_UsersOfACommunity 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public IRAPJsonResult mfn_GetList_Users(
+            int communityID,
+            string userCode,
+            string idCardNo,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<STB006> datas = new List<STB006>();
+                long partitioningKey = communityID * 10000;
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@PartitioningKey", DbType.Int64, partitioningKey));
+                paramList.Add(new IRAPProcParameter("@UserCode", DbType.String, userCode));
+                paramList.Add(new IRAPProcParameter("@IDCardNo", DbType.String, idCardNo));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "检索 IRAP..stb006 表，" +
+                        "参数：CommunityID={0}|UserCode={1}|IDCardNo={2}",
+                        communityID,
+                        userCode,
+                        idCardNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAP..stb006 WHERE PartitioningKey=@PartitioningKey";
+
+                        if (userCode != "")
+                            strSQL +=
+                                string.Format(" AND UserCode='{0}'", userCode);
+                        if (idCardNo != "")
+                            strSQL +=
+                                string.Format(" AND CardNo='{0}'", idCardNo);
+
+                        IList<STB006> lstDatas =
+                            conn.CallTableFunc<STB006>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "检索 IRAP..stb006 表发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
