@@ -158,46 +158,57 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 long intTransactNo = 0;
                 long intFactID = 0;
+                int ctrlParameter2_bk = 0;
+                int ctrlParameter3_bk = 0;
 
                 #region 统一防错校验
                 try
                 {
+
                     if (ctrlParameter2 >= 0)
                     {
+                        ctrlParameter2_bk = ctrlParameter2;
+                        ctrlParameter3_bk = ctrlParameter3;
+
                         IRAPUTSClient.Instance.ssp_PokaYoke_UDFForm(
                             IRAPUser.Instance.CommunityID,
                             ctrlParameter1,
-                            ctrlParameter2,
-                            ctrlParameter3,
+                            ref ctrlParameter2,
+                            ref ctrlParameter3,
                             IRAPUser.Instance.SysLogID,
-                            strParameter1,
-                            strParameter2,
-                            strParameter3,
-                            strParameter4,
-                            strParameter5,
-                            strParameter6,
-                            strParameter7,
-                            strParameter8,
+                            ref strParameter1,
+                            ref strParameter2,
+                            ref strParameter3,
+                            ref strParameter4,
+                            ref strParameter5,
+                            ref strParameter6,
+                            ref strParameter7,
+                            ref strParameter8,
                             ref outputStr,
                             out errorCode,
                             out errorMessage);
                     }
                     else
                     {
+                        ctrlParameter2 = processLeaf;
+                        ctrlParameter3 = workUnitLeaf;
+                        ctrlParameter2_bk = ctrlParameter2;
+                        ctrlParameter3_bk = ctrlParameter3;
+
                         IRAPUTSClient.Instance.ssp_PokaYoke_UDFForm(
                             IRAPUser.Instance.CommunityID,
                             ctrlParameter1,
-                            processLeaf,
-                            workUnitLeaf,
+                            ref ctrlParameter2,
+                            ref ctrlParameter3,
                             IRAPUser.Instance.SysLogID,
-                            strParameter1,
-                            strParameter2,
-                            strParameter3,
-                            strParameter4,
-                            strParameter5,
-                            strParameter6,
-                            strParameter7,
-                            strParameter8,
+                            ref strParameter1,
+                            ref strParameter2,
+                            ref strParameter3,
+                            ref strParameter4,
+                            ref strParameter5,
+                            ref strParameter6,
+                            ref strParameter7,
+                            ref strParameter8,
                             ref outputStr,
                             out errorCode,
                             out errorMessage);
@@ -242,6 +253,48 @@ namespace IRAP.Client.GUI.MESPDC
                 }
                 if (errorCode != 0)
                     return;
+                #endregion
+
+                #region 如果交易存储过程返回的 CtrlParameter2 和 CtrlParameter3 有变化，则刷新选项一和选项二
+                if (ctrlParameter2 != ctrlParameter2_bk)
+                    outputStr =
+                        string.Format(
+                            "T107LeafID=\"{0}\" ",
+                            ctrlParameter2);
+                else
+                    outputStr = "T107LeafID=\"\" ";
+                if (ctrlParameter3 != ctrlParameter3_bk)
+                    outputStr +=
+                        string.Format(
+                            " T102LeafID=\"{1}\" ",
+                            ctrlParameter3);
+                else
+                    outputStr += " T102LeafID=\"\" ";
+
+                outputStr =
+                    string.Format(
+                        "<ROOT><Action Ordinal=\"1\" Action=\"SelectChoice\" {0}/></ROOT>",
+                        outputStr);
+                if (ctrlParameter2 != ctrlParameter2_bk ||
+                    ctrlParameter3 != ctrlParameter3_bk)
+                {
+                    try
+                    {
+                        UDFActions.DoActions(
+                            outputStr,
+                            extendAction);
+                    }
+                    catch (Exception error)
+                    {
+                        outputStr = "";
+                        WriteLog.Instance.Write(
+                            string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                                error.Message,
+                                error.StackTrace),
+                            strProcedureName);
+                        throw error;
+                    }
+                }
                 #endregion
 
                 #region 申请交易号和事实编号
@@ -347,46 +400,56 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 long intTransactNo = 0;
                 long intFactID = 0;
+                int ctrlParameter2_bk = 0;
+                int ctrlParameter3_bk = 0;
 
                 #region 统一防错校验
                 try
                 {
                     if (ctrlParameter2 >= 0)
                     {
+                        ctrlParameter2_bk = ctrlParameter2;
+                        ctrlParameter3_bk = ctrlParameter3;
+
                         IRAPUTSClient.Instance.ssp_PokaYoke_UDFForm(
                             IRAPUser.Instance.CommunityID,
                             ctrlParameter1,
-                            ctrlParameter2,
-                            ctrlParameter3,
+                            ref ctrlParameter2,
+                            ref ctrlParameter3,
                             IRAPUser.Instance.SysLogID,
-                            strParameter1,
-                            strParameter2,
-                            strParameter3,
-                            strParameter4,
-                            strParameter5,
-                            strParameter6,
-                            strParameter7,
-                            strParameter8,
+                            ref strParameter1,
+                            ref strParameter2,
+                            ref strParameter3,
+                            ref strParameter4,
+                            ref strParameter5,
+                            ref strParameter6,
+                            ref strParameter7,
+                            ref strParameter8,
                             ref outputStr,
                             out errorCode,
                             out errorMessage);
                     }
                     else
                     {
+                        ctrlParameter2 = processLeaf;
+                        ctrlParameter3 = workUnitLeaf;
+                        ctrlParameter2_bk = ctrlParameter2;
+                        ctrlParameter3_bk = ctrlParameter3;
+
                         IRAPUTSClient.Instance.ssp_PokaYoke_UDFForm(
                             IRAPUser.Instance.CommunityID,
                             ctrlParameter1,
-                            processLeaf,
-                            workUnitLeaf,
+                            ref ctrlParameter2,
+                            ref ctrlParameter3,
                             IRAPUser.Instance.SysLogID,
-                            strParameter1,
-                            strParameter2,
-                            strParameter3,
-                            strParameter4,
-                            strParameter5,
-                            strParameter6,
-                            strParameter7,
-                            strParameter8,
+                            ref strParameter1,
+                            ref strParameter2,
+                            ref strParameter3,
+                            ref strParameter4,
+                            ref strParameter5,
+                            ref strParameter6,
+                            ref strParameter7,
+                            ref strParameter8,
                             ref outputStr,
                             out errorCode,
                             out errorMessage);
@@ -431,6 +494,48 @@ namespace IRAP.Client.GUI.MESPDC
                 }
                 if (errorCode != 0)
                     return;
+                #endregion
+
+                #region 如果交易存储过程返回的 CtrlParameter2 和 CtrlParameter3 有变化，则刷新选项一和选项二
+                if (ctrlParameter2 != ctrlParameter2_bk)
+                    outputStr =
+                        string.Format(
+                            "T107LeafID=\"{0}\" ",
+                            ctrlParameter2);
+                else
+                    outputStr = "T107LeafID=\"\" ";
+                if (ctrlParameter3 != ctrlParameter3_bk)
+                    outputStr +=
+                        string.Format(
+                            " T102LeafID=\"{1}\" ",
+                            ctrlParameter3);
+                else
+                    outputStr += " T102LeafID=\"\" ";
+
+                outputStr =
+                    string.Format(
+                        "<ROOT><Action Ordinal=\"1\" Action=\"SelectChoice\" {0}/></ROOT>",
+                        outputStr);
+                if (ctrlParameter2 != ctrlParameter2_bk ||
+                    ctrlParameter3 != ctrlParameter3_bk)
+                {
+                    try
+                    {
+                        UDFActions.DoActions(
+                            outputStr,
+                            null);
+                    }
+                    catch (Exception error)
+                    {
+                        outputStr = "";
+                        WriteLog.Instance.Write(
+                            string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                                error.Message,
+                                error.StackTrace),
+                            strProcedureName);
+                        throw error;
+                    }
+                }
                 #endregion
 
                 #region 保存

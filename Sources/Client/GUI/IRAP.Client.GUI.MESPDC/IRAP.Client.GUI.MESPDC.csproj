@@ -54,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -99,6 +100,7 @@
     <Compile Include="Dialogs\frmRSFactListTestData.Designer.cs">
       <DependentUpon>frmRSFactListTestData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\EntityEquipmentInfo.cs" />
     <Compile Include="Entities\EntityMethodStarndardParams.cs" />
     <Compile Include="frmAppearanceInspection.cs">
       <SubType>Form</SubType>
@@ -228,6 +230,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Actions\SendToControlBox.cs" />
+    <Compile Include="UserControls\ucBatchQualityInspecting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucBatchQualityInspecting.Designer.cs">
+      <DependentUpon>ucBatchQualityInspecting.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucBatchSysProduction.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -368,6 +376,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucBatchQualityInspecting.resx">
+      <DependentUpon>ucBatchQualityInspecting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucBatchSysProduction.resx">
       <DependentUpon>ucBatchSysProduction.cs</DependentUpon>

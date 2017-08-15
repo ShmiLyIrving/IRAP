@@ -26,7 +26,8 @@ namespace IRAP.Client.GUI.MESPDC
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private STB006 currentOperator = null;
-        private List<WIPStation> stations = new List<WIPStation>();
+        private List<Entities.EntityEquipmentInfo> equipments = 
+            new List<Entities.EntityEquipmentInfo>();
         private List<BatchByEquipment> batchs = new List<BatchByEquipment>();
         private List<BatchPWOInfo> pwos = new List<BatchPWOInfo>();
         private List<InspectionItem> inspectionItems = new List<InspectionItem>();
@@ -51,8 +52,9 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 int errCode = 0;
                 string errText = "";
+                List<WIPStation> stations = new List<WIPStation>();
 
-                stations.Clear();
+                equipments.Clear();
                 IRAPMDMClient.Instance.ufn_GetList_WIPStationsOfAHost(
                     IRAPUser.Instance.CommunityID,
                     IRAPUser.Instance.SysLogID,
@@ -69,6 +71,35 @@ namespace IRAP.Client.GUI.MESPDC
                         caption,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+                }
+                else
+                {
+                    foreach (WIPStation station in stations)
+                    {
+                        equipments.Add(
+                            new Entities.EntityEquipmentInfo()
+                            {
+                                Ordinal = station.Ordinal,
+                                T107LeafID = station.T107LeafID,
+                                T107EntityID = station.T107EntityID,
+                                T107Code = station.T107Code,
+                                T107AltCode = station.T107AltCode,
+                                T107Name = station.T107Name,
+                                T134LeafID = station.T134LeafID,
+                                T134EntityID = station.T134EntityID,
+                                T134Code = station.T134Code,
+                                T134AltCode = station.T134AltCode,
+                                T216LeafID = station.T216LeafID,
+                                T216EntityID = station.T216EntityID,
+                                T216Code = station.T216Code,
+                                T216AltCode = station.T216AltCode,
+                                T216Name = station.T216Name,
+                                T133LeafID = station.T133LeafID,
+                                T133EntityID = station.T133EntityID,
+                                T133Code = station.T133Code,
+                                T133AltCode = station.T133AltCode,
+                            });
+                    }
                 }
             }
             finally
@@ -176,7 +207,7 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
 
-        private void GetBatchsFromEquipment(WIPStation station)
+        private void GetBatchsFromEquipment(Entities.EntityEquipmentInfo station)
         {
             string strProcedureName =
                 string.Format(
@@ -274,7 +305,8 @@ namespace IRAP.Client.GUI.MESPDC
                     for (int i = rlt.Count - 1; i >= 0; i--)
                     {
                         if (rlt[i].QCStatus == 0 ||
-                            rlt[i].PWOStatus == 9)
+                            rlt[i].PWOStatus == 9 ||
+                            rlt[i].BatchEndDate.Trim() == "")
                             rlt.RemoveAt(i);
                     }
                 }
@@ -351,8 +383,8 @@ namespace IRAP.Client.GUI.MESPDC
         private void frmQualityInspectConfirm_Load(object sender, EventArgs e)
         {
             GetStations();
-            stations.Sort(new WIPStation_CompareByT133AltCode());
-            foreach (WIPStation station in stations)
+            equipments.Sort(new Entities.EntityEquipmentInfo_CompareByT133AltCode());
+            foreach (Entities.EntityEquipmentInfo station in equipments)
             {
                 cboWorkUnit.Properties.Items.Add(station);
             }
@@ -397,7 +429,8 @@ namespace IRAP.Client.GUI.MESPDC
 
             if (cboWorkUnit.SelectedItem != null)
             {
-                WIPStation station = cboWorkUnit.SelectedItem as WIPStation;
+                Entities.EntityEquipmentInfo station = 
+                    cboWorkUnit.SelectedItem as Entities.EntityEquipmentInfo;
                 GetBatchsFromEquipment(station);
 
                 grdBatchNos.DataSource = batchs;
@@ -454,7 +487,7 @@ namespace IRAP.Client.GUI.MESPDC
                     IRAPMDMClient.Instance.ufn_GetList_InspectionItems(
                         IRAPUser.Instance.CommunityID,
                         pwos[idx].T102LeafID,
-                        ((WIPStation)cboWorkUnit.SelectedItem).T216LeafID,
+                        ((Entities.EntityEquipmentInfo)cboWorkUnit.SelectedItem).T216LeafID,
                         pwos[idx].PWONo,
                         pwos[idx].BatchNumber,
                         IRAPUser.Instance.SysLogID,
@@ -505,7 +538,7 @@ namespace IRAP.Client.GUI.MESPDC
                     IRAPUser.Instance.CommunityID,
                     pwos[idx].FactID,
                     pwos[idx].T102LeafID,
-                    ((WIPStation)cboWorkUnit.SelectedItem).T107LeafID,
+                    ((Entities.EntityEquipmentInfo)cboWorkUnit.SelectedItem).T107LeafID,
                     pwos[idx].BatchNumber,
                     pwos[idx].LotNumber,
                     pwos[idx].PWONo,
@@ -532,6 +565,10 @@ namespace IRAP.Client.GUI.MESPDC
                         "",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+
+                    dtInspection.Rows.Clear();
+                    dtInspection.Columns.Clear();
+                    vgrdInspectParams.Rows.Clear();
 
                     cboWorkUnit_SelectedIndexChanged(null, null);
                 }

@@ -4339,15 +4339,17 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
-        /// 获取指定产品叶标识的产品类别 T133
+        /// 获取指定产品叶标识的产品类别 T131
         /// </summary>
         /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
         /// <param name="t102LeafID">产品叶标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
         public void ufn_GetList_BatchRingCategory(
             int communityID,
+            int t216LeafID,
             int t102LeafID,
             long sysLogID,
             ref List<BatchRingCategory> datas,
@@ -4368,13 +4370,16 @@ namespace IRAP.WCF.Client.Method
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
                 hashParams.Add("communityID", communityID);
+                hashParams.Add("t216LeafID", t216LeafID);
                 hashParams.Add("t102LeafID", t102LeafID);
                 hashParams.Add("sysLogID", sysLogID);
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetList_BatchRingCategory，输入参数：" +
-                        "CommunityID={0}|T102LeafID={1}|SysLogID={2}",
+                        "CommunityID={0}|T216LeafID={1}|T102LeafID={2}|"+
+                        "SysLogID={3}",
                         communityID,
+                        t216LeafID,
                         t102LeafID,
                         sysLogID),
                     strProcedureName);

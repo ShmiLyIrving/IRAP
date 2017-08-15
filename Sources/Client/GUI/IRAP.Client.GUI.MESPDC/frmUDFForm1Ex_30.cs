@@ -408,6 +408,9 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void RefreshForm()
         {
+            if (menuInfo == null)
+                return;
+
             string strProcedureName = string.Format("{0}.{1}",
                 className,
                 MethodBase.GetCurrentMethod().Name);
@@ -871,6 +874,8 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     firstFocusedObject.Focus();
                 }
+
+                RefreshForm();
             }
             finally
             {

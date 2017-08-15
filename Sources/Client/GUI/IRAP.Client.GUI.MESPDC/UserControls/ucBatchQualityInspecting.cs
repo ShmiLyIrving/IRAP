@@ -1,132 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
 
 using DevExpress.XtraEditors;
 using DevExpress.XtraVerticalGrid.Rows;
-using DevExpress.XtraTab;
 
 using IRAP.Global;
-using IRAP.Client.Global.Enums;
 using IRAP.Client.User;
+using IRAP.Client.Global.Enums;
 using IRAP.Entities.MDM;
 using IRAP.Entities.MES;
-using IRAP.Entities.SSO;
 using IRAP.Entities.IRAP;
 using IRAP.WCF.Client.Method;
 
-namespace IRAP.Client.GUI.MESPDC
+namespace IRAP.Client.GUI.MESPDC.UserControls
 {
-    public partial class frmQualityInspecting : IRAP.Client.Global.GUI.frmCustomFuncBase
+    public partial class ucBatchQualityInspecting : DevExpress.XtraEditors.XtraUserControl
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
+        private Entities.EntityEquipmentInfo stationInfo = null;
+
         private STB006 currentOperator = null;
-        private List<Entities.EntityEquipmentInfo> equipments = 
-            new List<Entities.EntityEquipmentInfo>();
         private List<BatchByEquipment> batchs = new List<BatchByEquipment>();
         private List<BatchPWOInfo> pwos = new List<BatchPWOInfo>();
         private List<InspectionItem> inspectionItems = new List<InspectionItem>();
 
         private DataTable dtInspection = new DataTable();
 
-        public frmQualityInspecting()
+        public ucBatchQualityInspecting()
         {
             InitializeComponent();
         }
 
-        private void GetStations()
+        public ucBatchQualityInspecting(Entities.EntityEquipmentInfo station) : this()
         {
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
-                int errCode = 0;
-                string errText = "";
-                List<WIPStation> stations = new List<WIPStation>();
-
-                equipments.Clear();
-                IRAPMDMClient.Instance.ufn_GetList_WIPStationsOfAHost(
-                    IRAPUser.Instance.CommunityID,
-                    IRAPUser.Instance.SysLogID,
-                    ref stations,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(
-                    string.Format("({0}){1}", errCode, errText),
-                    strProcedureName);
-                if (errCode != 0)
-                {
-                    XtraMessageBox.Show(
-                        errText,
-                        caption,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-                else
-                {
-                    foreach (WIPStation station in stations)
-                    {
-                        equipments.Add(
-                            new Entities.EntityEquipmentInfo()
-                            {
-                                Ordinal = station.Ordinal,
-                                T107LeafID = station.T107LeafID,
-                                T107EntityID = station.T107EntityID,
-                                T107Code = station.T107Code,
-                                T107AltCode = station.T107AltCode,
-                                T107Name = station.T107Name,
-                                T134LeafID = station.T134LeafID,
-                                T134EntityID = station.T134EntityID,
-                                T134Code = station.T134Code,
-                                T134AltCode = station.T134AltCode,
-                                T216LeafID = station.T216LeafID,
-                                T216EntityID = station.T216EntityID,
-                                T216Code = station.T216Code,
-                                T216AltCode = station.T216AltCode,
-                                T216Name = station.T216Name,
-                                T133LeafID = station.T133LeafID,
-                                T133EntityID = station.T133EntityID,
-                                T133Code = station.T133Code,
-                                T133AltCode = station.T133AltCode,
-                            });
-                    }
-                }
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
+            stationInfo = station;
         }
 
-        private void ClearAll()
+        public void ClearAll()
+        {
+            currentOperator = null;
+            edtOperatorCode.Text = "";
+
+            Clear();
+
+            edtOperatorCode.Focus();
+        }
+
+        private void Clear()
         {
             batchs.Clear();
-            grdvBatchNos.UpdateCurrentRow();
+            grdvBatchNos.RefreshData();
 
             pwos.Clear();
-            grdvPWOs.UpdateCurrentRow();
+            grdvPWOs.RefreshData();
+
+            dtInspection.Clear();
+            dtInspection.Columns.Clear();
+            vgrdInspectParams.Rows.Clear();
+            vgrdInspectParams.RefreshDataSource();
+
+            RefreshCtrlInForm();
         }
 
         private void RefreshCtrlInForm()
         {
             grdBatchNos.RefreshDataSource();
             grdPWOs.RefreshDataSource();
+            vgrdInspectParams.RefreshDataSource();
 
             if (currentOperator == null)
             {
-                cboWorkUnit.Enabled = false;
                 splitContainerControl2.Enabled = false;
                 vgrdInspectParams.Enabled = false;
                 btnPWONew.Enabled = false;
@@ -136,8 +88,7 @@ namespace IRAP.Client.GUI.MESPDC
             }
             else
             {
-                cboWorkUnit.Enabled = true;
-                if (cboWorkUnit.SelectedItem != null)
+                if (currentOperator != null)
                 {
                     splitContainerControl2.Enabled = true;
                 }
@@ -190,7 +141,7 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     XtraMessageBox.Show(
                         errText,
-                        caption,
+                        "",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
@@ -229,7 +180,7 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     XtraMessageBox.Show(
                         errText,
-                        caption,
+                        "",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return null;
@@ -242,7 +193,7 @@ namespace IRAP.Client.GUI.MESPDC
                             string.Format(
                                 "未找到[{0}]的用户",
                                 idCode),
-                            caption,
+                            "",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         return null;
@@ -301,7 +252,8 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     for (int i = rlt.Count - 1; i >= 0; i--)
                     {
-                        if (rlt[i].QCStatus != 0)
+                        if (rlt[i].QCStatus != 0 ||
+                            rlt[i].BatchEndDate.Trim() == "")
                             rlt.RemoveAt(i);
                     }
                 }
@@ -401,45 +353,6 @@ namespace IRAP.Client.GUI.MESPDC
             return rlt;
         }
 
-        private void frmQualityInspecting_Load(object sender, EventArgs e)
-        {
-            GetStations();
-            equipments.Sort(new Entities.EntityEquipmentInfo_CompareByT133AltCode());
-            foreach (Entities.EntityEquipmentInfo station in equipments)
-            {
-                cboWorkUnit.Properties.Items.Add(station);
-            }
-
-            grdBatchNos.DataSource = batchs;
-            grdPWOs.DataSource = pwos;
-        }
-
-        private void frmQualityInspecting_Shown(object sender, EventArgs e)
-        {
-            GetStations();
-
-            equipments.Sort(new Entities.EntityEquipmentInfo_CompareByT133AltCode());
-            foreach (Entities.EntityEquipmentInfo station in equipments)
-            {
-                XtraTabPage page = new XtraTabPage();
-                page.Text =
-                    string.Format(
-                        "[{0}]{1}",
-                        station.T133AltCode,
-                        station.T107Name);
-
-                UserControls.ucBatchQualityInspecting inspect = 
-                    new UserControls.ucBatchQualityInspecting(station);
-                inspect.Dock = DockStyle.Fill;
-
-                page.Controls.Add(inspect);
-
-                tcMain.TabPages.Add(page);
-
-                inspect.ClearAll();
-            }
-        }
-
         private void edtOperatorCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
@@ -466,31 +379,25 @@ namespace IRAP.Client.GUI.MESPDC
                     currentOperator = null;
                 }
 
+                Clear();
+
+                if (currentOperator != null)
+                {
+                    GetBatchsFromEquipment(stationInfo);
+
+                    grdBatchNos.DataSource = batchs;
+                    grdvBatchNos.UpdateCurrentRow();
+                    grdvBatchNos.BestFitColumns();
+                }
+
                 RefreshCtrlInForm();
             }
-        }
-
-        private void cboWorkUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ClearAll();
-
-            if (cboWorkUnit.SelectedItem != null)
-            {
-                Entities.EntityEquipmentInfo station = 
-                    cboWorkUnit.SelectedItem as Entities.EntityEquipmentInfo;
-                GetBatchsFromEquipment(station);
-
-                grdBatchNos.DataSource = batchs;
-                grdvBatchNos.UpdateCurrentRow();
-                grdvBatchNos.BestFitColumns();
-            }
-
-            RefreshCtrlInForm();
         }
 
         private void grdvBatchNos_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
         {
             grdPWOs.DataSource = null;
+            vgrdInspectParams.Rows.Clear();
 
             int idx = grdvBatchNos.GetFocusedDataSourceRowIndex();
             if (idx >= 0 && idx < batchs.Count)
@@ -507,12 +414,14 @@ namespace IRAP.Client.GUI.MESPDC
 
             grdPWOs.RefreshDataSource();
             grdvPWOs.BestFitColumns();
+
+            RefreshCtrlInForm();
         }
 
         private void grdvPWOs_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
         {
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
-            if (idx >=0 && idx < pwos.Count)
+            if (idx >= 0 && idx < pwos.Count)
             {
                 string strProcedureName =
                     string.Format(
@@ -529,7 +438,7 @@ namespace IRAP.Client.GUI.MESPDC
                     IRAPMDMClient.Instance.ufn_GetList_InspectionItems(
                         IRAPUser.Instance.CommunityID,
                         pwos[idx].T102LeafID,
-                        ((Entities.EntityEquipmentInfo)cboWorkUnit.SelectedItem).T216LeafID,
+                        stationInfo.T216LeafID,
                         pwos[idx].PWONo,
                         pwos[idx].BatchNumber,
                         IRAPUser.Instance.SysLogID,
@@ -682,7 +591,7 @@ namespace IRAP.Client.GUI.MESPDC
                     IRAPUser.Instance.CommunityID,
                     pwos[idx].FactID,
                     pwos[idx].T102LeafID,
-                    ((Entities.EntityEquipmentInfo)cboWorkUnit.SelectedItem).T107LeafID,
+                    stationInfo.T107LeafID,
                     pwos[idx].BatchNumber,
                     pwos[idx].LotNumber,
                     pwos[idx].PWONo,
@@ -710,28 +619,22 @@ namespace IRAP.Client.GUI.MESPDC
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
-                    cboWorkUnit_SelectedIndexChanged(null, null);
+                    dtInspection.Rows.Clear();
+                    dtInspection.Columns.Clear();
+                    vgrdInspectParams.Rows.Clear();
+
+                    GetBatchsFromEquipment(stationInfo);
+
+                    grdBatchNos.DataSource = batchs;
+                    grdvBatchNos.UpdateCurrentRow();
+                    grdvBatchNos.BestFitColumns();
+
+                    RefreshCtrlInForm();
                 }
             }
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
-        private void tcMain_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
-        {
-            XtraTabPage page = e.Page;
-            foreach (Control ctrl in page.Controls)
-            {
-                if (ctrl is UserControls.ucBatchQualityInspecting)
-                {
-                    UserControls.ucBatchQualityInspecting inspect =
-                        (UserControls.ucBatchQualityInspecting)ctrl;
-                    inspect.ClearAll();
-
-                    return;
-                }
             }
         }
     }

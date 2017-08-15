@@ -309,7 +309,10 @@ namespace IRAP.Entities.MDM
         }
         public override string ToString()
         {
-            return string.Format("[{0}]{1}", T133AltCode, T107Name);
+            if (T133AltCode != "")
+                return string.Format("[{0}]{1}", T133AltCode, T107Name);
+            else
+                return string.Format("{2}[{0}]【{1}】", T107Code, T216Code, T107Name);
         }
 
         public WIPStation Clone()

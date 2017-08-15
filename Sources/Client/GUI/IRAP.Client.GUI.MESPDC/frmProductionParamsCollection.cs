@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Linq;
 
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
@@ -22,7 +23,8 @@ namespace IRAP.Client.GUI.MESPDC
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private List<WIPStation> stations = new List<WIPStation>();
+        private List<Entities.EntityEquipmentInfo> equipments = 
+            new List<Entities.EntityEquipmentInfo>();
 
         public frmProductionParamsCollection()
         {
@@ -42,8 +44,9 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 int errCode = 0;
                 string errText = "";
+                List<WIPStation> stations = new List<WIPStation>();
 
-                stations.Clear();
+                equipments.Clear();
                 IRAPMDMClient.Instance.ufn_GetList_WIPStationsOfAHost(
                     IRAPUser.Instance.CommunityID,
                     IRAPUser.Instance.SysLogID,
@@ -61,6 +64,35 @@ namespace IRAP.Client.GUI.MESPDC
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
+                else
+                {
+                    foreach (WIPStation station in stations)
+                    {
+                        equipments.Add(
+                            new Entities.EntityEquipmentInfo()
+                            {
+                                Ordinal = station.Ordinal,
+                                T107LeafID = station.T107LeafID,
+                                T107EntityID = station.T107EntityID,
+                                T107Code = station.T107Code,
+                                T107AltCode = station.T107AltCode,
+                                T107Name = station.T107Name,
+                                T134LeafID = station.T134LeafID,
+                                T134EntityID = station.T134EntityID,
+                                T134Code = station.T134Code,
+                                T134AltCode = station.T134AltCode,
+                                T216LeafID = station.T216LeafID,
+                                T216EntityID = station.T216EntityID,
+                                T216Code = station.T216Code,
+                                T216AltCode = station.T216AltCode,
+                                T216Name = station.T216Name,
+                                T133LeafID = station.T133LeafID,
+                                T133EntityID = station.T133EntityID,
+                                T133Code = station.T133Code,
+                                T133AltCode = station.T133AltCode,
+                            });
+                    }
+                }
             }
             finally
             {
@@ -72,18 +104,14 @@ namespace IRAP.Client.GUI.MESPDC
         {
             GetStations();
 
-            stations.Sort(new WIPStation_CompareByT133AltCode());
+            equipments.Sort(new Entities.EntityEquipmentInfo_CompareByT133AltCode());
 
-            foreach (WIPStation station in stations)
+            foreach (Entities.EntityEquipmentInfo equipment in equipments)
             {
                 XtraTabPage page = new XtraTabPage();
-                page.Text =
-                    string.Format(
-                        "[{0}]{1}",
-                        station.T133AltCode,
-                        station.T107Name);
+                page.Text = equipment.ToString();
 
-                UserControls.ucBatchSysProduction prdt = new UserControls.ucBatchSysProduction(station);
+                UserControls.ucBatchSysProduction prdt = new UserControls.ucBatchSysProduction(equipment);
                 prdt.Dock = DockStyle.Fill;
 
                 page.Controls.Add(prdt);

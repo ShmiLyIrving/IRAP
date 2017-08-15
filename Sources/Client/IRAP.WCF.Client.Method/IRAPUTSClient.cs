@@ -458,17 +458,17 @@ namespace IRAP.WCF.Client.Method
         public void ssp_PokaYoke_UDFForm(
             int communityID,
             int ctrlParameter1,
-            int ctrlParameter2,
-            int ctrlParameter3,
+            ref int ctrlParameter2,
+            ref int ctrlParameter3,
             long sysLogID,
-            string strParameter1,
-            string strParameter2,
-            string strParameter3,
-            string strParameter4,
-            string strParameter5,
-            string strParameter6,
-            string strParameter7,
-            string strParameter8,
+            ref string strParameter1,
+            ref string strParameter2,
+            ref string strParameter3,
+            ref string strParameter4,
+            ref string strParameter5,
+            ref string strParameter6,
+            ref string strParameter7,
+            ref string strParameter8,
             ref string outputStr,
             out int errCode,
             out string errText)
@@ -536,6 +536,16 @@ namespace IRAP.WCF.Client.Method
                         Hashtable rltHash = (Hashtable)rlt;
                         try
                         {
+                            HashtableTools.Instance.GetValue(rltHash, "CtrlParameter2", out ctrlParameter2);
+                            HashtableTools.Instance.GetValue(rltHash, "CtrlParameter3", out ctrlParameter3);
+                            HashtableTools.Instance.GetValue(rltHash, "StrParameter1", out strParameter1);
+                            HashtableTools.Instance.GetValue(rltHash, "StrParameter2", out strParameter2);
+                            HashtableTools.Instance.GetValue(rltHash, "StrParameter3", out strParameter3);
+                            HashtableTools.Instance.GetValue(rltHash, "StrParameter4", out strParameter4);
+                            HashtableTools.Instance.GetValue(rltHash, "StrParameter5", out strParameter5);
+                            HashtableTools.Instance.GetValue(rltHash, "StrParameter6", out strParameter6);
+                            HashtableTools.Instance.GetValue(rltHash, "StrParameter7", out strParameter7);
+                            HashtableTools.Instance.GetValue(rltHash, "StrParameter8", out strParameter8);
                             HashtableTools.Instance.GetValue(rltHash, "OutputStr", out outputStr);
                         }
                         catch (Exception error)

@@ -30,7 +30,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private WIPStation stationInfo = null;
+        private Entities.EntityEquipmentInfo stationInfo = null;
 
         private STB006 currentOperator = null;
         private DateTime startDatetime = DateTime.Now;
@@ -65,7 +65,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 caption = "系统信息";
         }
 
-        public ucBatchSysProduction(WIPStation station) : this()
+        public ucBatchSysProduction(EntityEquipmentInfo station) : this()
         {
             stationInfo = station;
 
@@ -73,21 +73,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             {
                 GetPrdtTypes();
             }
-
-            //switch (station.T216LeafID)
-            //{
-            //    case 5258694:
-            //    case 5258676:
-            //        lblPrdtType.Visible = true;
-            //        cboPrdtType.Visible = true;
-            //        break;
-            //    default:
-            //        lblPrdtType.Visible = false;
-            //        cboPrdtType.Visible = false;
-            //        break;
-            //}
-
-            //GetMethodStandards(0, station.T216LeafID, "");
         }
 
         private void RefreshForm()
@@ -142,6 +127,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
                 IRAPMDMClient.Instance.ufn_GetList_BatchRingCategory(
                     IRAPUser.Instance.CommunityID,
+                    stationInfo.T216LeafID,
                     0,
                     IRAPUser.Instance.SysLogID,
                     ref prdtTypes,
@@ -202,6 +188,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             }
 
             vgrdMethodParams.DataSource = dtParams;
+            vgrdMethodParams.BestFit();
         }
 
         private STB006 GetUserInfoWithIDCode(string idCode)
@@ -301,28 +288,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 }
                 else
                 {
-#if DEBUG1
-                    if (ppp.Count <= 0)
-                    {
-                        ppp.Add(
-                            new ProductionProcessParam()
-                            {
-                                Ordinal = 1,
-                                T20LeafID = -1,
-                                T20Code = "SJBWWD",
-                                T20Name = "实际保温温度",
-                            });
-                        ppp.Add(
-                            new ProductionProcessParam()
-                            {
-                                Ordinal = 2,
-                                T20LeafID = -2,
-                                T20Code = "SJBWSJ",
-                                T20Name = "实际保温时间",
-                            });
-                    }
-#endif
-
                     InitMethodParamsGrid(ppp);
                 }
             }
