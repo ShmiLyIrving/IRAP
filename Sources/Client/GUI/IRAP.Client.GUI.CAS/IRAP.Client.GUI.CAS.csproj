@@ -397,7 +397,6 @@
     <EmbeddedResource Include="frmSwitchToPLine_30.resx">
       <DependentUpon>frmSwitchToPLine_30.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

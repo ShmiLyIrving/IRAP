@@ -158,7 +158,6 @@
     <EmbeddedResource Include="Kanban\frmPWODeliveryMonitor.resx">
       <DependentUpon>frmPWODeliveryMonitor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
