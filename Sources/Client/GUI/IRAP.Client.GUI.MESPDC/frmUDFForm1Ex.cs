@@ -548,6 +548,8 @@ namespace IRAP.Client.GUI.MESPDC
 
                                     edit.ToolTip = ctrl.Hint;
 
+                                    edit.Text = ctrl.DefaultValueStr;
+
                                     edit.Tag = ctrl;
                                 }
                                 break;

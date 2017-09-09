@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <Upgrade URL="http://192.168.97.197:30000/IRAP/Upgrade/6.1/PC/IRAPClient/upgrade.xml"/>
+  <UpgradeXXX URL="http://192.168.97.197:30000/IRAP/Upgrade/6.1/PC/IRAPClient/upgrade.xml"/>
 </root>
