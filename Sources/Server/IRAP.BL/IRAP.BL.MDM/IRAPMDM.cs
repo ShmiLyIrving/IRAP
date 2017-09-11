@@ -5639,6 +5639,7 @@ namespace IRAP.BL.MDM
         /// 获取指定产品叶标识的产品类别 T133
         /// </summary>
         /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
         /// <param name="t102LeafID">产品叶标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         /// <param name="errCode"></param>
@@ -5646,6 +5647,7 @@ namespace IRAP.BL.MDM
         /// <returns>List[BatchRingCategory]</returns>
         public IRAPJsonResult ufn_GetList_BatchRingCategory(
             int communityID,
+            int t216LeafID,
             int t102LeafID,
             long sysLogID,
             out int errCode,
@@ -5665,13 +5667,15 @@ namespace IRAP.BL.MDM
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
                 paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMDM..ufn_GetList_BatchRingCategory，" +
-                        "参数：CommunityID={0}|T102LeafID={1}|SysLogID={2}",
-                        communityID, t102LeafID, sysLogID),
+                        "参数：CommunityID={0}|T216LeafID={1}|T102LeafID={2}|"+
+                        "SysLogID={3}",
+                        communityID, t216LeafID, t102LeafID, sysLogID),
                     strProcedureName);
                 #endregion
 
@@ -5682,7 +5686,7 @@ namespace IRAP.BL.MDM
                     {
                         string strSQL = "SELECT * " +
                             "FROM IRAPMDM..ufn_GetList_BatchRingCategory(" +
-                            "@CommunityID, @T102LeafID, @SysLogID) " +
+                            "@CommunityID, @T216LeafID, @T102LeafID, @SysLogID) " +
                             "ORDER BY Ordinal";
 
                         IList<BatchRingCategory> lstDatas =

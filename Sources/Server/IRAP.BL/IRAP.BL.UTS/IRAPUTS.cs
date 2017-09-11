@@ -128,6 +128,7 @@ namespace IRAP.BL.UTS
             string strParameter6, 
             string strParameter7, 
             string strParameter8, 
+            string errMessage,
             out int errCode,
             out string errText)
         {
@@ -153,7 +154,15 @@ namespace IRAP.BL.UTS
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@OutputStr", DbType.String, ParameterDirection.Output, 2147483647));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
-                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrText", 
+                        DbType.String, 
+                        ParameterDirection.Output, 
+                        400)
+                    {
+                        Value = errMessage,
+                    });
                 paramList.Add(new IRAPProcParameter("@StrParameter1", DbType.String, strParameter1));
                 paramList.Add(new IRAPProcParameter("@StrParameter2", DbType.String, strParameter2));
                 paramList.Add(new IRAPProcParameter("@StrParameter3", DbType.String, strParameter3));
@@ -168,10 +177,11 @@ namespace IRAP.BL.UTS
                         "CommunityID={0}|TransactNo={1}|FactID={2}|CtrlParameter1={3}|" +
                         "CtrlParameter2={4}|CtrlParameter3={5}|SysLogID={6}|StrParameter1={7}|" +
                         "StrParameter2={8}|StrParameter3={9}|StrParameter4={10}|StrParameter5={11}|" +
-                        "StrParameter6={12}|StrParameter7={13}|StrParameter8={14}",
+                        "StrParameter6={12}|StrParameter7={13}|StrParameter8={14}|ErrText={15}",
                         communityID, transactNo, factID, ctrlParameter1, ctrlParameter2,
                         ctrlParameter3, sysLogID, strParameter1, strParameter2, strParameter3,
-                        strParameter4, strParameter5, strParameter6, strParameter7, strParameter8),
+                        strParameter4, strParameter5, strParameter6, strParameter7, strParameter8,
+                        errMessage),
                     strProcedureName);
                 #endregion
 
