@@ -158,8 +158,8 @@ namespace IRAP.BL.UTS
                     new IRAPProcParameter(
                         "@ErrText", 
                         DbType.String, 
-                        ParameterDirection.Output, 
-                        400)
+                        ParameterDirection.InputOutput,
+                        2147483647)
                     {
                         Value = errMessage,
                     });
@@ -286,7 +286,7 @@ namespace IRAP.BL.UTS
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@OutputStr", DbType.String, ParameterDirection.Output, 2147483647));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
-                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 2147483647));
                 paramList.Add(
                     new IRAPProcParameter(
                         "@StrParameter1",
