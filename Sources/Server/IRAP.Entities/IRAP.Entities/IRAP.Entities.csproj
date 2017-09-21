@@ -90,6 +90,7 @@
     <Compile Include="MES\ProducingPWOFromWorkUnit.cs" />
     <Compile Include="MES\RSFactTestData.cs" />
     <Compile Include="MES\Tables\AuxFact_PDC.cs" />
+    <Compile Include="MES\Tables\AuxFact_PWOIssuing.cs" />
     <Compile Include="MES\Tables\FixedFact_MES.cs" />
     <Compile Include="MES\Tables\RSFact_Inspecting.cs" />
     <Compile Include="MES\SubWIPIDCodes_TS.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="SCES\ProductionWorkOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MDM\TemplateContent.cs" />
+    <Compile Include="SCES\ReprintPWO.cs" />
     <Compile Include="SCES\UnclosedDeliveryOrdersForPWO.cs" />
     <Compile Include="SSO\UserDetailInfo.cs" />
     <Compile Include="SSO\UserInfo.cs" />

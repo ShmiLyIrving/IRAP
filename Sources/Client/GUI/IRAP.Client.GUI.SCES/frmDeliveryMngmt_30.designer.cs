@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDeliveryMngmt_30));
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mitmDeliver = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSeprater = new System.Windows.Forms.ToolStripSeparator();
             this.mitmRefresh = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +54,7 @@
             this.grdclmnPlannedCloseDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnScheduleStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.report = new FastReport.Report();
+            this.btnReprint = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -96,29 +98,30 @@
             this.tsmiSeprater,
             this.mitmRefresh});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(103, 54);
+            this.contextMenuStrip.Size = new System.Drawing.Size(107, 58);
             // 
             // mitmDeliver
             // 
             this.mitmDeliver.Name = "mitmDeliver";
-            this.mitmDeliver.Size = new System.Drawing.Size(102, 22);
+            this.mitmDeliver.Size = new System.Drawing.Size(106, 24);
             this.mitmDeliver.Text = "配送";
             this.mitmDeliver.Click += new System.EventHandler(this.mitmDeliver_Click);
             // 
             // tsmiSeprater
             // 
             this.tsmiSeprater.Name = "tsmiSeprater";
-            this.tsmiSeprater.Size = new System.Drawing.Size(99, 6);
+            this.tsmiSeprater.Size = new System.Drawing.Size(103, 6);
             // 
             // mitmRefresh
             // 
             this.mitmRefresh.Name = "mitmRefresh";
-            this.mitmRefresh.Size = new System.Drawing.Size(102, 22);
+            this.mitmRefresh.Size = new System.Drawing.Size(106, 24);
             this.mitmRefresh.Text = "刷新";
             this.mitmRefresh.Click += new System.EventHandler(this.mitmRefresh_Click);
             // 
             // pnlBody
             // 
+            this.pnlBody.Controls.Add(this.btnReprint);
             this.pnlBody.Controls.Add(this.btnRefresh);
             this.pnlBody.Controls.Add(this.groupControl1);
             this.pnlBody.Controls.Add(this.btnDeliver);
@@ -204,10 +207,10 @@
             this.grdOrders.ContextMenuStrip = this.contextMenuStrip;
             this.grdOrders.Cursor = System.Windows.Forms.Cursors.Default;
             this.grdOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdOrders.Location = new System.Drawing.Point(2, 21);
+            this.grdOrders.Location = new System.Drawing.Point(2, 27);
             this.grdOrders.MainView = this.grdvOrders;
             this.grdOrders.Name = "grdOrders";
-            this.grdOrders.Size = new System.Drawing.Size(550, 283);
+            this.grdOrders.Size = new System.Drawing.Size(550, 277);
             this.grdOrders.TabIndex = 1;
             this.grdOrders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvOrders});
@@ -475,6 +478,18 @@
             // 
             this.report.ReportResourceString = resources.GetString("report.ReportResourceString");
             // 
+            // btnReprint
+            // 
+            this.btnReprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReprint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnReprint.Appearance.Options.UseFont = true;
+            this.btnReprint.Location = new System.Drawing.Point(573, 169);
+            this.btnReprint.Name = "btnReprint";
+            this.btnReprint.Size = new System.Drawing.Size(75, 28);
+            this.btnReprint.TabIndex = 4;
+            this.btnReprint.Text = "补打";
+            this.btnReprint.Click += new System.EventHandler(this.btnReprint_Click);
+            // 
             // frmDeliveryMngmt_30
             // 
             this.Appearance.Options.UseFont = true;
@@ -528,5 +543,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cboDstStoreSites;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private FastReport.Report report;
+        private DevExpress.XtraEditors.SimpleButton btnReprint;
     }
 }

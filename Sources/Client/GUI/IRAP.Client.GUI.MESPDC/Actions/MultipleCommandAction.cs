@@ -21,8 +21,11 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
         private string sqlCommand = "";
 
-        public MultipleCommandAction(XmlNode actionParams, ExtendEventHandler extendAction)
-            : base(actionParams, extendAction)
+        public MultipleCommandAction(
+            XmlNode actionParams, 
+            ExtendEventHandler extendAction,
+            object tag)
+            : base(actionParams, extendAction, tag)
         {
             if (actionParams.Attributes["SQLCommand"] != null)
                 sqlCommand = actionParams.Attributes["SQLCommand"].Value;
@@ -68,7 +71,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                         {
                             UDFActions.DoActions(
                                 dr[0].ToString(),
-                                ExtendAction);
+                                ExtendAction, 
+                                tag);
                         }
                         catch (Exception error)
                         {
@@ -93,9 +97,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     public class MultipleCommandFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
         {
-            return new MultipleCommandAction(actionParams, extendAction);
+            return new MultipleCommandAction(actionParams, extendAction, tag);
         }
     }
 }

@@ -10,8 +10,12 @@ namespace IRAP.Client.GUI.MESPDC.Actions
     {
         protected ExtendEventHandler ExtendAction;
         protected int ordinal = 0;
+        protected object tag = null;
 
-        public CustomAction(XmlNode actionParams, ExtendEventHandler extendAction)
+        public CustomAction(
+            XmlNode actionParams, 
+            ExtendEventHandler extendAction,
+            object tag)
         {
             if (actionParams != null)
             {
@@ -26,6 +30,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
             }
 
             ExtendAction += extendAction;
+            this.tag = tag;
         }
 
         public int Ordinal

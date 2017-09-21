@@ -251,7 +251,11 @@ namespace IRAP.Client.GUI.MESPDC
                             busUDFForm.SaveOLTPUDFFormData(
                                 CurrentOptions.Instance.OptionTwo.T102LeafID,
                                 view.WorkUnitLeafID,
-                                null);
+                                null,
+                                scannerViews);
+                            grdvSerialPortScanners.RefreshData();
+                            grdvSerialPortScanners.BestFitColumns();
+
                             WriteLog.Instance.Write(
                                 string.Format(
                                     "{0}.{1}",
@@ -276,7 +280,11 @@ namespace IRAP.Client.GUI.MESPDC
                                     {
                                         Actions.UDFActions.DoActions(
                                             busUDFForm.OutputStr,
-                                            null);
+                                            null,
+                                            scannerViews);
+
+                                        grdvSerialPortScanners.RefreshData();
+                                        grdvSerialPortScanners.BestFitColumns();
                                     }
                                     catch (Exception error)
                                     {

@@ -96,6 +96,16 @@ namespace IRAP.Client.GUI.SCES
         private void frmDeliveryMngmt_30_Shown(object sender, EventArgs e)
         {
             this.GetDstStoreSites();
+
+            switch (IRAPUser.Instance.CommunityID)
+            {
+                case 60010:
+                    btnReprint.Visible = true;
+                    break;
+                default:
+                    btnReprint.Visible = false;
+                    break;
+            }
         }
 
         private void GetProductionWorkOrders(DstDeliveryStoreSite dstSite)
@@ -235,6 +245,27 @@ namespace IRAP.Client.GUI.SCES
         private void mitmDeliver_Click(object sender, EventArgs e)
         {
             btnDeliver.PerformClick();
+        }
+
+        private void btnReprint_Click(object sender, EventArgs e)
+        {
+            if (cboDstStoreSites.SelectedItem == null)
+            {
+                XtraMessageBox.Show(
+                    "请先选择\"目标仓储地点\"",
+                    "系统提示",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                cboDstStoreSites.Focus();
+                return;
+            }
+
+            using (Dialogs.frmPWOReprint_Asimco Form =
+                new Dialogs.frmPWOReprint_Asimco(
+                    (cboDstStoreSites.SelectedItem as DstDeliveryStoreSite).T173LeafID))
+            {
+                Form.ShowDialog();
+            }
         }
     }
 }

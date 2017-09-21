@@ -213,7 +213,7 @@ namespace IRAP.Client.GUI.MESPDC
                 busUDFForm.SetStrParameterValue(edtCopies.Value.ToString(), 6);
                 busUDFForm.SetStrParameterValue(edtTempPKGQuantity.Text, 7);
 
-                busUDFForm.SaveOLTPUDFFormDataWithoutFactIDAndTransactNo(0, 0);
+                busUDFForm.SaveOLTPUDFFormDataWithoutFactIDAndTransactNo(0, 0, null, null);
                 WriteLog.Instance.Write(
                     string.Format("({0}){1}", busUDFForm.ErrorCode, busUDFForm.ErrorMessage),
                     strProcedureName);
@@ -242,6 +242,7 @@ namespace IRAP.Client.GUI.MESPDC
                         {
                             Actions.UDFActions.DoActions(
                                 busUDFForm.OutputStr,
+                                null,
                                 null);
                         }
                         catch (Exception error)

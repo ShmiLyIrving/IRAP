@@ -74,8 +74,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
             CallingConvention = CallingConvention.StdCall)]
         private static extern void ClearApp();
 
-        public PrintWithLabAction(XmlNode actionParams, ExtendEventHandler extendAction)
-            : base(actionParams, extendAction)
+        public PrintWithLabAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
+            : base(actionParams, extendAction, tag)
         {
             if (actionParams.Attributes["Template"] != null)
                 labFileName.Append(actionParams.Attributes["Template"].Value);
@@ -192,9 +192,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     public class PrintWithLabFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
         {
-            return new PrintWithLabAction(actionParams, extendAction);
+            return new PrintWithLabAction(actionParams, extendAction, tag);
         }
     }
 }

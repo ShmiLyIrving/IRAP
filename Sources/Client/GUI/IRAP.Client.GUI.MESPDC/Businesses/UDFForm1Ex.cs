@@ -145,7 +145,8 @@ namespace IRAP.Client.GUI.MESPDC
         public void SaveOLTPUDFFormData(
             int processLeaf, 
             int workUnitLeaf, 
-            ExtendEventHandler extendAction)
+            ExtendEventHandler extendAction,
+            object tag)
         {
             string strProcedureName =
                 string.Format(
@@ -158,6 +159,9 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 long intTransactNo = 0;
                 long intFactID = 0;
+                int ctrlParameter1 = this.ctrlParameter1;
+                int ctrlParameter2 = this.ctrlParameter2;
+                int ctrlParameter3 = this.ctrlParameter3;
                 int ctrlParameter2_bk = 0;
                 int ctrlParameter3_bk = 0;
 
@@ -229,7 +233,8 @@ namespace IRAP.Client.GUI.MESPDC
                         {
                             UDFActions.DoActions(
                                 outputStr,
-                                extendAction);
+                                extendAction,
+                                tag);
                         }
                         catch (Exception error)
                         {
@@ -282,7 +287,8 @@ namespace IRAP.Client.GUI.MESPDC
                     {
                         UDFActions.DoActions(
                             outputStr,
-                            extendAction);
+                            extendAction,
+                            tag);
                     }
                     catch (Exception error)
                     {
@@ -346,7 +352,7 @@ namespace IRAP.Client.GUI.MESPDC
                             strParameter8,
                             ref outputStr,
                             out errorCode,
-                            out errorMessage);
+                            ref errorMessage);
                     }
                     else
                     {
@@ -368,7 +374,7 @@ namespace IRAP.Client.GUI.MESPDC
                             strParameter8,
                             ref outputStr,
                             out errorCode,
-                            out errorMessage);
+                            ref errorMessage);
                     }
                 }
                 catch (Exception error)
@@ -387,7 +393,9 @@ namespace IRAP.Client.GUI.MESPDC
 
         public void SaveOLTPUDFFormDataWithoutFactIDAndTransactNo(
             int processLeaf,
-            int workUnitLeaf)
+            int workUnitLeaf,
+            ExtendEventHandler extendAction,
+            object tag)
         {
             string strProcedureName =
                 string.Format(
@@ -400,6 +408,9 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 long intTransactNo = 0;
                 long intFactID = 0;
+                int ctrlParameter1 = this.ctrlParameter1;
+                int ctrlParameter2 = this.ctrlParameter2;
+                int ctrlParameter3 = this.ctrlParameter3;
                 int ctrlParameter2_bk = 0;
                 int ctrlParameter3_bk = 0;
 
@@ -470,7 +481,8 @@ namespace IRAP.Client.GUI.MESPDC
                         {
                             UDFActions.DoActions(
                                 outputStr,
-                                null);
+                                extendAction,
+                                tag);
                         }
                         catch (Exception error)
                         {
@@ -523,7 +535,8 @@ namespace IRAP.Client.GUI.MESPDC
                     {
                         UDFActions.DoActions(
                             outputStr,
-                            null);
+                            extendAction,
+                            tag);
                     }
                     catch (Exception error)
                     {
@@ -561,7 +574,7 @@ namespace IRAP.Client.GUI.MESPDC
                             strParameter8,
                             ref outputStr,
                             out errorCode,
-                            out errorMessage);
+                            ref errorMessage);
                     }
                     else
                     {
@@ -583,7 +596,7 @@ namespace IRAP.Client.GUI.MESPDC
                             strParameter8,
                             ref outputStr,
                             out errorCode,
-                            out errorMessage);
+                            ref errorMessage);
                     }
                 }
                 catch (Exception error)

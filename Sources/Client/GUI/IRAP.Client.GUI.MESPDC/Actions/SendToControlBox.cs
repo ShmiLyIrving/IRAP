@@ -22,8 +22,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         private List<int> relaies = new List<int>();
         private ICustomCtrlBox controlBox = null;
 
-        public SendToControlBoxAction(XmlNode actionParams, ExtendEventHandler extendAction)
-            : base(actionParams, extendAction)
+        public SendToControlBoxAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
+            : base(actionParams, extendAction, tag)
         {
             string strProcedureName =
                 string.Format(
@@ -108,9 +108,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     public class SendToControlBoxFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
         {
-            return new SendToControlBoxAction(actionParams, extendAction);
+            return new SendToControlBoxAction(actionParams, extendAction, tag);
         }
     }
 

@@ -73,6 +73,7 @@
     <Compile Include="Actions\CustomActionFactory.cs" />
     <Compile Include="Actions\PrintToLPT.cs" />
     <Compile Include="Actions\RefreshForm.cs" />
+    <Compile Include="Actions\RefreshSPortMapping.cs" />
     <Compile Include="Actions\SelectChoice.cs" />
     <Compile Include="Actions\UDFActions.cs" />
     <Compile Include="Actions\Upload.cs" />
@@ -372,6 +373,7 @@
     <EmbeddedResource Include="frmUpdateCustomerBindingInfo.resx">
       <DependentUpon>frmUpdateCustomerBindingInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

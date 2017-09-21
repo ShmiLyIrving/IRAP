@@ -10,6 +10,7 @@ using IRAP.Global;
 using IRAPShared;
 using IRAPORM;
 using IRAP.Entities.SCES;
+using IRAP.Entities.MES.Tables;
 
 namespace IRAP.BL.SCES
 {
@@ -644,6 +645,143 @@ namespace IRAP.BL.SCES
                 errCode = 99000;
                 errText = string.Format("调用 IRAPSCES..usp_UndoPrintVoucher_PWOMaterialDelivery 时发生异常：{0}", error.Message);
                 return Json(new Hashtable());
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据制造订单号和制造订单行号，获取工单信息
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="dstT173LeafID">目标仓储地点</param>
+        /// <param name="moNumber">制造订单号</param>
+        /// <param name="moLineNo">制造订单行号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>ReprintPWO</returns>
+        public IRAPJsonResult mfn_GetInfo_PWOToReprint(
+            int communityID,
+            int dstT173LeafID,
+            string moNumber,
+            string moLineNo,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                ReprintPWO rlt = new ReprintPWO();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                //paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                //paramList.Add(new IRAPProcParameter("@AF482PK", DbType.Int64, af482PK));
+                //paramList.Add(new IRAPProcParameter("@PWOIssuingFactID", DbType.Int64, pwoIssuingFactID));
+                //paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                //paramList.Add(
+                //    new IRAPProcParameter(
+                //        "@ErrCode",
+                //        DbType.Int32,
+                //        ParameterDirection.Output,
+                //        4));
+                //paramList.Add(
+                //    new IRAPProcParameter(
+                //        "@ErrText",
+                //        DbType.String,
+                //        ParameterDirection.Output,
+                //        400));
+                //WriteLog.Instance.Write(
+                //    string.Format("执行存储过程 IRAPSCES..usp_UndoPrintVoucher_PWOMaterialDelivery，参数：" +
+                //        "CommunityID={0}|AF482PK={1}|PWOIssuingFactID={2}|" +
+                //        "SysLogID={3}",
+                //        communityID, af482PK, pwoIssuingFactID, sysLogID),
+                //    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    long partitioningKey = communityID * 1000000000000 + DateTime.Now.Year;
+
+                    string strSQL =
+                        string.Format(
+                            "SELECT * " +
+                            "FROM IRAPMES..AuxFact_PWOIssuing " +
+                            "WHERE PartitioningKey={0} " +
+                            " AND MONumber=\"{1}\" AND MOLineNo=\"{2}\"",
+                            partitioningKey,
+                            moNumber,
+                            moLineNo);
+                    WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                    IList<AuxFact_PWOIssuing> lstOrders =
+                        conn.CallTableFunc<AuxFact_PWOIssuing>(strSQL, paramList);
+                    if (lstOrders.Count == 0)
+                    {
+                        errCode = -1;
+                        errText = string.Format("未找到[{0}]-[{1}]的制造订单", moNumber, moLineNo);
+                        return Json(new ReprintPWO());
+                    }
+                    rlt.PWONo = lstOrders[0].WFInstanceID;
+                    rlt.PlannedStartDate = lstOrders[0].ScheduledStartTime;
+                    rlt.PlannedCloseDate = lstOrders[0].ScheduledCloseTime;
+                    rlt.MONumber = lstOrders[0].MONumber;
+                    rlt.MOLineNo = lstOrders[0].MOLineNo;
+                    rlt.LotNumber = lstOrders[0].LotNumber;
+
+                    strSQL =
+                        string.Format(
+                            "SELECT * " +
+                            "FROM IRAPSCES..ufn_GetList_MaterialToDeliverForPWO(" +
+                            "{0}, {1}, {2})",
+                            communityID,
+                            lstOrders[0].FactID,
+                            sysLogID);
+                    WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                    IList<MaterialToDeliver> lstMaterials =
+                        conn.CallTableFunc<MaterialToDeliver>(strSQL, paramList);
+                    if (lstMaterials.Count == 0)
+                    {
+                        errCode = -1;
+                        errText = string.Format("未找到[{0}]-[{1}]制造订单的配料信息", moNumber, moLineNo);
+                        return Json(new ReprintPWO());
+                    }
+                    rlt.T173Code = lstMaterials[0].T173Code;
+                    rlt.T173Name = lstMaterials[0].T173Name;
+                    rlt.AtStoreLocCode = lstMaterials[0].AtStoreLocCode;
+                    rlt.DstWorkShopCode = lstMaterials[0].DstWorkShopCode;
+                    rlt.DstWorkShopDesc = lstMaterials[0].DstWorkShopDesc;
+                    rlt.SuggestedQuantityToPick = lstMaterials[0].SuggestedQuantityToPick.ToString();
+                    rlt.UnitOfMeasure = lstMaterials[0].UnitOfMeasure;
+                    rlt.T131Code = lstMaterials[0].T131Code;
+                    rlt.ActualQtyDecompose = lstMaterials[0].ActualQtyDecompose;
+                    rlt.MaterialCode = lstMaterials[0].MaterialCode;
+                    rlt.MaterialDesc = lstMaterials[0].MaterialDesc;
+                    rlt.ActualQuantityToDeliver = lstMaterials[0].ActualQuantityToDeliver.ToString();
+                    rlt.DstT106Code = lstMaterials[0].DstT106Code;
+
+                    errCode = 0;
+                    errText = "获取成功";
+                }
+                #endregion
+
+                return Json(rlt);
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText = string.Format("调用 IRAPSCES..usp_UndoPrintVoucher_PWOMaterialDelivery 时发生异常：{0}", error.Message);
+                return Json(new ReprintPWO());
             }
             finally
             {

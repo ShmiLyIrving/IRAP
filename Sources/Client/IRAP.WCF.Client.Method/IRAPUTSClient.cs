@@ -337,7 +337,7 @@ namespace IRAP.WCF.Client.Method
             string strParameter8,
             ref string outputStr,
             out int errCode,
-            out string errText)
+            ref string errText)
         {
             string strProcedureName =
                 string.Format(
@@ -367,6 +367,7 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("strParameter6", strParameter6);
                 hashParams.Add("strParameter7", strParameter7);
                 hashParams.Add("strParameter8", strParameter8);
+                hashParams.Add("errMessage", errText);
                 WriteLog.Instance.Write(
                     string.Format(
                         "执行存储过程 ssp_OLTP_UDFForm，输入参数：" +
@@ -374,11 +375,11 @@ namespace IRAP.WCF.Client.Method
                         "CtrlParameter2={4}|CtrlParameter3={5}|SysLogID={6}|" +
                         "StrParameter1={7}|StrParameter2={8}|StrParameter3={9}|" +
                         "StrParameter4={10}|StrParameter5={11}|StrParameter6={12}|" +
-                        "StrParameter7={13}|StrParameter8={14}",
+                        "StrParameter7={13}|StrParameter8={14}|ErrText={15}",
                         communityID, transactNo, factID, ctrlParameter1, ctrlParameter2,
                         ctrlParameter3, sysLogID, strParameter1, strParameter2,
                         strParameter3, strParameter4, strParameter5, strParameter6,
-                        strParameter7, strParameter8),
+                        strParameter7, strParameter8, errText),
                     strProcedureName);
                 #endregion
 

@@ -18,7 +18,10 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        public static void DoActions(string actionParams, ExtendEventHandler extendAction)
+        public static void DoActions(
+            string actionParams, 
+            ExtendEventHandler extendAction,
+            object tag)
         {
             string strProcedureName =
                 string.Format(
@@ -47,7 +50,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                         (IUDFActionFactory)Assembly.Load("IRAP.Client.GUI.MESPDC").CreateInstance(factoryName);
                     if (factory != null)
                     {
-                        IUDFAction action = factory.CreateAction(node, extendAction);
+                        IUDFAction action = factory.CreateAction(node, extendAction, tag);
 
                         try
                         {

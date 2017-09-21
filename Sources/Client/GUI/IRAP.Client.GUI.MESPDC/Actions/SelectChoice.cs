@@ -22,8 +22,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         int t107LeafID = 0;
         int t102LeafID = 0;
 
-        public SelectChoiceAction(XmlNode actionParams, ExtendEventHandler extendAction)
-            : base(actionParams, extendAction)
+        public SelectChoiceAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
+            : base(actionParams, extendAction, tag)
         {
             t107LeafID = Tools.ConvertToInt32(actionParams.Attributes["T107LeafID"].Value);
             t102LeafID = Tools.ConvertToInt32(actionParams.Attributes["T102LeafID"].Value);
@@ -55,9 +55,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     public class SelectChoiceFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
         {
-            return new SelectChoiceAction(actionParams, extendAction);
+            return new SelectChoiceAction(actionParams, extendAction, tag);
         }
     }
 }

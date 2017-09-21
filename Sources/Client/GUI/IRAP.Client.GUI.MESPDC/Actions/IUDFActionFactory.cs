@@ -8,6 +8,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 {
     public interface IUDFActionFactory
     {
-        IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction);
+        IUDFAction CreateAction(
+            XmlNode actionParams, 
+            ExtendEventHandler extendAction,
+            object tag);
     }
 }

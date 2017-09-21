@@ -541,7 +541,8 @@ namespace IRAP.Client.GUI.MESPDC
                         busUDFForm.SaveOLTPUDFFormData(
                             CurrentOptions.Instance.OptionTwo.T102LeafID,
                             CurrentOptions.Instance.OptionOne.T107LeafID,
-                            new ExtendEventHandler(RefreshForm));
+                            new ExtendEventHandler(RefreshForm),
+                            null);
                         WriteLog.Instance.Write(
                             string.Format(
                                 "{0}.{1}",
@@ -564,7 +565,8 @@ namespace IRAP.Client.GUI.MESPDC
                                 {
                                     UDFActions.DoActions(
                                         busUDFForm.OutputStr, 
-                                        new ExtendEventHandler(RefreshForm));
+                                        new ExtendEventHandler(RefreshForm),
+                                        null);
                                 }
                                 catch (Exception error)
                                 {

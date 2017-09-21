@@ -305,7 +305,7 @@ namespace IRAP.Client.GUI.MESPDC
                 busUDFForm.SetStrParameterValue(edtCopies.Value.ToString(), 4);
                 busUDFForm.SetStrParameterValue(chkPrintLabel.Checked ? "1" : "0", 5);
 
-                busUDFForm.SaveOLTPUDFFormDataWithoutFactIDAndTransactNo(0, 0);
+                busUDFForm.SaveOLTPUDFFormDataWithoutFactIDAndTransactNo(0, 0, null, null);
                 WriteLog.Instance.Write(
                     string.Format("({0}){1}", busUDFForm.ErrorCode, busUDFForm.ErrorMessage),
                     strProcedureName);
@@ -325,6 +325,7 @@ namespace IRAP.Client.GUI.MESPDC
                         {
                             Actions.UDFActions.DoActions(
                                 busUDFForm.OutputStr,
+                                null,
                                 null);
                         }
                         catch (Exception error)
