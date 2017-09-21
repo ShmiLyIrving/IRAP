@@ -117,667 +117,484 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;grdBarCodeLogs.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="grdBarCodeLogs.EmbeddedNavigator.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Tile</value>
-  </data>
-  <data name="grdBarCodeLogs.EmbeddedNavigator.ToolTipTitle" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;grdclmnSerialNumber.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;grdclmnProcessTime.Name" xml:space="preserve">
-    <value>grdclmnProcessTime</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="resource.ForeColor" type="System.Drawing.Color, System.Drawing">
-    <value>Red</value>
+  <data name="lblFuncName.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 15.75pt</value>
   </data>
-  <data name="&gt;&gt;grdSerialPortScanners.Name" xml:space="preserve">
-    <value>grdSerialPortScanners</value>
+  <data name="lblFuncName.Appearance.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Green</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="gridColumn1.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="grdvSerialPortScanners.Appearance.Row.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新宋体, 12pt, style=Bold</value>
-  </data>
-  <data name="toolTipController.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
+  <data name="lblFuncName.Text" xml:space="preserve">
+    <value>串口扫描万能表单</value>
   </data>
   <data name="&gt;&gt;lblFuncName.Name" xml:space="preserve">
     <value>lblFuncName</value>
   </data>
-  <data name="&gt;&gt;grdclmnResultMessage.Name" xml:space="preserve">
-    <value>grdclmnResultMessage</value>
+  <data name="&gt;&gt;lblFuncName.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;lblFuncName.Parent" xml:space="preserve">
+    <value>panelControl1</value>
+  </data>
+  <data name="&gt;&gt;lblFuncName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textEdit1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>606, 17</value>
+  </data>
+  <data name="textEdit1.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="textEdit1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 26</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="textEdit1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;textEdit1.Name" xml:space="preserve">
+    <value>textEdit1</value>
+  </data>
+  <data name="&gt;&gt;textEdit1.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;textEdit1.Parent" xml:space="preserve">
+    <value>panelControl1</value>
+  </data>
+  <data name="&gt;&gt;textEdit1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelControl1.Name" xml:space="preserve">
+    <value>panelControl1</value>
+  </data>
+  <data name="&gt;&gt;panelControl1.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;panelControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelControl1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="toolTipController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="toolTipController.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="toolTipController.AppearanceTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 10.5pt</value>
+  </data>
+  <data name="grdclmnResultCode.Caption" xml:space="preserve">
+    <value>gridColumn10</value>
   </data>
   <data name="&gt;&gt;lstBarCodes.Name" xml:space="preserve">
     <value>lstBarCodes</value>
   </data>
-  <data name="groupControl1.Text" xml:space="preserve">
-    <value>条码扫描</value>
+  <data name="&gt;&gt;lstBarCodes.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="grdvSerialPortScanners.Appearance.HeaderPanel.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;lstBarCodes.Parent" xml:space="preserve">
+    <value>pnlBody</value>
   </data>
-  <data name="toolTipController.AppearanceTitle.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="grdvBarCodeLogs.Appearance.HeaderPanel.FontSizeDelta" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;lstBarCodes.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="grdclmnMainBarcode.VisibleIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;groupControl1.Name" xml:space="preserve">
+    <value>groupControl1</value>
+  </data>
+  <data name="&gt;&gt;groupControl1.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;groupControl1.Parent" xml:space="preserve">
+    <value>pnlBody</value>
+  </data>
+  <data name="&gt;&gt;groupControl1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.Name" xml:space="preserve">
+    <value>groupControl3</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.Parent" xml:space="preserve">
+    <value>pnlBody</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="groupControl3.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pnlBody.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pnlBody.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 56</value>
+  </data>
+  <data name="pnlBody.Size" type="System.Drawing.Size, System.Drawing">
+    <value>891, 439</value>
+  </data>
+  <data name="pnlBody.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;pnlBody.Name" xml:space="preserve">
+    <value>pnlBody</value>
+  </data>
+  <data name="&gt;&gt;pnlBody.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;pnlBody.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlBody.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="toolTipController.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="grdSerialPortScanners.Size" type="System.Drawing.Size, System.Drawing">
-    <value>867, 132</value>
-  </data>
-  <data name="$this.Title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;grdclmnMainBarcode.Name" xml:space="preserve">
-    <value>grdclmnMainBarcode</value>
-  </data>
-  <assembly alias="DevExpress.Utils.v15.2" name="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="grdBarCodeLogs.EmbeddedNavigator.ToolTipIconType" type="DevExpress.Utils.ToolTipIconType, DevExpress.Utils.v15.2">
-    <value>None</value>
-  </data>
-  <data name="grdvSerialPortScanners.Appearance.Row.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="grdvBarCodeLogs.Appearance.Row.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="lstBarCodes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="lstBarCodes.Location" type="System.Drawing.Point, System.Drawing">
     <value>606, 6</value>
   </data>
-  <data name="grdvBarCodeLogs.Appearance.Row.FontSizeDelta" type="System.Int32, mscorlib">
+  <data name="lstBarCodes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 59</value>
+  </data>
+  <data name="lstBarCodes.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="lstBarCodes.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lstBarCodes.Name" xml:space="preserve">
+    <value>lstBarCodes</value>
+  </data>
+  <data name="&gt;&gt;lstBarCodes.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;lstBarCodes.Parent" xml:space="preserve">
+    <value>pnlBody</value>
+  </data>
+  <data name="&gt;&gt;lstBarCodes.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="grdclmnResultMessage.Caption" xml:space="preserve">
-    <value>处理信息</value>
+  <data name="groupControl1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
-  <data name="gridColumn4.Visible" type="System.Boolean, mscorlib">
+  <data name="groupControl1.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
+    <value>新宋体, 12pt</value>
+  </data>
+  <data name="grdSerialPortScanners.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="grdSerialPortScanners.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 28</value>
+  </data>
+  <data name="grdvSerialPortScanners.Appearance.HeaderPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>新宋体, 12pt</value>
+  </data>
+  <data name="grdvSerialPortScanners.Appearance.Row.Font" type="System.Drawing.Font, System.Drawing">
+    <value>新宋体, 12pt, style=Bold</value>
+  </data>
+  <data name="grdvSerialPortScanners.Appearance.Row.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Blue</value>
+  </data>
+  <data name="gridColumn1.Caption" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="gridColumn1.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="gridColumn1.VisibleIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="gridColumn2.Caption" xml:space="preserve">
+    <value>在制品站位代码</value>
+  </data>
+  <data name="gridColumn2.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="gridColumn2.VisibleIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="toolTipController.AppearanceTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="lstBarCodes.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="$this.ToolTipIconType" type="DevExpress.Utils.ToolTipIconType, DevExpress.Utils.v15.2">
-    <value>None</value>
-  </data>
-  <data name="grdBarCodeLogs.EmbeddedNavigator.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupControl3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>881, 256</value>
-  </data>
-  <data name="&gt;&gt;grdvSerialPortScanners.Name" xml:space="preserve">
-    <value>grdvSerialPortScanners</value>
-  </data>
-  <data name="gridColumn1.VisibleIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="grdclmnProcessTime.VisibleIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="pnlBody.Title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="pnlBody.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 56</value>
-  </data>
-  <data name="&gt;&gt;panelControl1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupControl1.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新宋体, 12pt</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>891, 495</value>
-  </data>
-  <data name="pnlBody.ToolTipIconType" type="DevExpress.Utils.ToolTipIconType, DevExpress.Utils.v15.2">
-    <value>None</value>
-  </data>
-  <assembly alias="DevExpress.Data.v15.2" name="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="grdBarCodeLogs.EmbeddedNavigator.AllowHtmlTextInToolTip" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
-  </data>
-  <data name="grdclmnSerialPort.VisibleIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="grdvBarCodeLogs.Appearance.Row.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="&gt;&gt;lstBarCodes.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.ListBoxControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <assembly alias="DevExpress.XtraEditors.v15.2" name="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="grdBarCodeLogs.EmbeddedNavigator.TextLocation" type="DevExpress.XtraEditors.NavigatorButtonsTextLocation, DevExpress.XtraEditors.v15.2">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;grdclmnProcessTime.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="groupControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
-  </data>
-  <data name="groupControl3.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新宋体, 12pt</value>
-  </data>
-  <data name="&gt;&gt;groupControl3.Name" xml:space="preserve">
-    <value>groupControl3</value>
-  </data>
-  <data name="lstBarCodes.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="toolTipController.AppearanceTitle.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="grdclmnProcessTime.Caption" xml:space="preserve">
-    <value>处理时间</value>
-  </data>
-  <data name="grdBarCodeLogs.EmbeddedNavigator.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left</value>
-  </data>
-  <data name="groupControl3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="pnlBody.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;gridColumn1.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;grdBarCodeLogs.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="gridColumn4.Width" type="System.Int32, mscorlib">
-    <value>83</value>
-  </data>
-  <data name="&gt;&gt;gridColumn3.Name" xml:space="preserve">
-    <value>gridColumn3</value>
-  </data>
-  <data name="groupControl1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;grdvSerialPortScanners.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="grdvBarCodeLogs.Appearance.HeaderPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新宋体, 12pt</value>
-  </data>
-  <data name="&gt;&gt;lblFuncName.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;grdvBarCodeLogs.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="groupControl3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="&gt;&gt;toolTipController.Type" xml:space="preserve">
-    <value>DevExpress.Utils.ToolTipController, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="grdclmnSerialNumber.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="pnlBody.AllowHtmlText" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
-  </data>
-  <data name="grdSerialPortScanners.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="gridColumn4.VisibleIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;grdBarCodeLogs.Parent" xml:space="preserve">
-    <value>groupControl3</value>
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.TextLocation" type="DevExpress.XtraEditors.NavigatorButtonsTextLocation, DevExpress.XtraEditors.v15.2">
-    <value>Center</value>
-  </data>
-  <data name="panelControl1.AllowHtmlText" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
-  </data>
-  <data name="groupControl1.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblFuncName.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="&gt;&gt;groupControl3.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;grdSerialPortScanners.Parent" xml:space="preserve">
-    <value>groupControl1</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>frmUDFFormWithCOMScanner</value>
-  </data>
-  <data name="frmUDFFormWithCOMScanner.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="panelControl1.Title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;lblFuncName.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;groupControl3.Parent" xml:space="preserve">
-    <value>pnlBody</value>
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left</value>
-  </data>
-  <data name="grdclmnResultCode.Caption" xml:space="preserve">
-    <value>gridColumn10</value>
-  </data>
-  <data name="toolTipController.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Tile</value>
-  </data>
-  <data name="grdvBarCodeLogs.Appearance.Row.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新宋体, 12pt, style=Bold</value>
-  </data>
-  <data name="&gt;&gt;gridColumn1.Name" xml:space="preserve">
-    <value>gridColumn1</value>
-  </data>
-  <data name="lblFuncName.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="resource.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="gridColumn2.Caption" xml:space="preserve">
-    <value>在制品站位代码</value>
-  </data>
-  <data name="lstBarCodes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
   <data name="gridColumn3.Caption" xml:space="preserve">
     <value>在制品站位名称</value>
-  </data>
-  <data name="grdBarCodeLogs.EmbeddedNavigator.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupControl1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="resource.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="grdvBarCodeLogs.Appearance.HeaderPanel.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="panelControl1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="grdBarCodeLogs.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblFuncName.Parent" xml:space="preserve">
-    <value>panelControl1</value>
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="frmUDFFormWithCOMScanner.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupControl3.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="toolTipController.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 10.5pt</value>
-  </data>
-  <data name="grdvBarCodeLogs.Appearance.Row.ForeColor" type="System.Drawing.Color, System.Drawing">
-    <value>Blue</value>
-  </data>
-  <data name="groupControl3.AppearanceCaption.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="toolTipController.AppearanceTitle.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="&gt;&gt;gridColumn4.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;groupControl1.Parent" xml:space="preserve">
-    <value>pnlBody</value>
-  </data>
-  <data name="&gt;&gt;grdSerialPortScanners.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="lstBarCodes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 59</value>
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.ToolTipIconType" type="DevExpress.Utils.ToolTipIconType, DevExpress.Utils.v15.2">
-    <value>None</value>
-  </data>
-  <data name="&gt;&gt;grdclmnSerialPort.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;pnlBody.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="pnlBody.Size" type="System.Drawing.Size, System.Drawing">
-    <value>891, 439</value>
-  </data>
-  <data name="grdclmnSerialPort.Caption" xml:space="preserve">
-    <value>串口号</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>串口扫描万能表单</value>
-  </data>
-  <data name="groupControl3.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="groupControl3.Text" xml:space="preserve">
-    <value>处理信息</value>
-  </data>
-  <data name="&gt;&gt;grdclmnMainBarcode.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="groupControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>881, 167</value>
-  </data>
-  <data name="resource.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="&gt;&gt;gridColumn3.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="grdBarCodeLogs.EmbeddedNavigator.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="&gt;&gt;gridColumn4.Name" xml:space="preserve">
-    <value>gridColumn4</value>
-  </data>
-  <data name="&gt;&gt;grdclmnResultCode.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="grdvBarCodeLogs.Appearance.HeaderPanel.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="&gt;&gt;lstBarCodes.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupControl1.AppearanceCaption.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="frmUDFFormWithCOMScanner.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="pnlBody.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="pnlBody.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.AllowHtmlTextInToolTip" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
-  </data>
-  <data name="&gt;&gt;lstBarCodes.Parent" xml:space="preserve">
-    <value>pnlBody</value>
-  </data>
-  <data name="grdvSerialPortScanners.Appearance.Row.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="grdvSerialPortScanners.Appearance.HeaderPanel.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;groupControl1.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="grdSerialPortScanners.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 28</value>
-  </data>
-  <data name="gridColumn1.Caption" xml:space="preserve">
-    <value>端口</value>
-  </data>
-  <data name="grdBarCodeLogs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 28</value>
-  </data>
-  <data name="grdclmnResultMessage.VisibleIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupControl3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 178</value>
-  </data>
-  <data name="grdSerialPortScanners.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="grdvSerialPortScanners.Appearance.Row.ForeColor" type="System.Drawing.Color, System.Drawing">
-    <value>Blue</value>
-  </data>
-  <data name="grdclmnSerialNumber.VisibleIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IRAP.Client.Global.GUI.frmCustomFuncBase, IRAP.Client.Global.GUI, Version=6.1.6417.23887, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
-  </data>
-  <data name="gridColumn4.Caption" xml:space="preserve">
-    <value>扫描到的条码</value>
-  </data>
-  <data name="grdclmnResultMessage.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="&gt;&gt;panelControl1.Name" xml:space="preserve">
-    <value>panelControl1</value>
-  </data>
-  <data name="&gt;&gt;panelControl1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="grdBarCodeLogs.EmbeddedNavigator.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="grdvSerialPortScanners.Appearance.HeaderPanel.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="&gt;&gt;pnlBody.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="grdclmnMainBarcode.Caption" xml:space="preserve">
-    <value>主标识条码</value>
-  </data>
-  <data name="&gt;&gt;grdclmnResultCode.Name" xml:space="preserve">
-    <value>grdclmnResultCode</value>
-  </data>
-  <data name="&gt;&gt;toolTipController.Name" xml:space="preserve">
-    <value>toolTipController</value>
   </data>
   <data name="gridColumn3.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblFuncName.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 15.75pt</value>
+  <data name="gridColumn3.VisibleIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.ToolTipTitle" xml:space="preserve">
-    <value />
+  <data name="gridColumn4.Caption" xml:space="preserve">
+    <value>扫描到的条码</value>
   </data>
-  <data name="grdclmnSerialPort.Visible" type="System.Boolean, mscorlib">
+  <data name="gridColumn4.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="gridColumn4.VisibleIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="grdBarCodeLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="gridColumn4.Width" type="System.Int32, mscorlib">
+    <value>83</value>
   </data>
-  <data name="grdvSerialPortScanners.Appearance.HeaderPanel.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
+  <data name="grdSerialPortScanners.Size" type="System.Drawing.Size, System.Drawing">
+    <value>867, 132</value>
   </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="grdSerialPortScanners.EmbeddedNavigator.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="&gt;&gt;grdclmnSerialPort.Name" xml:space="preserve">
-    <value>grdclmnSerialPort</value>
-  </data>
-  <data name="&gt;&gt;grdBarCodeLogs.Name" xml:space="preserve">
-    <value>grdBarCodeLogs</value>
-  </data>
-  <data name="&gt;&gt;gridColumn2.Name" xml:space="preserve">
-    <value>gridColumn2</value>
-  </data>
-  <data name="panelControl1.ToolTipIconType" type="DevExpress.Utils.ToolTipIconType, DevExpress.Utils.v15.2">
-    <value>None</value>
-  </data>
-  <data name="&gt;&gt;pnlBody.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="toolTipController.AppearanceTitle.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="lblFuncName.Appearance.ForeColor" type="System.Drawing.Color, System.Drawing">
-    <value>Green</value>
-  </data>
-  <data name="resource.FontSizeDelta" type="System.Int32, mscorlib">
+  <data name="grdSerialPortScanners.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="groupControl1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+  <data name="&gt;&gt;grdSerialPortScanners.Name" xml:space="preserve">
+    <value>grdSerialPortScanners</value>
+  </data>
+  <data name="&gt;&gt;grdSerialPortScanners.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdSerialPortScanners.Parent" xml:space="preserve">
+    <value>groupControl1</value>
   </data>
   <data name="&gt;&gt;grdSerialPortScanners.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="grdvSerialPortScanners.Appearance.Row.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="groupControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
   </data>
-  <data name="lblFuncName.Text" xml:space="preserve">
-    <value>串口扫描万能表单</value>
+  <data name="groupControl1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
   </data>
-  <data name="&gt;&gt;pnlBody.Name" xml:space="preserve">
-    <value>pnlBody</value>
+  <data name="groupControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>881, 167</value>
   </data>
-  <data name="&gt;&gt;grdclmnSerialNumber.Name" xml:space="preserve">
-    <value>grdclmnSerialNumber</value>
+  <data name="groupControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="grdvSerialPortScanners.Appearance.Row.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="lblFuncName.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="grdBarCodeLogs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>867, 221</value>
-  </data>
-  <data name="&gt;&gt;timer.Name" xml:space="preserve">
-    <value>timer</value>
+  <data name="groupControl1.Text" xml:space="preserve">
+    <value>条码扫描</value>
   </data>
   <data name="&gt;&gt;groupControl1.Name" xml:space="preserve">
     <value>groupControl1</value>
   </data>
-  <data name="grdvBarCodeLogs.Appearance.HeaderPanel.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
+  <data name="&gt;&gt;groupControl1.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="grdclmnSerialNumber.Caption" xml:space="preserve">
-    <value>产品序列号</value>
-  </data>
-  <data name="groupControl3.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="toolTipController.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;groupControl1.Parent" xml:space="preserve">
+    <value>pnlBody</value>
   </data>
   <data name="&gt;&gt;groupControl1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="grdclmnMainBarcode.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="groupControl3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="frmUDFFormWithCOMScanner.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="$this.AllowHtmlText" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v15.2">
-    <value>Default</value>
-  </data>
-  <data name="grdBarCodeLogs.EmbeddedNavigator.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
-  </data>
-  <data name="&gt;&gt;panelControl1.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="gridColumn3.VisibleIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="grdvSerialPortScanners.Appearance.HeaderPanel.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="groupControl3.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
     <value>新宋体, 12pt</value>
   </data>
-  <data name="groupControl1.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
+  <data name="grdBarCodeLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
-  <data name="grdBarCodeLogs.EmbeddedNavigator.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="grdBarCodeLogs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 28</value>
+  </data>
+  <data name="grdvBarCodeLogs.Appearance.HeaderPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>新宋体, 12pt</value>
+  </data>
+  <data name="grdvBarCodeLogs.Appearance.Row.Font" type="System.Drawing.Font, System.Drawing">
+    <value>新宋体, 12pt, style=Bold</value>
+  </data>
+  <data name="grdvBarCodeLogs.Appearance.Row.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Blue</value>
+  </data>
+  <data name="grdclmnProcessTime.Caption" xml:space="preserve">
+    <value>处理时间</value>
   </data>
   <data name="grdclmnProcessTime.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="groupControl1.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
+  <data name="grdclmnProcessTime.VisibleIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="gridColumn2.Visible" type="System.Boolean, mscorlib">
+  <data name="grdclmnSerialPort.Caption" xml:space="preserve">
+    <value>串口号</value>
+  </data>
+  <data name="grdclmnSerialPort.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;timer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="grdclmnSerialPort.VisibleIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="grdclmnMainBarcode.Caption" xml:space="preserve">
+    <value>主标识条码</value>
+  </data>
+  <data name="grdclmnMainBarcode.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="grdclmnMainBarcode.VisibleIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="grdclmnSerialNumber.Caption" xml:space="preserve">
+    <value>产品序列号</value>
+  </data>
+  <data name="grdclmnSerialNumber.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="grdclmnSerialNumber.VisibleIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="grdclmnResultMessage.Caption" xml:space="preserve">
+    <value>处理信息</value>
+  </data>
+  <data name="grdclmnResultMessage.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="grdclmnResultMessage.VisibleIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="resource.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Red</value>
+  </data>
+  <data name="grdBarCodeLogs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>867, 221</value>
+  </data>
+  <data name="grdBarCodeLogs.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grdBarCodeLogs.Name" xml:space="preserve">
+    <value>grdBarCodeLogs</value>
+  </data>
+  <data name="&gt;&gt;grdBarCodeLogs.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdBarCodeLogs.Parent" xml:space="preserve">
+    <value>groupControl3</value>
+  </data>
+  <data name="&gt;&gt;grdBarCodeLogs.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupControl3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 178</value>
+  </data>
+  <data name="groupControl3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="groupControl3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>881, 256</value>
+  </data>
+  <data name="groupControl3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupControl3.Text" xml:space="preserve">
+    <value>处理信息</value>
+  </data>
+  <data name="&gt;&gt;groupControl3.Name" xml:space="preserve">
+    <value>groupControl3</value>
   </data>
   <data name="&gt;&gt;groupControl3.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="grdvBarCodeLogs.Appearance.Row.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
+  <data name="&gt;&gt;groupControl3.Parent" xml:space="preserve">
+    <value>pnlBody</value>
   </data>
-  <data name="&gt;&gt;grdvBarCodeLogs.Name" xml:space="preserve">
-    <value>grdvBarCodeLogs</value>
+  <data name="&gt;&gt;groupControl3.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="lblFuncName.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
+  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>170, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>891, 495</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>串口扫描万能表单</value>
+  </data>
+  <data name="&gt;&gt;toolTipController.Name" xml:space="preserve">
+    <value>toolTipController</value>
+  </data>
+  <data name="&gt;&gt;toolTipController.Type" xml:space="preserve">
+    <value>DevExpress.Utils.ToolTipController, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdclmnResultCode.Name" xml:space="preserve">
+    <value>grdclmnResultCode</value>
+  </data>
+  <data name="&gt;&gt;grdclmnResultCode.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdvSerialPortScanners.Name" xml:space="preserve">
+    <value>grdvSerialPortScanners</value>
+  </data>
+  <data name="&gt;&gt;grdvSerialPortScanners.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;gridColumn1.Name" xml:space="preserve">
+    <value>gridColumn1</value>
+  </data>
+  <data name="&gt;&gt;gridColumn1.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;gridColumn2.Name" xml:space="preserve">
+    <value>gridColumn2</value>
   </data>
   <data name="&gt;&gt;gridColumn2.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;gridColumn3.Name" xml:space="preserve">
+    <value>gridColumn3</value>
+  </data>
+  <data name="&gt;&gt;gridColumn3.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;gridColumn4.Name" xml:space="preserve">
+    <value>gridColumn4</value>
+  </data>
+  <data name="&gt;&gt;gridColumn4.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdvBarCodeLogs.Name" xml:space="preserve">
+    <value>grdvBarCodeLogs</value>
+  </data>
+  <data name="&gt;&gt;grdvBarCodeLogs.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdclmnProcessTime.Name" xml:space="preserve">
+    <value>grdclmnProcessTime</value>
+  </data>
+  <data name="&gt;&gt;grdclmnProcessTime.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdclmnSerialPort.Name" xml:space="preserve">
+    <value>grdclmnSerialPort</value>
+  </data>
+  <data name="&gt;&gt;grdclmnSerialPort.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdclmnMainBarcode.Name" xml:space="preserve">
+    <value>grdclmnMainBarcode</value>
+  </data>
+  <data name="&gt;&gt;grdclmnMainBarcode.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdclmnSerialNumber.Name" xml:space="preserve">
+    <value>grdclmnSerialNumber</value>
+  </data>
+  <data name="&gt;&gt;grdclmnSerialNumber.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;grdclmnResultMessage.Name" xml:space="preserve">
+    <value>grdclmnResultMessage</value>
+  </data>
   <data name="&gt;&gt;grdclmnResultMessage.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolTipController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>170, 17</value>
-  </metadata>
+  <data name="&gt;&gt;timer.Name" xml:space="preserve">
+    <value>timer</value>
+  </data>
+  <data name="&gt;&gt;timer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmUDFFormWithCOMScanner</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>IRAP.Client.Global.GUI.frmCustomFuncBase, IRAP.Client.Global.GUI, Version=6.1.6473.35605, Culture=neutral, PublicKeyToken=null</value>
+  </data>
 </root>

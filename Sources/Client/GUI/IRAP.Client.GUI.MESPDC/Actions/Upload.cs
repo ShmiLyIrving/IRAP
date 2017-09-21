@@ -27,8 +27,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         private string userID = "";
         private string pwd = "";
 
-        public UploadAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
-            : base(actionParams, extendAction, tag)
+        public UploadAction(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
+            : base(actionParams, extendAction, ref tag)
         {
             try
             {
@@ -109,9 +109,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
     }
     public class UploadFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
         {
-            return new UploadAction(actionParams, extendAction, tag);
+            return new UploadAction(actionParams, extendAction, ref tag);
         }
     }
 }

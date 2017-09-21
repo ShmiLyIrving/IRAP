@@ -24,8 +24,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         private string dataType = "";
         private string data = "";
 
-        public SerialPortOutputAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
-            : base(actionParams, extendAction, tag)
+        public SerialPortOutputAction(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
+            : base(actionParams, extendAction, ref tag)
         {
             portName = actionParams.Attributes["PortName"].Value;
             int.TryParse(actionParams.Attributes["BaudRate"].Value, out baudRate);
@@ -120,9 +120,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     public class SerialPortOutputFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
         {
-            return new SerialPortOutputAction(actionParams, extendAction, tag);
+            return new SerialPortOutputAction(actionParams, extendAction, ref tag);
         }
     }
 }

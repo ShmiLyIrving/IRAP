@@ -29,8 +29,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         public PrintWithFastReportAction(
             XmlNode actionParams,
             ExtendEventHandler extendAction, 
-            object tag) :
-            base(actionParams, extendAction, tag)
+            ref object tag) :
+            base(actionParams, extendAction, ref tag)
         {
             if (actionParams.Attributes["DataSource"] == null)
             {
@@ -239,12 +239,12 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         public IUDFAction CreateAction(
             XmlNode actionParams, 
             ExtendEventHandler extendAction, 
-            object tag)
+            ref object tag)
         {
             return new PrintWithFastReportAction(
                 actionParams, 
                 extendAction,
-                tag);
+                ref tag);
         }
     }
 

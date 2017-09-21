@@ -21,7 +21,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         public static void DoActions(
             string actionParams, 
             ExtendEventHandler extendAction,
-            object tag)
+            ref object tag)
         {
             string strProcedureName =
                 string.Format(
@@ -50,7 +50,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                         (IUDFActionFactory)Assembly.Load("IRAP.Client.GUI.MESPDC").CreateInstance(factoryName);
                     if (factory != null)
                     {
-                        IUDFAction action = factory.CreateAction(node, extendAction, tag);
+                        IUDFAction action = factory.CreateAction(node, extendAction, ref tag);
 
                         try
                         {

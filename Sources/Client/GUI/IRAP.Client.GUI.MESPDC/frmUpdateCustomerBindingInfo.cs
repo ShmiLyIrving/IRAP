@@ -323,10 +323,12 @@ namespace IRAP.Client.GUI.MESPDC
                     {
                         try
                         {
+                            object tag = null;
+
                             Actions.UDFActions.DoActions(
                                 busUDFForm.OutputStr,
                                 null,
-                                null);
+                                ref tag);
                         }
                         catch (Exception error)
                         {

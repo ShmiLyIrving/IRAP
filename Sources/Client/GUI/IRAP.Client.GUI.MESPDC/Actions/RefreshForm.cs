@@ -9,8 +9,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 {
     public class RefreshFormAction : CustomAction, IUDFAction
     {
-        public RefreshFormAction(XmlNode actionParam, ExtendEventHandler extendAction, object tag)
-            : base(actionParam, extendAction, tag)
+        public RefreshFormAction(XmlNode actionParam, ExtendEventHandler extendAction, ref object tag)
+            : base(actionParam, extendAction, ref tag)
         {
         }
 
@@ -25,9 +25,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     public class RefreshFormFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
         {
-            return new RefreshFormAction(actionParams, extendAction, tag);
+            return new RefreshFormAction(actionParams, extendAction, ref tag);
         }
     }
 }

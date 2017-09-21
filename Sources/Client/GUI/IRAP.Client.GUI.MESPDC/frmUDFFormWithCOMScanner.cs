@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 
+using DevExpress.XtraEditors;
+
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Client.SubSystem;
@@ -172,6 +174,12 @@ namespace IRAP.Client.GUI.MESPDC
                     WriteLog.Instance.Write(error.Message, strProcedureName);
                     WriteToScreenLog("", "", "", -1, error.Message);
                 }
+
+#if DEBUG
+                textEdit1.Visible = true;
+#else
+                textEdit1.Visible = false;
+#endif
             }
             finally
             {
@@ -247,12 +255,25 @@ namespace IRAP.Client.GUI.MESPDC
 
                         try
                         {
+                            object tag = scannerViews;
+
+#if DEBUG
+                            XtraMessageBox.Show(
+                                string.Format(
+                                    "PortName={0}|WorkUnitLeafID={1}|" +
+                                    "WorkUnitCode={2}|WorkUnitName={3}",
+                                    view.PortName,
+                                    view.WorkUnitLeafID,
+                                    view.WorkUnitCode,
+                                    view.WorkUnitName));
+#endif
+
                             busUDFForm.SetStrParameterValue(view.BarCode, 1);
                             busUDFForm.SaveOLTPUDFFormData(
                                 CurrentOptions.Instance.OptionTwo.T102LeafID,
                                 view.WorkUnitLeafID,
                                 null,
-                                scannerViews);
+                                ref tag);
                             grdvSerialPortScanners.RefreshData();
                             grdvSerialPortScanners.BestFitColumns();
 
@@ -281,7 +302,7 @@ namespace IRAP.Client.GUI.MESPDC
                                         Actions.UDFActions.DoActions(
                                             busUDFForm.OutputStr,
                                             null,
-                                            scannerViews);
+                                            ref tag);
 
                                         grdvSerialPortScanners.RefreshData();
                                         grdvSerialPortScanners.BestFitColumns();
@@ -325,6 +346,15 @@ namespace IRAP.Client.GUI.MESPDC
             finally
             {
                 timer.Enabled = true;
+            }
+        }
+
+        private void textEdit1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode== Keys.Enter)
+            {
+                lstBarCodes.Items.Add(textEdit1.Text);
+                textEdit1.Text = "";
             }
         }
     }

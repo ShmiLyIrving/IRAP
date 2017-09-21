@@ -11,6 +11,6 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         IUDFAction CreateAction(
             XmlNode actionParams, 
             ExtendEventHandler extendAction,
-            object tag);
+            ref object tag);
     }
 }

@@ -146,7 +146,7 @@ namespace IRAP.Client.GUI.MESPDC
             int processLeaf, 
             int workUnitLeaf, 
             ExtendEventHandler extendAction,
-            object tag)
+            ref object tag)
         {
             string strProcedureName =
                 string.Format(
@@ -234,7 +234,7 @@ namespace IRAP.Client.GUI.MESPDC
                             UDFActions.DoActions(
                                 outputStr,
                                 extendAction,
-                                tag);
+                                ref tag);
                         }
                         catch (Exception error)
                         {
@@ -288,7 +288,7 @@ namespace IRAP.Client.GUI.MESPDC
                         UDFActions.DoActions(
                             outputStr,
                             extendAction,
-                            tag);
+                            ref tag);
                     }
                     catch (Exception error)
                     {
@@ -482,7 +482,7 @@ namespace IRAP.Client.GUI.MESPDC
                             UDFActions.DoActions(
                                 outputStr,
                                 extendAction,
-                                tag);
+                                ref tag);
                         }
                         catch (Exception error)
                         {
@@ -536,7 +536,7 @@ namespace IRAP.Client.GUI.MESPDC
                         UDFActions.DoActions(
                             outputStr,
                             extendAction,
-                            tag);
+                            ref tag);
                     }
                     catch (Exception error)
                     {

@@ -23,8 +23,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         private CustomPrint print = null;
         private string sqlCmd = "";
 
-        public MultiPrint(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
-            : base(actionParams, extendAction, tag)
+        public MultiPrint(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
+            : base(actionParams, extendAction, ref tag)
         {
             print = CustomPrintFactory.CreateInstance(actionParams);
             if (actionParams.Attributes["DataCommand"] != null)
@@ -93,9 +93,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     public class MultiPrintFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
         {
-            return new MultiPrint(actionParams, extendAction, tag);
+            return new MultiPrint(actionParams, extendAction, ref tag);
         }
     }
 }

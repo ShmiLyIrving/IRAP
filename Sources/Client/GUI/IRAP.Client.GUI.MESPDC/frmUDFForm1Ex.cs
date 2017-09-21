@@ -622,11 +622,13 @@ namespace IRAP.Client.GUI.MESPDC
 
                     try
                     {
+                        object tag = null;
+
                         busUDFForm.SaveOLTPUDFFormData(
                             CurrentOptions.Instance.OptionTwo.T102LeafID,
                             CurrentOptions.Instance.OptionOne.T107LeafID,
                             new ExtendEventHandler(RefreshForm),
-                            null);
+                            ref tag);
                         WriteLog.Instance.Write(
                             string.Format(
                                 "{0}.{1}",
@@ -650,7 +652,7 @@ namespace IRAP.Client.GUI.MESPDC
                                     UDFActions.DoActions(
                                         busUDFForm.OutputStr,
                                         new ExtendEventHandler(RefreshForm),
-                                        null);
+                                        ref tag);
                                 }
                                 catch (Exception error)
                                 {

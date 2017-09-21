@@ -1973,7 +1973,8 @@ namespace IRAP.Client.GUI.MESPDC
                     {
                         try
                         {
-                            Actions.UDFActions.DoActions(filePath, null, null);
+                            object tag = null;
+                            Actions.UDFActions.DoActions(filePath, null, ref tag);
                         }
                         catch (Exception error)
                         {

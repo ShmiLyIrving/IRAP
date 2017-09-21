@@ -20,8 +20,8 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         private string strLPTPort = "LPT1";
         private string strData = "";
 
-        public PrintToLPTAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
-            : base(actionParams, extendAction, tag)
+        public PrintToLPTAction(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
+            : base(actionParams, extendAction, ref tag)
         {
             try
             {
@@ -71,9 +71,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
     public class PrintToLPTFactory : CustomActionFactory, IUDFActionFactory
     {
-        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, object tag)
+        public IUDFAction CreateAction(XmlNode actionParams, ExtendEventHandler extendAction, ref object tag)
         {
-            return new PrintToLPTAction(actionParams, extendAction, tag);
+            return new PrintToLPTAction(actionParams, extendAction, ref tag);
         }
     }
 }

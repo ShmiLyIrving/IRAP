@@ -15,7 +15,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
         public CustomAction(
             XmlNode actionParams, 
             ExtendEventHandler extendAction,
-            object tag)
+            ref object tag)
         {
             if (actionParams != null)
             {

@@ -175,6 +175,7 @@ namespace IRAP.Client.GUI.MESPDC
                 #region 数据校验
                 int errCode = 0;
                 string errText = "";
+                object tag = null;
                 IRAPSCESClient.Instance.usp_PokaYoke_PallPrint(
                     IRAPUser.Instance.CommunityID,
                     edtPartNumber.Text.Trim(),
@@ -243,7 +244,7 @@ namespace IRAP.Client.GUI.MESPDC
                             Actions.UDFActions.DoActions(
                                 busUDFForm.OutputStr,
                                 null,
-                                null);
+                                ref tag);
                         }
                         catch (Exception error)
                         {
