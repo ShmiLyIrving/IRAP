@@ -329,9 +329,11 @@ namespace IRAP.BL.SSO
         /// <returns>int PortalID</returns>
         public IRAPJsonResult sfn_GetID_Portal(string portalCode, out int errCode, out string errText)
         {
-            string strProcedureName = string.Format("{0}.{1}",
-                className,
-                MethodBase.GetCurrentMethod().Name);
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try

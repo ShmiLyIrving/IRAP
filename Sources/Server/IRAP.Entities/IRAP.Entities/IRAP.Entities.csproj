@@ -64,6 +64,8 @@
     <Compile Include="MDM\ProductionProcessParam.cs" />
     <Compile Include="MDM\ProductViaStation.cs" />
     <Compile Include="MDM\Shift.cs" />
+    <Compile Include="MDM\Tables\Stb057.cs" />
+    <Compile Include="MDM\Tables\Stb058.cs" />
     <Compile Include="MDM\WIPStation.cs" />
     <Compile Include="MES\BatchByEquipment.cs" />
     <Compile Include="MES\BatchProductInfo.cs" />

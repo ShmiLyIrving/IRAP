@@ -11,6 +11,7 @@ using IRAPShared;
 using IRAPORM;
 using IRAP.Entities.SCES;
 using IRAP.Entities.MES.Tables;
+using IRAP.Entities.MDM.Tables;
 
 namespace IRAP.BL.SCES
 {
@@ -665,7 +666,7 @@ namespace IRAP.BL.SCES
             int communityID,
             int dstT173LeafID,
             string moNumber,
-            string moLineNo,
+            int moLineNo,
             long sysLogID,
             out int errCode,
             out string errText)
@@ -717,7 +718,7 @@ namespace IRAP.BL.SCES
                             "SELECT * " +
                             "FROM IRAPMES..AuxFact_PWOIssuing " +
                             "WHERE PartitioningKey={0} " +
-                            " AND MONumber=\"{1}\" AND MOLineNo=\"{2}\"",
+                            " AND MONumber='{1}' AND MOLineNo={2}",
                             partitioningKey,
                             moNumber,
                             moLineNo);
@@ -729,6 +730,7 @@ namespace IRAP.BL.SCES
                     {
                         errCode = -1;
                         errText = string.Format("未找到[{0}]-[{1}]的制造订单", moNumber, moLineNo);
+                        WriteLog.Instance.Write(errText, strProcedureName);
                         return Json(new ReprintPWO());
                     }
                     rlt.PWONo = lstOrders[0].WFInstanceID;
@@ -738,6 +740,7 @@ namespace IRAP.BL.SCES
                     rlt.MOLineNo = lstOrders[0].MOLineNo;
                     rlt.LotNumber = lstOrders[0].LotNumber;
 
+                    #region 获取制造订单的配料信息
                     strSQL =
                         string.Format(
                             "SELECT * " +
@@ -754,6 +757,7 @@ namespace IRAP.BL.SCES
                     {
                         errCode = -1;
                         errText = string.Format("未找到[{0}]-[{1}]制造订单的配料信息", moNumber, moLineNo);
+                        WriteLog.Instance.Write(errText, strProcedureName);
                         return Json(new ReprintPWO());
                     }
                     rlt.T173Code = lstMaterials[0].T173Code;
@@ -769,6 +773,68 @@ namespace IRAP.BL.SCES
                     rlt.MaterialDesc = lstMaterials[0].MaterialDesc;
                     rlt.ActualQuantityToDeliver = lstMaterials[0].ActualQuantityToDeliver.ToString();
                     rlt.DstT106Code = lstMaterials[0].DstT106Code;
+                    #endregion
+
+                    #region 获取制造订单的 T134 父节点信息
+                    strSQL =
+                        string.Format(
+                            "SELECT * " +
+                            "FROM IRAPMDM..stb057 WHERE PartitioningKey={0} " +
+                            "AND NodeID={1}",
+                            communityID * 10000 + 134,
+                            lstOrders[0].T134NodeID);
+                    WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                    IList<Stb057> lstT134Nodes =
+                        conn.CallTableFunc<Stb057>(strSQL, paramList);
+                    if (lstT134Nodes.Count > 0)
+                    {
+                        rlt.T134Name =
+                            string.Format(
+                                "{0}-[{1}]",
+                                lstT134Nodes[0].NodeName,
+                                lstT134Nodes[0].Code);
+                    }
+                    #endregion
+
+                    #region 获取工单的计划产量以及产品信息
+                    strSQL =
+                        string.Format(
+                            "SELECT * " +
+                            "FROM IRAPMES..TempFact_OLTP " +
+                            "WHERE PartitioningKey={0} " +
+                            "AND WFInstanceID='{1}' " +
+                            "AND OpID=482 AND OpType=1",
+                            DateTime.Now.Year * 1000000000000 + communityID * 10000 + 482,
+                            rlt.PWONo);
+                    WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                    IList<FixedFact_MES> lstFixedFacts =
+                        conn.CallTableFunc<FixedFact_MES>(strSQL, paramList);
+                    if (lstFixedFacts.Count != 0)
+                    {
+                        rlt.PlannedQuantity = lstFixedFacts[0].Metric01;
+                        rlt.ProductNo = lstFixedFacts[0].Code01;
+
+                        int t102LeafID = lstFixedFacts[0].Leaf01;
+                        strSQL =
+                            string.Format(
+                                "SELECT * " +
+                                "FROM IRAPMDM..stb058 " +
+                                "WHERE PartitioningKey={0} " +
+                                "AND LeafID={1}",
+                                communityID * 10000 + 102,
+                                t102LeafID);
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<Stb058> lst058 =
+                            conn.CallTableFunc<Stb058>(strSQL, paramList);
+                        if (lst058.Count > 0)
+                        {
+                            rlt.ProductDesc = lst058[0].NodeName;
+                        }
+                    }
+                    #endregion
 
                     errCode = 0;
                     errText = "获取成功";
@@ -780,7 +846,8 @@ namespace IRAP.BL.SCES
             catch (Exception error)
             {
                 errCode = 99000;
-                errText = string.Format("调用 IRAPSCES..usp_UndoPrintVoucher_PWOMaterialDelivery 时发生异常：{0}", error.Message);
+                errText = string.Format("调用 mfn_GetInfo_PWOToReprint 时发生异常：{0}", error.Message);
+                WriteLog.Instance.Write(errText, strProcedureName);
                 return Json(new ReprintPWO());
             }
             finally
