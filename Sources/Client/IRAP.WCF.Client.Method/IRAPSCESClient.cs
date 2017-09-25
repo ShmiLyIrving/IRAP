@@ -591,5 +591,84 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 根据制造订单号和制造订单行号，获取工单信息
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="dstT173LeafID">目标仓储地点</param>
+        /// <param name="moNumber">制造订单号</param>
+        /// <param name="moLineNo">制造订单行号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void mfn_GetInfo_PWOToReprint(
+            int communityID,
+            int dstT173LeafID,
+            string moNumber,
+            int moLineNo,
+            long sysLogID,
+            ref ReprintPWO data,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                data = new ReprintPWO();
+
+                #region 将函数调用参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("dstT173LeafID", dstT173LeafID);
+                hashParams.Add("moNumber", moNumber);
+                hashParams.Add("moLineNo", moLineNo);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 mfn_GetInfo_PWOToReprint，输入参数：" +
+                        "CommunityID={0}|DstT173LeafID={1}|MONumber={2}|"+
+                        "MOLineNo={3}|SysLogID={4}",
+                        communityID, dstT173LeafID, moNumber, moLineNo, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.SCES.dll",
+                            "IRAP.BL.SCES.IRAPSCES",
+                            "mfn_GetInfo_PWOToReprint",
+                            hashParams,
+                            out errCode,
+                            out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        data = rlt as ReprintPWO;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

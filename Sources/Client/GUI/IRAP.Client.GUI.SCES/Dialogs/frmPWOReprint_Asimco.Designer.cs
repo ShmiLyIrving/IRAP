@@ -31,14 +31,14 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.edtMOLineNo = new DevExpress.XtraEditors.TextEdit();
+            this.edtMONumber = new DevExpress.XtraEditors.TextEdit();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMOLineNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMONumber.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTipController
@@ -72,8 +72,8 @@
             this.groupControl1.Appearance.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.textEdit2);
-            this.groupControl1.Controls.Add(this.textEdit1);
+            this.groupControl1.Controls.Add(this.edtMOLineNo);
+            this.groupControl1.Controls.Add(this.edtMONumber);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
@@ -82,25 +82,25 @@
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "请输入订单信息：";
             // 
-            // textEdit1
+            // edtMOLineNo
             // 
-            this.textEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.edtMOLineNo.Location = new System.Drawing.Point(142, 71);
+            this.edtMOLineNo.Name = "edtMOLineNo";
+            this.edtMOLineNo.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.edtMOLineNo.Properties.Appearance.Options.UseFont = true;
+            this.edtMOLineNo.Size = new System.Drawing.Size(155, 28);
+            this.edtMOLineNo.TabIndex = 3;
+            // 
+            // edtMONumber
+            // 
+            this.edtMONumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textEdit1.Location = new System.Drawing.Point(142, 37);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.textEdit1.Properties.Appearance.Options.UseFont = true;
-            this.textEdit1.Size = new System.Drawing.Size(247, 28);
-            this.textEdit1.TabIndex = 2;
-            // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(142, 71);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.textEdit2.Properties.Appearance.Options.UseFont = true;
-            this.textEdit2.Size = new System.Drawing.Size(155, 28);
-            this.textEdit2.TabIndex = 3;
+            this.edtMONumber.Location = new System.Drawing.Point(142, 37);
+            this.edtMONumber.Name = "edtMONumber";
+            this.edtMONumber.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.edtMONumber.Properties.Appearance.Options.UseFont = true;
+            this.edtMONumber.Size = new System.Drawing.Size(247, 28);
+            this.edtMONumber.TabIndex = 2;
             // 
             // btnPrint
             // 
@@ -112,6 +112,7 @@
             this.btnPrint.Size = new System.Drawing.Size(95, 28);
             this.btnPrint.TabIndex = 3;
             this.btnPrint.Text = "打印";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnClose
             // 
@@ -139,8 +140,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMOLineNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMONumber.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -150,8 +151,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit edtMOLineNo;
+        private DevExpress.XtraEditors.TextEdit edtMONumber;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.SimpleButton btnClose;
     }

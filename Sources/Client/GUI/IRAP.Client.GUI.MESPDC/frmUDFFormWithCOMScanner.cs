@@ -274,8 +274,18 @@ namespace IRAP.Client.GUI.MESPDC
                                 view.WorkUnitLeafID,
                                 null,
                                 ref tag);
-                            grdvSerialPortScanners.RefreshData();
-                            grdvSerialPortScanners.BestFitColumns();
+
+                            try
+                            {
+                                grdvSerialPortScanners.RefreshData();
+                                grdvSerialPortScanners.BestFitColumns();
+                            }
+                            catch (Exception error)
+                            {
+                                WriteLog.Instance.Write(
+                                    string.Format("刷新界面表格数据的时候发生错误：{0}", error.Message),
+                                    strProcedureName);
+                            }
 
                             WriteLog.Instance.Write(
                                 string.Format(
@@ -290,6 +300,7 @@ namespace IRAP.Client.GUI.MESPDC
                                 busUDFForm.ErrorCode,
                                 busUDFForm.ErrorMessage);
 
+                            #region 调用完成后执行 Action
                             if (busUDFForm.ErrorCode == 0)
                             {
                                 WriteLog.Instance.Write(
@@ -304,8 +315,17 @@ namespace IRAP.Client.GUI.MESPDC
                                             null,
                                             ref tag);
 
-                                        grdvSerialPortScanners.RefreshData();
-                                        grdvSerialPortScanners.BestFitColumns();
+                                        try
+                                        {
+                                            grdvSerialPortScanners.RefreshData();
+                                            grdvSerialPortScanners.BestFitColumns();
+                                        }
+                                        catch (Exception error)
+                                        {
+                                            WriteLog.Instance.Write(
+                                                string.Format("刷新界面表格数据的时候发生错误：{0}", error.Message),
+                                                strProcedureName);
+                                        }
                                     }
                                     catch (Exception error)
                                     {
@@ -325,6 +345,7 @@ namespace IRAP.Client.GUI.MESPDC
                                     }
                                 }
                             }
+                            #endregion
                         }
                         catch (Exception error)
                         {
