@@ -54,6 +54,8 @@
             // 
             // pnlBody
             // 
+            this.pnlBody.Appearance.BackColor = ((System.Drawing.Color)(resources.GetObject("pnlBody.Appearance.BackColor")));
+            this.pnlBody.Appearance.Options.UseBackColor = true;
             this.pnlBody.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlBody.Controls.Add(this.xucIRAPListView);
             resources.ApplyResources(this.pnlBody, "pnlBody");

@@ -410,6 +410,8 @@ namespace IRAP.Client.GUI.MESPDC
                             }
 
                             break;
+                        case "BACKGROUND":
+                            break;
                     }
 
                     if (objControl.Visible)
@@ -728,29 +730,26 @@ namespace IRAP.Client.GUI.MESPDC
                             busUDFForm.ErrorMessage,
                             DateTime.Now);
 
-                        if (busUDFForm.ErrorCode == 0)
+                        WriteLog.Instance.Write(
+                            string.Format("Output={0}", busUDFForm.OutputStr),
+                            strProcedureName);
+                        if (busUDFForm.OutputStr != "")
                         {
-                            WriteLog.Instance.Write(
-                                string.Format("Output={0}", busUDFForm.OutputStr),
-                                strProcedureName);
-                            if (busUDFForm.OutputStr != "")
+                            try
                             {
-                                try
-                                {
-                                    UDFActions.DoActions(
-                                        busUDFForm.OutputStr,
-                                        new ExtendEventHandler(RefreshForm),
-                                        ref tag);
-                                }
-                                catch (Exception error)
-                                {
-                                    WriteLog.Instance.Write(
-                                        string.Format("错误信息:{0}。跟踪堆栈:{1}。",
-                                            error.Message,
-                                            error.StackTrace),
-                                        strProcedureName);
-                                    xucIRAPListView.WriteLog(-1, error.Message, DateTime.Now);
-                                }
+                                UDFActions.DoActions(
+                                    busUDFForm.OutputStr,
+                                    new ExtendEventHandler(RefreshForm),
+                                    ref tag);
+                            }
+                            catch (Exception error)
+                            {
+                                WriteLog.Instance.Write(
+                                    string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                                        error.Message,
+                                        error.StackTrace),
+                                    strProcedureName);
+                                xucIRAPListView.WriteLog(-1, error.Message, DateTime.Now);
                             }
                         }
                     }

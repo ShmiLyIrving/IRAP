@@ -160,6 +160,9 @@
   <data name="toolTipController.AppearanceTitle.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
   </data>
+  <data name="pnlBody.Appearance.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Transparent</value>
+  </data>
   <data name="xucIRAPListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 79</value>
   </data>
@@ -178,7 +181,7 @@
     <value>xucIRAPListView</value>
   </data>
   <data name="&gt;&gt;xucIRAPListView.Type" xml:space="preserve">
-    <value>IRAP.Client.Global.GUI.xucIRAPListView, IRAP.Client.Global.GUI, Version=6.1.6298.29179, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.Global.GUI.xucIRAPListView, IRAP.Client.Global.GUI, Version=6.1.6474.39021, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xucIRAPListView.Parent" xml:space="preserve">
     <value>pnlBody</value>
@@ -229,6 +232,6 @@
     <value>frmUDFForm1Ex</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IRAP.Client.Global.GUI.frmCustomFuncBase, IRAP.Client.Global.GUI, Version=6.1.6298.29179, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.Global.GUI.frmCustomFuncBase, IRAP.Client.Global.GUI, Version=6.1.6474.39021, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

@@ -399,29 +399,26 @@ namespace IRAP.WCF.Client.Method
                             errCode,
                             errText),
                         strProcedureName);
-                    if (errCode == 0)
+                    if (rlt is Hashtable)
                     {
-                        if (rlt is Hashtable)
+                        Hashtable rltHash = (Hashtable)rlt;
+                        try
                         {
-                            Hashtable rltHash = (Hashtable)rlt;
-                            try
-                            {
-                                HashtableTools.Instance.GetValue(rltHash, "OutputStr", out outputStr);
-                            }
-                            catch (Exception error)
-                            {
-                                errCode = -1003;
-                                errText = error.Message;
-                                WriteLog.Instance.Write(errText, strProcedureName);
-                                return;
-                            }
+                            HashtableTools.Instance.GetValue(rltHash, "OutputStr", out outputStr);
                         }
-                        else
+                        catch (Exception error)
                         {
-                            errCode = -1002;
-                            errText = "应用服务 ssp_OLTP_UDFForm 返回的不是 Hashtable！";
+                            errCode = -1003;
+                            errText = error.Message;
                             WriteLog.Instance.Write(errText, strProcedureName);
+                            return;
                         }
+                    }
+                    else
+                    {
+                        errCode = -1002;
+                        errText = "应用服务 ssp_OLTP_UDFForm 返回的不是 Hashtable！";
+                        WriteLog.Instance.Write(errText, strProcedureName);
                     }
                 }
                 #endregion
