@@ -195,6 +195,15 @@ namespace IRAP.BL.UTS
                         errText = error.ErrText;
 
                         rlt = DBUtils.DBParamsToHashtable(paramList);
+
+                        foreach (string key in rlt.Keys)
+                        {
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "[{0}]=[{1}]",
+                                    key,
+                                    rlt[key]));
+                        }
                     }
                 }
                 catch (Exception error)
@@ -384,6 +393,15 @@ namespace IRAP.BL.UTS
                         errText = error.ErrText;
 
                         rlt = DBUtils.DBParamsToHashtable(paramList);
+
+                        foreach (string key in rlt.Keys)
+                        {
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "[{0}]=[{1}]",
+                                    key,
+                                    rlt[key]));
+                        }
                     }
                 }
                 catch (Exception error)
