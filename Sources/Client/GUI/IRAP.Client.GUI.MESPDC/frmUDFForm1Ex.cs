@@ -488,6 +488,121 @@ namespace IRAP.Client.GUI.MESPDC
             return null;
         }
 
+        private void RefreshLabel(LabelControl label, FormCtrlInfo ctrl)
+        {
+            label.Location = new Point(ctrl.CtrlLeft, ctrl.CtrlTop);
+            label.Size = new Size(ctrl.CtrlWidth, ctrl.CtrlHeight);
+            label.Text = ctrl.Caption;
+            switch (ctrl.Alignment.ToUpper())
+            {
+                case "LEFT":
+                    label.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+                    break;
+                case "RIGHT":
+                    label.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+                    break;
+                default:
+                    label.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    break;
+            }
+            label.Appearance.TextOptions.VAlignment = VertAlignment.Center;
+            label.Appearance.Font = new Font(ctrl.FontName, ctrl.FontSizeFloat);
+            label.Appearance.ForeColor = Color.FromArgb(ctrl.FontColor);
+
+            label.ToolTip = ctrl.Hint;
+            label.ToolTipController = this.toolTipController;
+            label.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+            {
+                label.ToolTipTitle = "Tip";
+            }
+            else
+            {
+                label.ToolTipTitle = "提示信息";
+            }
+
+            label.Enabled = ctrl.Enabled;
+            label.Visible = ctrl.Visible;
+            label.Appearance.TextOptions.WordWrap = ctrl.WordWrap ? WordWrap.Wrap : WordWrap.NoWrap;
+
+            label.Tag = ctrl;
+        }
+
+        private void RefreshTextEdit(TextEdit edit, FormCtrlInfo ctrl)
+        {
+            edit.Location = new Point(ctrl.CtrlLeft, ctrl.CtrlTop);
+            edit.Size = new Size(ctrl.CtrlWidth, ctrl.CtrlHeight);
+
+            switch (ctrl.Alignment.ToUpper())
+            {
+                case "LEFT":
+                    edit.Properties.Appearance.TextOptions.HAlignment = HorzAlignment.Near;
+                    break;
+                case "RIGHT":
+                    edit.Properties.Appearance.TextOptions.HAlignment = HorzAlignment.Far;
+                    break;
+                default:
+                    edit.Properties.Appearance.TextOptions.HAlignment = HorzAlignment.Center;
+                    break;
+            }
+            edit.Properties.Appearance.TextOptions.VAlignment = VertAlignment.Default;
+
+            edit.Font = new Font(ctrl.FontName, ctrl.FontSizeFloat);
+            edit.Properties.Appearance.ForeColor = Color.FromArgb(ctrl.FontColor);
+            edit.TabIndex = ctrl.TabOrder;
+
+            edit.ToolTip = ctrl.Hint;
+            edit.ToolTipController = this.toolTipController;
+            edit.ToolTipIconType = ToolTipIconType.Information;
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+            {
+                edit.ToolTipTitle = "Tip";
+            }
+            else
+            {
+                edit.ToolTipTitle = "提示信息";
+            }
+
+            edit.ImeMode = ImeMode.Disable;
+            edit.Enabled = ctrl.Enabled;
+            edit.Visible = ctrl.Visible;
+            edit.EnterMoveNextControl = true;
+
+            edit.Text = ctrl.DefaultValueStr;
+
+            edit.Tag = ctrl;
+        }
+
+        private void RefreshButton(SimpleButton button, FormCtrlInfo ctrl)
+        {
+            button.Location = new Point(ctrl.CtrlLeft, ctrl.CtrlTop);
+            button.Size = new Size(ctrl.CtrlWidth, ctrl.CtrlHeight);
+
+            button.Text = ctrl.Caption;
+
+            button.Font = new Font(ctrl.FontName, ctrl.FontSizeFloat);
+            button.Appearance.ForeColor = Color.FromArgb(ctrl.FontColor);
+
+            button.TabIndex = ctrl.TabOrder;
+
+            button.ToolTip = ctrl.Hint;
+            button.ToolTipController = this.toolTipController;
+            button.ToolTipIconType = ToolTipIconType.Information;
+            if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
+            {
+                button.ToolTipTitle = "Tip";
+            }
+            else
+            {
+                button.ToolTipTitle = "提示信息";
+            }
+
+            button.Enabled = ctrl.Enabled;
+            button.Visible = ctrl.Visible;
+
+            button.Tag = ctrl;
+        }
+
         private void RefreshForm()
         {
             if (menuInfo == null)
@@ -524,48 +639,21 @@ namespace IRAP.Client.GUI.MESPDC
                                 LabelControl label = FindLabelWithTagOrdinal(ctrl.Ordinal);
                                 if (label != null)
                                 {
-                                    label.Text = ctrl.Caption;
-                                    label.Top = ctrl.CtrlTop;
-                                    label.Left = ctrl.CtrlLeft;
-
-                                    label.Enabled = ctrl.Enabled;
-                                    label.Visible = ctrl.Visible;
-
-                                    label.ToolTip = ctrl.Hint;
-
-                                    label.Tag = ctrl;
+                                    RefreshLabel(label, ctrl);
                                 }
                                 break;
                             case "EditBox":
                                 TextEdit edit = FindTextEditWithTagOrdinal(ctrl.Ordinal);
                                 if (edit != null)
                                 {
-                                    edit.Top = ctrl.CtrlTop;
-                                    edit.Left = ctrl.CtrlLeft;
-
-                                    edit.Enabled = ctrl.Enabled;
-                                    edit.Visible = ctrl.Visible;
-
-                                    edit.ToolTip = ctrl.Hint;
-
-                                    edit.Text = ctrl.DefaultValueStr;
-
-                                    edit.Tag = ctrl;
+                                    RefreshTextEdit(edit, ctrl);
                                 }
                                 break;
                             case "Button":
                                 SimpleButton button = FindButtonWithTagOrdinal(ctrl.Ordinal);
                                 if (button != null)
                                 {
-                                    button.Top = ctrl.CtrlTop;
-                                    button.Left = ctrl.CtrlLeft;
-
-                                    button.Enabled = ctrl.Enabled;
-                                    button.Visible = ctrl.Visible;
-
-                                    button.ToolTip = ctrl.Hint;
-
-                                    button.Tag = ctrl;
+                                    RefreshButton(button, ctrl);
                                 }
                                 break;
                         }
