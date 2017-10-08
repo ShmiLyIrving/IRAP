@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Xml;
 using System.Configuration;
 using System.Reflection;
+using System.Threading;
 
 using Apache.NMS;
 using Apache.NMS.ActiveMQ;
@@ -278,25 +279,37 @@ namespace IRAP.TPM.Services
                                         return;
                                 }
 
+                                int retryTime = 0;
+                                do
+                                {
+                                    WriteLog.Instance.Write(
+                                        string.Format("第[{0}]次执行", retryTime++),
+                                        className);
+                                    try
+                                    {
+                                        WriteLog.Instance.Write(sqlCmd.CommandText, className);
+                                        sqlCmd.CommandTimeout = 120;
+                                        sqlCmd.ExecuteNonQuery();
+                                        WriteLog.Instance.Write("处理成功！", className);
+                                        break;
+                                    }
+                                    catch (Exception error)
+                                    {
+                                        WriteLog.Instance.Write(error.Message, className);
+                                        WriteLog.Instance.Write(error.StackTrace, className);
 
-                                try
-                                {
-                                    sqlCmd.ExecuteNonQuery();
-                                    WriteLog.Instance.Write("处理成功！");
+                                        Thread.Sleep(200);
+                                    }
                                 }
-                                catch (Exception error)
-                                {
-                                    WriteLog.Instance.Write(error.Message);
-                                    WriteLog.Instance.Write(error.StackTrace);
-                                }
+                                while (true);
                             }
                         }
                     }
                 }
                 catch (Exception error)
                 {
-                    WriteLog.Instance.Write(error.Message);
-                    WriteLog.Instance.Write(error.StackTrace);
+                    WriteLog.Instance.Write(error.Message, className);
+                    WriteLog.Instance.Write(error.StackTrace, className);
                 }
                 finally
                 {
