@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6CAD6BD5-618D-43AD-A486-39BAD81498BE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MESPDC</RootNamespace>
+    <AssemblyName>MESPDC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IRAPORM, Version=6.0.6218.24597, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\IRAPORM.dll</HintPath>
+    </Reference>
+    <Reference Include="IRAPShared, Version=6.0.5636.21648, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\IRAPShared.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NPOI">
+      <HintPath>lib\NPOI\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>lib\NPOI\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>lib\NPOI\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>lib\NPOI\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\MESPDC\Controllers\EnvController.cs" />
+    <Compile Include="Areas\MESPDC\Controllers\ProductTestController.cs" />
+    <Compile Include="Areas\MESPDC\Controllers\SerachController.cs" />
+    <Compile Include="Areas\MESPDC\MESPDCAreaRegistration.cs" />
+    <Compile Include="Areas\MESPDC\Models\AccessibleModel.cs" />
+    <Compile Include="Areas\MESPDC\Models\InspectToPWOModel.cs" />
+    <Compile Include="Areas\MESPDC\Models\InspectTypeModel.cs" />
+    <Compile Include="Areas\MESPDC\Models\MethodParametersModel.cs" />
+    <Compile Include="Areas\MESPDC\Models\ProductLineModel.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap2.3.2\bootstrap-responsive.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap2.3.2\bootstrap-responsive.min.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap2.3.2\bootstrap.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap2.3.2\bootstrap.min.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap-editable.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap-select.min.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap-table.min.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap-theme.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap-theme.min.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap.min.css" />
+    <Content Include="Areas\MESPDC\Content\CSS\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\MESPDC\Content\CSS\img\clear1.png" />
+    <Content Include="Areas\MESPDC\Content\CSS\img\loading.gif" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap2.3.2\bootstrap.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap2.3.2\bootstrap.min.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap-dynamic-tabs.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap-editable.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap-editable.min.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap-select.min.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap-table-edit.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap-table-editable.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap-table-zh-CN.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap-table.min.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\bootstrap.min.js" />
+    <Content Include="Areas\MESPDC\Scripts\bootStrap3.3.7\npm.js" />
+    <Content Include="Areas\MESPDC\Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Areas\MESPDC\Scripts\ProductTest\confrim.js" />
+    <Content Include="Areas\MESPDC\Scripts\ProductTest\ProductTest.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\MESPDC\Views\web.config" />
+    <Content Include="Areas\MESPDC\Views\ProductTest\ProductTest.cshtml" />
+    <Content Include="Areas\MESPDC\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap-theme.css.map" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap-theme.min.css.map" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap.css.map" />
+    <Content Include="Areas\MESPDC\Content\CSS\bootStrap3.3.7\bootstrap.min.css.map" />
+    <Content Include="Areas\MESPDC\Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Areas\MESPDC\Content\CSS\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\MESPDC\Content\CSS\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\MESPDC\Content\CSS\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\MESPDC\Content\CSS\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\.csscomb.json" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\.csslintrc" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\alerts.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\badges.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\bootstrap.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\breadcrumbs.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\button-groups.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\buttons.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\carousel.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\close.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\code.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\component-animations.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\dropdowns.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\forms.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\glyphicons.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\grid.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\input-groups.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\jumbotron.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\labels.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\list-group.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\media.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\alerts.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\background-variant.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\border-radius.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\buttons.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\center-block.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\clearfix.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\forms.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\gradients.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\grid-framework.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\grid.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\hide-text.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\image.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\labels.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\list-group.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\nav-divider.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\nav-vertical-align.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\opacity.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\pagination.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\panels.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\progress-bar.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\reset-filter.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\reset-text.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\resize.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\responsive-visibility.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\size.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\tab-focus.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\table-row.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\text-emphasis.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\text-overflow.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\mixins\vendor-prefixes.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\modals.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\navbar.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\navs.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\normalize.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\pager.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\pagination.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\panels.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\popovers.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\print.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\progress-bars.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\responsive-embed.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\responsive-utilities.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\scaffolding.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\tables.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\theme.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\thumbnails.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\tooltip.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\type.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\utilities.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\variables.less" />
+    <Content Include="Areas\MESPDC\Content\CSS\less\wells.less" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="ServiceDlls\IRAPORM.dll" />
+    <Content Include="ServiceDlls\IRAPORM.pdb" />
+    <Content Include="ServiceDlls\IRAPORM.xml" />
+    <Content Include="ServiceDlls\IRAPShared.dll" />
+    <Content Include="ServiceDlls\log4net.dll" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\MESPDC\Views\Serach\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>10593</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:10593/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

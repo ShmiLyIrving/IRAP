@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Areas/MESPDC/Content/CSS/bootStrap3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/MESPDC/Content/CSS/bootStrap3.3.7/bootstrap-select.min.css" rel="stylesheet" />
+
+    <link href="~/Areas/MESPDC/Content/CSS/bootStrap3.3.7/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/Areas/MESPDC/Content/CSS/bootStrap3.3.7/bootstrap-editable.css" rel="stylesheet" />
+  
+</head>
+<body>
+    <script src="~/Areas/MESPDC/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/bootStrap3.3.7/bootstrap.min.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/bootStrap3.3.7/bootstrap-editable.min.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/bootStrap3.3.7/bootstrap-editable.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/bootStrap3.3.7/bootstrap-select.min.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/bootStrap3.3.7/bootstrap-table.min.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/bootStrap3.3.7/bootstrap-dynamic-tabs.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/bootStrap3.3.7/bootstrap-table-editable.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/bootStrap3.3.7/bootstrap-table-zh-CN.js"></script>
+    <script src="~/Areas/MESPDC/Scripts/ProductTest/confrim.js"></script>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div> 
+    @*@Scripts.Render("~/Areas/MESPDC/Scripts/bootStrap/bootstrap.min.js")*@
+    @*<script src="~/Areas/MESPDC/Scripts/jquery-1.11.3.min.js"></script>*@
+ 
+    @RenderSection("scripts", required: false)
+</body>
+</html>
