@@ -21,7 +21,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
             {
                 try
                 {
-                    ordinal = Convert.ToInt32(actionParams.Attributes["Ordinal"].ToString());
+                    ordinal = Convert.ToInt32(actionParams.Attributes["Ordinal"].Value.ToString());
                 }
                 catch 
                 {
