@@ -276,6 +276,16 @@ namespace IRAP.BL.SCES
                         }
                     }
 
+                    foreach (DictionaryEntry entry in rtnParams)
+                    {
+                        WriteLog.Instance.Write(
+                            string.Format(
+                                "[{0}]=[{1}]",
+                                entry.Key,
+                                entry.Value),
+                            strProcedureName);
+                    }
+
                     return Json(rtnParams);
                 }
                 #endregion
@@ -460,6 +470,16 @@ namespace IRAP.BL.SCES
                         }
                     }
 
+                    foreach (DictionaryEntry entry in rtnParams)
+                    {
+                        WriteLog.Instance.Write(
+                            string.Format(
+                                "[{0}]=[{1}]",
+                                entry.Key,
+                                entry.Value),
+                            strProcedureName);
+                    }
+
                     return Json(rtnParams);
                 }
                 #endregion
@@ -635,6 +655,16 @@ namespace IRAP.BL.SCES
                                     rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
                             }
                         }
+                    }
+
+                    foreach (DictionaryEntry entry in rtnParams)
+                    {
+                        WriteLog.Instance.Write(
+                            string.Format(
+                                "[{0}]=[{1}]",
+                                entry.Key,
+                                entry.Value),
+                            strProcedureName);
                     }
 
                     return Json(rtnParams);
