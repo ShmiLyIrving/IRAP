@@ -280,7 +280,7 @@ namespace IRAP.WCF.Client.Method
         /// <param name="errCode"></param>
         /// <param name="errTex"></param>
         /// <returns></returns>
-        public void usp_SaveFact_Packaging(
+        public string usp_SaveFact_Packaging(
             int communityID,
             long transactNo,
             long factID,
@@ -304,8 +304,7 @@ namespace IRAP.WCF.Client.Method
             out int errCode,
             out string errText)
         {
-            throw new NotImplementedException();
-            /*
+            // new NotImplementedException();
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
@@ -330,14 +329,14 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("rowNumOfCarton", rowNumOfCarton);
                 hashParams.Add("colNumOfCarton", colNumOfCarton);
                 hashParams.Add("layerNumOfBox", layerNumOfBox);
-                        rowNumOfBox,
-                        colNumOfBox,
-                        boxSerialNumber,
-                        cartonSerialNumber,
-                        layerSerialNumber,
-                        palletSerialNumber,
-                        sysLogID
+                hashParams.Add("rowNumOfBox", rowNumOfBox);
+                hashParams.Add("colNumOfBox", colNumOfBox);
+                hashParams.Add("boxSerialNumber", boxSerialNumber);
+                hashParams.Add("cartonSerialNumber", cartonSerialNumber);
+                hashParams.Add("layerSerialNumber", layerSerialNumber); 
+                hashParams.Add("palletSerialNumber", palletSerialNumber);
                 hashParams.Add("sysLogID", sysLogID);
+
                 WriteLog.Instance.Write(
                     string.Format(
                                                 "调用 IRAPMES..usp_SaveFact_Packaging，输入参数：" +
@@ -375,9 +374,9 @@ namespace IRAP.WCF.Client.Method
                 using (WCFClient client = new WCFClient())
                 {
                     object rlt = client.WCFRESTFul(
-                        "IRAP.BL.UTS.dll",
-                        "IRAP.BL.UTS.IRAPUTS",
-                        "ssp_OLTP_UDFForm",
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.ProductPackage",
+                        "usp_SaveFact_Packaging",
                         hashParams,
                         out errCode,
                         out errText);
@@ -387,30 +386,7 @@ namespace IRAP.WCF.Client.Method
                             errCode,
                             errText),
                         strProcedureName);
-                    if (errCode == 0)
-                    {
-                        if (rlt is Hashtable)
-                        {
-                            Hashtable rltHash = (Hashtable)rlt;
-                            try
-                            {
-                                HashtableTools.Instance.GetValue(rltHash, "OutputStr", out outputStr);
-                            }
-                            catch (Exception error)
-                            {
-                                errCode = -1003;
-                                errText = error.Message;
-                                WriteLog.Instance.Write(errText, strProcedureName);
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            errCode = -1002;
-                            errText = "应用服务 ssp_OLTP_UDFForm 返回的不是 Hashtable！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                        }
-                    }
+                    return rlt as string;
                 }
                 #endregion
             }
@@ -419,17 +395,99 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
+                return "";
             }
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-            */
         }
 
-        public void ufn_GetLabelFMTStr()
+        public void ufn_GetLabelFMTStr(
+            int communityID,
+            int correlationID,
+            int labelID,
+            string serialNo,
+            long sysLogID,
+            ref List<LabelFMTStr> labelFMTStr,
+            out int errCode,
+            out string errText
+            )
         {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                //labelFMTStr.Clear();
 
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("correlationID", correlationID);
+                hashParams.Add("labelID", labelID);
+                hashParams.Add("serialNo", serialNo);
+                hashParams.Add("pHStr1", "");
+                hashParams.Add("pHStr2", "");
+                hashParams.Add("pHStr3", "");
+                hashParams.Add("pHStr4", "");
+                hashParams.Add("pHStr5", "");
+                hashParams.Add("pHStr6", "");
+                hashParams.Add("pHStr7", "");
+                hashParams.Add("pHStr8", "");
+                hashParams.Add("pHStr9", "");
+                hashParams.Add("pHStr10", "");
+                hashParams.Add("pHStr11", "");
+                hashParams.Add("pHStr12", "");
+                hashParams.Add("pHStr13", "");
+                hashParams.Add("pHStr14", "");
+                hashParams.Add("pHStr15", "");
+                hashParams.Add("sysLogID", sysLogID);
+
+                //WriteLog.Instance.Write(
+                //    string.Format(
+                //        "调用 ufn_GetFactList_Packaging，输入参数：" +
+                //        "CommunityID={0}|TransactNo={1}|ProductLeaf={2}|" +
+                //        "SysLogID={3}",
+                //        communityID, transactNo, productLeaf, sysLogID),
+                //    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.ProductPackage",
+                        "ufn_GetLabelFMTStr",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        labelFMTStr = rlt as List<LabelFMTStr>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
 
         /// <summary>

@@ -807,7 +807,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "执行存储过程 ssp_CheckTransaction，输入参数：" +
-                        "CommunityID={0}|TransactNo={1}|SysLogID={3}",
+                        "CommunityID={0}|TransactNo={1}|SysLogID={2}",
                         communityID, transactNo, sysLogID),
                     strProcedureName);
                 #endregion
