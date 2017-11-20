@@ -14,8 +14,8 @@ namespace IRAP.Global
         /// 函数作用：向 INI 文件中写入信息
         /// </summary>
         /// <param name="section">小节名称</param>
-        /// <param name="key">项目名称或条目名称</param>
-        /// <param name="val1">参数值</param>
+        /// <param name="key">项目名称或条目名称。如果为null，则删除指定的节点及其所有的项目</param>
+        /// <param name="val1">参数值。如果为null，则删除指定节点中指定的键</param>
         /// <param name="filePath">INI 文件的完整路径</param>
         /// <returns></returns>
         [DllImport("kernel32.dll")]
@@ -130,15 +130,66 @@ namespace IRAP.Global
         /// <returns>参数值</returns>
         public static string ReadString(string section, string key, string def, string filePath)
         {
-            StringBuilder tempStr = new StringBuilder(255);
+            StringBuilder tempStr = new StringBuilder(10000);
             try
             {
-                int i = GetPrivateProfileString(section, key, def, tempStr, 255, filePath);
+                int i = GetPrivateProfileString(section, key, def, tempStr, 10000, filePath);
                 return tempStr.ToString();
             }
             catch
             {
                 return def;
+            }
+        }
+
+
+        /// <summary>  
+        /// 在INI文件中，删除指定节点中的指定的键。  
+        /// </summary>  
+        /// <param name="iniFile">INI文件</param>  
+        /// <param name="section">节点</param>  
+        /// <param name="key">键</param>  
+        /// <returns>操作是否成功</returns>  
+        public static void INIDeleteKey(string section, string key, string iniFile)
+        {
+            if (string.IsNullOrEmpty(section))
+            {
+                throw new ArgumentException("必须指定节点名称", "section");
+            }
+
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentException("必须指定键名称", "key");
+            }
+            try
+            {
+                WritePrivateProfileString(section, key, null, iniFile);
+            }
+            catch
+            {
+
+            }
+        }
+
+        /// <summary>  
+        /// 在INI文件中，删除指定的节点。  
+        /// </summary>  
+        /// <param name="iniFile">INI文件</param>  
+        /// <param name="section">节点</param>  
+        /// <returns>操作是否成功</returns>  
+        public static void INIDeleteSection(string iniFile, string section)
+        {
+            if (string.IsNullOrEmpty(section))
+            {
+                throw new ArgumentException("必须指定节点名称", "section");
+            }
+            try
+            {
+                WritePrivateProfileString(section, null, null, iniFile);
+            }
+            catch
+            {
+
             }
         }
     }
