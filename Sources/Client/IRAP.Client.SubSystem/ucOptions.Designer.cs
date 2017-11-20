@@ -118,6 +118,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cboOptionsOne;
         private DevExpress.XtraEditors.LabelControl lblOptionTwo;
         private DevExpress.XtraEditors.ComboBoxEdit cboOptionsTwo;
-        private DevExpress.XtraEditors.SimpleButton btnSwitch;
+        public DevExpress.XtraEditors.SimpleButton btnSwitch;
     }
 }
