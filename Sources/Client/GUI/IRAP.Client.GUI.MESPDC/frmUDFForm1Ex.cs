@@ -150,7 +150,7 @@ namespace IRAP.Client.GUI.MESPDC
             rlt.ImeMode = ImeMode.Disable;
             rlt.Enabled = ctrlInfo.Enabled;
             rlt.Visible = ctrlInfo.Visible;
-            rlt.EnterMoveNextControl = true;
+            rlt.EnterMoveNextControl = false;
 
             rlt.Text = ctrlInfo.DefaultValueStr;
 
@@ -281,7 +281,10 @@ namespace IRAP.Client.GUI.MESPDC
                         }
                         else
                         {
-                            SelectNextControl(edit, false, false, false, true);
+                            //SelectNextControl(edit, false, false, false, true);
+                            TextEdit nextEdit = GetNextTextEdit(edit);
+                            if (nextEdit != null)
+                                nextEdit.Focus();
                         }
                     }
                 }
@@ -312,6 +315,23 @@ namespace IRAP.Client.GUI.MESPDC
         #endregion
 
         #region 自定义函数
+        private TextEdit GetNextTextEdit(TextEdit edit)
+        {
+            TextEdit rlt = null;
+
+            rlt = _edits[0];
+            for (int i = 0; i < _edits.Count - 1; i++)
+            {
+                if (edit == _edits[i])
+                {
+                    rlt = _edits[i + 1];
+                    break;
+                }
+            }
+
+            return rlt;
+        }
+
         private bool IsNoEmptyInput()
         {
             foreach (TextEdit edit in _edits)
@@ -568,7 +588,7 @@ namespace IRAP.Client.GUI.MESPDC
             edit.ImeMode = ImeMode.Disable;
             edit.Enabled = ctrl.Enabled;
             edit.Visible = ctrl.Visible;
-            edit.EnterMoveNextControl = true;
+            edit.EnterMoveNextControl = false;
 
             edit.Text = ctrl.DefaultValueStr;
 
@@ -984,25 +1004,41 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void ClearTheInputs()
         {
-            for (int i = 0; i < _edits.Count; i++)
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
             {
-                _edits[i].Enabled = (_edits[i].Tag as FormCtrlInfo).Enabled;
-                _edits[i].Visible = (_edits[i].Tag as FormCtrlInfo).Visible;
-                _edits[i].Text = (_edits[i].Tag as FormCtrlInfo).DefaultValueStr;
-
-                Application.DoEvents();
-            }
-
-            if (firstFocusedObject != null)
-            {
-                foreach (TextEdit edit in _edits)
+                for (int i = 0; i < _edits.Count; i++)
                 {
-                    if (edit.Enabled && edit.Visible)
+                    _edits[i].Enabled = (_edits[i].Tag as FormCtrlInfo).Enabled;
+                    _edits[i].Visible = (_edits[i].Tag as FormCtrlInfo).Visible;
+                    _edits[i].Text = (_edits[i].Tag as FormCtrlInfo).DefaultValueStr;
+
+                    Application.DoEvents();
+                }
+
+                if (firstFocusedObject != null)
+                {
+                    foreach (TextEdit edit in _edits)
                     {
-                        edit.Focus();
-                        return;
+                        if (edit.Enabled && edit.Visible)
+                        {
+                            WriteLog.Instance.Write(
+                                string.Format("EditBox:{0};Hint:{1};EnterMoveNextControl:{2}", edit.Name, edit.ToolTip, edit.EnterMoveNextControl.ToString()),
+                                strProcedureName);
+                            edit.Focus();
+                            return;
+                        }
                     }
                 }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
         #endregion
