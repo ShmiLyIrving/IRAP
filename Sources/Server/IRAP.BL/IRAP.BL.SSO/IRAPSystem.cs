@@ -517,7 +517,14 @@ namespace IRAP.BL.SSO
         ///     MenuCacheID int: 菜单缓冲区标识 
         /// ]
         /// </returns>
-        public IRAPJsonResult ssp_OnSelectionASystem(int communityID, int systemID, int progLanguageID, bool isBSMode, long sysLogID, out int errCode, out string errText)
+        public IRAPJsonResult ssp_OnSelectionASystem(
+            int communityID, 
+            int systemID, 
+            int progLanguageID, 
+            bool isBSMode, 
+            long sysLogID, 
+            out int errCode, 
+            out string errText)
         {
             string strProcedureName = 
                 string.Format(
@@ -566,6 +573,16 @@ namespace IRAP.BL.SSO
                                 rlt.Add(param.ParameterName.Replace("@", ""), param.Value);
                             }
                         }
+
+                        foreach (DictionaryEntry entry in rlt)
+                        {
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "[{0}]=[{1}]",
+                                    entry.Key,
+                                    entry.Value),
+                                strProcedureName);
+                        }
                     }
                 }
                 catch (Exception error)
@@ -598,7 +615,12 @@ namespace IRAP.BL.SSO
         ///     RefreshGUIOptions bool: 是否刷新界面选择
         /// ]
         /// </returns>
-        public IRAPJsonResult ssp_RunAFunction(int communityID, long sysLogID, int menuItemID, out int errCode, out string errText)
+        public IRAPJsonResult ssp_RunAFunction(
+            int communityID, 
+            long sysLogID, 
+            int menuItemID, 
+            out int errCode, 
+            out string errText)
         {
             string strProcedureName =
                 string.Format(
@@ -640,6 +662,16 @@ namespace IRAP.BL.SSO
                         WriteLog.Instance.Write(errText, strProcedureName);
 
                         rlt = DBUtils.DBParamsToHashtable(paramList);
+
+                        foreach (DictionaryEntry entry in rlt)
+                        {
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "[{0}]=[{1}]",
+                                    entry.Key,
+                                    entry.Value),
+                                strProcedureName);
+                        }
                     }
                 }
                 catch (Exception error)

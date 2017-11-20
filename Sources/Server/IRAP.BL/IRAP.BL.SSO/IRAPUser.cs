@@ -253,13 +253,18 @@ namespace IRAP.BL.SSO
                         errText = error.ErrText;
 
                         Hashtable rlt = new Hashtable();
-                        foreach (IRAPProcParameter param in paramList)
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
+
+                        foreach (DictionaryEntry entry in rlt)
                         {
-                            if (param.Direction == ParameterDirection.InputOutput || param.Direction == ParameterDirection.Output)
-                            {
-                                rlt.Add(param.ParameterName.Replace("@", ""), param.Value);
-                            }
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "[{0}]=[{1}]",
+                                    entry.Key,
+                                    entry.Value),
+                                strProcedureName);
                         }
+
                         return Json(rlt);
                     }
                 }
@@ -511,18 +516,16 @@ namespace IRAP.BL.SSO
                         strProcedureName);
 
                     Hashtable rtnParams = new Hashtable();
-                    if (errCode == 0)
+                    rtnParams = DBUtils.DBParamsToHashtable(paramList);
+
+                    foreach (DictionaryEntry entry in rtnParams)
                     {
-                        foreach (IRAPProcParameter param in paramList)
-                        {
-                            if (param.Direction == ParameterDirection.InputOutput || param.Direction == ParameterDirection.Output)
-                            {
-                                if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
-                                    rtnParams.Add(param.ParameterName.Replace("@", ""), 0);
-                                else
-                                    rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
-                            }
-                        }
+                        WriteLog.Instance.Write(
+                            string.Format(
+                                "[{0}]=[{1}]",
+                                entry.Key,
+                                entry.Value),
+                            strProcedureName);
                     }
 
                     return Json(rtnParams);
@@ -1002,6 +1005,16 @@ namespace IRAP.BL.SSO
                         errText = error.ErrText;
 
                         rlt = DBUtils.DBParamsToHashtable(paramList);
+
+                        foreach (DictionaryEntry entry in rlt)
+                        {
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "[{0}]=[{1}]",
+                                    entry.Key,
+                                    entry.Value),
+                                strProcedureName);
+                        }
                     }
                 }
                 catch (Exception error)
