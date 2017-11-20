@@ -147,7 +147,7 @@ namespace IRAP.BL.MES
                     {
                         string strSQL = "SELECT * " +
                             "FROM IRAPMES..ufn_GetInfo_UncompletedPackage(" +
-                            "@CommunityID, @ProductLeaf, @WorkUnitLeaf, "+
+                            "@CommunityID, @ProductLeaf, @WorkUnitLeaf, " +
                             "@PackagingSpecNo, @SysLogID)";
                         WriteLog.Instance.Write(strSQL, strProcedureName);
 
@@ -284,10 +284,10 @@ namespace IRAP.BL.MES
             out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
-                    "{0}.{1}", 
-                    className, 
+                    "{0}.{1}",
+                    className,
                     MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -303,8 +303,8 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用函数 IRAPMES.dbo.ufn_GetNextPackageSN，参数："+
-                        "CommunityID={0}|CorrelationID={1}|Ordinal={2}|"+
+                        "调用函数 IRAPMES.dbo.ufn_GetNextPackageSN，参数：" +
+                        "CommunityID={0}|CorrelationID={1}|Ordinal={2}|" +
                         "LabelType={3}|NowTime={4}|SysLogID={5}",
                         communityID,
                         correlationID,
@@ -320,9 +320,9 @@ namespace IRAP.BL.MES
                 {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
-                        string rlt = 
+                        string rlt =
                             (string)conn.CallScalarFunc(
-                                "IRAPMES.dbo.ufn_GetNextPackageSN", 
+                                "IRAPMES.dbo.ufn_GetNextPackageSN",
                                 paramList);
                         errCode = 0;
                         errText = "调用成功！";
@@ -333,15 +333,247 @@ namespace IRAP.BL.MES
                 catch (Exception error)
                 {
                     errCode = 99000;
-                    errText = 
+                    errText =
                         string.Format(
-                            "调用 IRAPMES.dbo.ufn_GetNextPackageSN 函数发生异常：{0}", 
+                            "调用 IRAPMES.dbo.ufn_GetNextPackageSN 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                     return Json("");
                 }
                 #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+        public IRAPJsonResult usp_SaveFact_Packaging(
+            int communityID,
+            long transactNo,
+            long factID,
+            int productLeaf,
+            int workUnitLeaf,
+            int packagingSpecNo,
+            string wipPattern,
+            int layerNumOfPallet,
+            int cartonNumOfLayer,
+            int layerNumOfCarton,
+            int rowNumOfCarton,
+            int colNumOfCarton,
+            int layerNumOfBox,
+            int rowNumOfBox,
+            int colNumOfBox,
+            string boxSerialNumber,
+            string cartonSerialNumber,
+            string layerSerialNumber,
+            string palletSerialNumber,
+            long sysLogID,
+            out int errCode,
+            out string errText
+            )
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Clear();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@TransactNo", DbType.Int64, transactNo));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@ProductLeaf", DbType.Int32, productLeaf));
+                paramList.Add(new IRAPProcParameter("@WorkUnitLeaf", DbType.Int32, workUnitLeaf));
+                paramList.Add(new IRAPProcParameter("@PackagingSpecNo", DbType.Byte, packagingSpecNo));
+                paramList.Add(new IRAPProcParameter("@WIPPattern", DbType.String, wipPattern));
+                paramList.Add(new IRAPProcParameter("@LayerNumOfPallet", DbType.Byte, layerNumOfPallet));
+                paramList.Add(new IRAPProcParameter("@CartonNumOfLayer", DbType.Byte, cartonNumOfLayer));
+                paramList.Add(new IRAPProcParameter("@LayerNumOfCarton", DbType.Byte, layerNumOfCarton));
+                paramList.Add(new IRAPProcParameter("@RowNumOfCarton", DbType.Byte, rowNumOfCarton));
+                paramList.Add(new IRAPProcParameter("@ColNumOfCarton", DbType.Byte, colNumOfCarton));
+                paramList.Add(new IRAPProcParameter("@LayerNumOfBox", DbType.Byte, layerNumOfBox));
+                paramList.Add(new IRAPProcParameter("@RowNumOfBox", DbType.Byte, rowNumOfBox));
+                paramList.Add(new IRAPProcParameter("@ColNumOfBox", DbType.Byte, colNumOfBox));
+                paramList.Add(new IRAPProcParameter("@BoxSerialNumber", DbType.String, boxSerialNumber));
+                paramList.Add(new IRAPProcParameter("@CartonSerialNumber", DbType.String, cartonSerialNumber));
+                paramList.Add(new IRAPProcParameter("@LayerSerialNumber", DbType.String, layerSerialNumber));
+                paramList.Add(new IRAPProcParameter("@PalletSerialNumber", DbType.String, palletSerialNumber));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@OutputStr", DbType.Xml,ParameterDirection.Output,2000));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                       "调用 IRAPMES..usp_SaveFact_Packaging，输入参数：" +
+                        "CommunityID={0}|TransactNo={1}|FactID={2}|" +
+                        "ProductLeaf={3}|WorkUnitLeaf={4}|PackagingSpecNo={5}|" +
+                        "WIPPattern={6}|LayerNumOfPallet={7}|CartonNumOfLayer={8}|" +
+                        "LayerNumOfCarton={9}|RowNumOfCarton={10}|ColNumOfCarton={11}|" +
+                        "LayerNumOfBox={12}|RowNumOfBox={13}|ColNumOfBox={14}|" +
+                        "BoxSerialNumber={15}|CartonSerialNumber={16}|LayerSerialNumber={17}|" +
+                        "PalletSerialNumber={18}|SysLogID={19}",
+                        communityID,
+                        transactNo,
+                        factID,
+                        productLeaf,
+                        workUnitLeaf,
+                        packagingSpecNo,
+                        wipPattern,
+                        layerNumOfPallet,
+                        cartonNumOfLayer,
+                        layerNumOfCarton,
+                        rowNumOfCarton,
+                        colNumOfCarton,
+                        layerNumOfBox,
+                        rowNumOfBox,
+                        colNumOfBox,
+                        boxSerialNumber,
+                        cartonSerialNumber,
+                        layerSerialNumber,
+                        palletSerialNumber,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        IRAPError error =
+                        conn.CallProc("IRAPMES..usp_SaveFact_Packaging", ref paramList);
+                        errCode = error.ErrCode;
+                        errText = error.ErrText;
+                        string  outputStr = paramList[20].Value.ToString();
+                        return Json(outputStr);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..usp_SaveFact_Packaging 过程发生异常：{0}",
+                            error.Message);
+                    return Json(
+                        new IRAPError()
+                        {
+                            ErrCode = errCode,
+                            ErrText = errText,
+                        });
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public IRAPJsonResult ufn_GetLabelFMTStr(
+           int communityID,
+           int correlationID,
+           int labelID,
+           string serialNo,
+           string pHStr1,
+           string pHStr2,
+           string pHStr3,
+           string pHStr4,
+           string pHStr5,
+           string pHStr6,
+           string pHStr7,
+           string pHStr8,
+           string pHStr9,
+           string pHStr10,
+           string pHStr11,
+           string pHStr12,
+           string pHStr13,
+           string pHStr14,
+           string pHStr15,
+           long sysLogID,
+           out int errCode,
+           out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<LabelFMTStr> datas = new List<LabelFMTStr>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Clear();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@CorrelationID", DbType.Int32, correlationID));
+                paramList.Add(new IRAPProcParameter("@LabelID", DbType.Int32, labelID));
+                paramList.Add(new IRAPProcParameter("@SerialNo", DbType.String, serialNo));
+                paramList.Add(new IRAPProcParameter("@PHStr1", DbType.String, pHStr1));
+                paramList.Add(new IRAPProcParameter("@PHStr2", DbType.String, pHStr2));
+                paramList.Add(new IRAPProcParameter("@PHStr3", DbType.String, pHStr3));
+                paramList.Add(new IRAPProcParameter("@PHStr4", DbType.String, pHStr4));
+                paramList.Add(new IRAPProcParameter("@PHStr5", DbType.String, pHStr5));
+                paramList.Add(new IRAPProcParameter("@PHStr6", DbType.String, pHStr6));
+                paramList.Add(new IRAPProcParameter("@PHStr7", DbType.String, pHStr7));
+                paramList.Add(new IRAPProcParameter("@PHStr8", DbType.String, pHStr8));
+                paramList.Add(new IRAPProcParameter("@PHStr9", DbType.String, pHStr9));
+                paramList.Add(new IRAPProcParameter("@PHStr10", DbType.String, pHStr10));
+                paramList.Add(new IRAPProcParameter("@PHStr11", DbType.String, pHStr11));
+                paramList.Add(new IRAPProcParameter("@PHStr12", DbType.String, pHStr12));
+                paramList.Add(new IRAPProcParameter("@PHStr13", DbType.String, pHStr13));
+                paramList.Add(new IRAPProcParameter("@PHStr14", DbType.String, pHStr14));
+                paramList.Add(new IRAPProcParameter("@PHStr15", DbType.String, pHStr15));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+
+                //WriteLog.Instance.Write(
+                //    string.Format(
+                //        "调用函数 IRAPMES..ufn_GetFactList_Packaging，" +
+                //        "参数：CommunityID={0}|TransactNo={1}|ProductLeaf={2}|" +
+                //        "SysLogID={3}",
+                //        communityID, transactNo, productLeaf, sysLogID),
+                //    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetLabelFMTStr(" +
+                            "@CommunityID, @CorrelationID, @LabelID, @SerialNo,@PHStr1,@PHStr2,@PHStr3,@PHStr4,@PHStr5,@PHStr6,@PHStr7,@PHStr8,@PHStr9,@PHStr10,@PHStr11,@PHStr12,@PHStr13,@PHStr14,@PHStr15,@SysLogID)";
+
+                        IList<LabelFMTStr> lstDatas =
+                            conn.CallTableFunc<LabelFMTStr>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetFactList_Packaging 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
             }
             finally
             {
