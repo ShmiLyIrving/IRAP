@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Threading;
 using System.Collections;
+using System.Xml;
 
 using DevExpress.XtraEditors;
 
@@ -17,6 +18,7 @@ using IRAP.Client.SubSystem;
 using IRAP.Entities.MES;
 using IRAP.Entity.MES;
 using IRAP.WCF.Client.Method;
+using System.IO;
 
 namespace IRAP.Client.GUI.MESPDC
 {
@@ -45,15 +47,21 @@ namespace IRAP.Client.GUI.MESPDC
         private int allNumCartonsInPallet = 0;
         private long transactNo = 0;
         private TextEdit ft;
-
+        private string OutputStr = "";
+        private static string attributeFileName = string.Format("{0}OutputStr.xml",
+                                                 AppDomain.CurrentDomain.BaseDirectory);
         public frmProductPackage()
         {
             InitializeComponent();
-
             if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                 caption = "System information";
             else
                 caption = "系统信息";
+        }
+
+        private void Options_OptionChanged(object sender, EventArgs e)
+        {
+            GetKanban_PackageTypes();
         }
 
         #region 自定义函数
@@ -100,9 +108,11 @@ namespace IRAP.Client.GUI.MESPDC
 
             btnRePrint.Enabled = false;
             btnPackageStart.Enabled = btnPackageStartEnable;
-
+            btnPackageFinish.Enabled = !btnPackageStartEnable;
             chkAllowRePrint.Checked = false;
             chkStorePackage.Checked = !btnPackageStartEnable;
+            this.lpPackage.Enabled = btnPackageStartEnable;
+            Options.btnSwitch.Enabled = btnPackageStartEnable;
         }
 
         /// <summary>
@@ -110,7 +120,7 @@ namespace IRAP.Client.GUI.MESPDC
         /// </summary>
         private void BatchUpdateMemTable(
             int palletUnitIndex,
-            string fileName, 
+            string fileName,
             string fileValue)
         {
             for (int r = 0; r < allBoxNum; r++)
@@ -124,10 +134,10 @@ namespace IRAP.Client.GUI.MESPDC
         /// </summary>
         private void InitPackageLocation()
         {
-            allNumCartonsInPallet = 
-                objPackageType.NumLayersOfPallet * 
+            allNumCartonsInPallet =
+                objPackageType.NumLayersOfPallet *
                 objPackageType.NumCartonsPerLayerOfPallet;
-            if (objPackageType.T117LabelID_Pallet == 0 || 
+            if (objPackageType.T117LabelID_Pallet == 0 ||
                 objPackageType.NumLayersOfPallet == 0)
             {
                 // 默认为1，虽然实际情况可能存在不需要托，但是为了方便界面处理，所以
@@ -139,11 +149,11 @@ namespace IRAP.Client.GUI.MESPDC
             }
 
             allBoxNum =
-                objPackageType.NumLayersOfCarton * 
-                objPackageType.NumBoxPerColOfCarton * 
+                objPackageType.NumLayersOfCarton *
+                objPackageType.NumBoxPerColOfCarton *
                 objPackageType.NumBoxPerRowOfCarton *
-                objPackageType.NumLayersOfBox * 
-                objPackageType.QtyPerColOfBox * 
+                objPackageType.NumLayersOfBox *
+                objPackageType.QtyPerColOfBox *
                 objPackageType.QtyPerRowOfBox;
             palletUnitTables = new List<DataTable>();
             for (int i = 0; i < allNumCartonsInPallet; i++)
@@ -170,7 +180,7 @@ namespace IRAP.Client.GUI.MESPDC
                 }
                 else
                 {
-                    List<FactPackaging> packageList = 
+                    List<FactPackaging> packageList =
                         GetFactList_Packaging(
                             uncompletedPackage.TransactNo,
                             Options.SelectProduct.T102LeafID);
@@ -202,13 +212,13 @@ namespace IRAP.Client.GUI.MESPDC
                             string palletSerialNumber = fact.PalletSerialNumber; //铲板标签序列号
 
                             int palletUnitIndex = (layerIdxOfPallet - 1) * objPackageType.NumLayersOfPallet + cartonIdxOfLayer - 1;
-                            int ordinal = 
+                            int ordinal =
                                 GetBoxIndex(
-                                    layerIdxOfCarton, 
-                                    rowIdxOfCarton, 
+                                    layerIdxOfCarton,
+                                    rowIdxOfCarton,
                                     colIdxOfCarton,
-                                    layerIdxOfBox, 
-                                    rowIdxOfBox, 
+                                    layerIdxOfBox,
+                                    rowIdxOfBox,
                                     colIdxOfBox);
 
                             palletUnitTables[palletUnitIndex].Rows[ordinal - 1]["FactNo"] = factNo;
@@ -228,6 +238,19 @@ namespace IRAP.Client.GUI.MESPDC
                         if (palletUnitTables[maxPalletUnitIndex].Rows.Count > maxOrdinal)
                         {
                             palletUnitTables[maxPalletUnitIndex].Rows[maxOrdinal]["Do"] = 1;
+                            int boxNumOfInCarton = objPackageType.QtyPerColOfBox * objPackageType.QtyPerRowOfBox;
+                            if (maxOrdinal % boxNumOfInCarton != 0)
+                            {
+                                //更新内存表
+                                for (int r = maxOrdinal; r < maxOrdinal + boxNumOfInCarton - (maxOrdinal % boxNumOfInCarton); r++)
+                                {
+                                    palletUnitTables[maxPalletUnitIndex].Rows[r]["BoxPackageSN"] = palletUnitTables[maxPalletUnitIndex].Rows[r - 1]["BoxPackageSN"];
+                                }
+                            }
+                            //更新内存表
+                            BatchUpdateMemTable(maxPalletUnitIndex, "TransactNo", transactNo.ToString());
+                            edtCartonSN.Text = palletUnitTables[maxPalletUnitIndex].Rows[maxOrdinal]["CartonPackageSN"].ToString();
+                            BatchUpdateMemTable(maxPalletUnitIndex, "CartonPackageSN", packageList[0].CartonSerialNumber);          //此处不完善
                         }
                     }
                 }
@@ -300,11 +323,11 @@ namespace IRAP.Client.GUI.MESPDC
 
                     SetBoxOrdinal(
                         ordinal,
-                        out cartonLayer, 
-                        out cartonRow, 
+                        out cartonLayer,
+                        out cartonRow,
                         out cartonCol,
-                        out boxLayer, 
-                        out boxRow, 
+                        out boxLayer,
+                        out boxRow,
                         out boxCol);
 
                     GenerateBox(palletUnitIndex, cartonLayer, cartonRow, cartonCol, boxLayer);
@@ -321,12 +344,12 @@ namespace IRAP.Client.GUI.MESPDC
         /// 获取大包装和小包装的序号对应的坐标
         /// </summary>
         private void SetBoxOrdinal(
-            int ordinal, 
-            out int cartonLayer, 
-            out int cartonRow, 
+            int ordinal,
+            out int cartonLayer,
+            out int cartonRow,
             out int cartonCol,
-            out int boxLayer, 
-            out int boxRow, 
+            out int boxLayer,
+            out int boxRow,
             out int boxCol)
         {
             int smallTemp;
@@ -340,29 +363,29 @@ namespace IRAP.Client.GUI.MESPDC
             int FSmallCols = objPackageType.QtyPerRowOfBox;
 
             //大包装    
-            int totalSLBoxNum = 
-                FLargeLayers * 
-                FLargeRows * 
-                FLargeCols * 
+            int totalSLBoxNum =
+                FLargeLayers *
+                FLargeRows *
+                FLargeCols *
                 FSmallLayers *
-                FSmallRows * 
+                FSmallRows *
                 FSmallCols;
-            cartonLayer = 
-                1 + 
-                (ordinal - 1) / 
+            cartonLayer =
+                1 +
+                (ordinal - 1) /
                 (totalSLBoxNum / FLargeLayers);
 
             cartonRow = ordinal - (cartonLayer - 1) * totalSLBoxNum / FLargeLayers;
             cartonRow = (cartonRow - 1) / (FLargeCols * FSmallLayers * FSmallRows * FSmallCols) + 1;
-            cartonCol = 
-                ordinal - 
-                (cartonLayer - 1) * 
-                totalSLBoxNum / 
-                FLargeLayers - 
-                (cartonRow - 1) * 
-                FLargeCols * 
-                FSmallLayers * 
-                FSmallRows * 
+            cartonCol =
+                ordinal -
+                (cartonLayer - 1) *
+                totalSLBoxNum /
+                FLargeLayers -
+                (cartonRow - 1) *
+                FLargeCols *
+                FSmallLayers *
+                FSmallRows *
                 FSmallCols;
             cartonCol = (cartonCol - 1) / (FSmallLayers * FSmallRows * FSmallCols) + 1;
 
@@ -379,14 +402,14 @@ namespace IRAP.Client.GUI.MESPDC
         /// </summary>
         private void SetBoxOrdinal(
             int ordinal,
-            out int palletLayer, 
-            out int palletRow, 
+            out int palletLayer,
+            out int palletRow,
             out int palletCol,
-            out int cartonLayer, 
-            out int cartonRow, 
+            out int cartonLayer,
+            out int cartonRow,
             out int cartonCol,
-            out int boxLayer, 
-            out int boxRow, 
+            out int boxLayer,
+            out int boxRow,
             out int boxCol)
         {
             int smallTemp, totalBoxNum;
@@ -401,22 +424,22 @@ namespace IRAP.Client.GUI.MESPDC
             int fSmallCols = objPackageType.QtyPerRowOfBox;
 
             //托
-            totalBoxNum = 
-                fPalletLayers * 
-                fPalletRows * 
-                fPalletCols * 
-                fLargeLayers * 
-                fLargeRows * 
-                fLargeCols * 
-                fSmallLayers * 
-                fSmallRows * 
+            totalBoxNum =
+                fPalletLayers *
+                fPalletRows *
+                fPalletCols *
+                fLargeLayers *
+                fLargeRows *
+                fLargeCols *
+                fSmallLayers *
+                fSmallRows *
                 fSmallCols;
             palletLayer = 1 + (ordinal - 1) / (totalBoxNum / fPalletLayers);
             palletRow = 1; //托行数量固定为1
             palletCol = ordinal - (palletLayer - 1) * totalBoxNum / fLargeLayers;
-            palletCol = 
-                (palletCol - 1) / 
-                (fLargeLayers * fLargeRows * fLargeCols * fSmallLayers * fSmallRows * fSmallCols) + 
+            palletCol =
+                (palletCol - 1) /
+                (fLargeLayers * fLargeRows * fLargeCols * fSmallLayers * fSmallRows * fSmallCols) +
                 1;
 
             //大包装   
@@ -426,15 +449,15 @@ namespace IRAP.Client.GUI.MESPDC
 
             cartonRow = ordinal - (cartonLayer - 1) * totalSLBoxNum / fLargeLayers;
             cartonRow = (cartonRow - 1) / (fLargeCols * fSmallLayers * fSmallRows * fSmallCols) + 1;
-            cartonCol = 
-                ordinal - 
-                (cartonLayer - 1) * 
-                totalSLBoxNum / 
-                fLargeLayers - 
-                (cartonRow - 1) * 
-                fLargeCols * 
-                fSmallLayers * 
-                fSmallRows * 
+            cartonCol =
+                ordinal -
+                (cartonLayer - 1) *
+                totalSLBoxNum /
+                fLargeLayers -
+                (cartonRow - 1) *
+                fLargeCols *
+                fSmallLayers *
+                fSmallRows *
                 fSmallCols;
             cartonCol = (cartonCol - 1) / (fSmallLayers * fSmallRows * fSmallCols) + 1;
 
@@ -450,14 +473,14 @@ namespace IRAP.Client.GUI.MESPDC
         /// 通过坐标获取对应的大包装和小包装的序号
         /// </summary>
         private int GetBoxIndex(
-            int palletLayer, 
-            int palletRow, 
+            int palletLayer,
+            int palletRow,
             int palletCol,
-            int cartonLayer, 
-            int cartonRow, 
+            int cartonLayer,
+            int cartonRow,
             int cartonCol,
-            int boxLayer, 
-            int boxRow, 
+            int boxLayer,
+            int boxRow,
             int boxCol)
         {
             int ordinal =
@@ -512,11 +535,11 @@ namespace IRAP.Client.GUI.MESPDC
         /// 通过坐标获取对应的大包装和小包装和托的序号
         /// </summary>
         private int GetBoxIndex(
-            int cartonLayer, 
-            int cartonRow, 
-            int cartonCol,  
-            int boxLayer, 
-            int boxRow, 
+            int cartonLayer,
+            int cartonRow,
+            int cartonCol,
+            int boxLayer,
+            int boxRow,
             int boxCol)
         {
             int ordinal =
@@ -633,9 +656,9 @@ namespace IRAP.Client.GUI.MESPDC
                 XtraMessageBox.Show(
                     string.Format(
                         "生成托层时发生异常：{0}",
-                        error.Message), 
+                        error.Message),
                     caption,
-                    MessageBoxButtons.OK, 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
 
@@ -719,9 +742,9 @@ namespace IRAP.Client.GUI.MESPDC
                 XtraMessageBox.Show(
                     string.Format(
                         "生成大包装层发生异常：{0}",
-                        error.Message), 
+                        error.Message),
                     caption,
-                    MessageBoxButtons.OK, 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
 
@@ -731,9 +754,9 @@ namespace IRAP.Client.GUI.MESPDC
         /// 生成大包装行列
         /// </summary>
         private void GenerateCarton(
-            int palletUnitIndex, 
-            int cartonLayer, 
-            int focusCartonRow, 
+            int palletUnitIndex,
+            int cartonLayer,
+            int focusCartonRow,
             int focusCartonCol)
         {
             try
@@ -750,7 +773,7 @@ namespace IRAP.Client.GUI.MESPDC
                     DataRow dr = dtCarton.NewRow();
                     for (int j = 0; j < colCount; j++)
                     {
-                        dr[j] = (i * 2 + j + 1).ToString();
+                        dr[j] = (i * colCount + j + 1).ToString();
                     }
                     dtCarton.Rows.Add(dr);
                 }
@@ -775,9 +798,9 @@ namespace IRAP.Client.GUI.MESPDC
                 XtraMessageBox.Show(
                     string.Format(
                         "生成大包装行列发生异常：{0}",
-                        error.Message), 
+                        error.Message),
                     caption,
-                    MessageBoxButtons.OK, 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
@@ -786,10 +809,10 @@ namespace IRAP.Client.GUI.MESPDC
         /// 生产小包装层
         /// </summary>
         private void GenerateBoxLayer(
-            int palletUnitIndex, 
-            int cartonLayer, 
-            int cartonRow, 
-            int cartonCol, 
+            int palletUnitIndex,
+            int cartonLayer,
+            int cartonRow,
+            int cartonCol,
             int focusBoxLayer)
         {
             try
@@ -805,11 +828,11 @@ namespace IRAP.Client.GUI.MESPDC
                     dr[0] = string.Format("{0}L", i + 1);
                     dtBoxLayer.Rows.Add(dr);
                 }
-                
+
                 //设置单元格高度，使单元格总高度等于表格的高度
                 dgvBoxLayer.RowTemplate.Height = dgvBoxLayer.Height / layerCount;
                 dgvBoxLayer.DataSource = dtBoxLayer;
-                
+
                 //设置每个单元格显示的背景颜色
                 for (int i = 0; i < dgvBoxLayer.Rows.Count; i++)
                 {
@@ -819,7 +842,7 @@ namespace IRAP.Client.GUI.MESPDC
                     dgvBoxLayer.Rows[i].Cells[0].Style.BackColor = color;
                     dgvBoxLayer.Rows[i].Cells[0].Style.SelectionBackColor = color;
                 }
-                
+
                 //调整最后一行的高度
                 dgvBoxLayer.Rows[layerCount - 1].Height = dgvBoxLayer.Height / layerCount - 3;
                 //
@@ -846,8 +869,8 @@ namespace IRAP.Client.GUI.MESPDC
         /// <param name="boxLayer">小包装层坐标</param> 
         private void GenerateBox(
             int palletUnitIndex,
-            int cartonLayer, 
-            int cartonRow, 
+            int cartonLayer,
+            int cartonRow,
             int cartonCol,
             int boxLayer)
         {
@@ -861,7 +884,7 @@ namespace IRAP.Client.GUI.MESPDC
                 }
                 int rowCount = objPackageType.QtyPerColOfBox;
                 int ordinal = 0;
-            
+
                 //设置每个单元格显示的序号
                 for (int i = 0; i < rowCount; i++)
                 {
@@ -876,7 +899,7 @@ namespace IRAP.Client.GUI.MESPDC
                     }
                     dtBox.Rows.Add(dr);
                 }
-                
+
                 //设置单元格高度，使之正好能填满整个表格
                 dgvBox.RowTemplate.Height = dgvBoxLayer.Height / rowCount;
                 dgvBox.DataSource = dtBox;
@@ -930,7 +953,7 @@ namespace IRAP.Client.GUI.MESPDC
         /// 通过坐标获取 Pellet 的颜色
         /// </summary>
         private Color GetPalletColor(
-            int palletLayer, 
+            int palletLayer,
             int palletCol)
         {
             Color color = Color.White;
@@ -1030,12 +1053,12 @@ namespace IRAP.Client.GUI.MESPDC
         /// <param name="boxCol"></param>
         /// <returns></returns>
         private Color GetBoxLayerColor(
-            int palletUnitIndex, 
-            int cartonLayer, 
-            int cartonRow, 
+            int palletUnitIndex,
+            int cartonLayer,
+            int cartonRow,
             int cartonCol,
-            int boxLayer, 
-            int boxRow, 
+            int boxLayer,
+            int boxRow,
             int boxCol)
         {
             Color color = Color.White;
@@ -1071,12 +1094,12 @@ namespace IRAP.Client.GUI.MESPDC
         /// 获取 Carton 的颜色
         /// </summary>
         private Color GetCartonColor(
-            int palletUnitIndex, 
-            int cartonLayer, 
-            int cartonRow, 
+            int palletUnitIndex,
+            int cartonLayer,
+            int cartonRow,
             int cartonCol,
-            int boxLayer, 
-            int boxRow, 
+            int boxLayer,
+            int boxRow,
             int boxCol)
         {
             Color color = Color.White;
@@ -1113,12 +1136,12 @@ namespace IRAP.Client.GUI.MESPDC
         /// 获取 CartonLayer 的颜色
         /// </summary>
         private Color GetCartonLayerColor(
-            int palletUnitIndex, 
-            int cartonLayer, 
-            int cartonRow, 
+            int palletUnitIndex,
+            int cartonLayer,
+            int cartonRow,
             int cartonCol,
-            int boxLayer, 
-            int boxRow, 
+            int boxLayer,
+            int boxRow,
             int boxCol)
         {
             Color color = Color.White;
@@ -1275,21 +1298,27 @@ namespace IRAP.Client.GUI.MESPDC
                     dtPackageTypes = new DataTable();
                     dtPackageTypes.Columns.Add("id", typeof(int));
                     dtPackageTypes.Columns.Add("text", typeof(string));
-
+                    dtPackageTypes.Columns.Add("index", typeof(string));
+                    int index = 0;
                     foreach (PackageType pkgType in packageTypeList)
                     {
                         DataRow dr = dtPackageTypes.NewRow();
                         dr[0] = pkgType.CorrelationID;
                         dr[1] = pkgType.SpecDesc;
+                        string sindex = string.Format("{0}-{1}", pkgType.CorrelationID.ToString(), index.ToString());
+                        dr[2] = sindex;
                         dtPackageTypes.Rows.Add(dr);
+                        index++;
                     }
 
-                    lpPackage.Properties.ValueMember = "id";
-                    lpPackage.Properties.DisplayMember = "text";
+                    lpPackage.Properties.ValueMember = "index";            //editvalue
+                    lpPackage.Properties.DisplayMember = "text";        //text
                     lpPackage.Properties.NullText = "[请选择包装规格]";
                     lpPackage.Properties.DataSource = dtPackageTypes;
                     if (packageTypeList.Count > 0)
-                        lpPackage.ItemIndex = 1;
+                    {
+                        lpPackage.ItemIndex = 0;
+                    }
                 }
                 else
                 {
@@ -1418,14 +1447,14 @@ namespace IRAP.Client.GUI.MESPDC
 
         }
 
-        private bool usp_SaveFact_Packaging(FactPackaging factPackage)
+        private bool usp_SaveFact_Packaging(FactPackaging factPackage, out string OutputStr)
         {
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
                     className,
                     MethodBase.GetCurrentMethod().Name);
-
+            OutputStr = "";
             bool result = false;
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -1433,7 +1462,7 @@ namespace IRAP.Client.GUI.MESPDC
                 int errCode = 0;
                 string errText = "";
 
-                Hashtable paramDict = new Hashtable();
+                //Hashtable paramDict = new Hashtable();
                 int communityID = IRAPUser.Instance.CommunityID;
                 Int64 factID = factPackage.FactID;
                 int productLeaf = Options.SelectProduct.T102LeafID;
@@ -1454,35 +1483,35 @@ namespace IRAP.Client.GUI.MESPDC
                 string palletSerialNumber = factPackage.PalletSerialNumber;
                 Int64 sysLogID = IRAPUser.Instance.SysLogID;
 
-                paramDict.Add("CommunityID", communityID);
-                paramDict.Add("TransactNo", transactNo);
-                paramDict.Add("FactID", factID);
-                paramDict.Add("ProductLeaf", productLeaf);
-                paramDict.Add("WorkUnitLeaf", workUnitLeaf);
-                paramDict.Add("PackagingSpecNo", packagingSpecNo);
-                paramDict.Add("WIPPattern", wipPattern);
-                paramDict.Add("LayerNumOfPallet", layerNumOfPallet);
-                paramDict.Add("CartonNumOfLayer", cartonNumOfLayer);
-                paramDict.Add("LayerNumOfCarton", layerNumOfCarton);
-                paramDict.Add("RowNumOfCarton", rowNumOfCarton);
-                paramDict.Add("ColNumOfCarton", colNumOfCarton);
-                paramDict.Add("LayerNumOfBox", layerNumOfBox);
-                paramDict.Add("RowNumOfBox", rowNumOfBox);
-                paramDict.Add("ColNumOfBox", colNumOfBox);
-                paramDict.Add("BoxSerialNumber", boxSerialNumber);
-                paramDict.Add("CartonSerialNumber", cartonSerialNumber);
-                paramDict.Add("LayerSerialNumber", layerSerialNumber);
-                paramDict.Add("PalletSerialNumber", palletSerialNumber);
-                paramDict.Add("SysLogID", sysLogID);
+                //paramDict.Add("CommunityID", communityID);
+                //paramDict.Add("TransactNo", transactNo);
+                //paramDict.Add("FactID", factID);
+                //paramDict.Add("ProductLeaf", productLeaf);
+                //paramDict.Add("WorkUnitLeaf", workUnitLeaf);
+                //paramDict.Add("PackagingSpecNo", packagingSpecNo);
+                //paramDict.Add("WIPPattern", wipPattern);
+                //paramDict.Add("LayerNumOfPallet", layerNumOfPallet);
+                //paramDict.Add("CartonNumOfLayer", cartonNumOfLayer);
+                //paramDict.Add("LayerNumOfCarton", layerNumOfCarton);
+                //paramDict.Add("RowNumOfCarton", rowNumOfCarton);
+                //paramDict.Add("ColNumOfCarton", colNumOfCarton);
+                //paramDict.Add("LayerNumOfBox", layerNumOfBox);
+                //paramDict.Add("RowNumOfBox", rowNumOfBox);
+                //paramDict.Add("ColNumOfBox", colNumOfBox);
+                //paramDict.Add("BoxSerialNumber", boxSerialNumber);
+                //paramDict.Add("CartonSerialNumber", cartonSerialNumber);
+                //paramDict.Add("LayerSerialNumber", layerSerialNumber);
+                //paramDict.Add("PalletSerialNumber", palletSerialNumber);
+                //paramDict.Add("SysLogID", sysLogID);
 
                 WriteLog.Instance.Write(
                     string.Format(
                         "开始保存产品包装事实，输入参数: CommunityID={0}|TransactNo={1}|FactID={2}|" +
-                        "ProductLeaf={3}|WorkUnitLeaf={4}|PackagingSpecNo={5}|WIPPattern={6}|"+
-                        "LayerNumOfPallet={7}|CartonNumOfLayer={8}|LayerNumOfCarton={9}|"+
-                        "RowNumOfCarton={10}|ColNumOfCarton={11}|LayerNumOfBox={12}|"+
-                        "RowNumOfBox={13}|ColNumOfBox={14}|BoxSerialNumber={15}|"+
-                        "CartonSerialNumber={16}|LayerSerialNumber={17}|PalletSerialNumber={18}|"+
+                        "ProductLeaf={3}|WorkUnitLeaf={4}|PackagingSpecNo={5}|WIPPattern={6}|" +
+                        "LayerNumOfPallet={7}|CartonNumOfLayer={8}|LayerNumOfCarton={9}|" +
+                        "RowNumOfCarton={10}|ColNumOfCarton={11}|LayerNumOfBox={12}|" +
+                        "RowNumOfBox={13}|ColNumOfBox={14}|BoxSerialNumber={15}|" +
+                        "CartonSerialNumber={16}|LayerSerialNumber={17}|PalletSerialNumber={18}|" +
                         "SysLogID={19}",
                         communityID,
                         transactNo,
@@ -1507,25 +1536,49 @@ namespace IRAP.Client.GUI.MESPDC
                     strProcedureName);
                 try
                 {
-                    //IRAPMESPKGClient.Instance.usp_SaveFact_Packaging();
+                    OutputStr = IRAPMESPKGClient.Instance.usp_SaveFact_Packaging(
+                          communityID,
+                          transactNo,
+                          factID,
+                          productLeaf,
+                          workUnitLeaf,
+                          packagingSpecNo,
+                          wipPattern,
+                          layerNumOfPallet,
+                          cartonNumOfLayer,
+                          layerNumOfCarton,
+                          rowNumOfCarton,
+                          colNumOfCarton,
+                          layerNumOfBox,
+                          rowNumOfBox,
+                          colNumOfBox,
+                          boxSerialNumber,
+                          cartonSerialNumber,
+                          layerSerialNumber,
+                          palletSerialNumber,
+                          sysLogID,
+                          out errCode,
+                          out errText
+                          );
                     //WCFClient wcfClient = new WCFClient();
                     //object obj = wcfClient.ExChange("IRAP.MES.BL.Packaging.dll",
                     //    "IRAP.MES.BL.Packaging.Packing", "usp_SaveFact_Packaging",
                     //    paramDict, out errCode, out errText);
 
-                    //if (errCode == 0)
-                    //{
-                    //    result = true;
-                    //    WriteLog.Instance.Write(string.Format("包装事实保存成功，返回值ErrCode：{0}, ErrText:{1}",
-                    //        errCode, errText));
-                    //}
-                    //else
-                    //{
-                    //    WriteLog.Instance.Write(string.Format("包装事实保存失败，返回值ErrCode：{0}, ErrText:{1}",
-                    //        errCode, errText));
-                    //    XtraMessageBox.Show(errText, "系统提示",
-                    //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
+                    if (errCode == 0)
+                    {
+                        result = true;
+
+                        WriteLog.Instance.Write(string.Format("包装事实保存成功，返回值ErrCode：{0}, ErrText:{1}",
+                            errCode, errText));
+                    }
+                    else
+                    {
+                        WriteLog.Instance.Write(string.Format("包装事实保存失败，返回值ErrCode：{0}, ErrText:{1}",
+                            errCode, errText));
+                        XtraMessageBox.Show(errText, "系统提示",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 catch (Exception error)
                 {
@@ -1715,11 +1768,11 @@ namespace IRAP.Client.GUI.MESPDC
             List<LabelFMTStr> labelFMTStr = null;
             try
             {
-                //int errCode = 0;
-                //string errText = "";
+                int errCode = 0;
+                string errText = "";
+                int correlationID = objPackageType.CorrelationID;
                 //Hashtable paramDict = new Hashtable();
-                //int correlationID = objPackageType.CorrelationID;
-                //paramDict.Add("CommunityID", currentCommunityID);
+                //paramDict.Add("CommunityID", IRAPUser.Instance.CommunityID);
                 //paramDict.Add("CorrelationID", correlationID);
                 //paramDict.Add("LabelID", labelID);
                 //paramDict.Add("SerialNo", serialNo);
@@ -1739,40 +1792,56 @@ namespace IRAP.Client.GUI.MESPDC
                 //paramDict.Add("PHStr14", "");
                 //paramDict.Add("PHStr15", "");
                 //paramDict.Add("SysLogID", IRAPUser.Instance.SysLogID);
-                //WriteLog.Instance.Write(
-                //    string.Format("获取打印信息，输入参数:CommunityID:{0}|CorrelationID:{1}|LabelID={2}|SerialNo={3}|SysLogID:{4}",
-                //    currentCommunityID,
-                //    correlationID,
-                //    labelID,
-                //    serialNo,
-                //    IRAPUser.Instance.SysLogID
-                //    ),
-                //    strProcedureName);
-                //try
-                //{
-                //    WCFClient wcfClient = new WCFClient();
-                //    object obj = wcfClient.ExChange("IRAP.MES.BL.Packaging.dll",
-                //        "IRAP.MES.BL.Packaging.Packing", "ufn_GetLabelFMTStr",
-                //        paramDict, out errCode, out errText);
+                WriteLog.Instance.Write(
+                    string.Format("获取打印信息，输入参数:CommunityID:{0}|CorrelationID:{1}|LabelID={2}|SerialNo={3}|SysLogID:{4}",
+                    IRAPUser.Instance.CommunityID,
+                    correlationID,
+                    labelID,
+                    serialNo,
+                    IRAPUser.Instance.SysLogID
+                    ),
+                    strProcedureName);
+                try
+                {
+                    IRAPMESPKGClient.Instance.ufn_GetLabelFMTStr(
+                        IRAPUser.Instance.CommunityID,
+                        correlationID,
+                        labelID,
+                        serialNo,
+                        IRAPUser.Instance.SysLogID,
+                        ref labelFMTStr,
+                        out errCode,
+                        out errText
+                        );
 
-                //    if (errCode == 0)
-                //    {
-                //        labelFMTStr = obj as IList<LabelFMTStr>;
-                //        WriteLog.Instance.Write(string.Format("函数调用成功，共返回{0}条数据", 1), strProcedureName);
-                //    }
-                //    else
-                //    {
-                //        WriteLog.Instance.Write(errText, strProcedureName);
-                //        XtraMessageBox.Show(errText, "系统提示",
-                //            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    WriteLog.Instance.Write(errText, strProcedureName);
-                //    XtraMessageBox.Show(ex.ToString(), "系统信息", MessageBoxButtons.OK,
-                //        MessageBoxIcon.Error);
-                //}
+                    //object obj = wcfClient.Exchange("IRAP.BL.MES.dll",
+                    //    "IRAP.BL.MES.ProductPackage", "ufn_GetLabelFMTStr",
+                    //    paramDict, out errCode, out errText);
+
+                    //if (errCode == 0)
+                    //{
+                    //    labelFMTStr = obj as List<LabelFMTStr>;
+                    //    WriteLog.Instance.Write(string.Format("函数调用成功，共返回{0}条数据", 1), strProcedureName);
+                    //}
+                    //else
+                    //{
+                    //    WriteLog.Instance.Write(errText, strProcedureName);
+                    //    XtraMessageBox.Show(errText, "系统提示",
+                    //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    errCode = -1;
+                    errText = ex.Message;
+                }
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                    IRAPMessageBox.Instance.ShowErrorMessage(
+                        errText,
+                        caption);
                 return labelFMTStr;
             }
             finally
@@ -1882,7 +1951,7 @@ namespace IRAP.Client.GUI.MESPDC
 
         private long GetTransactNo(string opCode)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
                     "{0}.{1}",
                     className,
@@ -1953,22 +2022,127 @@ namespace IRAP.Client.GUI.MESPDC
         /// <param name="labelID"></param>
         /// <param name="serialNo"></param>
         /// <returns></returns>
-        private bool PrintLabel(int labelID, string serialNo)
+        //private bool PrintLabel(int labelID, string serialNo)
+        //{
+        //    Boolean result = false;
+        //    IList<LabelFMTStr> labelFMTStr = ufn_GetLabelFMTStr(labelID, serialNo);
+        //    if (labelFMTStr == null) return false;
+
+        //    IRAP.Global.LPTPrint print = new LPTPrint();
+        //    try
+        //    {
+        //        //打印标签
+        //        for (int i = 0; i < labelFMTStr.Count; i++)
+        //        {
+        //            string printPort = labelFMTStr[i].PrintPort;
+        //            string printStr = labelFMTStr[i].TemplateFMTStr;
+        //            string filePath = labelFMTStr[i].FilePath;
+
+        //            if (filePath.IndexOf("<Action") >= 0)
+        //            {
+        //                try
+        //                {
+        //                    object tag = null;
+        //                    Actions.UDFActions.DoActions(filePath, null, ref tag);
+        //                }
+        //                catch (Exception error)
+        //                {
+        //                    WriteLog.Instance.Write(
+        //                        string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+        //                            error.Message,
+        //                            error.StackTrace),
+        //                        string.Format("{0}.{1}",
+        //                            MethodBase.GetCurrentMethod().DeclaringType.FullName,
+        //                            MethodBase.GetCurrentMethod().Name));
+        //                }
+        //            }
+        //            else
+        //            {
+        //                System.Diagnostics.Process p = new System.Diagnostics.Process();
+        //                p.StartInfo.FileName = "cmd.exe";//要执行的程序名称 
+        //                p.StartInfo.UseShellExecute = false;
+        //                p.StartInfo.RedirectStandardInput = true;//可能接受来自调用程序的输入信息 
+        //                p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息 
+        //                p.StartInfo.CreateNoWindow = true;//不显示程序窗口 
+        //                p.Start();//启动程序 
+        //                //向CMD窗口发送输入信息： 
+        //                p.StandardInput.WriteLine(string.Format("copy {0} {1}", filePath, printPort));
+        //                //p.StandardInput.WriteLine("exit");
+        //                print.LPTOpen(printPort);
+        //                print.LPTWrite(printPort, printStr);
+        //            }
+        //        }
+        //        result = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WriteLog.Instance.Write(ex.ToString(), className + ".标签打印");
+        //    }
+        //    print.LPTClose();
+        //    return result;
+        //}
+
+
+        /// <summary>
+        /// 打印标签
+        /// </summary>
+        /// <param name="labelID"></param>
+        /// <param name="serialNo"></param>
+        /// <returns></returns>
+        private bool PrintLabel(int labelID, string serialNo, string OutputStr)
         {
             Boolean result = false;
-            IList<LabelFMTStr> labelFMTStr = ufn_GetLabelFMTStr(labelID, serialNo);
-            if (labelFMTStr == null) return false;
 
-            IRAP.Global.LPTPrint print = new LPTPrint();
+            IList<LabelFMTStr> labelFMTStr = new List<LabelFMTStr>();
+            try
+            {
+                XmlDocument xdoc = new XmlDocument();
+                xdoc.LoadXml(OutputStr);
+                XmlNode root = xdoc.FirstChild;
+                if (root.Name == "ROOT")
+                {
+                    foreach (XmlNode node in root.ChildNodes)
+                    {
+                        LabelFMTStr lb = new LabelFMTStr();
+                        lb.Ordinal = int.Parse(node.Attributes["Ordinal"].Value);
+                        XmlDocument xdoc2 = new XmlDocument();
+                        XmlNode n = xdoc2.CreateElement("ROOT");
+                        xdoc2.AppendChild(n);
+                        n = xdoc2.ImportNode(node, true);
+                        try
+                        {
+                            xdoc2.FirstChild.AppendChild(n);
+                        }
+                        catch (Exception)
+                        { }
+                        lb.FilePath = xdoc2.InnerXml;
+                        //lb.TemplateFMTStr = node.Attributes["Data"].Value;
+                        labelFMTStr.Add(lb);
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           string.Format("{0}.{1}",
+                               MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                               MethodBase.GetCurrentMethod().Name));
+            }
+
+            if (labelFMTStr.Count == 0) return false;
+
+            //IRAP.Global.LPTPrint print = new LPTPrint();
             try
             {
                 //打印标签
                 for (int i = 0; i < labelFMTStr.Count; i++)
                 {
-                    string printPort = labelFMTStr[i].PrintPort;
-                    string printStr = labelFMTStr[i].TemplateFMTStr;
+                    //string printPort = labelFMTStr[i].PrintPort;
+                    //string printStr = labelFMTStr[i].TemplateFMTStr;
                     string filePath = labelFMTStr[i].FilePath;
-
                     if (filePath.IndexOf("<Action") >= 0)
                     {
                         try
@@ -1987,20 +2161,21 @@ namespace IRAP.Client.GUI.MESPDC
                                     MethodBase.GetCurrentMethod().Name));
                         }
                     }
-                    else
-                    {
-                        System.Diagnostics.Process p = new System.Diagnostics.Process();
-                        p.StartInfo.FileName = "cmd.exe";//要执行的程序名称 
-                        p.StartInfo.UseShellExecute = false;
-                        p.StartInfo.RedirectStandardInput = true;//可能接受来自调用程序的输入信息 
-                        p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息 
-                        p.StartInfo.CreateNoWindow = true;//不显示程序窗口 
-                        p.Start();//启动程序 
-                        //向CMD窗口发送输入信息： 
-                        p.StandardInput.WriteLine(string.Format("copy {0} {1}", filePath, printPort));
-                        print.LPTOpen(printPort);
-                        print.LPTWrite(printPort, printStr);
-                    }
+                    //else
+                    //{
+                    //System.Diagnostics.Process p = new System.Diagnostics.Process();
+                    //p.StartInfo.FileName = "cmd.exe";//要执行的程序名称 
+                    //p.StartInfo.UseShellExecute = false;
+                    //p.StartInfo.RedirectStandardInput = true;//可能接受来自调用程序的输入信息 
+                    //p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息 
+                    //p.StartInfo.CreateNoWindow = true;//不显示程序窗口 
+                    //p.Start();//启动程序 
+                    ////向CMD窗口发送输入信息： 
+                    //p.StandardInput.WriteLine(string.Format("copy {0} {1}", filePath, printPort));
+                    //p.StandardInput.WriteLine("exit");
+                    //print.LPTOpen(printPort);
+                    //print.LPTWrite(printPort, printStr);
+                    //}
                 }
                 result = true;
             }
@@ -2008,10 +2183,12 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 WriteLog.Instance.Write(ex.ToString(), className + ".标签打印");
             }
-            print.LPTClose();
+
             return result;
         }
+
         #endregion
+
 
         private void lpPackage_QueryPopUp(object sender, CancelEventArgs e)
         {
@@ -2021,6 +2198,7 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void lpPackage_EditValueChanged(object sender, EventArgs e)
         {
+            //this.lpPackage.Text = packageTypeList
             if (lpPackage.ItemIndex != -1)
             {
                 if (packageTypeList.Count > lpPackage.ItemIndex)
@@ -2058,13 +2236,13 @@ namespace IRAP.Client.GUI.MESPDC
         {
             //将Pallet坐标转换成List中对应的索引
             int palletColIndex = e.ColumnIndex;
-            int palletLayerIndex = 
+            int palletLayerIndex =
                 dgvPalletLayer.SelectedCells.Count > 0 ?
-                    dgvPalletLayer.SelectedCells[0].RowIndex : 
+                    dgvPalletLayer.SelectedCells[0].RowIndex :
                     0;
-            int palletUnitIndex = 
-                palletLayerIndex * 
-                objPackageType.NumCartonsPerLayerOfPallet + 
+            int palletUnitIndex =
+                palletLayerIndex *
+                objPackageType.NumCartonsPerLayerOfPallet +
                 palletColIndex;
 
             //呈现包装箱
@@ -2089,9 +2267,9 @@ namespace IRAP.Client.GUI.MESPDC
         {
             //将Pallet坐标转换成List中对应的索引
             int palletLayerIndex = e.RowIndex;
-            int palletColIndex = 
+            int palletColIndex =
                 dgvPallet.SelectedCells.Count > 0 ?
-                    dgvPallet.SelectedCells[0].ColumnIndex : 
+                    dgvPallet.SelectedCells[0].ColumnIndex :
                     0;
             int palletUnitIndex = palletLayerIndex * objPackageType.NumCartonsPerLayerOfPallet + palletColIndex;
             //呈现包装箱
@@ -2154,17 +2332,17 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void dgvCartonLayer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int palletColIndex = 
+            int palletColIndex =
                 dgvPallet.SelectedCells.Count > 0 ?
-                    dgvPallet.SelectedCells[0].ColumnIndex : 
+                    dgvPallet.SelectedCells[0].ColumnIndex :
                     0;
-            int palletLayerIndex = 
+            int palletLayerIndex =
                 dgvPalletLayer.SelectedCells.Count > 0 ?
-                    dgvPalletLayer.SelectedCells[0].RowIndex : 
+                    dgvPalletLayer.SelectedCells[0].RowIndex :
                     0;
-            int palletUnitIndex = 
-                palletLayerIndex * 
-                objPackageType.NumCartonsPerLayerOfPallet + 
+            int palletUnitIndex =
+                palletLayerIndex *
+                objPackageType.NumCartonsPerLayerOfPallet +
                 palletColIndex;
             int rowIndex = dgvCartonLayer.SelectedCells[0].RowIndex;
             int colIndex = dgvCartonLayer.SelectedCells[0].ColumnIndex;
@@ -2186,21 +2364,21 @@ namespace IRAP.Client.GUI.MESPDC
             int cartonLayer = rowIndex + 1;
 
             GenerateBox(
-                palletUnitIndex, 
-                cartonLayer, 
-                cartonRowSet, 
-                cartonColSet, 
+                palletUnitIndex,
+                cartonLayer,
+                cartonRowSet,
+                cartonColSet,
                 boxLayer);
             GenerateBoxLayer(
-                palletUnitIndex, 
-                cartonLayer, 
-                cartonRowSet, 
-                cartonColSet, 
+                palletUnitIndex,
+                cartonLayer,
+                cartonRowSet,
+                cartonColSet,
                 boxLayer);
             GenerateCarton(
-                palletUnitIndex, 
-                cartonLayer, 
-                cartonRowSet, 
+                palletUnitIndex,
+                cartonLayer,
+                cartonRowSet,
                 cartonColSet);
         }
 
@@ -2226,11 +2404,11 @@ namespace IRAP.Client.GUI.MESPDC
 
             SetBoxOrdinal(
                 ordinal,
-                out cartonLayer, 
-                out cartonRow, 
+                out cartonLayer,
+                out cartonRow,
                 out cartonCol,
-                out boxLayer, 
-                out boxRow, 
+                out boxLayer,
+                out boxRow,
                 out boxCol);
         }
 
@@ -2307,17 +2485,17 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void dgvBoxLayer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int palletColIndex = 
+            int palletColIndex =
                 dgvPallet.SelectedCells.Count > 0 ?
-                    dgvPallet.SelectedCells[0].ColumnIndex : 
+                    dgvPallet.SelectedCells[0].ColumnIndex :
                     0;
-            int palletLayerIndex = 
+            int palletLayerIndex =
                 dgvPalletLayer.SelectedCells.Count > 0 ?
-                    dgvPalletLayer.SelectedCells[0].RowIndex : 
+                    dgvPalletLayer.SelectedCells[0].RowIndex :
                     0;
-            int palletUnitIndex = 
-                palletLayerIndex * 
-                objPackageType.NumCartonsPerLayerOfPallet + 
+            int palletUnitIndex =
+                palletLayerIndex *
+                objPackageType.NumCartonsPerLayerOfPallet +
                 palletColIndex;
             int rowIndex = dgvBoxLayer.SelectedCells[0].RowIndex;
             int colIndex = dgvBoxLayer.SelectedCells[0].ColumnIndex;
@@ -2339,10 +2517,10 @@ namespace IRAP.Client.GUI.MESPDC
             int boxLayer = rowIndex + 1;
 
             GenerateBox(
-                palletUnitIndex, 
-                cartonLayerSet, 
+                palletUnitIndex,
+                cartonLayerSet,
                 cartonRowSet,
-                cartonColSet, 
+                cartonColSet,
                 boxLayer);
         }
 
@@ -2372,7 +2550,7 @@ namespace IRAP.Client.GUI.MESPDC
                 if (string.IsNullOrEmpty(serialNumber))
                 {
                     IRAPMessageBox.Instance.ShowErrorMessage(
-                        "产品序列号为空，请确认输入！", 
+                        "产品序列号为空，请确认输入！",
                         caption);
                     return;
                 }
@@ -2411,14 +2589,18 @@ namespace IRAP.Client.GUI.MESPDC
 
                         SetBoxOrdinal(
                             ordinal,
-                            out cartonLayer, 
-                            out cartonRow, 
+                            out cartonLayer,
+                            out cartonRow,
                             out cartonCol,
-                            out boxLayer, 
-                            out boxRow, 
+                            out boxLayer,
+                            out boxRow,
                             out boxCol);
 
                         #region 保存事实并打印标签 
+
+                        //每包完一箱都要进行一次数据提交动作
+                        string wipPattern = GetWIPPattern(serialNumber);
+                        if (string.IsNullOrEmpty(wipPattern)) return;
                         string boxSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["BoxPackageSN"].ToString();
                         int boxNumOfInCarton = objPackageType.QtyPerColOfBox * objPackageType.QtyPerRowOfBox;
                         //已包装产品数量是Box容量整倍数时，需要申请Box序列号
@@ -2431,6 +2613,7 @@ namespace IRAP.Client.GUI.MESPDC
                                 palletUnitTables[palletUnitIndex].Rows[r]["BoxPackageSN"] = boxSerialNumber;
                             }
                         }
+
                         string cartonSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["CartonPackageSN"].ToString();
                         //每个Carton需要申请一个新的交易号和标签号
                         if (i == 0)
@@ -2452,13 +2635,10 @@ namespace IRAP.Client.GUI.MESPDC
                         string PalletSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["PalletPackageSN"].ToString();
                         string layerSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["PalletLayerSN"].ToString();
 
-                        //每包完一箱都要进行一次数据提交动作
-                        string wipPattern = GetWIPPattern(serialNumber);
-                        if (string.IsNullOrEmpty(wipPattern)) return;
                         Int64 factNo = GetNextSequenceNo("NextFactNo", 1);
                         FactPackaging factPackage = new FactPackaging();
                         factPackage.FactID = factNo;
-                        factPackage.PackagingSpecNo = ordinal;
+                        factPackage.PackagingSpecNo = objPackageType.Ordinal;
                         factPackage.WIPCode = wipPattern;
                         factPackage.LayerIdxOfPallet = currentPalletLayer;
                         factPackage.CartonIdxOfLayer = currentPalletCol;
@@ -2473,15 +2653,22 @@ namespace IRAP.Client.GUI.MESPDC
                         factPackage.LayerSerialNumber = layerSerialNumber;
                         factPackage.PalletSerialNumber = PalletSerialNumber;
 
-                        Boolean saveResult = usp_SaveFact_Packaging(factPackage);
+                        Boolean saveResult = usp_SaveFact_Packaging(factPackage, out OutputStr);
+                        if (!string.IsNullOrEmpty(OutputStr))
+                        {
+                            //IniFile.WriteString("OutputStr", transactNo.ToString(), OutputStr, attributeFileName);
+                            XmlFile.SavaConfig(transactNo.ToString(), OutputStr, attributeFileName);
+                        }
                         //如果数据提交动作数据库返回成功状态，则再进行 
                         if (!saveResult) return;
                         //事实保存成功，打印标签
                         //判断是否已包满一Box，如果已满，则打印Box标签
-                        if (boxRow == objPackageType.QtyPerColOfBox &&
-                            boxCol == objPackageType.QtyPerRowOfBox)
+                        if (boxRow == objPackageType.QtyPerColOfBox && boxCol == objPackageType.QtyPerRowOfBox && boxLayer == objPackageType.NumLayersOfBox)
                         {
-                            PrintLabel(objPackageType.T117LabelID_Box, boxSerialNumber);
+                            if (!string.IsNullOrEmpty(OutputStr))
+                            {
+                                PrintLabel(objPackageType.T117LabelID_Box, boxSerialNumber, OutputStr);
+                            }
                         }
                         //判断是否已已包满一大包装箱，如果已满，则打印Carton标签 
                         if (ordinal == allBoxNum)
@@ -2489,7 +2676,8 @@ namespace IRAP.Client.GUI.MESPDC
                             //Carton包满或点包装完成按钮时复核交易
                             if (ssp_CheckTransaction(transactNo))
                             {
-                                PrintLabel(objPackageType.T117LabelID_Carton, cartonSerialNumber);
+                                //if (!string.IsNullOrEmpty(OutputStr))
+                                //PrintLabel(objPackageType.T117LabelID_Carton, cartonSerialNumber, OutputStr);
                             }
                         }
                         if (objPackageType.T117LabelID_Layer > 0)
@@ -2497,12 +2685,14 @@ namespace IRAP.Client.GUI.MESPDC
                             //判断是否已包满一托中的层，如果已满，则打印托层的标签
                             if (ordinal == allBoxNum && currentPalletCol == objPackageType.NumCartonsPerLayerOfPallet)
                             {
-                                PrintLabel(objPackageType.T117LabelID_Layer, layerSerialNumber);
+                                //if (!string.IsNullOrEmpty(OutputStr))
+                                //PrintLabel(objPackageType.T117LabelID_Layer, layerSerialNumber, OutputStr);
                             }
                             //判断是否已包满一托的标签，如果已满，则打印托标签
                             if (ordinal == allBoxNum && currentPalletLayer == objPackageType.NumLayersOfPallet)
                             {
-                                PrintLabel(objPackageType.T117LabelID_Pallet, factPackage.PalletSerialNumber);
+                                //if (!string.IsNullOrEmpty(OutputStr))
+                                //PrintLabel(objPackageType.T117LabelID_Pallet, factPackage.PalletSerialNumber, OutputStr);
                             }
                         }
                         palletUnitTables[palletUnitIndex].Rows[i]["ProductSN"] = serialNumber;
@@ -2589,8 +2779,15 @@ namespace IRAP.Client.GUI.MESPDC
         private void frmProductPackage_Activated(object sender, EventArgs e)
         {
             Options.Visible = true;
-
+            Options.btnSwitch.Enabled = true;
             GetKanban_PackageTypes();
+            Options.OptionChanged += Options_OptionChanged;
+        }
+        private void XML2CDATA(string xml)
+        {
+            StringBuilder sxml = new StringBuilder(xml);
+
+
         }
 
         private void btnPackageFinish_Click(object sender, EventArgs e)
@@ -2607,28 +2804,62 @@ namespace IRAP.Client.GUI.MESPDC
                     return;
 
                 //打标签
-                //寻找最新的大包装标签
+                //寻找最新大包装标签和小包装标签
                 string cartonSerialNumber = "";
+                string boxSerialNumber = "";
+                int ordinal = 0;
+                int cartonLayer, cartonRow, cartonCol, boxLayer = objPackageType.NumLayersOfBox, boxRow = objPackageType.QtyPerColOfBox, boxCol = objPackageType.QtyPerRowOfBox;
+                if (string.IsNullOrEmpty(OutputStr))
+                {
+                    //OutputStr = IniFile.ReadString("OutputStr", transactNo.ToString(), "", attributeFileName);
+                    OutputStr = XmlFile.GetValue(transactNo.ToString(), attributeFileName);
+                }
                 for (int i = allNumCartonsInPallet - 1; i >= 0; i--)
                 {
                     Boolean bk = false;
                     for (int j = allBoxNum - 1; j >= 0; j--)
                     {
-                        if (palletUnitTables[i].Rows[j]["CartonPackageSN"].ToString().Trim() != "")
+                        if (palletUnitTables[i].Rows[j]["ProductSN"].ToString().Trim() != "")
                         {
                             cartonSerialNumber = palletUnitTables[i].Rows[j]["CartonPackageSN"].ToString().Trim();
+                            boxSerialNumber = palletUnitTables[i].Rows[j]["BoxPackageSN"].ToString().Trim();
+                            ordinal = j + 1;
+                            SetBoxOrdinal(
+                                ordinal,
+                                out cartonLayer,
+                                out cartonRow,
+                                out cartonCol,
+                                out boxLayer,
+                                out boxRow,
+                                out boxCol);
                             bk = true;
                             break;
                         }
                     }
                     if (bk) break;
                 }
-                PrintLabel(objPackageType.T117LabelID_Carton, cartonSerialNumber);
+                if (boxRow != objPackageType.QtyPerColOfBox || boxCol != objPackageType.QtyPerRowOfBox || boxLayer != objPackageType.NumLayersOfBox)
+                {
+                    if (objPackageType.T117LabelID_Box > 0)
+                        if (!string.IsNullOrEmpty(OutputStr))
+                            PrintLabel(objPackageType.T117LabelID_Box, boxSerialNumber, OutputStr);
+                }
+                if (ordinal != allBoxNum)
+                {
+                    if (objPackageType.T117LabelID_Carton > 0)
+                    {
+                        //if (!string.IsNullOrEmpty(OutputStr))
+                        //PrintLabel(objPackageType.T117LabelID_Carton, cartonSerialNumber, OutputStr);
+                    }
+                }
                 if (objPackageType.T117LabelID_Pallet > 0)
                 {
                     string palletSerialNumber = palletUnitTables[0].Rows[0]["PalletPackageSN"].ToString();
-                    PrintLabel(objPackageType.T117LabelID_Pallet, palletSerialNumber);
+                    //if (!string.IsNullOrEmpty(OutputStr))
+                    //PrintLabel(objPackageType.T117LabelID_Pallet, palletSerialNumber, OutputStr);
                 }
+                //IniFile.INIDeleteKey("OutputStr", transactNo.ToString(), attributeFileName);
+                XmlFile.SavaConfig(transactNo.ToString(), null, attributeFileName);
             }
             InitPackageStart(true);
         }
@@ -2664,7 +2895,8 @@ namespace IRAP.Client.GUI.MESPDC
                     ft = null;
                     return;
                 }
-                PrintLabel(objPackageType.T117LabelID_Box, boxSN);
+                if (!string.IsNullOrEmpty(OutputStr))
+                    PrintLabel(objPackageType.T117LabelID_Box, boxSN, OutputStr);
             }
             else
             if (ft.Name == edtCartonSN.Name)
@@ -2677,7 +2909,8 @@ namespace IRAP.Client.GUI.MESPDC
                     ft = null;
                     return;
                 }
-                PrintLabel(objPackageType.T117LabelID_Carton, cartonSN);
+                //if (!string.IsNullOrEmpty(OutputStr))
+                //PrintLabel(objPackageType.T117LabelID_Carton, cartonSN, OutputStr);
             }
             else
             if (ft.Name == edtPalletLayerSN.Name)
@@ -2690,9 +2923,16 @@ namespace IRAP.Client.GUI.MESPDC
                     ft = null;
                     return;
                 }
-                PrintLabel(objPackageType.T117LabelID_Layer, palletLayerSN);
+                //if (!string.IsNullOrEmpty(OutputStr))
+                //PrintLabel(objPackageType.T117LabelID_Layer, palletLayerSN, OutputStr);
             }
             ft = null;
+        }
+
+        private void frmProductPackage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Options.OptionChanged -= Options_OptionChanged;
+            Options.btnSwitch.Enabled = true;
         }
     }
 }

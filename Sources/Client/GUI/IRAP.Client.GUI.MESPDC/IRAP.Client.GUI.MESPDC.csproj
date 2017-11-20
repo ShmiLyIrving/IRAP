@@ -45,9 +45,15 @@
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
-    <Reference Include="FastReport.Editor, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="FastReport">
+      <HintPath>..\..\..\..\Packages\FastReport\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars">
+      <HintPath>..\..\..\..\Packages\FastReport\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor">
+      <HintPath>..\..\..\..\Packages\FastReport\FastReport.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="ftplib">
       <HintPath>..\..\..\Global\3rdPartyAssembly\ftplib.dll</HintPath>
     </Reference>
@@ -65,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\CmdToLPT.cs" />
     <Compile Include="Actions\MultiPrint.cs" />
     <Compile Include="Actions\PrintASCII.cs" />
     <Compile Include="Actions\ExtendEventHandler.cs" />
@@ -77,6 +84,7 @@
     <Compile Include="Actions\SelectChoice.cs" />
     <Compile Include="Actions\UDFActions.cs" />
     <Compile Include="Actions\Upload.cs" />
+    <Compile Include="Actions\Upload2.cs" />
     <Compile Include="Dialogs\frmItemsEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +300,10 @@
     <ProjectReference Include="..\..\IRAP.WCF.Client.Method\IRAP.WCF.Client.Method.csproj">
       <Project>{6F4AD952-871C-4594-BBE7-8C7EA61B63BE}</Project>
       <Name>IRAP.WCF.Client.Method</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.WCF.Client\IRAP.WCF.Client.csproj">
+      <Project>{476669B5-14C9-4754-A83B-343783807749}</Project>
+      <Name>IRAP.WCF.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
