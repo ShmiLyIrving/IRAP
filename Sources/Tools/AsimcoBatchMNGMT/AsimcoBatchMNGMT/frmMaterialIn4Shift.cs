@@ -11,18 +11,20 @@ using DevExpress.XtraEditors;
 
 namespace AsimcoBatchMNGMT
 {
-    public partial class frmserchstock : DevExpress.XtraEditors.XtraForm
+    public partial class frmMaterialIn4Shift : DevExpress.XtraEditors.XtraForm
     {
-        public frmserchstock()
+        public frmMaterialIn4Shift()
         {
             InitializeComponent();
         }
-        public frmserchstock(DataTable dt)
+        public frmMaterialIn4Shift(DataTable dt)
         {
             InitializeComponent();
+
             if (dt.Rows.Count > 0)
             {
-                this.gridControl1.DataSource = dt;
+                grdStockDetailIn4Shift.DataSource = dt;
+                grdvStockDetailIn4Shift.BestFitColumns();
             }
         }
     }

@@ -57,7 +57,7 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboOperType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.cardView1 = new DevExpress.XtraGrid.Views.Card.CardView();
@@ -90,7 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboOperType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             this.splitContainerControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -274,7 +274,7 @@
             this.panelControl1.Controls.Add(this.labelControl5);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.comboBoxEdit1);
+            this.panelControl1.Controls.Add(this.cboOperType);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.LookAndFeel.SkinName = "Visual Studio 2013 Blue";
@@ -458,33 +458,33 @@
             this.labelControl1.Text = "Item";
             this.labelControl1.Visible = false;
             // 
-            // comboBoxEdit1
+            // cboOperType
             // 
-            this.comboBoxEdit1.EditValue = "操作类型";
-            this.comboBoxEdit1.Enabled = false;
-            this.comboBoxEdit1.Location = new System.Drawing.Point(75, 5);
-            this.comboBoxEdit1.MenuManager = this.ribbon;
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.comboBoxEdit1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.comboBoxEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
-            this.comboBoxEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.Appearance.Options.UseForeColor = true;
-            this.comboBoxEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cboOperType.EditValue = "操作类型";
+            this.cboOperType.Enabled = false;
+            this.cboOperType.Location = new System.Drawing.Point(75, 5);
+            this.cboOperType.MenuManager = this.ribbon;
+            this.cboOperType.Name = "cboOperType";
+            this.cboOperType.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.cboOperType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cboOperType.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
+            this.cboOperType.Properties.Appearance.Options.UseBackColor = true;
+            this.cboOperType.Properties.Appearance.Options.UseFont = true;
+            this.cboOperType.Properties.Appearance.Options.UseForeColor = true;
+            this.cboOperType.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.cboOperType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
+            this.cboOperType.Properties.Items.AddRange(new object[] {
             "所有",
-            "提料",
-            "入库",
-            "移库",
+            "PORV01",
+            "IMTR01",
+            "PICK08",
             "MORV00",
-            "INRV01"});
-            this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(91, 28);
-            this.comboBoxEdit1.TabIndex = 1;
-            this.comboBoxEdit1.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit1_SelectedIndexChanged);
+            "INVA01"});
+            this.cboOperType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboOperType.Size = new System.Drawing.Size(91, 28);
+            this.cboOperType.TabIndex = 1;
+            this.cboOperType.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit1_SelectedIndexChanged);
             // 
             // splitContainerControl2
             // 
@@ -723,6 +723,7 @@
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "RibbonForm1";
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
@@ -741,7 +742,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboOperType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
@@ -773,7 +774,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit cboOperType;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;

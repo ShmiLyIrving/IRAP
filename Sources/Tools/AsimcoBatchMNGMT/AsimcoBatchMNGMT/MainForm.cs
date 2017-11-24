@@ -30,6 +30,7 @@ namespace AsimcoBatchMNGMT
         public static string strRowFilter;   //过滤字符串
         public static string mainsql;
         WaitForm1 wf = new WaitForm1();
+
         public MainForm()
         {
             InitializeComponent();
@@ -42,30 +43,31 @@ namespace AsimcoBatchMNGMT
             ValidateForm.Instance.ShowDialog();
             if (ValidateForm.Instance.DialogResult == DialogResult.OK)
             {
-                mainformshow();
+                RefreshData();
+
                 bbi_refresh.Enabled = true;
                 //可用一级筛选控件
-                this.comboBoxEdit1.Enabled = true;
-                this.comboBoxEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Gray;
-                this.comboBoxEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-                this.checkEdit1.Enabled = true;
-                this.checkEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-                this.checkEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Gray;
+                cboOperType.Enabled = true;
+                cboOperType.Properties.Appearance.BackColor = Color.Gray;
+                cboOperType.Properties.Appearance.ForeColor = Color.White;
+                checkEdit1.Enabled = true;
+                checkEdit1.Properties.Appearance.ForeColor = Color.White;
+                checkEdit1.Properties.Appearance.BackColor = Color.Gray;
                 bbi_log.Enabled = true;
-                this.labelControl1.Visible = true;
-                this.labelControl2.Visible = true;
-                this.labelControl3.Visible = true;
-                this.labelControl4.Visible = true;
-                this.labelControl5.Visible = true;
-                this.labelControl6.Visible = true;
-                this.labelControl7.Visible = true;
-                this.textEdit2.Visible = true;
-                this.textEdit3.Visible = true;
-                this.textEdit4.Visible = true;
-                this.textEdit5.Visible = true;
-                this.textEdit1.Visible = true;
-                this.textEdit6.Visible = true;
-                this.textEdit7.Visible = true;
+                labelControl1.Visible = true;
+                labelControl2.Visible = true;
+                labelControl3.Visible = true;
+                labelControl4.Visible = true;
+                labelControl5.Visible = true;
+                labelControl6.Visible = true;
+                labelControl7.Visible = true;
+                textEdit2.Visible = true;
+                textEdit3.Visible = true;
+                textEdit4.Visible = true;
+                textEdit5.Visible = true;
+                textEdit1.Visible = true;
+                textEdit6.Visible = true;
+                textEdit7.Visible = true;
             }
         }
 
@@ -202,15 +204,15 @@ namespace AsimcoBatchMNGMT
             {
                 if (checkEdit1.Checked)
                 {
-                    if (comboBoxEdit1.Text != "所有" && comboBoxEdit1.Text != "操作类型")
-                        strRowFilter = "ExCode ='" + comboBoxEdit1.Text + "'and ErrCode <> 0 and Retried = 0";
+                    if (cboOperType.Text != "所有" && cboOperType.Text != "操作类型")
+                        strRowFilter = "ExCode ='" + cboOperType.Text + "'and ErrCode <> 0 and Retried = 0";
                     else
                         strRowFilter = "ErrCode <> 0 and Retried = 0";
                 }
                 else
                 {
-                    if (comboBoxEdit1.Text != "所有" && comboBoxEdit1.Text != "操作类型")
-                        strRowFilter = "ExCode ='" + comboBoxEdit1.Text + "'";
+                    if (cboOperType.Text != "所有" && cboOperType.Text != "操作类型")
+                        strRowFilter = "ExCode ='" + cboOperType.Text + "'";
                     else
                         strRowFilter = "";
                 }
@@ -374,7 +376,7 @@ namespace AsimcoBatchMNGMT
         }
 
         //刷新数据
-        private void mainformshow()
+        private void RefreshData()
         {
            
             this.splashScreenManager1.ShowWaitForm();
@@ -405,7 +407,7 @@ namespace AsimcoBatchMNGMT
             }
             if (dr["ExCode"].ToString() == "PICK08"|| dr["ExCode"].ToString() == "提料")
             {
-                dr["ExCode"] = "提料";
+                dr["ExCode"] = "PICK08";
                 dr["ItemNumber"] = tempdt.Rows[0]["ItemNumber"];
                 dr["LotNumber"] = tempdt.Rows[0]["LotNumber"];
                 dr["BinFrom"] = tempdt.Rows[0]["Bin"];
@@ -422,7 +424,7 @@ namespace AsimcoBatchMNGMT
             }
             else if (dr["ExCode"].ToString() == "IMTR01" || dr["ExCode"].ToString() == "移库")
             {
-                dr["ExCode"] = "移库";
+                dr["ExCode"] = "IMTR01";
                 dr["ItemNumber"] = tempdt.Rows[0]["ItemNumber"];
                 dr["LotNumber"] = tempdt.Rows[0]["LotNumberFrom"];
                 dr["BinFrom"] = tempdt.Rows[0]["BinFrom"];
@@ -439,7 +441,7 @@ namespace AsimcoBatchMNGMT
             }
             else if (dr["ExCode"].ToString() == "PORV01" || dr["ExCode"].ToString() == "入库")
             {
-                dr["ExCode"] = "入库";
+                dr["ExCode"] = "PORV01";
                 dr["ItemNumber"] = tempdt.Rows[0]["ItemNumber"];
                 dr["LotNumber"] = tempdt.Rows[0]["LotNumberDefault"];
                 dr["BinTo"] = tempdt.Rows[0]["Bin1"];
@@ -477,8 +479,9 @@ namespace AsimcoBatchMNGMT
         
         private void bbi_refresh_ItemClick(object sender, ItemClickEventArgs e)
         {
-            mainformshow();
+            RefreshData();
         }
+
         //取数据库中最新的LogID
         private object GetLastLogID(long LinkedLogID)
         {
@@ -537,19 +540,19 @@ namespace AsimcoBatchMNGMT
                         dtNew3 = null;
                     }
                 }
-                if (gridView1.GetDataRow(gridView1.FocusedRowHandle)["ExCode"].ToString() == "移库")
+                if (gridView1.GetDataRow(gridView1.FocusedRowHandle)["ExCode"].ToString() == "IMTR01")
                 {
                     IMTRForm im = null;
                     im = new IMTRForm(xml, skuid, errinfo, retried, dtNew3, check);
                     dia = im.ShowDialog();
                 }
-                else if (gridView1.GetDataRow(gridView1.FocusedRowHandle)["ExCode"].ToString() == "入库")
+                else if (gridView1.GetDataRow(gridView1.FocusedRowHandle)["ExCode"].ToString() == "PORV01")
                 {
                     PORVForm po = null;
                     po = new PORVForm(xml, skuid, errinfo, retried, dtNew3, check);
                     dia = po.ShowDialog();
                 }
-                else if (gridView1.GetDataRow(gridView1.FocusedRowHandle)["ExCode"].ToString() == "提料")
+                else if (gridView1.GetDataRow(gridView1.FocusedRowHandle)["ExCode"].ToString() == "PICK08")
                 {
                     PICKForm pi = null;
                     pi = new PICKForm(xml, skuid, errinfo, retried, dtNew3, check);
@@ -690,7 +693,7 @@ namespace AsimcoBatchMNGMT
                                     }
                                 }
                                 WriteLog.Instance.WriteEndSplitter("结束编辑记录");
-                                mainformshow();
+                                RefreshData();
                             }
                         }
                     }
@@ -716,7 +719,7 @@ namespace AsimcoBatchMNGMT
                                 WriteLog.Instance.WriteBeginSplitter("开始删除记录LogID =" + LastLogID.ToString() + string.Format(";Retried = {0}", retried[0]));
                                 WriteLog.Instance.Write(xml[1], "删除记录成功");
                                 WriteLog.Instance.WriteEndSplitter("结束删除记录");
-                                mainformshow();
+                                RefreshData();
                             }
                         }
                         catch (SqlException err)
@@ -788,6 +791,13 @@ namespace AsimcoBatchMNGMT
         {
             Reports rts = new Reports();
             rts.ShowDialog();
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+
+            //RefreshData();
         }
     }
 }

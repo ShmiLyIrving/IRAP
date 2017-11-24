@@ -150,7 +150,7 @@ namespace AsimcoBatchMNGMT
             else if (textEdit22.Text.Length== 11)
                 sql = string.Format("select ITEM,ITEM_DESC,BIN,QTY_BY_LOC,LOT from ERP.FSDBMR.dbo.StockDetail where ITEM = '{0}' AND LOT LIKE '{1}%'", textEdit19.Text, textEdit22.Text);
             _dt = DBhelp.Query(sql).Tables["ds"];
-            frmserchstock f = new frmserchstock(_dt);
+            frmMaterialIn4Shift f = new frmMaterialIn4Shift(_dt);
             f.ShowDialog();
         }
 
@@ -176,9 +176,19 @@ namespace AsimcoBatchMNGMT
         {
             if (Retried[0] == "False")
             {
-                DialogResult result = MessageBox.Show("您要删除这条信息吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                DialogResult result = 
+                    MessageBox.Show(
+                        "您要删除这条信息吗？", 
+                        "提示", 
+                        MessageBoxButtons.OKCancel, 
+                        MessageBoxIcon.Asterisk);
                 if (result == DialogResult.OK)
                 {
+                    XtraMessageBox.Show(
+                        "当前功能正在紧张施工中！",
+                        "工程部",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.Abort;
                 }
             }

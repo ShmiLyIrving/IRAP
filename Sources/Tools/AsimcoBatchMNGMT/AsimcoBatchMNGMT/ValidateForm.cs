@@ -95,11 +95,11 @@ namespace AsimcoBatchMNGMT
 
         private void ValidateForm_Load(object sender, EventArgs e)
         {
-            this.edtDB.Text = IniFile.ReadString("Server", "Database", "IRAPRIMCS",attributeFileName);
-            this.edtLink.Text = IniFile.ReadString("Server", "Host", "192.168.1.2", attributeFileName);
-            this.edtUserCode.Text = IniFile.ReadString("Server", "Uid", "sa", attributeFileName);
-            this.edtUserPWD.Text = IniFile.ReadString("Server", "Pwd", "CyprMes571", attributeFileName);
-            this.comboBoxEdit1.Text = IniFile.ReadString("Server", "Filter", "仅未成功", attributeFileName);
+            edtDB.Text = IniFile.ReadString("Server", "Database", "IRAPRIMCS",attributeFileName);
+            edtLink.Text = IniFile.ReadString("Server", "Host", "192.168.1.2", attributeFileName);
+            edtUserCode.Text = IniFile.ReadString("Server", "Uid", "sa", attributeFileName);
+            edtUserPWD.Text = IniFile.ReadString("Server", "Pwd", "CyprMes571", attributeFileName);
+            comboBoxEdit1.Text = IniFile.ReadString("Server", "Filter", "仅未成功", attributeFileName);
         }
 
         private void btnSave_Click(object sender, EventArgs e)

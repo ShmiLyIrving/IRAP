@@ -133,7 +133,7 @@ namespace AsimcoBatchMNGMT
             else if (textEdit14.Text.Length == 11)
                 sql = string.Format("select ITEM,ITEM_DESC,BIN,QTY_BY_LOC,LOT from ERP.FSDBMR.dbo.StockDetail where ITEM = '{0}' AND LOT LIKE '{1}%'", textEdit10.Text, textEdit14.Text);
             _dt = DBhelp.Query(sql).Tables["ds"];
-            frmserchstock f = new frmserchstock(_dt);
+            frmMaterialIn4Shift f = new frmMaterialIn4Shift(_dt);
             f.ShowDialog();
         }
 

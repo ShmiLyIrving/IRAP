@@ -61,11 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBhelp.cs" />
-    <Compile Include="frmserchstock.cs">
+    <Compile Include="frmMaterialIn4Shift.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmserchstock.Designer.cs">
-      <DependentUpon>frmserchstock.cs</DependentUpon>
+    <Compile Include="frmMaterialIn4Shift.Designer.cs">
+      <DependentUpon>frmMaterialIn4Shift.cs</DependentUpon>
     </Compile>
     <Compile Include="IMTRForm.cs">
       <SubType>Form</SubType>
@@ -115,8 +115,8 @@
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="WriteLog.cs" />
-    <EmbeddedResource Include="frmserchstock.resx">
-      <DependentUpon>frmserchstock.cs</DependentUpon>
+    <EmbeddedResource Include="frmMaterialIn4Shift.resx">
+      <DependentUpon>frmMaterialIn4Shift.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IMTRForm.resx">
       <DependentUpon>IMTRForm.cs</DependentUpon>
