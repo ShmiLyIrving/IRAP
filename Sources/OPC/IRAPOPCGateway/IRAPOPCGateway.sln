@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPOPCGateway.Service", "IRAPOPCGateway\IRAPOPCGateway.Service.csproj", "{2A14FECA-85DF-4652-9744-ADFC850C42EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPOPCGatewayHost", "IRAPOPCGatewayHost\IRAPOPCGatewayHost.csproj", "{97BBA071-384C-49A8-AE00-125B4D552AD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.BL.OPCGateway", "IRAP.BL.OPCGateway\IRAP.BL.OPCGateway.csproj", "{2DA47274-1D69-45D1-BF90-D3A8F740D71C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.OPC.Library", "IRAP.OPC.Library\IRAP.OPC.Library.csproj", "{7459EF94-56D1-4FE0-9EC8-3EA5668AAC9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.OPC.Entity", "IRAP.OPC.Entity\IRAP.OPC.Entity.csproj", "{58D7982C-FFD1-4B4E-BB1A-7B5BD1158876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCClient", "..\OPCClient\OPCClient\OPCClient.csproj", "{78B5ABA4-9A62-4B0B-A35A-0FA509E4432A}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A14FECA-85DF-4652-9744-ADFC850C42EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A14FECA-85DF-4652-9744-ADFC850C42EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A14FECA-85DF-4652-9744-ADFC850C42EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A14FECA-85DF-4652-9744-ADFC850C42EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97BBA071-384C-49A8-AE00-125B4D552AD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97BBA071-384C-49A8-AE00-125B4D552AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97BBA071-384C-49A8-AE00-125B4D552AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97BBA071-384C-49A8-AE00-125B4D552AD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DA47274-1D69-45D1-BF90-D3A8F740D71C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA47274-1D69-45D1-BF90-D3A8F740D71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA47274-1D69-45D1-BF90-D3A8F740D71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA47274-1D69-45D1-BF90-D3A8F740D71C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7459EF94-56D1-4FE0-9EC8-3EA5668AAC9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7459EF94-56D1-4FE0-9EC8-3EA5668AAC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7459EF94-56D1-4FE0-9EC8-3EA5668AAC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7459EF94-56D1-4FE0-9EC8-3EA5668AAC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D7982C-FFD1-4B4E-BB1A-7B5BD1158876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D7982C-FFD1-4B4E-BB1A-7B5BD1158876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D7982C-FFD1-4B4E-BB1A-7B5BD1158876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D7982C-FFD1-4B4E-BB1A-7B5BD1158876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B5ABA4-9A62-4B0B-A35A-0FA509E4432A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B5ABA4-9A62-4B0B-A35A-0FA509E4432A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B5ABA4-9A62-4B0B-A35A-0FA509E4432A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B5ABA4-9A62-4B0B-A35A-0FA509E4432A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

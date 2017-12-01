@@ -57,12 +57,12 @@ namespace OPCClient
             if (connRlt != "")
                 return rlt;
 
-            OPCBrowser broswer = server.CreateBrowser();
+            OPCBrowser browser = server.CreateBrowser();
             // 展开分支
-            broswer.ShowBranches();
+            browser.ShowBranches();
             // 展开叶子
-            broswer.ShowLeafs(true);
-            foreach (object turn in broswer)
+            browser.ShowLeafs(true);
+            foreach (object turn in browser)
             {
                 string strTurn = turn.ToString();
                 if (!(strTurn.Contains("._Statistics._")

@@ -13,9 +13,12 @@ namespace OPCClient
         [STAThread]
         static void Main()
         {
+            DevExpress.Utils.AppearanceObject.DefaultFont =
+                new System.Drawing.Font("微软雅黑", 10.5f);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmOPCClientMain());
         }
     }
 }
