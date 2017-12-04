@@ -68,6 +68,12 @@
     <Compile Include="Classes\OPCWSClient.cs" />
     <Compile Include="Classes\ServerAddress.cs" />
     <Compile Include="Classes\SysParams.cs" />
+    <Compile Include="Dialogs\dlgImportDeviceTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgImportDeviceTag.Designer.cs">
+      <DependentUpon>dlgImportDeviceTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmOPCClientMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     <Compile Include="UserContols\ucOPCServer.Designer.cs">
       <DependentUpon>ucOPCServer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\dlgImportDeviceTag.resx">
+      <DependentUpon>dlgImportDeviceTag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmOPCClientMain.resx">
       <DependentUpon>frmOPCClientMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,7 +176,10 @@
     <Content Include="mainicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dialogs\" />
+    <ProjectReference Include="..\..\IRAPOPCGateway\IRAP.OPC.Entity\IRAP.OPC.Entity.csproj">
+      <Project>{58d7982c-ffd1-4b4e-bb1a-7b5bd1158876}</Project>
+      <Name>IRAP.OPC.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -90,6 +90,16 @@ namespace IRAP.BL.UTS
                         errText = error.ErrText;
 
                         rlt = DBUtils.DBParamsToHashtable(paramList);
+
+                        foreach (DictionaryEntry entry in rlt)
+                        {
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "[{0}]=[{1}]",
+                                    entry.Key,
+                                    entry.Value),
+                                strProcedureName);
+                        }
                     }
                 }
                 catch (Exception error)
@@ -196,13 +206,14 @@ namespace IRAP.BL.UTS
 
                         rlt = DBUtils.DBParamsToHashtable(paramList);
 
-                        foreach (string key in rlt.Keys)
+                        foreach (DictionaryEntry entry in rlt)
                         {
                             WriteLog.Instance.Write(
                                 string.Format(
                                     "[{0}]=[{1}]",
-                                    key,
-                                    rlt[key]));
+                                    entry.Key,
+                                    entry.Value),
+                                strProcedureName);
                         }
                     }
                 }
@@ -394,13 +405,14 @@ namespace IRAP.BL.UTS
 
                         rlt = DBUtils.DBParamsToHashtable(paramList);
 
-                        foreach (string key in rlt.Keys)
+                        foreach (DictionaryEntry entry in rlt)
                         {
                             WriteLog.Instance.Write(
                                 string.Format(
                                     "[{0}]=[{1}]",
-                                    key,
-                                    rlt[key]));
+                                    entry.Key,
+                                    entry.Value),
+                                strProcedureName);
                         }
                     }
                 }

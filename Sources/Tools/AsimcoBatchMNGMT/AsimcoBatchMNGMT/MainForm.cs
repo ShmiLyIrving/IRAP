@@ -704,11 +704,11 @@ namespace AsimcoBatchMNGMT
                 }
                 else if (dia == DialogResult.Abort)
                 {
-                    string sql = "update IRAP..stb_Log_WebServiceShuttling set Retried = @Retried where LogID = @LogID and PartitioningKey ='600100000'";
+                    string sql = "update IRAP..stb_Log_WebServiceShuttling set Retried = @Retried where LogID = @LogID";
                     SqlParameter[] paras = new SqlParameter[2];
                     if (GetLastLogID(LinkedLogID) != null)
                     {
-                        long LastLogID = (long)(LinkedLogID);
+                        long LastLogID = (long)(LogID);
                         paras[0] = new SqlParameter("@Retried", 1);
                         paras[1] = new SqlParameter("@LogID", LastLogID);
                         try

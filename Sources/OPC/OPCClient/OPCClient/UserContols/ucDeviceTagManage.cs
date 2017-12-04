@@ -43,5 +43,13 @@ namespace OPCClient.UserContols
                 }
             }
         }
+
+        private void tsmiImportDeviceTags_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.dlgImportDeviceTag dlgImportTags = new Dialogs.dlgImportDeviceTag())
+            {
+                dlgImportTags.ShowDialog();
+            }
+        }
     }
 }

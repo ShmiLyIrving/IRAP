@@ -16,6 +16,10 @@ namespace IRAPOPCGatewayHost
             {
                 ServiceHost _host = new ServiceHost(typeof(OPCGatewayService));
                 _host.Open();
+
+                TKepServerListener kepServer = new TKepServerListener();
+                kepServer.Init("127.0.0.1", "Kepware.KEPServerEX.V5");
+
                 Console.WriteLine("IRAP-OPC 服务网关已启动");
                 Console.WriteLine("按 <Enter> 健退出服务");
                 Console.ReadLine();

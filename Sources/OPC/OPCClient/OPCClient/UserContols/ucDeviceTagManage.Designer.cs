@@ -36,7 +36,6 @@
             this.tsmiLoadDevices = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSplitter1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiImportDeviceTags = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).BeginInit();
             this.pnlBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -138,11 +137,7 @@
             this.tsmiImportDeviceTags.Name = "tsmiImportDeviceTags";
             this.tsmiImportDeviceTags.Size = new System.Drawing.Size(157, 22);
             this.tsmiImportDeviceTags.Text = "导入设备标签...";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.tsmiImportDeviceTags.Click += new System.EventHandler(this.tsmiImportDeviceTags_Click);
             // 
             // ucDeviceTagManage
             // 
@@ -171,6 +166,5 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiLoadDevices;
         private System.Windows.Forms.ToolStripSeparator tsmiSplitter1;
         private System.Windows.Forms.ToolStripMenuItem tsmiImportDeviceTags;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
