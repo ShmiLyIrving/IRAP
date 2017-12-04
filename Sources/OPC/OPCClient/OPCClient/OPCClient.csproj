@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Base\DCHisRow.cs" />
     <Compile Include="Base\OPCClass.cs" />
+    <Compile Include="Classes\OPCWSClient.cs" />
     <Compile Include="Classes\ServerAddress.cs" />
     <Compile Include="Classes\SysParams.cs" />
     <Compile Include="frmOPCClientMain.cs">
@@ -87,6 +88,12 @@
     </Compile>
     <Compile Include="UserContols\ucCustomBase.Designer.cs">
       <DependentUpon>ucCustomBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserContols\ucDeviceTagManage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserContols\ucDeviceTagManage.Designer.cs">
+      <DependentUpon>ucDeviceTagManage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserContols\ucOPCClient.cs">
       <SubType>UserControl</SubType>
@@ -130,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserContols\ucCustomBase.resx">
       <DependentUpon>ucCustomBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserContols\ucDeviceTagManage.resx">
+      <DependentUpon>ucDeviceTagManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserContols\ucOPCClient.resx">
       <DependentUpon>ucOPCClient.cs</DependentUpon>

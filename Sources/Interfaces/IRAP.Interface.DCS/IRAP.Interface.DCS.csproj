@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2DA47274-1D69-45D1-BF90-D3A8F740D71C}</ProjectGuid>
+    <ProjectGuid>{19FCE0BC-4F8E-4986-A9ED-2D9326E32FBA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.BL.OPCGateway</RootNamespace>
-    <AssemblyName>IRAP.BL.OPCGateway</AssemblyName>
+    <RootNamespace>IRAP.Interface.DCS</RootNamespace>
+    <AssemblyName>IRAP.Interface.DCS</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -23,19 +23,18 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,22 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contents\TCustomContent.cs" />
-    <Compile Include="IniFile.cs" />
-    <Compile Include="OPCGatewayService.cs" />
-    <Compile Include="IOPCGateway.cs" />
+    <Compile Include="TCustomXMLArea.cs" />
+    <Compile Include="TSoftlandContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WriteLog.cs" />
+    <Compile Include="TUserAuthenticate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IRAP.OPC.Entity\IRAP.OPC.Entity.csproj">
-      <Project>{58d7982c-ffd1-4b4e-bb1a-7b5bd1158876}</Project>
-      <Name>IRAP.OPC.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IRAP.OPC.Library\IRAP.OPC.Library.csproj">
-      <Project>{7459ef94-56d1-4fe0-9ec8-3ea5668aac9c}</Project>
-      <Name>IRAP.OPC.Library</Name>
-    </ProjectReference>
+    <None Include="IRAP.Interface.DCS.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

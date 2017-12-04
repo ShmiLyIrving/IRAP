@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.Interface.DCS.TCustomXMLArea" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TCustomXMLArea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TSoftlandContent" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TSoftlandContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TSoftlandHead" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAKAAAAAgBBIAAAAEAAAAAAEAAAAAEAAAAA=</HashCode>
+      <FileName>TSoftlandContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TSoftlandBody" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TSoftlandContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TSoftlandLog" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TSoftlandContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TUserAuthenticate">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TUserAuthenticate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

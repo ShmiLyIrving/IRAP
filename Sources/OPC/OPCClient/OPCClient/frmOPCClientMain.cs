@@ -162,5 +162,21 @@ namespace OPCClient
                 new UserContols.ucConfigSysParams(bbiConfigSysParams.Caption);
             XtraTabPage newPage = NewTabPage("tpSysParamsConfig", newUC);
         }
+
+        private void bbiDeviceInfoManager_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            foreach (XtraTabPage page in tcMain.TabPages)
+            {
+                if (page.Name == "tpDeviceTagManager")
+                {
+                    tcMain.SelectedTabPage = page;
+                    return;
+                }
+            }
+
+            UserContols.ucDeviceTagManage newUC =
+                new UserContols.ucDeviceTagManage(bbiDeviceInfoManager.Caption);
+            XtraTabPage newPage = NewTabPage("tpDeviceTagManager", newUC);
+        }
     }
 }

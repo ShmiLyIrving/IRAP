@@ -35,6 +35,9 @@
             this.bbiConfigOPCServers = new DevExpress.XtraBars.BarButtonItem();
             this.bbiConfigSysParams = new DevExpress.XtraBars.BarButtonItem();
             this.bbiOPCTagCollection = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonGroup1 = new DevExpress.XtraBars.BarButtonGroup();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiDeviceInfoManager = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -61,10 +64,13 @@
             this.ribbon.ExpandCollapseItem,
             this.bbiConfigOPCServers,
             this.bbiConfigSysParams,
-            this.bbiOPCTagCollection});
+            this.bbiOPCTagCollection,
+            this.barButtonGroup1,
+            this.bbiDeviceInfoManager,
+            this.barButtonItem2});
             this.ribbon.LargeImages = this.imageCollection;
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 3;
+            this.ribbon.MaxItemId = 6;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage2});
@@ -82,6 +88,8 @@
             this.imageCollection.Images.SetKeyName(1, "build_32x32.png");
             this.imageCollection.InsertGalleryImage("editdatasource_32x32.png", "office2013/data/editdatasource_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/data/editdatasource_32x32.png"), 2);
             this.imageCollection.Images.SetKeyName(2, "editdatasource_32x32.png");
+            this.imageCollection.InsertGalleryImage("loadfrom_32x32.png", "office2013/actions/loadfrom_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/loadfrom_32x32.png"), 3);
+            this.imageCollection.Images.SetKeyName(3, "loadfrom_32x32.png");
             // 
             // bbiConfigOPCServers
             // 
@@ -107,6 +115,27 @@
             this.bbiOPCTagCollection.Name = "bbiOPCTagCollection";
             this.bbiOPCTagCollection.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiOPCTagCollection_ItemClick);
             // 
+            // barButtonGroup1
+            // 
+            this.barButtonGroup1.Caption = "barButtonGroup1";
+            this.barButtonGroup1.Id = 3;
+            this.barButtonGroup1.ItemLinks.Add(this.barButtonItem2);
+            this.barButtonGroup1.Name = "barButtonGroup1";
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "barButtonItem2";
+            this.barButtonItem2.Id = 5;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // bbiDeviceInfoManager
+            // 
+            this.bbiDeviceInfoManager.Caption = "设备信息维护";
+            this.bbiDeviceInfoManager.Id = 4;
+            this.bbiDeviceInfoManager.LargeImageIndex = 3;
+            this.bbiDeviceInfoManager.Name = "bbiDeviceInfoManager";
+            this.bbiDeviceInfoManager.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiDeviceInfoManager_ItemClick);
+            // 
             // ribbonPage2
             // 
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -117,7 +146,9 @@
             // 
             // ribbonPageGroup1
             // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonGroup1);
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiOPCTagCollection);
+            this.ribbonPageGroup1.ItemLinks.Add(this.bbiDeviceInfoManager);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "参数采集";
             // 
@@ -211,5 +242,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem tsmiQuit;
         private DevExpress.XtraBars.BarButtonItem bbiOPCTagCollection;
+        private DevExpress.XtraBars.BarButtonGroup barButtonGroup1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem bbiDeviceInfoManager;
     }
 }
