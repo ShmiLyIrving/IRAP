@@ -156,6 +156,9 @@
   <data name="tclmnErrText.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="tlLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="&gt;&gt;tclmnTime.Name" xml:space="preserve">
     <value>tclmnTime</value>
   </data>
@@ -249,9 +252,6 @@
   <data name="gpcLogs.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
     <value>Regular</value>
   </data>
-  <data name="tclmnErrCode.AppearanceHeader.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="gpcLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -321,8 +321,8 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.XtraUserControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="tlLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="tclmnErrCode.AppearanceHeader.FontSizeDelta" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="gpcLogs.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
     <value>0</value>

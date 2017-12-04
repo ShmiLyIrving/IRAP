@@ -48,18 +48,22 @@ namespace IRAP.Client.Global.GUI
                     tlLogs.Nodes.Remove(tlLogs.Nodes[i]);
             }
 
-            TreeListNode newNode = tlLogs.AppendNode(
-                new object[]
-                {
-                    dateTime.ToString("yyyy-MM-dd HH:mm:ss.fff"),
-                    errCode,
-                    errText
-                },
-                null);
-            tlLogs.SetNodeIndex(newNode, 0);
+            string[] multiLine = errText.Split('\n');
+            for (int i = multiLine.Length - 1; i >= 0; i--)
+            {
+                TreeListNode newNode = tlLogs.AppendNode(
+                    new object[]
+                    {
+                        dateTime.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        errCode,
+                        multiLine[i],
+                    },
+                    null);
+                tlLogs.SetNodeIndex(newNode, 0);
+                tlLogs.FocusedNode = newNode;
+            }
 
             tlLogs.BestFitColumns();
-            tlLogs.FocusedNode = newNode;
 
             if (errCode != 0)
             {
