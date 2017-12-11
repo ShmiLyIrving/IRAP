@@ -44,21 +44,21 @@ namespace IRAP.BL.OPCGateway
             #region 解析收到的请求字符串
             if (content.Contains("_Add_"))
             {
-                OPCDevices.Instance.Add(
-                    new OPCDevice()
+                TIRAPOPCDevices.Instance.Add(
+                    new TIRAPOPCDevice()
                     {
                         DeviceCode = content,
                     });
             }
             if (content.Contains("_GetLast_"))
             {
-                if (OPCDevices.Instance.Count == 0)
+                if (TIRAPOPCDevices.Instance.Count == 0)
                     rspContent = "<root><Warning>没有设备信息</Warning></root>";
                 else
                     rspContent =
                         string.Format(
                             "<root><Device DeviceCode={0}/></root>",
-                            OPCDevices.Instance.Devices[OPCDevices.Instance.Count - 1].DeviceCode);
+                            TIRAPOPCDevices.Instance.Devices[TIRAPOPCDevices.Instance.Count - 1].DeviceCode);
             }
             #endregion
 

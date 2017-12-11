@@ -118,225 +118,144 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tclmnTime.AppearanceCell.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
+  <data name="gpcLogs.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 14.25pt, style=Bold</value>
   </data>
-  <data name="tclmnTime.AppearanceCell.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="&gt;&gt;tclmnTime.Type" xml:space="preserve">
-    <value>DevExpress.XtraTreeList.Columns.TreeListColumn, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="tclmnErrText.AppearanceHeader.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tclmnErrText.AppearanceHeader.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="gpcLogs.AppearanceCaption.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
+  <data name="gpcLogs.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 14.25pt, style=Bold</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tclmnErrText.AppearanceCell.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="tlLogs.ColumnPanelRowHeight" type="System.Int32, mscorlib">
+    <value>35</value>
   </data>
-  <data name="tclmnTime.AppearanceCell.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="gpcLogs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>641, 352</value>
-  </data>
-  <data name="&gt;&gt;tlLogs.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>xucIRAPListView</value>
-  </data>
-  <data name="tclmnErrText.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tlLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;tclmnTime.Name" xml:space="preserve">
-    <value>tclmnTime</value>
-  </data>
-  <data name="tclmnErrText.Caption" xml:space="preserve">
-    <value>操作结果</value>
-  </data>
-  <data name="tclmnErrText.AppearanceCell.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="&gt;&gt;tlLogs.Parent" xml:space="preserve">
-    <value>gpcLogs</value>
-  </data>
-  <data name="&gt;&gt;gpcLogs.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tclmnTime.AppearanceCell.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tclmnTime.AppearanceHeader.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="gpcLogs.AppearanceCaption.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="tclmnTime.Width" type="System.Int32, mscorlib">
-    <value>96</value>
-  </data>
-  <data name="gpcLogs.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="gpcLogs.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
-  </data>
-  <data name="gpcLogs.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tclmnTime.AppearanceCell.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="tclmnTime.AppearanceHeader.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="tclmnErrText.AppearanceCell.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="tclmnErrCode.Caption" xml:space="preserve">
-    <value>错误代码</value>
-  </data>
-  <data name="tclmnErrText.AppearanceHeader.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tclmnErrText.Name" xml:space="preserve">
-    <value>tclmnErrText</value>
-  </data>
-  <data name="tclmnErrText.AppearanceHeader.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
-  </data>
-  <data name="tclmnErrText.VisibleIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tclmnTime.MinWidth" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="tclmnTime.AppearanceHeader.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="tclmnTime.AppearanceCell.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 14.25pt, style=Bold</value>
   </data>
   <data name="tclmnTime.AppearanceHeader.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
-  </data>
-  <data name="&gt;&gt;gpcLogs.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;tlLogs.Name" xml:space="preserve">
-    <value>tlLogs</value>
-  </data>
-  <data name="gpcLogs.Appearance.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="gpcLogs.AppearanceCaption.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;gpcLogs.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="tclmnErrText.Width" type="System.Int32, mscorlib">
-    <value>118</value>
-  </data>
-  <data name="gpcLogs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
-  </data>
-  <data name="gpcLogs.AppearanceCaption.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="gpcLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+    <value>微软雅黑, 14.25pt, style=Bold</value>
   </data>
   <data name="tclmnTime.Caption" xml:space="preserve">
     <value>时间</value>
   </data>
-  <data name="&gt;&gt;gpcLogs.Name" xml:space="preserve">
-    <value>gpcLogs</value>
+  <data name="tclmnTime.MinWidth" type="System.Int32, mscorlib">
+    <value>34</value>
   </data>
-  <data name="&gt;&gt;tclmnErrText.Type" xml:space="preserve">
-    <value>DevExpress.XtraTreeList.Columns.TreeListColumn, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="tclmnErrText.AppearanceCell.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
-  </data>
-  <data name="tclmnErrText.AppearanceHeader.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="tlLogs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>627, 316</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>651, 362</value>
+  <data name="tclmnTime.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="tclmnTime.VisibleIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;tclmnErrCode.Type" xml:space="preserve">
+  <data name="tclmnTime.Width" type="System.Int32, mscorlib">
+    <value>96</value>
+  </data>
+  <data name="tclmnErrCode.Caption" xml:space="preserve">
+    <value>错误代码</value>
+  </data>
+  <data name="tclmnErrText.AppearanceCell.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 14.25pt, style=Bold</value>
+  </data>
+  <data name="tclmnErrText.AppearanceHeader.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 14.25pt, style=Bold</value>
+  </data>
+  <data name="tclmnErrText.Caption" xml:space="preserve">
+    <value>操作结果</value>
+  </data>
+  <data name="tclmnErrText.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tclmnErrText.VisibleIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tclmnErrText.Width" type="System.Int32, mscorlib">
+    <value>118</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tlLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tlLogs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 38</value>
+  </data>
+  <data name="tlLogs.RowHeight" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="tlLogs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>627, 307</value>
+  </data>
+  <data name="tlLogs.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tlLogs.Name" xml:space="preserve">
+    <value>tlLogs</value>
+  </data>
+  <data name="&gt;&gt;tlLogs.Type" xml:space="preserve">
+    <value>DevExpress.XtraTreeList.TreeList, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;tlLogs.Parent" xml:space="preserve">
+    <value>gpcLogs</value>
+  </data>
+  <data name="&gt;&gt;tlLogs.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="gpcLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="gpcLogs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
+  </data>
+  <data name="gpcLogs.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="gpcLogs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>641, 352</value>
+  </data>
+  <data name="gpcLogs.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;gpcLogs.Name" xml:space="preserve">
+    <value>gpcLogs</value>
+  </data>
+  <data name="&gt;&gt;gpcLogs.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.GroupControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;gpcLogs.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gpcLogs.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>651, 362</value>
+  </data>
+  <data name="&gt;&gt;tclmnTime.Name" xml:space="preserve">
+    <value>tclmnTime</value>
+  </data>
+  <data name="&gt;&gt;tclmnTime.Type" xml:space="preserve">
     <value>DevExpress.XtraTreeList.Columns.TreeListColumn, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;tclmnErrCode.Name" xml:space="preserve">
     <value>tclmnErrCode</value>
   </data>
-  <data name="tclmnErrCode.AppearanceHeader.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
+  <data name="&gt;&gt;tclmnErrCode.Type" xml:space="preserve">
+    <value>DevExpress.XtraTreeList.Columns.TreeListColumn, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="tclmnErrCode.AppearanceHeader.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;tclmnErrText.Name" xml:space="preserve">
+    <value>tclmnErrText</value>
   </data>
-  <data name="tclmnErrText.AppearanceCell.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;tclmnErrText.Type" xml:space="preserve">
+    <value>DevExpress.XtraTreeList.Columns.TreeListColumn, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="tclmnTime.AppearanceHeader.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="&gt;&gt;tlLogs.Type" xml:space="preserve">
-    <value>DevExpress.XtraTreeList.TreeList, DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="tclmnErrCode.AppearanceHeader.GradientMode" type="System.Drawing.Drawing2D.LinearGradientMode, System.Drawing">
-    <value>Horizontal</value>
-  </data>
-  <data name="tlLogs.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="gpcLogs.AppearanceCaption.Font" type="System.Drawing.Font, System.Drawing">
-    <value>等线, 12pt</value>
-  </data>
-  <data name="tclmnTime.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="gpcLogs.Appearance.FontStyleDelta" type="System.Drawing.FontStyle, System.Drawing">
-    <value>Regular</value>
-  </data>
-  <data name="gpcLogs.Appearance.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>xucIRAPListView</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.XtraUserControl, DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="tclmnErrCode.AppearanceHeader.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="gpcLogs.Appearance.FontSizeDelta" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="tlLogs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 29</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>zh-CN</value>
-  </metadata>
 </root>

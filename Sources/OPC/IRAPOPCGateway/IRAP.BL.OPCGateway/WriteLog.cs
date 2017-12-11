@@ -12,15 +12,16 @@ namespace IRAP.BL.OPCGateway
 {
     public class WriteLog
     {
-        private static WriteLog instance;
-        private static object LockStatus = new object();
+        private static WriteLog _instance = null;
+        private static object _lockStatus = new object();
 
         public static WriteLog Instance
         {
             get
             {
-                if (instance == null) instance = new WriteLog();
-                return instance;
+                if (_instance == null)
+                    _instance = new WriteLog();
+                return _instance;
             }
         }
 
@@ -75,28 +76,26 @@ namespace IRAP.BL.OPCGateway
 
         public bool IsWriteLog
         {
-            get { return IniFile.ReadBool("Logs", "Write Log", false, attributeFileName); }
-            set { IniFile.WriteBool("Logs", "Write Log", value, attributeFileName); }
-            //get
-            //{
-            //    if (ConfigurationManager.AppSettings["WriteLog"] != null)
-            //        return ConfigurationManager.AppSettings["WriteLog"].ToString().ToUpper() == "TRUE";
-            //    else
-            //        return false;
-            //}
-            //set
-            //{
-            //    Configuration config =
-            //        ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            get
+            {
+                if (ConfigurationManager.AppSettings["WriteLog"] != null)
+                    return ConfigurationManager.AppSettings["WriteLog"].ToString().ToUpper() == "TRUE";
+                else
+                    return false;
+            }
+            set
+            {
+                Configuration config =
+                    ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-            //    if (config.AppSettings.Settings["WriteLog"].Value == null)
-            //        config.AppSettings.Settings.Add("WriteLog", true.ToString());
-            //    else
-            //        config.AppSettings.Settings["WriteLog"].Value = value.ToString();
+                if (config.AppSettings.Settings["WriteLog"].Value == null)
+                    config.AppSettings.Settings.Add("WriteLog", true.ToString());
+                else
+                    config.AppSettings.Settings["WriteLog"].Value = value.ToString();
 
-            //    config.Save(ConfigurationSaveMode.Modified);
-            //    ConfigurationManager.RefreshSection("appSettings");
-            //}
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+            }
         }
 
         public string WriteLogFileName
@@ -111,7 +110,7 @@ namespace IRAP.BL.OPCGateway
         {
             if (IsWriteLog && canCreateLogFile)
             {
-                lock (LockStatus)
+                lock (_lockStatus)
                 {
                     DeleteObsoleteFiles();
 

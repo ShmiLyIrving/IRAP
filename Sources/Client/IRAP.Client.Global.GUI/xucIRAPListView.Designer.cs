@@ -41,20 +41,12 @@
             // 
             // gpcLogs
             // 
-            resources.ApplyResources(this.gpcLogs, "gpcLogs");
             this.gpcLogs.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("gpcLogs.Appearance.Font")));
-            this.gpcLogs.Appearance.FontSizeDelta = ((int)(resources.GetObject("gpcLogs.Appearance.FontSizeDelta")));
-            this.gpcLogs.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("gpcLogs.Appearance.FontStyleDelta")));
-            this.gpcLogs.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("gpcLogs.Appearance.GradientMode")));
-            this.gpcLogs.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("gpcLogs.Appearance.Image")));
             this.gpcLogs.Appearance.Options.UseFont = true;
             this.gpcLogs.AppearanceCaption.Font = ((System.Drawing.Font)(resources.GetObject("gpcLogs.AppearanceCaption.Font")));
-            this.gpcLogs.AppearanceCaption.FontSizeDelta = ((int)(resources.GetObject("gpcLogs.AppearanceCaption.FontSizeDelta")));
-            this.gpcLogs.AppearanceCaption.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("gpcLogs.AppearanceCaption.FontStyleDelta")));
-            this.gpcLogs.AppearanceCaption.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("gpcLogs.AppearanceCaption.GradientMode")));
-            this.gpcLogs.AppearanceCaption.Image = ((System.Drawing.Image)(resources.GetObject("gpcLogs.AppearanceCaption.Image")));
             this.gpcLogs.AppearanceCaption.Options.UseFont = true;
             this.gpcLogs.Controls.Add(this.tlLogs);
+            resources.ApplyResources(this.gpcLogs, "gpcLogs");
             this.gpcLogs.Name = "gpcLogs";
             // 
             // tlLogs
@@ -73,22 +65,14 @@
             // 
             // tclmnTime
             // 
-            resources.ApplyResources(this.tclmnTime, "tclmnTime");
             this.tclmnTime.AppearanceCell.Font = ((System.Drawing.Font)(resources.GetObject("tclmnTime.AppearanceCell.Font")));
-            this.tclmnTime.AppearanceCell.FontSizeDelta = ((int)(resources.GetObject("tclmnTime.AppearanceCell.FontSizeDelta")));
-            this.tclmnTime.AppearanceCell.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("tclmnTime.AppearanceCell.FontStyleDelta")));
-            this.tclmnTime.AppearanceCell.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("tclmnTime.AppearanceCell.GradientMode")));
-            this.tclmnTime.AppearanceCell.Image = ((System.Drawing.Image)(resources.GetObject("tclmnTime.AppearanceCell.Image")));
             this.tclmnTime.AppearanceCell.Options.UseFont = true;
             this.tclmnTime.AppearanceHeader.Font = ((System.Drawing.Font)(resources.GetObject("tclmnTime.AppearanceHeader.Font")));
-            this.tclmnTime.AppearanceHeader.FontSizeDelta = ((int)(resources.GetObject("tclmnTime.AppearanceHeader.FontSizeDelta")));
-            this.tclmnTime.AppearanceHeader.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("tclmnTime.AppearanceHeader.FontStyleDelta")));
-            this.tclmnTime.AppearanceHeader.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("tclmnTime.AppearanceHeader.GradientMode")));
-            this.tclmnTime.AppearanceHeader.Image = ((System.Drawing.Image)(resources.GetObject("tclmnTime.AppearanceHeader.Image")));
             this.tclmnTime.AppearanceHeader.Options.UseFont = true;
             this.tclmnTime.AppearanceHeader.Options.UseTextOptions = true;
             this.tclmnTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.tclmnTime.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            resources.ApplyResources(this.tclmnTime, "tclmnTime");
             this.tclmnTime.FieldName = "操作时间";
             this.tclmnTime.Name = "tclmnTime";
             this.tclmnTime.OptionsColumn.AllowEdit = false;
@@ -99,35 +83,23 @@
             // 
             // tclmnErrCode
             // 
-            resources.ApplyResources(this.tclmnErrCode, "tclmnErrCode");
-            this.tclmnErrCode.AppearanceHeader.FontSizeDelta = ((int)(resources.GetObject("tclmnErrCode.AppearanceHeader.FontSizeDelta")));
-            this.tclmnErrCode.AppearanceHeader.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("tclmnErrCode.AppearanceHeader.FontStyleDelta")));
-            this.tclmnErrCode.AppearanceHeader.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("tclmnErrCode.AppearanceHeader.GradientMode")));
-            this.tclmnErrCode.AppearanceHeader.Image = ((System.Drawing.Image)(resources.GetObject("tclmnErrCode.AppearanceHeader.Image")));
             this.tclmnErrCode.AppearanceHeader.Options.UseTextOptions = true;
             this.tclmnErrCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.tclmnErrCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            resources.ApplyResources(this.tclmnErrCode, "tclmnErrCode");
             this.tclmnErrCode.FieldName = "错误代码";
             this.tclmnErrCode.Name = "tclmnErrCode";
             // 
             // tclmnErrText
             // 
-            resources.ApplyResources(this.tclmnErrText, "tclmnErrText");
             this.tclmnErrText.AppearanceCell.Font = ((System.Drawing.Font)(resources.GetObject("tclmnErrText.AppearanceCell.Font")));
-            this.tclmnErrText.AppearanceCell.FontSizeDelta = ((int)(resources.GetObject("tclmnErrText.AppearanceCell.FontSizeDelta")));
-            this.tclmnErrText.AppearanceCell.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("tclmnErrText.AppearanceCell.FontStyleDelta")));
-            this.tclmnErrText.AppearanceCell.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("tclmnErrText.AppearanceCell.GradientMode")));
-            this.tclmnErrText.AppearanceCell.Image = ((System.Drawing.Image)(resources.GetObject("tclmnErrText.AppearanceCell.Image")));
             this.tclmnErrText.AppearanceCell.Options.UseFont = true;
             this.tclmnErrText.AppearanceHeader.Font = ((System.Drawing.Font)(resources.GetObject("tclmnErrText.AppearanceHeader.Font")));
-            this.tclmnErrText.AppearanceHeader.FontSizeDelta = ((int)(resources.GetObject("tclmnErrText.AppearanceHeader.FontSizeDelta")));
-            this.tclmnErrText.AppearanceHeader.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("tclmnErrText.AppearanceHeader.FontStyleDelta")));
-            this.tclmnErrText.AppearanceHeader.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("tclmnErrText.AppearanceHeader.GradientMode")));
-            this.tclmnErrText.AppearanceHeader.Image = ((System.Drawing.Image)(resources.GetObject("tclmnErrText.AppearanceHeader.Image")));
             this.tclmnErrText.AppearanceHeader.Options.UseFont = true;
             this.tclmnErrText.AppearanceHeader.Options.UseTextOptions = true;
             this.tclmnErrText.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.tclmnErrText.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            resources.ApplyResources(this.tclmnErrText, "tclmnErrText");
             this.tclmnErrText.FieldName = "操作结果";
             this.tclmnErrText.Name = "tclmnErrText";
             this.tclmnErrText.OptionsColumn.AllowEdit = false;
@@ -138,10 +110,10 @@
             // 
             // xucIRAPListView
             // 
-            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.gpcLogs);
             this.Name = "xucIRAPListView";
+            resources.ApplyResources(this, "$this");
             ((System.ComponentModel.ISupportInitialize)(this.gpcLogs)).EndInit();
             this.gpcLogs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tlLogs)).EndInit();

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IRAP.OPC.Entity
 {
-    public class OPCDevice
+    public class TIRAPOPCDevice
     {
         private List<KepDeviceTagInfo> tags = new List<KepDeviceTagInfo>();
 

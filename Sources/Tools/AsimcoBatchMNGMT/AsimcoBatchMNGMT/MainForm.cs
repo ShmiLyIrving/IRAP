@@ -615,6 +615,10 @@ namespace AsimcoBatchMNGMT
                             {
                                 WriteLog.Instance.Write(string.Format("ErrCode = {0},{1}", paras3[3].Value.ToString(), paras3[4].Value.ToString()), "WSRetry执行成功");
                                 MessageBox.Show(string.Format("ErrCode = {0},{1}", paras3[3].Value.ToString(), paras3[4].Value.ToString()));
+
+                                // 如果是 PORV01 交易成功，则需要将 utb_MaterialStore 表中的 RecvBatchNo 更新为四班中生成的 RecvBatchNo
+                                // 代码待定
+
                                 if (check[0][0] == "True")
                                 {
                                     int flag = 2;

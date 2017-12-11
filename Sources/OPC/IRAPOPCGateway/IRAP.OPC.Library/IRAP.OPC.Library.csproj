@@ -39,8 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OPCDevices.cs" />
-    <Compile Include="OPCTagValueItemQueue.cs" />
+    <Compile Include="TIRAPOPCDevices.cs" />
+    <Compile Include="TIRAPOPCServers.cs" />
+    <Compile Include="TIRAPOPCTagValueItemQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -949,16 +949,15 @@
             // 
             // textEdit25
             // 
-            this.textEdit25.EditValue = "";
             this.textEdit25.Location = new System.Drawing.Point(208, 386);
             this.textEdit25.Name = "textEdit25";
+            this.textEdit25.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.textEdit25.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit25.Properties.Appearance.Options.UseBackColor = true;
             this.textEdit25.Properties.Appearance.Options.UseFont = true;
             this.textEdit25.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.textEdit25.Properties.ReadOnly = true;
             this.textEdit25.Size = new System.Drawing.Size(128, 28);
             this.textEdit25.TabIndex = 1;
-            this.textEdit25.TabStop = false;
             // 
             // labelControl32
             // 
@@ -973,12 +972,12 @@
             // 
             // labelControl31
             // 
-            this.labelControl31.Appearance.BackColor = System.Drawing.Color.Gray;
-            this.labelControl31.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl31.Appearance.BackColor = System.Drawing.Color.Salmon;
+            this.labelControl31.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold);
             this.labelControl31.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl31.Location = new System.Drawing.Point(101, 389);
+            this.labelControl31.Location = new System.Drawing.Point(97, 391);
             this.labelControl31.Name = "labelControl31";
-            this.labelControl31.Size = new System.Drawing.Size(95, 20);
+            this.labelControl31.Size = new System.Drawing.Size(99, 19);
             this.labelControl31.TabIndex = 0;
             this.labelControl31.Text = "PromisedDate";
             // 

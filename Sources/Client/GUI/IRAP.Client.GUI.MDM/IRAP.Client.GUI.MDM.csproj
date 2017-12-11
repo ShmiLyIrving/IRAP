@@ -132,6 +132,12 @@
     <Compile Include="Dialogs\frmMethodDocumentProperties.Designer.cs">
       <DependentUpon>frmMethodDocumentProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGeneralImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGeneralImport.Designer.cs">
+      <DependentUpon>frmGeneralImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLabelTemplateManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +232,10 @@
       <Project>{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}</Project>
       <Name>IRAP.Client.Global</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.SubSystem\IRAP.Client.SubSystem.csproj">
+      <Project>{6CB866DC-64BF-4B72-A5D8-81767B077AA2}</Project>
+      <Name>IRAP.Client.SubSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IRAP.Client.User\IRAP.Client.User.csproj">
       <Project>{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}</Project>
       <Name>IRAP.Client.User</Name>
@@ -287,6 +297,9 @@
     <EmbeddedResource Include="Dialogs\frmPrepareStandardProperties.resx">
       <DependentUpon>frmPrepareStandardProperties.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGeneralImport.resx">
+      <DependentUpon>frmGeneralImport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLabelTemplateManager.resx">
       <DependentUpon>frmLabelTemplateManager.cs</DependentUpon>
     </EmbeddedResource>
@@ -311,6 +324,7 @@
     <EmbeddedResource Include="frmTemplateManager.resx">
       <DependentUpon>frmTemplateManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OPCDevice.cs" />
-    <Compile Include="OPCTagValueItem.cs" />
+    <Compile Include="TIRAPOPCServer.cs" />
+    <Compile Include="TIRAPOPCTagItem.cs" />
+    <Compile Include="TIRAPOPCDevice.cs" />
+    <Compile Include="TIRAPOPCTagValueItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -53,6 +53,14 @@
       <Project>{2da47274-1d69-45d1-bf90-d3a8f740d71c}</Project>
       <Name>IRAP.BL.OPCGateway</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IRAP.OPC.Entity\IRAP.OPC.Entity.csproj">
+      <Project>{58d7982c-ffd1-4b4e-bb1a-7b5bd1158876}</Project>
+      <Name>IRAP.OPC.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRAP.OPC.Library\IRAP.OPC.Library.csproj">
+      <Project>{7459ef94-56d1-4fe0-9ec8-3ea5668aac9c}</Project>
+      <Name>IRAP.OPC.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
