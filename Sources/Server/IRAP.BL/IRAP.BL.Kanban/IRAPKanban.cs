@@ -571,8 +571,8 @@ namespace IRAP.BL.Kanban
                     {
                         string strSQL = "SELECT * " +
                             "FROM IRAP..sfn_TreeViewCtrlParameters(" +
-                            "@CommunityID, @TVCtrlParameters, @LanguageID)" +
-                            "ORDER BY Ordinal";
+                            "@CommunityID, @TVCtrlParameters, @LanguageID)";
+                            //"ORDER BY Ordinal";
 
                         IList<TVCtrlParam> lstDatas =
                             conn.CallTableFunc<TVCtrlParam>(strSQL, paramList);
