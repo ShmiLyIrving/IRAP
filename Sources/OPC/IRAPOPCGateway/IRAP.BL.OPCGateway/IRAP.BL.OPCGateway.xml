@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <OPCServers>
+    <OPCServer Address="127.0.0.1" Name="Kepware.KEPServerEX.V5" />
+  </OPCServers>
+</root>
