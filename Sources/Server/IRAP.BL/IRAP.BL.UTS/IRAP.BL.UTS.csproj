@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneralImport\GeneralImport.cs" />
     <Compile Include="IRAPPDC.cs" />
     <Compile Include="IRAPUTS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
