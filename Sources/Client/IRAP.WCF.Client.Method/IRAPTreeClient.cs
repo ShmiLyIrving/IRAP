@@ -157,6 +157,66 @@ namespace IRAP.WCF.Client.Method {
             return null;
         }
 
+        public List<LeafSet> GetAccessibleFilteredLeafSet(int communityID, int treeID, int scenarioIndex,
+            string dicingFilter, int nodeDepth, string keyword, long sysLogID,out int errCode, out string errText) {
+            string strProcedureName =
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("treeID", treeID);
+                hashParams.Add("scenarioIndex", scenarioIndex);
+                hashParams.Add("dicingFilter", dicingFilter);
+                hashParams.Add("nodeDepth",  nodeDepth);
+                hashParams.Add("keyword",  keyword);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(string.Format(
+                        "调用 sfn_AccessibleFilteredLeafSet 函数，参数：communityID={0}|treeID={1}|scenarioIndex={2}|dicingFilter={3}|nodeDepth={4}|keyword={5}|sysLogID={6}",
+                        communityID, treeID, scenarioIndex, dicingFilter, nodeDepth, keyword, sysLogID));
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.UTS.dll",
+                            "IRAP.BL.UTS.GeneralImport",
+                            "sfn_AccessibleFilteredLeafSet",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0) {
+                        var datas = rlt as List<LeafSet>;
+                        if (datas == null || datas.Count == 0) {
+                            errCode = 99;
+                            errText = "没有找到树视图，请检查配置！";
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return null;
+                        }
+                        return datas;
+                    }
+                }
+                #endregion
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
         public List<IRAPTreeViewNode> GetTreeViewList(
             int communityID,
             long sysLogID,
