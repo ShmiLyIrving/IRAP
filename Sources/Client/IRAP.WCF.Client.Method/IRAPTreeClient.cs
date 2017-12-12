@@ -1,4 +1,5 @@
 ﻿using IRAP.Entity.Kanban;
+using IRAP.Entity.UTS;
 using IRAP.Global;
 using System;
 using System.Collections;
@@ -87,6 +88,62 @@ namespace IRAP.WCF.Client.Method {
                             return null;
                         }
                         return datas[0];
+                    }
+                }
+                #endregion
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
+        public List<LinkedTreeTip> GetLinkedTreeOfImpExp(int communityID, int t19LeafID, long sysLogID,
+            out int errCode,out string errText) {
+            string strProcedureName =
+               string.Format("{0}.{1}",className,MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t19LeafID", t19LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(string.Format(
+                        "调用 sfn_GetInfo_LinkedTreeOfImpExp 函数，参数：communityID={0}|t19LeafID={1}|sysLogID={2} ",
+                        communityID, t19LeafID, sysLogID));
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.UTS.dll",
+                            "IRAP.BL.UTS.GeneralImport",
+                            "sfn_GetInfo_LinkedTreeOfImpExp",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0) {
+                        var datas = rlt as List<LinkedTreeTip>;
+                        if (datas == null || datas.Count == 0) {
+                            errCode = 99;
+                            errText = "没有找到树视图，请检查配置！";
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return null;
+                        }
+                        return datas;
                     }
                 }
                 #endregion
