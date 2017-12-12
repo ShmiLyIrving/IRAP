@@ -116,6 +116,7 @@
     <Compile Include="SSO\UserDetailInfo.cs" />
     <Compile Include="SSO\UserInfo.cs" />
     <Compile Include="MDM\SymbolInspecting.cs" />
+    <Compile Include="UTS\LinkedTreeTitle.cs" />
     <Compile Include="UTS\OperTypeInfo.cs" />
     <Compile Include="UTS\STB010.cs" />
   </ItemGroup>
