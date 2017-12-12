@@ -3,6 +3,7 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Columns;
 using DevExpress.XtraTreeList.Nodes;
 using IRAP.Entity.Kanban;
+using IRAP.Entity.UTS;
 using IRAP.Global;
 using IRAP.WCF.Client.Method;
 using System;
@@ -17,32 +18,38 @@ using System.Windows.Forms;
 namespace IRAP.Client.GUI.MDM {
     public partial class frmGeneralImport : IRAP.Client.Global.GUI.frmCustomFuncBase {
         private string className = MethodBase.GetCurrentMethod().DeclaringType.FullName;
-        private List<IRAPTreeViewNode> _treeData = new List<IRAPTreeViewNode>();
 
+        #region Debug
+        private int _communityID =  60006;
+        private long _sysLogID = 737942;
+        private int _languageID = 30;
+        private string _tvCtrlParameters = "19,2,1216,300,67327,17,(0:0;1:0;2:0;255:1),(),()";
+        #endregion
+
+        private List<IRAPTreeViewNode> _treeData = new List<IRAPTreeViewNode>();
+        private LinkedTreeTip _treeInfo = new LinkedTreeTip();
+        private IRAPTreeViewNode _currentNode;
+        
         public frmGeneralImport() {
             InitializeComponent();
         }
+
         private void frmGeneralImport_Load(object sender, EventArgs e) {
-            //CreateColumns(treeList);
             _treeData = GetTreeList();
-            if (_treeData == null||_treeData.Count==0) {
-                return;
-            }
             CreateTree();
-            //CreateNodes(treeList);
         }
 
+        #region 创建树
         private void CreateTree() {
+            if (_treeData == null || _treeData.Count == 0) {
+                return;
+            }
             treeList.DataSource = _treeData;
+            treeList.FocusedNode = null;
         }
 
         private List<IRAPTreeViewNode> GetTreeList() {
-            #region Debug
-            int communityID = 60006;
-            long sysLogID = 737942;
-            int languageID = 30;
-            string tvCtrlParameters = "19,2,1216,300,67327,17,(0:0;1:0;2:0;255:1),(),()";
-            #endregion
+           
             int errCode;
             string errText;
             string strProcedureName =
@@ -51,13 +58,13 @@ namespace IRAP.Client.GUI.MDM {
                    className,
                    MethodBase.GetCurrentMethod().Name);
             try {
-                var paras = IRAPTreeClient.Instance.GetTreeViewCtrlParameters(communityID, tvCtrlParameters, languageID, out errCode, out errText);
+                var paras = IRAPTreeClient.Instance.GetTreeViewCtrlParameters(_communityID, _tvCtrlParameters, _languageID, out errCode, out errText);
                 if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 } else {
-                    var lists = IRAPTreeClient.Instance.GetTreeViewList(communityID, sysLogID, paras, out errCode, out errText);
+                    var lists = IRAPTreeClient.Instance.GetTreeViewList(_communityID, _sysLogID, paras, out errCode, out errText);
                     if (errCode != 0) {
                         WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                         XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,24 +81,73 @@ namespace IRAP.Client.GUI.MDM {
             }
             return null;
         }
+        #endregion
 
-        private void CreateNodes(TreeList tl) {
-            tl.BeginUnboundLoad();
-            // Create a root node .
-            TreeListNode parentForRootNodes = null;
-            TreeListNode rootNode = tl.AppendNode(
-                new object[] { "Alfreds Futterkiste" },
-                parentForRootNodes);
-            // Create a child of the rootNode
-            tl.AppendNode(new object[] { "Suyama, Michael" }, rootNode);
-            // Creating more nodes
-            // ...
-            tl.AppendNode(new object[] { "sss" }, parentForRootNodes);
-            tl.EndUnboundLoad();
+        #region 获取下拉列表信息
+        private LinkedTreeTip GetLinkedTreeOfImpExp(int t19LeafID) {
+            int errCode;
+            string errText;
+            string strProcedureName =
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                var lists = IRAPTreeClient.Instance.GetLinkedTreeOfImpExp(_communityID, t19LeafID, _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                } else{
+                    return lists[0];
+                }
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
         }
+
+        private void SetSelectTitle() {
+            
+            var treeId = 0 - _currentNode.NodeID;
+
+            var treeInfo = GetLinkedTreeOfImpExp(treeId);
+            //设置提示信息
+            if (treeInfo.TreeID == 0) {
+                this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            } else {
+                this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                this.layoutItemSelect.Text = treeInfo.PromptStr;
+            }
+            _treeInfo = treeInfo;
+        }
+
+        private void treeList_AfterFocusNode(object sender, NodeEventArgs e) {
+            var node = this.treeList.GetDataRecordByNode(e.Node) as IRAPTreeViewNode;
+            if (node.NodeID > 0) {
+                return;
+            }
+            _currentNode = node;
+            SetSelectTitle();
+        }
+        #endregion
 
         private void button1_Click(object sender, EventArgs e) {
             GetTreeList();
         }
+
+        private void button1_Click_1(object sender, EventArgs e) {
+            //layoutItemSelect.Text = layoutItemSelect.Text=="请选择一个具体产线或区域" ? "请选择" : "请选择一个具体产线或区域";
+            //layoutItemSelect.Visible = !layoutItemSelect.Visible;
+            //this.panelRightTop.Show(layoutItemSelect);
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+        }
+
+    
     }
 }
