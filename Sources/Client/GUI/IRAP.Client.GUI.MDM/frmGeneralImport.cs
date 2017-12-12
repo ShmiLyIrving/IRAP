@@ -95,8 +95,33 @@ namespace IRAP.Client.GUI.MDM {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
-                } else{
+                } else if (lists == null || lists.Count == 0) {
+                    return null;
+                } else {
                     return lists[0];
+                }
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
+        private List<LeafSet> GetLinkedTreeOfImpExp() {
+            int errCode;
+            string errText;
+            string strProcedureName =
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                var lists = IRAPTreeClient.Instance.GetAccessibleFilteredLeafSet(_communityID,_treeInfo.TreeID,1,"",_currentNode.NodeDepth,"",_sysLogID,out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                } else {
+                    return lists;
                 }
             } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
@@ -111,18 +136,34 @@ namespace IRAP.Client.GUI.MDM {
             
             var treeId = 0 - _currentNode.NodeID;
 
-            var treeInfo = GetLinkedTreeOfImpExp(treeId);
+            _treeInfo = GetLinkedTreeOfImpExp(treeId);
+            if (_treeInfo == null) {
+                return;
+            }
             //设置提示信息
-            if (treeInfo.TreeID == 0) {
+            if (_treeInfo.TreeID == 0) {
                 this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             } else {
                 this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                this.layoutItemSelect.Text = treeInfo.PromptStr;
+                this.layoutItemSelect.Text = _treeInfo.PromptStr;
+                SetDropDownList();
             }
-            _treeInfo = treeInfo;
         }
 
-        private void treeList_AfterFocusNode(object sender, NodeEventArgs e) {
+        private void SetDropDownList() {
+            var lists = GetLinkedTreeOfImpExp();
+            if (lists==null||lists.Count==0) {
+                return;
+            }
+            this.comboBoxEdit1.Properties.Items.Clear();
+            foreach (LeafSet item in lists) {
+                this.comboBoxEdit1.Properties.Items.Add(item.LeafName);
+            }
+        }
+        #endregion
+
+        #region 事件
+		private void treeList_AfterFocusNode(object sender, NodeEventArgs e) {
             var node = this.treeList.GetDataRecordByNode(e.Node) as IRAPTreeViewNode;
             if (node.NodeID > 0) {
                 return;
@@ -130,24 +171,7 @@ namespace IRAP.Client.GUI.MDM {
             _currentNode = node;
             SetSelectTitle();
         }
-        #endregion
-
-        private void button1_Click(object sender, EventArgs e) {
-            GetTreeList();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e) {
-            //layoutItemSelect.Text = layoutItemSelect.Text=="请选择一个具体产线或区域" ? "请选择" : "请选择一个具体产线或区域";
-            //layoutItemSelect.Visible = !layoutItemSelect.Visible;
-            //this.panelRightTop.Show(layoutItemSelect);
-            
-        }
-
-        private void button2_Click(object sender, EventArgs e) {
-            this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-
-        }
-
     
-    }
+	#endregion
+    } 
 }
