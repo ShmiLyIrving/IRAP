@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IRAP.Interface\IRAP.Interface.csproj">
+      <Project>{6c90e549-33ee-438f-9eff-6df051f211a4}</Project>
+      <Name>IRAP.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.OPC.Entity\IRAP.OPC.Entity.csproj">
       <Project>{58d7982c-ffd1-4b4e-bb1a-7b5bd1158876}</Project>
       <Name>IRAP.OPC.Entity</Name>

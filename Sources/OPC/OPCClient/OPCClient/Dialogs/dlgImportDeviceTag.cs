@@ -15,7 +15,7 @@ namespace OPCClient.Dialogs
 {
     public partial class dlgImportDeviceTag : DevExpress.XtraEditors.XtraForm
     {
-        private List<KepDeviceTagInfo> tags = new List<KepDeviceTagInfo>();
+        private List<TIRAPOPCKepDeviceTagInfo> tags = new List<TIRAPOPCKepDeviceTagInfo>();
 
         public dlgImportDeviceTag()
         {
@@ -90,7 +90,7 @@ namespace OPCClient.Dialogs
 
                         string[] tagInfo = SplitCSVLine(srTemp);
 
-                        KepDeviceTagInfo tag = new KepDeviceTagInfo();
+                        TIRAPOPCKepDeviceTagInfo tag = new TIRAPOPCKepDeviceTagInfo();
 
                         tag.TagName = tagInfo[0].Replace("\"", "");
                         tag.Address = tagInfo[1].Replace("\"", "");

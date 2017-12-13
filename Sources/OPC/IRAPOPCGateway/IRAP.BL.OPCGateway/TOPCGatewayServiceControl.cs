@@ -31,16 +31,6 @@ namespace IRAP.BL.OPCGateway
 
         private TOPCGatewayServiceControl() { }
 
-        private string GetConfigFileName()
-        {
-            string rlt = "";
-
-            rlt = string.Format("{0}.xml",
-                Assembly.GetCallingAssembly().Location.Replace(".dll", ""));
-
-            return rlt;
-        }
-
         public bool OPCServiceStatue
         {
             get { return statueOPCService; }
@@ -61,8 +51,10 @@ namespace IRAP.BL.OPCGateway
                 Debug.WriteLine("OPC 网关服务启动失败，原因：[{0}]", error.Message);
             }
 
+            TIRAPOPCDevices.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
+
             // 根据配置文件内容，创建 KepServer 连接
-            TIRAPOPCServers.Instance.Load(GetConfigFileName());
+            TIRAPOPCServers.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
             foreach (TIRAPOPCServer server in TIRAPOPCServers.Instance.Servers)
             {
                 TKepServerListener listener = new TKepServerListener();

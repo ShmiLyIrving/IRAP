@@ -43,12 +43,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DCS\TUserAuthenticate.cs" />
+    <Compile Include="OPC\TGetDevicesContent.cs" />
+    <Compile Include="OPC\TUpdateDeviceTagsContent.cs" />
+    <Compile Include="OPC\TUpdateDeviceTagsReqBody.cs" />
+    <Compile Include="OPC\TUpdateDeviceTagsReqDetail.cs" />
+    <Compile Include="OPC\TUpdateDeviceTagsRspBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCustomXMLArea.cs" />
     <Compile Include="TSoftlandContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DCS\IRAP.Interface.DCS.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IRAP.Global\IRAP.Global.csproj">
+      <Project>{e2f182fa-2148-4247-b054-25893a67c9c9}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

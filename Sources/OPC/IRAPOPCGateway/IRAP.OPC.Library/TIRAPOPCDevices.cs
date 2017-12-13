@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using System.IO;
 using System.Diagnostics;
+using System.Reflection;
 
 using IRAP.OPC.Entity;
 
@@ -31,57 +32,40 @@ namespace IRAP.OPC.Library
         /// <summary>
         /// 在节点的子节点中查找指定属性名和值的子节点
         /// </summary>
-        /// <param name="nodes">节点</param>
-        /// <param name="childName">子节点名</param>
+        /// <param name="parentNode">节点</param>
         /// <param name="propertyName">属性名</param>
-        /// <param name="deviceCode"></param>
+        /// <param name="propertyValue">属性值</param>
         /// <returns>子节点</returns>
-        private XmlNode GetDeviceNodeWithDeviceCode(
-            XmlNode nodes,
-            string childName,
-            string propertyName, 
-            string deviceCode)
+        private XmlNode GetChildNodeWithPropertyValue(
+            XmlNode parentNode,
+            string propertyName,
+            string propertyValue)
         {
-            XmlNode rlt = null;
-
-            foreach (XmlNode node in nodes)
+            foreach (XmlNode node in parentNode.ChildNodes)
             {
-                if (node.Name == childName)
+                if (node.Attributes[propertyName] != null)
                 {
-                    foreach (XmlNode childNode in node.ChildNodes)
-                    {
-                        if (childNode.Name == propertyName)
-                        {
-                            if (childNode.InnerText == deviceCode)
-                            {
-                                rlt = node;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (rlt != null)
-                        break;
+                    if (node.Attributes[propertyName].Value == propertyValue)
+                        return node;
                 }
             }
-
-            return rlt;
+            return null;
         }
 
         /// <summary>
-        /// 在节点中增加子节点
+        /// 在节点中增加属性
         /// </summary>
-        /// <param name="parentNode">父节点</param>
-        /// <param name="nodeName">子节点名</param>
-        /// <param name="innerText">子节点值</param>
+        /// <param name="node">节点</param>
+        /// <param name="attrName">属性名</param>
+        /// <param name="attrValue">属性值</param>
         /// <returns></returns>
-        private XmlNode AddChildNode(XmlNode parentNode, string nodeName, string innerText)
+        private XmlNode AddNodeAttribute(XmlNode node, string attrName, string attrValue)
         {
-            XmlNode child = parentNode.OwnerDocument.CreateElement(nodeName);
-            child.InnerText = innerText;
-            parentNode.AppendChild(child);
+            XmlAttribute attr = node.OwnerDocument.CreateAttribute(attrName);
+            attr.Value = attrValue;
+            node.Attributes.Append(attr);
 
-            return child;
+            return node;
         }
 
         public List<TIRAPOPCDevice> Devices
@@ -94,9 +78,11 @@ namespace IRAP.OPC.Library
             get { return opcDevices.Count; }
         }
 
-        public int Add(TIRAPOPCDevice device)
+        public int Add(TIRAPOPCDevice device, string dataFileName)
         {
             opcDevices.Add(device);
+            Save(device, dataFileName);
+
             return opcDevices.Count - 1;
         }
 
@@ -154,9 +140,8 @@ namespace IRAP.OPC.Library
 
                 // 在 Devices 节点中查找指定 DeviceCode 的 Device 子节点，如果找到则从 Devices 节点中删除
                 XmlNode deviceNode = 
-                    GetDeviceNodeWithDeviceCode(
+                    GetChildNodeWithPropertyValue(
                         devicesNode,
-                        "Device",
                         "DeviceCode", 
                         device.DeviceCode);
                 if (deviceNode != null)
@@ -164,17 +149,63 @@ namespace IRAP.OPC.Library
                     devicesNode.RemoveChild(deviceNode);
                 }
 
-                // 添加设备节点
-                deviceNode = xml.CreateElement("Device");
+                #region 添加设备节点
+                deviceNode = xml.ImportNode(device.GenerateXMLNode(), true);
                 devicesNode.AppendChild(deviceNode);
-
-                AddChildNode(deviceNode, "DeviceCode", device.DeviceCode);
-                AddChildNode(deviceNode, "KepServerAddr", device.KepServerAddr);
-                AddChildNode(deviceNode, "KepServerName", device.KepServerName);
+                #endregion
 
                 // 保存 XML 到文件
                 xml.Save(dataFileName);
             }
+        }
+
+        /// <summary>
+        /// 从指定的 XML 文件中加载设备的 OPC 标签信息
+        /// </summary>
+        /// <param name="dataFileName"></param>
+        public void Load(string dataFileName)
+        {
+            opcDevices.Clear();
+
+            XmlDocument xml = new XmlDocument();
+            try
+            {
+                xml.Load(dataFileName);
+            }
+            catch (Exception error)
+            {
+                Debug.WriteLine(string.Format("加载[{0}]文件时出错：[{1}]", dataFileName, error.Message));
+                return;
+            }
+
+            XmlNode devicesNode = xml.SelectSingleNode("root/Devices");
+            if (devicesNode == null)
+            {
+                Debug.WriteLine("文件[{0}]中没有 Devices 节点。");
+                return;
+            }
+
+            foreach (XmlNode child in devicesNode.ChildNodes)
+            {
+                TIRAPOPCDevice device = TIRAPOPCDevice.LoadFromXMLNode(child);
+                if (device != null)
+                    opcDevices.Add(device);
+            }
+        }
+
+        /// <summary>
+        /// 根据设备代码获取设备对象
+        /// </summary>
+        /// <param name="code">设备代码</param>
+        /// <returns>设备对象</returns>
+        public TIRAPOPCDevice GetDeviceWithDeviceCode(string code)
+        {
+            foreach (TIRAPOPCDevice device in opcDevices)
+            {
+                if (device.DeviceCode == code)
+                    return device;
+            }
+            return null;
         }
     }
 }
