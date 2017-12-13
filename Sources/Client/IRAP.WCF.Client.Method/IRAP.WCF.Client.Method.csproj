@@ -69,6 +69,10 @@
       <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
       <Name>IRAP.Global</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Global\IRAPShared\IRAPShared.csproj">
+      <Project>{af165361-fe05-4cc9-9d94-ca98c4a74ab0}</Project>
+      <Name>IRAPShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
       <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
       <Name>IRAP.Entities</Name>
