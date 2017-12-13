@@ -1,0 +1,871 @@
+<Screen
+	CID = "1"
+	HasCanvas = "1"
+	Width = "1155"
+	Height = "495"
+	NextCID = "4"
+	RepresentativeRefID = "1">
+	<Elements
+		CID = "1"
+		NextCID = "26">
+		<Element
+			CID = "1"
+			Type = "FrameWindow"
+			X = "0"
+			Y = "6"
+			Width = "1155"
+			Height = "489"
+			Flags = "0"
+			WindowColour = "171,171,171,0,13"
+			Title = "应用程序"
+			TitleBarHeight = "18"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "1"
+			Buttons = "7"
+			Icon = "DefaultApp"/>
+		<Element
+			CID = "2"
+			Type = "TabPanel"
+			X = "14"
+			Y = "39"
+			Width = "1128"
+			Height = "443"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "3"
+			Type = "GroupBox"
+			X = "24"
+			Y = "49"
+			Width = "422"
+			Height = "423"
+			Flags = "0"
+			TextColour = "0,70,213,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "条码信息"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "4"
+			Type = "StaticText"
+			X = "44"
+			Y = "61"
+			Width = "85"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "条码扫描："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "5"
+			Type = "EditBox"
+			X = "135"
+			Y = "61"
+			Width = "299"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "6"
+			Type = "Table"
+			X = "36"
+			Y = "92"
+			Width = "398"
+			Height = "368"
+			Flags = "0"
+			BackgroundColour = "171,171,171,0,13"
+			GridLineColour = "227,227,227,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "5"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "产品编号"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "子在制品条码"
+					Width = "140"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "送修状态"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "维修状态"
+					Width = "100"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "7"
+			Type = "GroupBox"
+			X = "456"
+			Y = "49"
+			Width = "676"
+			Height = "48"
+			Flags = "0"
+			TextColour = "0,70,213,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "条码/路由信息"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "8"
+			Type = "GroupBox"
+			X = "456"
+			Y = "108"
+			Width = "586"
+			Height = "364"
+			Flags = "0"
+			TextColour = "0,70,213,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "维修情况"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "9"
+			Type = "Table"
+			X = "468"
+			Y = "120"
+			Width = "562"
+			Height = "340"
+			Flags = "0"
+			BackgroundColour = "171,171,171,0,13"
+			GridLineColour = "227,227,227,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "7"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "器件位号/物料编号"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "失效模式"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "失效点数"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "根源工序"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "5"
+					Heading = "失效性质"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "6"
+					Heading = "追溯参考值"
+					Width = "100"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "10"
+			Type = "TextButton"
+			X = "1057"
+			Y = "109"
+			Width = "75"
+			Height = "32"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "查看测试数据"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "11"
+			Type = "TextAnnotation"
+			X = "-5"
+			Y = "520"
+			Width = "251"
+			Height = "190"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = "“条码扫描”输入框中键盘事件，捕捉到“回车键”后"
+			Annotation = "1、usp_PokaYoke_TroubleShooting（不良在制品路由校验），得到的结果：errText 在“条码/路由信息”中显示，errCode&eq;0，消息文本显示为“蓝色”；否则，详细文本显示为“红色”。&#13;&#10;2、当前“选项一”中的产品和扫描条码的产品不一致，则需要切换“选项一”为当前扫描条码的产品；&#13;&#10;3、获取子在制品标识清单；ufn_GetList_SubWIPIDCodes_TS，在下面的表格中显示；&#13;&#10;4、获取失效模式：ufn_GetList_FailureModes"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+		<Element
+			CID = "12"
+			Type = "DotAnnotationTarget"
+			X = "137"
+			Y = "61"
+			Width = "21"
+			Height = "21"
+			Flags = "7"
+			BorderColour = "255,0,0,0,0"
+			FillColour = "255,255,0,0,0"
+			LabelColour = "255,0,0,0,0"
+			Label = "1"
+			LabelSize = "正常"
+			IsSolid = "1"
+			IsSquare = "0"
+			InflateBy = "0"
+			BorderWidth = "3"
+			FontAttributes = "1"/>
+		<Element
+			CID = "13"
+			Type = "DotAnnotationTarget"
+			X = "-14"
+			Y = "512"
+			Width = "21"
+			Height = "21"
+			Flags = "7"
+			BorderColour = "255,0,0,0,0"
+			FillColour = "255,255,0,0,0"
+			LabelColour = "255,0,0,0,0"
+			Label = "1"
+			LabelSize = "正常"
+			IsSolid = "1"
+			IsSquare = "0"
+			InflateBy = "0"
+			BorderWidth = "3"
+			FontAttributes = "1"/>
+		<Element
+			CID = "14"
+			Type = "DotAnnotationTarget"
+			X = "45"
+			Y = "123"
+			Width = "21"
+			Height = "21"
+			Flags = "7"
+			BorderColour = "255,0,0,0,0"
+			FillColour = "255,255,0,0,0"
+			LabelColour = "255,0,0,0,0"
+			Label = "2"
+			LabelSize = "正常"
+			IsSolid = "1"
+			IsSquare = "0"
+			InflateBy = "0"
+			BorderWidth = "3"
+			FontAttributes = "1"/>
+		<Element
+			CID = "15"
+			Type = "TextAnnotation"
+			X = "259"
+			Y = "521"
+			Width = "246"
+			Height = "188"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = "在表格中选择一个子板条码后"
+			Annotation = "1、获取检查失效项：ufn_GetList_FailuresOfNGProduct，其中 T107LeafID_Src&eq;0；&#13;&#10;2、根据当前选择子板记录中的 PWOCategoryLeaf ，从初始化时获取的Symbols 筛选出当前子板的&quot;器件位号/物料编号“中的列表；&#13;&#10;3、根据当前选择子板记录中的 PWOCategoryLeaf，从初始化时获取的根源工序列表中筛选出当前子板的“根源工序列表；"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+		<Element
+			CID = "16"
+			Type = "DotAnnotationTarget"
+			X = "251"
+			Y = "512"
+			Width = "21"
+			Height = "21"
+			Flags = "7"
+			BorderColour = "255,0,0,0,0"
+			FillColour = "255,255,0,0,0"
+			LabelColour = "255,0,0,0,0"
+			Label = "2"
+			LabelSize = "正常"
+			IsSolid = "1"
+			IsSquare = "0"
+			InflateBy = "0"
+			BorderWidth = "3"
+			FontAttributes = "1"/>
+		<Element
+			CID = "17"
+			Type = "TextAnnotation"
+			X = "-358"
+			Y = "-2"
+			Width = "343"
+			Height = "131"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = "初始化"
+			Annotation = "1、“器件位号/物料编号”：ufn_GetKanban_Symbols_Inspecting；&#13;&#10;2、“维修状态”：sfn_OperTypes，OpID&eq;11；&#13;&#10;3、“根源工序”：ufn_GetKanban_FaileureSrcOperation；&#13;&#10;4、“失效性质”：ufn_GetKanban_FailureNature；&#13;&#10;5、“失效责任”：ufn_GetKanban_FailureDuties；&#13;&#10;6、“维修代码”：sfn_AccessibleLeafSetEx，TreeID&eq;119；&#13;&#10;7、“送修状态”：“正常”, 0；&quot;送修“, 1；"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+		<Element
+			CID = "18"
+			Type = "TextAnnotation"
+			X = "488"
+			Y = "162"
+			Width = "370"
+			Height = "45"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = "请注意："
+			Annotation = "从 ufn_GetList_FailuresOfNGProduct获取的记录不能删除！"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+		<Element
+			CID = "19"
+			Type = "DotAnnotationTarget"
+			X = "1042"
+			Y = "428"
+			Width = "21"
+			Height = "21"
+			Flags = "7"
+			BorderColour = "255,0,0,0,0"
+			FillColour = "255,255,0,0,0"
+			LabelColour = "255,0,0,0,0"
+			Label = "3"
+			LabelSize = "正常"
+			IsSolid = "1"
+			IsSquare = "0"
+			InflateBy = "0"
+			BorderWidth = "3"
+			FontAttributes = "1"/>
+		<Element
+			CID = "20"
+			Type = "TextAnnotation"
+			X = "517"
+			Y = "521"
+			Width = "642"
+			Height = "88"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = "点击“维修确认”后"
+			Annotation = "1、如果维修状态非全4或全5，则要求选择目标工序。当前产品修复后的返回工序列表（ufn_GetList_QCOperationsForNG）；&#13;&#10;2、调用应用服务中的 usp_SaveFact_TroubleShooting 函数，保存维修记录；usp_SaveFact_TroubleShooting 的参数：CommunityID, UserCode, ProductLeaf, WorkUnitLeaf, DestT216LeafID, 维修情况列表"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+		<Element
+			CID = "21"
+			Type = "DotAnnotationTarget"
+			X = "511"
+			Y = "512"
+			Width = "21"
+			Height = "21"
+			Flags = "7"
+			BorderColour = "255,0,0,0,0"
+			FillColour = "255,255,0,0,0"
+			LabelColour = "255,0,0,0,0"
+			Label = "3"
+			LabelSize = "正常"
+			IsSolid = "1"
+			IsSquare = "0"
+			InflateBy = "0"
+			BorderWidth = "3"
+			FontAttributes = "1"/>
+		<Element
+			CID = "22"
+			Type = "TextAnnotation"
+			X = "518"
+			Y = "619"
+			Width = "641"
+			Height = "254"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = "usp_SaveFact_TroubleShooting 逻辑"
+			Annotation = "1、获取事实表维度数据：SELECT * FROM IRAPMES..ufn_GetInfo_WIPContext(@CommunityID, @ProductLeaf, @ProcessLeaf&eq;0, @WorkUnitLeaf, @SysLogID)；&#13;&#10;2、申请交易号；&#13;&#10;3、循环每个子板，&#13;&#10;  a. 申请事实编号，&#13;&#10;  b. 保存主事实表（TBL_FixedFact_MES）,&#13;&#10;  c. 保存辅助事实表（TBL_AuxFact_PDC）,&#13;&#10;  d. 更新路由（utb_WIPs_TroubleShooting）,&#13;&#10;  e. 根据当前子板的维修情况列表，写行集事实，循环列表：&#13;&#10;    i. TBL_RSFact_TSDataCollecting 插入一条记录；&#13;&#10;    ii. 调用 usp_SaveFact_TroubleShootingTrace 存储过程；&#13;&#10;  f. 如果当前子板的 RepairStatus &eq;&eq; 4 或者 5时，写报废事实&#13;&#10;    i. 申请新事实编号；&#13;&#10;    ii. 插入报废主事实（TBL_FixedFact_MES）;&#13;&#10;    iii. 插入辅助事实（TBL_AuxFact_PDC）；&#13;&#10;    iv. 从 utb_WIPs_TroubleShooting 中删除该子在制品的路由信息；&#13;&#10;    v. 循环维修情况列表，写报废行集事实（TBL_RSFact_WIPScrapping）"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+		<Element
+			CID = "23"
+			Type = "TextButton"
+			X = "1057"
+			Y = "151"
+			Width = "75"
+			Height = "32"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "追溯生产过程"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "24"
+			Type = "TextButton"
+			X = "1057"
+			Y = "440"
+			Width = "75"
+			Height = "32"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "确认维修完成"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "25"
+			Type = "TextAnnotation"
+			X = "1170"
+			Y = "111"
+			Width = "209"
+			Height = "90"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = "何时能查看测试数据"
+			Annotation = "只有来源工序是测试工序的在制品能查看测试数据"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+	</Elements>
+	<Connections
+		CID = "2"/>
+	<Notes
+		CID = "3"
+		NextCID = "2">
+		<Note
+			CID = "1"
+			Name = "Description">
+			
+		</Note>
+	</Notes>
+</Screen>

@@ -1,0 +1,326 @@
+<Screen
+	CID = "1"
+	HasCanvas = "1"
+	Width = "990"
+	Height = "645"
+	NextCID = "4"
+	RepresentativeRefID = "1">
+	<Elements
+		CID = "1"
+		NextCID = "15">
+		<Element
+			CID = "1"
+			Type = "FrameWindow"
+			X = "0"
+			Y = "6"
+			Width = "990"
+			Height = "639"
+			Flags = "0"
+			WindowColour = "90,78,177,0,13"
+			Title = "生产开始"
+			TitleBarHeight = "18"
+			BorderSize = "1"
+			IsBorderless = "1"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "1"
+			Buttons = "0"
+			Icon = ""/>
+		<Element
+			CID = "2"
+			Type = "TabPanel"
+			X = "3"
+			Y = "27"
+			Width = "984"
+			Height = "615"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "3"
+			Type = "StaticText"
+			X = "64"
+			Y = "74"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "装炉操作工："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "4"
+			Type = "EditBox"
+			X = "200"
+			Y = "74"
+			Width = "191"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "5"
+			Type = "StaticText"
+			X = "64"
+			Y = "110"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "班次："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "6"
+			Type = "StaticText"
+			X = "64"
+			Y = "182"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "工单号："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "7"
+			Type = "StaticText"
+			X = "64"
+			Y = "218"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "数量："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "8"
+			Type = "ComboBox"
+			X = "200"
+			Y = "110"
+			Width = "148"
+			Height = "21"
+			Flags = "2"
+			Text = "白班"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "9"
+			Type = "EditBox"
+			X = "200"
+			Y = "182"
+			Width = "191"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "10"
+			Type = "EditBox"
+			X = "200"
+			Y = "218"
+			Width = "191"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "11"
+			Type = "StaticText"
+			X = "64"
+			Y = "146"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "设备号："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "12"
+			Type = "ComboBox"
+			X = "200"
+			Y = "146"
+			Width = "148"
+			Height = "21"
+			Flags = "2"
+			Text = "设备 1"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "13"
+			Type = "GroupBox"
+			X = "28"
+			Y = "266"
+			Width = "936"
+			Height = "350"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "操作日志"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "14"
+			Type = "Table"
+			X = "40"
+			Y = "278"
+			Width = "912"
+			Height = "326"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "3"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "时间"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Left"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "操作结果"
+					Width = "400"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Left"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+	</Elements>
+	<Connections
+		CID = "2"/>
+	<Notes
+		CID = "3"
+		NextCID = "2">
+		<Note
+			CID = "1"
+			Name = "Description">
+			
+		</Note>
+	</Notes>
+</Screen>

@@ -1,0 +1,102 @@
+<Screen
+	CID = "1"
+	HasCanvas = "1"
+	Width = "1129"
+	Height = "736"
+	NextCID = "4"
+	RepresentativeRefID = "1">
+	<Elements
+		CID = "1"
+		NextCID = "4">
+		<Element
+			CID = "1"
+			Type = "FrameWindow"
+			X = "0"
+			Y = "6"
+			Width = "1129"
+			Height = "730"
+			Flags = "0"
+			WindowColour = "171,171,171,0,13"
+			Title = "熔炼与造型排程"
+			TitleBarHeight = "18"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "1"
+			Buttons = "7"
+			Icon = "DefaultApp"/>
+		<Element
+			CID = "2"
+			Type = "HorizontalTabBar"
+			X = "6"
+			Y = "31"
+			Width = "1117"
+			Height = "699"
+			Flags = "0"
+			NextItemID = "5"
+			LeftMargin = "0"
+			RightMargin = "0"
+			SelectedTab = "0"
+			IsProportional = "1"
+			IsFullWidth = "0"
+			IsReversed = "0"
+			TabMarginLeft = "0"
+			TabMarginRight = "0"
+			TabMarginTop = "0"
+			TabMarginBottom = "0">
+			<TabBarItem
+				ItemID = "1"
+				Text = "熔炼 1# 炉 - [设备编号]"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "2"
+				Text = "熔炼 2# 炉 - [设备编号]"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "3"
+				Text = "熔炼 3# 炉 - [设备编号]"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "4"
+				Text = "熔炼 4# 炉 - [设备编号]"
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "3"
+			Type = "TextAnnotation"
+			X = "551"
+			Y = "13"
+			Width = "244"
+			Height = "31"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = ""
+			Annotation = "IRAPMDM..ufn_GetList_WIPStationsOfAHost"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+	</Elements>
+	<Connections
+		CID = "2"/>
+	<Notes
+		CID = "3"
+		NextCID = "2">
+		<Note
+			CID = "1"
+			Name = "Description">
+			
+		</Note>
+	</Notes>
+</Screen>

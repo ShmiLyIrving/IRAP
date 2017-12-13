@@ -1,0 +1,339 @@
+<Screen
+	CID = "1"
+	HasCanvas = "1"
+	Width = "1028"
+	Height = "685"
+	NextCID = "4"
+	RepresentativeRefID = "1">
+	<Elements
+		CID = "1"
+		NextCID = "11">
+		<Element
+			CID = "1"
+			Type = "FrameWindow"
+			X = "0"
+			Y = "6"
+			Width = "1028"
+			Height = "679"
+			Flags = "0"
+			WindowColour = "90,78,177,0,13"
+			Title = "应用程序"
+			TitleBarHeight = "18"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "1"
+			Buttons = "7"
+			Icon = "DefaultApp"/>
+		<Element
+			CID = "2"
+			Type = "WebPage"
+			X = "6"
+			Y = "31"
+			Width = "1016"
+			Height = "75"
+			Flags = "0"
+			BackgroundColour = "255,255,255,0,0"
+			PageHeight = "400"/>
+		<Element
+			CID = "3"
+			Type = "StaticText"
+			X = "6"
+			Y = "31"
+			Width = "1016"
+			Height = "75"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "外观检验"
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "VeryLarge"
+			HorzAlign = "Centre"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "4"
+			Type = "WebPage"
+			X = "6"
+			Y = "106"
+			Width = "1016"
+			Height = "573"
+			Flags = "0"
+			BackgroundColour = "255,255,255,0,0"
+			PageHeight = "400"/>
+		<Element
+			CID = "5"
+			Type = "StaticText"
+			X = "23"
+			Y = "120"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "产品卡号："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "6"
+			Type = "EditBox"
+			X = "123"
+			Y = "120"
+			Width = "377"
+			Height = "21"
+			Flags = "2"
+			Text = "文本框"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "7"
+			Type = "GroupBox"
+			X = "22"
+			Y = "156"
+			Width = "873"
+			Height = "510"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "废品登记"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "8"
+			Type = "Table"
+			X = "34"
+			Y = "168"
+			Width = "849"
+			Height = "486"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "3"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "废品名称"
+					Width = "500"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "废品数量"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Right"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						表面缺陷(Surface Dent)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "1">
+					<Cell>
+						原材料缺陷(Material Problem)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						由前道工序引起的不良(Failure Caused by Previous Process)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						外径不合(OD NOK)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						堵杆(PR Block)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						实验(Test)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						调试(adjustment)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						镀层不合(Plating incompatibility)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						未研磨(Not grinding)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						螺纹损伤(Thread damage)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						表面划伤(Surface scratch)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						合计(Total)
+					</Cell>
+					<Cell>
+						0
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "9"
+			Type = "TextButton"
+			X = "929"
+			Y = "118"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "提交"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "10"
+			Type = "TextButton"
+			X = "929"
+			Y = "156"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "清除"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+	</Elements>
+	<Connections
+		CID = "2"/>
+	<Notes
+		CID = "3"
+		NextCID = "2">
+		<Note
+			CID = "1"
+			Name = "Description">
+			
+		</Note>
+	</Notes>
+</Screen>

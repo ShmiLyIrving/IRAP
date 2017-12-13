@@ -1,0 +1,743 @@
+<Screen
+	CID = "1"
+	HasCanvas = "1"
+	Width = "729"
+	Height = "529"
+	NextCID = "4"
+	RepresentativeRefID = "1">
+	<Elements
+		CID = "1"
+		NextCID = "32">
+		<Element
+			CID = "1"
+			Type = "FrameWindow"
+			X = "0"
+			Y = "6"
+			Width = "729"
+			Height = "523"
+			Flags = "0"
+			WindowColour = "171,171,171,0,13"
+			Title = "应用程序"
+			TitleBarHeight = "18"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "1"
+			Buttons = "7"
+			Icon = "DefaultApp"/>
+		<Element
+			CID = "2"
+			Type = "HorizontalTabBar"
+			X = "11"
+			Y = "34"
+			Width = "707"
+			Height = "483"
+			Flags = "0"
+			NextItemID = "4"
+			LeftMargin = "0"
+			RightMargin = "0"
+			SelectedTab = "0"
+			IsProportional = "1"
+			IsFullWidth = "0"
+			IsReversed = "0"
+			TabMarginLeft = "0"
+			TabMarginRight = "0"
+			TabMarginTop = "0"
+			TabMarginBottom = "0">
+			<TabBarItem
+				ItemID = "1"
+				Text = "增加 ECN to line"
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "3"
+			Type = "GroupBox"
+			X = "28"
+			Y = "69"
+			Width = "678"
+			Height = "432"
+			Flags = "0"
+			TextColour = "0,70,213,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = ""
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "4"
+			Type = "StaticText"
+			X = "60"
+			Y = "131"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "产品："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "5"
+			Type = "ComboBox"
+			X = "160"
+			Y = "132"
+			Width = "293"
+			Height = "21"
+			Flags = "2"
+			Text = "带模糊查询的下拉列表"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "6"
+			Type = "StaticText"
+			X = "60"
+			Y = "161"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "变更类型："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "7"
+			Type = "ComboBox"
+			X = "160"
+			Y = "161"
+			Width = "293"
+			Height = "21"
+			Flags = "2"
+			Text = "sfn_AccessibleLeafSetEx, TreeID&eq;275"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "8"
+			Type = "StaticText"
+			X = "60"
+			Y = "192"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "变更类别："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "9"
+			Type = "ComboBox"
+			X = "160"
+			Y = "192"
+			Width = "293"
+			Height = "21"
+			Flags = "2"
+			Text = "sfn_AccessibleLeafSetEx, TreeID&eq;276"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "10"
+			Type = "EditBoxMultiLine"
+			X = "161"
+			Y = "222"
+			Width = "378"
+			Height = "98"
+			Flags = "0"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HasHorzScrollBar = "0"
+			HasVertScrollBar = "1"
+			WordWrap = "1"
+			HorzOffset = "0"
+			FirstVisibleLine = "1"
+			HorzAlign = "Left">
+			多行&#13;&#10;文本框
+		</Element>
+		<Element
+			CID = "11"
+			Type = "StaticText"
+			X = "61"
+			Y = "223"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "变更内容："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "12"
+			Type = "StaticText"
+			X = "60"
+			Y = "327"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "预计实施日期："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "13"
+			Type = "ComboBox"
+			X = "160"
+			Y = "327"
+			Width = "91"
+			Height = "21"
+			Flags = "2"
+			Text = "2017-02-25"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "14"
+			Type = "StaticText"
+			X = "59"
+			Y = "355"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "预计关闭日期："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "15"
+			Type = "ComboBox"
+			X = "159"
+			Y = "355"
+			Width = "91"
+			Height = "21"
+			Flags = "2"
+			Text = "2017-02-28"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "16"
+			Type = "TextButton"
+			X = "161"
+			Y = "411"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "新增"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "17"
+			Type = "TextButton"
+			X = "425"
+			Y = "411"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "清除"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "18"
+			Type = "FrameWindow"
+			X = "-2"
+			Y = "575"
+			Width = "734"
+			Height = "559"
+			Flags = "0"
+			WindowColour = "171,171,171,0,13"
+			Title = "关闭 ECN to line"
+			TitleBarHeight = "18"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "1"
+			Buttons = "1"
+			Icon = "DefaultApp"/>
+		<Element
+			CID = "19"
+			Type = "HorizontalTabBar"
+			X = "13"
+			Y = "609"
+			Width = "707"
+			Height = "512"
+			Flags = "0"
+			NextItemID = "4"
+			LeftMargin = "0"
+			RightMargin = "0"
+			SelectedTab = "0"
+			IsProportional = "1"
+			IsFullWidth = "0"
+			IsReversed = "0"
+			TabMarginLeft = "0"
+			TabMarginRight = "0"
+			TabMarginTop = "0"
+			TabMarginBottom = "0">
+			<TabBarItem
+				ItemID = "1"
+				Text = "关闭 ECN to line"
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "20"
+			Type = "Table"
+			X = "24"
+			Y = "678"
+			Width = "685"
+			Height = "433"
+			Flags = "0"
+			BackgroundColour = "171,171,171,0,13"
+			GridLineColour = "227,227,227,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "7"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "变更类型"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "ECN to line Number"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "变更内容"
+					Width = "140"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "预计实施日期"
+					Width = "100"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "5"
+					Heading = "预计关闭日期"
+					Width = "100"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "6"
+					Heading = ""
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Centre"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						方法
+					</Cell>
+					<Cell>
+						EA1214005
+					</Cell>
+					<Cell>
+						增加 EA 型号
+					</Cell>
+					<Cell>
+						2017-2-21
+					</Cell>
+					<Cell>
+						2017-2-22
+					</Cell>
+					<Cell>
+						关闭
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "21"
+			Type = "TextButton"
+			X = "26"
+			Y = "642"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "刷新"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "22"
+			Type = "FrameWindow"
+			X = "796"
+			Y = "640"
+			Width = "309"
+			Height = "179"
+			Flags = "0"
+			WindowColour = "171,171,171,0,13"
+			Title = "输入实际日期"
+			TitleBarHeight = "15"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "0"
+			Buttons = "1"
+			Icon = ""/>
+		<Element
+			CID = "23"
+			Type = "TabPanel"
+			X = "809"
+			Y = "668"
+			Width = "282"
+			Height = "90"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "24"
+			Type = "StaticText"
+			X = "832"
+			Y = "688"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "实际实施日期："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "25"
+			Type = "ComboBox"
+			X = "932"
+			Y = "688"
+			Width = "91"
+			Height = "21"
+			Flags = "2"
+			Text = "2017-02-25"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "26"
+			Type = "StaticText"
+			X = "831"
+			Y = "716"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "实际关闭日期："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "27"
+			Type = "ComboBox"
+			X = "931"
+			Y = "716"
+			Width = "91"
+			Height = "21"
+			Flags = "2"
+			Text = "2017-02-28"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "28"
+			Type = "TextButton"
+			X = "926"
+			Y = "775"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "关闭"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "29"
+			Type = "TextButton"
+			X = "1015"
+			Y = "775"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "取消"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "30"
+			Type = "EditBox"
+			X = "161"
+			Y = "102"
+			Width = "291"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "31"
+			Type = "StaticText"
+			X = "61"
+			Y = "102"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "240,240,240,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "变更单号："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+	</Elements>
+	<Connections
+		CID = "2"/>
+	<Notes
+		CID = "3"
+		NextCID = "2">
+		<Note
+			CID = "1"
+			Name = "Description">
+			
+		</Note>
+	</Notes>
+</Screen>

@@ -1,0 +1,527 @@
+<Screen
+	CID = "1"
+	HasCanvas = "1"
+	Width = "1076"
+	Height = "521"
+	NextCID = "4"
+	RepresentativeRefID = "1">
+	<Elements
+		CID = "1"
+		NextCID = "29">
+		<Element
+			CID = "1"
+			Type = "FrameWindow"
+			X = "0"
+			Y = "6"
+			Width = "1076"
+			Height = "515"
+			Flags = "0"
+			WindowColour = "90,78,177,0,13"
+			Title = "热定型生产"
+			TitleBarHeight = "18"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "1"
+			Buttons = "7"
+			Icon = "DefaultApp"/>
+		<Element
+			CID = "2"
+			Type = "TabPanel"
+			X = "6"
+			Y = "31"
+			Width = "1064"
+			Height = "484"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "3"
+			Type = "HorizontalTabBar"
+			X = "16"
+			Y = "41"
+			Width = "1044"
+			Height = "461"
+			Flags = "0"
+			NextItemID = "4"
+			LeftMargin = "7"
+			RightMargin = "0"
+			SelectedTab = "0"
+			IsProportional = "1"
+			IsFullWidth = "0"
+			IsReversed = "0"
+			TabMarginLeft = "0"
+			TabMarginRight = "0"
+			TabMarginTop = "0"
+			TabMarginBottom = "0">
+			<TabBarItem
+				ItemID = "1"
+				Text = "热定型生产设备1[设备1编号]"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "2"
+				Text = "热定型生产设备2[设备2编号]"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "3"
+				Text = "热定型生产设备3[设备3编号]"
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "4"
+			Type = "TabPanel"
+			X = "19"
+			Y = "64"
+			Width = "1038"
+			Height = "435"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "5"
+			Type = "GroupBox"
+			X = "29"
+			Y = "74"
+			Width = "615"
+			Height = "59"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "操作人员"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "6"
+			Type = "StaticText"
+			X = "735"
+			Y = "74"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "当前炉次："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "7"
+			Type = "EditBox"
+			X = "849"
+			Y = "74"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = "文本框"
+			IsDisabled = "0"
+			IsReadOnly = "1"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "8"
+			Type = "StaticText"
+			X = "41"
+			Y = "93"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "操作工："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "9"
+			Type = "EditBox"
+			X = "159"
+			Y = "93"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "10"
+			Type = "StaticText"
+			X = "351"
+			Y = "93"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "班次："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "11"
+			Type = "ComboBox"
+			X = "469"
+			Y = "93"
+			Width = "156"
+			Height = "21"
+			Flags = "2"
+			Text = "白班"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "12"
+			Type = "GroupBox"
+			X = "29"
+			Y = "149"
+			Width = "1018"
+			Height = "135"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "生产产品信息"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "13"
+			Type = "StaticText"
+			X = "41"
+			Y = "170"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "工单号："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "14"
+			Type = "EditBox"
+			X = "159"
+			Y = "170"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "15"
+			Type = "StaticText"
+			X = "41"
+			Y = "204"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "产品物料号："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "16"
+			Type = "EditBox"
+			X = "159"
+			Y = "204"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "1"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "17"
+			Type = "StaticText"
+			X = "355"
+			Y = "205"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "批次号："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "18"
+			Type = "EditBox"
+			X = "473"
+			Y = "205"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "1"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "19"
+			Type = "StaticText"
+			X = "670"
+			Y = "206"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "材质："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "20"
+			Type = "EditBox"
+			X = "788"
+			Y = "206"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "1"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "21"
+			Type = "StaticText"
+			X = "41"
+			Y = "238"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "生产数量："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "22"
+			Type = "EditBox"
+			X = "159"
+			Y = "238"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "23"
+			Type = "GroupBox"
+			X = "29"
+			Y = "299"
+			Width = "1018"
+			Height = "126"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "生产参数"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "24"
+			Type = "Table"
+			X = "41"
+			Y = "311"
+			Width = "994"
+			Height = "102"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "3"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "参数名称"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "参数值"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						实际定型温度
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						保温时间
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "25"
+			Type = "TextButton"
+			X = "761"
+			Y = "441"
+			Width = "135"
+			Height = "45"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "生产开始"
+			TextSize = "Large"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "26"
+			Type = "TextButton"
+			X = "912"
+			Y = "441"
+			Width = "135"
+			Height = "45"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "生产结束"
+			TextSize = "Large"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "1"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "27"
+			Type = "StaticText"
+			X = "690"
+			Y = "104"
+			Width = "145"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "当前炉次生产时间："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "28"
+			Type = "EditBox"
+			X = "849"
+			Y = "104"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = "文本框"
+			IsDisabled = "0"
+			IsReadOnly = "1"
+			HorzAlign = "Left"/>
+	</Elements>
+	<Connections
+		CID = "2"/>
+	<Notes
+		CID = "3"
+		NextCID = "2">
+		<Note
+			CID = "1"
+			Name = "Description">
+			
+		</Note>
+	</Notes>
+</Screen>

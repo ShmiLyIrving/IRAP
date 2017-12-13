@@ -1,0 +1,339 @@
+<Screen
+	CID = "1"
+	HasCanvas = "1"
+	Width = "993"
+	Height = "663"
+	NextCID = "4"
+	RepresentativeRefID = "2">
+	<Elements
+		CID = "1"
+		NextCID = "11">
+		<Element
+			CID = "2"
+			Type = "FrameWindow"
+			X = "0"
+			Y = "6"
+			Width = "993"
+			Height = "657"
+			Flags = "0"
+			WindowColour = "255,255,255,0,6"
+			Title = "原材料库房库存看板"
+			TitleBarHeight = "18"
+			BorderSize = "1"
+			IsBorderless = "0"
+			IsActive = "1"
+			HasSunkenWindow = "1"
+			FontAttributes = "1"
+			Buttons = "1"
+			Icon = "DefaultDoc"/>
+		<Element
+			CID = "3"
+			Type = "StaticText"
+			X = "20"
+			Y = "43"
+			Width = "100"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "当前库房："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "4"
+			Type = "EditBox"
+			X = "120"
+			Y = "43"
+			Width = "310"
+			Height = "21"
+			Flags = "2"
+			Text = "钢带库"
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "5"
+			Type = "Table"
+			X = "18"
+			Y = "78"
+			Width = "959"
+			Height = "530"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "5"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "物料号"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "物料名称"
+					Width = "400"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "安全库存量"
+					Width = "100"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "当前库存量"
+					Width = "100"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "6"
+			Type = "TextAnnotation"
+			X = "1022"
+			Y = "-5"
+			Width = "281"
+			Height = "178"
+			Flags = "0"
+			BorderColour = "0,0,128,0,0"
+			FillColour = "255,255,224,0,0"
+			TitleColour = "0,0,128,0,0"
+			AnnotationColour = "0,0,128,0,0"
+			Title = ""
+			Annotation = "1、当“当前库存量”大于“安全库存量”乘以（100%+百分比）时，背景色为黄色；&#13;&#10;2、当“当前库存量”大于等于“安全库存量”并且小于等于“安全库存量”乘以（100%+百分比）时，背景色为绿色；&#13;&#10;3、当“当前库存量”小于“安全库存量”时，背景色为红色。&#13;&#10;&#13;&#10;注意：背景色和文字颜色的搭配上要能清晰显示文字，又不会导致眼花为准。"
+			TitleFontAttributes = "1"
+			AnnotationFontAttributes = "0"
+			BorderWidth = "2"
+			ShadowDepth = "5"
+			HasBorder = "1"
+			HasShadow = "1"
+			Fill = "Solid"
+			TitleSize = "正常"
+			AnnotationSize = "正常"
+			HorzAlign = "Left"
+			VertAlign = "Top"/>
+		<Element
+			CID = "7"
+			Type = "DotAnnotationTarget"
+			X = "690"
+			Y = "133"
+			Width = "21"
+			Height = "21"
+			Flags = "7"
+			BorderColour = "255,0,0,0,0"
+			FillColour = "255,255,0,0,0"
+			LabelColour = "255,0,0,0,0"
+			Label = "i"
+			LabelSize = "正常"
+			IsSolid = "1"
+			IsSquare = "0"
+			InflateBy = "0"
+			BorderWidth = "3"
+			FontAttributes = "1"/>
+		<Element
+			CID = "8"
+			Type = "DotAnnotationTarget"
+			X = "1027"
+			Y = "-26"
+			Width = "21"
+			Height = "21"
+			Flags = "7"
+			BorderColour = "255,0,0,0,0"
+			FillColour = "255,255,0,0,0"
+			LabelColour = "255,0,0,0,0"
+			Label = "i"
+			LabelSize = "正常"
+			IsSolid = "1"
+			IsSquare = "0"
+			InflateBy = "0"
+			BorderWidth = "3"
+			FontAttributes = "1"/>
+		<Element
+			CID = "9"
+			Type = "StaticText"
+			X = "756"
+			Y = "616"
+			Width = "219"
+			Height = "32"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "153,51,0,0,0"
+			Text = "系统正在调试中......"
+			FontAttributes = "1"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "VeryLarge"
+			HorzAlign = "Left"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "10"
+			Type = "StaticText"
+			X = "773"
+			Y = "45"
+			Width = "199"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "当前库存时间：2017-2-28 11:22:31"
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+	</Elements>
+	<Connections
+		CID = "2"/>
+	<Notes
+		CID = "3"
+		NextCID = "2">
+		<Note
+			CID = "1"
+			Name = "Description">
+			
+		</Note>
+	</Notes>
+</Screen>

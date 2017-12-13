@@ -1,0 +1,32 @@
+<Project
+	CID = "1"
+	Title = "批次管理"
+	NextCID = "3"
+	IconCategory = "批次管理">
+	<Links
+		CID = "1"/>
+	<OpenFiles
+		CID = "2"
+		LastActive = "5">
+		<File
+			RootPath = "$Container"
+			RelativePathname = ".\批次管理-检验员确认.gui"
+			ViewSettings = ""/>
+		<File
+			RootPath = "$Absolute"
+			RelativePathname = "D:\Working\IRAP\Documents\GUI\MES\故障维修.gui"
+			ViewSettings = ""/>
+		<File
+			RootPath = "$Container"
+			RelativePathname = ".\批次管理-生产.gui"
+			ViewSettings = ""/>
+		<File
+			RootPath = "$Container"
+			RelativePathname = ".\批次管理-质量检查.gui"
+			ViewSettings = ""/>
+		<File
+			RootPath = "$Container"
+			RelativePathname = ".\铸环车间-熔炼与造型排程.gui"
+			ViewSettings = ""/>
+	</OpenFiles>
+</Project>
