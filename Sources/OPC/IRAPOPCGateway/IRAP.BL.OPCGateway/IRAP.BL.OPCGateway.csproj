@@ -75,9 +75,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IRAP.BL.OPCGateway.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="IRAP.BL.OPCGateway.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

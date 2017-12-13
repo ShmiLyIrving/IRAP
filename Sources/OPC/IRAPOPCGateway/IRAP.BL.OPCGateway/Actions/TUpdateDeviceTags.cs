@@ -72,6 +72,14 @@ namespace IRAP.BL.OPCGateway.Actions
                         case 2:
                             break;
                         case 3:
+                            string deviceCode = content.RequestBody.DeviceCode;
+                            TIRAPOPCDevices.Instance.Remove(
+                                deviceCode,
+                                TOPCGatewayGlobal.Instance.ConfigurationFile);
+
+                            content.ResponseBody.ErrCode = "0";
+                            content.ResponseBody.ErrText = "设备信息及标签删除成功";
+
                             break;
                     }
                 }

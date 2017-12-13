@@ -25,7 +25,7 @@ namespace IRAP.OPC.Library
             }
         }
 
-        private List<TIRAPOPCDevice> opcDevices = new List<TIRAPOPCDevice>();
+        private List<TIRAPOPCDevice> items = new List<TIRAPOPCDevice>();
 
         private TIRAPOPCDevices() { }
 
@@ -70,27 +70,64 @@ namespace IRAP.OPC.Library
 
         public List<TIRAPOPCDevice> Devices
         {
-            get { return opcDevices; }
+            get { return items; }
         }
 
         public int Count
         {
-            get { return opcDevices.Count; }
-        }
-
-        public int Add(TIRAPOPCDevice device, string dataFileName)
-        {
-            opcDevices.Add(device);
-            Save(device, dataFileName);
-
-            return opcDevices.Count - 1;
+            get { return items.Count; }
         }
 
         /// <summary>
-        /// 保存指定设备的 OPC 标签信息
+        /// 新增一个设备及其标签信息
         /// </summary>
-        /// <param name="device"></param>
-        public void Save(TIRAPOPCDevice device, string dataFileName)
+        /// <param name="device">设备及其标签信息对象</param>
+        /// <param name="dataFileName"></param>
+        /// <returns></returns>
+        public int Add(TIRAPOPCDevice device, string dataFileName)
+        {
+            Modify(1, device, dataFileName);
+            items.Add(device);
+
+            return items.Count - 1;
+        }
+
+        /// <summary>
+        /// 删除指定设备代码的设备及其标签信息
+        /// </summary>
+        /// <param name="deviceCode">设备代码</param>
+        /// <param name="dataFileName"></param>
+        public void Remove(string deviceCode, string dataFileName)
+        {
+            TIRAPOPCDevice findRlt = null;
+            foreach (TIRAPOPCDevice item in items)
+            {
+                if (item.DeviceCode == deviceCode)
+                {
+                    findRlt = item;
+                    break;
+                }
+            }
+            if (findRlt != null)
+            {
+                Modify(2, findRlt, dataFileName);
+                items.Remove(findRlt);
+            }
+            else
+            {
+                Exception error = new Exception();
+                error.Data["ErrCode"] = "900201";
+                error.Data["ErrText"] = string.Format("编号为[{0}]的设备未在系统中注册", deviceCode);
+                throw error;
+            }
+        }
+
+        /// <summary>
+        /// 编辑指定设备及其标签信息
+        /// </summary>
+        /// <param name="type">编辑类别：1-保存；2-删除</param>
+        /// <param name="device">设备对象</param>
+        public void Modify(int type, TIRAPOPCDevice device, string dataFileName)
         {
             XmlDocument xml = new XmlDocument();
             XmlNode rootNode = null;
@@ -121,42 +158,45 @@ namespace IRAP.OPC.Library
                             "[{0}] 文件中不存在 root 根节点"));
                     return;
                 }
+            }
 
-                // 在第一层子节点中查找 Device 节点，若没有找到则创建该节点
-                XmlNode devicesNode = null;
-                foreach (XmlNode node in rootNode.ChildNodes)
+            // 在第一层子节点中查找 Device 节点，若没有找到则创建该节点
+            XmlNode devicesNode = null;
+            foreach (XmlNode node in rootNode.ChildNodes)
+            {
+                if (node.Name == "Devices")
                 {
-                    if (node.Name == "Devices")
-                    {
-                        devicesNode = node;
-                        break;
-                    }
+                    devicesNode = node;
+                    break;
                 }
-                if (devicesNode == null)
-                {
-                    devicesNode = xml.CreateElement("Devices");
-                    rootNode.AppendChild(devicesNode);
-                }
+            }
+            if (devicesNode == null)
+            {
+                devicesNode = xml.CreateElement("Devices");
+                rootNode.AppendChild(devicesNode);
+            }
 
-                // 在 Devices 节点中查找指定 DeviceCode 的 Device 子节点，如果找到则从 Devices 节点中删除
-                XmlNode deviceNode = 
-                    GetChildNodeWithPropertyValue(
-                        devicesNode,
-                        "DeviceCode", 
-                        device.DeviceCode);
-                if (deviceNode != null)
-                {
-                    devicesNode.RemoveChild(deviceNode);
-                }
+            // 在 Devices 节点中查找指定 DeviceCode 的 Device 子节点，如果找到则从 Devices 节点中删除
+            XmlNode deviceNode =
+                GetChildNodeWithPropertyValue(
+                    devicesNode,
+                    "DeviceCode",
+                    device.DeviceCode);
+            if (deviceNode != null)
+            {
+                devicesNode.RemoveChild(deviceNode);
+            }
 
+            if (type == 1)
+            {
                 #region 添加设备节点
                 deviceNode = xml.ImportNode(device.GenerateXMLNode(), true);
                 devicesNode.AppendChild(deviceNode);
                 #endregion
-
-                // 保存 XML 到文件
-                xml.Save(dataFileName);
             }
+
+            // 保存 XML 到文件
+            xml.Save(dataFileName);
         }
 
         /// <summary>
@@ -165,7 +205,7 @@ namespace IRAP.OPC.Library
         /// <param name="dataFileName"></param>
         public void Load(string dataFileName)
         {
-            opcDevices.Clear();
+            items.Clear();
 
             XmlDocument xml = new XmlDocument();
             try
@@ -189,7 +229,7 @@ namespace IRAP.OPC.Library
             {
                 TIRAPOPCDevice device = TIRAPOPCDevice.LoadFromXMLNode(child);
                 if (device != null)
-                    opcDevices.Add(device);
+                    items.Add(device);
             }
         }
 
@@ -200,7 +240,7 @@ namespace IRAP.OPC.Library
         /// <returns>设备对象</returns>
         public TIRAPOPCDevice GetDeviceWithDeviceCode(string code)
         {
-            foreach (TIRAPOPCDevice device in opcDevices)
+            foreach (TIRAPOPCDevice device in items)
             {
                 if (device.DeviceCode == code)
                     return device;
