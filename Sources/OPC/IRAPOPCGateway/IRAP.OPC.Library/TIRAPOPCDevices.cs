@@ -86,10 +86,18 @@ namespace IRAP.OPC.Library
         /// <returns></returns>
         public int Add(TIRAPOPCDevice device, string dataFileName)
         {
-            Modify(1, device, dataFileName);
+            ModifyDataFile(1, device, dataFileName);
             items.Add(device);
 
             return items.Count - 1;
+        }
+
+        public void Modify(TIRAPOPCDevice device, string dataFileName)
+        {
+            ModifyDataFile(1, device, dataFileName);
+            TIRAPOPCDevice old = GetDeviceWithDeviceCode(device.DeviceCode);
+            items.Remove(old);
+            items.Add(device);
         }
 
         /// <summary>
@@ -110,7 +118,7 @@ namespace IRAP.OPC.Library
             }
             if (findRlt != null)
             {
-                Modify(2, findRlt, dataFileName);
+                ModifyDataFile(2, findRlt, dataFileName);
                 items.Remove(findRlt);
             }
             else
@@ -127,7 +135,7 @@ namespace IRAP.OPC.Library
         /// </summary>
         /// <param name="type">编辑类别：1-保存；2-删除</param>
         /// <param name="device">设备对象</param>
-        public void Modify(int type, TIRAPOPCDevice device, string dataFileName)
+        public void ModifyDataFile(int type, TIRAPOPCDevice device, string dataFileName)
         {
             XmlDocument xml = new XmlDocument();
             XmlNode rootNode = null;

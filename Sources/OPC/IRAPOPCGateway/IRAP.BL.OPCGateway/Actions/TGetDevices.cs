@@ -23,39 +23,47 @@ namespace IRAP.BL.OPCGateway.Actions
 
         public string DoAction()
         {
-            content.ResponseBody.ErrCode = "999999";
-            content.ResponseBody.ErrText = "功能正在开发中......";
+            content.Response.ErrCode = "999999";
+            content.Response.ErrText = "功能正在开发中......";
 
             try
             {
-                int ordinal = 1;
-                foreach (TIRAPOPCDevice device in TIRAPOPCDevices.Instance.Devices)
+                if (content.Request.ExCode == "GetDevices")
                 {
-                    content.ResponseBody.AddDeviceDetail(
-                        new TGetDevicesRspDetail()
-                        {
-                            Ordinal = ordinal++,
-                            DeviceCode = device.DeviceCode,
-                            DeviceName = device.DeviceName,
-                            KepServAddr = device.KepServerAddr,
-                            KepServName = device.KepServerName,
-                            KepServChannel = device.KepServerChannel,
-                            KepServDevice = device.KepServerDevice,
-                        });
-                }
+                    int ordinal = 1;
+                    foreach (TIRAPOPCDevice device in TIRAPOPCDevices.Instance.Devices)
+                    {
+                        content.Response.AddDeviceDetail(
+                            new TGetDevicesRspDetail()
+                            {
+                                Ordinal = ordinal++,
+                                DeviceCode = device.DeviceCode,
+                                DeviceName = device.DeviceName,
+                                KepServAddr = device.KepServerAddr,
+                                KepServName = device.KepServerName,
+                                KepServChannel = device.KepServerChannel,
+                                KepServDevice = device.KepServerDevice,
+                            });
+                    }
 
-                content.ResponseBody.ErrCode = "0";
-                content.ResponseBody.ErrText = "设备列表获取完成";
+                    content.Response.ErrCode = "0";
+                    content.Response.ErrText = "设备列表获取完成";
+                }
+                else
+                {
+                    content.Response.ErrCode = "900000";
+                    content.Response.ErrText = "报文体中的交易代码和报文头中的交易代码不一致";
+                }
             }
             catch (Exception error)
             {
-                content.ResponseBody.ErrText = string.Format("系统抛出的错误：[{0}]", error.Message);
+                content.Response.ErrText = string.Format("系统抛出的错误：[{0}]", error.Message);
                 foreach (DictionaryEntry de in error.Data)
                 {
                     if (de.Key.ToString().ToUpper() == "ERRCODE")
-                        content.ResponseBody.ErrCode = de.Value.ToString();
+                        content.Response.ErrCode = de.Value.ToString();
                     if (de.Key.ToString().ToUpper() == "ERRTEXT")
-                        content.ResponseBody.ErrText = de.Value.ToString();
+                        content.Response.ErrText = de.Value.ToString();
                 }
             }
 

@@ -15,12 +15,12 @@ namespace IRAP.Interface.OPC
             bodyResponse = new TUpdateDeviceTagsRspBody();
         }
 
-        public TUpdateDeviceTagsReqBody RequestBody
+        public TUpdateDeviceTagsReqBody Request
         {
             get { return bodyRequest as TUpdateDeviceTagsReqBody; }
         }
 
-        public TUpdateDeviceTagsRspBody ResponseBody
+        public TUpdateDeviceTagsRspBody Response
         {
             get { return bodyResponse as TUpdateDeviceTagsRspBody; }
         }

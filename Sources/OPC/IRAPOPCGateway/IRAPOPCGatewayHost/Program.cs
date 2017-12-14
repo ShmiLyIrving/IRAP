@@ -46,7 +46,7 @@ namespace IRAPOPCGatewayHost
                                 KepServerAddr = "127.0.0.1",
                                 KepServerName = "KepServer.KEPServerEX.V5",
                             };
-                            TIRAPOPCDevices.Instance.Modify(
+                            TIRAPOPCDevices.Instance.ModifyDataFile(
                                 1,
                                 device,
                                 string.Format(

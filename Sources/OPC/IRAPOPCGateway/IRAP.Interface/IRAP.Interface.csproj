@@ -44,6 +44,13 @@
   <ItemGroup>
     <Compile Include="DCS\TUserAuthenticate.cs" />
     <Compile Include="OPC\TGetDevicesContent.cs" />
+    <Compile Include="OPC\TGetDevicesReqBody.cs" />
+    <Compile Include="OPC\TGetDevicesRspBody.cs" />
+    <Compile Include="OPC\TGetDevicesRspDetail.cs" />
+    <Compile Include="OPC\TGetDeviceTagsContent.cs" />
+    <Compile Include="OPC\TGetDeviceTagsReqBody.cs" />
+    <Compile Include="OPC\TGetDeviceTagsRspBody.cs" />
+    <Compile Include="OPC\TGetDeviceTagsRspDetail.cs" />
     <Compile Include="OPC\TUpdateDeviceTagsContent.cs" />
     <Compile Include="OPC\TUpdateDeviceTagsReqBody.cs" />
     <Compile Include="OPC\TUpdateDeviceTagsReqDetail.cs" />

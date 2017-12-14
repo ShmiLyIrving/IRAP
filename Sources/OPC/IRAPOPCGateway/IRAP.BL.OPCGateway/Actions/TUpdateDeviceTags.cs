@@ -26,72 +26,104 @@ namespace IRAP.BL.OPCGateway.Actions
                 foreach (DictionaryEntry de in error.Data)
                 {
                     if (de.Key.ToString().ToUpper() == "ERRCODE")
-                        content.ResponseBody.ErrCode = de.Value.ToString();
+                        content.Response.ErrCode = de.Value.ToString();
                     if (de.Key.ToString().ToUpper() == "ERRTEXT")
-                        content.ResponseBody.ErrText = de.Value.ToString();
+                        content.Response.ErrText = de.Value.ToString();
                 }
             }
         }
 
         public string DoAction()
         {
-            if (content.RequestBody != null)
+            if (content.Request != null)
             {
-                content.ResponseBody.ErrCode = "999999";
-                content.ResponseBody.ErrText = "功能正在开发中......";
+                content.Response.ErrCode = "999999";
+                content.Response.ErrText = "功能正在开发中......";
 
                 try
                 {
-                    switch (content.RequestBody.UpdateType)
+                    if (content.Request.ExCode == "UpdateDeviceTags")
                     {
-                        case 1:     // 新增设备
-                            TIRAPOPCDevice device =
-                                TIRAPOPCDevices.Instance.GetDeviceWithDeviceCode(
-                                    content.RequestBody.DeviceCode);
-                            if (device != null)
-                            {
-                                content.ResponseBody.ErrCode = "900102";
-                                content.ResponseBody.ErrText =
-                                    string.Format(
-                                        "设备号[{0}]已经存在，对应的设备名称[{1}]，不能新增",
-                                        device.DeviceCode,
-                                        device.DeviceName);
-                                break;
-                            }
-                            else
-                            {
-                                device = new TIRAPOPCDevice(content.RequestBody);
+                        TIRAPOPCDevice device = null;
+
+                        switch (content.Request.UpdateType)
+                        {
+                            case 1:     // 新增设备
+                                device =
+                                    TIRAPOPCDevices.Instance.GetDeviceWithDeviceCode(
+                                        content.Request.DeviceCode);
+                                if (device != null)
+                                {
+                                    Exception error = new Exception();
+                                    error.Data["ErrCode"] = "900102";
+                                    error.Data["ErrText"] =
+                                        string.Format(
+                                            "设备号[{0}]已经存在，对应的设备名称[{1}]，不能新增",
+                                            device.DeviceCode,
+                                            device.DeviceName);
+                                    throw error;
+                                }
+
+                                device = new TIRAPOPCDevice(content.Request);
                                 TIRAPOPCDevices.Instance.Add(
-                                    device, 
+                                    device,
                                     TOPCGatewayGlobal.Instance.ConfigurationFile);
 
-                                content.ResponseBody.ErrCode = "0";
-                                content.ResponseBody.ErrText = "设备信息及标签新增成功";
-                            }
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            string deviceCode = content.RequestBody.DeviceCode;
-                            TIRAPOPCDevices.Instance.Remove(
-                                deviceCode,
-                                TOPCGatewayGlobal.Instance.ConfigurationFile);
+                                content.Response.ErrCode = "0";
+                                content.Response.ErrText = "设备信息及标签新增成功";
 
-                            content.ResponseBody.ErrCode = "0";
-                            content.ResponseBody.ErrText = "设备信息及标签删除成功";
+                                break;
+                            case 2:     // 修改设备及标签信息
+                                device =
+                                    TIRAPOPCDevices.Instance.GetDeviceWithDeviceCode(
+                                        content.Request.DeviceCode);
+                                if (device == null)
+                                {
+                                    Exception error = new Exception();
+                                    error.Data["ErrCode"] = "121026";
+                                    error.Data["ErrText"] =
+                                        string.Format(
+                                            "无效的设备代码({0})",
+                                            content.Request.DeviceCode);
+                                    throw error;
+                                }
 
-                            break;
+                                device = new TIRAPOPCDevice(content.Request);
+                                TIRAPOPCDevices.Instance.Modify(
+                                    device,
+                                    TOPCGatewayGlobal.Instance.ConfigurationFile);
+
+                                content.Response.ErrCode = "0";
+                                content.Response.ErrText = "设备信息及标签修改成功";
+
+                                break;
+                            case 3:     // 删除设备
+                                string deviceCode = content.Request.DeviceCode;
+                                TIRAPOPCDevices.Instance.Remove(
+                                    deviceCode,
+                                    TOPCGatewayGlobal.Instance.ConfigurationFile);
+
+                                content.Response.ErrCode = "0";
+                                content.Response.ErrText = "设备信息及标签删除成功";
+
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        content.Response.ErrCode = "900000";
+                        content.Response.ErrText = "报文体中的交易代码和报文头中的交易代码不一致";
                     }
                 }
                 catch (Exception error)
                 {
-                    content.ResponseBody.ErrText = string.Format("系统抛出的错误：[{0}]", error.Message);
+                    content.Response.ErrText = string.Format("系统抛出的错误：[{0}]", error.Message);
                     foreach (DictionaryEntry de in error.Data)
                     {
                         if (de.Key.ToString().ToUpper() == "ERRCODE")
-                            content.ResponseBody.ErrCode = de.Value.ToString();
+                            content.Response.ErrCode = de.Value.ToString();
                         if (de.Key.ToString().ToUpper() == "ERRTEXT")
-                            content.ResponseBody.ErrText = de.Value.ToString();
+                            content.Response.ErrText = de.Value.ToString();
                     }
                 }
             }

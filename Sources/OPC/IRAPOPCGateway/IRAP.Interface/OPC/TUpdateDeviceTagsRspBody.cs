@@ -20,8 +20,13 @@ namespace IRAP.Interface.OPC
         protected override XmlNode GenerateUserDefineNode()
         {
             XmlDocument xml = new XmlDocument();
+            XmlNode result = xml.CreateElement("Result");
+
             XmlNode node = xml.CreateElement("Param");
-            return IRAPXMLUtils.GenerateXMLAttribute(node, this);
+            node = IRAPXMLUtils.GenerateXMLAttribute(node, this);
+            result.AppendChild(node);
+
+            return result;
         }
     }
 }
