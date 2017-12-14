@@ -136,27 +136,28 @@ namespace IRAP.BL.UTS {
         /// <param name="sysLogID">系统登录标识</param>
         /// <param name="blName"></param>
         /// <returns></returns>
-        public IRAPError sfn_Get_ProcToCreateTBL(int communityID, int t19LeafID, int treeID, int txLeafID,
+        public IRAPJsonResult sfn_Get_ProcToCreateTBL(int communityID, int t19LeafID, int treeID, int txLeafID,
             long sysLogID, string blName, out int errCode, out string errText) {
 
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            List<IRAPError> data = new List<IRAPError>();
             try {
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
-                paramList.Add(new IRAPProcParameter("@communityID", DbType.Int32, communityID));
-                paramList.Add(new IRAPProcParameter("@t19LeafID", DbType.Int32, t19LeafID));
-                paramList.Add(new IRAPProcParameter("@treeID", DbType.Int32, treeID));
-                paramList.Add(new IRAPProcParameter("@txLeafID", DbType.Int32, txLeafID));
-                paramList.Add(new IRAPProcParameter("@sysLogID", DbType.Int64, sysLogID));
-                paramList.Add(new IRAPProcParameter("@errCode", DbType.Int32, ParameterDirection.Output, 4));
-                paramList.Add(new IRAPProcParameter("@errText", DbType.String, ParameterDirection.Output, 800));
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T19LeafID", DbType.Int32, t19LeafID));
+                paramList.Add(new IRAPProcParameter("@TreeID", DbType.Int32, treeID));
+                paramList.Add(new IRAPProcParameter("@TxLeafID", DbType.Int32, txLeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 800));
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用存储过程 IRAP..sfn_Get_ProcToCreateTBL，" +
                         "参数：communityID={0}|t19LeafID={1}|treeID={2}|txLeafID={3}|sysLogID={4}|blName={5}",
-                        communityID, t19LeafID, treeID, txLeafID, sysLogID),strProcedureName);
+                        communityID, t19LeafID, treeID, txLeafID, sysLogID, blName), strProcedureName);
                 #endregion
 
                 #region 执行数据库函数或存储过程
@@ -167,7 +168,8 @@ namespace IRAP.BL.UTS {
                         errCode = err.ErrCode;
                         errText = err.ErrText;
                         WriteLog.Instance.Write(errText, strProcedureName);
-                        return err;
+                        data.Add(err);
+                        
                     }
                 } catch (Exception ex) {
                     IRAPError errInfo = new IRAPError(9999, ex.Message);
@@ -175,12 +177,13 @@ namespace IRAP.BL.UTS {
                     errText = string.Format("调用 IRAP..sfn_GetXML_ImportInfo 函数发生异常：{0}", ex.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(ex.StackTrace, strProcedureName);
-                    return errInfo;
+                    data.Add(errInfo);
                 }
                 #endregion
             } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+            return Json(data);
         }
 
         public IRAPJsonResult sfn_AccessibleFilteredLeafSet(int communityID, int treeID, int scenarioIndex,
