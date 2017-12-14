@@ -450,9 +450,9 @@ namespace IRAP.WCF.Client.Method {
                             "({0}){1}", errCode, errText),
                         strProcedureName);
 
-                    var err = rlt as IRAPError;
-                    errCode = err.ErrCode;
-                    errText = err.ErrText;
+                    var err = rlt as List<IRAPError>;
+                    errCode = err[0].ErrCode;
+                    errText = err[0].ErrText;
                     WriteLog.Instance.Write(errText, strProcedureName);
                 }
                 #endregion
