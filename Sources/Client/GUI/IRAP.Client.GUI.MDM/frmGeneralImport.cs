@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -152,6 +153,7 @@ namespace IRAP.Client.GUI.MDM {
             //设置提示信息
             if (_treeInfo.TreeID == 0) {
                 this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                CreateGridColumn();
             } else {
                 this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 this.layoutItemSelect.Text = _treeInfo.PromptStr;
@@ -207,10 +209,10 @@ namespace IRAP.Client.GUI.MDM {
             }
         }
 
-        private void CreateGridColumn() {
+        private bool CreateGridColumn() {
             this.gridView1.Columns.Clear();
             if (!GetImportInfoXml()) {
-                return;
+                return false;
             }
             foreach (ImportMetaData item in _importMetaData) {
                 GridColumn col = new GridColumn();
@@ -219,9 +221,11 @@ namespace IRAP.Client.GUI.MDM {
                 col.Name = item.ColName;
                 col.Visible = Convert.ToInt32(item.Visible) == 1;
                 col.OptionsColumn.AllowEdit = Convert.ToInt32(item.EditEnabled) == 1;
+                col.Tag = item;
                 this.gridView1.Columns.Add(col);
             }
             this.gridView1.BestFitColumns();
+            return true;
         }
 
         #endregion
@@ -242,7 +246,7 @@ namespace IRAP.Client.GUI.MDM {
             if (_currentLeaf == null) {
                 return;
             }
-            CreateGridColumn();
+            this.btnImport.Enabled = CreateGridColumn();
         }
 
         private void comboBoxEdit1_QueryPopUp(object sender, CancelEventArgs e) {
@@ -251,6 +255,77 @@ namespace IRAP.Client.GUI.MDM {
             }
             SetDropDownList();
         }
+
+        private void comboBoxEdit1_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyValue == 13) {
+                if (!this.layoutControlGroup2.Visible) {
+                    return;
+                }
+                this.comboBoxEdit1.ShowPopup();
+                e.Handled = true;
+            }
+        }
         #endregion
+
+        private void btnImport_CheckedChanged(object sender, EventArgs e) {
+            if (!this.btnImport.Checked) {
+                return;
+            }
+            OpenFile();
+            this.btnImport.Checked = false;
+        }
+
+        private void OpenFile() {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Excel文件";
+            ofd.FileName = "";
+            //ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            ofd.Filter = "所有文件(*.*)|*.*|Excel2003文件(*.xls)|*.xls|Excel2007文件(*.xlsx)|*.xlsx";
+            ofd.ValidateNames = true;
+            ofd.CheckFileExists = true;
+            ofd.CheckPathExists = true;
+            string strName = string.Empty;
+            if (ofd.ShowDialog() == DialogResult.OK) {
+                strName = ofd.FileName;
+            }
+            if (strName == "") {
+                XtraMessageBox.Show("没有选择Excel文件！无法进行数据导入", "提示");
+                return;
+            } else {
+                try {
+                    DataSet myDs = new DataSet();
+                    string text = string.Format("Provider=Microsoft.Ace.OleDb.12.0 ; Data Source = '{0}';Extended Properties='Excel 12.0; HDR=Yes; IMEX=1'", strName);
+                    string excelFirstTableName = GetExcelFirstTableName(text);
+                    myDs.Tables.Clear();
+                    myDs.Clear();
+                    this.gridControl1.DataSource = null;
+                    OleDbConnection selectConnection = new OleDbConnection(text);
+                    OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(string.Format("select * from [{0}]", excelFirstTableName), selectConnection);
+                    oleDbDataAdapter.Fill(myDs);
+                    this.gridControl1.DataSource = myDs.Tables[0];
+                    this.gridView1.PopulateColumns();
+                } catch (Exception ex) {
+                    XtraMessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 返回Excel第一个工作表表名
+        /// </summary>
+        /// <param name="connectstring">excel连接字符串</param>
+        /// <returns></returns>
+        public static string GetExcelFirstTableName(string connectstring) {
+            using (OleDbConnection connection = new OleDbConnection(connectstring)) {
+                string tableName = string.Empty;
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                DataTable dt = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                if (dt != null && dt.Rows.Count > 0) {
+                    tableName = (dt.Rows[0][2]).ToString();
+                }
+                return tableName;
+            }
+        }
     }
 }

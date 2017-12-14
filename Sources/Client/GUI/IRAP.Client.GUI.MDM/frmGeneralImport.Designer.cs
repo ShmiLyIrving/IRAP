@@ -26,26 +26,31 @@
             this.components = new System.ComponentModel.Container();
             this.treeList = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.btnImport = new System.Windows.Forms.Button();
             this.panelRight = new DevExpress.XtraEditors.PanelControl();
+            this.checkEditLog = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditImportAll = new DevExpress.XtraEditors.CheckEdit();
+            this.btnLoadPart = new DevExpress.XtraEditors.CheckButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLoad = new DevExpress.XtraEditors.CheckButton();
+            this.btnValidate = new DevExpress.XtraEditors.CheckButton();
             this.panelRightTop = new DevExpress.XtraLayout.LayoutControl();
+            this.btnExport = new DevExpress.XtraEditors.CheckButton();
+            this.btnImport = new DevExpress.XtraEditors.CheckButton();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.btnExport = new System.Windows.Forms.Button();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutItemSelect = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutItemExport = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutItemImport = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelRight)).BeginInit();
             this.panelRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditLog.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditImportAll.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelRightTop)).BeginInit();
@@ -53,9 +58,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutItemSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutItemExport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutItemImport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -106,32 +111,54 @@
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 0;
             // 
-            // btnImport
-            // 
-            this.btnImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnImport.Location = new System.Drawing.Point(332, 12);
-            this.btnImport.MaximumSize = new System.Drawing.Size(67, 0);
-            this.btnImport.MinimumSize = new System.Drawing.Size(67, 0);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(67, 22);
-            this.btnImport.TabIndex = 2;
-            this.btnImport.Text = "导入";
-            this.btnImport.UseVisualStyleBackColor = false;
-            // 
             // panelRight
             // 
             this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelRight.Controls.Add(this.checkEditLog);
+            this.panelRight.Controls.Add(this.checkEditImportAll);
+            this.panelRight.Controls.Add(this.btnLoadPart);
             this.panelRight.Controls.Add(this.gridControl1);
-            this.panelRight.Controls.Add(this.button2);
-            this.panelRight.Controls.Add(this.button1);
+            this.panelRight.Controls.Add(this.btnLoad);
+            this.panelRight.Controls.Add(this.btnValidate);
             this.panelRight.Controls.Add(this.panelRightTop);
             this.panelRight.Location = new System.Drawing.Point(279, 62);
             this.panelRight.Name = "panelRight";
             this.panelRight.Size = new System.Drawing.Size(605, 430);
             this.panelRight.TabIndex = 3;
+            // 
+            // checkEditLog
+            // 
+            this.checkEditLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkEditLog.AutoSizeInLayoutControl = true;
+            this.checkEditLog.EditValue = true;
+            this.checkEditLog.Location = new System.Drawing.Point(360, 406);
+            this.checkEditLog.Name = "checkEditLog";
+            this.checkEditLog.Properties.Caption = "加载后是否迁移导入日志";
+            this.checkEditLog.Size = new System.Drawing.Size(165, 19);
+            this.checkEditLog.TabIndex = 17;
+            // 
+            // checkEditImportAll
+            // 
+            this.checkEditImportAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkEditImportAll.EditValue = true;
+            this.checkEditImportAll.Location = new System.Drawing.Point(248, 406);
+            this.checkEditImportAll.Name = "checkEditImportAll";
+            this.checkEditImportAll.Properties.Caption = "是否导入全量";
+            this.checkEditImportAll.Size = new System.Drawing.Size(105, 19);
+            this.checkEditImportAll.TabIndex = 16;
+            // 
+            // btnLoadPart
+            // 
+            this.btnLoadPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLoadPart.Enabled = false;
+            this.btnLoadPart.Location = new System.Drawing.Point(167, 402);
+            this.btnLoadPart.Name = "btnLoadPart";
+            this.btnLoadPart.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.btnLoadPart.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadPart.TabIndex = 15;
+            this.btnLoadPart.Text = "部分加载";
             // 
             // gridControl1
             // 
@@ -164,38 +191,69 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // button2
+            // btnLoad
             // 
-            this.button2.Location = new System.Drawing.Point(86, 402);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLoad.Enabled = false;
+            this.btnLoad.Location = new System.Drawing.Point(86, 402);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.btnLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnLoad.TabIndex = 13;
+            this.btnLoad.Text = "加载";
             // 
-            // button1
+            // btnValidate
             // 
-            this.button1.Location = new System.Drawing.Point(5, 402);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnValidate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnValidate.Enabled = false;
+            this.btnValidate.Location = new System.Drawing.Point(5, 402);
+            this.btnValidate.Name = "btnValidate";
+            this.btnValidate.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.btnValidate.Size = new System.Drawing.Size(75, 23);
+            this.btnValidate.TabIndex = 12;
+            this.btnValidate.Text = "验证";
             // 
             // panelRightTop
             // 
             this.panelRightTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelRightTop.AutoScroll = false;
-            this.panelRightTop.Controls.Add(this.comboBoxEdit1);
-            this.panelRightTop.Controls.Add(this.btnImport);
             this.panelRightTop.Controls.Add(this.btnExport);
+            this.panelRightTop.Controls.Add(this.btnImport);
+            this.panelRightTop.Controls.Add(this.comboBoxEdit1);
             this.panelRightTop.Location = new System.Drawing.Point(1, 2);
             this.panelRightTop.Margin = new System.Windows.Forms.Padding(0);
             this.panelRightTop.Name = "panelRightTop";
             this.panelRightTop.Root = this.layoutControlGroup2;
             this.panelRightTop.Size = new System.Drawing.Size(601, 46);
             this.panelRightTop.TabIndex = 11;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Enabled = false;
+            this.btnExport.Location = new System.Drawing.Point(417, 12);
+            this.btnExport.MaximumSize = new System.Drawing.Size(68, 0);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.btnExport.Size = new System.Drawing.Size(68, 22);
+            this.btnExport.StyleController = this.panelRightTop;
+            this.btnExport.TabIndex = 18;
+            this.btnExport.Text = "导出";
+            // 
+            // btnImport
+            // 
+            this.btnImport.AllowFocus = false;
+            this.btnImport.Enabled = false;
+            this.btnImport.Location = new System.Drawing.Point(345, 12);
+            this.btnImport.MaximumSize = new System.Drawing.Size(68, 0);
+            this.btnImport.MinimumSize = new System.Drawing.Size(68, 0);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.btnImport.Size = new System.Drawing.Size(68, 22);
+            this.btnImport.StyleController = this.panelRightTop;
+            this.btnImport.TabIndex = 17;
+            this.btnImport.Text = "导入";
+            this.btnImport.CheckedChanged += new System.EventHandler(this.btnImport_CheckedChanged);
             // 
             // comboBoxEdit1
             // 
@@ -204,24 +262,12 @@
             this.comboBoxEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(169, 20);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(182, 20);
             this.comboBoxEdit1.StyleController = this.panelRightTop;
             this.comboBoxEdit1.TabIndex = 4;
             this.comboBoxEdit1.SelectedValueChanged += new System.EventHandler(this.comboBoxEdit1_SelectedValueChanged);
             this.comboBoxEdit1.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.comboBoxEdit1_QueryPopUp);
-            // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnExport.Location = new System.Drawing.Point(403, 12);
-            this.btnExport.MaximumSize = new System.Drawing.Size(67, 0);
-            this.btnExport.MinimumSize = new System.Drawing.Size(67, 0);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(67, 22);
-            this.btnExport.TabIndex = 5;
-            this.btnExport.Text = "导出";
-            this.btnExport.UseVisualStyleBackColor = false;
+            this.comboBoxEdit1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxEdit1_KeyDown);
             // 
             // layoutControlGroup2
             // 
@@ -229,9 +275,9 @@
             this.layoutControlGroup2.GroupBordersVisible = false;
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutItemSelect,
-            this.layoutItemExport,
             this.emptySpaceItem1,
-            this.layoutItemImport});
+            this.layoutControlItem1,
+            this.layoutControlItem2});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(601, 46);
@@ -242,37 +288,39 @@
             this.layoutItemSelect.Control = this.comboBoxEdit1;
             this.layoutItemSelect.Location = new System.Drawing.Point(0, 0);
             this.layoutItemSelect.Name = "layoutItemSelect";
-            this.layoutItemSelect.Size = new System.Drawing.Size(320, 26);
+            this.layoutItemSelect.Size = new System.Drawing.Size(333, 26);
             this.layoutItemSelect.Text = "请选择一个具体产线或区域";
             this.layoutItemSelect.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutItemSelect.TextSize = new System.Drawing.Size(144, 14);
             this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
-            // layoutItemExport
-            // 
-            this.layoutItemExport.Control = this.btnExport;
-            this.layoutItemExport.Location = new System.Drawing.Point(391, 0);
-            this.layoutItemExport.Name = "layoutItemExport";
-            this.layoutItemExport.Size = new System.Drawing.Size(71, 26);
-            this.layoutItemExport.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutItemExport.TextVisible = false;
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(462, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(477, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(119, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(104, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutItemImport
+            // layoutControlItem1
             // 
-            this.layoutItemImport.Control = this.btnImport;
-            this.layoutItemImport.Location = new System.Drawing.Point(320, 0);
-            this.layoutItemImport.Name = "layoutItemImport";
-            this.layoutItemImport.Size = new System.Drawing.Size(71, 26);
-            this.layoutItemImport.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutItemImport.TextVisible = false;
+            this.layoutControlItem1.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.layoutControlItem1.Control = this.btnImport;
+            this.layoutControlItem1.Location = new System.Drawing.Point(333, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(72, 26);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.layoutControlItem2.Control = this.btnExport;
+            this.layoutControlItem2.Location = new System.Drawing.Point(405, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(72, 26);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
             // 
             // frmGeneralImport
             // 
@@ -291,6 +339,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelRight)).EndInit();
             this.panelRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditLog.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditImportAll.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelRightTop)).EndInit();
@@ -298,9 +348,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutItemSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutItemExport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutItemImport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -308,21 +358,24 @@
         #endregion
 
         private DevExpress.XtraTreeList.TreeList treeList;
-        private System.Windows.Forms.Button btnImport;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraEditors.PanelControl panelRight;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
-        private System.Windows.Forms.Button btnExport;
         private DevExpress.XtraLayout.LayoutControl panelRightTop;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutItemSelect;
-        private DevExpress.XtraLayout.LayoutControlItem layoutItemExport;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.Converter.LayoutConverter layoutConverter1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutItemImport;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private DevExpress.XtraEditors.CheckButton btnValidate;
+        private DevExpress.XtraEditors.CheckButton btnLoad;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.CheckEdit checkEditLog;
+        private DevExpress.XtraEditors.CheckEdit checkEditImportAll;
+        private DevExpress.XtraEditors.CheckButton btnLoadPart;
+        private DevExpress.XtraEditors.CheckButton btnExport;
+        private DevExpress.XtraEditors.CheckButton btnImport;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }
