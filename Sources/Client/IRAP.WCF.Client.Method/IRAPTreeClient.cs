@@ -5,6 +5,7 @@ using IRAPShared;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -538,6 +539,97 @@ namespace IRAP.WCF.Client.Method {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
+        }
+
+        public void DeleteOldTableData(string tableName, long importLogId, out int errCode, out string errText) {
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+
+            try {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("tableName", tableName);
+                hashParams.Add("importLogId", importLogId);
+                WriteLog.Instance.Write(
+                    string.Format("执行SQL delete from IRAPDPA..{0} where ImportLogID ={1}", tableName, importLogId),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.UTS.dll",
+                            "IRAP.BL.UTS.GeneralImport",
+                            "DeleteOldTableData",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    var err = rlt as List<IRAPError>;
+                    errCode = err[0].ErrCode;
+                    errText = err[0].ErrText;
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+            } catch (Exception ex) {
+                WriteLog.Instance.Write(ex.Message, strProcedureName);
+                errCode = -1001;
+                errText = ex.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+
+        public void InsertTempTableData(string tableName, DataTable data, out int errCode, out string errText) {
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+
+            try {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("tableName", tableName);
+                hashParams.Add("data", data);
+                WriteLog.Instance.Write(string.Format("将数据插入临时表{0}中", tableName),strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.UTS.dll",
+                            "IRAP.BL.UTS.GeneralImport",
+                            "InsertTempTableData",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    var err = rlt as List<IRAPError>;
+                    errCode = err[0].ErrCode;
+                    errText = err[0].ErrText;
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+            } catch (Exception ex) {
+                WriteLog.Instance.Write(ex.Message, strProcedureName);
+                errCode = -1001;
+                errText = ex.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
     }
 }
