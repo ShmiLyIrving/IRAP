@@ -8,10 +8,8 @@ using IRAP.Global;
 
 namespace IRAP.Interface.OPC
 {
-    public class TUpdateDeviceTagsReqBody : TSoftlandBody
+    public class TUpdateKepServReqBody : TSoftlandBody
     {
-        private List<TUpdateDeviceTagsReqDetail> details = new List<TUpdateDeviceTagsReqDetail>();
-
         /// <summary>
         /// 交易代码
         /// </summary>
@@ -24,28 +22,15 @@ namespace IRAP.Interface.OPC
         /// 更新模式
         /// </summary>
         public int UpdateType { get; set; }
-        public string DeviceCode { get; set; }
-        public string DeviceName { get; set; }
         public string KepServAddr { get; set; }
         public string KepServName { get; set; }
-        public string KepServChannel { get; set; }
-        public string KepServDevice { get; set; }
-
-        /// <summary>
-        /// 请求报文中的行集
-        /// </summary>
-        [IRAPXMLNodeAttrORMap(IsORMap = false)]
-        public List<TUpdateDeviceTagsReqDetail> Details
-        {
-            get { return details; }
-        }
 
         protected override XmlNode GenerateUserDefineNode()
         {
-            return null;
+            throw new NotImplementedException();
         }
 
-        public static TUpdateDeviceTagsReqBody LoadFromXMLNode(XmlNode node)
+        public static TUpdateKepServReqBody LoadFromXMLNode(XmlNode node)
         {
             if (!node.HasChildNodes)
             {
@@ -75,13 +60,13 @@ namespace IRAP.Interface.OPC
             }
 
             // 筛选出第一个 Param 节点并解析生成 TUpdateDeviceTagsReqBody 对象，其余节点忽略
-            TUpdateDeviceTagsReqBody rlt = null;
+            TUpdateKepServReqBody rlt = null;
             foreach (XmlNode child in paramNode.ChildNodes)
             {
                 if (child.Name == "Param")
                 {
-                    rlt = new TUpdateDeviceTagsReqBody();
-                    rlt = IRAPXMLUtils.LoadValueFromXMLNode(child, rlt) as TUpdateDeviceTagsReqBody;
+                    rlt = new TUpdateKepServReqBody();
+                    rlt = IRAPXMLUtils.LoadValueFromXMLNode(child, rlt) as TUpdateKepServReqBody;
                     break;
                 }
             }
@@ -94,18 +79,6 @@ namespace IRAP.Interface.OPC
                 throw error;
             }
 
-            foreach (XmlNode child in paramNode.ChildNodes)
-            {
-                if (child.Name == "ParamXML")
-                {
-                    foreach (XmlNode row in child.ChildNodes)
-                    {
-                        if (row.Name == "Row")
-                            rlt.Details.Add(TUpdateDeviceTagsReqDetail.LoadFromXMLNode(row));
-                    }
-                    break;
-                }
-            }
             return rlt;
         }
     }

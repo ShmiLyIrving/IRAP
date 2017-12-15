@@ -65,6 +65,69 @@ namespace IRAP.Global
             }
             return obj;
         }
+
+        /// <summary>
+        /// 在 XML 节点的子节点中查找指定属性名和值的子节点
+        /// </summary>
+        /// <param name="parentNode">节点</param>
+        /// <param name="propertyName">属性名</param>
+        /// <param name="propertyValue">属性值</param>
+        /// <returns>子节点</returns>
+        public static XmlNode GetChildNodeWithPropertyValue(
+            XmlNode parentNode,
+            string propertyName,
+            string propertyValue)
+        {
+            foreach (XmlNode node in parentNode.ChildNodes)
+            {
+                if (node.Attributes[propertyName] != null)
+                {
+                    if (node.Attributes[propertyName].Value == propertyValue)
+                        return node;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 在 XML 节点的子节点中查找节点属性值完全符合输入对象公共映射属性值的节点
+        /// </summary>
+        /// <param name="parentNode">节点</param>
+        /// <param name="obj">对象</param>
+        /// <returns></returns>
+        public static XmlNode GetChildNodeWithPropertyValue(
+            XmlNode parentNode,
+            object obj)
+        {
+            List<PropertyInfo> fields = new List<PropertyInfo>();
+            foreach (PropertyInfo field in obj.GetType().GetProperties())
+            {
+                if (IsORMap(field))
+                    fields.Add(field);
+            }
+
+            foreach (XmlNode node in parentNode.ChildNodes)
+            {
+                bool isMateched = true;
+                foreach (PropertyInfo field in fields)
+                {
+                    if (node.Attributes[field.Name] == null)
+                    {
+                        isMateched = false;
+                        break;
+                    }
+                    if (node.Attributes[field.Name].Value != field.GetValue(obj, null).ToString())
+                    {
+                        isMateched = false;
+                        break;
+                    }
+                }
+                if (isMateched)
+                    return node;
+            }
+
+            return null;
+        }
     }
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = false)]

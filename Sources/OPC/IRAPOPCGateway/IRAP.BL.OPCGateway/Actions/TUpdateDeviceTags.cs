@@ -55,7 +55,7 @@ namespace IRAP.BL.OPCGateway.Actions
                                 if (device != null)
                                 {
                                     Exception error = new Exception();
-                                    error.Data["ErrCode"] = "900102";
+                                    error.Data["ErrCode"] = "900202";
                                     error.Data["ErrText"] =
                                         string.Format(
                                             "设备号[{0}]已经存在，对应的设备名称[{1}]，不能新增",

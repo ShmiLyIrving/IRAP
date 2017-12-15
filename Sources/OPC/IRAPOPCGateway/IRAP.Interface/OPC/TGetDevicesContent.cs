@@ -9,12 +9,8 @@ namespace IRAP.Interface.OPC
 {
     public class TGetDevicesContent : TSoftlandContent
     {
-        private TGetDevicesReqBody reqBody = new TGetDevicesReqBody();
-        private TGetDevicesRspBody rspBody = new TGetDevicesRspBody();
-
         public TGetDevicesContent()
         {
-            bodyRequest = new TGetDevicesReqBody();
             bodyResponse = new TGetDevicesRspBody();
         }
 

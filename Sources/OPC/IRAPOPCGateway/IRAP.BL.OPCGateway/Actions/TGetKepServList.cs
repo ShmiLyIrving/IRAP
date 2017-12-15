@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml;
 using System.Collections;
 
 using IRAP.Interface.OPC;
-using IRAP.BL.OPCGateway.Interfaces;
 using IRAP.OPC.Entity;
 using IRAP.OPC.Library;
 
 namespace IRAP.BL.OPCGateway.Actions
 {
-    internal class TGetDevices : IWebAPIAction
+    internal class TGetKepServList : Interfaces.IWebAPIAction
     {
-        private TGetDevicesContent content = new TGetDevicesContent();
+        private TGetKepServListContent content = new TGetKepServListContent();
 
-        public TGetDevices(string xmlContent)
+        public TGetKepServList(string xmlContent)
         {
             try
             {
@@ -43,21 +41,17 @@ namespace IRAP.BL.OPCGateway.Actions
 
                 try
                 {
-                    if (content.Request.ExCode == "GetDevices")
+                    if (content.Request.ExCode == "GetKepServList")
                     {
                         int ordinal = 1;
-                        foreach (TIRAPOPCDevice device in TIRAPOPCDevices.Instance.Devices)
+                        foreach (TIRAPOPCServer server in TIRAPOPCServers.Instance.Servers)
                         {
-                            content.Response.AddDeviceDetail(
-                                new TGetDevicesRspDetail()
+                            content.Response.Items.Add(
+                                new TGetKepServListRspDetail()
                                 {
                                     Ordinal = ordinal++,
-                                    DeviceCode = device.DeviceCode,
-                                    DeviceName = device.DeviceName,
-                                    KepServAddr = device.KepServerAddr,
-                                    KepServName = device.KepServerName,
-                                    KepServChannel = device.KepServerChannel,
-                                    KepServDevice = device.KepServerDevice,
+                                    KepServAddr = server.Address,
+                                    KepServName = server.Name,
                                 });
                         }
 

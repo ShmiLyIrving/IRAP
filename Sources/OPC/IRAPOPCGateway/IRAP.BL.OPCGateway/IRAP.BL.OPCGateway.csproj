@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="Actions\TGetDevices.cs" />
     <Compile Include="Actions\TGetDeviceTags.cs" />
+    <Compile Include="Actions\TGetKepServList.cs" />
     <Compile Include="Actions\TUpdateDeviceTags.cs" />
+    <Compile Include="Actions\TUpdateKepServ.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="Interfaces\IWebAPIAction.cs" />
     <Compile Include="OPCGatewayService.cs" />

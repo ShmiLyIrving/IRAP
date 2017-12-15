@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 using IRAP.OPC.Entity;
+using IRAP.Global;
 
 namespace IRAP.OPC.Library
 {
@@ -28,29 +29,6 @@ namespace IRAP.OPC.Library
         private List<TIRAPOPCDevice> items = new List<TIRAPOPCDevice>();
 
         private TIRAPOPCDevices() { }
-
-        /// <summary>
-        /// 在节点的子节点中查找指定属性名和值的子节点
-        /// </summary>
-        /// <param name="parentNode">节点</param>
-        /// <param name="propertyName">属性名</param>
-        /// <param name="propertyValue">属性值</param>
-        /// <returns>子节点</returns>
-        private XmlNode GetChildNodeWithPropertyValue(
-            XmlNode parentNode,
-            string propertyName,
-            string propertyValue)
-        {
-            foreach (XmlNode node in parentNode.ChildNodes)
-            {
-                if (node.Attributes[propertyName] != null)
-                {
-                    if (node.Attributes[propertyName].Value == propertyValue)
-                        return node;
-                }
-            }
-            return null;
-        }
 
         /// <summary>
         /// 在节点中增加属性
@@ -135,6 +113,7 @@ namespace IRAP.OPC.Library
         /// </summary>
         /// <param name="type">编辑类别：1-保存；2-删除</param>
         /// <param name="device">设备对象</param>
+        /// <param name="dataFileName">本地持久化文件名</param>
         public void ModifyDataFile(int type, TIRAPOPCDevice device, string dataFileName)
         {
             XmlDocument xml = new XmlDocument();
@@ -186,7 +165,7 @@ namespace IRAP.OPC.Library
 
             // 在 Devices 节点中查找指定 DeviceCode 的 Device 子节点，如果找到则从 Devices 节点中删除
             XmlNode deviceNode =
-                GetChildNodeWithPropertyValue(
+                IRAPXMLUtils.GetChildNodeWithPropertyValue(
                     devicesNode,
                     "DeviceCode",
                     device.DeviceCode);

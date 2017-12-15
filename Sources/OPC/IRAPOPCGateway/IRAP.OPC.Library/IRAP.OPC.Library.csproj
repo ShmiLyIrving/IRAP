@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IRAP.Global\IRAP.Global.csproj">
+      <Project>{e2f182fa-2148-4247-b054-25893a67c9c9}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.Interface\IRAP.Interface.csproj">
       <Project>{6c90e549-33ee-438f-9eff-6df051f211a4}</Project>
       <Name>IRAP.Interface</Name>

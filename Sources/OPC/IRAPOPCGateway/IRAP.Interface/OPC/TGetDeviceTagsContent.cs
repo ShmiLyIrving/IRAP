@@ -10,7 +10,6 @@ namespace IRAP.Interface.OPC
     {
         public TGetDeviceTagsContent()
         {
-            bodyRequest = new TGetDeviceTagsReqBody();
             bodyResponse = new TGetDeviceTagsRspBody();
         }
 

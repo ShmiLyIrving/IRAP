@@ -54,7 +54,7 @@ namespace IRAP.BL.OPCGateway
             TIRAPOPCDevices.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
 
             // 根据配置文件内容，创建 KepServer 连接
-            TIRAPOPCServers.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
+            TIRAPOPCServers.Instance.LoadFromDataFile(TOPCGatewayGlobal.Instance.ConfigurationFile);
             foreach (TIRAPOPCServer server in TIRAPOPCServers.Instance.Servers)
             {
                 TKepServerListener listener = new TKepServerListener();
