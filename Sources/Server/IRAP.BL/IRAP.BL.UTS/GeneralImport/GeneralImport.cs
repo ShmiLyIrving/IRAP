@@ -26,9 +26,9 @@ namespace IRAP.BL.UTS {
         /// <param name="t19LeafID">导入导出叶标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns></returns>
-        public IRAPJsonResult sfn_GetInfo_LinkedTreeOfImpExp(int communityID,int t19LeafID,long sysLogID,out int errCode,
+        public IRAPJsonResult sfn_GetInfo_LinkedTreeOfImpExp(int communityID, int t19LeafID, long sysLogID, out int errCode,
             out string errText) {
-            string strProcedureName =string.Format("{0}.{1}",className, MethodBase.GetCurrentMethod().Name);
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try {
@@ -83,7 +83,7 @@ namespace IRAP.BL.UTS {
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns></returns>
         public IRAPJsonResult sfn_GetXML_ImportInfo(int communityID, int t19LeafID, int txLeafID,
-             long sysLogID, out int errCode,out string errText) {
+             long sysLogID, out int errCode, out string errText) {
 
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
@@ -120,7 +120,7 @@ namespace IRAP.BL.UTS {
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }
                 #endregion
-                return Json(new List<string>(){xml});
+                return Json(new List<string>() { xml });
             } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
@@ -164,12 +164,12 @@ namespace IRAP.BL.UTS {
                 try {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection()) {
                         string strSQL = "IRAPDPA.." + blName;
-                        var err = conn.CallProc(strSQL,ref paramList);
+                        var err = conn.CallProc(strSQL, ref paramList);
                         errCode = err.ErrCode;
                         errText = err.ErrText;
                         WriteLog.Instance.Write(errText, strProcedureName);
                         data.Add(err);
-                        
+
                     }
                 } catch (Exception ex) {
                     IRAPError errInfo = new IRAPError(9999, ex.Message);
@@ -239,5 +239,83 @@ namespace IRAP.BL.UTS {
             }
         }
 
+        public IRAPJsonResult DeleteOldTableData(string tableName, long importLogId, out int errCode, out string errText) {
+
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            List<IRAPError> data = new List<IRAPError>();
+            try {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@importLogId", DbType.Int64, importLogId));
+                WriteLog.Instance.Write(
+                    string.Format("执行SQL delete from IRAPDPA..{0} where ImportLogID ={1}", tableName, importLogId),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection()) {
+                        string strSQL = string.Format("delete from IRAPDPA..{0} where ImportLogID =@importLogId", tableName);
+                        var count = conn.CallScalar(strSQL, paramList);
+                        IRAPError errInfo = new IRAPError(0, "成功删除旧数据");
+                        errCode = errInfo.ErrCode;
+                        errText = errInfo.ErrText;
+                        WriteLog.Instance.Write(errInfo.ErrText, strProcedureName);
+                        data.Add(errInfo);
+                    }
+                } catch (Exception ex) {
+                    IRAPError errInfo = new IRAPError(9999, ex.Message);
+                    errCode = 9999;
+                    errText = string.Format("删除表{1}中的数据发生异常：{0}", ex.Message, tableName);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(ex.StackTrace, strProcedureName);
+                    data.Add(errInfo);
+                }
+                #endregion
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return Json(data);
+        }
+
+        public IRAPJsonResult InsertTempTableData(string tableName,DataTable data, out int errCode, out string errText) {
+
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            List<IRAPError> result = new List<IRAPError>();
+            try {
+                #region 创建数据库调用参数组，并赋值
+                WriteLog.Instance.Write(
+                    string.Format("将数据插入临时表{0}中", tableName),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection()) {
+                        var errInfo = conn.BulkBatchInsert(data, "IRAPDPA.." + tableName + "");
+                        errCode = errInfo.ErrCode;
+                        errText = errInfo.ErrText;
+                        WriteLog.Instance.Write(errInfo.ErrText, strProcedureName);
+                        result.Add(errInfo);
+                    }
+                } catch (Exception ex) {
+                    IRAPError errInfo = new IRAPError(9999, ex.Message);
+                    errCode = 9999;
+                    errText = string.Format("插入表{1}中的数据发生异常：{0}", ex.Message, tableName);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(ex.StackTrace, strProcedureName);
+                    result.Add(errInfo);
+                }
+                #endregion
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return Json(result);
+        }
     }
+
 }
