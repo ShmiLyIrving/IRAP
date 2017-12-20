@@ -129,6 +129,15 @@ namespace xFiletoESB
             set { SaveParams("Xml root node name", value); }
         }
 
+        /// <summary>
+        /// 是否允许同时运行多个实例
+        /// </summary>
+        public bool MultiInstance
+        {
+            get { return GetString("Multi Instance").ToUpper() == "TRUE"; }
+            set { SaveParams("Multi Instance", value.ToString()); }
+        }
+
         private void SaveParams(string key, string value)
         {
             Configuration config =

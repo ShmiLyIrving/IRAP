@@ -74,7 +74,7 @@ namespace xFiletoESB
             WriteLog.Instance.Write(msg, modeName);
 
             edtLogs.Text += string.Format("{0}\r\n", msg);
-            ShowMessageInBalloon(msg, icon, 5000);
+            ShowMessageInBalloon(msg, icon, 1000);
         }
         private void ShowMessageInBalloon(
             string msg,

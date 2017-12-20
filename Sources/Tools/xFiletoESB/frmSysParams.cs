@@ -23,6 +23,7 @@ namespace xFiletoESB
         {
             edtUpgradeURL.Text = SysParams.Instance.UpgradeURL;
             chkWriteLog.Checked = SysParams.Instance.IsWriteLog;
+            chkMultiInstance.Checked = SysParams.Instance.MultiInstance;
 
             edtBrokeURI.Text = SysParams.Instance.ActiveMQ_URI;
             edtQueueName.Text = SysParams.Instance.ActiveMQ_QueueName;
@@ -41,6 +42,7 @@ namespace xFiletoESB
         {
             SysParams.Instance.UpgradeURL = edtUpgradeURL.Text.Trim();
             SysParams.Instance.IsWriteLog = chkWriteLog.Checked;
+            SysParams.Instance.MultiInstance = chkMultiInstance.Checked;
 
             SysParams.Instance.ActiveMQ_URI = edtBrokeURI.Text.Trim();
             SysParams.Instance.ActiveMQ_QueueName = edtQueueName.Text.Trim();

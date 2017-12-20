@@ -30,6 +30,7 @@
         {
             this.tcSysParams = new DevExpress.XtraTab.XtraTabControl();
             this.tpSysParams = new DevExpress.XtraTab.XtraTabPage();
+            this.chkMultiInstance = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.edtUpgradeURL = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
@@ -74,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tcSysParams)).BeginInit();
             this.tcSysParams.SuspendLayout();
             this.tpSysParams.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMultiInstance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtUpgradeURL.Properties)).BeginInit();
@@ -131,11 +133,24 @@
             // 
             // tpSysParams
             // 
+            this.tpSysParams.Controls.Add(this.chkMultiInstance);
             this.tpSysParams.Controls.Add(this.groupControl1);
             this.tpSysParams.Controls.Add(this.chkWriteLog);
             this.tpSysParams.Name = "tpSysParams";
             this.tpSysParams.Size = new System.Drawing.Size(668, 407);
             this.tpSysParams.Text = "系统参数";
+            // 
+            // chkMultiInstance
+            // 
+            this.chkMultiInstance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkMultiInstance.Location = new System.Drawing.Point(12, 378);
+            this.chkMultiInstance.Name = "chkMultiInstance";
+            this.chkMultiInstance.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMultiInstance.Properties.Appearance.Options.UseFont = true;
+            this.chkMultiInstance.Properties.Caption = "是否允许运行多个实例";
+            this.chkMultiInstance.Size = new System.Drawing.Size(641, 21);
+            this.chkMultiInstance.TabIndex = 6;
             // 
             // groupControl1
             // 
@@ -176,12 +191,12 @@
             // 
             this.chkWriteLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkWriteLog.Location = new System.Drawing.Point(12, 378);
+            this.chkWriteLog.Location = new System.Drawing.Point(12, 351);
             this.chkWriteLog.Name = "chkWriteLog";
             this.chkWriteLog.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkWriteLog.Properties.Appearance.Options.UseFont = true;
             this.chkWriteLog.Properties.Caption = "是否记录日志";
-            this.chkWriteLog.Size = new System.Drawing.Size(645, 21);
+            this.chkWriteLog.Size = new System.Drawing.Size(641, 21);
             this.chkWriteLog.TabIndex = 4;
             // 
             // tpESBParams
@@ -333,11 +348,14 @@
             // 
             // tcFileTypeProperties
             // 
+            this.tcFileTypeProperties.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tcFileTypeProperties.Location = new System.Drawing.Point(6, 61);
             this.tcFileTypeProperties.Name = "tcFileTypeProperties";
             this.tcFileTypeProperties.SelectedTabPage = this.tpXmlProperties;
             this.tcFileTypeProperties.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.tcFileTypeProperties.Size = new System.Drawing.Size(627, 229);
+            this.tcFileTypeProperties.Size = new System.Drawing.Size(634, 160);
             this.tcFileTypeProperties.TabIndex = 9;
             this.tcFileTypeProperties.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpXmlProperties});
@@ -348,7 +366,7 @@
             this.tpXmlProperties.Controls.Add(this.labelControl9);
             this.tpXmlProperties.Name = "tpXmlProperties";
             this.tpXmlProperties.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
-            this.tpXmlProperties.Size = new System.Drawing.Size(622, 224);
+            this.tpXmlProperties.Size = new System.Drawing.Size(629, 155);
             // 
             // edtXMLRootNodeName
             // 
@@ -606,12 +624,15 @@
             this.ClientSize = new System.Drawing.Size(673, 487);
             this.Controls.Add(this.tcSysParams);
             this.Controls.Add(this.panelControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmSysParams";
-            this.Text = "frmSysParams";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "参数设置";
             this.Load += new System.EventHandler(this.frmSysParams_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tcSysParams)).EndInit();
             this.tcSysParams.ResumeLayout(false);
             this.tpSysParams.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkMultiInstance.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtUpgradeURL.Properties)).EndInit();
@@ -690,5 +711,6 @@
         private DevExpress.XtraEditors.SimpleButton btn_backuppathchose;
         private DevExpress.XtraEditors.SimpleButton btn_localpathopen;
         private DevExpress.XtraEditors.SimpleButton btn_localpathchose;
+        private DevExpress.XtraEditors.CheckEdit chkMultiInstance;
     }
 }

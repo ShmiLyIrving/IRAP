@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.UserSkins;
-using DevExpress.Skins;
-using DevExpress.LookAndFeel;
-using IRAP.Global;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Reflection;
+
+using DevExpress.UserSkins;
+using DevExpress.Skins;
+using DevExpress.LookAndFeel;
+
+using IRAP.Global;
+using IRAP.AutoUpgrade;
 
 namespace xFiletoESB
 {
@@ -41,12 +44,16 @@ namespace xFiletoESB
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
+
             #region 判断是否已经运行本程序的另一个实例
-            Process instance = GetRunningInstance();
-            if (instance != null)
+            if (!SysParams.Instance.MultiInstance)
             {
-                HandleRunningInstance(instance);
-                return;
+                Process instance = GetRunningInstance();
+                if (instance != null)
+                {
+                    HandleRunningInstance(instance);
+                    return;
+                }
             }
             #endregion
 

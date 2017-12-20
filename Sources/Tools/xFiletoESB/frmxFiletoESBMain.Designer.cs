@@ -53,7 +53,7 @@
             this.edtLogs.Location = new System.Drawing.Point(12, 34);
             this.edtLogs.Name = "edtLogs";
             this.edtLogs.Properties.ReadOnly = true;
-            this.edtLogs.Size = new System.Drawing.Size(646, 468);
+            this.edtLogs.Size = new System.Drawing.Size(646, 448);
             this.edtLogs.TabIndex = 1;
             this.edtLogs.TextChanged += new System.EventHandler(this.edtLogs_TextChanged);
             // 
@@ -130,7 +130,7 @@
             this.groupControl1.Location = new System.Drawing.Point(13, 12);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupControl1.Size = new System.Drawing.Size(670, 514);
+            this.groupControl1.Size = new System.Drawing.Size(670, 494);
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "日志";
             // 
@@ -159,8 +159,10 @@
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.groupControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmxFiletoESBMain";
             this.Padding = new System.Windows.Forms.Padding(10);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "xFile to ESB";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmxFiletoESBMain_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
