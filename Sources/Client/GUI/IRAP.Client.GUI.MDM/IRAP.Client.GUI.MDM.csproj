@@ -37,11 +37,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\DEV\Components\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.SpellChecker.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraSpellChecker.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
@@ -199,6 +201,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectForm.Designer.cs">
+      <DependentUpon>SelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectTableForm.Designer.cs">
+      <DependentUpon>SelectTableForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -333,6 +347,12 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectForm.resx">
+      <DependentUpon>SelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectTableForm.resx">
+      <DependentUpon>SelectTableForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
