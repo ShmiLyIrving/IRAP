@@ -631,5 +631,167 @@ namespace IRAP.WCF.Client.Method {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取指定时区地方时转换为Unix时间 
+        /// </summary>
+        /// <returns>Unix时间 </returns>
+        public int GetLocalUnixTime(out int errCode, out string errText) {
+            string strProcedureName =
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try {
+                #region 将函数调用参数加入 HashTable 中
+               
+                WriteLog.Instance.Write( "调用 sfn_LocalToUnixTime 函数");
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =client.WCFRESTFul(
+                            "IRAP.BL.UTS.dll",
+                            "IRAP.BL.UTS.GeneralImport",
+                            "sfn_LocalToUnixTime",new Hashtable(), out errCode,out errText);
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText),strProcedureName);
+
+                    if (errCode == 0) {
+                        var date = Convert.ToInt32(rlt);
+                        if (date == 0) {
+                            errCode = 99;
+                            errText = "Unix时间获取失败！";
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                        } 
+                        return date;
+                    }
+                }
+                #endregion
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return 0;
+        }
+
+
+        public DataTable GetDataAfterVerify(int communityID, int t19LeafID, int treeID, int txLeafID, long importLogID,
+            long sysLogID, string blName, string verifyName, out int errCode, out string errText) {
+            string strProcedureName =
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t19LeafID", t19LeafID);
+                hashParams.Add("treeID", treeID);
+                hashParams.Add("txLeafID", txLeafID);
+                hashParams.Add("importLogID", importLogID);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("blName", blName);
+                hashParams.Add("verifyName", verifyName);
+                WriteLog.Instance.Write(string.Format(
+                        "调用 ProcOnVerification 函数，参数：verifyName={0}|communityID={1}|t19LeafID={2}|treeID={3}|txLeafID={4}|importLogID={5}|blName={6}|sysLogID={7}",
+                        verifyName, communityID, t19LeafID, treeID, txLeafID, importLogID, blName, sysLogID), strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.UTS.dll",
+                            "IRAP.BL.UTS.GeneralImport",
+                            "ProcOnVerification",
+                        hashParams, out errCode,out errText);
+                    WriteLog.Instance.Write( string.Format("({0}){1}", errCode, errText),strProcedureName);
+
+                    if (errCode == 0) {
+                        var datas = rlt as DataTable;
+                        if (datas == null) {
+                            errCode = 99;
+                            errText = "没有数据！";
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return null;
+                        }
+                        return datas;
+                    }
+                }
+                #endregion
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
+        public DataTable GetDataAfterLoad(int communityID, int t19LeafID, int treeID, int txLeafID, long importLogID,
+            long sysLogID, string blName, string loadName,int isLaodAll,int isLoadLog, out int errCode, out string errText) {
+            string strProcedureName =
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t19LeafID", t19LeafID);
+                hashParams.Add("treeID", treeID);
+                hashParams.Add("txLeafID", txLeafID);
+                hashParams.Add("importLogID", importLogID);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("blName", blName);
+                hashParams.Add("loadName", loadName);
+                hashParams.Add("isLaodAll", isLaodAll);
+                hashParams.Add("isLoadLog", isLoadLog);
+                hashParams.Add("isLoad", true);
+                WriteLog.Instance.Write(string.Format(
+                        "调用 ProcOnVerification 函数，参数：verifyName={0}|communityID={1}|t19LeafID={2}|treeID={3}|txLeafID={4}|importLogID={5}|blName={6}|sysLogID={7}|isLaodAll={8}|isLoadLog={9}",
+                        loadName, communityID, t19LeafID, treeID, txLeafID, importLogID, blName, sysLogID, isLaodAll, isLoadLog), strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.UTS.dll",
+                            "IRAP.BL.UTS.GeneralImport",
+                            "ProcOnLoad",
+                        hashParams, out errCode, out errText);
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+
+                    if (errCode == 0) {
+                        var datas = rlt as DataTable;
+                        if (datas == null) {
+                            errCode = 99;
+                            errText = "没有数据！";
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return null;
+                        }
+                        return datas;
+                    }
+                }
+                #endregion
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
     }
 }
