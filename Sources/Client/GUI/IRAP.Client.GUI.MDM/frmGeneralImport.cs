@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -39,6 +40,7 @@ namespace IRAP.Client.GUI.MDM {
         private long _importLogId = -1;
         private bool _showPopUp = true;
         private DataTable _gridDataSource = new DataTable("grid");
+        private int _firstErrorRow = 0;
 
 
         public frmGeneralImport() {
@@ -755,27 +757,29 @@ namespace IRAP.Client.GUI.MDM {
             }
             this.btnLoad.Enabled = false;
             this.btnLoadPart.Enabled = false;
-            this.labelState.Text = "";
+            SetStateLabel("", 0);
             this.btnValidate.Checked = false;
 
             var data = GetVerifyResult();
-            if (data==null||data.Rows.Count == 0) {
-                this.labelState.Text = "验证不通过，请检查！";
-                return;
-            }
             _gridDataSource = data;
             this.gridControl1.DataSource = _gridDataSource;
+            if (data==null||data.Rows.Count == 0) {
+                SetStateLabel("验证不通过，请检查!", 1);
+                return;
+            }
             var correntNum = ColumnDataValidate();
             if (correntNum == this.gridView1.RowCount) {
                 this.btnLoad.Enabled = true;
-                this.labelState.Text = "验证通过！";
+                SetStateLabel("验证通过!", 0);
                 return;
             } else if (correntNum>0) {
                 this.btnLoadPart.Enabled = true;
-                this.labelState.Text = "验证通过！";
+                SetStateLabel("验证通过!", 0);
                 return;
             }
-            this.labelState.Text = "验证不通过，请检查！";
+            SetStateLabel("验证不通过，请检查!", 1);
+            this.gridView1.SelectRows(_firstErrorRow, _firstErrorRow);
+            
         }
 
         private void btnLoad_CheckedChanged(object sender, EventArgs e) {
@@ -854,6 +858,7 @@ namespace IRAP.Client.GUI.MDM {
         /// 插入错误信息
         /// </summary>
         private int ColumnDataValidate() {
+            _firstErrorRow = 0;
             int corrent = 0;
             var errCodeCol = this.gridView1.Columns["ErrCode"];
             var errTextCol = this.gridView1.Columns["ErrText"];
@@ -868,7 +873,9 @@ namespace IRAP.Client.GUI.MDM {
                     corrent++;
                     continue;
                 }
-
+                if (corrent == i) {
+                    _firstErrorRow = i;
+                }
                 var errText = this.gridView1.GetRowCellValue(i, errTextCol);
                 currentRow.Row.RowError = errText == null ? "" : errText.ToString();
             }
@@ -910,22 +917,22 @@ namespace IRAP.Client.GUI.MDM {
             var isLoadLog = this.checkEditLog.Checked ? 1 : 0;
             var data = GetLoadResult(isLoadAll, isLoadLog);
             if (data==null||data.Rows.Count==0) {
-                this.labelState.Text = "加载不通过，请检查！";
+                SetStateLabel("加载不通过，请检查！!", 1);
                 return;
             }
             _gridDataSource = data;
             this.gridControl1.DataSource = _gridDataSource;
             var correntNum = ColumnDataValidate();
             if (correntNum == this.gridView1.RowCount) {
-                this.labelState.Text = "加载通过！";
+                SetStateLabel("加载通过！", 0);
                 this.btnExport.Enabled = true;
                 return;
             } else if (correntNum > 0) {
-                this.labelState.Text = "加载通过！";
+                SetStateLabel("加载通过！", 0);
                 this.btnExport.Enabled = true;
                 return;
             }
-            this.labelState.Text = "加载不通过，请检查！";
+            SetStateLabel("加载不通过，请检查！!", 1);
         }
 
         #endregion
@@ -945,6 +952,16 @@ namespace IRAP.Client.GUI.MDM {
             this.btnExport.Enabled = false;
             this.btnValidate.Enabled = false;
         }
+
+        private void SetStateLabel(string errText,int errCode) {
+            this.labelState.Text = errText;
+            if (errCode != 0) {
+                this.labelState.ForeColor = Color.Red;
+            } else {
+                this.labelState.ForeColor = Color.Green;
+            }
+        }
+
 
     }
 }
