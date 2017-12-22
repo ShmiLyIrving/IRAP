@@ -44,7 +44,6 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -63,7 +62,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -123,6 +121,7 @@
             this.panelRight.Controls.Add(this.checkEditImportAll);
             this.panelRight.Controls.Add(this.btnLoadPart);
             this.panelRight.Controls.Add(this.gridControl1);
+            this.panelRight.Controls.Add(this.labelState);
             this.panelRight.Controls.Add(this.btnLoad);
             this.panelRight.Controls.Add(this.btnValidate);
             this.panelRight.Controls.Add(this.panelRightTop);
@@ -172,7 +171,7 @@
             this.gridControl1.Location = new System.Drawing.Point(5, 51);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(595, 344);
+            this.gridControl1.Size = new System.Drawing.Size(595, 321);
             this.gridControl1.TabIndex = 14;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -223,7 +222,6 @@
             this.panelRightTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelRightTop.AutoScroll = false;
-            this.panelRightTop.Controls.Add(this.labelState);
             this.panelRightTop.Controls.Add(this.btnExport);
             this.panelRightTop.Controls.Add(this.btnImport);
             this.panelRightTop.Controls.Add(this.comboBoxEdit1);
@@ -237,11 +235,10 @@
             // 
             // labelState
             // 
-            this.labelState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelState.Location = new System.Drawing.Point(541, 12);
+            this.labelState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelState.Location = new System.Drawing.Point(11, 378);
             this.labelState.Name = "labelState";
-            this.labelState.Size = new System.Drawing.Size(48, 14);
-            this.labelState.StyleController = this.panelRightTop;
+            this.labelState.Size = new System.Drawing.Size(0, 14);
             this.labelState.TabIndex = 19;
             // 
             // btnExport
@@ -294,8 +291,7 @@
             this.layoutItemSelect,
             this.emptySpaceItem1,
             this.layoutControlItem1,
-            this.layoutControlItem2,
-            this.layoutControlItem3});
+            this.layoutControlItem2});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Size = new System.Drawing.Size(601, 46);
@@ -317,7 +313,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(477, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(52, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(104, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
@@ -339,15 +335,6 @@
             this.layoutControlItem2.Size = new System.Drawing.Size(72, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.labelState;
-            this.layoutControlItem3.Location = new System.Drawing.Point(529, 0);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(52, 26);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
             // 
             // frmGeneralImport
             // 
@@ -378,7 +365,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -406,6 +392,5 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.LabelControl labelState;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }
