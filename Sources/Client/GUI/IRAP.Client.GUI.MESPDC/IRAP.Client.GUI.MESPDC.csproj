@@ -165,6 +165,12 @@
     <Compile Include="frmProductionParamsCollection.Designer.cs">
       <DependentUpon>frmProductionParamsCollection.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProductionParamsCollection_Casting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductionParamsCollection_Casting.Designer.cs">
+      <DependentUpon>frmProductionParamsCollection_Casting.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProductPackage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductionParamsCollection.resx">
       <DependentUpon>frmProductionParamsCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductionParamsCollection_Casting.resx">
+      <DependentUpon>frmProductionParamsCollection_Casting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductPackage.resx">
       <DependentUpon>frmProductPackage.cs</DependentUpon>
