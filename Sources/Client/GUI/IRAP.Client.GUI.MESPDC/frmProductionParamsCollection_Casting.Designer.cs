@@ -23,8 +23,10 @@
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
+            this.panelContent = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelContent)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -42,17 +44,31 @@
             this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
+            // panelContent
+            // 
+            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContent.Location = new System.Drawing.Point(0, 56);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(891, 439);
+            this.panelContent.TabIndex = 1;
+            // 
             // frmProductionParamsCollection_Casting
             // 
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(891, 495);
+            this.Controls.Add(this.panelContent);
             this.Name = "frmProductionParamsCollection_Casting";
+            this.Controls.SetChildIndex(this.panelControl1, 0);
+            this.Controls.SetChildIndex(this.panelContent, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelContent)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.PanelControl panelContent;
     }
 }

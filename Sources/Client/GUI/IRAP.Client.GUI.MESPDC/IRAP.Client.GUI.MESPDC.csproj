@@ -45,6 +45,7 @@
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraWizard.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="FastReport">
       <HintPath>..\..\..\..\Packages\FastReport\FastReport.dll</HintPath>
     </Reference>
@@ -257,6 +258,18 @@
     <Compile Include="UserControls\ucBatchSysProduction.Designer.cs">
       <DependentUpon>ucBatchSysProduction.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucDetailGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucDetailGrid.Designer.cs">
+      <DependentUpon>ucDetailGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucFurnace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucFurnace.Designer.cs">
+      <DependentUpon>ucFurnace.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -404,6 +417,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucBatchSysProduction.resx">
       <DependentUpon>ucBatchSysProduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucDetailGrid.resx">
+      <DependentUpon>ucDetailGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucFurnace.resx">
+      <DependentUpon>ucFurnace.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
