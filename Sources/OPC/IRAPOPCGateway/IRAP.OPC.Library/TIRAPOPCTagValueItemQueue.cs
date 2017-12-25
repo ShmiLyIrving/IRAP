@@ -25,7 +25,19 @@ namespace IRAP.OPC.Library
         private object _lockObject = new object();
 
         private TIRAPOPCTagValueItemQueue() { }
-
+        
+        /// <summary>
+        /// 队列中消息的数量
+        /// </summary>
+        public int QueueItemCount
+        {
+            get { return queue.Count; }
+        }
+        
+        /// <summary>
+        /// 在队列中增加一个消息
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(TIRAPOPCTagValueItem item)
         {
             lock (_lockObject)
@@ -34,11 +46,18 @@ namespace IRAP.OPC.Library
             }
         }
 
+        /// <summary>
+        /// 从队列中取出一个消息
+        /// </summary>
+        /// <returns></returns>
         public TIRAPOPCTagValueItem Get()
         {
             lock (_lockObject)
             {
-                return queue.Dequeue();
+                if (queue.Count > 0)
+                    return queue.Dequeue();
+                else
+                    return null;
             }
         }
     }

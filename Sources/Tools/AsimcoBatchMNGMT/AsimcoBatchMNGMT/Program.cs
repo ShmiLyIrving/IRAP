@@ -19,7 +19,11 @@ namespace AsimcoBatchMNGMT
 
             DevExpress.Data.CurrencyDataController.DisableThreadingProblemsDetection = true;
 
+#if DEBUG
+            Application.Run(new frmMain());
+#else
             Application.Run(new MainForm());
+#endif
         }
     }
 }

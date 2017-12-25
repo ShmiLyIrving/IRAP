@@ -35,8 +35,10 @@ namespace IRAPGeneralGateway.Entities
 
         public void AddItem(TExCodeEntity exCode)
         {
-            if (excodes.ContainsKey(exCode.ExCode))
-                excodes.Add(exCode.ExCode, exCode);
+            if (!excodes.ContainsKey(exCode.ExCode))
+                excodes.Add(
+                    string.Format("{0}_{1}", exCode.Prefix, exCode.ExCode), 
+                    exCode);
         }
 
         /// <summary>
@@ -141,6 +143,22 @@ namespace IRAPGeneralGateway.Entities
             }
 
             xml.Save(dataFileName);
+        }
+
+        /// <summary>
+        /// 根据前缀和交易代码获取该交易代码的所有属性
+        /// </summary>
+        /// <param name="prefix">前缀</param>
+        /// <param name="exCode">交易代码</param>
+        /// <returns>交易代码定义对象</returns>
+        public TExCodeEntity GetItem(string prefix, string exCode)
+        {
+            string fullExCode = string.Format("{0}_{1}", prefix, exCode);
+            TExCodeEntity rlt = null;
+            if (excodes.TryGetValue(fullExCode, out rlt))
+                return rlt;
+            else
+                return null;
         }
     }
 }

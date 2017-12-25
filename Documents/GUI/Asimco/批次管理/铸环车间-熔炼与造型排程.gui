@@ -7,7 +7,7 @@
 	RepresentativeRefID = "1">
 	<Elements
 		CID = "1"
-		NextCID = "4">
+		NextCID = "45">
 		<Element
 			CID = "1"
 			Type = "FrameWindow"
@@ -16,7 +16,7 @@
 			Width = "1129"
 			Height = "730"
 			Flags = "0"
-			WindowColour = "171,171,171,0,13"
+			WindowColour = "90,78,177,0,13"
 			Title = "熔炼与造型排程"
 			TitleBarHeight = "18"
 			BorderSize = "1"
@@ -47,21 +47,34 @@
 			TabMarginBottom = "0">
 			<TabBarItem
 				ItemID = "1"
-				Text = "熔炼 1# 炉 - [设备编号]"
+				Text = "熔炼 1 号炉 - [设备编号]"
 				IsDisabled = "0"/>
 			<TabBarItem
 				ItemID = "2"
-				Text = "熔炼 2# 炉 - [设备编号]"
+				Text = "熔炼 2 号炉 - [设备编号]"
 				IsDisabled = "0"/>
 			<TabBarItem
 				ItemID = "3"
-				Text = "熔炼 3# 炉 - [设备编号]"
+				Text = "熔炼 3 号炉 - [设备编号]"
 				IsDisabled = "0"/>
 			<TabBarItem
 				ItemID = "4"
-				Text = "熔炼 4# 炉 - [设备编号]"
+				Text = "熔炼 4 号炉 - [设备编号]"
 				IsDisabled = "0"/>
 		</Element>
+		<Element
+			CID = "4"
+			Type = "TabPanel"
+			X = "9"
+			Y = "54"
+			Width = "1111"
+			Height = "673"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
 		<Element
 			CID = "3"
 			Type = "TextAnnotation"
@@ -87,6 +100,1810 @@
 			AnnotationSize = "正常"
 			HorzAlign = "Left"
 			VertAlign = "Top"/>
+		<Element
+			CID = "5"
+			Type = "StaticText"
+			X = "592"
+			Y = "63"
+			Width = "59"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "炉次："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "6"
+			Type = "ComboBox"
+			X = "658"
+			Y = "64"
+			Width = "125"
+			Height = "21"
+			Flags = "2"
+			Text = "第 1 炉"
+			IsDisabled = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "7"
+			Type = "StaticText"
+			X = "322"
+			Y = "64"
+			Width = "85"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "生产日期："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "8"
+			Type = "EditBox"
+			X = "407"
+			Y = "64"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "9"
+			Type = "GroupBox"
+			X = "802"
+			Y = "64"
+			Width = "308"
+			Height = "73"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "当前熔炼信息"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "10"
+			Type = "StaticText"
+			X = "814"
+			Y = "76"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "生产开始时间："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "11"
+			Type = "EditBox"
+			X = "932"
+			Y = "76"
+			Width = "166"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "12"
+			Type = "StaticText"
+			X = "814"
+			Y = "104"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "当前炉次号："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "13"
+			Type = "EditBox"
+			X = "932"
+			Y = "104"
+			Width = "166"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "14"
+			Type = "GroupBox"
+			X = "19"
+			Y = "85"
+			Width = "764"
+			Height = "172"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "订单信息"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "15"
+			Type = "Table"
+			X = "31"
+			Y = "97"
+			Width = "740"
+			Height = "114"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "9"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "8"
+					Heading = "打印"
+					Width = "35"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "订单号"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "行号"
+					Width = "35"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "毛坯批次号"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "物料号"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "5"
+					Heading = "型板号"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "6"
+					Heading = "造型机台号"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "7"
+					Heading = "叠数"
+					Width = "60"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "16"
+			Type = "TextButton"
+			X = "696"
+			Y = "222"
+			Width = "75"
+			Height = "23"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "打印"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "17"
+			Type = "StaticText"
+			X = "19"
+			Y = "64"
+			Width = "118"
+			Height = "21"
+			Flags = "0"
+			FillColour = "174,168,217,0,16"
+			TextColour = "0,0,0,0,19"
+			Text = "操作工："
+			FontAttributes = "0"
+			IsDisabled = "0"
+			Fill = "None"
+			TextSize = "正常"
+			HorzAlign = "Right"
+			VertAlign = "Centre"/>
+		<Element
+			CID = "18"
+			Type = "EditBox"
+			X = "137"
+			Y = "64"
+			Width = "185"
+			Height = "21"
+			Flags = "2"
+			Text = ""
+			IsDisabled = "0"
+			IsReadOnly = "0"
+			HorzAlign = "Left"/>
+		<Element
+			CID = "19"
+			Type = "HorizontalTabBar"
+			X = "19"
+			Y = "264"
+			Width = "1091"
+			Height = "453"
+			Flags = "0"
+			NextItemID = "6"
+			LeftMargin = "0"
+			RightMargin = "0"
+			SelectedTab = "0"
+			IsProportional = "1"
+			IsFullWidth = "0"
+			IsReversed = "0"
+			TabMarginLeft = "0"
+			TabMarginRight = "0"
+			TabMarginTop = "0"
+			TabMarginBottom = "0">
+			<TabBarItem
+				ItemID = "1"
+				Text = "配料及开炉熔炼"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "2"
+				Text = "炉前光谱"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "4"
+				Text = "原材料调整"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "5"
+				Text = "浇三角试样"
+				IsDisabled = "0"/>
+			<TabBarItem
+				ItemID = "3"
+				Text = "炉水出炉"
+				IsDisabled = "0"/>
+		</Element>
+		<Element
+			CID = "20"
+			Type = "TabPanel"
+			X = "22"
+			Y = "287"
+			Width = "1085"
+			Height = "427"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "21"
+			Type = "GroupBox"
+			X = "32"
+			Y = "297"
+			Width = "527"
+			Height = "407"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "配料信息"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "22"
+			Type = "Table"
+			X = "44"
+			Y = "309"
+			Width = "503"
+			Height = "383"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "6"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "原材料编号"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "原材料名称"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "批次号"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "5"
+					Heading = "数量"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "23"
+			Type = "GroupBox"
+			X = "573"
+			Y = "297"
+			Width = "403"
+			Height = "407"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "生产开炉参数"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "24"
+			Type = "TextButton"
+			X = "993"
+			Y = "297"
+			Width = "104"
+			Height = "42"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "生产开始"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "25"
+			Type = "Table"
+			X = "585"
+			Y = "309"
+			Width = "379"
+			Height = "383"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "3"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "参数名称"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "参数值"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						开炉时间
+					</Cell>
+					<Cell>
+						2017-12-22 14:44:23
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						电表开始度数
+					</Cell>
+					<Cell>
+						1235
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "26"
+			Type = "TabPanel"
+			X = "1152"
+			Y = "289"
+			Width = "1085"
+			Height = "427"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "27"
+			Type = "HorizontalTab"
+			X = "1152"
+			Y = "271"
+			Width = "71"
+			Height = "18"
+			Flags = "2"
+			TextColour = "0,0,0,0,19"
+			Text = "炉前光谱"
+			IsSelected = "0"
+			IsReversed = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"/>
+		<Element
+			CID = "28"
+			Type = "GroupBox"
+			X = "1162"
+			Y = "299"
+			Width = "1065"
+			Height = "407"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "生产过程参数"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "29"
+			Type = "Table"
+			X = "1174"
+			Y = "311"
+			Width = "916"
+			Height = "383"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "6"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "参数名称"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "参数值 1"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "参数值 2"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "参数值 3"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						送样时间
+					</Cell>
+					<Cell>
+						2017-12-22 14:44:23
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						炉前光谱温度
+					</Cell>
+					<Cell>
+						1235
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "30"
+			Type = "TextButton"
+			X = "2111"
+			Y = "311"
+			Width = "104"
+			Height = "42"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "保存"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "31"
+			Type = "TabPanel"
+			X = "-5"
+			Y = "774"
+			Width = "1085"
+			Height = "427"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "32"
+			Type = "HorizontalTab"
+			X = "-5"
+			Y = "756"
+			Width = "71"
+			Height = "18"
+			Flags = "2"
+			TextColour = "0,0,0,0,19"
+			Text = "原材料调整"
+			IsSelected = "0"
+			IsReversed = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"/>
+		<Element
+			CID = "33"
+			Type = "Table"
+			X = "5"
+			Y = "784"
+			Width = "946"
+			Height = "383"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "6"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "原材料编号"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "原材料名称"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "批次号"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "5"
+					Heading = "数量"
+					Width = "80"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "34"
+			Type = "TextButton"
+			X = "966"
+			Y = "784"
+			Width = "104"
+			Height = "42"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "保存"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "35"
+			Type = "TabPanel"
+			X = "1150"
+			Y = "776"
+			Width = "1085"
+			Height = "427"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "36"
+			Type = "HorizontalTab"
+			X = "1150"
+			Y = "758"
+			Width = "71"
+			Height = "18"
+			Flags = "2"
+			TextColour = "0,0,0,0,19"
+			Text = "浇三角试样"
+			IsSelected = "0"
+			IsReversed = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"/>
+		<Element
+			CID = "37"
+			Type = "GroupBox"
+			X = "1160"
+			Y = "786"
+			Width = "1065"
+			Height = "407"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "参数"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "38"
+			Type = "Table"
+			X = "1172"
+			Y = "798"
+			Width = "916"
+			Height = "383"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "6"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "参数名称"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "参数值 1"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "参数值 2"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "参数值 3"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						试样温度
+					</Cell>
+					<Cell>
+						1235
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						送样时间
+					</Cell>
+					<Cell>
+						2017-12-22 14:44:23
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "39"
+			Type = "TextButton"
+			X = "2109"
+			Y = "798"
+			Width = "104"
+			Height = "42"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "保存"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
+		<Element
+			CID = "40"
+			Type = "TabPanel"
+			X = "-5"
+			Y = "1234"
+			Width = "1085"
+			Height = "427"
+			Flags = "0"
+			TabOrientation = "Top"
+			MarginLeft = "10"
+			MarginRight = "10"
+			MarginTop = "10"
+			MarginBottom = "10"/>
+		<Element
+			CID = "41"
+			Type = "HorizontalTab"
+			X = "-5"
+			Y = "1216"
+			Width = "71"
+			Height = "18"
+			Flags = "2"
+			TextColour = "0,0,0,0,19"
+			Text = "炉水出炉"
+			IsSelected = "0"
+			IsReversed = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"/>
+		<Element
+			CID = "42"
+			Type = "GroupBox"
+			X = "5"
+			Y = "1244"
+			Width = "1065"
+			Height = "407"
+			Flags = "0"
+			TextColour = "0,0,0,0,34"
+			TextPlacement = "None"
+			HorzAlign = "Left"
+			Text = "参数"
+			TextOutsideExtent = "1"/>
+		<Element
+			CID = "43"
+			Type = "Table"
+			X = "17"
+			Y = "1256"
+			Width = "916"
+			Height = "383"
+			Flags = "0"
+			BackgroundColour = "90,78,177,0,13"
+			GridLineColour = "174,168,217,0,23"
+			SortedBlendColour = "64,64,64,0,0"
+			DefOddBackgroundColour = "255,255,255,0,6"
+			DefEvenBackgroundColour = "255,255,255,0,6"
+			DefTextColour = "0,0,0,0,9"
+			NextColumnID = "6"
+			IsFlat = "0"
+			IsTransparent = "0"
+			HasBorder = "1"
+			HasHorzScrollBar = "1"
+			HasVertScrollBar = "1"
+			HasHorzLines = "1"
+			HasVertLines = "1"
+			HasExtHorzLines = "0"
+			HasExtVertLines = "0"
+			ExtendColumns = "1"
+			ExtendRows = "1"
+			VariableHeightRows = "1"
+			FullRowSelection = "1"
+			HeaderSpace = "0"
+			HeaderHeight = "22"
+			RowHeight = "18"
+			FirstVisibleRow = "0"
+			FixedColumns = "0"
+			SortedColumn = "0"
+			SortedBlendFactor = "0.000000"
+			ColumnSort = "Ascending"
+			HeaderStyle = "Standard"
+			FixedCellStyle = "SemiFlat">
+			<Columns>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "1"
+					Heading = "参数名称"
+					Width = "120"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "2"
+					Heading = "参数值 1"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "3"
+					Heading = "参数值 2"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+				<ColumnItem
+					OddBackgroundColour = "255,255,255,0,6"
+					EvenBackgroundColour = "255,255,255,0,6"
+					TextColour = "0,0,0,0,9"
+					ColumnID = "4"
+					Heading = "参数值 3"
+					Width = "200"
+					HeaderMargin = "0"
+					CellMargin = "0"
+					HasCustomOddBgColour = "0"
+					HasCustomEvenBgColour = "0"
+					HasCustomTextColour = "0"
+					HeadingAlignment = "Centre"
+					CellAlignment = "Left"/>
+			</Columns>
+			<Data>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						出炉温度
+					</Cell>
+					<Cell>
+						1235
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						电表结束度数
+					</Cell>
+					<Cell>
+						2400
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+				<Row
+					IsSelected = "0">
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+					<Cell>
+						
+					</Cell>
+				</Row>
+			</Data>
+		</Element>
+		<Element
+			CID = "44"
+			Type = "TextButton"
+			X = "954"
+			Y = "1256"
+			Width = "104"
+			Height = "42"
+			Flags = "0"
+			TextColour = "0,0,0,0,19"
+			Text = "生产结束"
+			TextSize = "正常"
+			FontAttributes = "0"
+			Depth = "2"
+			IsDefault = "0"
+			IsDisabled = "0"
+			MarginLeft = "0"
+			MarginRight = "0"
+			MarginTop = "0"
+			MarginBottom = "0"
+			AutoNavType = ""/>
 	</Elements>
 	<Connections
 		CID = "2"/>

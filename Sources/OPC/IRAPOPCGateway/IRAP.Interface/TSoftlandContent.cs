@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Diagnostics;
+using System.IO;
 
 namespace IRAP.Interface
 {
@@ -33,21 +34,29 @@ namespace IRAP.Interface
             }
         }
 
-        protected virtual void ResolveBody(XmlNode node)
+        private string FormatXML(XmlDocument xml)
         {
-
+            StringWriter sw = new StringWriter();
+            using (XmlTextWriter writer = new XmlTextWriter(sw))
+            {
+                writer.Indentation = 2;
+                writer.Formatting = Formatting.Indented;
+                xml.WriteContentTo(writer);
+                writer.Close();
+            }
+            return sw.ToString();
         }
 
-        protected virtual void ResolveLog(XmlNode node)
-        {
-
-        }
+        protected virtual void ResolveRequestBody(XmlNode node) { }
+        protected virtual void ResolveRequestLog(XmlNode node) { }
+        protected virtual void ResolveResponseBody(XmlNode node) { }
+        protected virtual void ResolveResponseLog(XmlNode node) { }
 
         /// <summary>
-        /// 解析 XML 串
+        /// 解析请求报文 XML 串
         /// </summary>
         /// <param name="xmlString"></param>
-        public void Resolve(string xmlString)
+        public void ResolveRequest(string xmlString)
         {
             XmlDocument xml = new XmlDocument();
             try
@@ -85,11 +94,60 @@ namespace IRAP.Interface
                 throw new Exception(errText);
             }
             else
-                ResolveBody(bodyNode);
+                ResolveRequestBody(bodyNode);
 
             XmlNode logNode = xml.SelectSingleNode("Softland/Log");
             if (logNode != null)
-                ResolveLog(logNode);
+                ResolveRequestLog(logNode);
+        }
+
+        /// <summary>
+        /// 解析响应报文 XML 串
+        /// </summary>
+        /// <param name="xmlString"></param>
+        public void ResolveResponse(string xmlString)
+        {
+            XmlDocument xml = new XmlDocument();
+            try
+            {
+                xml.LoadXml(xmlString);
+            }
+            catch (Exception error)
+            {
+                string errText =
+                    string.Format(
+                        "在解析 XML 串的时候发生错误：[{0}]",
+                        error.Message);
+                Debug.WriteLine(errText);
+
+                throw new Exception(errText);
+            }
+
+            XmlNode headNode = xml.SelectSingleNode("Softland/Head");
+            if (headNode == null)
+            {
+                string errText = "XML 串不符合 WebAPI 不符合接口规范定义，没有找到 Softland/Head 节点";
+                Debug.WriteLine(errText);
+                throw new Exception(errText);
+            }
+            else
+            {
+                ResolveHead(headNode);
+            }
+
+            XmlNode bodyNode = xml.SelectSingleNode("Softland/Body");
+            if (bodyNode == null)
+            {
+                string errText = "XML 串不符合 WebAPI 不符合接口规范定义，没有找到 Softland/Body 节点";
+                Debug.WriteLine(errText);
+                throw new Exception(errText);
+            }
+            else
+                ResolveResponseBody(bodyNode);
+
+            XmlNode logNode = xml.SelectSingleNode("Softland/Log");
+            if (logNode != null)
+                ResolveResponseLog(logNode);
         }
 
         public string GenerateResponseContent()
@@ -105,7 +163,22 @@ namespace IRAP.Interface
             if (logResponse != null)
                 root.AppendChild(xml.ImportNode(logResponse.Generate(), true));
 
-            return xml.OuterXml;            
+            return FormatXML(xml);
+        }
+
+        public string GenerateRequestContent()
+        {
+            XmlDocument xml = new XmlDocument();
+            XmlNode root = xml.CreateElement("Softland");
+            xml.AppendChild(root);
+
+            root.AppendChild(xml.ImportNode(head.Generate(), true));
+            if (bodyRequest != null)
+                root.AppendChild(xml.ImportNode(bodyRequest.Generate(), true));
+            if (logRequest != null)
+                root.AppendChild(xml.ImportNode(logRequest.Generate(), true));
+
+            return FormatXML(xml);
         }
     }
 

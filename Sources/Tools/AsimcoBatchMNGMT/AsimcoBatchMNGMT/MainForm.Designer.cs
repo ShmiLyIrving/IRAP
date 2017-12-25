@@ -106,11 +106,11 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 817);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 827);
             this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1558, 31);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1566, 21);
             // 
             // ribbon
             // 
@@ -131,7 +131,7 @@
             this.ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
             this.ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.MacOffice;
-            this.ribbon.Size = new System.Drawing.Size(1558, 139);
+            this.ribbon.Size = new System.Drawing.Size(1566, 142);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // bbi_config
@@ -193,7 +193,7 @@
             this.splitContainerControl1.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 139);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 142);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Appearance.BackColor = System.Drawing.Color.White;
             this.splitContainerControl1.Panel1.Appearance.Options.UseBackColor = true;
@@ -204,8 +204,8 @@
             this.splitContainerControl1.Panel1.Text = "记录";
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1558, 678);
-            this.splitContainerControl1.SplitterPosition = 1188;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1566, 685);
+            this.splitContainerControl1.SplitterPosition = 1195;
             this.splitContainerControl1.TabIndex = 7;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -219,7 +219,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbon;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1184, 635);
+            this.gridControl1.Size = new System.Drawing.Size(1191, 642);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -280,7 +280,7 @@
             this.panelControl1.LookAndFeel.SkinName = "Visual Studio 2013 Blue";
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1184, 39);
+            this.panelControl1.Size = new System.Drawing.Size(1191, 39);
             this.panelControl1.TabIndex = 3;
             // 
             // checkEdit1
@@ -499,8 +499,8 @@
             this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitContainerControl2.Panel2.Controls.Add(this.splitContainerControl3);
             this.splitContainerControl2.Panel2.Text = "Properties";
-            this.splitContainerControl2.Size = new System.Drawing.Size(365, 678);
-            this.splitContainerControl2.SplitterPosition = 349;
+            this.splitContainerControl2.Size = new System.Drawing.Size(359, 685);
+            this.splitContainerControl2.SplitterPosition = 352;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
@@ -514,7 +514,7 @@
             this.gridControl2.MainView = this.cardView1;
             this.gridControl2.MenuManager = this.ribbon;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(361, 345);
+            this.gridControl2.Size = new System.Drawing.Size(355, 348);
             this.gridControl2.TabIndex = 0;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.cardView1});
@@ -574,7 +574,7 @@
             this.splitContainerControl3.Panel2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 4);
             this.splitContainerControl3.Panel2.ShowCaption = true;
             this.splitContainerControl3.Panel2.Text = "ErrorMessage";
-            this.splitContainerControl3.Size = new System.Drawing.Size(361, 320);
+            this.splitContainerControl3.Size = new System.Drawing.Size(355, 317);
             this.splitContainerControl3.SplitterPosition = 153;
             this.splitContainerControl3.TabIndex = 0;
             this.splitContainerControl3.Text = "splitContainerControl3";
@@ -589,7 +589,7 @@
             this.gridControl3.MainView = this.cardView2;
             this.gridControl3.MenuManager = this.ribbon;
             this.gridControl3.Name = "gridControl3";
-            this.gridControl3.Size = new System.Drawing.Size(361, 153);
+            this.gridControl3.Size = new System.Drawing.Size(355, 153);
             this.gridControl3.TabIndex = 0;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.cardView2});
@@ -637,7 +637,7 @@
             this.panelControl2.Margin = new System.Windows.Forms.Padding(0);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Padding = new System.Windows.Forms.Padding(4);
-            this.panelControl2.Size = new System.Drawing.Size(349, 130);
+            this.panelControl2.Size = new System.Drawing.Size(343, 120);
             this.panelControl2.TabIndex = 0;
             // 
             // textBox1
@@ -647,7 +647,7 @@
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(341, 19);
+            this.textBox1.Size = new System.Drawing.Size(335, 19);
             this.textBox1.TabIndex = 0;
             // 
             // barButtonItem1
@@ -676,14 +676,14 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1558, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1566, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 848);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1558, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1566, 0);
             // 
             // barDockControlLeft
             // 
@@ -696,7 +696,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1558, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1566, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 848);
             // 
             // splashScreenManager1
@@ -709,7 +709,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1558, 848);
+            this.ClientSize = new System.Drawing.Size(1566, 848);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);

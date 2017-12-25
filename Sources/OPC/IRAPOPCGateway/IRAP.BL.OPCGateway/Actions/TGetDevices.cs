@@ -20,7 +20,7 @@ namespace IRAP.BL.OPCGateway.Actions
         {
             try
             {
-                content.Resolve(xmlContent);
+                content.ResolveRequest(xmlContent);
             }
             catch (Exception error)
             {

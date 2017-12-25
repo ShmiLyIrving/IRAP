@@ -24,7 +24,7 @@ namespace IRAP.Interface.OPC
             get { return bodyRequest as TGetDevicesReqBody; }
         }
 
-        protected override void ResolveBody(XmlNode node)
+        protected override void ResolveRequestBody(XmlNode node)
         {
             TGetDevicesReqBody request =
                 TGetDevicesReqBody.LoadFromXMLNode(node);

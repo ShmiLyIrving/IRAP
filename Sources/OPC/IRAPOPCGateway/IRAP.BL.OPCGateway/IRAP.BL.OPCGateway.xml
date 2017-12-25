@@ -1,6 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
+  <ESBParams>
+    <ESBParam BrokeUri="192.168.57.219:61616" QueueName="OPC2DPA" ExCode="DC_Test" Filter="" />
+  </ESBParams>
   <OPCServers>
     <OPCServer Address="127.0.0.1" Name="Kepware.KEPServerEX.V5" />
   </OPCServers>
+  <Devices>
+    <Device DeviceCode="1001001003" DeviceName="生产设备3" KepServerAddr="127.0.0.1" KepServerName="Kepware.KEPServerEX.V5" KepServerChannel="Channel1" KepServerDevice="Device3">
+      <Tag TagName="Channel1.Device3.COMPOS_01" DataType="Boolean" Description="" />
+      <Tag TagName="Channel1.Device3.COMPOS_02" DataType="Boolean" Description="" />
+    </Device>
+    <Device DeviceCode="1001001002" DeviceName="生产设备2" KepServerAddr="127.0.0.1" KepServerName="Kepware.KEPServerEX.V5" KepServerChannel="Channel1" KepServerDevice="Device2">
+      <Tag TagName="Channel1.Device2.COMPOS_01" DataType="Boolean" Description="" />
+      <Tag TagName="Channel1.Device2.COMPOS_02" DataType="Boolean" Description="" />
+    </Device>
+    <Device DeviceCode="1001001001" DeviceName="生产设备1" KepServerAddr="127.0.0.1" KepServerName="Kepware.KEPServerEX.V5" KepServerChannel="Channel1" KepServerDevice="Device1">
+      <Tag TagName="Channel1.Device1.COMPOS_01" DataType="Boolean" Description="" />
+      <Tag TagName="Channel1.Device1.COMPOS_02" DataType="Boolean" Description="" />
+      <Tag TagName="Channel1.Device1.COMPOS_03" DataType="Boolean" Description="" />
+    </Device>
+  </Devices>
 </root>

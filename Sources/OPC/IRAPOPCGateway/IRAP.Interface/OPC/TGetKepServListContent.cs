@@ -23,7 +23,7 @@ namespace IRAP.Interface.OPC
             get { return bodyResponse as TGetKepServListRspBody; }
         }
 
-        protected override void ResolveBody(XmlNode node)
+        protected override void ResolveRequestBody(XmlNode node)
         {
             TGetKepServListReqBody request =
                 TGetKepServListReqBody.LoadFromXMLNode(node);

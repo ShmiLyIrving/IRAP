@@ -29,7 +29,7 @@ namespace IRAP.Interface.OPC
             get { return bodyResponse as TUpdateKepServRspBody; }
         }
 
-        protected override void ResolveBody(XmlNode node)
+        protected override void ResolveRequestBody(XmlNode node)
         {
             TUpdateKepServReqBody request =
                 TUpdateKepServReqBody.LoadFromXMLNode(node);

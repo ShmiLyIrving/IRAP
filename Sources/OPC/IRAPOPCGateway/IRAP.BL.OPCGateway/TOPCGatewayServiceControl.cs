@@ -51,7 +51,11 @@ namespace IRAP.BL.OPCGateway
                 Debug.WriteLine("OPC 网关服务启动失败，原因：[{0}]", error.Message);
             }
 
+            // 加载本地保存的已注册的设备列表
             TIRAPOPCDevices.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
+
+            //
+            TIRAPOPCTagValueQueueOut.Instance.Start();
 
             // 根据配置文件内容，创建 KepServer 连接
             TIRAPOPCServers.Instance.LoadFromDataFile(TOPCGatewayGlobal.Instance.ConfigurationFile);
@@ -85,6 +89,9 @@ namespace IRAP.BL.OPCGateway
 
                 listener = null;
             }
+
+            // 终止 OPC Value 消息队列处理线程
+            TIRAPOPCTagValueQueueOut.Instance.Stop();
         }
     }
 }

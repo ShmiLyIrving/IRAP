@@ -128,6 +128,20 @@ namespace IRAP.Global
 
             return null;
         }
+
+        /// <summary>
+        /// 获取 XML 节点中指定属性名的属性值
+        /// </summary>
+        /// <param name="node">XML 节点</param>
+        /// <param name="attrName">属性名</param>
+        /// <returns>属性值（字符串类型）</returns>
+        public static string GetXMLNodeAttributeValue(XmlNode node, string attrName)
+        {
+            if (node.Attributes[attrName] != null)
+                return node.Attributes[attrName].Value;
+            else
+                return "";
+        }
     }
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = false)]

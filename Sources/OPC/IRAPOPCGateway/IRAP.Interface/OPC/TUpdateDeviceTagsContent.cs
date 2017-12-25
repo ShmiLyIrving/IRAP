@@ -25,7 +25,7 @@ namespace IRAP.Interface.OPC
             get { return bodyResponse as TUpdateDeviceTagsRspBody; }
         }
 
-        protected override void ResolveBody(XmlNode node)
+        protected override void ResolveRequestBody(XmlNode node)
         {
             TUpdateDeviceTagsReqBody request =
                 TUpdateDeviceTagsReqBody.LoadFromXMLNode(node);

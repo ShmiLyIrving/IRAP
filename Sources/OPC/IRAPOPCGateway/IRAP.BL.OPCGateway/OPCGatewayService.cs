@@ -48,7 +48,7 @@ namespace IRAP.BL.OPCGateway
             TSoftlandContent softlandContent = new TSoftlandContent();
             try
             {
-                softlandContent.Resolve(content);
+                softlandContent.ResolveRequest(content);
             }
             catch (Exception error)
             {

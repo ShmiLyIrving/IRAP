@@ -119,8 +119,9 @@ namespace IRAP.BL.OPCGateway
                         TIRAPOPCTagValueItemQueue.Instance.Add(item);
                         Debug.WriteLine(
                             string.Format(
-                                "入队：TagName[{0}],Value[{1}],Quality[{2}],TimeStamp[{3}]",
-                                item.TagName, item.Value, item.Quality, item.TimeStamp));
+                                "入队：TagName[{0}],Value[{1}],Quality[{2}],TimeStamp[{3}]，共[{4}]条消息",
+                                item.TagName, item.Value, item.Quality, item.TimeStamp,
+                                TIRAPOPCTagValueItemQueue.Instance.QueueItemCount));
                     }
                 }
                 catch (Exception error)

@@ -1,45 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="IRAP.Interface.DCS.TCustomXMLArea" Collapsed="true">
-    <Position X="3" Y="0.5" Width="1.5" />
+  <Class Name="IRAP.Interface.TCustomXMLArea" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TCustomXMLArea.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Interface.DCS.TSoftlandContent" Collapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TSoftlandContent.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="IRAP.Interface.DCS.TSoftlandHead" Collapsed="true">
-    <Position X="3" Y="1.75" Width="1.5" />
+  <Class Name="IRAP.Interface.TSoftlandHead" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAKAAAAAgBBIAAAAEAAAAAAEAAAAAEAAAAA=</HashCode>
       <FileName>TSoftlandContent.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Interface.DCS.TSoftlandBody" Collapsed="true">
-    <Position X="0.75" Y="1.75" Width="1.5" />
+  <Class Name="IRAP.Interface.DCS.TUserAuthenticate" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DCS\TUserAuthenticate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TDC_TestContent" Collapsed="true">
+    <Position X="2.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DCS\TDC_Test.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TDC_TestReqBody" Collapsed="true">
+    <Position X="5.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIwAAQgUBAAABAAgAABAICAQOIEhAAAMAAAAAAACIAI=</HashCode>
+      <FileName>DCS\TDC_Test.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TDC_TestReqBodyTD" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CwAAYGMBEACwAAAAABJYLAAAAA0AHgCCDwAEAASABxA=</HashCode>
+      <FileName>DCS\TDC_Test.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TDC_TestReqBodyRecipe" Collapsed="true">
+    <Position X="5.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAABIAAAAEAIAACASQAgAAAQAAABA=</HashCode>
+      <FileName>DCS\TDC_Test.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.TSoftlandRowSet">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TSoftlandRowSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.DCS.TDC_TestReqBodyPFM" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAEQAAgBACQgAAAAAAAAAAAAAAAAAAADA=</HashCode>
+      <FileName>DCS\TDC_Test.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.TSoftlandContent" Collapsed="true">
+    <Position X="1.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAQAAAAwACAAIAAEAAAAAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>TSoftlandContent.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Interface.DCS.TSoftlandLog" Collapsed="true">
-    <Position X="5.25" Y="1.75" Width="1.5" />
+  <Class Name="IRAP.Interface.TSoftlandBody" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>TSoftlandContent.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Interface.DCS.TUserAuthenticate">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+  <Class Name="IRAP.Interface.TSoftlandLog" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TUserAuthenticate.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>TSoftlandContent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
