@@ -731,13 +731,9 @@ namespace IRAP.Client.GUI.MDM {
             }
         }
 
-        private void btnImport_CheckedChanged(object sender, EventArgs e) {
+        private void btnImport_Click(object sender, EventArgs e) {
             this.btnValidate.Enabled = false;
-            if (!this.btnImport.Checked) {
-                return;
-            }
             var excelData = OpenFile();
-            this.btnImport.Checked = false;
             if (!ColumnValidate(excelData) || !InsertData(excelData)) {
                 return;
             }
@@ -751,14 +747,10 @@ namespace IRAP.Client.GUI.MDM {
             this.btnValidate.Enabled = true;
         }
 
-        private void btnValidate_CheckedChanged(object sender, EventArgs e) {
-            if (!this.btnValidate.Checked) {
-                return;
-            }
+        private void btnValidate_Click(object sender, EventArgs e) {
             this.btnLoad.Enabled = false;
             this.btnLoadPart.Enabled = false;
             SetStateLabel("", 0);
-            this.btnValidate.Checked = false;
 
             var data = GetVerifyResult();
             _gridDataSource = data;
@@ -782,28 +774,16 @@ namespace IRAP.Client.GUI.MDM {
             
         }
 
-        private void btnLoad_CheckedChanged(object sender, EventArgs e) {
-            if (!this.btnLoad.Checked) {
-                return;
-            }
-            this.btnLoad.Checked = false;
+        private void btnLoad_Click(object sender, EventArgs e) {
             Loading();
+        }
+
+        private void btnLoadPart_Click(object sender, EventArgs e) {
+            Loading();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e) {
             
-        }
-
-        private void btnLoadPart_CheckedChanged(object sender, EventArgs e) {
-            if (!this.btnLoadPart.Checked) {
-                return;
-            }
-            this.btnLoadPart.Checked = false;
-            Loading();
-        }
-
-        private void btnExport_CheckedChanged(object sender, EventArgs e) {
-            if (!this.btnExport.Checked) {
-                return;
-            }
-            this.btnExport.Checked = false;
             SaveFileDialog fileDialog = new SaveFileDialog();
             fileDialog.Title = "导出数据信息";
             fileDialog.Filter = "Excel2003文件(*.xls)|*.xls|Excel2007文件(*.xlsx)|*.xlsx";
@@ -961,6 +941,8 @@ namespace IRAP.Client.GUI.MDM {
                 this.labelState.ForeColor = Color.Green;
             }
         }
+
+   
 
 
     }

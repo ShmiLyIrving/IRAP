@@ -23,28 +23,27 @@
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             this.treeList = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.panelRight = new DevExpress.XtraEditors.PanelControl();
             this.checkEditLog = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditImportAll = new DevExpress.XtraEditors.CheckEdit();
-            this.btnLoadPart = new DevExpress.XtraEditors.CheckButton();
+            this.btnLoadPart = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnLoad = new DevExpress.XtraEditors.CheckButton();
-            this.btnValidate = new DevExpress.XtraEditors.CheckButton();
-            this.panelRightTop = new DevExpress.XtraLayout.LayoutControl();
             this.labelState = new DevExpress.XtraEditors.LabelControl();
-            this.btnExport = new DevExpress.XtraEditors.CheckButton();
-            this.btnImport = new DevExpress.XtraEditors.CheckButton();
+            this.btnLoad = new DevExpress.XtraEditors.SimpleButton();
+            this.btnValidate = new DevExpress.XtraEditors.SimpleButton();
+            this.panelRightTop = new DevExpress.XtraLayout.LayoutControl();
+            this.btnExport = new DevExpress.XtraEditors.SimpleButton();
+            this.btnImport = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutItemSelect = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter(this.components);
+            this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
@@ -161,7 +160,7 @@
             this.btnLoadPart.Size = new System.Drawing.Size(75, 23);
             this.btnLoadPart.TabIndex = 15;
             this.btnLoadPart.Text = "部分加载";
-            this.btnLoadPart.CheckedChanged += new System.EventHandler(this.btnLoadPart_CheckedChanged);
+            this.btnLoadPart.Click += new System.EventHandler(this.btnLoadPart_Click);
             // 
             // gridControl1
             // 
@@ -193,6 +192,14 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // labelState
+            // 
+            this.labelState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelState.Location = new System.Drawing.Point(11, 378);
+            this.labelState.Name = "labelState";
+            this.labelState.Size = new System.Drawing.Size(0, 14);
+            this.labelState.TabIndex = 19;
+            // 
             // btnLoad
             // 
             this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -203,7 +210,7 @@
             this.btnLoad.Size = new System.Drawing.Size(75, 23);
             this.btnLoad.TabIndex = 13;
             this.btnLoad.Text = "加载";
-            this.btnLoad.CheckedChanged += new System.EventHandler(this.btnLoad_CheckedChanged);
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // btnValidate
             // 
@@ -215,7 +222,7 @@
             this.btnValidate.Size = new System.Drawing.Size(75, 23);
             this.btnValidate.TabIndex = 12;
             this.btnValidate.Text = "验证";
-            this.btnValidate.CheckedChanged += new System.EventHandler(this.btnValidate_CheckedChanged);
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
             // panelRightTop
             // 
@@ -233,14 +240,6 @@
             this.panelRightTop.Size = new System.Drawing.Size(601, 46);
             this.panelRightTop.TabIndex = 11;
             // 
-            // labelState
-            // 
-            this.labelState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelState.Location = new System.Drawing.Point(11, 378);
-            this.labelState.Name = "labelState";
-            this.labelState.Size = new System.Drawing.Size(0, 14);
-            this.labelState.TabIndex = 19;
-            // 
             // btnExport
             // 
             this.btnExport.Enabled = false;
@@ -252,7 +251,7 @@
             this.btnExport.StyleController = this.panelRightTop;
             this.btnExport.TabIndex = 18;
             this.btnExport.Text = "导出";
-            this.btnExport.CheckedChanged += new System.EventHandler(this.btnExport_CheckedChanged);
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnImport
             // 
@@ -267,7 +266,7 @@
             this.btnImport.StyleController = this.panelRightTop;
             this.btnImport.TabIndex = 17;
             this.btnImport.Text = "导入";
-            this.btnImport.CheckedChanged += new System.EventHandler(this.btnImport_CheckedChanged);
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // comboBoxEdit1
             // 
@@ -353,6 +352,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelRight)).EndInit();
             this.panelRight.ResumeLayout(false);
+            this.panelRight.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditLog.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditImportAll.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -368,7 +368,6 @@
             this.ResumeLayout(false);
 
         }
-
         #endregion
 
         private DevExpress.XtraTreeList.TreeList treeList;
@@ -380,15 +379,15 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutItemSelect;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.Converter.LayoutConverter layoutConverter1;
-        private DevExpress.XtraEditors.CheckButton btnValidate;
-        private DevExpress.XtraEditors.CheckButton btnLoad;
+        private DevExpress.XtraEditors.SimpleButton btnValidate;
+        private DevExpress.XtraEditors.SimpleButton btnLoad;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.CheckEdit checkEditLog;
         private DevExpress.XtraEditors.CheckEdit checkEditImportAll;
-        private DevExpress.XtraEditors.CheckButton btnLoadPart;
-        private DevExpress.XtraEditors.CheckButton btnExport;
-        private DevExpress.XtraEditors.CheckButton btnImport;
+        private DevExpress.XtraEditors.SimpleButton btnLoadPart;
+        private DevExpress.XtraEditors.SimpleButton btnExport;
+        private DevExpress.XtraEditors.SimpleButton btnImport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.LabelControl labelState;
