@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 
+using IRAP.WebAPI.Exchange.MES;
+using IRAP.WebAPI.Entities.MES;
+
 namespace IRAPWebAPIClient
 {
     public partial class frmMain : Form
@@ -87,6 +90,25 @@ namespace IRAPWebAPIClient
             edtExCode.Text = "IRAP_MES_GetOPCServerTagList";
 
             edtRequest.Text = "{\"CommunityID\":\"60002\",\"SysLogID\":\"1\"}";
+        }
+
+        private void btnExTest_Click(object sender, EventArgs e)
+        {
+            TGetOPCServerTagList exchange = new TGetOPCServerTagList();
+
+            exchange.Request =
+                new TREQOPCServerTagList()
+                {
+                    CommunityID = 60002,
+                    SysLogID = 1,
+                };
+
+            if (exchange.Do())
+                MessageBox.Show(string.Format("({0}){1}", exchange.Error.ErrCode, exchange.Error.ErrText));
+            else
+                MessageBox.Show(string.Format("({0}){1}", exchange.Error.ErrCode, exchange.Error.ErrText));
+
+            edtResponse.Text = exchange.Error.SourceRESPContent;
         }
     }
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPWebAPIClient", "IRAPWebAPIClient\IRAPWebAPIClient.csproj", "{F29CB774-203C-439A-A251-EAB57CEE0971}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.WebAPI.Client", "..\..\Client\ServerClient\IRAP.WebAPI.Client\IRAP.WebAPI.Client.csproj", "{FB9027C7-057A-4FA8-8698-4E288EA2C0A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F29CB774-203C-439A-A251-EAB57CEE0971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F29CB774-203C-439A-A251-EAB57CEE0971}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F29CB774-203C-439A-A251-EAB57CEE0971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB9027C7-057A-4FA8-8698-4E288EA2C0A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB9027C7-057A-4FA8-8698-4E288EA2C0A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB9027C7-057A-4FA8-8698-4E288EA2C0A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB9027C7-057A-4FA8-8698-4E288EA2C0A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
