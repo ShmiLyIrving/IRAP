@@ -213,6 +213,12 @@
     <Compile Include="SelectTableForm.Designer.cs">
       <DependentUpon>SelectTableForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ColorLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ColorLabel.Designer.cs">
+      <DependentUpon>ColorLabel.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -353,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectTableForm.resx">
       <DependentUpon>SelectTableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ColorLabel.resx">
+      <DependentUpon>ColorLabel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
