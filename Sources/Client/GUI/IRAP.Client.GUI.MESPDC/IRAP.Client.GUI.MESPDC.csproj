@@ -246,6 +246,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Actions\SendToControlBox.cs" />
+    <Compile Include="UserControls\ColorLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ColorLabel.Designer.cs">
+      <DependentUpon>ColorLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucBatchQualityInspecting.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -411,6 +417,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ColorLabel.resx">
+      <DependentUpon>ColorLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucBatchQualityInspecting.resx">
       <DependentUpon>ucBatchQualityInspecting.cs</DependentUpon>
