@@ -793,5 +793,62 @@ namespace IRAP.WCF.Client.Method {
             return null;
         }
 
+        /// <summary>
+        /// 获取导入校验错误类型清单 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t19LeafID">导入导出叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns></returns>
+        public List<ImportErrorTypes> GetErrTypesOfImport(int communityID, int t19LeafID, long sysLogID,
+            out int errCode, out string errText) {
+            string strProcedureName =
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t19LeafID", t19LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(string.Format(
+                        "调用 sfn_GetList_ErrTypesOfImport 函数，参数：communityID={0}|t19LeafID={1}|sysLogID={2} ",
+                        communityID, t19LeafID, sysLogID));
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.UTS.dll",
+                            "IRAP.BL.UTS.GeneralImport",
+                            "sfn_GetList_ErrTypesOfImport",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0) {
+                        var datas = rlt as List<ImportErrorTypes>;
+                        return datas;
+                    }
+                }
+                #endregion
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
     }
 }
