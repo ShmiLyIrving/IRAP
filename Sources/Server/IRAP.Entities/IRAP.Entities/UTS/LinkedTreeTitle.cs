@@ -149,4 +149,22 @@ namespace IRAP.Entity.UTS {
         /// </summary>
         public string Visible { get; set; }
     }
+
+    public class ImportErrorTypes {
+        /// <summary>
+        /// 序号
+        /// </summary>
+        public int Ordinal { get; set; }
+
+        /// <summary>
+        /// 错误类型
+        /// </summary>
+        public string ErrType { get; set; }
+
+        /// <summary>
+        /// 背景颜色
+        /// </summary>
+        public string BGColor { get; set; }
+    }
+
 }
