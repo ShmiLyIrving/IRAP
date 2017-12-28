@@ -158,6 +158,16 @@ namespace IRAP.Client.GUI.MDM {
                 this.layoutItemSelect.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 this.layoutItemSelect.Text = _treeInfo.PromptStr;
             }
+            var importErrType = GetErrTypesOfImport(treeId);
+            SetImprotErrColor(importErrType);
+        }
+
+        /// <summary>
+        /// 设置错误提示色块
+        /// </summary>
+        /// <param name="importErrType"></param>
+        private void SetImprotErrColor(List<ImportErrorTypes> importErrType) {
+            this.colorPanel1.InitColorPanel(importErrType);
         }
 
         private void SetDropDownList() {
@@ -170,6 +180,34 @@ namespace IRAP.Client.GUI.MDM {
                 this.comboBoxEdit1.Properties.Items.Add(item.LeafName);
             }
             //this.comboBoxEdit1.ShowPopup();
+        }
+
+        /// <summary>
+        /// 获取导入校验错误类型清单
+        /// </summary>
+        /// <param name="t19LeafID"></param>
+        /// <returns></returns>
+        private List<ImportErrorTypes> GetErrTypesOfImport(int t19LeafID) {
+            int errCode;
+            string errText;
+            string strProcedureName =
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                var lists = IRAPTreeClient.Instance.GetErrTypesOfImport(_communityID, t19LeafID, _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                } else {
+                    return lists;
+                }
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
         }
         #endregion
 

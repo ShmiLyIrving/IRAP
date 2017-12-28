@@ -44,6 +44,7 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter();
+            this.colorPanel1 = new IRAP.Client.GUI.MDM.ColorPanel();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
@@ -116,6 +117,7 @@
             this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelRight.Controls.Add(this.colorPanel1);
             this.panelRight.Controls.Add(this.checkEditLog);
             this.panelRight.Controls.Add(this.checkEditImportAll);
             this.panelRight.Controls.Add(this.btnLoadPart);
@@ -170,7 +172,7 @@
             this.gridControl1.Location = new System.Drawing.Point(5, 68);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(595, 304);
+            this.gridControl1.Size = new System.Drawing.Size(474, 304);
             this.gridControl1.TabIndex = 14;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -336,6 +338,14 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // colorPanel1
+            // 
+            this.colorPanel1.AutoScroll = true;
+            this.colorPanel1.Location = new System.Drawing.Point(485, 68);
+            this.colorPanel1.Name = "colorPanel1";
+            this.colorPanel1.Size = new System.Drawing.Size(115, 304);
+            this.colorPanel1.TabIndex = 20;
+            // 
             // frmGeneralImport
             // 
             this.Appearance.Options.UseFont = true;
@@ -392,5 +402,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.LabelControl labelState;
+        private ColorPanel colorPanel1;
     }
 }

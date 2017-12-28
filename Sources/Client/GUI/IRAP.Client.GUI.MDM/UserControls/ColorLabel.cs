@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace IRAP.Client.GUI.MESPDC.UserControls {
+namespace IRAP.Client.GUI.MDM {
     public partial class ColorLabel : XtraUserControl {
         public ColorLabel() {
             InitializeComponent();
@@ -19,6 +19,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         public string Text {
             get { return this.labelMessage.Text; }
             set { this.labelMessage.Text = value; }
+        }
+
+        [Browsable(true)]
+        public Color Color {
+            get { return this.panelColor.BackColor; }
+            set { this.panelColor.BackColor = value; }
         }
     }
 }

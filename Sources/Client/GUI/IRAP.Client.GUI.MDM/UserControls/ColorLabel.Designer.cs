@@ -1,4 +1,4 @@
-﻿namespace IRAP.Client.GUI.MESPDC.UserControls {
+﻿namespace IRAP.Client.GUI.MDM {
     partial class ColorLabel {
         /// <summary> 
         /// 必需的设计器变量。
@@ -46,7 +46,6 @@
             this.labelMessage.Name = "labelMessage";
             this.labelMessage.Size = new System.Drawing.Size(104, 18);
             this.labelMessage.TabIndex = 1;
-            this.labelMessage.Text = "测试一下是否可以显示文字";
             // 
             // ColorLabel
             // 
