@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace IRAPGeneralGateway.Entities
 {
-    public class TResCommEntity
+    public class TEntityResComm
     {
         [XmlAttribute()]
         public string ExCode { get; set; }

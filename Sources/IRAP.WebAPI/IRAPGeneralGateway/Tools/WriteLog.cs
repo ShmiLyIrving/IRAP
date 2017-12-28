@@ -10,7 +10,7 @@ using System.IO;
 
 namespace IRAP.Global
 {
-    public class WriteLog : System.Object
+    public class WriteLog
     {
         private static WriteLog instance;
         private static object LockStatus = new object();
@@ -75,28 +75,28 @@ namespace IRAP.Global
 
         public bool IsWriteLog
         {
-            get { return IniFile.ReadBool("Logs", "Write Log", false, attributeFileName); }
-            set { IniFile.WriteBool("Logs", "Write Log", value, attributeFileName); }
-            //get
-            //{
-            //    if (ConfigurationManager.AppSettings["WriteLog"] != null)
-            //        return ConfigurationManager.AppSettings["WriteLog"].ToString().ToUpper() == "TRUE";
-            //    else
-            //        return false;
-            //}
-            //set
-            //{
-            //    Configuration config =
-            //        ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            //get { return IniFile.ReadBool("Logs", "Write Log", false, attributeFileName); }
+            //set { IniFile.WriteBool("Logs", "Write Log", value, attributeFileName); }
+            get
+            {
+                if (ConfigurationManager.AppSettings["WriteLog"] != null)
+                    return ConfigurationManager.AppSettings["WriteLog"].ToString().ToUpper() == "TRUE";
+                else
+                    return false;
+            }
+            set
+            {
+                Configuration config =
+                    ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-            //    if (config.AppSettings.Settings["WriteLog"].Value == null)
-            //        config.AppSettings.Settings.Add("WriteLog", true.ToString());
-            //    else
-            //        config.AppSettings.Settings["WriteLog"].Value = value.ToString();
+                if (config.AppSettings.Settings["WriteLog"].Value == null)
+                    config.AppSettings.Settings.Add("WriteLog", true.ToString());
+                else
+                    config.AppSettings.Settings["WriteLog"].Value = value.ToString();
 
-            //    config.Save(ConfigurationSaveMode.Modified);
-            //    ConfigurationManager.RefreshSection("appSettings");
-            //}
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+            }
         }
 
         public string WriteLogFileName

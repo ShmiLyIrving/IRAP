@@ -299,7 +299,7 @@ namespace IRAP.MDC.Service
                                 message,
                                 MsgDeliveryMode.Persistent,
                                 MsgPriority.Normal,
-                                new TimeSpan(7, 0, 0, 0));
+                                new TimeSpan(0, 0, 0, 30));
                         }
                     }
                 }

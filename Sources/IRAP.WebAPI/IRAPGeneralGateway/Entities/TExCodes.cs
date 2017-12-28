@@ -5,11 +5,17 @@ using System.Text;
 using System.Xml;
 using System.Diagnostics;
 using System.IO;
+using System.Data.SqlClient;
+using System.Data;
 
 using IRAP.Global;
+using IRAP.DBUtility;
 
 namespace IRAPGeneralGateway.Entities
 {
+    /// <summary>
+    /// 交易代码列表全局单例类
+    /// </summary>
     public class TExCodes
     {
         private static TExCodes _instance = null;
@@ -24,20 +30,20 @@ namespace IRAPGeneralGateway.Entities
             }
         }
 
-        private Dictionary<string, TExCodeEntity> excodes = new Dictionary<string, TExCodeEntity>();
+        private Dictionary<string, TEntityExCode> excodes = new Dictionary<string, TEntityExCode>();
 
         private TExCodes() { }
 
-        public Dictionary<string, TExCodeEntity> ExCodes
+        public Dictionary<string, TEntityExCode> ExCodes
         {
             get { return excodes; }
         }
 
-        public void AddItem(TExCodeEntity exCode)
+        public void AddItem(TEntityExCode exCode)
         {
             if (!excodes.ContainsKey(exCode.ExCode))
                 excodes.Add(
-                    string.Format("{0}_{1}", exCode.Prefix, exCode.ExCode), 
+                    string.Format("{0}_{1}", exCode.Prefix, exCode.ExCode),
                     exCode);
         }
 
@@ -49,10 +55,13 @@ namespace IRAPGeneralGateway.Entities
         {
             foreach (XmlNode node in parentNode.ChildNodes)
             {
-                TExCodeEntity exCode = new TExCodeEntity();
-                exCode = IRAPXMLUtils.LoadValueFromXMLNode(node, exCode) as TExCodeEntity;
+                if (node.NodeType == XmlNodeType.Element)
+                {
+                    TEntityExCode exCode = new TEntityExCode();
+                    exCode = IRAPXMLUtils.LoadValueFromXMLNode(node, exCode) as TEntityExCode;
 
-                AddItem(exCode);
+                    AddItem(exCode);
+                }
             }
         }
 
@@ -94,7 +103,7 @@ namespace IRAPGeneralGateway.Entities
         {
             XmlDocument xml = new XmlDocument();
             XmlNode rootNode = null;
-            
+
             if (!File.Exists(dataFileName))
             {
                 xml.AppendChild(xml.CreateXmlDeclaration("1.0", "utf-8", ""));
@@ -135,7 +144,7 @@ namespace IRAPGeneralGateway.Entities
             XmlNode excodeNode = xml.CreateElement("ExCodes");
             rootNode.AppendChild(excodeNode);
 
-            foreach (TExCodeEntity excode in excodes.Values)
+            foreach (TEntityExCode excode in excodes.Values)
             {
                 XmlNode node = xml.CreateElement("ExCode");
                 node = IRAPXMLUtils.GenerateXMLAttribute(node, excode);
@@ -151,14 +160,108 @@ namespace IRAPGeneralGateway.Entities
         /// <param name="prefix">前缀</param>
         /// <param name="exCode">交易代码</param>
         /// <returns>交易代码定义对象</returns>
-        public TExCodeEntity GetItem(string prefix, string exCode)
+        public TEntityExCode GetExCode(string prefix, string exCode)
         {
             string fullExCode = string.Format("{0}_{1}", prefix, exCode);
-            TExCodeEntity rlt = null;
+            TEntityExCode rlt = null;
             if (excodes.TryGetValue(fullExCode, out rlt))
                 return rlt;
             else
                 return null;
+        }
+
+        public Dictionary<string, Entities.TEntityInputParam> GetInputParam(TEntityExCode exCode)
+        {
+            Dictionary<string, Entities.TEntityInputParam> spParams =
+                new Dictionary<string, TEntityInputParam>();
+
+            DBHelperSQLServer db = new DBHelperSQLServer();
+            db.ConnectionString = TDBConnections.Instance.GetFirstConnection().ConnectionString;
+
+            SqlParameter p1 = 
+                new SqlParameter()
+                {
+                    ParameterName = "@procedure_name",
+                    Value = exCode.ProcName,
+                    SqlDbType = SqlDbType.VarChar,
+                };
+            SqlParameter p2 =
+                new SqlParameter()
+                {
+                    ParameterName = "@group_number",
+                    Value = 1,
+                    SqlDbType = SqlDbType.Int,
+                };
+
+            IDataParameter[] paramArray =
+                new IDataParameter[]
+                {
+                    p1,
+                    p2,
+                    new SqlParameter("@procedure_schema", null),
+                    new SqlParameter("@parameter_name", null),
+                };
+            List<IDataParameter> paramArra = new List<IDataParameter>();
+            paramArra.Add(p1);
+            paramArra.Add(p2);
+            paramArra.Add(new SqlParameter("@procedure_schema", null));
+            paramArra.Add(new SqlParameter("@parameter_name", null));
+
+            DataSet ds = 
+                db.RunProcedureEx(
+                    exCode.DBName,
+                    "sys",
+                    "sp_procedure_params_rowset", ref paramArra);
+            try
+            {
+                foreach (DataRow r in ds.Tables[0].Rows)
+                {
+                    //跳过返回值
+                    if (int.Parse(r["ORDINAL_POSITION"].ToString()) == 0)
+                    {
+                        continue;
+                    }
+                    TEntityInputParam param = new TEntityInputParam();
+                    param.ProcName = exCode.ProcName;
+                    //把参数中的@去掉
+                    param.ParamName = r["PARAMETER_NAME"].ToString().Replace("@", "");
+
+                    param.Ordinal = int.Parse(r["ORDINAL_POSITION"].ToString());
+
+                    param.ParamType = r["TYPE_NAME"].ToString();
+                    param.CanNull = r["IS_NULLABLE"].ToString().ToUpper() == "TRUE";
+                    if (r["PARAMETER_TYPE"].ToString() == "1")
+                    {
+                        param.IsOutput = 0;
+                    }
+                    else if (r["PARAMETER_TYPE"].ToString() == "2")
+                    {
+                        param.IsOutput = 1;
+                    }
+                    if (r["CHARACTER_MAXIMUM_LENGTH"] != null && r["CHARACTER_MAXIMUM_LENGTH"] != DBNull.Value)
+                    {
+                        param.Length = int.Parse(r["CHARACTER_MAXIMUM_LENGTH"].ToString());
+                    }
+
+                    if (r["NUMERIC_PRECISION"] != null && r["NUMERIC_PRECISION"] != DBNull.Value)
+                    {
+                        param.Precision = int.Parse(r["NUMERIC_PRECISION"].ToString());
+                    }
+                    if (r["NUMERIC_SCALE"] != null && r["NUMERIC_SCALE"] != DBNull.Value)
+                    {
+                        param.Scale = int.Parse(r["NUMERIC_SCALE"].ToString());
+                    }
+                    spParams.Add(param.ParamName, param);
+                }
+            }
+            catch (Exception err)
+            {
+                err.Data["ErrCode"] = 9999;
+                err.Data["ErrText"] = err.Message;
+                throw err;
+            }
+
+            return spParams;
         }
     }
 }

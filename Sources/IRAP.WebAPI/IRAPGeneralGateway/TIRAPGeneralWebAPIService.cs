@@ -5,8 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Reflection;
+using System.Xml;
+using System.Data.SqlClient;
+using System.Data;
+using System.Dynamic;
 
 using IRAP.Global;
+using IRAP.DBUtility;
 using IRAPGeneralGateway.Entities;
 
 namespace IRAPGeneralGateway
@@ -23,7 +28,7 @@ namespace IRAPGeneralGateway
         /// <summary>
         /// 当前的客户端连接数
         /// </summary>
-        private static int _ConnectedCount = 0;
+        private static int _connectedCount = 0;
         /// <summary>
         /// 每秒允许的最大客户端连接数
         /// </summary>
@@ -31,14 +36,13 @@ namespace IRAPGeneralGateway
         /// <summary>
         /// 当前服务连接的数据库类型
         /// </summary>
-        private TDBServerType _DBType = TDBServerType.SQLServer;
+        private TDBServerType _dbType = TDBServerType.SQLServer;
 
         /// <summary>
         /// 构造方法
         /// </summary>
         public TIRAPGeneralWebAPIService()
         {
-
         }
 
         /// <summary>
@@ -56,8 +60,8 @@ namespace IRAPGeneralGateway
                     int errCode,
                     string errText)
         {
-            Entities.TResCommEntity res =
-                new Entities.TResCommEntity()
+            Entities.TEntityResComm res =
+                new Entities.TEntityResComm()
                 {
                     ExCode = exCode,
                     ErrCode = errCode,
@@ -76,7 +80,60 @@ namespace IRAPGeneralGateway
         /// <param name="msgContent">消息报文</param>
         private Stream EncryptContent(string clientID, string msgContent)
         {
-            throw new NotImplementedException();
+            byte[] strBytes = null;
+            string desPWD = "12345678";
+            TSecurityLevel thisSL = TSecurityLevel.None;
+
+            try
+            {
+                if (TRegistClients.Instance.Clients.ContainsKey(clientID))
+                {
+                    TEntityClient clientEntity = TRegistClients.Instance.Clients[clientID];
+                    thisSL = (TSecurityLevel)clientEntity.SecurityLevel;
+                    desPWD = clientEntity.Encrypt_Key;
+                }
+
+                switch (thisSL)
+                {
+                    case TSecurityLevel.None:
+                        strBytes = Encoding.UTF8.GetBytes(msgContent);
+                        break;
+                    case TSecurityLevel.Compressed:
+                        strBytes = Encoding.UTF8.GetBytes(IRAP.ZipUtil.Zip(msgContent));
+                        break;
+                    case TSecurityLevel.DES:
+                        IRAP.DES des = new IRAP.DES();
+                        string desStr = des.EncryptDES(msgContent, desPWD);
+                        string zipStr = IRAP.ZipUtil.Zip(desStr);
+                        strBytes = Encoding.UTF8.GetBytes(zipStr);
+                        break;
+                    case TSecurityLevel.AES:
+                        strBytes =
+                            Encoding.UTF8.GetBytes(
+                                IRAP.AES.Encrypt(
+                                    msgContent,
+                                    desPWD,
+                                    desPWD));
+                        break;
+                    default:
+                        strBytes =
+                            Encoding.UTF8.GetBytes(
+                                string.Format(
+                                    "{ErrCode:999999,ErrText:'系统无法识别加密安全级别[{0}]，无法完成加密操作'}",
+                                    thisSL));
+                        break;
+                }
+            }
+            catch (Exception error)
+            {
+                strBytes =
+                    Encoding.UTF8.GetBytes(
+                        string.Format(
+                            "{ErrCode:999999,ErrText:'{0}'}",
+                            error.Message));
+            }
+
+            return new MemoryStream(strBytes);
         }
 
         /// <summary>
@@ -156,11 +213,11 @@ namespace IRAPGeneralGateway
                 if (DateTime.Now.Subtract(_lastTime).TotalMilliseconds > 1000)
                 {
                     _lastTime = DateTime.Now;
-                    _ConnectedCount = 0;
+                    _connectedCount = 0;
                 }
                 else
-                    _ConnectedCount++;
-                if (_ConnectedCount > _maxConnectedPerSecond)
+                    _connectedCount++;
+                if (_connectedCount > _maxConnectedPerSecond)
                 {
                     // 记录日志
                     WriteLog.Instance.Write(
@@ -199,8 +256,8 @@ namespace IRAPGeneralGateway
                         "ExCode 传递不合法，必须是：'行业系统_模块_方法'格式");
                 #endregion
 
-                TExCodeEntity exCodeObj =
-                    TExCodes.Instance.GetItem(
+                TEntityExCode exCodeObj =
+                    TExCodes.Instance.GetExCode(
                         string.Format("{0}_{1}", tmpExCode[0], tmpExCode[1]),
                         tmpExCode[2]);
                 if (exCodeObj == null)
@@ -240,7 +297,7 @@ namespace IRAPGeneralGateway
                             string errText = "";
 
                             #region 以下是通过数据库的存储过程来验证客户端提供的令牌
-                            switch (_DBType)
+                            switch (_dbType)
                             {
                                 case TDBServerType.SQLServer:
                                     return ErrorStream(
@@ -255,7 +312,7 @@ namespace IRAPGeneralGateway
                                         clientID,
                                         msgFormat,
                                         999999,
-                                        string.Format("未知的数据库类型定义[{0}]", _DBType));
+                                        string.Format("未知的数据库类型定义[{0}]", _dbType));
                             }
                             #endregion
 
@@ -269,22 +326,25 @@ namespace IRAPGeneralGateway
                         }
 
                         #region 以下是调用数据库中的存储过程来提供服务
-                        switch (_DBType)
+                        switch (_dbType)
                         {
                             case TDBServerType.SQLServer:
-                                break;
+                                return 
+                                    CallSP_SQLServer(
+                                        exCode, 
+                                        clientID, 
+                                        msgFormat, 
+                                        requestContent, 
+                                        exCodeObj);
                             default:
                                 return ErrorStream(
                                     exCode,
                                     clientID,
                                     msgFormat,
                                     999999,
-                                    string.Format("未知的数据库类型定义[{0}]", _DBType));
+                                    string.Format("未知的数据库类型定义[{0}]", _dbType));
                         }
                         #endregion
-
-                        rltString = "{\"ErrCode\":999999, \"ErrText\":\"未实现该接口调用方式\"}";
-                        break;
                     case TInvokeType.Interface:         // 调用类库中的接口
                         rltString = "{\"ErrCode\":999999, \"ErrText\":\"未实现该接口调用方式\"}";
                         break;
@@ -324,9 +384,199 @@ namespace IRAPGeneralGateway
             string clientID, 
             string msgFormat, 
             string requestContent, 
-            TExCodeEntity exCodeObj)
+            TEntityExCode exCodeObj)
         {
-            throw new System.NotImplementedException();
+            DBHelperSQLServer db2 =
+                new DBHelperSQLServer()
+                {
+                    ConnectionString = TDBConnections.Instance.GetFirstConnection().ConnectionString,
+                };
+
+            Dictionary<string, TEntityInputParam> paramList =
+                TExCodes.Instance.GetInputParam(exCodeObj);
+
+            #region 遍历字典对输入参数赋值
+            List<IDataParameter> inputParamList = new List<IDataParameter>();
+            dynamic dn = requestContent.GetSimpleObjectFromJson();
+            IDictionary<string, object> dict=(IDictionary<string, object>)dn;
+            string resultStr = "";
+            foreach (KeyValuePair<string, TEntityInputParam> p in paramList)
+            {
+                SqlParameter sqlp = new SqlParameter();
+                sqlp.ParameterName = p.Value.ParamName;
+
+                #region 参数类型判断
+                switch (p.Value.ParamType.ToLower())
+                {
+                    case "varchar":
+                        sqlp.SqlDbType = SqlDbType.VarChar;
+                        break;
+                    case "nvarchar":
+                        sqlp.SqlDbType = SqlDbType.NVarChar;
+                        break;
+                    case "int":
+                        sqlp.SqlDbType = SqlDbType.Int;
+                        break;
+                    case "bigint":
+                        sqlp.SqlDbType = SqlDbType.BigInt;
+                        break;
+                    case "tinyint":
+                        sqlp.SqlDbType = SqlDbType.TinyInt;
+                        break;
+                    case "smallint":
+                        sqlp.SqlDbType = SqlDbType.SmallInt;
+                        break;
+                    case "datetime":
+                        sqlp.SqlDbType = SqlDbType.VarChar;
+                        sqlp.Size = 23;
+                        break;
+                    case "xml":
+                        sqlp.SqlDbType = SqlDbType.Xml;
+                        sqlp.Size = -1;
+                        break;
+                    case "decimal":
+                        sqlp.SqlDbType = SqlDbType.Decimal;
+                        sqlp.Precision = byte.Parse(p.Value.Precision.ToString());
+                        sqlp.Scale = byte.Parse(p.Value.Scale.ToString());
+                        break;
+                    default:
+                        sqlp.SqlDbType = SqlDbType.VarChar;
+                        sqlp.Size = -1;
+                        break;
+                }
+                #endregion
+
+                if (p.Value.IsOutput == 1)
+                {
+                    sqlp.Direction = ParameterDirection.Output;
+                    sqlp.Size = p.Value.Length == 0 ? 8 : p.Value.Length;
+                    inputParamList.Add(sqlp);
+                    continue;
+                }
+
+                #region 赋值判断
+                if (!dict.ContainsKey(p.Key))
+                {
+                    if (p.Key != "client_id" && p.Key != "ClientID")
+                    {
+                        return ErrorStream(
+                            exCode,
+                            clientID,
+                            msgFormat,
+                            999999,
+                            string.Format(
+                                "未提供参数：{0}，请检查请求报文是否符合规范定义。",
+                                p.Key));
+                    }
+                }
+
+                if (p.Value.ParamType.ToLower() == "xml")
+                {
+                    XmlDocument xml = new XmlDocument();
+                    XmlNode rootNode = xml.CreateElement("Parameters");
+                    XmlElement param = xml.CreateElement("Param");
+                    rootNode.AppendChild(param);
+
+                    foreach (KeyValuePair<string, object> item in dict)
+                    {
+                        if (item.Value.GetType() == typeof(Object[]))
+                        {
+                            Object[] subArray = (Object[])item.Value;
+                            int i = 0;
+
+                            XmlNode rows = xml.CreateElement("ParamXML");
+
+                            foreach (Object subItem in subArray)
+                            {
+                                XmlElement row = xml.CreateElement("Row");
+                                IDictionary<string, object> field = (IDictionary<string, object>)subItem;
+                                i++;
+
+                                foreach (KeyValuePair<string, object> fieldKey in field)
+                                {
+                                    row.SetAttribute(fieldKey.Key, fieldKey.Value.ToString());
+                                }
+                                rows.AppendChild(row);
+                            }
+                            rootNode.AppendChild(rows);
+                        }
+                        else
+                            param.SetAttribute(item.Key, item.Value.ToString());
+                    }
+                    sqlp.Value = rootNode.OuterXml;
+                }
+                else
+                {
+                    if (p.Key == "client_id" || p.Key == "ClientID")
+                        sqlp.Value = clientID;
+                    else
+                        sqlp.Value = dict[p.Key];
+                }
+                #endregion
+
+                sqlp.Direction = ParameterDirection.Input;
+                if (sqlp.Size == 0)
+                    sqlp.Size = p.Value.Length == 0 ? p.Value.Precision : p.Value.Length;
+
+                inputParamList.Add(sqlp);
+            }
+            #endregion
+
+            DataSet ds = null;
+            Dictionary<string, object> resDict = new Dictionary<string, object>();
+            if (exCodeObj.HasRowSet == 1)
+            {
+                ds = db2.RunProcedureEx(
+                    exCodeObj.DBName, 
+                    exCodeObj.Schema, 
+                    exCodeObj.ProcName, 
+                    ref inputParamList);
+                List<object> rows = new List<object>();
+                if (ds!=null && ds.Tables.Count > 0)
+                {
+                    foreach (DataRow r in ds.Tables[0].Rows)
+                    {
+                        dynamic dobj = new ExpandoObject();
+                        var dic = (IDictionary<string, object>)dobj;
+                        foreach (DataColumn c in ds.Tables[0].Columns)
+                        {
+                            if (c.DataType == typeof(long))
+                                dic[c.ColumnName] = r[c.ColumnName].ToString();
+                            else
+                                dic[c.ColumnName] = r[c.ColumnName];
+                        }
+                        rows.Add(dobj);
+                    }
+                }
+                resDict.Add("Rows", rows);
+            }
+            else
+            {
+                db2.RunProcedureEx2(
+                    exCodeObj.DBName,
+                    exCodeObj.Schema,
+                    exCodeObj.ProcName, 
+                    ref inputParamList);
+            }
+
+            foreach (SqlParameter parameter in inputParamList)
+            {
+                if (parameter.Direction == ParameterDirection.Output)
+                    resDict.Add(parameter.ParameterName.Replace("@", ""), parameter.Value);
+            }
+
+            if (!resDict.ContainsKey("ExCode"))
+                resDict.Add("ExCode", exCode);
+            switch (msgFormat.ToUpper())
+            {
+                case "XML":
+                    resultStr = resDict.ToXML();
+                    break;
+                default:
+                    resultStr = resDict.ToJSON();
+                    break;
+            }
+            return EncryptContent(clientID, resultStr);
         }
     }
 }   

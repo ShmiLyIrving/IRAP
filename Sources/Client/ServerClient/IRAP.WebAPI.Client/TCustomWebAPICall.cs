@@ -162,10 +162,12 @@ namespace IRAP.WebAPI
                 {
                     case TContentType.JSON:
                         result = JsonConvert.DeserializeObject<TErrorMessage>(resJson);
-                        result.SourceRESPContent = resJson;
                         rtnObject = JsonConvert.DeserializeObject<T>(resJson);
                         break;
                 }
+
+                result.SourceREQContent = content;
+                result.SourceRESPContent = resJson;
 
                 return rtnObject;
             }

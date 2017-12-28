@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IRAPGeneralGateway.Entities
 {
-    public class TExCodeEntity
+    public class TEntityExCode
     {
         /// <summary>
         /// 前缀
@@ -39,6 +39,14 @@ namespace IRAPGeneralGateway.Entities
         /// 功能描述
         /// </summary>
         public string Remark { get; set; }
+        /// <summary>
+        /// 数据库名
+        /// </summary>
+        public string DBName { get; set; }
+        /// <summary>
+        /// 所有者
+        /// </summary>
+        public string Schema { get; set; }
         /// <summary>
         /// 存储过程名
         /// </summary>

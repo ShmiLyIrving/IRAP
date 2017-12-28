@@ -23,6 +23,10 @@ namespace IRAP.WebAPI
         /// </summary>
         public string ErrText { get; set; }
         /// <summary>
+        /// 原始的请求报文
+        /// </summary>
+        public string SourceREQContent { get; set; }
+        /// <summary>
         /// 原始的响应报文
         /// </summary>
         public string SourceRESPContent { get; set; }

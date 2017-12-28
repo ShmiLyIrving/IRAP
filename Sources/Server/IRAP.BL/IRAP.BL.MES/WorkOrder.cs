@@ -102,6 +102,7 @@ namespace IRAP.BL.MES
         /// <returns>List[OpenReworkPWO]</returns>
         public IRAPJsonResult ufn_GetList_OpenReworkPWOs(
             int communityID,
+            long sysLogID,
             out int errCode,
             out string errText)
         {
@@ -120,11 +121,12 @@ namespace IRAP.BL.MES
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMES..ufn_GetList_OpenReworkPWOs，" +
-                        "参数：CommunityID={0}",
-                        communityID),
+                        "参数：CommunityID={0}|SysLogID={1}",
+                        communityID, sysLogID),
                     strProcedureName);
                 #endregion
 
@@ -135,7 +137,7 @@ namespace IRAP.BL.MES
                     {
                         string strSQL = "SELECT * " +
                             "FROM IRAPMES..ufn_GetList_OpenReworkPWOs(" +
-                            "@CommunityID) ORDER BY Ordinal";
+                            "@CommunityID, @SysLogID) ORDER BY Ordinal";
 
                         IList<OpenReworkPWO> lstDatas =
                             conn.CallTableFunc<OpenReworkPWO>(strSQL, paramList);
@@ -442,7 +444,7 @@ namespace IRAP.BL.MES
         /// [/RSFact]
         /// </param>
         /// <param name="sysLogID">系统登录标识</param>
-        public IRAPJsonResult usp_SaveRSFact_ReworkPWO(
+        public IRAPJsonResult usp_SaveRSFacts_ReworkPWO(
             int communityID, 
             long tf482PK, 
             long pwoIssuingFactID, 

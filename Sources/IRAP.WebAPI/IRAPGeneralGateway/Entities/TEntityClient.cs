@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IRAPGeneralGateway.Entities
 {
-    public class TClientEntity
+    public class TEntityClient
     {
         /// <summary>
         /// 客户端标识

@@ -34,6 +34,7 @@
       <HintPath>..\..\..\Packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
@@ -46,13 +47,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\TDBConnections.cs" />
+    <Compile Include="Entities\TEntityDBConnection.cs" />
+    <Compile Include="Enums\TEffentNextType.cs" />
+    <Compile Include="Entities\TCommandInfo.cs" />
+    <Compile Include="Entities\TEntityInputParam.cs" />
+    <Compile Include="Tools\AES.cs" />
+    <Compile Include="Tools\DBHelperSQLServer.cs" />
     <Compile Include="Enums\IRAPGeneralGatewayEnums.cs" />
-    <Compile Include="Entities\TExCodeEntity.cs" />
+    <Compile Include="Entities\TEntityExCode.cs" />
     <Compile Include="Entities\TExCodes.cs" />
-    <Compile Include="Entities\TResCommEntity.cs" />
-    <Compile Include="Entities\TClientEntity.cs" />
+    <Compile Include="Entities\TEntityResComm.cs" />
+    <Compile Include="Entities\TEntityClient.cs" />
     <Compile Include="IIRAPWebAPI.cs" />
     <Compile Include="TIRAPWebAPIGlobal.cs" />
+    <Compile Include="Tools\DES.cs" />
     <Compile Include="Tools\IRAPXMLUtils.cs" />
     <Compile Include="Tools\JSONHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,9 +69,13 @@
     <Compile Include="Tools\WriteLog.cs" />
     <Compile Include="Tools\XMLHelper.cs" />
     <Compile Include="Entities\TRegistClients.cs" />
+    <Compile Include="Tools\ZipUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IRAPGeneralGateway.xml" />
+    <Content Include="IRAPGeneralGateway.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="TIRAPGeneralGateway.cd" />

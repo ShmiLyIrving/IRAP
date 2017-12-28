@@ -108,6 +108,7 @@ namespace IRAPWebAPIClient
             else
                 MessageBox.Show(string.Format("({0}){1}", exchange.Error.ErrCode, exchange.Error.ErrText));
 
+            edtRequest.Text = exchange.Error.SourceREQContent;
             edtResponse.Text = exchange.Error.SourceRESPContent;
         }
     }

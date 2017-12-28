@@ -3393,6 +3393,77 @@ namespace IRAP.BL.MDM
             }
         }
 
+        /// <summary>
+        /// 获取指定产品指定部件位置编号的叶标识
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="symbol">部件位置编号</param>
+        public IRAPJsonResult ufn_GetT110LeafID(
+            int communityID,
+            int t102LeafID,
+            string symbol,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@Symbol", DbType.String, symbol));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM.dbo.ufn_GetT110LeafID，参数：CommunityID={0}|" +
+                        "T102LeafID={1}|Symbol={2}",
+                        communityID,
+                        t102LeafID,
+                        symbol),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        int rlt =
+                            (int)conn.CallScalarFunc(
+                                "IRAPMDM.dbo.ufn_GetT110LeafID",
+                                paramList);
+                        errCode = 0;
+                        errText = "调用成功！";
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                        return Json(rlt);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAP.dbo.ufn_GetT110LeafID 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                    return Json(0);
+                }
+                #endregion
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         /// <param name="communityID">社区标识</param>
         /// <param name="methodID">工艺标识</param>
         /// <param name="languageID">语言标识</param>
@@ -5881,6 +5952,168 @@ namespace IRAP.BL.MDM
                     errText =
                         string.Format(
                             "调用 IRAPMDM..ufn_GetList_InspectionItems 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取工位清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t134LeafID">产线叶标识：0-全部；负数-指定车间或工厂或公司；正数-指定产线</param>
+        /// <param name="t102LeafID">产品叶标识：0-全部</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult ufn_GetList_WorkUnits(
+            int communityID, 
+            int t134LeafID, 
+            int t102LeafID, 
+            long sysLogID, 
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<WorkUnit> datas =
+                    new List<WorkUnit>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T134LeafID", DbType.Int32, t134LeafID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_WorkUnits，" +
+                        "参数：CommunityID={0}|T134LeafID={1}|T102LeafID={2}|" +
+                        "SysLogID={3}",
+                        communityID, t134LeafID, t102LeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_WorkUnits(" +
+                            "@CommunityID, @T134LeafID, @T102LeafID, " +
+                            "@SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<WorkUnit> lstDatas =
+                            conn.CallTableFunc<WorkUnit>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetList_WorkUnits 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取当前版本工位装料表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult ufn_GetLoadingSheet_Current(
+            int communityID,
+            int t102LeafID,
+            int t107LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<CurrentLoadingSheetItem> datas =
+                    new List<CurrentLoadingSheetItem>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetLoadingSheet_Current，" +
+                        "参数：CommunityID={0}|T102LeafID={1}|T107LeafID={2}|" +
+                        "SysLogID={3}",
+                        communityID, t102LeafID, t107LeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetLoadingSheet_Current(" +
+                            "@CommunityID, @T102LeafID, @T107LeafID, " +
+                            "@SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<CurrentLoadingSheetItem> lstDatas =
+                            conn.CallTableFunc<CurrentLoadingSheetItem>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetLoadingSheet_Current 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
