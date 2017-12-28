@@ -12,6 +12,7 @@ using log4net;
 using IRAPShared;
 using System.Xml;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace IRAPORM
 {
@@ -1452,6 +1453,35 @@ namespace IRAPORM
                 RollBack();
                 throw err;
             }
+        }
+
+        public IRAPError BulkBatchInsert(DataTable dt, string tableName) {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            if (this.conn.State != ConnectionState.Open) {
+                this.conn.Open();
+            }
+            SqlBulkCopy copy = new SqlBulkCopy(this.conn);
+            try {
+                copy.DestinationTableName = tableName;
+                copy.BatchSize = dt.Rows.Count;
+                for (int i = 0; i < dt.Columns.Count; i++) {
+                    copy.ColumnMappings.Add(dt.Columns[i].ColumnName, dt.Columns[i].ColumnName);
+                }
+                if ((dt != null) && (dt.Rows.Count != 0)) {
+                    copy.WriteToServer(dt);
+                }
+            } catch (Exception exception) {
+                WriteLocalMsg("批量保存异常：" + exception.Message, MsgType.error);
+                throw exception;
+            } finally {
+                this.conn.Close();
+                if (copy != null) {
+                    copy.Close();
+                }
+                stopwatch.Stop();
+            }
+            return new IRAPError(0, "成功");
         }
 
         public DataSet CallProcEx(string procName, ref IList<IDataParameter> paramList)
