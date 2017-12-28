@@ -7,7 +7,7 @@
 		CID = "1"/>
 	<OpenFiles
 		CID = "2"
-		LastActive = "6">
+		LastActive = "5">
 		<File
 			RootPath = "$Container"
 			RelativePathname = ".\批次管理-检验员确认.gui"
@@ -26,11 +26,11 @@
 			ViewSettings = ""/>
 		<File
 			RootPath = "$Container"
-			RelativePathname = ".\铸环车间-熔炼与造型排程.gui"
+			RelativePathname = ".\铸环车间-理化检验.gui"
 			ViewSettings = ""/>
 		<File
 			RootPath = "$Container"
-			RelativePathname = ".\铸环车间-理化检验.gui"
+			RelativePathname = ".\铸环车间-熔炼与造型排程.gui"
 			ViewSettings = ""/>
 	</OpenFiles>
 </Project>
