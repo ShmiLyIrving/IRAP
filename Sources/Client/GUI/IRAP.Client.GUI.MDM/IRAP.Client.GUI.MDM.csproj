@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\DEV\Components\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
@@ -45,9 +46,18 @@
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraSpellChecker.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="FastReport.Editor, Version=2013.2.5.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="ftplib, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Global\3rdPartyAssembly\ftplib.dll</HintPath>
+    </Reference>
+    <Reference Include="IRAP.Entity.MES, Version=6.1.6563.27169, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Server\IRAP.Entities\IRAP.Entity.MES\bin\Debug\IRAP.Entity.MES.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -219,6 +229,12 @@
     <Compile Include="UserControls\ColorLabel.Designer.cs">
       <DependentUpon>ColorLabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ColorPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ColorPanel.Designer.cs">
+      <DependentUpon>ColorPanel.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -268,6 +284,10 @@
     <ProjectReference Include="..\..\IRAP.WCF.Client.Method\IRAP.WCF.Client.Method.csproj">
       <Project>{6F4AD952-871C-4594-BBE7-8C7EA61B63BE}</Project>
       <Name>IRAP.WCF.Client.Method</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRAP.Client.GUI.MESPDC\IRAP.Client.GUI.MESPDC.csproj">
+      <Project>{0D5F3A99-2460-482A-AA57-5A2BE82995D4}</Project>
+      <Name>IRAP.Client.GUI.MESPDC</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ColorLabel.resx">
       <DependentUpon>ColorLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ColorPanel.resx">
+      <DependentUpon>ColorPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

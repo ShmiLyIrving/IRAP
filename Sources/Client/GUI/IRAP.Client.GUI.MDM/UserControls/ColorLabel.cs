@@ -13,5 +13,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         public ColorLabel() {
             InitializeComponent();
         }
+
+        [Browsable(true)]
+        [Description("文本"), Category("文本"), DefaultValue("")]
+        public string Text {
+            get { return this.labelMessage.Text; }
+            set { this.labelMessage.Text = value; }
+        }
     }
 }

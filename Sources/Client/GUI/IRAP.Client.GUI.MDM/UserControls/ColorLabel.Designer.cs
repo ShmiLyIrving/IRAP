@@ -24,48 +24,47 @@
         /// </summary>
         private void InitializeComponent() {
             this.panelColor = new System.Windows.Forms.Panel();
-            this.labMessage = new DevExpress.XtraEditors.LabelControl();
+            this.labelMessage = new DevExpress.XtraEditors.LabelControl();
             this.SuspendLayout();
             // 
             // panelColor
             // 
             this.panelColor.BackColor = System.Drawing.Color.Black;
-            this.panelColor.Location = new System.Drawing.Point(0, 0);
+            this.panelColor.Location = new System.Drawing.Point(0, 1);
             this.panelColor.Margin = new System.Windows.Forms.Padding(0);
-            this.panelColor.MaximumSize = new System.Drawing.Size(31, 20);
-            this.panelColor.MinimumSize = new System.Drawing.Size(31, 20);
             this.panelColor.Name = "panelColor";
-            this.panelColor.Size = new System.Drawing.Size(31, 20);
+            this.panelColor.Size = new System.Drawing.Size(30, 18);
             this.panelColor.TabIndex = 0;
             // 
-            // labMessage
+            // labelMessage
             // 
-            this.labMessage.Location = new System.Drawing.Point(32, 3);
-            this.labMessage.Name = "labMessage";
-            this.labMessage.Size = new System.Drawing.Size(0, 14);
-            this.labMessage.TabIndex = 1;
+            this.labelMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelMessage.AutoEllipsis = true;
+            this.labelMessage.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelMessage.Location = new System.Drawing.Point(33, 1);
+            this.labelMessage.Name = "labelMessage";
+            this.labelMessage.Size = new System.Drawing.Size(104, 18);
+            this.labelMessage.TabIndex = 1;
+            this.labelMessage.Text = "测试一下是否可以显示文字";
             // 
             // ColorLabel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.labMessage);
+            this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.panelColor);
-            this.MaximumSize = new System.Drawing.Size(0, 20);
-            this.MinimumSize = new System.Drawing.Size(0, 20);
             this.Name = "ColorLabel";
-            this.Size = new System.Drawing.Size(35, 20);
+            this.Size = new System.Drawing.Size(140, 20);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel panelColor;
-        private DevExpress.XtraEditors.LabelControl labMessage;
+        private DevExpress.XtraEditors.LabelControl labelMessage;
 
 
     }
