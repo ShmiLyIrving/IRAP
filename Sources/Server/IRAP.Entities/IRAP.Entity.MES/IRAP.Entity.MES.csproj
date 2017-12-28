@@ -48,7 +48,6 @@
     <Compile Include="OpenChangeSummary.cs" />
     <Compile Include="OpenProductionWorkOrder.cs" />
     <Compile Include="OpenPWO.cs" />
-    <Compile Include="OpenReworkPWO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepairMode.cs" />
     <Compile Include="Report_MOExecution.cs" />

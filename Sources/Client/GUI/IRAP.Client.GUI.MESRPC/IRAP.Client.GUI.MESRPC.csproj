@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6CB866DC-64BF-4B72-A5D8-81767B077AA2}</ProjectGuid>
+    <ProjectGuid>{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.Client.SubSystem</RootNamespace>
-    <AssemblyName>IRAP.Client.SubSystem</AssemblyName>
+    <RootNamespace>IRAP.Client.GUI.MESRPC</RootNamespace>
+    <AssemblyName>IRAP.Client.GUI.MESRPC</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\Bin\Client\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\..\Bin\Client\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,14 +34,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="IRAP.Entity.SSO, Version=6.1.6548.21898, Culture=neutral, processorArchitecture=x86" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -52,85 +52,83 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvailableWIPStations.cs" />
-    <Compile Include="AvailableSubSystems.cs" />
-    <Compile Include="AvailableProducts.cs" />
-    <Compile Include="CurrentOptions.cs" />
-    <Compile Include="CurrentStationInfo.cs" />
-    <Compile Include="CurrentSubSystem.cs" />
-    <Compile Include="frmSelectOptions.cs">
+    <Compile Include="frmReworkRouterConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSelectOptions.Designer.cs">
-      <DependentUpon>frmSelectOptions.cs</DependentUpon>
+    <Compile Include="frmReworkRouterConfiguration.Designer.cs">
+      <DependentUpon>frmReworkRouterConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSelectSubSystem.cs">
+    <Compile Include="frmReworkRouteSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSelectSubSystem.Designer.cs">
-      <DependentUpon>frmSelectSubSystem.cs</DependentUpon>
+    <Compile Include="frmReworkRouteSetting.Designer.cs">
+      <DependentUpon>frmReworkRouteSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReworkUnloadingSheetItem_SymbolSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReworkUnloadingSheetItem_SymbolSelect.Designer.cs">
+      <DependentUpon>frmReworkUnloadingSheetItem_SymbolSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ucOptions.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucOptions.Designer.cs">
-      <DependentUpon>ucOptions.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Global\IRAP.Global\IRAP.Global.csproj">
+    <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
       <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
       <Name>IRAP.Global</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entities\IRAP.Entities.csproj">
       <Project>{a10eb27e-6444-44ad-b5fb-2c8f96c04225}</Project>
       <Name>IRAP.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
-      <Project>{38588300-33df-457a-936a-d0d0ca499e96}</Project>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.Kanban\IRAP.Entity.Kanban.csproj">
+      <Project>{38588300-33DF-457A-936A-D0D0CA499E96}</Project>
       <Name>IRAP.Entity.Kanban</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
-      <Project>{da96959d-cdd1-4533-b5e8-cf235c2d1c61}</Project>
-      <Name>IRAP.Entity.SSO</Name>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.MDM\IRAP.Entity.MDM.csproj">
+      <Project>{5feb6cb3-68c9-4e06-814b-c071743bf5a2}</Project>
+      <Name>IRAP.Entity.MDM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IRAP.Client.Global\IRAP.Client.Global.csproj">
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.MES\IRAP.Entity.MES.csproj">
+      <Project>{c78cdb3f-f78a-4c17-b5c8-e2e88a0a5947}</Project>
+      <Name>IRAP.Entity.MES</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.Global.GUI\IRAP.Client.Global.GUI.csproj">
+      <Project>{66EE090D-3D17-4CC0-9A7B-05EA2124A30B}</Project>
+      <Name>IRAP.Client.Global.GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.Global.Resources\IRAP.Client.Global.Resources.csproj">
+      <Project>{64D9DD02-3DA4-4E11-B696-F13A4D178A63}</Project>
+      <Name>IRAP.Client.Global.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.Global\IRAP.Client.Global.csproj">
       <Project>{A4B73531-9E93-4C64-AAE2-A6CDF064C9F5}</Project>
       <Name>IRAP.Client.Global</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IRAP.Client.User\IRAP.Client.User.csproj">
-      <Project>{9b2d1970-a6a8-4cc8-8e8e-8b6454b5bccf}</Project>
+    <ProjectReference Include="..\..\IRAP.Client.SubSystem\IRAP.Client.SubSystem.csproj">
+      <Project>{6CB866DC-64BF-4B72-A5D8-81767B077AA2}</Project>
+      <Name>IRAP.Client.SubSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAP.Client.User\IRAP.Client.User.csproj">
+      <Project>{9B2D1970-A6A8-4CC8-8E8E-8B6454B5BCCF}</Project>
       <Name>IRAP.Client.User</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IRAP.WCF.Client.Method\IRAP.WCF.Client.Method.csproj">
+    <ProjectReference Include="..\..\IRAP.WCF.Client.Method\IRAP.WCF.Client.Method.csproj">
       <Project>{6f4ad952-871c-4594-bbe7-8c7ea61b63be}</Project>
       <Name>IRAP.WCF.Client.Method</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmSelectOptions.en-US.resx">
-      <DependentUpon>frmSelectOptions.cs</DependentUpon>
+    <EmbeddedResource Include="frmReworkRouterConfiguration.resx">
+      <DependentUpon>frmReworkRouterConfiguration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSelectOptions.resx">
-      <DependentUpon>frmSelectOptions.cs</DependentUpon>
+    <EmbeddedResource Include="frmReworkRouteSetting.resx">
+      <DependentUpon>frmReworkRouteSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSelectSubSystem.en-US.resx">
-      <DependentUpon>frmSelectSubSystem.cs</DependentUpon>
+    <EmbeddedResource Include="frmReworkUnloadingSheetItem_SymbolSelect.resx">
+      <DependentUpon>frmReworkUnloadingSheetItem_SymbolSelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSelectSubSystem.resx">
-      <DependentUpon>frmSelectSubSystem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucOptions.en-US.resx">
-      <DependentUpon>ucOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucOptions.resx">
-      <DependentUpon>ucOptions.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="Diagrams\IRAP.Client.SybSystem.cd" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

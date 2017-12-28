@@ -2440,5 +2440,345 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取可访问的返工工单清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_OpenReworkPWOs(
+            int communityID,
+            long sysLogID,
+            ref List<OpenReworkPWO> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_OpenReworkPWOs 函数， " +
+                        "参数：CommunityID={0}|SysLogID={1}",
+                        communityID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WorkOrder",
+                            "ufn_GetList_OpenReworkPWOs",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<OpenReworkPWO>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定返工工单的返工路由表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="tf482PK">事实分区键</param>
+        /// <param name="pwoIssuingFactID">返工工单签发事实编号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetReworkRoutingTBL(
+            int communityID,
+            long tf482PK,
+            long pwoIssuingFactID,
+            long sysLogID,
+            ref List<ReworkRouter> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("tf482PK", tf482PK);
+                hashParams.Add("pwoIssuingFactID", pwoIssuingFactID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetReworkRoutingTBL 函数， " +
+                        "参数：CommunityID={0}|TF482PK={1}|"+
+                        "PWOIssuingFactID={2}|SysLogID={3}",
+                        communityID,
+                        tf482PK,
+                        pwoIssuingFactID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WorkOrder",
+                            "ufn_GetReworkRoutingTBL",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<ReworkRouter>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取返工工单卸料表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="tf482PK">事实分区键</param>
+        /// <param name="pwoIssuingFactID">返工工单签发事实编号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetReworkPWOUnloadingSheet(
+            int communityID,
+            long tf482PK,
+            long pwoIssuingFactID,
+            long sysLogID,
+            ref List<ReworkPWOUnloadingSheetItem> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("tf482PK", tf482PK);
+                hashParams.Add("pwoIssuingFactID", pwoIssuingFactID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetReworkPWOUnloadingSheet 函数， " +
+                        "参数：CommunityID={0}|TF482PK={1}|" +
+                        "PWOIssuingFactID={2}|SysLogID={3}",
+                        communityID,
+                        tf482PK,
+                        pwoIssuingFactID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WorkOrder",
+                            "ufn_GetReworkPWOUnloadingSheet",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<ReworkPWOUnloadingSheetItem>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 保存返工工单路由设置与卸料设置
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="tf482PK">事实分区键</param>
+        /// <param name="pwoIssuingFactID">返工工单签发事实编号</param>
+        /// <param name="reworkRoutingTBL">
+        /// 返工路由表 XML
+        /// [RSFact]
+        /// 	[RF3 Ordinal="..." 
+        /// 	     T107LeafID1="..." 
+        /// 	     T107LeafID2="..." 
+        /// 	     T116LeafID="..." /]
+        /// 	...
+        /// [/RSFact]
+        /// </param>
+        /// <param name="reworkUnloadingSheet">
+        /// 返工卸料表 XML
+        /// [RSFact]
+        /// 	[RF4 Ordinal="..."
+        /// 	     T107LeafID="..."
+        /// 	     T108LeafID="..."
+        /// 	     T110LeafID="..."
+        /// 	     T101LeafID="..."
+        /// 	     T102LeafID="..."
+        /// 	     UnloadQty="..."
+        /// 	     ScrapOnUnloading="..." /]
+        /// 	...
+        /// [/RSFact]
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_SaveRSFacts_ReworkPWO(
+            int communityID,
+            long tf482PK,
+            long pwoIssuingFactID,
+            string reworkRoutingTBL,
+            string reworkUnloadingSheet,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("tf482PK", tf482PK);
+                hashParams.Add("pwoIssuingFactID", pwoIssuingFactID);
+                hashParams.Add("reworkRoutingTBL", reworkRoutingTBL);
+                hashParams.Add("reworkUnloadingSheet", reworkUnloadingSheet);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveRSFacts_ReworkPWO，输入参数：" +
+                        "CommunityID={0}|TF482PK={1}|PWOIssuingFactID={2}|" +
+                        "ReworkRoutingTBL={3}|ReworkUnloadingSheet={4}|SysLogID={5}",
+                        communityID,
+                        tf482PK,
+                        pwoIssuingFactID,
+                        reworkRoutingTBL,
+                        reworkUnloadingSheet,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.WorkOrder",
+                        "usp_SaveRSFacts_ReworkPWO",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

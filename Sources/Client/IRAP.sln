@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StationRegister", "..\Tools
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.GUI.FVS", "GUI\IRAP.Client.GUI.FVS\IRAP.Client.GUI.FVS.csproj", "{93E55367-3534-4AF4-ABF9-B15A50B84DD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Client.GUI.MESRPC", "GUI\IRAP.Client.GUI.MESRPC\IRAP.Client.GUI.MESRPC.csproj", "{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -271,6 +273,14 @@ Global
 		{93E55367-3534-4AF4-ABF9-B15A50B84DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93E55367-3534-4AF4-ABF9-B15A50B84DD2}.Release|x86.ActiveCfg = Release|Any CPU
 		{93E55367-3534-4AF4-ABF9-B15A50B84DD2}.Release|x86.Build.0 = Release|Any CPU
+		{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}.Debug|x86.Build.0 = Debug|Any CPU
+		{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}.Release|x86.ActiveCfg = Release|Any CPU
+		{4C5867D4-09AD-4A6A-94F6-C2429FF969F7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

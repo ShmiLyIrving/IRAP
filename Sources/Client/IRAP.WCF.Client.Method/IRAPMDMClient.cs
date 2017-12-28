@@ -1771,6 +1771,91 @@ namespace IRAP.WCF.Client.Method
             }
         }
 
+        /// <summary>
+        /// 获取指定产品指定部件位置编号的叶标识
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="symbol">部件位置编号</param>
+        public void ufn_GetT110LeafID(
+            int communityID,
+            int t102LeafID,
+            string symbol,
+            ref int t110LeafID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                t110LeafID = 0;
+
+                try
+                {
+                    using (WCFClient client = new WCFClient())
+                    {
+                        try
+                        {
+                            #region 将函数调用参数加入 HashTable 中
+                            Hashtable hashParams = new Hashtable();
+                            hashParams.Add("communityID", communityID);
+                            hashParams.Add("t102LeafID", t102LeafID);
+                            hashParams.Add("symbol", symbol);
+                            WriteLog.Instance.Write(
+                                string.Format(
+                                    "调用 ufn_GetT110LeafID 函数，" +
+                                    "输入参数：CommunityID={0}|T102LeafID={1}|Symbol={2}",
+                                    communityID,
+                                    t102LeafID,
+                                    symbol),
+                                strProcedureName);
+                            #endregion
+
+                            object d1 = 
+                                client.WCFRESTFul(
+                                    "IRAP.BL.MDM.dll",
+                                    "IRAP.BL.MDM.IRAPMDM",
+                                    "ufn_GetT110LeafID",
+                                    hashParams,
+                                    out errCode,
+                                    out errText);
+                            WriteLog.Instance.Write(
+                                string.Format("({0}){1}", errCode, errText),
+                                strProcedureName);
+
+                            if (errCode == 0)
+                            {
+                                t110LeafID = (int)d1;
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            errCode = -1001;
+                            errText = error.Message;
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return;
+                        }
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = -1001;
+                    errText = error.Message;
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    return;
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         public void ufn_GetList_AvailableMethodStandards(
            int communityID,
            int methodID,
@@ -4578,6 +4663,164 @@ namespace IRAP.WCF.Client.Method
 
                     if (errCode == 0)
                         datas = rlt as List<InspectionItem>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取工位清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t134LeafID">产线叶标识：0-全部；负数-指定车间或工厂或公司；正数-指定产线</param>
+        /// <param name="t102LeafID">产品叶标识：0-全部</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_WorkUnits(
+            int communityID,
+            int t134LeafID,
+            int t102LeafID,
+            long sysLogID,
+            ref List<WorkUnit> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t134LeafID", t134LeafID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_WorkUnits，输入参数：" +
+                        "CommunityID={0}|T134LeafID={1}|T102LeafID={2}|" +
+                        "SysLogID={3}",
+                        communityID,
+                        t134LeafID,
+                        t102LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "ufn_GetList_WorkUnits",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<WorkUnit>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取当前版本工位装料表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetLoadingSheet_Current(
+            int communityID,
+            int t102LeafID,
+            int t107LeafID,
+            long sysLogID,
+            ref List<CurrentLoadingSheetItem> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetLoadingSheet_Current，输入参数：" +
+                        "CommunityID={0}|T102LeafID={1}|T107LeafID={2}|" +
+                        "SysLogID={3}",
+                        communityID,
+                        t102LeafID,
+                        t107LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "ufn_GetList_WorkUnits",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<CurrentLoadingSheetItem>;
                 }
                 #endregion
             }

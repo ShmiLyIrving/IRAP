@@ -57,6 +57,7 @@
     <Compile Include="IRAP\STB009.cs" />
     <Compile Include="MDM\BatchRingCategory.cs" />
     <Compile Include="MDM\BWI_SKUIDInfo.cs" />
+    <Compile Include="MDM\CurrentLoadingSheetItem.cs" />
     <Compile Include="MDM\DefectRootCause.cs" />
     <Compile Include="MDM\FailureModeByWorkUnit.cs" />
     <Compile Include="MDM\InspectionItem.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="MDM\Tables\Stb057.cs" />
     <Compile Include="MDM\Tables\Stb058.cs" />
     <Compile Include="MDM\WIPStation.cs" />
+    <Compile Include="MDM\WorkUnit.cs" />
     <Compile Include="MES\BatchByEquipment.cs" />
     <Compile Include="MES\BatchProductInfo.cs" />
     <Compile Include="MES\BatchPWOInfo.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="MDM\FailureMode.cs" />
     <Compile Include="MES\Inspecting.cs" />
     <Compile Include="MES\LabelFMTStr.cs" />
+    <Compile Include="MES\OpenReworkPWO.cs" />
     <Compile Include="MES\PackageType.cs" />
     <Compile Include="MES\ProducingPWOFromWorkUnit.cs" />
     <Compile Include="MES\RSFactTestData.cs" />
