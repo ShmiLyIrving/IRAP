@@ -454,6 +454,59 @@ namespace IRAP.BL.UTS {
             return Json(dt);
         }
 
+        /// <summary>
+        /// 获取导入校验错误类型清单 
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t19LeafID">导入导出叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns></returns>
+        public IRAPJsonResult sfn_GetList_ErrTypesOfImport(int communityID, int t19LeafID, long sysLogID, out int errCode,
+            out string errText) {
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try {
+                List<ImportErrorTypes> datas = new List<ImportErrorTypes>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T19LeafID", DbType.Int32, t19LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAP..sfn_GetList_ErrTypesOfImport，" +
+                        "参数：CommunityID={0}|T19LeafID={1}|SysLogID={2}",
+                        communityID, t19LeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection()) {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAP..sfn_GetList_ErrTypesOfImport(" +
+                            "@CommunityID, @T19LeafID, @SysLogID)";
+
+                        IList<ImportErrorTypes> lstDatas = conn.CallTableFunc<ImportErrorTypes>(strSQL, paramList);
+                        datas = lstDatas.ToList<ImportErrorTypes>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                } catch (Exception error) {
+                    errCode = 99000;
+                    errText = string.Format("调用 IRAP..sfn_GetList_ErrTypesOfImport 函数发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
