@@ -8,7 +8,7 @@ namespace IRAP.WebAPI.Entities.IRAP
     /// <summary>
     /// 万能表单存储过程响应报文类
     /// </summary>
-    public class TRespUDFForm
+    public class TRESPUDFForm
     {
         /// <summary>
         /// 交易代码
