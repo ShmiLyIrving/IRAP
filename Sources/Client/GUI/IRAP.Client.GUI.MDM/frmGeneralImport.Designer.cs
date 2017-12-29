@@ -136,7 +136,6 @@
             this.colorPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.colorPanel1.AutoScroll = true;
-            this.colorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.colorPanel1.EachRowNumber = 6;
             this.colorPanel1.Location = new System.Drawing.Point(8, 43);
             this.colorPanel1.Name = "colorPanel1";
@@ -205,6 +204,7 @@
             this.gridView1.OptionsMenu.ShowSplitItem = false;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             // 
             // labelState
             // 

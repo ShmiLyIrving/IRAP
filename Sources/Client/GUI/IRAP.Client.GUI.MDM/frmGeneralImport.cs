@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraTreeList;
 using IRAP.Entity.Kanban;
@@ -46,8 +47,6 @@ namespace IRAP.Client.GUI.MDM {
         public frmGeneralImport() {
             InitializeComponent();
         }
-
-      
 
         #region 创建树
         private void CreateTree() {
@@ -802,12 +801,11 @@ namespace IRAP.Client.GUI.MDM {
                 this.btnLoad.Enabled = true;
                 SetStateLabel("验证通过!", 0);
                 return;
-            } else if (correntNum>0) {
-                this.btnLoadPart.Enabled = true;
-                SetStateLabel("验证通过!", 0);
-                return;
-            }
+            } 
             SetStateLabel("验证不通过，请检查!", 1);
+            if (correntNum > 0) {
+                this.btnLoadPart.Enabled = true;
+            }
             this.gridView1.SelectRows(_firstErrorRow, _firstErrorRow);
             
         }
@@ -880,6 +878,7 @@ namespace IRAP.Client.GUI.MDM {
             int corrent = 0;
             var errCodeCol = this.gridView1.Columns["ErrCode"];
             var errTextCol = this.gridView1.Columns["ErrText"];
+            var color = this.gridView1.Columns["BGColor"];
             if (errCodeCol == null || errTextCol == null) {
                 return corrent;
             }
@@ -896,8 +895,50 @@ namespace IRAP.Client.GUI.MDM {
                 }
                 var errText = this.gridView1.GetRowCellValue(i, errTextCol);
                 currentRow.Row.RowError = errText == null ? "" : errText.ToString();
+                //var currentColor = this.gridView1.GetRowCellValue(i, color);
+                //if (currentColor != null) {
+                //    SetRowColor(i, currentColor.ToString(), "");
+                //}
             }
             return corrent;
+        }
+
+
+        private void gridView1_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e) {
+            if (e.RowHandle >= 0) {
+                var col = this.gridView1.Columns["BGColor"];
+                var colValue = this.gridView1.GetRowCellValue(e.RowHandle, col);
+                if (colValue == null || string.IsNullOrEmpty(colValue.ToString())) {
+                    return;
+                }
+                var color = ConvertColorHx16ToRGB(colValue.ToString());
+                e.Appearance.BackColor = color;
+                //e.Appearance.BackColor2 = Color.SeaShell;
+            }
+        }
+
+        //private void SetRowColor(int rowHandle,string bgColor,string value) { 
+        //    var col = this.gridView1.Columns["BGColor"];
+        //    var style = new DevExpress.XtraGrid.StyleFormatCondition(FormatConditionEnum.Equal,col,null,value);
+        //    style.ApplyToRow = true;
+        //    style.Appearance.BackColor = string.IsNullOrEmpty(bgColor) ? Color.Transparent : ConvertColorHx16ToRGB(bgColor);
+        //}
+
+        /// <summary>
+        /// [颜色：16进制转成RGB]
+        /// </summary>
+        /// <param name="strColor">设置16进制颜色 [返回RGB]</param>
+        /// <returns></returns>
+        private static System.Drawing.Color ConvertColorHx16ToRGB(string strHxColor) {
+            try {
+                if (strHxColor.Length == 0) {//如果为空
+                    return System.Drawing.Color.FromArgb(0, 0, 0);//设为黑色
+                } else {//转换颜色
+                    return System.Drawing.Color.FromArgb(System.Int32.Parse(strHxColor.Substring(1, 2), System.Globalization.NumberStyles.AllowHexSpecifier), System.Int32.Parse(strHxColor.Substring(3, 2), System.Globalization.NumberStyles.AllowHexSpecifier), System.Int32.Parse(strHxColor.Substring(5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
+                }
+            } catch {//设为黑色
+                return System.Drawing.Color.FromArgb(0, 0, 0);
+            }
         }
 
         #endregion
@@ -945,12 +986,12 @@ namespace IRAP.Client.GUI.MDM {
                 SetStateLabel("加载通过！", 0);
                 this.btnExport.Enabled = true;
                 return;
-            } else if (correntNum > 0) {
-                SetStateLabel("加载通过！", 0);
-                this.btnExport.Enabled = true;
-                return;
             }
             SetStateLabel("加载不通过，请检查！!", 1);
+            this.gridView1.SelectRows(_firstErrorRow, _firstErrorRow);
+            if (correntNum > 0) {
+                this.btnExport.Enabled = true;
+            }
         }
 
         #endregion
@@ -958,6 +999,7 @@ namespace IRAP.Client.GUI.MDM {
         private void ClearData() {
             this.comboBoxEdit1.Text = "";
             ClearPanelData();
+            this.colorPanel1.ClearLabel();
         }
 
         private void ClearPanelData() {
@@ -969,7 +1011,6 @@ namespace IRAP.Client.GUI.MDM {
             this.btnImport.Enabled = false;
             this.btnExport.Enabled = false;
             this.btnValidate.Enabled = false;
-            this.colorPanel1.ClearLabel();
         }
 
         private void SetStateLabel(string errText,int errCode) {
@@ -981,9 +1022,7 @@ namespace IRAP.Client.GUI.MDM {
             }
         }
 
-   
-
-
+      
     }
 }
 

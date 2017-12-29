@@ -41,20 +41,20 @@ namespace IRAP.Client.GUI.MDM {
                 return;
             }
             #region 测试数据
-            if (importErrType==null) {
-                importErrType = new List<ImportErrorTypes> ();
-            }
-            importErrType.Add(new ImportErrorTypes() {Ordinal = 2,ErrType="测试11111111111",BGColor= "#CC00FF"});
-            importErrType.Add(new ImportErrorTypes() {Ordinal = 3,ErrType="测试222222222",BGColor= "#FFB6C1"});
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 4, ErrType = "测试3333333333333", BGColor = "#FFC0CB" });
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 5, ErrType = "测试4444444444444444", BGColor = "#DC143C" });
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 6, ErrType = "测试5555555555555555", BGColor = "#8B008B" });
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 7, ErrType = "测试6666666666666666", BGColor = "#9370DB" });
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 8, ErrType = "测试777777777777", BGColor = "#000080" });
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 9, ErrType = "测试88", BGColor = "#00BFFF" });
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 10, ErrType = "测试9", BGColor = "#3CB371" });
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 11, ErrType = "测试10101010101", BGColor = "#228B22" });
-            importErrType.Add(new ImportErrorTypes() { Ordinal = 12, ErrType = "测试121212121212121212", BGColor = "#FFFF00" });
+            //if (importErrType==null) {
+            //    importErrType = new List<ImportErrorTypes> ();
+            //}
+            //importErrType.Add(new ImportErrorTypes() {Ordinal = 2,ErrType="测试11111111111",BGColor= "#CC00FF"});
+            //importErrType.Add(new ImportErrorTypes() {Ordinal = 3,ErrType="测试222222222",BGColor= "#FFB6C1"});
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 4, ErrType = "测试3333333333333", BGColor = "#FFC0CB" });
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 5, ErrType = "测试4444444444444444", BGColor = "#DC143C" });
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 6, ErrType = "测试5555555555555555", BGColor = "#8B008B" });
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 7, ErrType = "测试6666666666666666", BGColor = "#9370DB" });
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 8, ErrType = "测试777777777777", BGColor = "#000080" });
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 9, ErrType = "测试88", BGColor = "#00BFFF" });
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 10, ErrType = "测试9", BGColor = "#3CB371" });
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 11, ErrType = "测试10101010101", BGColor = "#228B22" });
+            //importErrType.Add(new ImportErrorTypes() { Ordinal = 12, ErrType = "测试121212121212121212", BGColor = "#FFFF00" });
             #endregion
             this.Controls.Clear();
             _horizontalSpacing = CreateLabelWidth();
