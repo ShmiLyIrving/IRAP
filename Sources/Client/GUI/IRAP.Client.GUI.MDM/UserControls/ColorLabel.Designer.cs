@@ -30,10 +30,10 @@
             // panelColor
             // 
             this.panelColor.BackColor = System.Drawing.Color.Black;
-            this.panelColor.Location = new System.Drawing.Point(0, 1);
+            this.panelColor.Location = new System.Drawing.Point(0, 2);
             this.panelColor.Margin = new System.Windows.Forms.Padding(0);
             this.panelColor.Name = "panelColor";
-            this.panelColor.Size = new System.Drawing.Size(30, 18);
+            this.panelColor.Size = new System.Drawing.Size(23, 15);
             this.panelColor.TabIndex = 0;
             // 
             // labelMessage
@@ -42,10 +42,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMessage.AutoEllipsis = true;
             this.labelMessage.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelMessage.Location = new System.Drawing.Point(33, 1);
+            this.labelMessage.Location = new System.Drawing.Point(26, 0);
             this.labelMessage.Name = "labelMessage";
-            this.labelMessage.Size = new System.Drawing.Size(104, 18);
+            this.labelMessage.Size = new System.Drawing.Size(99, 15);
             this.labelMessage.TabIndex = 1;
+            this.labelMessage.Text = "测试";
             // 
             // ColorLabel
             // 
@@ -55,7 +56,7 @@
             this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.panelColor);
             this.Name = "ColorLabel";
-            this.Size = new System.Drawing.Size(140, 20);
+            this.Size = new System.Drawing.Size(128, 17);
             this.ResumeLayout(false);
 
         }

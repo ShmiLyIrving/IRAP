@@ -26,6 +26,7 @@
             this.treeList = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.panelRight = new DevExpress.XtraEditors.PanelControl();
+            this.colorPanel1 = new IRAP.Client.GUI.MDM.ColorPanel();
             this.checkEditLog = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditImportAll = new DevExpress.XtraEditors.CheckEdit();
             this.btnLoadPart = new DevExpress.XtraEditors.SimpleButton();
@@ -44,7 +45,6 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter();
-            this.colorPanel1 = new IRAP.Client.GUI.MDM.ColorPanel();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
@@ -131,6 +131,18 @@
             this.panelRight.Size = new System.Drawing.Size(605, 430);
             this.panelRight.TabIndex = 3;
             // 
+            // colorPanel1
+            // 
+            this.colorPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.colorPanel1.AutoScroll = true;
+            this.colorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorPanel1.EachRowNumber = 6;
+            this.colorPanel1.Location = new System.Drawing.Point(8, 43);
+            this.colorPanel1.Name = "colorPanel1";
+            this.colorPanel1.Size = new System.Drawing.Size(587, 30);
+            this.colorPanel1.TabIndex = 20;
+            // 
             // checkEditLog
             // 
             this.checkEditLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -169,10 +181,10 @@
             this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl1.Location = new System.Drawing.Point(5, 68);
+            this.gridControl1.Location = new System.Drawing.Point(5, 76);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(474, 304);
+            this.gridControl1.Size = new System.Drawing.Size(586, 296);
             this.gridControl1.TabIndex = 14;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -245,7 +257,7 @@
             // btnExport
             // 
             this.btnExport.Enabled = false;
-            this.btnExport.Location = new System.Drawing.Point(417, 12);
+            this.btnExport.Location = new System.Drawing.Point(416, 12);
             this.btnExport.MaximumSize = new System.Drawing.Size(68, 0);
             this.btnExport.Name = "btnExport";
             this.btnExport.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
@@ -259,7 +271,7 @@
             // 
             this.btnImport.AllowFocus = false;
             this.btnImport.Enabled = false;
-            this.btnImport.Location = new System.Drawing.Point(345, 12);
+            this.btnImport.Location = new System.Drawing.Point(344, 12);
             this.btnImport.MaximumSize = new System.Drawing.Size(68, 0);
             this.btnImport.MinimumSize = new System.Drawing.Size(68, 0);
             this.btnImport.Name = "btnImport";
@@ -272,7 +284,7 @@
             // 
             // comboBoxEdit1
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(159, 12);
+            this.comboBoxEdit1.Location = new System.Drawing.Point(158, 12);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
             this.comboBoxEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -294,7 +306,7 @@
             this.emptySpaceItem1,
             this.layoutControlItem1,
             this.layoutControlItem2});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(-1, 0);
             this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Size = new System.Drawing.Size(601, 46);
             this.layoutControlGroup2.TextVisible = false;
@@ -337,14 +349,6 @@
             this.layoutControlItem2.Size = new System.Drawing.Size(72, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // colorPanel1
-            // 
-            this.colorPanel1.AutoScroll = true;
-            this.colorPanel1.Location = new System.Drawing.Point(485, 68);
-            this.colorPanel1.Name = "colorPanel1";
-            this.colorPanel1.Size = new System.Drawing.Size(115, 304);
-            this.colorPanel1.TabIndex = 20;
             // 
             // frmGeneralImport
             // 

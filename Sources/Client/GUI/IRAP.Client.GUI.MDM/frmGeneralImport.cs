@@ -969,6 +969,7 @@ namespace IRAP.Client.GUI.MDM {
             this.btnImport.Enabled = false;
             this.btnExport.Enabled = false;
             this.btnValidate.Enabled = false;
+            this.colorPanel1.ClearLabel();
         }
 
         private void SetStateLabel(string errText,int errCode) {
