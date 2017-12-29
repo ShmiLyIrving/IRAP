@@ -30,9 +30,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name = "ColorPanel";
-            this.Size = new System.Drawing.Size(141, 215);
+            this.Size = new System.Drawing.Size(143, 217);
             this.ResumeLayout(false);
 
         }
