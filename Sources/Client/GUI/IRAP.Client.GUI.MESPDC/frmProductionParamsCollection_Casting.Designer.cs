@@ -25,9 +25,12 @@
         private void InitializeComponent() {
             this.panelContent = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.tabPageControl = new DevExpress.XtraTab.XtraTabControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelContent)).BeginInit();
+            this.panelContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabPageControl)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -53,6 +56,7 @@
             // 
             // panelContent
             // 
+            this.panelContent.Controls.Add(this.tabPageControl);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(0, 56);
             this.panelContent.Name = "panelContent";
@@ -68,6 +72,14 @@
             this.simpleButton1.Text = "重新加载界面";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
+            // tabPageControl
+            // 
+            this.tabPageControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPageControl.Location = new System.Drawing.Point(2, 2);
+            this.tabPageControl.Name = "tabPageControl";
+            this.tabPageControl.Size = new System.Drawing.Size(887, 435);
+            this.tabPageControl.TabIndex = 0;
+            // 
             // frmProductionParamsCollection_Casting
             // 
             this.Appearance.Options.UseFont = true;
@@ -80,6 +92,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelContent)).EndInit();
+            this.panelContent.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tabPageControl)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -88,5 +102,6 @@
 
         private DevExpress.XtraEditors.PanelControl panelContent;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraTab.XtraTabControl tabPageControl;
     }
 }

@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraTab;
+using IRAP.Client.GUI.MESPDC.UserControls;
 using IRAP.Client.User;
 using IRAP.Entities.MES;
 using IRAP.Global;
@@ -31,7 +33,7 @@ namespace IRAP.Client.GUI.MESPDC {
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try {
-                var data = IRAPMESProductionClient.Instance.GetInfoContent(_communityID,_sysLogID, out errCode, out errText);
+                var data = IRAPMESProductionClient.Instance.GetFurnaceLists(_communityID,_sysLogID, out errCode, out errText);
                 if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -46,6 +48,33 @@ namespace IRAP.Client.GUI.MESPDC {
             }
             return null;
         }
+
+        private void CreateFurnaceTabPages(List<ProductionParam> furnaces) {
+            #region 参数检查
+            if (furnaces == null || furnaces.Count == 0) {
+                return;
+            }
+            #endregion
+            foreach (ProductionParam furnace in furnaces) {
+                CreateNewFurnacePage(furnace);
+            }
+
+        }
+
+        private void CreateNewFurnacePage(ProductionParam furnaceData) {
+            XtraTabPage tabPage = new XtraTabPage();
+            tabPage.Text = furnaceData.T107Name;
+            tabPage.Name = furnaceData.T107Name;
+            ucFurnace furnaceControl = new ucFurnace(furnaceData);
+            furnaceControl.Dock = DockStyle.Fill;
+            tabPage.Controls.Add(furnaceControl);
+            this.tabPageControl.TabPages.Add(tabPage);
+        }
+
+        private void ClearPage() {
+            this.tabPageControl.TabPages.Clear();
+        }
+
         #region 事件
         //todo:删除此行
         private void simpleButton1_Click(object sender, EventArgs e) {
@@ -53,7 +82,9 @@ namespace IRAP.Client.GUI.MESPDC {
         }
 
         private void frmProductionParamsCollection_Casting_Load(object sender, EventArgs e) {
+            ClearPage();
             var furnaces = GetFurnaces();
+            CreateFurnaceTabPages(furnaces);
         }
         #endregion
 
