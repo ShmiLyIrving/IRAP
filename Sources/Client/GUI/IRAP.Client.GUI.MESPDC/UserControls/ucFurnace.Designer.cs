@@ -30,7 +30,6 @@
             this.labelController = new DevExpress.XtraEditors.LabelControl();
             this.txtController = new DevExpress.XtraEditors.TextEdit();
             this.labelProductionDate = new DevExpress.XtraEditors.LabelControl();
-            this.txtProductDate = new DevExpress.XtraEditors.TextEdit();
             this.labelFurnaceTime = new DevExpress.XtraEditors.LabelControl();
             this.cmbFurnaceTime = new DevExpress.XtraEditors.ComboBoxEdit();
             this.grpCtrlCurrentInfo = new DevExpress.XtraEditors.GroupControl();
@@ -47,19 +46,19 @@
             this.grdBurdenInfo = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabPgSpectrum = new DevExpress.XtraTab.XtraTabPage();
+            this.ucDetailGrid2 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.tabPgMatieralAjustment = new DevExpress.XtraTab.XtraTabPage();
+            this.ucDetailGrid3 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.tabPgSample = new DevExpress.XtraTab.XtraTabPage();
+            this.ucDetailGrid4 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.tabPgBaked = new DevExpress.XtraTab.XtraTabPage();
             this.ucDetailGrid1 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
-            this.ucDetailGrid2 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
-            this.ucDetailGrid3 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
-            this.ucDetailGrid4 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
+            this.dtProductDate = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).BeginInit();
             this.grpCtrProductionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtController.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbFurnaceTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrlCurrentInfo)).BeginInit();
             this.grpCtrlCurrentInfo.SuspendLayout();
@@ -77,6 +76,8 @@
             this.tabPgMatieralAjustment.SuspendLayout();
             this.tabPgSample.SuspendLayout();
             this.tabPgBaked.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // grpCtrProductionInfo
@@ -140,13 +141,6 @@
             this.labelProductionDate.Size = new System.Drawing.Size(52, 14);
             this.labelProductionDate.TabIndex = 3;
             this.labelProductionDate.Text = "生产日期:";
-            // 
-            // txtProductDate
-            // 
-            this.txtProductDate.Location = new System.Drawing.Point(240, 12);
-            this.txtProductDate.Name = "txtProductDate";
-            this.txtProductDate.Size = new System.Drawing.Size(100, 20);
-            this.txtProductDate.TabIndex = 4;
             // 
             // labelFurnaceTime
             // 
@@ -301,6 +295,14 @@
             this.tabPgSpectrum.Text = "炉前光谱";
             this.tabPgSpectrum.Tooltip = "炉前光谱";
             // 
+            // ucDetailGrid2
+            // 
+            this.ucDetailGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDetailGrid2.Location = new System.Drawing.Point(0, 0);
+            this.ucDetailGrid2.Name = "ucDetailGrid2";
+            this.ucDetailGrid2.Size = new System.Drawing.Size(766, 226);
+            this.ucDetailGrid2.TabIndex = 0;
+            // 
             // tabPgMatieralAjustment
             // 
             this.tabPgMatieralAjustment.Controls.Add(this.ucDetailGrid3);
@@ -309,6 +311,14 @@
             this.tabPgMatieralAjustment.Text = "原材料调整";
             this.tabPgMatieralAjustment.Tooltip = "原材料调整";
             // 
+            // ucDetailGrid3
+            // 
+            this.ucDetailGrid3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDetailGrid3.Location = new System.Drawing.Point(0, 0);
+            this.ucDetailGrid3.Name = "ucDetailGrid3";
+            this.ucDetailGrid3.Size = new System.Drawing.Size(766, 226);
+            this.ucDetailGrid3.TabIndex = 0;
+            // 
             // tabPgSample
             // 
             this.tabPgSample.Controls.Add(this.ucDetailGrid4);
@@ -316,6 +326,14 @@
             this.tabPgSample.Size = new System.Drawing.Size(766, 226);
             this.tabPgSample.Text = "浇三角试样";
             this.tabPgSample.Tooltip = "浇三角试样";
+            // 
+            // ucDetailGrid4
+            // 
+            this.ucDetailGrid4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDetailGrid4.Location = new System.Drawing.Point(0, 0);
+            this.ucDetailGrid4.Name = "ucDetailGrid4";
+            this.ucDetailGrid4.Size = new System.Drawing.Size(766, 226);
+            this.ucDetailGrid4.TabIndex = 0;
             // 
             // tabPgBaked
             // 
@@ -333,39 +351,27 @@
             this.ucDetailGrid1.Size = new System.Drawing.Size(766, 226);
             this.ucDetailGrid1.TabIndex = 0;
             // 
-            // ucDetailGrid2
+            // dtProductDate
             // 
-            this.ucDetailGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDetailGrid2.Location = new System.Drawing.Point(0, 0);
-            this.ucDetailGrid2.Name = "ucDetailGrid2";
-            this.ucDetailGrid2.Size = new System.Drawing.Size(766, 226);
-            this.ucDetailGrid2.TabIndex = 0;
-            // 
-            // ucDetailGrid3
-            // 
-            this.ucDetailGrid3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDetailGrid3.Location = new System.Drawing.Point(0, 0);
-            this.ucDetailGrid3.Name = "ucDetailGrid3";
-            this.ucDetailGrid3.Size = new System.Drawing.Size(766, 226);
-            this.ucDetailGrid3.TabIndex = 0;
-            // 
-            // ucDetailGrid4
-            // 
-            this.ucDetailGrid4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDetailGrid4.Location = new System.Drawing.Point(0, 0);
-            this.ucDetailGrid4.Name = "ucDetailGrid4";
-            this.ucDetailGrid4.Size = new System.Drawing.Size(766, 226);
-            this.ucDetailGrid4.TabIndex = 0;
+            this.dtProductDate.EditValue = null;
+            this.dtProductDate.Location = new System.Drawing.Point(240, 12);
+            this.dtProductDate.Name = "dtProductDate";
+            this.dtProductDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtProductDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtProductDate.Size = new System.Drawing.Size(100, 20);
+            this.dtProductDate.TabIndex = 10;
             // 
             // ucFurnace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dtProductDate);
             this.Controls.Add(this.tabCtrlDetail);
             this.Controls.Add(this.grpCtrlCurrentInfo);
             this.Controls.Add(this.cmbFurnaceTime);
             this.Controls.Add(this.labelFurnaceTime);
-            this.Controls.Add(this.txtProductDate);
             this.Controls.Add(this.labelProductionDate);
             this.Controls.Add(this.txtController);
             this.Controls.Add(this.labelController);
@@ -377,7 +383,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtController.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbFurnaceTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrlCurrentInfo)).EndInit();
             this.grpCtrlCurrentInfo.ResumeLayout(false);
@@ -396,6 +401,8 @@
             this.tabPgMatieralAjustment.ResumeLayout(false);
             this.tabPgSample.ResumeLayout(false);
             this.tabPgBaked.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -407,7 +414,6 @@
         private DevExpress.XtraEditors.LabelControl labelController;
         private DevExpress.XtraEditors.TextEdit txtController;
         private DevExpress.XtraEditors.LabelControl labelProductionDate;
-        private DevExpress.XtraEditors.TextEdit txtProductDate;
         private DevExpress.XtraEditors.LabelControl labelFurnaceTime;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraGrid.GridControl grdCtrProductionInfo;
@@ -434,5 +440,6 @@
         private ucDetailGrid ucDetailGrid3;
         private ucDetailGrid ucDetailGrid4;
         private ucDetailGrid ucDetailGrid1;
+        private DevExpress.XtraEditors.DateEdit dtProductDate;
     }
 }
