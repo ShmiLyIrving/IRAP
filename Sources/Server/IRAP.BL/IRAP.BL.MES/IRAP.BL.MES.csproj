@@ -50,6 +50,7 @@
     <Compile Include="ProductPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QC.cs" />
+    <Compile Include="SmeltingProduction.cs" />
     <Compile Include="TroubleShooting.cs" />
     <Compile Include="WIP.cs" />
     <Compile Include="WorkOrder.cs" />
