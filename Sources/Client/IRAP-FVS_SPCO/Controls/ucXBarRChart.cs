@@ -129,6 +129,8 @@ namespace IRAP_FVS_SPCO
                 chartData.RLCL == 0 &&
                 chartData.RUCL == 0)
                 chartType = XBarR.XBarRChartType.Study;
+            else
+                chartType = XBarR.XBarRChartType.Control;
 
             lblChartType.Visible = chartType == 0;
             #endregion
