@@ -278,11 +278,39 @@ namespace IRAP.WCF.Client.Method {
         }
 
 
-
         public void GetImportInfoEntity(int communityID, int t19LeafID, int treeID, int txLeafID,
              long sysLogID, out ImportParam param, out List<ImportMetaData> metaDatas, out int errCode, out string errText) {
-            string strProcedureName =
-               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            GetImportInfoEntity(communityID, t19LeafID, txLeafID, sysLogID, out param, out metaDatas, out errCode, out errText);
+
+            if (!ImportParaValidate(param, out errText)) {
+                errCode = 9999;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                return;
+            }
+            if (Convert.ToInt32(param.DstTableExist) == 0) {
+                CreateTable(communityID, t19LeafID, treeID, txLeafID, sysLogID, param.ProcToCreateTBL, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    return;
+                }
+                GetImportInfoEntity(communityID, t19LeafID, treeID, txLeafID, sysLogID, out param, out metaDatas, out errCode, out errText);
+            }
+            if (!ImportMetaDataValidate(metaDatas, out errText)) {
+                errCode = 9999;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                return;
+            }
+
+            errText = "成功获取导入的xml信息！";
+            WriteLog.Instance.Write(errText, strProcedureName);
+            return;
+        }
+
+        public void GetImportInfoEntity(int communityID, int t19LeafID, int txLeafID,
+               long sysLogID, out ImportParam param, out List<ImportMetaData> metaDatas, out int errCode, out string errText) {
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             errCode = 0;
@@ -340,31 +368,8 @@ namespace IRAP.WCF.Client.Method {
                     }
                 }
             }
-
-            if (!ImportParaValidate(param, out errText)) {
-                errCode = 9999;
-                WriteLog.Instance.Write(errText, strProcedureName);
-                return;
-            }
-            if (Convert.ToInt32(param.DstTableExist)==0) {
-                CreateTable(communityID, t19LeafID, treeID, txLeafID, sysLogID, param.ProcToCreateTBL, out errCode, out errText);
-                if (errCode!=0) {
-                    WriteLog.Instance.Write(errText, strProcedureName);
-                    return;
-                }
-                GetImportInfoEntity(communityID, t19LeafID, treeID, txLeafID, sysLogID, out param, out metaDatas, out errCode, out errText);
-            }
-            if (!ImportMetaDataValidate(metaDatas, out errText)) {
-                errCode = 9999;
-                WriteLog.Instance.Write(errText, strProcedureName);
-                return;
-            }
-
-            errText = "成功获取导入的xml信息！";
-            WriteLog.Instance.Write(errText, strProcedureName);
             return;
         }
-           
 
         private bool ImportParaValidate(ImportParam para,out string errText) {
             errText = "";
