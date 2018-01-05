@@ -93,6 +93,7 @@
     <Compile Include="MES\OpenReworkPWO.cs" />
     <Compile Include="MES\PackageType.cs" />
     <Compile Include="MES\ProducingPWOFromWorkUnit.cs" />
+    <Compile Include="MES\ProductionParam.cs" />
     <Compile Include="MES\RSFactTestData.cs" />
     <Compile Include="MES\Tables\AuxFact_PDC.cs" />
     <Compile Include="MES\Tables\AuxFact_PWOIssuing.cs" />
