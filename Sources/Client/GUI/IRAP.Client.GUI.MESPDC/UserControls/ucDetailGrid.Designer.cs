@@ -56,6 +56,7 @@
             // 
             this.gridView3.GridControl = this.gridControl1;
             this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsView.ShowGroupPanel = false;
             // 
             // ucDetailGrid
             // 

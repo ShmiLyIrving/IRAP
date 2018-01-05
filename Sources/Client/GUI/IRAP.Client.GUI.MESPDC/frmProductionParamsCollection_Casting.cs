@@ -65,8 +65,9 @@ namespace IRAP.Client.GUI.MESPDC {
             XtraTabPage tabPage = new XtraTabPage();
             tabPage.Text = furnaceData.T107Name;
             tabPage.Name = furnaceData.T107Name;
-            ucFurnace furnaceControl = new ucFurnace(furnaceData);
-            furnaceControl.Dock = DockStyle.Fill;
+            tabPage.AutoScroll = true;
+            ucFurnace furnaceControl = new ucFurnace(furnaceData,_communityID,_sysLogID);
+            furnaceControl.Dock = DockStyle.Top;
             tabPage.Controls.Add(furnaceControl);
             this.tabPageControl.TabPages.Add(tabPage);
         }

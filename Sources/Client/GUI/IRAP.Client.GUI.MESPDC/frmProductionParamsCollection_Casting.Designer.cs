@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.panelContent = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.tabPageControl = new DevExpress.XtraTab.XtraTabControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelContent)).BeginInit();
@@ -63,6 +63,14 @@
             this.panelContent.Size = new System.Drawing.Size(891, 439);
             this.panelContent.TabIndex = 1;
             // 
+            // tabPageControl
+            // 
+            this.tabPageControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPageControl.Location = new System.Drawing.Point(2, 2);
+            this.tabPageControl.Name = "tabPageControl";
+            this.tabPageControl.Size = new System.Drawing.Size(887, 435);
+            this.tabPageControl.TabIndex = 0;
+            // 
             // simpleButton1
             // 
             this.simpleButton1.Location = new System.Drawing.Point(39, 12);
@@ -71,14 +79,6 @@
             this.simpleButton1.TabIndex = 1;
             this.simpleButton1.Text = "重新加载界面";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // tabPageControl
-            // 
-            this.tabPageControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPageControl.Location = new System.Drawing.Point(2, 2);
-            this.tabPageControl.Name = "tabPageControl";
-            this.tabPageControl.Size = new System.Drawing.Size(887, 435);
-            this.tabPageControl.TabIndex = 0;
             // 
             // frmProductionParamsCollection_Casting
             // 
