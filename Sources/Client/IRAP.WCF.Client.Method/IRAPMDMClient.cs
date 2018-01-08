@@ -4836,5 +4836,96 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取铸环车间熔炼工序的检验项及检验值
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="opType">熔炼操作代码</param>
+        /// <param name="t102LeafID">环别叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="pwoNo">工单号</param>
+        /// <param name="batchNumber">设备生产批次号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns></returns>
+        public void ufn_GetList_SmeltInspectionItems(
+            int communityID,
+            string opType,
+            int t102LeafID,
+            int t216LeafID,
+            string pwoNo,
+            string batchNumber,
+            long sysLogID,
+            ref List<SmeltInspectionItem> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("opType", opType);
+                hashParams.Add("t102LeafID", t102LeafID);
+                hashParams.Add("t216LeafID", t216LeafID);
+                hashParams.Add("pwoNo", pwoNo);
+                hashParams.Add("batchNumber", batchNumber);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_SmeltInspectionItems，输入参数：" +
+                        "CommunityID={0}|OpType={1}|T102LeafID={2}|" +
+                        "T216LeafID={2}|PWONo={3}|BatchNumber={4}|SysLogID={5}",
+                        communityID,
+                        opType,
+                        t102LeafID,
+                        pwoNo,
+                        batchNumber,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "ufn_GetList_SmeltInspectionItems",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<SmeltInspectionItem>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
