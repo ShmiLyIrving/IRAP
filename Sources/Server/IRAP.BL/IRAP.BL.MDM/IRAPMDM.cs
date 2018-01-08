@@ -6127,5 +6127,96 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取铸环车间熔炼工序的检验项及检验值
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="opType">熔炼操作代码</param>
+        /// <param name="t102LeafID">环别叶标识</param>
+        /// <param name="t216LeafID">工序叶标识</param>
+        /// <param name="pwoNo">工单号</param>
+        /// <param name="batchNumber">设备生产批次号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetList_SmeltInspectionItems(
+            int communityID,
+            string opType,
+            int t102LeafID,
+            int t216LeafID,
+            string pwoNo,
+            string batchNumber,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<SmeltInspectionItem> datas =
+                    new List<SmeltInspectionItem>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@OpType", DbType.String, opType));
+                paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int32, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@PWONo", DbType.String, pwoNo));
+                paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_SmeltInspectionItems，" +
+                        "参数：CommunityID={0}|OpType={1}|T102LeafID={2}|"+
+                        "T216LeafID={2}|PWONo={3}|BatchNumber={4}|SysLogID={5}",
+                        communityID, opType, t102LeafID, t216LeafID, pwoNo, batchNumber, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_SmeltInspectionItems(" +
+                            "@CommunityID, @OpType, @T102LeafID, @T216LeafID, " +
+                            "@PWONo, @BatchNumber, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        IList<SmeltInspectionItem> lstDatas =
+                            conn.CallTableFunc<SmeltInspectionItem>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMDM..ufn_GetList_SmeltInspectionItems 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
