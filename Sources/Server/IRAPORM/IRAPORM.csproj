@@ -97,7 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IRAPORM.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Oracle\oci.dll">
