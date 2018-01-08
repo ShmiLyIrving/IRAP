@@ -592,4 +592,189 @@ namespace IRAP.Entities.MES {
         /// </summary>
         public int PWOStatus { get; set; }
     }
+
+    public class SmeltMaterialItem {
+
+        /// <summary>
+        /// 序号
+        /// </summary>
+        public int Ordinal { get; set; }
+
+        /// <summary>
+        /// 原材料叶标识
+        /// </summary>
+        public int T101LeafID { get; set; }
+
+        /// <summary>
+        /// 原材料代码
+        /// </summary>
+        public string T101Code { get; set; }
+
+        /// <summary>
+        /// 原材料名称
+        /// </summary>
+        public string T101Name { get; set; }
+
+        /// <summary>
+        /// 默认放大数量级
+        /// </summary>
+        public int Scale { get; set; }
+
+        /// <summary>
+        /// 计量单位
+        /// </summary>
+        public string UnitOfMeasure { get; set; }
+
+        /// <summary>
+        /// 历史记录  暂时不用考略
+        /// </summary>
+        public string DataXML { get; set; }
+    }
+
+    public class SmeltMethodItem {
+
+        /// <summary>
+        /// 序号
+        /// </summary>
+        public int Ordinal { get; set; }
+
+        /// <summary>
+        /// 检验项目叶标识
+        /// </summary>
+        public int T20LeafID { get; set; }
+
+        /// <summary>
+        /// 检验项目代码
+        /// </summary>
+        public string T20Code { get; set; }
+
+        /// <summary>
+        /// 检验项目名称
+        /// </summary>
+        public string T20Name { get; set; }
+
+        /// <summary>
+        /// 默认放大数量级
+        /// </summary>
+        public int Scale { get; set; }
+
+        /// <summary>
+        /// 计量单位
+        /// </summary>
+        public string UnitOfMeasure { get; set; }
+
+        /// <summary>
+        /// 历史记录  暂时不用考略
+        /// </summary>
+        public string DataXML { get; set; }
+    }
+
+    public class SmeltBatchProductionInfo {
+        /// <summary>
+        /// 熔炼事实号
+        /// </summary>
+        public long FactID { get; set; }
+
+        /// <summary>
+        /// 熔炼炉次号
+        /// </summary>
+        public string BatchNumber { get; set; }
+
+        /// <summary>
+        /// 操作工工号
+        /// </summary>
+        public string OperatorCode { get; set; }
+
+        /// <summary>
+        /// 操作工姓名
+        /// </summary>
+        public string OperatorName { get; set; }
+
+        /// <summary>
+        /// 生产开始时间
+        /// </summary>
+        public DateTime BatchStartDate { get; set; }
+
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public string BatchEndDate { get; set; }
+
+        /// <summary>
+        /// 班次代码
+        /// </summary>
+        public string T126Code { get; set; }
+
+        /// <summary>
+        /// 班次信息
+        /// </summary>
+        public string T126Name { get; set; }
+
+        /// <summary>
+        /// 材质叶标识
+        /// </summary>
+        public int T131LeafID { get; set; }
+
+        /// <summary>
+        /// 材质代码
+        /// </summary>
+        public string T131Code { get; set; }
+
+        /// <summary>
+        /// 材质信息
+        /// </summary>
+        public string T131Name { get; set; }
+
+        /// <summary>
+        /// 正在生产的工单信息
+        /// </summary>
+        public string BatchDataXML { get; set; }
+
+        /// <summary>
+        /// 待检验的检验标准信息列表  --暂时从前台调用其他接口获取
+        /// </summary>
+        public string MethodDataXML { get; set; }
+
+        /// <summary>
+        /// 是否正在生产  1 有在产产品  0 没有在产产品
+        /// </summary>
+        public int InProduction { get; set; }
+    }
+
+    public class SmeltMethodItemByOpType {
+        /// <summary>
+        /// 检验项目叶标识
+        /// </summary>
+        public int Ordinal { get; set; }
+
+        /// <summary>
+        /// 检验项目叶标识
+        /// </summary>
+        public int T20LeafID { get; set; }
+
+        /// <summary>
+        /// 检验项目代码
+        /// </summary>
+        public string T20Code { get; set; }
+
+        /// <summary>
+        /// 检验项目名称
+        /// </summary>
+        public string T20Name { get; set; }
+
+        /// <summary>
+        /// 默认放大数量级
+        /// </summary>
+        public int Scale { get; set; }
+
+        /// <summary>
+        /// 计量单位
+        /// </summary>
+        public string UnitOfMeasure { get; set; }
+
+        /// <summary>
+        /// 历史记录
+        /// </summary>
+        public string DataXML { get; set; }
+    }
 }
