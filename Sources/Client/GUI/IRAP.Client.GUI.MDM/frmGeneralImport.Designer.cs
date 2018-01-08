@@ -23,6 +23,7 @@
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.treeList = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.panelRight = new DevExpress.XtraEditors.PanelControl();
@@ -44,7 +45,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter();
+            this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
@@ -359,6 +360,7 @@
             this.Name = "frmGeneralImport";
             this.Text = "";
             this.Load += new System.EventHandler(this.frmGeneralImport_Load);
+            this.Shown += new System.EventHandler(this.frmGeneralImport_Shown);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.treeList, 0);
             this.Controls.SetChildIndex(this.panelRight, 0);
