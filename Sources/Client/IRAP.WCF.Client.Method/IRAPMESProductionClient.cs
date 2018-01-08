@@ -766,6 +766,15 @@ namespace IRAP.WCF.Client.Method {
             }
         }
 
+        /// <summary>
+        /// 生产结束
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="batchNumber">熔次号</param> 
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns></returns>
         public void SmeltBatchProductionEnd(int communityID, int t216LeafID, int t107LeafID,
             string batchNumber, long sysLogID, out int errCode, out string errText) {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
