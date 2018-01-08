@@ -164,6 +164,7 @@ namespace IRAP.Client.GUI.MESPDC
                 int ctrlParameter3 = this.ctrlParameter3;
                 int ctrlParameter2_bk = 0;
                 int ctrlParameter3_bk = 0;
+                bool needCallOLTPUDFForm = true;
 
                 #region 统一防错校验
                 try
@@ -227,7 +228,9 @@ namespace IRAP.Client.GUI.MESPDC
                     WriteLog.Instance.Write(
                         string.Format("Output={0}", outputStr),
                         strProcedureName);
-                    if (outputStr != "")
+                    if (outputStr != "" ||
+                        (outputStr.Contains("<ROOT>") && 
+                        outputStr.Contains("<Action")))
                     {
                         try
                         {
@@ -248,6 +251,7 @@ namespace IRAP.Client.GUI.MESPDC
                         }
                     }
 
+                    needCallOLTPUDFForm = outputStr.Contains("<OLTPDisalbed");
                     outputStr = "";
                 }
                 catch (Exception err)
@@ -256,7 +260,7 @@ namespace IRAP.Client.GUI.MESPDC
                     WriteLog.Instance.Write(err.Message, strProcedureName);
                     throw err;
                 }
-                if (errorCode != 0)
+                if (errorCode != 0 || !needCallOLTPUDFForm)
                     return;
                 #endregion
 
