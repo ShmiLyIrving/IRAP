@@ -383,6 +383,11 @@ namespace IRAP.Entities.MES {
         public string BatchNumber { get; set; }
 
         /// <summary>
+        /// 材质叶标识 
+        /// </summary>
+        public int T131LeafID { get; set; }
+
+        /// <summary>
         /// 操作工工号
         /// </summary>
         public string OperatorCode { get; set; }
@@ -591,10 +596,11 @@ namespace IRAP.Entities.MES {
         /// 熔炼状态
         /// </summary>
         public int PWOStatus { get; set; }
+
+        
     }
 
     public class SmeltMaterialItem {
-
         /// <summary>
         /// 序号
         /// </summary>
@@ -629,6 +635,16 @@ namespace IRAP.Entities.MES {
         /// 历史记录  暂时不用考略
         /// </summary>
         public string DataXML { get; set; }
+
+        /// <summary>
+        /// 批次号
+        /// </summary>
+        public string BatchLot { get; set; }
+        
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public int Qty{ get; set; }
     }
 
     public class SmeltMethodItem {
