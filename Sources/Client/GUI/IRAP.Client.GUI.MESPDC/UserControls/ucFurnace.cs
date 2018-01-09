@@ -245,11 +245,51 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
 
         #endregion
+
+        #region 配料及开炉熔炼
+        /// <summary>
+        /// 获取配料信息
+        /// </summary>
+        private List<SmeltMaterialItem> GetSmeltMaterialItems() {
+            var batchNumber = this.lblFurnaceTime.Text;
+            var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
+            int errCode;
+            string errText;
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                var data = IRAPMESProductionClient.Instance.GetSmeltMaterialItems(_communityID, waitingSmelt.T131LeafID, _productionParam.T216LeafID,
+                    batchNumber, _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                return data;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+        
+        private void SetSmeltMaterialItems(){
+            var smeltMaterialItems = GetSmeltMaterialItems();
+            if (smeltMaterialItems==null||smeltMaterialItems.Count == 0) {
+                return;
+            }
+            this.grdBurdenInfo.DataSource = smeltMaterialItems;
+            this.grdBurdenInfoView.Tag = smeltMaterialItems;
+        }
+        #endregion
+
         #region 事件
 
         private void ucFurnace_Load(object sender, EventArgs e) {
             SetWaitingFurnace();
             SetOrderInfo();
+            SetSmeltMaterialItems();
         }
 
         private void btnStart_Click(object sender, EventArgs e) {

@@ -43,7 +43,12 @@
             this.grdProductPara = new DevExpress.XtraVerticalGrid.VGridControl();
             this.grpBurdenInfo = new DevExpress.XtraEditors.GroupControl();
             this.grdBurdenInfo = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdBurdenInfoView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ColT101Code = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColT101Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColBatchLot = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.ColQty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabPgSpectrum = new DevExpress.XtraTab.XtraTabPage();
             this.ucDetailGrid2 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.tabPgMatieralAjustment = new DevExpress.XtraTab.XtraTabPage();
@@ -70,7 +75,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grpBurdenInfo)).BeginInit();
             this.grpBurdenInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfoView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             this.tabPgSpectrum.SuspendLayout();
             this.tabPgMatieralAjustment.SuspendLayout();
             this.tabPgSample.SuspendLayout();
@@ -284,18 +290,83 @@
             // 
             this.grdBurdenInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdBurdenInfo.Location = new System.Drawing.Point(2, 21);
-            this.grdBurdenInfo.MainView = this.gridView2;
+            this.grdBurdenInfo.MainView = this.grdBurdenInfoView;
             this.grdBurdenInfo.Name = "grdBurdenInfo";
+            this.grdBurdenInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemComboBox1});
             this.grdBurdenInfo.Size = new System.Drawing.Size(372, 263);
             this.grdBurdenInfo.TabIndex = 0;
             this.grdBurdenInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+            this.grdBurdenInfoView});
             // 
-            // gridView2
+            // grdBurdenInfoView
             // 
-            this.gridView2.GridControl = this.grdBurdenInfo;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.grdBurdenInfoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ColT101Code,
+            this.ColT101Name,
+            this.ColBatchLot,
+            this.ColQty});
+            this.grdBurdenInfoView.GridControl = this.grdBurdenInfo;
+            this.grdBurdenInfoView.Name = "grdBurdenInfoView";
+            this.grdBurdenInfoView.OptionsBehavior.AutoSelectAllInEditor = false;
+            this.grdBurdenInfoView.OptionsBehavior.AutoUpdateTotalSummary = false;
+            this.grdBurdenInfoView.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
+            this.grdBurdenInfoView.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
+            this.grdBurdenInfoView.OptionsCustomization.AllowColumnMoving = false;
+            this.grdBurdenInfoView.OptionsCustomization.AllowGroup = false;
+            this.grdBurdenInfoView.OptionsView.ShowGroupPanel = false;
+            // 
+            // ColT101Code
+            // 
+            this.ColT101Code.Caption = "原材料编号";
+            this.ColT101Code.FieldName = "T101Code";
+            this.ColT101Code.Name = "ColT101Code";
+            this.ColT101Code.OptionsColumn.AllowEdit = false;
+            this.ColT101Code.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColT101Code.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColT101Code.OptionsColumn.AllowMove = false;
+            this.ColT101Code.OptionsColumn.ReadOnly = true;
+            this.ColT101Code.Visible = true;
+            this.ColT101Code.VisibleIndex = 0;
+            // 
+            // ColT101Name
+            // 
+            this.ColT101Name.Caption = "原材料名称";
+            this.ColT101Name.FieldName = "T101Name";
+            this.ColT101Name.Name = "ColT101Name";
+            this.ColT101Name.OptionsColumn.AllowEdit = false;
+            this.ColT101Name.OptionsColumn.AllowMove = false;
+            this.ColT101Name.OptionsColumn.ReadOnly = true;
+            this.ColT101Name.Visible = true;
+            this.ColT101Name.VisibleIndex = 1;
+            // 
+            // ColBatchLot
+            // 
+            this.ColBatchLot.Caption = "批次号";
+            this.ColBatchLot.ColumnEdit = this.repositoryItemComboBox1;
+            this.ColBatchLot.FieldName = "BatchLot";
+            this.ColBatchLot.Name = "ColBatchLot";
+            this.ColBatchLot.OptionsColumn.AllowMove = false;
+            this.ColBatchLot.Visible = true;
+            this.ColBatchLot.VisibleIndex = 2;
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            this.repositoryItemComboBox1.ReadOnly = true;
+            // 
+            // ColQty
+            // 
+            this.ColQty.Caption = "数量";
+            this.ColQty.FieldName = "Qty";
+            this.ColQty.Name = "ColQty";
+            this.ColQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColQty.OptionsColumn.AllowMove = false;
+            this.ColQty.Visible = true;
+            this.ColQty.VisibleIndex = 3;
             // 
             // tabPgSpectrum
             // 
@@ -334,7 +405,7 @@
             // 
             this.tabPgSample.Controls.Add(this.ucDetailGrid4);
             this.tabPgSample.Name = "tabPgSample";
-            this.tabPgSample.Size = new System.Drawing.Size(766, 271);
+            this.tabPgSample.Size = new System.Drawing.Size(766, 292);
             this.tabPgSample.Text = "浇三角试样";
             this.tabPgSample.Tooltip = "浇三角试样";
             // 
@@ -343,7 +414,7 @@
             this.ucDetailGrid4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucDetailGrid4.Location = new System.Drawing.Point(0, 0);
             this.ucDetailGrid4.Name = "ucDetailGrid4";
-            this.ucDetailGrid4.Size = new System.Drawing.Size(766, 271);
+            this.ucDetailGrid4.Size = new System.Drawing.Size(766, 292);
             this.ucDetailGrid4.TabIndex = 0;
             // 
             // tabPgBaked
@@ -420,7 +491,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grpBurdenInfo)).EndInit();
             this.grpBurdenInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfoView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             this.tabPgSpectrum.ResumeLayout(false);
             this.tabPgMatieralAjustment.ResumeLayout(false);
             this.tabPgSample.ResumeLayout(false);
@@ -454,7 +526,7 @@
         private DevExpress.XtraVerticalGrid.VGridControl grdProductPara;
         private DevExpress.XtraEditors.GroupControl grpBurdenInfo;
         private DevExpress.XtraGrid.GridControl grdBurdenInfo;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdBurdenInfoView;
         private DevExpress.XtraTab.XtraTabPage tabPgSpectrum;
         private DevExpress.XtraTab.XtraTabPage tabPgMatieralAjustment;
         private DevExpress.XtraTab.XtraTabPage tabPgSample;
@@ -465,5 +537,10 @@
         private ucDetailGrid ucDetailGrid1;
         private DevExpress.XtraEditors.DateEdit dtProductDate;
         private DevExpress.XtraEditors.LabelControl lblFurnaceTime;
+        private DevExpress.XtraGrid.Columns.GridColumn ColT101Code;
+        private DevExpress.XtraGrid.Columns.GridColumn ColT101Name;
+        private DevExpress.XtraGrid.Columns.GridColumn ColBatchLot;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraGrid.Columns.GridColumn ColQty;
     }
 }

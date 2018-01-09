@@ -18,11 +18,16 @@ namespace IRAP.Client.GUI.MESPDC {
     public partial class frmProductionParamsCollection_Casting : IRAP.Client.Global.GUI.frmCustomFuncBase {
         private string className = MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
+#if DEBUG
         #region Debug
         private int _communityID = 60030;
         private int _sysLogID = 227556;
         #endregion
-        
+#else
+        private int _communityID=IRAPUser.Instance.CommunityID;
+        private int _sysLogID = IRAPUser.Instance.SysLogID;
+#endif
+
 
         public frmProductionParamsCollection_Casting() {
             InitializeComponent();
