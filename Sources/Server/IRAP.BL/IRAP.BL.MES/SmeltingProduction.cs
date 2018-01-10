@@ -108,11 +108,11 @@ namespace IRAP.BL.MES {
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try {
-                List<int> datas = new List<int>();
+                List<long> datas = new List<long>();
 
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
-                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int64, communityID*10000));
                 paramList.Add(new IRAPProcParameter("@OperatorCode", DbType.String, operatorCode));
                 WriteLog.Instance.Write(
                     string.Format(
@@ -127,7 +127,7 @@ namespace IRAP.BL.MES {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection()) {
                         string strSQL = "select * from IRAP..stb006 where PartitioningKey = @CommunityID and UserCode = @OperatorCode";
 
-                        var id = (int)conn.CallScalar(strSQL, paramList);
+                        var id = (long)conn.CallScalar(strSQL, paramList);
                         datas.Add(id);
                         errCode = 0;
                         errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
@@ -355,7 +355,7 @@ namespace IRAP.BL.MES {
                 try {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection()) {
                         string strSQL = "SELECT * " +
-                            "FROM IRAPMDM..ufn_GetList_SmeltMaterialItems(" +
+                            "FROM IRAPMDM..ufn_GetList_SmeltMethodItems(" +
                             "@CommunityID,@T131LeafID,@T216LeafID, @BatchNumber, @SysLogID)";
                         IList<SmeltMethodItem> lstDatas = conn.CallTableFunc<SmeltMethodItem>(strSQL, paramList);
                         datas = lstDatas.ToList<SmeltMethodItem>();
@@ -365,7 +365,7 @@ namespace IRAP.BL.MES {
                     }
                 } catch (Exception error) {
                     errCode = 99000;
-                    errText = string.Format("调用函数ufn_GetList_SmeltMaterialItems发生异常：{0}", error.Message);
+                    errText = string.Format("调用函数ufn_GetList_SmeltMethodItems发生异常：{0}", error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }
