@@ -634,19 +634,9 @@ namespace IRAP.Entities.MES {
         /// <summary>
         /// 历史记录  暂时不用考略
         /// </summary>
-        public string DataXML { get; set; }
-
-        /// <summary>
-        /// 批次号
-        /// </summary>
-        public string BatchLot { get; set; }
-        
-        /// <summary>
-        /// 数量
-        /// </summary>
-        public int Qty{ get; set; }
+        public string DataXML { get; set; } 
     }
-
+     
     public class SmeltMethodItem {
 
         /// <summary>
@@ -682,7 +672,7 @@ namespace IRAP.Entities.MES {
         /// <summary>
         /// 历史记录  暂时不用考略
         /// </summary>
-        public string DataXML { get; set; }
+        public string DataXML { get; set; } 
     }
 
     public class SmeltBatchProductionInfo {
