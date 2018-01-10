@@ -1,0 +1,230 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+
+using IRAP.Global;
+using IRAP.Entities.MDM;
+using IRAP.Entities.MES;
+using System.Reflection;
+using IRAP.WCF.Client.Method;
+using IRAP.Client.User;
+
+namespace IRAP.Client.GUI.MESPDC
+{
+    public partial class frmPhysicochemicalInspectionBatchSystem : IRAP.Client.Global.GUI.frmCustomFuncBase
+    {
+        private string className =
+            MethodBase.GetCurrentMethod().DeclaringType.FullName;
+        private List<BatchPWOInfo> pwos = new List<BatchPWOInfo>();
+        public static string currentBatchNo = null;
+        public static string currentOpType;
+        public static bool savestate = true;//是否已保存
+        private UserControls.ucPhysicochemicalFurnace ucLQLH = new UserControls.ucPhysicochemicalFurnace();
+        private UserControls.ucPhysicochemicalFurnace ucLHLH = new UserControls.ucPhysicochemicalFurnace();
+        private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace();
+        public frmPhysicochemicalInspectionBatchSystem()
+        {
+            InitializeComponent();
+            currentOpType = tcMain.SelectedTabPage.Name.Substring(3);
+            tcMain.TabPages[0].Controls.Add(ucLQLH);
+            ucLQLH.Dock = DockStyle.Fill;
+            ucLQLH.Optype = "LQLH";
+            tcMain.TabPages[1].Controls.Add(ucLHLH);
+            ucLHLH.Dock = DockStyle.Fill;
+            ucLHLH.Optype = "LHLH";
+            tcMain.TabPages[2].Controls["plMPLH"].Controls["scMPLH"].Controls[1].Controls.Add(ucMPLH);
+            ucMPLH.Dock = DockStyle.Fill;
+            ucMPLH.Optype = "MPLH";
+        }
+
+        private void edtFileName_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            openFileDialog.Title = "选择要上传的文件";
+            openFileDialog.Filter = "照片(*.jpg)|*.jpg|所有文件(*.*)|*.*";
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                edtFileName.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void edtBatchNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                
+                if (edtBatchNo.Text.Trim() != "")
+                {
+                    currentBatchNo = edtBatchNo.Text;
+                    ChangeUC();                   
+                }
+            }
+        }
+        private bool AlertConfirm()
+        {
+            if (savestate == false)
+            {
+                DialogResult rlt = XtraMessageBox.Show("离开后未保存的数据将被清空", "有数据未保存", MessageBoxButtons.OKCancel);
+                if (rlt == DialogResult.Cancel)
+                {
+                    return false;
+                }
+            }            
+            return true;           
+        }
+        private void tcMain_SelectedPageChanging(object sender, DevExpress.XtraTab.TabPageChangingEventArgs e)
+        {
+            if(!AlertConfirm())
+            {
+                e.Cancel = true;
+            }
+        }
+        private void tcMain_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            currentOpType = e.Page.Name.Substring(3);
+            ChangeUC();
+            savestate = true;
+        }
+        /// <summary>
+        /// 刷新自定义控件
+        /// </summary>
+        private void ChangeUC()
+        {
+            if (!string.IsNullOrEmpty(currentBatchNo))
+            {
+                if (currentOpType == "LQLH" || currentOpType == "LHLH")
+                {
+                    {
+                        if (currentOpType == "LQLH")
+                        {
+                            ucLQLH.RefreshUC();
+                        }
+                        else
+                        {
+                            ucLHLH.RefreshUC();
+                        }
+                    }
+                }
+                else if (currentOpType == "MPLH")
+                {
+                    grdPWOs.DataSource = null;
+                    pwos.Clear();
+                    pwos = GetPWOWithBatchNo(currentBatchNo);
+                    grdPWOs.DataSource = pwos;
+                    grdPWOs.RefreshDataSource();
+                    grdvPWOs.BestFitColumns();
+                    grdvPWOs.FocusedRowHandle = 0;
+                }
+            }
+        }
+       
+        /// <summary>
+        /// 根据生产容器批次号获取工单信息列表
+        /// </summary>
+        /// <param name="batchNumber">生产容器批次号</param>
+        /// <returns></returns>
+        private List<BatchPWOInfo> GetPWOWithBatchNo(string batchNumber)
+        {
+            List<BatchPWOInfo> rlt = new List<BatchPWOInfo>();
+
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPMESClient.Instance.ufn_GetList_BatchPWONo(
+                    IRAPUser.Instance.CommunityID,
+                    batchNumber,
+                    IRAPUser.Instance.SysLogID,
+                    ref rlt,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    for (int i = rlt.Count - 1; i >= 0; i--)
+                    {
+                        if (rlt[i].QCStatus != 0 ||
+                            rlt[i].BatchEndDate.Trim() == "")
+                            rlt.RemoveAt(i);
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                string errMsg =
+                    string.Format(
+                        "获取工单信息列表时发生错误：[{0}]",
+                        error.Message);
+                WriteLog.Instance.Write(errMsg, strProcedureName);
+
+                XtraMessageBox.Show(
+                    errMsg,
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+#if DEBUG
+            for (int i = 0; i < 5; i++)
+            {
+                Random r = new Random();
+
+                BatchPWOInfo pwo = new BatchPWOInfo();
+                pwo.Ordinal = i;
+                pwo.PWONo = r.Next(1, 10000).ToString();
+                pwo.Texture = "铁";
+                pwo.Qty = r.Next(1, 10000);
+                pwo.T102Code = r.Next(1, 10000).ToString();
+                pwo.T102Name = r.Next(1, 10000).ToString();
+                pwo.T107LeafID = r.Next(1, 10000).ToString();
+                pwo.BatchNumber = currentBatchNo;
+                pwo.LotNumber = r.Next(1, 10000).ToString();
+                pwo.QCStatus = 0;
+                pwo.T102LeafID = r.Next(1, 10000);
+                pwo.T126LeafID = r.Next(1, 10000);
+                pwo.T216LeafID = r.Next(1, 10000);              
+                rlt.Add(pwo);
+            }
+#endif
+            return rlt;
+        }
+
+        private void grdvPWOs_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
+        {
+            int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
+            if (idx >= 0 && idx < pwos.Count)
+            {
+                ucMPLH.RefreshUC(pwos[idx]);              
+            }            
+        }
+    }
+}
