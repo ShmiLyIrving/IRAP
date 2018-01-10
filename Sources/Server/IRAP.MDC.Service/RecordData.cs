@@ -38,7 +38,7 @@ namespace IRAP.MDC.Service
 
         private IConnectionFactory factory = null;
 
-        public RecordData(string source, string data, List<RegInstrument> regInstruments)
+        public RecordData(string source, string data)
         {
             this.source = 
                 source.Substring(
@@ -46,13 +46,7 @@ namespace IRAP.MDC.Service
                     source.IndexOf(':'));
             this.data = data;
 
-            foreach (RegInstrument regInstru in regInstruments)
-            {
-                if (regInstru.IPAddress == this.source)
-                {
-                    this.instrument = regInstru;
-                }
-            }
+            instrument = TRegisterInstruments.Instance.GetItem(this.source);
 
             string strProcedureName =
                 string.Format(

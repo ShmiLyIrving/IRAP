@@ -215,8 +215,10 @@ namespace IRAP.MDC.Service
                 WriteLog.Instance.Write(e.Message);
             }
 
+#if DEBUG
             Console.WriteLine("\nPress ENTER to continue...");
             Console.Read();
+#endif
         }
 
         public void AcceptCallback(IAsyncResult ar)
@@ -288,14 +290,13 @@ namespace IRAP.MDC.Service
                 RecordData record = 
                     new RecordData(
                         handler.RemoteEndPoint.ToString(), 
-                        content,
-                        instruments);
+                        content);
                 if (record.DataValid())
                 {
-                    #region 处理收到的数据
+#region 处理收到的数据
                     Thread dataRecording = new Thread(new ThreadStart(record.Record));
                     dataRecording.Start();
-                    #endregion
+#endregion
 
                     // Echo the data back to the client.
                     Send(handler, "OK");

@@ -11,18 +11,23 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 
-namespace IRAP.WCF.Client.Method {
-    public class IRAPTreeClient {
+namespace IRAP.WCF.Client.Method
+{
+    public class IRAPTreeClient
+    {
         private static IRAPTreeClient _instance = null;
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private IRAPTreeClient() {
+        private IRAPTreeClient()
+        {
 
         }
 
-        public static IRAPTreeClient Instance {
-            get {
+        public static IRAPTreeClient Instance
+        {
+            get
+            {
                 if (_instance == null)
                     _instance = new IRAPTreeClient();
                 return _instance;
@@ -41,7 +46,8 @@ namespace IRAP.WCF.Client.Method {
             string tvCtrlParameters,
             int languageID,
             out int errCode,
-            out string errText) {
+            out string errText)
+        {
             string strProcedureName =
                string.Format(
                    "{0}.{1}",
@@ -49,7 +55,8 @@ namespace IRAP.WCF.Client.Method {
                    MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -67,7 +74,8 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -82,9 +90,11 @@ namespace IRAP.WCF.Client.Method {
                             "({0}){1}", errCode, errText),
                         strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var datas = rlt as List<TVCtrlParam>;
-                        if (datas == null || datas.Count == 0) {
+                        if (datas == null || datas.Count == 0)
+                        {
                             errCode = 99;
                             errText = "没有找到树视图控制参数，请检查配置！";
                             WriteLog.Instance.Write(errText, strProcedureName);
@@ -94,23 +104,29 @@ namespace IRAP.WCF.Client.Method {
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
         }
 
         public List<LinkedTreeTip> GetLinkedTreeOfImpExp(int communityID, int t19LeafID, long sysLogID,
-            out int errCode,out string errText) {
+            out int errCode, out string errText)
+        {
             string strProcedureName =
-               string.Format("{0}.{1}",className,MethodBase.GetCurrentMethod().Name);
+               string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -123,7 +139,8 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -138,9 +155,11 @@ namespace IRAP.WCF.Client.Method {
                             "({0}){1}", errCode, errText),
                         strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var datas = rlt as List<LinkedTreeTip>;
-                        if (datas == null || datas.Count == 0) {
+                        if (datas == null || datas.Count == 0)
+                        {
                             errCode = 99;
                             errText = "没有找到树视图，请检查配置！";
                             WriteLog.Instance.Write(errText, strProcedureName);
@@ -150,23 +169,29 @@ namespace IRAP.WCF.Client.Method {
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
         }
 
         public List<LeafSet> GetAccessibleFilteredLeafSet(int communityID, int treeID, int scenarioIndex,
-            string dicingFilter, int nodeDepth, string keyword, long sysLogID,out int errCode, out string errText) {
+            string dicingFilter, int nodeDepth, string keyword, long sysLogID, out int errCode, out string errText)
+        {
             string strProcedureName =
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -174,8 +199,8 @@ namespace IRAP.WCF.Client.Method {
                 hashParams.Add("treeID", treeID);
                 hashParams.Add("scenarioIndex", scenarioIndex);
                 hashParams.Add("dicingFilter", dicingFilter);
-                hashParams.Add("nodeDepth",  nodeDepth);
-                hashParams.Add("keyword",  keyword);
+                hashParams.Add("nodeDepth", nodeDepth);
+                hashParams.Add("keyword", keyword);
                 hashParams.Add("sysLogID", sysLogID);
                 WriteLog.Instance.Write(string.Format(
                         "调用 sfn_AccessibleFilteredLeafSet 函数，参数：communityID={0}|treeID={1}|scenarioIndex={2}|dicingFilter={3}|nodeDepth={4}|keyword={5}|sysLogID={6}",
@@ -183,7 +208,8 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -198,9 +224,11 @@ namespace IRAP.WCF.Client.Method {
                             "({0}){1}", errCode, errText),
                         strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var datas = rlt as List<LeafSet>;
-                        if (datas == null || datas.Count == 0) {
+                        if (datas == null || datas.Count == 0)
+                        {
                             errCode = 99;
                             errText = "没有找到树视图，请检查配置！";
                             WriteLog.Instance.Write(errText, strProcedureName);
@@ -210,23 +238,29 @@ namespace IRAP.WCF.Client.Method {
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
         }
 
         public string GetImportInfoXml(int communityID, int t19LeafID, int txLeafID,
-             long sysLogID, out int errCode, out string errText) {
+             long sysLogID, out int errCode, out string errText)
+        {
             string strProcedureName =
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -240,7 +274,8 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -255,9 +290,11 @@ namespace IRAP.WCF.Client.Method {
                             "({0}){1}", errCode, errText),
                         strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var datas = rlt as List<string>;
-                        if (datas == null||datas.Count == 0||string.IsNullOrEmpty(datas[0])) {
+                        if (datas == null || datas.Count == 0 || string.IsNullOrEmpty(datas[0]))
+                        {
                             errCode = 99;
                             errText = "没有找到导入信息XML报文！";
                             WriteLog.Instance.Write(errText, strProcedureName);
@@ -267,11 +304,15 @@ namespace IRAP.WCF.Client.Method {
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
@@ -279,25 +320,30 @@ namespace IRAP.WCF.Client.Method {
 
 
         public void GetImportInfoEntity(int communityID, int t19LeafID, int treeID, int txLeafID,
-             long sysLogID, out ImportParam param, out List<ImportMetaData> metaDatas, out int errCode, out string errText) {
+             long sysLogID, out ImportParam param, out List<ImportMetaData> metaDatas, out int errCode, out string errText)
+        {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             GetImportInfoEntity(communityID, t19LeafID, txLeafID, sysLogID, out param, out metaDatas, out errCode, out errText);
 
-            if (!ImportParaValidate(param, out errText)) {
+            if (!ImportParaValidate(param, out errText))
+            {
                 errCode = 9999;
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return;
             }
-            if (Convert.ToInt32(param.DstTableExist) == 0) {
+            if (Convert.ToInt32(param.DstTableExist) == 0)
+            {
                 CreateTable(communityID, t19LeafID, treeID, txLeafID, sysLogID, param.ProcToCreateTBL, out errCode, out errText);
-                if (errCode != 0) {
+                if (errCode != 0)
+                {
                     WriteLog.Instance.Write(errText, strProcedureName);
                     return;
                 }
                 GetImportInfoEntity(communityID, t19LeafID, treeID, txLeafID, sysLogID, out param, out metaDatas, out errCode, out errText);
             }
-            if (!ImportMetaDataValidate(metaDatas, out errText)) {
+            if (!ImportMetaDataValidate(metaDatas, out errText))
+            {
                 errCode = 9999;
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return;
@@ -309,7 +355,8 @@ namespace IRAP.WCF.Client.Method {
         }
 
         public void GetImportInfoEntity(int communityID, int t19LeafID, int txLeafID,
-               long sysLogID, out ImportParam param, out List<ImportMetaData> metaDatas, out int errCode, out string errText) {
+               long sysLogID, out ImportParam param, out List<ImportMetaData> metaDatas, out int errCode, out string errText)
+        {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -317,22 +364,26 @@ namespace IRAP.WCF.Client.Method {
             param = null;
             metaDatas = new List<ImportMetaData>();
             var xmlStr = GetImportInfoXml(communityID, t19LeafID, txLeafID, sysLogID, out errCode, out errText);
-            if (errCode != 0 || string.IsNullOrEmpty(xmlStr)) {
+            if (errCode != 0 || string.IsNullOrEmpty(xmlStr))
+            {
                 return;
             }
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xmlStr);
             //使用xpath表达式选择文档中所有的student子节点
             XmlNodeList nodeList = xmlDoc.SelectSingleNode("Result").ChildNodes;
-            if (nodeList == null) {
+            if (nodeList == null)
+            {
                 errCode = 9999;
                 errText = "没有找到Result节点，请检查！";
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return;
             }
-            foreach (XmlNode childNode in nodeList) {
+            foreach (XmlNode childNode in nodeList)
+            {
                 XmlElement childElement = (XmlElement)childNode;
-                if (childElement.Name == "Param") {
+                if (childElement.Name == "Param")
+                {
                     param = new ImportParam();
                     param.FlagFilePath = childElement.Attributes["FlagFilePath"].Value;
                     param.DataFilePath = childElement.Attributes["DataFilePath"].Value;
@@ -347,9 +398,11 @@ namespace IRAP.WCF.Client.Method {
                     param.PartialLoadPermitted = childElement.Attributes["PartialLoadPermitted"].Value;
                     param.ProcOnLoad = childElement.Attributes["ProcOnLoad"].Value;
                 }
-                if (childElement.Name == "MetaData") {
+                if (childElement.Name == "MetaData")
+                {
                     XmlNodeList datalist = childElement.ChildNodes;
-                    foreach (XmlNode dataNode in datalist) {
+                    foreach (XmlNode dataNode in datalist)
+                    {
                         ImportMetaData metaData = new ImportMetaData();
                         XmlElement data = (XmlElement)dataNode;
                         metaData.Ordinal = int.Parse(data.Attributes["Ordinal"].Value);
@@ -371,35 +424,42 @@ namespace IRAP.WCF.Client.Method {
             return;
         }
 
-        private bool ImportParaValidate(ImportParam para,out string errText) {
+        private bool ImportParaValidate(ImportParam para, out string errText)
+        {
             errText = "";
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            if (para==null) {
+            if (para == null)
+            {
                 errText = "获取的XML报文不完整，请重新配置！";
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return false;
             }
-            if (string.IsNullOrEmpty(para.DstTableName)) {
+            if (string.IsNullOrEmpty(para.DstTableName))
+            {
                 errText = "目标表名不存在";
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return false;
             }
-            if (string.IsNullOrEmpty(para.ProcOnVerification)) {
+            if (string.IsNullOrEmpty(para.ProcOnVerification))
+            {
                 errText = "检验的存储过程为空！请重新配置";
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return false;
             }
-            if (string.IsNullOrEmpty(para.ProcOnLoad)) {
+            if (string.IsNullOrEmpty(para.ProcOnLoad))
+            {
                 errText = "加载存储过程为空！请重新配置";
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return false;
             }
-            if (Convert.ToInt32(para.DstTableExist)==1) {
+            if (Convert.ToInt32(para.DstTableExist) == 1)
+            {
                 return true;
             }
             //如果表名不为空，并且目标表不存在，就创建表
-            if (string.IsNullOrEmpty(para.ProcToCreateTBL)) {
+            if (string.IsNullOrEmpty(para.ProcToCreateTBL))
+            {
                 errText = " 创建表的存储过程不存在，请重新配置！";
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return false;
@@ -407,12 +467,14 @@ namespace IRAP.WCF.Client.Method {
             return true;
         }
 
-        private bool ImportMetaDataValidate(List<ImportMetaData> metaDatas, out string errText) {
-            string strProcedureName =string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+        private bool ImportMetaDataValidate(List<ImportMetaData> metaDatas, out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
 
             errText = "";
-            if (metaDatas==null||metaDatas.Count==0) {
+            if (metaDatas == null || metaDatas.Count == 0)
+            {
                 errText = "表头数据为空！请配置表头！";
                 WriteLog.Instance.Write(errText, strProcedureName);
                 return false;
@@ -421,11 +483,13 @@ namespace IRAP.WCF.Client.Method {
         }
 
         private void CreateTable(int communityID, int t19LeafID, int treeID, int txLeafID,
-            long sysLogID, string blName, out int errCode, out string errText) {
+            long sysLogID, string blName, out int errCode, out string errText)
+        {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
 
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -441,7 +505,8 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -462,11 +527,15 @@ namespace IRAP.WCF.Client.Method {
                     WriteLog.Instance.Write(errText, strProcedureName);
                 }
                 #endregion
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 WriteLog.Instance.Write(ex.Message, strProcedureName);
                 errCode = -1001;
                 errText = ex.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
@@ -476,7 +545,8 @@ namespace IRAP.WCF.Client.Method {
             long sysLogID,
             TVCtrlParam ctrlPara,
             out int errCode,
-            out string errText) {
+            out string errText)
+        {
             string strProcedureName =
                string.Format(
                    "{0}.{1}",
@@ -484,7 +554,8 @@ namespace IRAP.WCF.Client.Method {
                    MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -500,16 +571,26 @@ namespace IRAP.WCF.Client.Method {
                 hashParams.Add("orderByMode", ctrlPara.OrderByMode);
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用 sfn_TreeViewCtrlParameters 函数， " +
-                        "参数：communityID={0}|irapTreeID={1}|treeViewType={2}|entryNode={3}|ditvCtrlVar={4}|dstvCtrlBlk={5}|filterClickStream={6}|selectClickStream={7}|sysLogID={8}",
-                        communityID, ctrlPara.IRAPTreeID,
-                        ctrlPara.TreeViewType, ctrlPara.EntryNode, ctrlPara.DITVCtrlVar,
-                        ctrlPara.DSTVCtrlBlk, ctrlPara.FilterClickStream, ctrlPara.SelectClickStream,
-                        ctrlPara.OrderByMode, strProcedureName));
+                        "调用 sfn_IRAPTreeView 函数， " +
+                        "参数：CommunityID={0}|IRAPTreeID={1}|TreeViewType={2}|EntryNode={3}|"+
+                        "DITVCtrlVar={4}|DSTVCtrlBlk={5}|FilterClickStream={6}|"+
+                        "SelectClickStream={7}|SysLogID={8}",
+                        communityID, 
+                        ctrlPara.IRAPTreeID,
+                        ctrlPara.TreeViewType, 
+                        ctrlPara.EntryNode, 
+                        ctrlPara.DITVCtrlVar,
+                        ctrlPara.DSTVCtrlBlk, 
+                        ctrlPara.FilterClickStream, 
+                        ctrlPara.SelectClickStream,
+                        sysLogID,
+                        ctrlPara.OrderByMode), 
+                    strProcedureName);
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -524,9 +605,11 @@ namespace IRAP.WCF.Client.Method {
                             "({0}){1}", errCode, errText),
                         strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var datas = rlt as List<IRAPTreeViewNode>;
-                        if (datas == null || datas.Count == 0) {
+                        if (datas == null || datas.Count == 0)
+                        {
                             errCode = 99;
                             errText = "没有找到树视图，请检查配置！";
                             WriteLog.Instance.Write(errText, strProcedureName);
@@ -536,21 +619,27 @@ namespace IRAP.WCF.Client.Method {
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
         }
 
-        public void DeleteOldTableData(string tableName, long importLogId, out int errCode, out string errText) {
+        public void DeleteOldTableData(string tableName, long importLogId, out int errCode, out string errText)
+        {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
 
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -562,7 +651,8 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -583,31 +673,38 @@ namespace IRAP.WCF.Client.Method {
                     WriteLog.Instance.Write(errText, strProcedureName);
                 }
                 #endregion
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 WriteLog.Instance.Write(ex.Message, strProcedureName);
                 errCode = -1001;
                 errText = ex.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
 
 
-        public void InsertTempTableData(string tableName, DataTable data, out int errCode, out string errText) {
+        public void InsertTempTableData(string tableName, DataTable data, out int errCode, out string errText)
+        {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
 
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
                 hashParams.Add("tableName", tableName);
                 hashParams.Add("data", data);
-                WriteLog.Instance.Write(string.Format("将数据插入临时表{0}中", tableName),strProcedureName);
+                WriteLog.Instance.Write(string.Format("将数据插入临时表{0}中", tableName), strProcedureName);
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -628,11 +725,15 @@ namespace IRAP.WCF.Client.Method {
                     WriteLog.Instance.Write(errText, strProcedureName);
                 }
                 #endregion
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 WriteLog.Instance.Write(ex.Message, strProcedureName);
                 errCode = -1001;
                 errText = ex.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
@@ -641,42 +742,51 @@ namespace IRAP.WCF.Client.Method {
         /// 获取指定时区地方时转换为Unix时间 
         /// </summary>
         /// <returns>Unix时间 </returns>
-        public int GetLocalUnixTime(out int errCode, out string errText) {
+        public int GetLocalUnixTime(out int errCode, out string errText)
+        {
             string strProcedureName =
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
-               
-                WriteLog.Instance.Write( "调用 sfn_LocalToUnixTime 函数");
+
+                WriteLog.Instance.Write("调用 sfn_LocalToUnixTime 函数");
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
-                    object rlt =client.WCFRESTFul(
+                    object rlt = client.WCFRESTFul(
                             "IRAP.BL.UTS.dll",
                             "IRAP.BL.UTS.GeneralImport",
-                            "sfn_LocalToUnixTime",new Hashtable(), out errCode,out errText);
-                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText),strProcedureName);
+                            "sfn_LocalToUnixTime", new Hashtable(), out errCode, out errText);
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var date = Convert.ToInt32(rlt);
-                        if (date == 0) {
+                        if (date == 0)
+                        {
                             errCode = 99;
                             errText = "Unix时间获取失败！";
                             WriteLog.Instance.Write(errText, strProcedureName);
-                        } 
+                        }
                         return date;
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return 0;
@@ -684,12 +794,14 @@ namespace IRAP.WCF.Client.Method {
 
 
         public DataTable GetDataAfterVerify(int communityID, int t19LeafID, int treeID, int txLeafID, long importLogID,
-            long sysLogID, string blName, string verifyName, out int errCode, out string errText) {
+            long sysLogID, string blName, string verifyName, out int errCode, out string errText)
+        {
             string strProcedureName =
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -707,19 +819,22 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
                             "IRAP.BL.UTS.dll",
                             "IRAP.BL.UTS.GeneralImport",
                             "ProcOnVerification",
-                        hashParams, out errCode,out errText);
-                    WriteLog.Instance.Write( string.Format("({0}){1}", errCode, errText),strProcedureName);
+                        hashParams, out errCode, out errText);
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var datas = rlt as DataTable;
-                        if (datas == null) {
+                        if (datas == null)
+                        {
                             errCode = 99;
                             errText = "没有数据！";
                             WriteLog.Instance.Write(errText, strProcedureName);
@@ -729,23 +844,29 @@ namespace IRAP.WCF.Client.Method {
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
         }
 
         public DataTable GetDataAfterLoad(int communityID, int t19LeafID, int treeID, int txLeafID, long importLogID,
-            long sysLogID, string blName, string loadName,int isLaodAll,int isLoadLog, out int errCode, out string errText) {
+            long sysLogID, string blName, string loadName, int isLaodAll, int isLoadLog, out int errCode, out string errText)
+        {
             string strProcedureName =
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -766,7 +887,8 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -776,9 +898,11 @@ namespace IRAP.WCF.Client.Method {
                         hashParams, out errCode, out errText);
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var datas = rlt as DataTable;
-                        if (datas == null) {
+                        if (datas == null)
+                        {
                             errCode = 99;
                             errText = "没有数据！";
                             WriteLog.Instance.Write(errText, strProcedureName);
@@ -788,11 +912,15 @@ namespace IRAP.WCF.Client.Method {
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
@@ -806,12 +934,14 @@ namespace IRAP.WCF.Client.Method {
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns></returns>
         public List<ImportErrorTypes> GetErrTypesOfImport(int communityID, int t19LeafID, long sysLogID,
-            out int errCode, out string errText) {
+            out int errCode, out string errText)
+        {
             string strProcedureName =
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
+            try
+            {
                 #region 将函数调用参数加入 HashTable 中
                 Hashtable hashParams = new Hashtable();
 
@@ -824,7 +954,8 @@ namespace IRAP.WCF.Client.Method {
                 #endregion
 
                 #region 执行存储过程或者函数
-                using (WCFClient client = new WCFClient()) {
+                using (WCFClient client = new WCFClient())
+                {
 
                     object rlt =
                         client.WCFRESTFul(
@@ -839,17 +970,22 @@ namespace IRAP.WCF.Client.Method {
                             "({0}){1}", errCode, errText),
                         strProcedureName);
 
-                    if (errCode == 0) {
+                    if (errCode == 0)
+                    {
                         var datas = rlt as List<ImportErrorTypes>;
                         return datas;
                     }
                 }
                 #endregion
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
-            } finally {
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;

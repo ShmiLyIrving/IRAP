@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            // 
+            // ServMDC
+            // 
+            this.ServiceName = "IRAP.MDC.Service";
+
         }
 
         #endregion
