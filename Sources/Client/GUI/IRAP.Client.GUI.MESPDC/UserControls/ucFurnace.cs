@@ -13,6 +13,8 @@ using IRAP.Global;
 using IRAP.WCF.Client.Method;
 using IRAP.Entity.UTS;
 using DevExpress.XtraGrid.Columns;
+using System.Xml;
+using IRAP.Client.GUI.MESPDC.Entities;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls {
     public partial class ucFurnace : XtraUserControl {
@@ -28,6 +30,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private ImportParam _importPara = new ImportParam();
         private List<ImportMetaData> _importMetaData = new List<ImportMetaData>();
         private List<OrderInfo> _orderInfo = new List<OrderInfo>();
+        private bool _ProductingNow = false;//是否正在生产
 
         #region 属性
         /// <summary>
@@ -250,7 +253,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 获取配料信息
         /// </summary>
-        private List<SmeltMaterialItem> GetSmeltMaterialItems() {
+        private List<SmeltMaterialItemClient> GetSmeltMaterialItems() {
             var batchNumber = this.lblFurnaceTime.Text;
             var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
             int errCode;
@@ -264,7 +267,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
-                return data;
+                var datas = new List<SmeltMaterialItemClient>();
+                foreach (SmeltMaterialItem item in data) { 
+                    datas.Add(SmeltMaterialItemClient.Mapper<SmeltMaterialItemClient, SmeltMaterialItem>(item));
+                }
+                return datas;
             } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -274,6 +281,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             return null;
         }
         
+        /// <summary>
+        /// 设置配料信息
+        /// </summary>
         private void SetSmeltMaterialItems(){
             var smeltMaterialItems = GetSmeltMaterialItems();
             if (smeltMaterialItems==null||smeltMaterialItems.Count == 0) {
@@ -282,6 +292,146 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdBurdenInfo.DataSource = smeltMaterialItems;
             this.grdBurdenInfoView.Tag = smeltMaterialItems;
         }
+
+        /// <summary>
+        /// 获取生产开炉参数
+        /// </summary>
+        private List<SmeltMethodItemClient> GetSmeltMethodItems() {
+            var batchNumber = this.lblFurnaceTime.Text;
+            var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
+            int errCode;
+            string errText;
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                var data = IRAPMESProductionClient.Instance.GetSmeltMethodItems(_communityID, waitingSmelt.T131LeafID, _productionParam.T216LeafID,
+                    batchNumber, _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                var datas = new List<SmeltMethodItemClient>();
+                foreach (SmeltMethodItem item in data) {
+                    datas.Add(SmeltMethodItemClient.Mapper<SmeltMethodItemClient, SmeltMethodItem>(item));
+                }
+                return datas;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
+        private void SetSmeltMethodItems() {
+            var smeltMethodItems = GetSmeltMethodItems();
+            if (smeltMethodItems==null||smeltMethodItems.Count==0) {
+                return;
+            }
+            this.grdProductPara.DataSource = smeltMethodItems;
+            this.grdProductParaView.Tag = smeltMethodItems;
+        }
+        #endregion
+
+        #region 开始生产
+        /// <summary>
+        /// 开始生产
+        /// </summary>
+        private bool StartProduction() {
+            var operatorCode = this.txtOperator.Text;
+            var batchNumber = this.lblFurnaceTime.Text;
+            var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
+            int errCode;
+            string errText;
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                IRAPMESProductionClient.Instance.StartProduct(_communityID, _productionParam.T216LeafID, _productionParam.T107LeafID,
+                   waitingSmelt.T131LeafID, operatorCode, batchNumber, "", _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                return true;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 创建保存工艺参数xml
+        /// </summary>
+        //private string CreateRSFactXml() {
+        //    XmlDocument xmlDoc = new XmlDocument();
+        //    XmlElement root = xmlDoc.CreateElement("RSFact");
+        //    xmlDoc.AppendChild(root);
+        //    //配料信息
+            
+
+        //    var rF13Data = grdBurdenInfo.DataSource as List<SmeltMaterialItem>;
+        //    if (rF13Data!=null&&rF13Data.Count>0) {
+        //        foreach (SmeltMaterialItem smeltMaterialItem in rF13Data) {
+        //            XmlNode rF13Node = xmlDoc.CreateElement("RF13_1");
+        //        }
+        //    }
+
+        //    root.AppendChild(rF13Node);
+        //    //生产开炉参数
+        //    XmlNode rF25Node = xmlDoc.CreateElement("RF25");
+
+
+
+            
+        //    root.AppendChild(rF25Node);
+        //    return xmlDoc.OuterXml;
+        //}
+
+        #endregion
+
+        #region 重新加载
+        /// <summary>
+        /// 重新加载
+        /// </summary>
+        private List<SmeltBatchProductionInfo> ReLoadProduction() {
+            var operatorCode = this.txtOperator.Text;
+            var batchNumber = this.lblFurnaceTime.Text;
+            var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
+            int errCode;
+            string errText;
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                var datas = IRAPMESProductionClient.Instance.ReloadSmeltBatchProduct(_communityID,_productionParam.T107LeafID, _productionParam.T216LeafID, 
+                   _productionParam.T133LeafID, _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                return datas;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
+        private void SetCurrentSmeltInfo(SmeltBatchProductionInfo info) {
+            if (info == null) {
+                return;
+            }
+            this.labProductStartTimeResult.Text = info.BatchStartDate.ToShortDateString();
+            this.labProductStartTimeResult.Tag = info.BatchStartDate;
+            this.labCurrentFurnaceResult.Text = info.BatchNumber;
+            this._ProductingNow = info.InProduction == 1; 
+        }
+
         #endregion
 
         #region 事件
@@ -290,14 +440,45 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             SetWaitingFurnace();
             SetOrderInfo();
             SetSmeltMaterialItems();
+            SetSmeltMethodItems();
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
             if (!OperatorCodeValidate()) {
                 return;
             }
+            if (!StartProduction()) {
+                return;
+            }
+            var smeltBatchProductionInfos = ReLoadProduction();
+            if (smeltBatchProductionInfos==null||smeltBatchProductionInfos.Count<1||smeltBatchProductionInfos[0]==null) {
+                return;
+            }
+            SetCurrentSmeltInfo(smeltBatchProductionInfos[0]);
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e) {
+            if (!_ProductingNow) {
+                return;
+            }
+            var now = DateTime.Now;
+            var startDateTime = (DateTime)this.labProductStartTimeResult.Tag; 
+            var span = now - startDateTime;
+            lblProductionTimeResult.Text = "";
+            if (span.Days != 0)
+                lblProductionTimeResult.Text = string.Format("{0}天", span.Days);
+            if (span.Hours != 0)
+                lblProductionTimeResult.Text += string.Format("{0}小时", span.Hours);
+            if (span.Minutes != 0)
+                lblProductionTimeResult.Text += string.Format("{0}分钟", span.Minutes);
+            if (span.Seconds != 0)
+                lblProductionTimeResult.Text += string.Format("{0}秒", span.Seconds);
+
         }
         #endregion
+
+       
 
        
 

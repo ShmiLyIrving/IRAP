@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Entities\EntityEquipmentInfo.cs" />
     <Compile Include="Entities\EntityMethodStarndardParams.cs" />
+    <Compile Include="Entities\EntitySmeltBatchProduction.cs" />
     <Compile Include="frmAppearanceInspection.cs">
       <SubType>Form</SubType>
     </Compile>

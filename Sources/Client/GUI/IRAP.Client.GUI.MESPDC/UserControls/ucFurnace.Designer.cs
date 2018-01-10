@@ -23,6 +23,7 @@
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.grpCtrProductionInfo = new DevExpress.XtraEditors.GroupControl();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
@@ -32,6 +33,8 @@
             this.labelProductionDate = new DevExpress.XtraEditors.LabelControl();
             this.labelFurnaceTime = new DevExpress.XtraEditors.LabelControl();
             this.grpCtrlCurrentInfo = new DevExpress.XtraEditors.GroupControl();
+            this.lblProductionTimeResult = new DevExpress.XtraEditors.LabelControl();
+            this.lblProductionTime = new DevExpress.XtraEditors.LabelControl();
             this.labProductStartTimeResult = new DevExpress.XtraEditors.LabelControl();
             this.labCurrentFurnaceResult = new DevExpress.XtraEditors.LabelControl();
             this.labCurrentFurnace = new DevExpress.XtraEditors.LabelControl();
@@ -40,7 +43,10 @@
             this.tabPgBurden = new DevExpress.XtraTab.XtraTabPage();
             this.btnStart = new DevExpress.XtraEditors.SimpleButton();
             this.grpProductPara = new DevExpress.XtraEditors.GroupControl();
-            this.grdProductPara = new DevExpress.XtraVerticalGrid.VGridControl();
+            this.grdProductPara = new DevExpress.XtraGrid.GridControl();
+            this.grdProductParaView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ColT20Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpBurdenInfo = new DevExpress.XtraEditors.GroupControl();
             this.grdBurdenInfo = new DevExpress.XtraGrid.GridControl();
             this.grdBurdenInfoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -59,6 +65,7 @@
             this.ucDetailGrid1 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.dtProductDate = new DevExpress.XtraEditors.DateEdit();
             this.lblFurnaceTime = new DevExpress.XtraEditors.LabelControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).BeginInit();
             this.grpCtrProductionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
@@ -72,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grpProductPara)).BeginInit();
             this.grpProductPara.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProductPara)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductParaView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpBurdenInfo)).BeginInit();
             this.grpBurdenInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfo)).BeginInit();
@@ -176,33 +184,62 @@
             // grpCtrlCurrentInfo
             // 
             this.grpCtrlCurrentInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpCtrlCurrentInfo.Controls.Add(this.lblProductionTimeResult);
+            this.grpCtrlCurrentInfo.Controls.Add(this.lblProductionTime);
             this.grpCtrlCurrentInfo.Controls.Add(this.labProductStartTimeResult);
             this.grpCtrlCurrentInfo.Controls.Add(this.labCurrentFurnaceResult);
             this.grpCtrlCurrentInfo.Controls.Add(this.labCurrentFurnace);
             this.grpCtrlCurrentInfo.Controls.Add(this.labCtrlStartTime);
             this.grpCtrlCurrentInfo.Location = new System.Drawing.Point(521, 38);
             this.grpCtrlCurrentInfo.Name = "grpCtrlCurrentInfo";
-            this.grpCtrlCurrentInfo.Size = new System.Drawing.Size(254, 111);
+            this.grpCtrlCurrentInfo.Size = new System.Drawing.Size(254, 136);
             this.grpCtrlCurrentInfo.TabIndex = 8;
             this.grpCtrlCurrentInfo.Text = "当前熔炼信息";
             // 
+            // lblProductionTimeResult
+            // 
+            this.lblProductionTimeResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProductionTimeResult.AutoEllipsis = true;
+            this.lblProductionTimeResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblProductionTimeResult.Location = new System.Drawing.Point(100, 92);
+            this.lblProductionTimeResult.Name = "lblProductionTimeResult";
+            this.lblProductionTimeResult.Size = new System.Drawing.Size(146, 14);
+            this.lblProductionTimeResult.TabIndex = 15;
+            // 
+            // lblProductionTime
+            // 
+            this.lblProductionTime.Location = new System.Drawing.Point(41, 92);
+            this.lblProductionTime.Name = "lblProductionTime";
+            this.lblProductionTime.Size = new System.Drawing.Size(52, 14);
+            this.lblProductionTime.TabIndex = 14;
+            this.lblProductionTime.Text = "生产时长:";
+            // 
             // labProductStartTimeResult
             // 
-            this.labProductStartTimeResult.Location = new System.Drawing.Point(100, 43);
+            this.labProductStartTimeResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labProductStartTimeResult.AutoEllipsis = true;
+            this.labProductStartTimeResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labProductStartTimeResult.Location = new System.Drawing.Point(100, 68);
             this.labProductStartTimeResult.Name = "labProductStartTimeResult";
-            this.labProductStartTimeResult.Size = new System.Drawing.Size(0, 14);
+            this.labProductStartTimeResult.Size = new System.Drawing.Size(146, 14);
             this.labProductStartTimeResult.TabIndex = 13;
             // 
             // labCurrentFurnaceResult
             // 
-            this.labCurrentFurnaceResult.Location = new System.Drawing.Point(100, 81);
+            this.labCurrentFurnaceResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labCurrentFurnaceResult.AutoEllipsis = true;
+            this.labCurrentFurnaceResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labCurrentFurnaceResult.Location = new System.Drawing.Point(100, 44);
             this.labCurrentFurnaceResult.Name = "labCurrentFurnaceResult";
-            this.labCurrentFurnaceResult.Size = new System.Drawing.Size(0, 14);
+            this.labCurrentFurnaceResult.Size = new System.Drawing.Size(146, 14);
             this.labCurrentFurnaceResult.TabIndex = 12;
             // 
             // labCurrentFurnace
             // 
-            this.labCurrentFurnace.Location = new System.Drawing.Point(30, 81);
+            this.labCurrentFurnace.Location = new System.Drawing.Point(30, 44);
             this.labCurrentFurnace.Name = "labCurrentFurnace";
             this.labCurrentFurnace.Size = new System.Drawing.Size(64, 14);
             this.labCurrentFurnace.TabIndex = 10;
@@ -210,7 +247,7 @@
             // 
             // labCtrlStartTime
             // 
-            this.labCtrlStartTime.Location = new System.Drawing.Point(18, 43);
+            this.labCtrlStartTime.Location = new System.Drawing.Point(18, 68);
             this.labCtrlStartTime.Name = "labCtrlStartTime";
             this.labCtrlStartTime.Size = new System.Drawing.Size(76, 14);
             this.labCtrlStartTime.TabIndex = 8;
@@ -270,9 +307,51 @@
             // 
             this.grdProductPara.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdProductPara.Location = new System.Drawing.Point(2, 21);
+            this.grdProductPara.MainView = this.grdProductParaView;
             this.grdProductPara.Name = "grdProductPara";
             this.grdProductPara.Size = new System.Drawing.Size(298, 263);
             this.grdProductPara.TabIndex = 0;
+            this.grdProductPara.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdProductParaView});
+            // 
+            // grdProductParaView
+            // 
+            this.grdProductParaView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ColT20Name,
+            this.ColValue});
+            this.grdProductParaView.GridControl = this.grdProductPara;
+            this.grdProductParaView.Name = "grdProductParaView";
+            this.grdProductParaView.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsMenu.EnableColumnMenu = false;
+            this.grdProductParaView.OptionsMenu.EnableFooterMenu = false;
+            this.grdProductParaView.OptionsMenu.EnableGroupPanelMenu = false;
+            this.grdProductParaView.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsView.ShowGroupPanel = false;
+            // 
+            // ColT20Name
+            // 
+            this.ColT20Name.Caption = "参数名称";
+            this.ColT20Name.FieldName = "T20Name";
+            this.ColT20Name.Name = "ColT20Name";
+            this.ColT20Name.OptionsColumn.AllowEdit = false;
+            this.ColT20Name.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColT20Name.OptionsColumn.AllowMove = false;
+            this.ColT20Name.OptionsColumn.ReadOnly = true;
+            this.ColT20Name.Visible = true;
+            this.ColT20Name.VisibleIndex = 0;
+            // 
+            // ColValue
+            // 
+            this.ColValue.Caption = "参数值";
+            this.ColValue.FieldName = "Value";
+            this.ColValue.Name = "ColValue";
+            this.ColValue.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColValue.OptionsColumn.AllowMove = false;
+            this.ColValue.Visible = true;
+            this.ColValue.VisibleIndex = 1;
             // 
             // grpBurdenInfo
             // 
@@ -314,6 +393,14 @@
             this.grdBurdenInfoView.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
             this.grdBurdenInfoView.OptionsCustomization.AllowColumnMoving = false;
             this.grdBurdenInfoView.OptionsCustomization.AllowGroup = false;
+            this.grdBurdenInfoView.OptionsMenu.EnableColumnMenu = false;
+            this.grdBurdenInfoView.OptionsMenu.EnableFooterMenu = false;
+            this.grdBurdenInfoView.OptionsMenu.EnableGroupPanelMenu = false;
+            this.grdBurdenInfoView.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.grdBurdenInfoView.OptionsMenu.ShowAutoFilterRowItem = false;
+            this.grdBurdenInfoView.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
+            this.grdBurdenInfoView.OptionsMenu.ShowGroupSortSummaryItems = false;
+            this.grdBurdenInfoView.OptionsMenu.ShowSplitItem = false;
             this.grdBurdenInfoView.OptionsView.ShowGroupPanel = false;
             // 
             // ColT101Code
@@ -344,7 +431,7 @@
             // 
             this.ColBatchLot.Caption = "批次号";
             this.ColBatchLot.ColumnEdit = this.repositoryItemComboBox1;
-            this.ColBatchLot.FieldName = "BatchLot";
+            this.ColBatchLot.FieldName = "LotNumber";
             this.ColBatchLot.Name = "ColBatchLot";
             this.ColBatchLot.OptionsColumn.AllowMove = false;
             this.ColBatchLot.Visible = true;
@@ -457,6 +544,12 @@
             this.lblFurnaceTime.Size = new System.Drawing.Size(107, 14);
             this.lblFurnaceTime.TabIndex = 12;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // ucFurnace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -488,6 +581,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grpProductPara)).EndInit();
             this.grpProductPara.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdProductPara)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductParaView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpBurdenInfo)).EndInit();
             this.grpBurdenInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfo)).EndInit();
@@ -523,7 +617,6 @@
         private DevExpress.XtraTab.XtraTabPage tabPgBurden;
         private DevExpress.XtraEditors.SimpleButton btnStart;
         private DevExpress.XtraEditors.GroupControl grpProductPara;
-        private DevExpress.XtraVerticalGrid.VGridControl grdProductPara;
         private DevExpress.XtraEditors.GroupControl grpBurdenInfo;
         private DevExpress.XtraGrid.GridControl grdBurdenInfo;
         private DevExpress.XtraGrid.Views.Grid.GridView grdBurdenInfoView;
@@ -542,5 +635,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn ColBatchLot;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraGrid.Columns.GridColumn ColQty;
+        private DevExpress.XtraGrid.GridControl grdProductPara;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdProductParaView;
+        private DevExpress.XtraGrid.Columns.GridColumn ColT20Name;
+        private DevExpress.XtraGrid.Columns.GridColumn ColValue;
+        private DevExpress.XtraEditors.LabelControl lblProductionTimeResult;
+        private DevExpress.XtraEditors.LabelControl lblProductionTime;
+        private System.Windows.Forms.Timer timer1;
     }
 }
