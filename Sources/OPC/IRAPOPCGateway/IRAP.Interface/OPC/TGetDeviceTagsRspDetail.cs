@@ -37,5 +37,14 @@ namespace IRAP.Interface.OPC
         {
             return IRAPXMLUtils.GenerateXMLAttribute(row, this);
         }
+        public static TGetDeviceTagsRspDetail LoadFromXMLNode(XmlNode node)
+        {
+            if (node.Name != "Row")
+                return null;
+
+            TGetDeviceTagsRspDetail rlt = new TGetDeviceTagsRspDetail();
+            rlt = IRAPXMLUtils.LoadValueFromXMLNode(node, rlt) as TGetDeviceTagsRspDetail;
+            return rlt;
+        }
     }
 }

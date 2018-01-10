@@ -10,10 +10,15 @@ namespace IRAP.Interface.OPC
 {
     public class TUpdateKepServRspBody : TSoftlandBody
     {
+        private string excode;
         /// <summary>
         /// 交易代码
         /// </summary>
-        public string ExCode { get { return "UpdateKepServ"; } }
+        public string ExCode
+        {
+            get { return "UpdateKepServ"; }
+            set { excode = value; }
+        }
         /// <summary>
         /// 错误代码
         /// </summary>
@@ -33,6 +38,12 @@ namespace IRAP.Interface.OPC
             result.AppendChild(node);
 
             return result;
+        }
+        public static TUpdateKepServRspBody LoadFromXMLNode(XmlNode node)
+        {
+            TUpdateKepServRspBody rlt = new TUpdateKepServRspBody();
+            rlt = IRAPXMLUtils.LoadValueFromXMLNode(GetEX(node), rlt) as TUpdateKepServRspBody;
+            return rlt;
         }
     }
 }

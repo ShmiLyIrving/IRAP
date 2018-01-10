@@ -102,7 +102,7 @@ namespace IRAP.BL.OPCGateway
                     }
                     catch (Exception error)
                     {
-                        string errText =
+                        string errText = 
                             string.Format(
                                 "在执行[{0}]对象的 DoAction 方法，系统返回错误信息：[{1}]",
                                 typeName,

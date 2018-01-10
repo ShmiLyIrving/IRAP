@@ -49,12 +49,17 @@ namespace OPCClient
 
             rlt.Name = pageName;
             userControl.Dock = DockStyle.Fill;
+            try
+            {
+                rlt.Controls.Add(userControl);
+                tcMain.TabPages.Add(rlt);
 
-            rlt.Controls.Add(userControl);
-            tcMain.TabPages.Add(rlt);
-
-            tcMain.SelectedTabPage = rlt;
-
+                tcMain.SelectedTabPage = rlt;
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
             return rlt;
         }
 
@@ -131,20 +136,24 @@ namespace OPCClient
             XtraTabPage newPage = NewTabPage("tpConfigOPCServers", newUC);
         }
 
+        UserContols.Refreshserver re = null;
         private void bbiOPCTagCollection_ItemClick(object sender, ItemClickEventArgs e)
         {
+            
             foreach (XtraTabPage page in tcMain.TabPages)
             {
                 if (page.Name == "tpOPCMonitor")
                 {
                     tcMain.SelectedTabPage = page;
+                    re();
                     return;
                 }
             }
 
             UserContols.ucCustomBase newUC = 
-                new UserContols.ucOPCMonitor(bbiOPCTagCollection.Caption);
+                new UserContols.ucOPCMonitor(bbiOPCTagCollection.Caption,ref re);
             XtraTabPage newPage = NewTabPage("tpOPCMonitor", newUC);
+            re();
         }
 
         private void bbiConfigSysParams_ItemClick(object sender, ItemClickEventArgs e)
@@ -173,10 +182,25 @@ namespace OPCClient
                     return;
                 }
             }
-
             UserContols.ucDeviceTagManage newUC =
                 new UserContols.ucDeviceTagManage(bbiDeviceInfoManager.Caption);
             XtraTabPage newPage = NewTabPage("tpDeviceTagManager", newUC);
+        }
+
+        private List<int> ResolveValue(long value, short Pos, short length)
+        {
+            List<int> T20LeafIDs = new List<int>();
+            for (int i = 0; i < length / 8; i++)
+            {
+                T20LeafIDs.Add(Convert.ToInt32(Convert.ToString(value, 2).Substring(Pos, 8),2));
+                Pos += 8;
+            }
+            return T20LeafIDs;
+        }
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ResolveValue(5902090900, 0, 32);
         }
     }
 }

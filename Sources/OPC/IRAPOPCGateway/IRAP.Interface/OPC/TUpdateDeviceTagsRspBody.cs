@@ -10,9 +10,11 @@ namespace IRAP.Interface.OPC
 {
     public class TUpdateDeviceTagsRspBody : TSoftlandBody
     {
+        private string exCode;
         public string ExCode
         {
             get { return "UpdateDeviceTags"; }
+            set { exCode = value; }
         }
         public string ErrCode { get; set; }
         public string ErrText { get; set; }
@@ -27,6 +29,12 @@ namespace IRAP.Interface.OPC
             result.AppendChild(node);
 
             return result;
+        }
+        public static TUpdateDeviceTagsRspBody LoadFromXMLNode(XmlNode node)
+        {
+            TUpdateDeviceTagsRspBody rlt = new TUpdateDeviceTagsRspBody();
+            rlt = IRAPXMLUtils.LoadValueFromXMLNode(GetEX(node), rlt) as TUpdateDeviceTagsRspBody;
+            return rlt;
         }
     }
 }

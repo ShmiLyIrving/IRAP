@@ -5,6 +5,8 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml;
+using System.Diagnostics;
 
 namespace OPCClient.Classes
 {
@@ -22,13 +24,14 @@ namespace OPCClient.Classes
             }
         }
 
-        private string uri = "http://172.0.0.1:16912/OPCGateway/Meothd";
+        private string uri = "http://127.0.0.1:16912/OPCGateway/Method";
 
         private OPCWSClient() { }
 
         public string WSCall(string reqContent)
         {
             string rlt = "";
+            Guid id = Guid.NewGuid();
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             request.Method = "POST";
@@ -54,11 +57,17 @@ namespace OPCClient.Classes
                 rlt = resJson;
 
                 byte[] strBytes = Encoding.UTF8.GetBytes(resJson);
+                if (!Directory.Exists(@"C:\Temp\"))
+                {
+                    Directory.CreateDirectory(@"C:\Temp\");
+                }
                 FileStream fw = new FileStream(@"C:\Temp\Temp.xml", FileMode.Create);
                 fw.Write(strBytes, 0, strBytes.Length);
                 fw.Flush();
                 fw.Close();
 
+                WriteLog.Instance.Write(id, "收到的返回报文：");
+                WriteLog.Instance.Write(id, rlt);
                 return rlt;
             }
             catch (Exception error)

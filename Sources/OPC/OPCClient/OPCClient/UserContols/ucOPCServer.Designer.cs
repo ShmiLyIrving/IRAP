@@ -54,9 +54,9 @@
             this.lblMessage.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lblMessage.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblMessage.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblMessage.Location = new System.Drawing.Point(289, 7);
+            this.lblMessage.Location = new System.Drawing.Point(448, 7);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(488, 31);
+            this.lblMessage.Size = new System.Drawing.Size(329, 31);
             this.lblMessage.TabIndex = 4;
             // 
             // ucOPCServer

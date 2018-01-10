@@ -45,7 +45,7 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.lblTitle.Size = new System.Drawing.Size(150, 40);
+            this.lblTitle.Size = new System.Drawing.Size(703, 40);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "lblTitle";
             // 
@@ -55,7 +55,7 @@
             this.pnlBody.Location = new System.Drawing.Point(0, 40);
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlBody.Size = new System.Drawing.Size(150, 110);
+            this.pnlBody.Size = new System.Drawing.Size(703, 457);
             this.pnlBody.TabIndex = 1;
             // 
             // ucCustomBase
@@ -66,6 +66,7 @@
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.lblTitle);
             this.Name = "ucCustomBase";
+            this.Size = new System.Drawing.Size(703, 497);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).EndInit();
             this.ResumeLayout(false);
 

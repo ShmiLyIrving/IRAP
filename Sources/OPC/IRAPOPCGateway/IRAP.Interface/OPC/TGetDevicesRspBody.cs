@@ -11,15 +11,35 @@ namespace IRAP.Interface.OPC
     public class TGetDevicesRspBody : TSoftlandBody
     {
         private List<TGetDevicesRspDetail> details = new List<TGetDevicesRspDetail>();
-
-        public string ExCode { get { return "GetDevices"; } }
+        private string excode;
+        public string ExCode {
+            get { return "GetDevices"; }
+            set { excode = value; }
+        }
         public string ErrCode { get; set; }
         public string ErrText { get; set; }
+        public List<TGetDevicesRspDetail> Details
+        {
+            get { return details; }
+        }
 
         public TGetDevicesRspBody()
         {
         }
-
+        public static TGetDevicesRspBody LoadFromXMLNode(XmlNode node)
+        {
+            TGetDevicesRspBody rlt = new TGetDevicesRspBody();
+            rlt = IRAPXMLUtils.LoadValueFromXMLNode(GetEX(node), rlt) as TGetDevicesRspBody;
+            XmlNode paramxml = GetRspBodyNode(node);
+            if (paramxml != null&& paramxml.FirstChild.Name =="Row")
+            {
+                foreach(XmlNode child in paramxml.ChildNodes)
+                {
+                    rlt.Details.Add(TGetDevicesRspDetail.LoadFromXMLNode(child));
+                }
+            }
+            return rlt;
+        }
         public void AddDeviceDetail(TGetDevicesRspDetail item)
         {
             details.Add(item);

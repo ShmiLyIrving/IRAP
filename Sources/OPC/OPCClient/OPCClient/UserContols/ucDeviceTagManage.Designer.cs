@@ -29,18 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDeviceTagManage));
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.tlDevices = new DevExpress.XtraTreeList.TreeList();
-            this.tlclmDeviceName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.tlcmDeviceCode = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gcTags = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.cmsDeviceList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmirefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLoadDevices = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDeleteDevice = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSplitter1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiImportDeviceTags = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).BeginInit();
             this.pnlBody.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tlDevices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcTags)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.cmsDeviceList.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +71,16 @@
             this.pnlBody.Controls.Add(this.splitContainerControl1);
             this.pnlBody.Size = new System.Drawing.Size(932, 631);
             // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit1.Appearance.Image")));
+            this.repositoryItemButtonEdit1.Appearance.Options.UseImage = true;
+            this.repositoryItemButtonEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit1.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            this.repositoryItemButtonEdit1.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -66,8 +89,8 @@
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitContainerControl1.Panel1.Controls.Add(this.tlDevices);
             this.splitContainerControl1.Panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainerControl1.Panel1.ShowCaption = true;
             this.splitContainerControl1.Panel1.Text = "设备列表";
+            this.splitContainerControl1.Panel2.Controls.Add(this.gcTags);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(908, 607);
             this.splitContainerControl1.SplitterPosition = 358;
@@ -76,17 +99,19 @@
             // 
             // tlDevices
             // 
+            this.tlDevices.Appearance.FocusedCell.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tlDevices.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.SteelBlue;
+            this.tlDevices.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Snow;
+            this.tlDevices.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.tlDevices.Appearance.FocusedCell.Options.UseForeColor = true;
             this.tlDevices.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.tlclmDeviceName});
-            this.tlDevices.ContextMenuStrip = this.cmsDeviceList;
+            this.tlcmDeviceCode});
             this.tlDevices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlDevices.Location = new System.Drawing.Point(5, 5);
             this.tlDevices.Name = "tlDevices";
             this.tlDevices.BeginUnboundLoad();
             this.tlDevices.AppendNode(new object[] {
-            "设备"}, -1);
-            this.tlDevices.AppendNode(new object[] {
-            "1#脱氢炉"}, 0);
+            "设备列表"}, -1);
             this.tlDevices.EndUnboundLoad();
             this.tlDevices.OptionsBehavior.Editable = false;
             this.tlDevices.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
@@ -98,34 +123,87 @@
             this.tlDevices.OptionsView.ShowHorzLines = false;
             this.tlDevices.OptionsView.ShowIndicator = false;
             this.tlDevices.OptionsView.ShowVertLines = false;
-            this.tlDevices.Size = new System.Drawing.Size(344, 574);
+            this.tlDevices.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemButtonEdit2});
+            this.tlDevices.Size = new System.Drawing.Size(344, 593);
             this.tlDevices.TabIndex = 0;
+            this.tlDevices.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.tlDevices_FocusedNodeChanged);
+            this.tlDevices.Load += new System.EventHandler(this.tlDevices_Load);
+            this.tlDevices.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tlDevices_MouseDown);
             // 
-            // tlclmDeviceName
+            // tlcmDeviceCode
             // 
-            this.tlclmDeviceName.Caption = "设备名称";
-            this.tlclmDeviceName.FieldName = "DeviceName";
-            this.tlclmDeviceName.MinWidth = 52;
-            this.tlclmDeviceName.Name = "tlclmDeviceName";
-            this.tlclmDeviceName.Visible = true;
-            this.tlclmDeviceName.VisibleIndex = 0;
-            this.tlclmDeviceName.Width = 238;
+            this.tlcmDeviceCode.Caption = "设备";
+            this.tlcmDeviceCode.FieldName = "DeviceCode";
+            this.tlcmDeviceCode.MinWidth = 34;
+            this.tlcmDeviceCode.Name = "tlcmDeviceCode";
+            this.tlcmDeviceCode.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.tlcmDeviceCode.Visible = true;
+            this.tlcmDeviceCode.VisibleIndex = 0;
+            this.tlcmDeviceCode.Width = 200;
+            // 
+            // repositoryItemButtonEdit2
+            // 
+            serializableAppearanceObject1.Options.UseImage = true;
+            this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            this.repositoryItemButtonEdit2.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.repositoryItemButtonEdit2.ContextImage = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit2.ContextImage")));
+            this.repositoryItemButtonEdit2.ContextImageAlignment = DevExpress.XtraEditors.ContextImageAlignment.Far;
+            this.repositoryItemButtonEdit2.MaxLength = 50;
+            this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
+            this.repositoryItemButtonEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // gcTags
+            // 
+            this.gcTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcTags.Location = new System.Drawing.Point(0, 0);
+            this.gcTags.MainView = this.gridView1;
+            this.gcTags.Name = "gcTags";
+            this.gcTags.Size = new System.Drawing.Size(538, 607);
+            this.gcTags.TabIndex = 0;
+            this.gcTags.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gcTags;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // cmsDeviceList
             // 
             this.cmsDeviceList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmirefresh,
             this.tsmiLoadDevices,
+            this.tsmiDeleteDevice,
             this.tsmiSplitter1,
             this.tsmiImportDeviceTags});
             this.cmsDeviceList.Name = "cmsDeviceList";
-            this.cmsDeviceList.Size = new System.Drawing.Size(158, 54);
+            this.cmsDeviceList.Size = new System.Drawing.Size(158, 98);
             this.cmsDeviceList.Opening += new System.ComponentModel.CancelEventHandler(this.cmsDeviceList_Opening);
+            // 
+            // tsmirefresh
+            // 
+            this.tsmirefresh.Name = "tsmirefresh";
+            this.tsmirefresh.Size = new System.Drawing.Size(157, 22);
+            this.tsmirefresh.Text = "刷新";
+            this.tsmirefresh.Click += new System.EventHandler(this.tsmirefresh_Click);
             // 
             // tsmiLoadDevices
             // 
             this.tsmiLoadDevices.Name = "tsmiLoadDevices";
             this.tsmiLoadDevices.Size = new System.Drawing.Size(157, 22);
-            this.tsmiLoadDevices.Text = "加载";
+            this.tsmiLoadDevices.Text = "添加设备";
+            this.tsmiLoadDevices.Click += new System.EventHandler(this.tsmiLoadDevices_Click);
+            // 
+            // tsmiDeleteDevice
+            // 
+            this.tsmiDeleteDevice.Name = "tsmiDeleteDevice";
+            this.tsmiDeleteDevice.Size = new System.Drawing.Size(157, 22);
+            this.tsmiDeleteDevice.Text = "删除所选设备";
+            this.tsmiDeleteDevice.Click += new System.EventHandler(this.tsmiDeleteDevice_Click);
             // 
             // tsmiSplitter1
             // 
@@ -149,9 +227,13 @@
             this.Controls.SetChildIndex(this.pnlBody, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).EndInit();
             this.pnlBody.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tlDevices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcTags)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.cmsDeviceList.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -161,10 +243,16 @@
 
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraTreeList.TreeList tlDevices;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn tlclmDeviceName;
         private System.Windows.Forms.ContextMenuStrip cmsDeviceList;
         private System.Windows.Forms.ToolStripMenuItem tsmiLoadDevices;
         private System.Windows.Forms.ToolStripSeparator tsmiSplitter1;
         private System.Windows.Forms.ToolStripMenuItem tsmiImportDeviceTags;
+        private DevExpress.XtraGrid.GridControl gcTags;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDeleteDevice;
+        private System.Windows.Forms.ToolStripMenuItem tsmirefresh;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn tlcmDeviceCode;
     }
 }

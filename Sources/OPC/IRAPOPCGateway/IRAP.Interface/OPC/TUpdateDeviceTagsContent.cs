@@ -13,6 +13,7 @@ namespace IRAP.Interface.OPC
         public TUpdateDeviceTagsContent()
         {
             bodyResponse = new TUpdateDeviceTagsRspBody();
+            bodyRequest = new TUpdateDeviceTagsReqBody();
         }
 
         public TUpdateDeviceTagsReqBody Request
@@ -31,6 +32,13 @@ namespace IRAP.Interface.OPC
                 TUpdateDeviceTagsReqBody.LoadFromXMLNode(node);
             if (request != null)
                 bodyRequest = request;
+        }
+        protected override void ResolveResponseBody(XmlNode node)
+        {
+            TUpdateDeviceTagsRspBody response =
+                TUpdateDeviceTagsRspBody.LoadFromXMLNode(node);
+            if (response != null)
+                bodyResponse = response;
         }
     }
 }

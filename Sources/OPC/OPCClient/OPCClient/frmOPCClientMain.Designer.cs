@@ -32,12 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOPCClientMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.bbiConfigOPCServers = new DevExpress.XtraBars.BarButtonItem();
             this.bbiConfigSysParams = new DevExpress.XtraBars.BarButtonItem();
             this.bbiOPCTagCollection = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonGroup1 = new DevExpress.XtraBars.BarButtonGroup();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.bbiDeviceInfoManager = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiConfigOPCServers = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -62,15 +62,15 @@
             this.ribbon.Images = this.imageCollection;
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
-            this.bbiConfigOPCServers,
             this.bbiConfigSysParams,
             this.bbiOPCTagCollection,
             this.barButtonGroup1,
             this.bbiDeviceInfoManager,
-            this.barButtonItem2});
+            this.bbiConfigOPCServers,
+            this.barButtonItem1});
             this.ribbon.LargeImages = this.imageCollection;
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 6;
+            this.ribbon.MaxItemId = 1;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage2});
@@ -90,14 +90,6 @@
             this.imageCollection.Images.SetKeyName(2, "editdatasource_32x32.png");
             this.imageCollection.InsertGalleryImage("loadfrom_32x32.png", "office2013/actions/loadfrom_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/loadfrom_32x32.png"), 3);
             this.imageCollection.Images.SetKeyName(3, "loadfrom_32x32.png");
-            // 
-            // bbiConfigOPCServers
-            // 
-            this.bbiConfigOPCServers.Caption = "OPC 服务地址配置";
-            this.bbiConfigOPCServers.Id = 4;
-            this.bbiConfigOPCServers.LargeImageIndex = 1;
-            this.bbiConfigOPCServers.Name = "bbiConfigOPCServers";
-            this.bbiConfigOPCServers.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiConfigOPCServers_ItemClick);
             // 
             // bbiConfigSysParams
             // 
@@ -119,14 +111,15 @@
             // 
             this.barButtonGroup1.Caption = "barButtonGroup1";
             this.barButtonGroup1.Id = 3;
-            this.barButtonGroup1.ItemLinks.Add(this.barButtonItem2);
+            this.barButtonGroup1.ItemLinks.Add(this.barButtonItem1);
             this.barButtonGroup1.Name = "barButtonGroup1";
             // 
-            // barButtonItem2
+            // barButtonItem1
             // 
-            this.barButtonItem2.Caption = "barButtonItem2";
-            this.barButtonItem2.Id = 5;
-            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem1.Caption = "barButtonItem1";
+            this.barButtonItem1.Id = 3;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // bbiDeviceInfoManager
             // 
@@ -135,6 +128,14 @@
             this.bbiDeviceInfoManager.LargeImageIndex = 3;
             this.bbiDeviceInfoManager.Name = "bbiDeviceInfoManager";
             this.bbiDeviceInfoManager.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiDeviceInfoManager_ItemClick);
+            // 
+            // bbiConfigOPCServers
+            // 
+            this.bbiConfigOPCServers.Caption = "OPC 服务地址配置";
+            this.bbiConfigOPCServers.Id = 4;
+            this.bbiConfigOPCServers.LargeImageIndex = 1;
+            this.bbiConfigOPCServers.Name = "bbiConfigOPCServers";
+            this.bbiConfigOPCServers.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiConfigOPCServers_ItemClick);
             // 
             // ribbonPage2
             // 
@@ -202,6 +203,7 @@
             // 
             // frmOPCClientMain
             // 
+            this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1034, 764);
             this.Controls.Add(this.tcMain);
@@ -231,7 +233,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.Utils.ImageCollection imageCollection;
-        private DevExpress.XtraBars.BarButtonItem bbiConfigOPCServers;
         private DevExpress.XtraBars.BarButtonItem bbiConfigSysParams;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
@@ -243,7 +244,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiQuit;
         private DevExpress.XtraBars.BarButtonItem bbiOPCTagCollection;
         private DevExpress.XtraBars.BarButtonGroup barButtonGroup1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem bbiDeviceInfoManager;
+        private DevExpress.XtraBars.BarButtonItem bbiConfigOPCServers;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

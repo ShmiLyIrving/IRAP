@@ -11,11 +11,14 @@ namespace IRAP.Interface.OPC
     public class TGetDeviceTagsRspBody : TSoftlandBody
     {
         private List<TGetDeviceTagsRspDetail> details = new List<TGetDeviceTagsRspDetail>();
-
+        private string excode;
         /// <summary>
         /// 交易代码
         /// </summary>
-        public string ExCode { get { return "GetDeviceTags"; } }
+        public string ExCode {
+            get { return "GetDeviceTags"; }
+            set { excode = value; }
+        }
         /// <summary>
         /// 错误代码
         /// </summary>
@@ -57,7 +60,20 @@ namespace IRAP.Interface.OPC
         {
             get { return details; }
         }
-
+        public static TGetDeviceTagsRspBody LoadFromXMLNode(XmlNode node)
+        {
+            TGetDeviceTagsRspBody rlt = new TGetDeviceTagsRspBody();
+            rlt = IRAPXMLUtils.LoadValueFromXMLNode(GetEX(node), rlt) as TGetDeviceTagsRspBody;
+            XmlNode paramxml = GetRspBodyNode(node);
+            if (paramxml != null && paramxml.ChildNodes.Count>0)
+            {
+                foreach (XmlNode child in paramxml.ChildNodes)
+                {
+                    rlt.Details.Add(TGetDeviceTagsRspDetail.LoadFromXMLNode(child));
+                }
+            }
+            return rlt;
+        }
         protected override XmlNode GenerateUserDefineNode()
         {
             XmlDocument xml = new XmlDocument();

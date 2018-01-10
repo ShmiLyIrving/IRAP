@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apache.NMS">
-      <HintPath>..\..\..\Global\ActiveMQ\Apache.NMS.dll</HintPath>
+      <HintPath>..\..\..\..\Packages\Apache.NMS.ActiveMQ-1.6.5\lib\Apache.NMS\net-4.0\Apache.NMS.dll</HintPath>
     </Reference>
     <Reference Include="Apache.NMS.ActiveMQ">
-      <HintPath>..\..\..\Global\ActiveMQ\Apache.NMS.ActiveMQ.dll</HintPath>
+      <HintPath>..\..\..\..\Packages\Apache.NMS.ActiveMQ-1.6.5\build\net-4.0\release\Apache.NMS.ActiveMQ.dll</HintPath>
     </Reference>
     <Reference Include="Interop.OPCAutomation">
       <HintPath>..\..\Lib\Interop.OPCAutomation.dll</HintPath>
@@ -64,8 +64,6 @@
     <Compile Include="OPCGatewayService.cs" />
     <Compile Include="Interfaces\IOPCGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TIRAPESBGlobalProducer.cs" />
-    <Compile Include="TIRAPOPCTagValueQueueOut.cs" />
     <Compile Include="TKepServerListener.cs" />
     <Compile Include="TOPCGatewayGlobal.cs" />
     <Compile Include="TOPCGatewayServiceControl.cs" />

@@ -41,12 +41,11 @@
             this.lblTitle.Appearance.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.lblTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblTitle.Size = new System.Drawing.Size(836, 40);
             // 
             // pnlBody
             // 
             this.pnlBody.Controls.Add(this.tcOPCMonitors);
-            this.pnlBody.Size = new System.Drawing.Size(836, 541);
+            this.pnlBody.Size = new System.Drawing.Size(836, 556);
             // 
             // tcOPCMonitors
             // 
@@ -54,7 +53,7 @@
             this.tcOPCMonitors.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom;
             this.tcOPCMonitors.Location = new System.Drawing.Point(12, 12);
             this.tcOPCMonitors.Name = "tcOPCMonitors";
-            this.tcOPCMonitors.Size = new System.Drawing.Size(812, 517);
+            this.tcOPCMonitors.Size = new System.Drawing.Size(812, 532);
             this.tcOPCMonitors.TabIndex = 0;
             // 
             // ucOPCMonitor
@@ -67,6 +66,7 @@
             this.pnlBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tcOPCMonitors)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

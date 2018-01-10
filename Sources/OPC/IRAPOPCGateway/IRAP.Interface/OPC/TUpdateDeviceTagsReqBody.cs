@@ -38,11 +38,33 @@ namespace IRAP.Interface.OPC
         public List<TUpdateDeviceTagsReqDetail> Details
         {
             get { return details; }
+            set { details = value; }
         }
 
         protected override XmlNode GenerateUserDefineNode()
         {
-            return null;
+            XmlDocument xml = new XmlDocument();
+            XmlNode Parameters = xml.CreateElement("Parameters");
+
+            XmlNode node = xml.CreateElement("Param");
+            node = GenerateXMLNode(xml, node);
+            Parameters.AppendChild(node);
+            node = xml.CreateElement("ParamXML");
+            if (UpdateType == 2)
+            {
+                for (int i = 0; i < details.Count; i++)
+                {
+                    details[i].Ordinal = i + 1;
+
+                    XmlNode row = xml.CreateElement("Row");
+                    row = details[i].GenerateXMLNode(row);
+                    node.AppendChild(row);
+                }
+                Parameters.AppendChild(node);
+            }
+
+
+            return Parameters;
         }
 
         public static TUpdateDeviceTagsReqBody LoadFromXMLNode(XmlNode node)

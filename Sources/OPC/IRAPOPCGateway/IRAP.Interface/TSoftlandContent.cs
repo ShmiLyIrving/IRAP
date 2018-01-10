@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace IRAP.Interface
 {
@@ -237,6 +238,112 @@ namespace IRAP.Interface
             node.AppendChild(xml.ImportNode(GenerateUserDefineNode(), true));
 
             return node;
+        }
+        public static XmlNode GetRspBodyNode(XmlNode node)
+        {
+            if (!node.HasChildNodes)
+            {
+                Exception error = new Exception();
+                error.Data["ErrCode"] = "900001";
+                error.Data["ErrText"] = string.Format("XML 节点 [{0}] 是空节点", node.Name);
+                throw error;
+            }
+            // 筛选出第一个 Result 节点，其余的 Result 节点忽略
+            XmlNode resultNode = null;
+            XmlNode rlt = null;
+            foreach (XmlNode child in node.ChildNodes)
+            {
+                if (child.Name == "Result")
+                {
+                    resultNode = child;
+                    break;
+                }
+            }
+            // 如果不存在 Result 节点，则返回 null 值
+            if (resultNode == null)
+            {
+                Exception error = new Exception();
+                error.Data["ErrCode"] = "900001";
+                error.Data["ErrText"] = string.Format("XML 节点 [{0}] 是空节点", resultNode.Name);
+                throw error;
+            }
+
+            // 筛选出ParamXML 节点并返回
+            foreach (XmlNode child in resultNode.ChildNodes)
+            {
+                if (child.Name == "ParamXML")
+                {
+                    rlt = child;
+                    break;
+                }
+            }
+            // 如果不存在 ParamXML 节点，则返回 null 值
+            if (rlt == null)
+            {
+                Exception error = new Exception();
+                error.Data["ErrCode"] = "900001";
+                error.Data["ErrText"] = string.Format("XML 节点 [{0}] 中没有找到 ParamXML 节点", resultNode.Name);
+                return null;
+            }
+            return rlt;
+        }
+        public static XmlNode GetEX(XmlNode node)
+        {
+            // 筛选出第一个 Result 节点，其余的 Result 节点忽略
+            XmlNode resultNode = null;
+            XmlNode rlt = null;
+            foreach (XmlNode child in node.ChildNodes)
+            {
+                if (child.Name == "Result")
+                {
+                    resultNode = child;
+                    break;
+                }
+            }
+            // 如果不存在 Result 节点，则返回 null 值
+            if (resultNode == null)
+            {
+                Exception error = new Exception();
+                error.Data["ErrCode"] = "900001";
+                error.Data["ErrText"] = string.Format("XML 节点 [{0}] 是空节点", resultNode.Name);
+                throw error;
+            }
+
+            // 筛选出Param 节点并返回
+            foreach (XmlNode child in resultNode.ChildNodes)
+            {
+                if (child.Name == "Param")
+                {
+                    rlt = child;
+                    break;
+                }
+            }
+            // 如果不存在 Param 节点，则返回 null 值
+            if (rlt == null)
+            {
+                Exception error = new Exception();
+                error.Data["ErrCode"] = "900001";
+                error.Data["ErrText"] = string.Format("XML 节点 [{0}] 中没有找到 Param 节点", resultNode.Name);
+                throw error;
+            }
+            return rlt;
+        }
+        public XmlNode GenerateXMLNode(XmlDocument xml, XmlNode row)
+        {
+            PropertyInfo[] fields = GetType().GetProperties();
+            row.Attributes.RemoveAll();
+            foreach (PropertyInfo field in fields)
+            {
+                XmlAttribute attr = xml.CreateAttribute(field.Name);
+
+                if (field.GetValue(this, null) == null)
+                    attr.Value = "";
+                else
+                    attr.Value = field.GetValue(this, null).ToString();
+                row.Attributes.Append(attr);
+            }
+
+            return row;
         }
     }
 

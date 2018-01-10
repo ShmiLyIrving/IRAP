@@ -11,11 +11,15 @@ namespace IRAP.Interface.OPC
     public class TGetKepServListRspBody : TSoftlandBody
     {
         private List<TGetKepServListRspDetail> items = new List<TGetKepServListRspDetail>();
-
+        private string excode;
         /// <summary>
         /// 交易代码
         /// </summary>
-        public string ExCode { get { return "GetKepServList"; } }
+        public string ExCode
+        {
+            get { return "GetKepServList"; }
+            set { excode = value; }
+        }
         /// <summary>
         /// 错误代码
         /// </summary>
@@ -32,6 +36,21 @@ namespace IRAP.Interface.OPC
         public List<TGetKepServListRspDetail> Items
         {
             get { return items; }
+        }
+
+        public static TGetKepServListRspBody LoadFromXMLNode(XmlNode node)
+        {
+            TGetKepServListRspBody rlt = new TGetKepServListRspBody();
+            rlt = IRAPXMLUtils.LoadValueFromXMLNode(GetEX(node), rlt) as TGetKepServListRspBody;
+            XmlNode paramxml = GetRspBodyNode(node);
+            if (paramxml.FirstChild != null && paramxml.FirstChild.Name == "Row")
+            {
+                foreach (XmlNode child in paramxml.ChildNodes)
+                {
+                    rlt.items.Add(TGetKepServListRspDetail.LoadFromXMLNode(child));
+                }
+            }
+            return rlt;
         }
 
         protected override XmlNode GenerateUserDefineNode()

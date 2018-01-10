@@ -7,6 +7,7 @@ using System.Reflection;
 
 using IRAP.Global;
 using IRAP.Interface.OPC;
+using System.Diagnostics;
 
 namespace IRAP.OPC.Entity
 {
@@ -30,6 +31,15 @@ namespace IRAP.OPC.Entity
             {
                 tags.Add(new TIRAPOPCKepDeviceTagInfo(detail, prefix));
             }
+        }
+        public TIRAPOPCDevice(TGetDevicesRspDetail detail)
+        {
+            DeviceCode = detail.DeviceCode;
+            DeviceName = detail.DeviceName;
+            KepServerAddr = detail.KepServerAddr;
+            KepServerName = detail.KepServerName;
+            KepServerChannel = detail.KepServerChannel;
+            KepServerDevice = detail.KepServerDevice;
         }
 
         /// <summary>
@@ -76,10 +86,11 @@ namespace IRAP.OPC.Entity
 
             return node;
         }
+        
 
         public static TIRAPOPCDevice LoadFromXMLNode(XmlNode node)
         {
-            if (node.Name == "Device")
+            if (node.Name == "Device"||node.Name =="Row")
             {
                 TIRAPOPCDevice device = new TIRAPOPCDevice();
                 device = IRAPXMLUtils.LoadValueFromXMLNode(node, device) as TIRAPOPCDevice;

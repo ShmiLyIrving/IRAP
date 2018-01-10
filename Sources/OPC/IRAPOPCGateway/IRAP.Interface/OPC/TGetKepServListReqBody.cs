@@ -21,7 +21,14 @@ namespace IRAP.Interface.OPC
 
         protected override XmlNode GenerateUserDefineNode()
         {
-            throw new NotImplementedException();
+            XmlDocument xml = new XmlDocument();
+            XmlNode Parameters = xml.CreateElement("Parameters");
+
+            XmlNode node = xml.CreateElement("Param");
+            node = GenerateXMLNode(xml, node);
+            Parameters.AppendChild(node);
+
+            return Parameters;
         }
 
         public static TGetKepServListReqBody LoadFromXMLNode(XmlNode node)

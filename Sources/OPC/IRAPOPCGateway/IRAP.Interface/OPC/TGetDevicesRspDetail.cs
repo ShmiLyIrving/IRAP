@@ -25,19 +25,19 @@ namespace IRAP.Interface.OPC
         /// <summary>
         /// KepServer的IP地址
         /// </summary>
-        public string KepServAddr { get; set; }
+        public string KepServerAddr { get; set; }
         /// <summary>
         /// KepServer的服务器名称
         /// </summary>
-        public string KepServName { get; set; }
+        public string KepServerName { get; set; }
         /// <summary>
         /// KepServer中定义的Channel
         /// </summary>
-        public string KepServChannel { get; set; }
+        public string KepServerChannel { get; set; }
         /// <summary>
         /// KepServer中定义的Device
         /// </summary>
-        public string KepServDevice { get; set; }
+        public string KepServerDevice { get; set; }
 
         public TGetDevicesRspDetail Clone()
         {
@@ -47,6 +47,15 @@ namespace IRAP.Interface.OPC
         public XmlNode GenerateXMLNode(XmlNode row)
         {
             return IRAPXMLUtils.GenerateXMLAttribute(row, this);
+        }
+        public static TGetDevicesRspDetail LoadFromXMLNode(XmlNode node)
+        {
+            if (node.Name != "Row")
+                return null;
+
+            TGetDevicesRspDetail rlt = new TGetDevicesRspDetail();
+            rlt = IRAPXMLUtils.LoadValueFromXMLNode(node, rlt) as TGetDevicesRspDetail;
+            return rlt;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace IRAP.Interface.OPC
         public TGetDevicesContent()
         {
             bodyResponse = new TGetDevicesRspBody();
+            bodyRequest = new TGetDevicesReqBody();
         }
 
         public TGetDevicesRspBody Response
@@ -30,6 +31,13 @@ namespace IRAP.Interface.OPC
                 TGetDevicesReqBody.LoadFromXMLNode(node);
             if (request != null)
                 bodyRequest = request;
+        }
+        protected override void ResolveResponseBody(XmlNode node)
+        {
+            TGetDevicesRspBody response =
+                TGetDevicesRspBody.LoadFromXMLNode(node);
+            if (response != null)
+                bodyResponse = response;
         }
     }
 }

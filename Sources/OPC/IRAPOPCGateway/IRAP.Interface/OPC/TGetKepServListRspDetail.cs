@@ -27,7 +27,15 @@ namespace IRAP.Interface.OPC
         {
             return MemberwiseClone() as TGetKepServListRspDetail;
         }
+        public static TGetKepServListRspDetail LoadFromXMLNode(XmlNode node)
+        {
+            if (node.Name != "Row")
+                return null;
 
+            TGetKepServListRspDetail rlt = new TGetKepServListRspDetail();
+            rlt = IRAPXMLUtils.LoadValueFromXMLNode(node, rlt) as TGetKepServListRspDetail;
+            return rlt;
+        }
         public XmlNode GenerateXMLNode(XmlNode row)
         {
             return IRAPXMLUtils.GenerateXMLAttribute(row, this);

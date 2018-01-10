@@ -11,6 +11,7 @@ namespace IRAP.Interface.OPC
         public TUpdateKepServContent()
         {
             bodyResponse = new TUpdateKepServRspBody();
+            bodyRequest = new TUpdateKepServReqBody();
         }
 
         /// <summary>
@@ -35,6 +36,13 @@ namespace IRAP.Interface.OPC
                 TUpdateKepServReqBody.LoadFromXMLNode(node);
             if (request != null)
                 bodyRequest = request;
+        }
+        protected override void ResolveResponseBody(XmlNode node)
+        {
+            TUpdateKepServRspBody response =
+                TUpdateKepServRspBody.LoadFromXMLNode(node);
+            if (response != null)
+                bodyResponse = response;
         }
     }
 }

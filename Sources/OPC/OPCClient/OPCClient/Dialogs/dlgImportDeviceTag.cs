@@ -8,18 +8,28 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using DevExpress.XtraEditors;
-
+using IRAP.OPC.Library;
+using IRAP.Interface.OPC;
 using IRAP.OPC.Entity;
+using OPCClient.Classes;
+using DevExpress.XtraEditors.DXErrorProvider;
 
 namespace OPCClient.Dialogs
 {
-    public partial class dlgImportDeviceTag : DevExpress.XtraEditors.XtraForm
+    public partial class dlgImportDeviceTag: UDFdialog
     {
         private List<TIRAPOPCKepDeviceTagInfo> tags = new List<TIRAPOPCKepDeviceTagInfo>();
+        private TIRAPOPCDevice device;
 
         public dlgImportDeviceTag()
         {
             InitializeComponent();
+        }
+        public dlgImportDeviceTag(string title,string DeviceCode) : base(title)
+        {
+            InitializeComponent();
+            SetLabelMouseDown();
+            this.device = IRAPOPCDevices.Instance.GetDeviceWithDeviceCode(DeviceCode);
         }
 
         private string[] SplitCSVLine(string line)
@@ -118,6 +128,68 @@ namespace OPCClient.Dialogs
                 grdTags.DataSource = tags;
                 grdvTags.BestFitColumns();
             }
+        }
+
+        private void dlgImportDeviceTag_Load(object sender, EventArgs e)
+        {
+            this.cboKepServAddr.Text = device.KepServerAddr;
+            this.edtKepServChannel.Text = device.KepServerChannel;
+            this.edtKepServDevice.Text = device.KepServerDevice;
+            this.edtKepServName.Text = device.KepServerName;
+            cboKepServAddr.Properties.NullText = "请选择服务器地址...";
+            foreach (var server in IRAPOPCServers.Instance.Items)
+            {
+                cboKepServAddr.Properties.Items.Add(server);
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (BlankValidate())
+            {
+                if (this.tags.Count > 0)
+                {
+                    TUpdateDeviceTagsContent content = new TUpdateDeviceTagsContent();
+                    content.Head.ExCode = "UpdateDeviceTags";
+                    content.Request.ExCode = "UpdateDeviceTags";
+                    content.Request.CommunityID = 60010;
+                    content.Request.UpdateType = 2;
+                    content.Request.DeviceName = device.DeviceName;
+                    content.Request.DeviceCode = device.DeviceCode;
+                    content.Request.KepServAddr = cboKepServAddr.Text;
+                    content.Request.KepServChannel = edtKepServChannel.Text;
+                    content.Request.KepServDevice = edtKepServDevice.Text;
+                    content.Request.KepServName = edtKepServName.Text;
+
+                    List<TUpdateDeviceTagsReqDetail> details = new List<TUpdateDeviceTagsReqDetail>();
+                    foreach (TIRAPOPCKepDeviceTagInfo tag in tags)
+                    {
+                        TUpdateDeviceTagsReqDetail detail = new TUpdateDeviceTagsReqDetail();
+                        detail.DataType = tag.DataType;
+                        detail.Description = tag.Description;
+                        detail.TagName = tag.TagName;
+                        content.Request.Details.Add(detail);
+                    }
+                    content.ResolveResponse(OPCWSClient.Instance.WSCall(content.GenerateRequestContent()));
+                    if (content.Response.ErrCode != "0")
+                    {
+                        XtraMessageBox.Show(content.Response.ErrCode + ":" + content.Response.ErrText);
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
+                }
+                else
+                {
+                    XtraMessageBox.Show("您尚未选择要导入的标签文件!");
+                }
+            }
+        }
+
+        private void cboKepServAddr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.edtKepServName.Text = (this.cboKepServAddr.SelectedItem as IRAPOPCServer).Name;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace IRAP.Interface.OPC
         /// <summary>
         /// 序号
         /// </summary>
-        public int Orinal { get; set; }
+        public int Ordinal { get; set; }
         /// <summary>
         /// KepServer 定义的标签名称
         /// </summary>
@@ -40,6 +40,10 @@ namespace IRAP.Interface.OPC
             TUpdateDeviceTagsReqDetail rlt = new TUpdateDeviceTagsReqDetail();
             rlt = IRAPXMLUtils.LoadValueFromXMLNode(node, rlt) as TUpdateDeviceTagsReqDetail;
             return rlt;
+        }
+        public XmlNode GenerateXMLNode(XmlNode row)
+        {
+            return IRAPXMLUtils.GenerateXMLAttribute(row, this);
         }
     }
 }

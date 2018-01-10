@@ -63,7 +63,6 @@ namespace OPCClient.UserContols
         private void ConnectRemoteServerInThread()
         {
             KepServer = new OPCServer();
-
         }
         #endregion
 

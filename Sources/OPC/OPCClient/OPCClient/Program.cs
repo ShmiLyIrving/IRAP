@@ -18,7 +18,17 @@ namespace OPCClient
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmOPCClientMain());
+            while (true)
+            {
+                try
+                {
+                    Application.Run(new frmOPCClientMain());
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
         }
     }
 }

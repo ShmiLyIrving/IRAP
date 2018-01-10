@@ -15,7 +15,7 @@ namespace IRAP.OPC.Entity
 
         public TIRAPOPCKepDeviceTagInfo(TUpdateDeviceTagsReqDetail detail, string prefix)
         {
-            if (!detail.TagName.Contains(prefix))
+            if (detail.TagName.IndexOf(prefix)!=0)
                 TagName = string.Format("{0}.{1}", prefix, detail.TagName);
             DataType = detail.DataType;
             Description = detail.Description;
@@ -77,7 +77,7 @@ namespace IRAP.OPC.Entity
 
         public static TIRAPOPCKepDeviceTagInfo LoadFromXMLNode(XmlNode node)
         {
-            if (node.Name == "Tag")
+            if (node.Name == "Tag"||node.Name=="Row")
             {
                 TIRAPOPCKepDeviceTagInfo rlt = new TIRAPOPCKepDeviceTagInfo();
                 return IRAPXMLUtils.LoadValueFromXMLNode(node, rlt) as TIRAPOPCKepDeviceTagInfo;

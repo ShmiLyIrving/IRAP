@@ -11,6 +11,7 @@ namespace IRAP.Interface.OPC
         public TGetKepServListContent()
         {
             bodyResponse = new TGetKepServListRspBody();
+            bodyRequest = new TGetKepServListReqBody();
         }
 
         public TGetKepServListReqBody Request
@@ -29,6 +30,13 @@ namespace IRAP.Interface.OPC
                 TGetKepServListReqBody.LoadFromXMLNode(node);
             if (request != null)
                 bodyRequest = request;
+        }
+        protected override void ResolveResponseBody(XmlNode node)
+        {
+            TGetKepServListRspBody response =
+                TGetKepServListRspBody.LoadFromXMLNode(node);
+            if (response != null)
+                bodyResponse = response;
         }
     }
 }

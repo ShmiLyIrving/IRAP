@@ -11,7 +11,7 @@ namespace OPCClient
     public class IniFile
     {
         /// <summary>
-        /// 函数作用：向 INI 文件中写入信息
+        /// 函数作用：向 INI 文件中写入信息,
         /// </summary>
         /// <param name="section">小节名称</param>
         /// <param name="key">项目名称或条目名称</param>

@@ -54,10 +54,10 @@ namespace IRAP.BL.OPCGateway.Actions
                                     Ordinal = ordinal++,
                                     DeviceCode = device.DeviceCode,
                                     DeviceName = device.DeviceName,
-                                    KepServAddr = device.KepServerAddr,
-                                    KepServName = device.KepServerName,
-                                    KepServChannel = device.KepServerChannel,
-                                    KepServDevice = device.KepServerDevice,
+                                    KepServerAddr = device.KepServerAddr,
+                                    KepServerName = device.KepServerName,
+                                    KepServerChannel = device.KepServerChannel,
+                                    KepServerDevice = device.KepServerDevice,
                                 });
                         }
 

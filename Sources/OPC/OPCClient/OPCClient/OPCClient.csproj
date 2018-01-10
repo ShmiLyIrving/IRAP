@@ -52,6 +52,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,16 +64,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\DCHisRow.cs" />
+    <Compile Include="Classes\DCHisRow.cs" />
     <Compile Include="Base\OPCClass.cs" />
+    <Compile Include="Classes\IRAPOPCDevices.cs" />
     <Compile Include="Classes\OPCWSClient.cs" />
-    <Compile Include="Classes\ServerAddress.cs" />
+    <Compile Include="Classes\IRAPOPCServers.cs" />
     <Compile Include="Classes\SysParams.cs" />
+    <Compile Include="Dialogs\dlgAddorModifyServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddorModifyServer.Designer.cs">
+      <DependentUpon>dlgAddorModifyServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgImportDeviceTag.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\dlgImportDeviceTag.Designer.cs">
       <DependentUpon>dlgImportDeviceTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddDevice.Designer.cs">
+      <DependentUpon>dlgAddDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\UDFdialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UDFdialog.Designer.cs">
+      <DependentUpon>UDFdialog.cs</DependentUpon>
     </Compile>
     <Compile Include="frmOPCClientMain.cs">
       <SubType>Form</SubType>
@@ -125,8 +145,18 @@
     <Compile Include="UserContols\ucOPCServer.Designer.cs">
       <DependentUpon>ucOPCServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="WriteLog.cs" />
+    <EmbeddedResource Include="Dialogs\dlgAddorModifyServer.resx">
+      <DependentUpon>dlgAddorModifyServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgImportDeviceTag.resx">
       <DependentUpon>dlgImportDeviceTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddDevice.resx">
+      <DependentUpon>dlgAddDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UDFdialog.resx">
+      <DependentUpon>UDFdialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOPCClientMain.resx">
       <DependentUpon>frmOPCClientMain.cs</DependentUpon>
@@ -176,10 +206,28 @@
     <Content Include="mainicon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\IRAPOPCGateway\IRAP.Global\IRAP.Global.csproj">
+      <Project>{e2f182fa-2148-4247-b054-25893a67c9c9}</Project>
+      <Name>IRAP.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IRAPOPCGateway\IRAP.Interface\IRAP.Interface.csproj">
+      <Project>{6c90e549-33ee-438f-9eff-6df051f211a4}</Project>
+      <Name>IRAP.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IRAPOPCGateway\IRAP.OPC.Entity\IRAP.OPC.Entity.csproj">
       <Project>{58d7982c-ffd1-4b4e-bb1a-7b5bd1158876}</Project>
       <Name>IRAP.OPC.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IRAPOPCGateway\IRAP.OPC.Library\IRAP.OPC.Library.csproj">
+      <Project>{7459ef94-56d1-4fe0-9ec8-3ea5668aac9c}</Project>
+      <Name>IRAP.OPC.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
