@@ -96,7 +96,7 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.GroupControl groupControl1;
+        protected DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnOK;
     }

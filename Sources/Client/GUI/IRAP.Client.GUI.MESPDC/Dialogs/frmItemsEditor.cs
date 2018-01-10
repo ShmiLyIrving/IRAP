@@ -20,19 +20,19 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private EditStatus editStatus = EditStatus.Browse;
-        private DataTable dtParams = new DataTable();
+        protected EditStatus editStatus = EditStatus.Browse;
+        protected DataTable dtParams = new DataTable();
 
-        private int recordNo = 0;
+        protected int recordNo = 0;
 
-        private List<TextEdit> edits = new List<TextEdit>();
+        protected List<TextEdit> edits = new List<TextEdit>();
 
         public frmItemsEditor()
         {
             InitializeComponent();
         }
 
-        public frmItemsEditor(
+        public  frmItemsEditor(
             EditStatus editStatus,
             string caption,
             DataTable dt,
@@ -58,7 +58,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             }
         }
 
-        private void InitEditorGUI(DataTable items, int recordNo)
+        protected virtual void InitEditorGUI(DataTable items, int recordNo)
         {
             DataRow dr = null;
             if (recordNo >= 0 && recordNo < items.Rows.Count)
@@ -98,7 +98,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             Height = 40 + (items.Columns.Count * 30) + 116;
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        protected virtual void btnOK_Click(object sender, EventArgs e)
         {
             DataRow dr = null;
             switch (editStatus)
