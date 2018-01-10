@@ -129,7 +129,7 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-                        var datas = rlt as List<int>;
+                        var datas = rlt as List<long>;
                         if (datas == null || datas.Count == 0) {
                             errCode = 99;
                             errText = "操作工不存在，请重新输入！";
@@ -331,6 +331,14 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
+//#if DEBUG
+//                        #region Debug
+//                        var datas = new List<SmeltMaterialItem>();
+//                        datas.Add(new SmeltMaterialItem() { Ordinal = 1, T101LeafID = 0001, T101Code = "0001", T101Name = "材料1号" });
+//                        datas.Add(new SmeltMaterialItem() { Ordinal = 2, T101LeafID = 0002, T101Code = "0002", T101Name = "材料2号" });
+//                        datas.Add(new SmeltMaterialItem() { Ordinal = 3, T101LeafID = 0003, T101Code = "0003", T101Name = "材料3号" });
+//                        #endregion
+//#else 
                         var datas = rlt as List<SmeltMaterialItem>;
                         if (datas == null || datas.Count == 0) {
                             errCode = 99;
@@ -338,6 +346,8 @@ namespace IRAP.WCF.Client.Method {
                             WriteLog.Instance.Write(errText, strProcedureName);
                             return null;
                         }
+//#endif
+
                         return datas;
                     }
                 }
@@ -399,13 +409,20 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-                        var datas = rlt as List<SmeltMethodItem>;
+//#if DEBUG
+//                        var datas = new List<SmeltMethodItem>();
+//                        datas.Add(new SmeltMethodItem() { Ordinal = 1, T20Code="0001", T20LeafID = 0001, T20Name = "开炉时间" });
+//                        datas.Add(new SmeltMethodItem() { Ordinal = 1, T20Code="0002", T20LeafID = 0002, T20Name = "电表开始度数" });
+//#else
+                         var datas = rlt as List<SmeltMethodItem>;
                         if (datas == null || datas.Count == 0) {
                             errCode = 99;
                             errText = "没有找到生产开炉参数，请检查配置！";
                             WriteLog.Instance.Write(errText, strProcedureName);
                             return null;
                         }
+                        
+//#endif
                         return datas;
                     }
                 }
@@ -463,7 +480,10 @@ namespace IRAP.WCF.Client.Method {
 
                 #region 执行存储过程或者函数
                 using (WCFClient client = new WCFClient()) {
-
+#if DEBUG
+                    errCode = 0;
+                    errText = "生产开始完成，请继续生产";
+#else
                     object rlt =
                         client.WCFRESTFul(
                             "IRAP.BL.MES.dll",
@@ -472,6 +492,8 @@ namespace IRAP.WCF.Client.Method {
                         hashParams,
                         out errCode,
                         out errText);
+
+#endif
                     WriteLog.Instance.Write(
                         string.Format(
                             "({0}){1}", errCode, errText),
@@ -536,6 +558,12 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
+#if DEBUG
+                        var datas = new List<SmeltBatchProductionInfo>();
+                        datas.Add(new SmeltBatchProductionInfo() { BatchNumber = "SD20180103003",BatchStartDate = new DateTime(2018,01,10,12,00,00),InProduction=1});
+#else
+
+
                         var datas = rlt as List<SmeltBatchProductionInfo>;
                         if (datas == null || datas.Count == 0) {
                             errCode = 99;
@@ -543,6 +571,7 @@ namespace IRAP.WCF.Client.Method {
                             WriteLog.Instance.Write(errText, strProcedureName);
                             return null;
                         }
+#endif
                         return datas;
                     }
                 }
