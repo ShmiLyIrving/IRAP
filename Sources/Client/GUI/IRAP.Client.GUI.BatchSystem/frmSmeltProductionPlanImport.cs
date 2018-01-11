@@ -218,38 +218,56 @@ namespace IRAP.Client.GUI.BatchSystem
         {
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = ExcelSheet2DataTable(openFileDialog.FileName);
-
-                List<dpa_Imp_SmeltProductionPlan> datas = new List<dpa_Imp_SmeltProductionPlan>();
-                int i = 1;
-                long partitioningKey = IRAPUser.Instance.CommunityID * 10000;
-                foreach (DataRow dr in dt.Rows)
+                DataTable dt = null;
+                try
                 {
-                    datas.Add(
-                        new dpa_Imp_SmeltProductionPlan()
-                        {
-                            PartitioningKey = partitioningKey,
-                            ImportLogID = importLogID,
-                            UnixTime = 0,
-                            Ordinal = i++,
-                            ErrCode = -1,
-                            ErrText = "未校验",
-                            ColName01 = dr[0].ToString(),
-                            ColName02 = dr[1].ToString(),
-                            ColName03 = dr[2].ToString(),
-                            ColName04 = dr[3].ToString(),
-                            ColName05 = dr[4].ToString(),
-                            ColName06 = dr[5].ToString(),
-                            ColName07 = dr[6].ToString(),
-                            ColName08 = dr[7].ToString(),
-                            ColName09 = dr[8].ToString(),
-                            ColName10 = dr[9].ToString(),
-                            ColName11 = dr[10].ToString(),
-                        });
+                    dt = ExcelSheet2DataTable(openFileDialog.FileName);
+                }
+                catch (Exception error)
+                {
+                    XtraMessageBox.Show(
+                        string.Format(
+                            "在读取 Excel 文件的时候发生错误，可能是该文件被其它程序打开了。错误信息：[{0}]",
+                            error.Message),
+                        "提示信息",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
                 }
 
-                grdImportData.DataSource = datas;
-                grdvImportData.BestFitColumns();
+                if (dt != null)
+                {
+                    List<dpa_Imp_SmeltProductionPlan> datas = new List<dpa_Imp_SmeltProductionPlan>();
+                    int i = 1;
+                    long partitioningKey = IRAPUser.Instance.CommunityID * 10000;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        datas.Add(
+                            new dpa_Imp_SmeltProductionPlan()
+                            {
+                                PartitioningKey = partitioningKey,
+                                ImportLogID = importLogID,
+                                UnixTime = 0,
+                                Ordinal = i++,
+                                ErrCode = -1,
+                                ErrText = "未校验",
+                                ColName01 = dr[0].ToString(),
+                                ColName02 = dr[1].ToString(),
+                                ColName03 = dr[2].ToString(),
+                                ColName04 = dr[3].ToString(),
+                                ColName05 = dr[4].ToString(),
+                                ColName06 = dr[5].ToString(),
+                                ColName07 = dr[6].ToString(),
+                                ColName08 = dr[7].ToString(),
+                                ColName09 = dr[8].ToString(),
+                                ColName10 = dr[9].ToString(),
+                                ColName11 = dr[10].ToString(),
+                            });
+                    }
+
+                    grdImportData.DataSource = datas;
+                    grdvImportData.BestFitColumns();
+                }
             }
         }
 
@@ -333,7 +351,7 @@ namespace IRAP.Client.GUI.BatchSystem
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            if (CanBeImported())
+            if (!CanBeImported())
             {
                 XtraMessageBox.Show(
                     "还有记录没有进行校验或者校验不通过，请修改后重新校验！",
@@ -341,6 +359,48 @@ namespace IRAP.Client.GUI.BatchSystem
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
+            }
+
+            int errCode = 0;
+            string errText = "";
+
+            try
+            {
+                IRAPMESClient.Instance.usp_Upload_SmeltPWORelease(
+                    IRAPUser.Instance.CommunityID,
+                    importLogID,
+                    IRAPUser.Instance.SysLogID,
+                    out errCode,
+                    out errText);
+
+                if (errCode != 0)
+                    XtraMessageBox.Show(
+                        errText,
+                        "提示信息",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                else
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "提示信息",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    importLogID = 0;
+                    grdvImportData.BeginDataUpdate();
+                    grdImportData.DataSource = null;
+                    grdvImportData.EndDataUpdate();
+                    grdvImportData.BestFitColumns();
+                }
+            }
+            catch (Exception error)
+            {
+                XtraMessageBox.Show(
+                    error.Message,
+                    "提示信息",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }

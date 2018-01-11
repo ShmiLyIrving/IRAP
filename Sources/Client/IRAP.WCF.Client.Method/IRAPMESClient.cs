@@ -2551,7 +2551,7 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetReworkRoutingTBL 函数， " +
-                        "参数：CommunityID={0}|TF482PK={1}|"+
+                        "参数：CommunityID={0}|TF482PK={1}|" +
                         "PWOIssuingFactID={2}|SysLogID={3}",
                         communityID,
                         tf482PK,
@@ -2851,7 +2851,7 @@ namespace IRAP.WCF.Client.Method
                         "CommunityID={0}|FactID={1}|OpType={2}|T102LeafID={3}|T107LeafID={4}|" +
                         "BatchNumber={5}|LotNumber={6}" +
                         "RSFactXML={7}|SysLogID={8}",
-                        communityID,factID,opType,t102LeafID, t107LeafID, batchNumber, lotNumber,
+                        communityID, factID, opType, t102LeafID, t107LeafID, batchNumber, lotNumber,
                         rsFactXML, sysLogID),
                     strProcedureName);
                 #endregion
@@ -2880,6 +2880,67 @@ namespace IRAP.WCF.Client.Method
                 errText = error.Message;
                 WriteLog.Instance.Write(errText, strProcedureName);
                 WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void usp_Upload_SmeltPWORelease(
+            int communityID,
+            long importID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("importID", importID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format("执行存储过程 " +
+                            "usp_Upload_SmeltPWORelease，参数：" +
+                            "CommunityID={0}|ImportID={1}|SysLogID={2}",
+                            communityID, importID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.WorkOrder",
+                        "usp_Upload_SmeltPWORelease",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
             }
             finally
             {

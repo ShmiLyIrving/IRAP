@@ -20,6 +20,9 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
             cboSelectItems.Properties.Items.Clear();
             foreach (string item in items)
                 cboSelectItems.Properties.Items.Add(item);
+
+            if (items.Count > 0)
+                cboSelectItems.SelectedIndex = 0;
         }
 
         public string SelectSheetName
@@ -31,6 +34,11 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
                 else
                     return "";
             }
+        }
+
+        private void cboSelectItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnOK.Enabled = cboSelectItems != null;
         }
     }
 }

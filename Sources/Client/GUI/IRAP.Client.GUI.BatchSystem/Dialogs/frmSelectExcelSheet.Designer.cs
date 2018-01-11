@@ -70,6 +70,7 @@
             this.cboSelectItems.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboSelectItems.Size = new System.Drawing.Size(519, 26);
             this.cboSelectItems.TabIndex = 0;
+            this.cboSelectItems.SelectedIndexChanged += new System.EventHandler(this.cboSelectItems_SelectedIndexChanged);
             // 
             // btnOK
             // 
@@ -77,6 +78,7 @@
             this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnOK.Appearance.Options.UseFont = true;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Enabled = false;
             this.btnOK.Location = new System.Drawing.Point(354, 94);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(97, 35);
