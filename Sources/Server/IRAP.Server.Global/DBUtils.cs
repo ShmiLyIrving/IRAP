@@ -20,22 +20,29 @@ namespace IRAP.Server.Global
                 {
                     if (param.Value == DBNull.Value)
                     {
-                        if (param.DbType == DbType.Int32 ||
-                            param.DbType == DbType.Int64 ||
-                            param.DbType == DbType.Int16)
-                            rlt.Add(param.ParameterName.Replace("@", ""), 0);
-                        else
-                        if (param.DbType == DbType.Boolean)
-                            rlt.Add(param.ParameterName.Replace("@", ""), false);
-                        else
-                        if (param.DbType == DbType.String ||
-                            param.DbType == DbType.Xml)
-                            rlt.Add(param.ParameterName.Replace("@", ""), "");
-                        else
-                        if (param.DbType == DbType.Date ||
-                            param.DbType == DbType.DateTime ||
-                            param.DbType == DbType.DateTime2)
-                            rlt.Add(param.ParameterName.Replace("@", ""), new DateTime(0));
+                        switch (param.DbType)
+                        {
+                            case DbType.Int16:
+                            case DbType.Int32:
+                            case DbType.Int64:
+                                rlt.Add(param.ParameterName.Replace("@", ""), 0);
+                                break;
+                            case DbType.Boolean:
+                                rlt.Add(param.ParameterName.Replace("@", ""), false);
+                                break;
+                            case DbType.String:
+                            case DbType.Xml:
+                                rlt.Add(param.ParameterName.Replace("@", ""), "");
+                                break;
+                            case DbType.Date:
+                            case DbType.DateTime:
+                            case DbType.DateTime2:
+                                rlt.Add(param.ParameterName.Replace("@", ""), new DateTime(0));
+                                break;
+                            default:
+                                rlt.Add(param.ParameterName.Replace("@", ""), null);
+                                break;
+                        }
                     }
                     else
                     {
