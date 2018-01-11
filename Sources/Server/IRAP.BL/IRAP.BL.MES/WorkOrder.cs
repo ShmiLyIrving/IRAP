@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Collections;
 
 using IRAP.Global;
+using IRAP.Server.Global;
 using IRAP.Entity.MES;
 using IRAP.Entities.MES;
 using IRAPShared;
@@ -31,8 +32,8 @@ namespace IRAP.BL.MES
         /// <param name="communityID">社区标识</param>
         /// <returns>List[OpenProductionWorkOrder]</returns>
         public IRAPJsonResult ufn_GetList_OpenProductionWorkOrders(
-            int communityID, 
-            out int errCode, 
+            int communityID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -44,7 +45,7 @@ namespace IRAP.BL.MES
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                List<OpenProductionWorkOrder> datas = 
+                List<OpenProductionWorkOrder> datas =
                     new List<OpenProductionWorkOrder>();
 
                 #region 创建数据库调用参数组，并赋值
@@ -260,11 +261,11 @@ namespace IRAP.BL.MES
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns>List[ReworkPWOUnloadingSheetItem]</returns>
         public IRAPJsonResult ufn_GetReworkPWOUnloadingSheet(
-            int communityID, 
-            long tf482PK, 
-            long pwoIssuingFactID, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            long tf482PK,
+            long pwoIssuingFactID,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
             string strProcedureName =
@@ -445,19 +446,19 @@ namespace IRAP.BL.MES
         /// </param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult usp_SaveRSFacts_ReworkPWO(
-            int communityID, 
-            long tf482PK, 
-            long pwoIssuingFactID, 
-            string reworkRoutingTBL, 
-            string reworkUnloadingSheet, 
-            long sysLogID, 
-            out int errCode, 
+            int communityID,
+            long tf482PK,
+            long pwoIssuingFactID,
+            string reworkRoutingTBL,
+            string reworkUnloadingSheet,
+            long sysLogID,
+            out int errCode,
             out string errText)
         {
-            string strProcedureName = 
+            string strProcedureName =
                 string.Format(
-                    "{0}.{1}", 
-                    className, 
+                    "{0}.{1}",
+                    className,
                     MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -476,9 +477,9 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write(
                     string.Format(
                         "执行存储过程 IRAPMES..usp_SaveRSFacts_ReworkPWO，" +
-                        "参数：CommunityID={0}|TF482PK={1}|PWOIssuingFactID={2}|"+
+                        "参数：CommunityID={0}|TF482PK={1}|PWOIssuingFactID={2}|" +
                         "ReworkRoutingTBL={3}|ReworkUnloadingSheet={4}|SysLogID={5}",
-                        communityID, tf482PK, pwoIssuingFactID, reworkRoutingTBL, 
+                        communityID, tf482PK, pwoIssuingFactID, reworkRoutingTBL,
                         reworkUnloadingSheet, sysLogID),
                     strProcedureName);
                 #endregion
@@ -486,7 +487,7 @@ namespace IRAP.BL.MES
                 #region 执行数据库函数或存储过程
                 using (IRAPSQLConnection conn = new IRAPSQLConnection())
                 {
-                    IRAPError error = 
+                    IRAPError error =
                         conn.CallProc("IRAPMES..usp_SaveRSFacts_ReworkPWO", ref paramList);
                     errCode = error.ErrCode;
                     errText = error.ErrText;
@@ -497,9 +498,9 @@ namespace IRAP.BL.MES
             catch (Exception error)
             {
                 errCode = 99000;
-                errText = 
+                errText =
                     string.Format(
-                        "调用 IRAPMES..usp_SaveRSFacts_ReworkPWO 函数发生异常：{0}", 
+                        "调用 IRAPMES..usp_SaveRSFacts_ReworkPWO 函数发生异常：{0}",
                         error.Message);
                 return Json(
                     new IRAPError()
@@ -833,7 +834,7 @@ namespace IRAP.BL.MES
                         "执行存储过程 IRAPMES..usp_SaveFact_BatchProductionStart，" +
                         "参数：CommunityID={0}|T216LeafID={1}|T107LeafID={2}|" +
                         "T131LeafID={3}|OperatorCode={4}|RSFactXML={5}|SysLogID={6}",
-                        communityID, t216LeafID, t107LeafID, t131LeafID, operatorCode, 
+                        communityID, t216LeafID, t107LeafID, t131LeafID, operatorCode,
                         rsFactXML, sysLogID),
                     strProcedureName);
                 #endregion
@@ -851,7 +852,7 @@ namespace IRAP.BL.MES
                     {
                         foreach (IRAPProcParameter param in paramList)
                         {
-                            if (param.Direction == ParameterDirection.InputOutput || 
+                            if (param.Direction == ParameterDirection.InputOutput ||
                                 param.Direction == ParameterDirection.Output)
                             {
                                 if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
@@ -1015,7 +1016,7 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMES..ufn_GetInfo_BatchProduct，" +
-                        "参数：CommunityID={0}|T107LeafID={1}|T216LeafID={2}|"+
+                        "参数：CommunityID={0}|T107LeafID={1}|T216LeafID={2}|" +
                         "T133LeafID={3}|SysLogID={4}",
                         communityID, t107LeafID, t216LeafID, t133LeafID, sysLogID),
                     strProcedureName);
@@ -1044,9 +1045,9 @@ namespace IRAP.BL.MES
                 catch (Exception error)
                 {
                     errCode = 99000;
-                    errText = 
+                    errText =
                         string.Format(
-                            "调用 IRAPMES..ufn_GetInfo_BatchProduct 函数发生异常：{0}", 
+                            "调用 IRAPMES..ufn_GetInfo_BatchProduct 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
@@ -1102,7 +1103,7 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMES..ufn_GetList_BatchByEquipment，" +
-                        "参数：CommunityID={0}|T133LeafID={1}|OpType={2}|"+
+                        "参数：CommunityID={0}|T133LeafID={1}|OpType={2}|" +
                         "SysLogID={3}",
                         communityID,
                         t133LeafID,
@@ -1198,7 +1199,7 @@ namespace IRAP.BL.MES
                     {
                         string strSQL = "SELECT * " +
                             "FROM IRAPMES..ufn_GetList_BatchPWONo(" +
-                            "@CommunityID, @BatchNumber, @SysLogID) "+
+                            "@CommunityID, @BatchNumber, @SysLogID) " +
                             "ORDER BY Ordinal";
 
                         IList<BatchPWOInfo> lstDatas =
@@ -1222,6 +1223,76 @@ namespace IRAP.BL.MES
                 #endregion
 
                 return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public IRAPJsonResult usp_Upload_SmeltPWORelease(
+            int communityID,
+            long importID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                Hashtable rlt = new Hashtable();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@ImportID", DbType.Int64, importID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 IRAPMES..usp_Upload_SmeltPWORelease，输入参数：" +
+                        "CommunityID={0}|ImportID={1}|SysLogID={2}",
+                        communityID,
+                        importID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        IRAPError error =
+                            conn.CallProc(
+                                "IRAPMES..usp_Upload_SmeltPWORelease",
+                                ref paramList);
+                        errCode = error.ErrCode;
+                        errText = error.ErrText;
+
+                        rlt = DBUtils.DBParamsToHashtable(paramList);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..usp_Upload_SmeltPWORelease 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(rlt);
             }
             finally
             {
