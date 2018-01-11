@@ -71,7 +71,6 @@ namespace IRAP.Client.GUI.MDM
 
         private List<IRAPTreeViewNode> GetTreeList()
         {
-
             int errCode;
             string errText;
             string strProcedureName =
@@ -81,22 +80,24 @@ namespace IRAP.Client.GUI.MDM
                    MethodBase.GetCurrentMethod().Name);
             try
             {
-                var paras = IRAPTreeClient.Instance.GetTreeViewCtrlParameters(_communityID, _tvCtrlParameters, _languageID, out errCode, out errText);
+                var paras = IRAPTreeClient.Instance.GetTreeViewCtrlParameters(IRAPUser.Instance.CommunityID, _tvCtrlParameters, _languageID, out errCode, out errText);
                 if (errCode != 0)
                 {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
-                else {
-                    var lists = IRAPTreeClient.Instance.GetTreeViewList(_communityID, _sysLogID, paras, out errCode, out errText);
+                else
+                {
+                    var lists = IRAPTreeClient.Instance.GetTreeViewList(IRAPUser.Instance.CommunityID, IRAPUser.Instance.SysLogID, paras, out errCode, out errText);
                     if (errCode != 0)
                     {
                         WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                         XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return null;
                     }
-                    else {
+                    else
+                    {
                         return lists;
                     }
                 }
@@ -123,7 +124,7 @@ namespace IRAP.Client.GUI.MDM
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                var lists = IRAPTreeClient.Instance.GetLinkedTreeOfImpExp(_communityID, t19LeafID, _sysLogID, out errCode, out errText);
+                var lists = IRAPTreeClient.Instance.GetLinkedTreeOfImpExp(IRAPUser.Instance.CommunityID, t19LeafID, IRAPUser.Instance.SysLogID, out errCode, out errText);
                 if (errCode != 0)
                 {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
@@ -158,7 +159,7 @@ namespace IRAP.Client.GUI.MDM
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                var lists = IRAPTreeClient.Instance.GetAccessibleFilteredLeafSet(_communityID, _treeInfo.TreeID, 1, "", 255, this.comboBoxEdit1.Text, _sysLogID, out errCode, out errText);
+                var lists = IRAPTreeClient.Instance.GetAccessibleFilteredLeafSet(IRAPUser.Instance.CommunityID, _treeInfo.TreeID, 1, "", 255, this.comboBoxEdit1.Text, IRAPUser.Instance.SysLogID, out errCode, out errText);
                 if (errCode != 0)
                 {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
@@ -242,7 +243,7 @@ namespace IRAP.Client.GUI.MDM
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                var lists = IRAPTreeClient.Instance.GetErrTypesOfImport(_communityID, t19LeafID, _sysLogID, out errCode, out errText);
+                var lists = IRAPTreeClient.Instance.GetErrTypesOfImport(IRAPUser.Instance.CommunityID, t19LeafID, IRAPUser.Instance.SysLogID, out errCode, out errText);
                 if (errCode != 0)
                 {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
@@ -291,7 +292,7 @@ namespace IRAP.Client.GUI.MDM
                string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                IRAPTreeClient.Instance.GetImportInfoEntity(_communityID, -_currentNode.NodeID, _treeInfo.TreeID, _currentLeaf.LeafID, _sysLogID,
+                IRAPTreeClient.Instance.GetImportInfoEntity(IRAPUser.Instance.CommunityID, -_currentNode.NodeID, _treeInfo.TreeID, _currentLeaf.LeafID, IRAPUser.Instance.SysLogID,
                     out _importPara, out _importMetaData, out errCode, out errText);
                 if (errCode != 0)
                 {
@@ -396,7 +397,7 @@ namespace IRAP.Client.GUI.MDM
         /// <returns></returns>
         private bool FileNameValidate(string fileName)
         {
-            long partitioningKeySingle = _communityID * 10000;
+            long partitioningKeySingle = IRAPUser.Instance.CommunityID * 10000;
             string uSSAddrIP = IRAPUSSAddr();
             if (uSSAddrIP == "9999")
             {
@@ -456,7 +457,7 @@ namespace IRAP.Client.GUI.MDM
 
                 string parameterID = "39";
                 List<StrParamInfo> strparamInfo = new List<StrParamInfo>();
-                IRAPSystemClient.Instance.sfn_IRAPStrParameters(_communityID, _languageID, parameterID, ref strparamInfo, out errCode, out errText);
+                IRAPSystemClient.Instance.sfn_IRAPStrParameters(IRAPUser.Instance.CommunityID, _languageID, parameterID, ref strparamInfo, out errCode, out errText);
                 if (errCode == 0)
                 {
                     return strparamInfo[0].ParameterValue;
@@ -726,7 +727,7 @@ namespace IRAP.Client.GUI.MDM
             dt.Columns.Add("ErrText", typeof(string));
             dt.Columns.Add("BGColor", typeof(string));
 
-            var coummunityID = _communityID * 10000;
+            var coummunityID = IRAPUser.Instance.CommunityID * 10000;
 
             var time = GetUnxiTime();
             if (time == 0)
@@ -739,7 +740,7 @@ namespace IRAP.Client.GUI.MDM
                 row["ImportLogID"] = _importLogId;
                 row["T19LeafID"] = -_currentNode.NodeID;
                 row["TxLeafID"] = _currentLeaf.LeafID;
-                row["SysLogID"] = _sysLogID;
+                row["SysLogID"] = IRAPUser.Instance.SysLogID;
                 row["ImportUnixTime"] = time;
                 row["ErrCode"] = 0;
                 row["ErrText"] = "通过";
@@ -1047,7 +1048,7 @@ namespace IRAP.Client.GUI.MDM
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                var data = IRAPTreeClient.Instance.GetDataAfterVerify(_communityID, -_currentNode.NodeID, _treeInfo.TreeID, _currentLeaf.LeafID, _importLogId, _sysLogID, _importPara.DstTableName, _importPara.ProcOnVerification, out errCode, out errText);
+                var data = IRAPTreeClient.Instance.GetDataAfterVerify(IRAPUser.Instance.CommunityID, -_currentNode.NodeID, _treeInfo.TreeID, _currentLeaf.LeafID, _importLogId, IRAPUser.Instance.SysLogID, _importPara.DstTableName, _importPara.ProcOnVerification, out errCode, out errText);
                 if (errCode != 0)
                 {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
@@ -1166,7 +1167,7 @@ namespace IRAP.Client.GUI.MDM
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                var data = IRAPTreeClient.Instance.GetDataAfterLoad(_communityID, -_currentNode.NodeID, _treeInfo.TreeID, _currentLeaf.LeafID, _importLogId, _sysLogID, _importPara.DstTableName, _importPara.ProcOnLoad, isLoadAll, isLoadLog, out errCode, out errText);
+                var data = IRAPTreeClient.Instance.GetDataAfterLoad(IRAPUser.Instance.CommunityID, -_currentNode.NodeID, _treeInfo.TreeID, _currentLeaf.LeafID, _importLogId, IRAPUser.Instance.SysLogID, _importPara.DstTableName, _importPara.ProcOnLoad, isLoadAll, isLoadLog, out errCode, out errText);
                 if (errCode != 0)
                 {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);

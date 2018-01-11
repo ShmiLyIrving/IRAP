@@ -133,9 +133,12 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("communityID", communityID);
                 hashParams.Add("t19LeafID", t19LeafID);
                 hashParams.Add("sysLogID", sysLogID);
-                WriteLog.Instance.Write(string.Format(
-                        "调用 sfn_GetInfo_LinkedTreeOfImpExp 函数，参数：communityID={0}|t19LeafID={1}|sysLogID={2} ",
-                        communityID, t19LeafID, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 sfn_GetInfo_LinkedTreeOfImpExp 函数，参数："+
+                        "CommunityID={0}|T19LeafID={1}|SysLogID={2} ",
+                        communityID, t19LeafID, sysLogID),
+                    strProcedureName);
                 #endregion
 
                 #region 执行存储过程或者函数

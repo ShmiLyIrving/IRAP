@@ -710,7 +710,8 @@ namespace IRAP.WCF.Client.Method
                                 HashtableTools.Instance.GetValue(rltHash, "OPhoneNo", out oPhoneNo);
                                 HashtableTools.Instance.GetValue(rltHash, "HPhoneNo", out hPhoneNo);
                                 HashtableTools.Instance.GetValue(rltHash, "MPhoneNo", out mPhoneNo);
-                                HashtableTools.Instance.GetValue(rltHash, "AgencyID", out agencyID);
+                                try { HashtableTools.Instance.GetValue(rltHash, "AgencyID", out agencyID); }
+                                catch { agencyID = 0; }
                                 HashtableTools.Instance.GetValue(rltHash, "AgencyName", out agencyName);
                                 HashtableTools.Instance.GetValue(rltHash, "HostName", out hostName);
                                 WriteLog.Instance.Write(

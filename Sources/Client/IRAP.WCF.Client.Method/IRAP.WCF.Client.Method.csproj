@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRAPAPSClient.cs" />
+    <Compile Include="IRAPDPAClient.cs" />
     <Compile Include="IRAPFVSClient.cs" />
     <Compile Include="IRAPKBClient.cs" />
     <Compile Include="IRAPMDMClient.cs" />
