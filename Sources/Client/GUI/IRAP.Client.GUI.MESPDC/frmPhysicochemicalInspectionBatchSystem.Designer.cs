@@ -316,7 +316,7 @@
             this.Controls.Add(this.tcMain);
             this.Controls.Add(this.panelControl2);
             this.Name = "frmPhysicochemicalInspectionBatchSystem";
-            this.Text = "熔炼与造型排程";
+            this.Text = "熔炼理化检验";
             this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.panelControl2, 0);
             this.Controls.SetChildIndex(this.tcMain, 0);

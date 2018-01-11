@@ -14,6 +14,7 @@ using IRAP.Entities.MES;
 using System.Reflection;
 using IRAP.WCF.Client.Method;
 using IRAP.Client.User;
+using System.IO;
 
 namespace IRAP.Client.GUI.MESPDC
 {
@@ -24,7 +25,7 @@ namespace IRAP.Client.GUI.MESPDC
         private List<BatchPWOInfo> pwos = new List<BatchPWOInfo>();
         public static string currentBatchNo = null;
         public static string currentOpType;
-        public static bool savestate = true;//是否已保存
+        public static bool saveState = true;//是否已保存
         private UserControls.ucPhysicochemicalFurnace ucLQLH = new UserControls.ucPhysicochemicalFurnace();
         private UserControls.ucPhysicochemicalFurnace ucLHLH = new UserControls.ucPhysicochemicalFurnace();
         private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace();
@@ -56,7 +57,33 @@ namespace IRAP.Client.GUI.MESPDC
                 edtFileName.Text = openFileDialog.FileName;
             }
         }
-
+        private Bitmap GetImageFromBase64(string base64string)
+        {
+            byte[] b = Convert.FromBase64String(base64string);
+            MemoryStream ms = new MemoryStream(b);
+            Bitmap bitmap = new Bitmap(ms);
+            return bitmap;
+        }
+        private string GetBase64FromImage(string imagefile)
+        {
+            string strbaser64 = "";
+            try
+            {
+                Bitmap bmp = new Bitmap(imagefile);
+                MemoryStream ms = new MemoryStream();
+                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] arr = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(arr, 0, (int)ms.Length);
+                ms.Close();
+                strbaser64 = Convert.ToBase64String(arr);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Something wrong during convert!");
+            }
+            return strbaser64;
+        }
         private void edtBatchNo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
@@ -71,9 +98,9 @@ namespace IRAP.Client.GUI.MESPDC
         }
         private bool AlertConfirm()
         {
-            if (savestate == false)
+            if (saveState == false)
             {
-                DialogResult rlt = XtraMessageBox.Show("离开后未保存的数据将被清空", "有数据未保存", MessageBoxButtons.OKCancel);
+                DialogResult rlt = XtraMessageBox.Show("离开后未保存的数据将被清空", "数据未保存", MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
                 if (rlt == DialogResult.Cancel)
                 {
                     return false;
@@ -92,7 +119,7 @@ namespace IRAP.Client.GUI.MESPDC
         {
             currentOpType = e.Page.Name.Substring(3);
             ChangeUC();
-            savestate = true;
+            saveState = true;
         }
         /// <summary>
         /// 刷新自定义控件

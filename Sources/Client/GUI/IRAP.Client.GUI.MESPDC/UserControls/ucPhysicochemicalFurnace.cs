@@ -92,7 +92,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         /// </summary>
         /// <param name="batchNumer"></param>
         /// <returns></returns>
-        private List<SmeltInspectionItem> GetInspectItems()
+        private List<SmeltInspectionItem> GetSmeltInspectItems()
         {
             List<SmeltInspectionItem> rlt = new List<SmeltInspectionItem>();
             string strProcedureName =
@@ -108,10 +108,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 int t102LeafID = 0;
                 int t216LeafID = 0;
                 string pwoNo = "";
-                if (frmPhysicochemicalInspectionBatchSystem.currentOpType == "MPLH")
-                {
-
-                }
                 IRAPMDMClient.Instance.ufn_GetList_SmeltInspectionItems(
                             IRAPUser.Instance.CommunityID,
                             frmPhysicochemicalInspectionBatchSystem.currentOpType,
@@ -174,15 +170,40 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
         public void RefreshUC()
         {
-            inspectionItems = GetInspectItems();
+            inspectionItems = GetSmeltInspectItems();
 
             if (inspectionItems.Count > 0)
             {
                 InitInspectionItemsGrid(inspectionItems);
+                RefreshCtrl();
             }
             else
             {
                 XtraMessageBox.Show("输入的炉次号不合法");
+                frmPhysicochemicalInspectionBatchSystem.currentBatchNo = null;
+            }
+        }
+
+        public void RefreshCtrl()
+        {
+            if (frmPhysicochemicalInspectionBatchSystem.currentBatchNo == null)
+            {
+                btnAdd.Enabled = false;
+                btn_save.Enabled = false;
+            }
+            else
+            {
+
+                if (vgrdInspectParams.Rows.Count > 0)
+                {
+                    btnAdd.Enabled = true;
+                    btn_save.Enabled = true;
+                }
+                else
+                {
+                    btnAdd.Enabled = false;
+                    btn_save.Enabled = false;
+                }
             }
         }
         public void RefreshUC(BatchPWOInfo Pwo)
@@ -246,10 +267,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             if (inspectionItems.Count > 0)
             {
                 InitInspectionItemsGrid(inspectionItems);
+                RefreshCtrl();
             }
             else
             {
                 XtraMessageBox.Show("输入的炉次号不合法");
+                frmPhysicochemicalInspectionBatchSystem.currentBatchNo = null;
             }
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -274,13 +297,14 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 if (formEditor.ShowDialog() == DialogResult.OK)
                 {
                     vgrdInspectParams.RefreshDataSource();
-                    frmPhysicochemicalInspectionBatchSystem.savestate = false;
+                    frmPhysicochemicalInspectionBatchSystem.saveState = false;
                 }
             }          
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            
             if (dtInspection.Columns.Count < 0)
             {
                 XtraMessageBox.Show(
@@ -299,100 +323,89 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     MessageBoxIcon.Error);
                 return;
             }
+            if (frmPhysicochemicalInspectionBatchSystem.saveState == true)
+            {
+                XtraMessageBox.Show(
+                    "未做任何修改",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
-            string strProcedureName =
-                string.Format(
-                    "{0}.{1}",
-                    className,
-                    MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             if (optype =="MPLH")        //毛坯理化
             {
-                try
+                if (SaveFact_smeltInspection(pwo.FactID, pwo.T102LeafID, int.Parse(pwo.T107LeafID), pwo.LotNumber))
                 {
-                    int errCode = 0;
-                    string errText = "";
-                    IRAPMESClient.Instance.usp_SaveFact_SmeltBatchManualInspecting(
-                    IRAPUser.Instance.CommunityID,
-                    pwo.FactID,
-                    optype,
-                    pwo.T102LeafID,
-                    int.Parse(pwo.T107LeafID),
-                    pwo.BatchNumber,
-                    pwo.LotNumber,
-                    GenerateRSFactXML(),
-                    IRAPUser.Instance.SysLogID,
-                    out errCode,
-                    out errText);
-                    if (errCode != 0)
-                    {
-                        XtraMessageBox.Show(
-                            errText,
-                            "",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show(
-                            errText,
-                            "",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-
-                        dtInspection.Rows.Clear();
-                        dtInspection.Columns.Clear();
-                        vgrdInspectParams.Rows.Clear();
-                    }
-                }
-                finally
-                {
-                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
-                }
+                    frmPhysicochemicalInspectionBatchSystem.saveState = true;
+                    dtInspection.Rows.Clear();
+                    dtInspection.Columns.Clear();
+                    vgrdInspectParams.Rows.Clear();
+                    RefreshUC(pwo);
+                }              
             }
             else if(optype =="LQLH"||optype=="LHLH")    //炉前理化,炉后理化
             {
-                try
+                if(SaveFact_smeltInspection(0, 0, 0, "0"))
                 {
-                    int errCode = 0;
-                    string errText = "";
-                    IRAPMESClient.Instance.usp_SaveFact_SmeltBatchManualInspecting(
-                    IRAPUser.Instance.CommunityID,
-                    0,
-                    optype,
-                    0,
-                    0,
-                    frmPhysicochemicalInspectionBatchSystem.currentBatchNo,
-                    "0",
-                    GenerateRSFactXML(),
-                    IRAPUser.Instance.SysLogID,
-                    out errCode,
-                    out errText);
-                    if (errCode != 0)
-                    {
-                        XtraMessageBox.Show(
-                            errText,
-                            "",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show(
-                            errText,
-                            "",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-
-                        //dtInspection.Rows.Clear();
-                        //dtInspection.Columns.Clear();
-                        //vgrdInspectParams.Rows.Clear();
-                    }
+                    frmPhysicochemicalInspectionBatchSystem.saveState = true;
+                    dtInspection.Rows.Clear();
+                    dtInspection.Columns.Clear();
+                    vgrdInspectParams.Rows.Clear();
+                    RefreshUC();
                 }
-                finally
+            }
+        }
+        private bool SaveFact_smeltInspection(
+            long factID,
+            int t102LeafID,
+            int t107LeafID,
+            string lotNumber)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                IRAPMESClient.Instance.usp_SaveFact_SmeltBatchManualInspecting(
+                IRAPUser.Instance.CommunityID,
+                factID,
+                optype,
+                t102LeafID,
+                t107LeafID,
+                frmPhysicochemicalInspectionBatchSystem.currentBatchNo,
+                lotNumber,
+                GenerateRSFactXML(),
+                IRAPUser.Instance.SysLogID,
+                out errCode,
+                out errText);
+                if (errCode != 0)
                 {
-                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return false;
                 }
+                else
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return true;
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
         private string GenerateRSFactXML()
