@@ -39,5 +39,30 @@ namespace IRAP.Client.Global
             if (MdiParent != null)
                 WindowState = FormWindowState.Maximized;
         }
+
+        /// <summary>
+        /// 显示运行等待窗体
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="caption"></param>
+        protected void ShowWaitForm(string description, string caption = "")
+        {
+            if (!splashScreenManager.IsSplashFormVisible)
+                splashScreenManager.ShowWaitForm();
+            if (caption != "")
+                splashScreenManager.SetWaitFormCaption(caption);
+            else
+                splashScreenManager.SetWaitFormCaption("请耐心等待......");
+            splashScreenManager.SetWaitFormDescription(description);
+        }
+
+        /// <summary>
+        /// 关闭运行等待窗体
+        /// </summary>
+        protected void CloseWaitForm()
+        {
+            if (splashScreenManager.IsSplashFormVisible)
+                splashScreenManager.CloseWaitForm();
+        }
     }
 }

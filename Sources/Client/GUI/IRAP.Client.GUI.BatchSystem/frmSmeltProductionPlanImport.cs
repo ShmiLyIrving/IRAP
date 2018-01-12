@@ -13,6 +13,7 @@ using DevExpress.XtraEditors;
 
 using IRAP.Global;
 using IRAP.Client.User;
+using IRAP.Client.Global;
 using IRAP.Entities.DPA;
 using IRAP.WCF.Client.Method;
 
@@ -221,10 +222,12 @@ namespace IRAP.Client.GUI.BatchSystem
                 DataTable dt = null;
                 try
                 {
+                    TWaitting.Instance.ShowWaitForm("正在读取导入的数据");
                     dt = ExcelSheet2DataTable(openFileDialog.FileName);
                 }
                 catch (Exception error)
                 {
+                    TWaitting.Instance.CloseWaitForm();
                     XtraMessageBox.Show(
                         string.Format(
                             "在读取 Excel 文件的时候发生错误，可能是该文件被其它程序打开了。错误信息：[{0}]",
@@ -235,6 +238,7 @@ namespace IRAP.Client.GUI.BatchSystem
                     return;
                 }
 
+                TWaitting.Instance.ShowWaitForm("正在整理数据");
                 if (dt != null)
                 {
                     List<dpa_Imp_SmeltProductionPlan> datas = new List<dpa_Imp_SmeltProductionPlan>();
@@ -268,85 +272,108 @@ namespace IRAP.Client.GUI.BatchSystem
                     grdImportData.DataSource = datas;
                     grdvImportData.BestFitColumns();
                 }
+                TWaitting.Instance.CloseWaitForm();
             }
         }
 
         private void btnValidate_Click(object sender, EventArgs e)
         {
-            RemoveDataFromDBTable(importLogID);
-
-            #region 将当前表格中的记录插入数据库中
-            int errCode = 0;
-            string errText = "";
-            try
-            {
-                IRAPDPAClient.Instance.msp_InsertIntoSmeltProductionPlanTable(
-                    grdImportData.DataSource as List<dpa_Imp_SmeltProductionPlan>,
-                    out errCode,
-                    out errText);
-                if (errCode != 0)
-                {
-                    XtraMessageBox.Show(
-                          errText,
-                          "提示信息",
-                          MessageBoxButtons.OK,
-                          MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            catch (Exception error)
+            if ((grdImportData.DataSource as List<dpa_Imp_SmeltProductionPlan>).Count <= 0)
             {
                 XtraMessageBox.Show(
-                    error.Message,
+                    "没有读取到需要导入的生产计划数据",
                     "提示信息",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
-            #endregion
 
-            #region 检验指定 ImportLogID 的导入数据记录
             try
             {
-                IRAPDPAClient.Instance.usp_PokaYoke_SmeltPWORelease(
-                    IRAPUser.Instance.CommunityID,
-                    importLogID,
-                    IRAPUser.Instance.SysLogID,
-                    out errCode,
-                    out errText);
-                if (errCode != 0)
+                TWaitting.Instance.ShowWaitForm("删除历史数据");
+                RemoveDataFromDBTable(importLogID);
+
+                #region 将当前表格中的记录插入数据库中
+                int errCode = 0;
+                string errText = "";
+                try
+                {
+                    TWaitting.Instance.ShowWaitForm("将读取到的数据上传到数据库中");
+                    IRAPDPAClient.Instance.msp_InsertIntoSmeltProductionPlanTable(
+                        grdImportData.DataSource as List<dpa_Imp_SmeltProductionPlan>,
+                        out errCode,
+                        out errText);
+                    if (errCode != 0)
+                    {
+                        XtraMessageBox.Show(
+                              errText,
+                              "提示信息",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                catch (Exception error)
                 {
                     XtraMessageBox.Show(
-                        errText,
+                        error.Message,
                         "提示信息",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+                    return;
                 }
+                #endregion
 
-                List<dpa_Imp_SmeltProductionPlan> datas = new List<dpa_Imp_SmeltProductionPlan>();
-                IRAPDPAClient.Instance.mfn_GetList_SmeltProductionPlan(
-                    IRAPUser.Instance.CommunityID,
-                    importLogID,
-                    IRAPUser.Instance.SysLogID,
-                    ref datas,
-                    out errCode,
-                    out errText);
+                #region 检验指定 ImportLogID 的导入数据记录
+                try
+                {
+                    TWaitting.Instance.ShowWaitForm("校验上传的数据");
+                    IRAPDPAClient.Instance.usp_PokaYoke_SmeltPWORelease(
+                        IRAPUser.Instance.CommunityID,
+                        importLogID,
+                        IRAPUser.Instance.SysLogID,
+                        out errCode,
+                        out errText);
+                    if (errCode != 0)
+                    {
+                        XtraMessageBox.Show(
+                            errText,
+                            "提示信息",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
 
-                grdvImportData.BeginDataUpdate();
-                grdImportData.DataSource = datas;
-                grdvImportData.EndDataUpdate();
-                grdvImportData.BestFitColumns();
+                    TWaitting.Instance.ShowWaitForm("获取校验结果");
+                    List<dpa_Imp_SmeltProductionPlan> datas = new List<dpa_Imp_SmeltProductionPlan>();
+                    IRAPDPAClient.Instance.mfn_GetList_SmeltProductionPlan(
+                        IRAPUser.Instance.CommunityID,
+                        importLogID,
+                        IRAPUser.Instance.SysLogID,
+                        ref datas,
+                        out errCode,
+                        out errText);
+
+                    grdvImportData.BeginDataUpdate();
+                    grdImportData.DataSource = datas;
+                    grdvImportData.EndDataUpdate();
+                    grdvImportData.BestFitColumns();
+                }
+                catch (Exception error)
+                {
+                    TWaitting.Instance.CloseWaitForm();
+                    XtraMessageBox.Show(
+                        error.Message,
+                        "提示信息",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                #endregion
             }
-            catch (Exception error)
+            finally
             {
-                XtraMessageBox.Show(
-                    error.Message,
-                    "提示信息",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return;
+                TWaitting.Instance.CloseWaitForm();
             }
-            #endregion
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -366,12 +393,14 @@ namespace IRAP.Client.GUI.BatchSystem
 
             try
             {
+                TWaitting.Instance.ShowWaitForm("正在处理上传的数据");
                 IRAPMESClient.Instance.usp_Upload_SmeltPWORelease(
                     IRAPUser.Instance.CommunityID,
                     importLogID,
                     IRAPUser.Instance.SysLogID,
                     out errCode,
                     out errText);
+                TWaitting.Instance.CloseWaitForm();
 
                 if (errCode != 0)
                     XtraMessageBox.Show(
@@ -401,6 +430,10 @@ namespace IRAP.Client.GUI.BatchSystem
                     "提示信息",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+            finally
+            {
+
             }
         }
     }

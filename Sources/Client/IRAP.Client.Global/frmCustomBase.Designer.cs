@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomBase));
-            this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController = new DevExpress.Utils.ToolTipController();
+            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::IRAP.Client.Global.frmWaitting), true, true);
             this.SuspendLayout();
             // 
             // toolTipController
@@ -41,6 +41,10 @@
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             this.toolTipController.ToolTipStyle = DevExpress.Utils.ToolTipStyle.Windows7;
             this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
+            // 
+            // splashScreenManager
+            // 
+            this.splashScreenManager.ClosingDelay = 500;
             // 
             // frmCustomBase
             // 
@@ -65,5 +69,6 @@
         #endregion
 
         protected DevExpress.Utils.ToolTipController toolTipController;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
     }
 }

@@ -92,6 +92,12 @@
     <Compile Include="Dialogs\frmItemsEditor.Designer.cs">
       <DependentUpon>frmItemsEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmNoneblankEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmNoneblankEditor.Designer.cs">
+      <DependentUpon>frmNoneblankEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmPWOInProductionEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,12 @@
     </Compile>
     <Compile Include="Dialogs\frmSelectDestT216LeafID.Designer.cs">
       <DependentUpon>frmSelectDestT216LeafID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPhysicochemicalInspectionBatchSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhysicochemicalInspectionBatchSystem.Designer.cs">
+      <DependentUpon>frmPhysicochemicalInspectionBatchSystem.cs</DependentUpon>
     </Compile>
     <Compile Include="frmProcessFIFO.cs">
       <SubType>Form</SubType>
@@ -271,6 +283,12 @@
     <Compile Include="UserControls\ucFurnace.Designer.cs">
       <DependentUpon>ucFurnace.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucPhysicochemicalFurnace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPhysicochemicalFurnace.Designer.cs">
+      <DependentUpon>ucPhysicochemicalFurnace.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -330,6 +348,9 @@
     <EmbeddedResource Include="Dialogs\frmItemsEditor.resx">
       <DependentUpon>frmItemsEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmNoneblankEditor.resx">
+      <DependentUpon>frmNoneblankEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor.resx">
       <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -359,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmSelectDestT216LeafID.resx">
       <DependentUpon>frmSelectDestT216LeafID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPhysicoChemicalInspectionBatchSystem.resx">
+      <DependentUpon>frmPhysicochemicalInspectionBatchSystem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcessFIFO.resx">
       <DependentUpon>frmProcessFIFO.cs</DependentUpon>
@@ -423,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucFurnace.resx">
       <DependentUpon>ucFurnace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucPhysicochemicalFurnace.resx">
+      <DependentUpon>ucPhysicochemicalFurnace.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
