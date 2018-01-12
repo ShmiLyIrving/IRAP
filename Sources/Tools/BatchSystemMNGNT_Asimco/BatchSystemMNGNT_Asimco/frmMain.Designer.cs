@@ -38,6 +38,13 @@
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.grdLogs = new DevExpress.XtraGrid.GridControl();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUnselectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiRetry = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.grdvLogs = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -81,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdvLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             this.splitContainerControl2.SuspendLayout();
@@ -179,6 +187,7 @@
             // 
             // grdLogs
             // 
+            this.grdLogs.ContextMenuStrip = this.contextMenuStrip;
             this.grdLogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdLogs.Location = new System.Drawing.Point(5, 5);
             this.grdLogs.MainView = this.grdvLogs;
@@ -188,6 +197,55 @@
             this.grdLogs.TabIndex = 1;
             this.grdLogs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvLogs});
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSelectAll,
+            this.tsmiUnselectAll,
+            this.toolStripMenuItem2,
+            this.tsmiRetry,
+            this.toolStripMenuItem1,
+            this.tsmiDelete});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(137, 104);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            // 
+            // tsmiSelectAll
+            // 
+            this.tsmiSelectAll.Name = "tsmiSelectAll";
+            this.tsmiSelectAll.Size = new System.Drawing.Size(136, 22);
+            this.tsmiSelectAll.Text = "选择全部";
+            this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
+            // 
+            // tsmiUnselectAll
+            // 
+            this.tsmiUnselectAll.Name = "tsmiUnselectAll";
+            this.tsmiUnselectAll.Size = new System.Drawing.Size(136, 22);
+            this.tsmiUnselectAll.Text = "全部不选择";
+            this.tsmiUnselectAll.Click += new System.EventHandler(this.tsmiUnselectAll_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 6);
+            // 
+            // tsmiRetry
+            // 
+            this.tsmiRetry.Name = "tsmiRetry";
+            this.tsmiRetry.Size = new System.Drawing.Size(136, 22);
+            this.tsmiRetry.Text = "重试";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 6);
+            // 
+            // tsmiDelete
+            // 
+            this.tsmiDelete.Name = "tsmiDelete";
+            this.tsmiDelete.Size = new System.Drawing.Size(136, 22);
+            this.tsmiDelete.Text = "删除";
             // 
             // grdvLogs
             // 
@@ -700,6 +758,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdvLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
@@ -775,5 +834,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRetry;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUnselectAll;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     }
 }

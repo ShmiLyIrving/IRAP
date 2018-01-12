@@ -189,5 +189,41 @@ namespace BatchSystemMNGNT_Asimco
                 }
             }
         }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            foreach (TEntityCustomLog log in TWebServShuttlingLogs.Instance.Logs)
+            {
+                if (log.Checked)
+                {
+                    tsmiRetry.Enabled = true;
+                    tsmiDelete.Enabled = true;
+                    return;
+                }
+            }
+
+            tsmiRetry.Enabled = false;
+            tsmiDelete.Enabled = false;
+        }
+
+        private void tsmiSelectAll_Click(object sender, EventArgs e)
+        {
+            grdvLogs.BeginDataUpdate();
+            foreach (TEntityCustomLog log in TWebServShuttlingLogs.Instance.Logs)
+            {
+                log.Checked = true;
+            }
+            grdvLogs.EndDataUpdate();
+        }
+
+        private void tsmiUnselectAll_Click(object sender, EventArgs e)
+        {
+            grdvLogs.BeginDataUpdate();
+            foreach (TEntityCustomLog log in TWebServShuttlingLogs.Instance.Logs)
+            {
+                log.Checked = false ;
+            }
+            grdvLogs.EndDataUpdate();
+        }
     }
 }

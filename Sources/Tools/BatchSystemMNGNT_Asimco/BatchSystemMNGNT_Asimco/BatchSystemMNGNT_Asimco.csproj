@@ -93,6 +93,7 @@
     <Compile Include="SysParams.cs" />
     <Compile Include="TStorageLocations.cs" />
     <Compile Include="TWaitting.cs" />
+    <Compile Include="TWebServShuttlingLog.cs" />
     <Compile Include="TWebServShuttlingLogs.cs" />
     <Compile Include="frmWaitting.cs">
       <SubType>Form</SubType>
