@@ -30,8 +30,8 @@
         {
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.btn_save = new DevExpress.XtraEditors.SimpleButton();
             this.vgrdInspectParams = new DevExpress.XtraVerticalGrid.VGridControl();
+            this.btn_save = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vgrdInspectParams)).BeginInit();
@@ -63,9 +63,21 @@
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(0);
             this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Padding = new System.Windows.Forms.Padding(7);
             this.groupControl1.Size = new System.Drawing.Size(696, 456);
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "检验信息";
+            // 
+            // vgrdInspectParams
+            // 
+            this.vgrdInspectParams.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.vgrdInspectParams.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vgrdInspectParams.Location = new System.Drawing.Point(9, 34);
+            this.vgrdInspectParams.Name = "vgrdInspectParams";
+            this.vgrdInspectParams.OptionsBehavior.Editable = false;
+            this.vgrdInspectParams.Padding = new System.Windows.Forms.Padding(3);
+            this.vgrdInspectParams.Size = new System.Drawing.Size(678, 413);
+            this.vgrdInspectParams.TabIndex = 0;
             // 
             // btn_save
             // 
@@ -79,16 +91,6 @@
             this.btn_save.TabIndex = 1;
             this.btn_save.Text = "保存";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
-            // 
-            // vgrdInspectParams
-            // 
-            this.vgrdInspectParams.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vgrdInspectParams.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vgrdInspectParams.Location = new System.Drawing.Point(2, 27);
-            this.vgrdInspectParams.Name = "vgrdInspectParams";
-            this.vgrdInspectParams.OptionsBehavior.Editable = false;
-            this.vgrdInspectParams.Size = new System.Drawing.Size(692, 427);
-            this.vgrdInspectParams.TabIndex = 0;
             // 
             // ucPhysicochemicalFurnace
             // 
