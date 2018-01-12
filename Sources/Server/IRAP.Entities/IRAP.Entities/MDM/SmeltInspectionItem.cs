@@ -74,7 +74,10 @@ namespace IRAP.Entities.MDM
                         }
                     }
                 }
-                catch { }
+                catch(Exception e)
+                {
+                    e.Message.ToString();
+                }
             }
         }
 
