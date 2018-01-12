@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
+
+using DevExpress.Utils;
 
 namespace BatchSystemMNGNT_Asimco
 {
@@ -15,6 +18,10 @@ namespace BatchSystemMNGNT_Asimco
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            AppearanceObject.DefaultFont = new Font("微软雅黑", 10.5f);
+            AppearanceObject.DefaultMenuFont = new Font("微软雅黑", 10.5f);
+
             Application.Run(new frmMain());
         }
     }

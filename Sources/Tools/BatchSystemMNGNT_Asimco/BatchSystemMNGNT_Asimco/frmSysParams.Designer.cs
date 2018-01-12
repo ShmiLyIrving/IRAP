@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.edtDBAddress = new DevExpress.XtraEditors.TextEdit();
-            this.edtDBName = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.edtDBUserID = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.edtDBUserPWD = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.edtDBUserID = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.edtDBName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.edtDBAddress = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDBAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDBName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDBUserID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtDBUserPWD.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDBUserID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDBName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDBAddress.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -66,69 +66,6 @@
             this.groupControl1.Size = new System.Drawing.Size(567, 269);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "数据库参数";
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(16, 30);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(536, 20);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "数据库地址：";
-            // 
-            // edtDBAddress
-            // 
-            this.edtDBAddress.Location = new System.Drawing.Point(16, 56);
-            this.edtDBAddress.Name = "edtDBAddress";
-            this.edtDBAddress.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.edtDBAddress.Properties.Appearance.Options.UseFont = true;
-            this.edtDBAddress.Size = new System.Drawing.Size(536, 26);
-            this.edtDBAddress.TabIndex = 3;
-            // 
-            // edtDBName
-            // 
-            this.edtDBName.Location = new System.Drawing.Point(16, 114);
-            this.edtDBName.Name = "edtDBName";
-            this.edtDBName.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.edtDBName.Properties.Appearance.Options.UseFont = true;
-            this.edtDBName.Size = new System.Drawing.Size(536, 26);
-            this.edtDBName.TabIndex = 5;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(16, 88);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(536, 20);
-            this.labelControl2.TabIndex = 4;
-            this.labelControl2.Text = "数据库名称：";
-            // 
-            // edtDBUserID
-            // 
-            this.edtDBUserID.Location = new System.Drawing.Point(16, 172);
-            this.edtDBUserID.Name = "edtDBUserID";
-            this.edtDBUserID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.edtDBUserID.Properties.Appearance.Options.UseFont = true;
-            this.edtDBUserID.Size = new System.Drawing.Size(536, 26);
-            this.edtDBUserID.TabIndex = 7;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl3.Location = new System.Drawing.Point(16, 146);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(536, 20);
-            this.labelControl3.TabIndex = 6;
-            this.labelControl3.Text = "登录用户名：";
             // 
             // edtDBUserPWD
             // 
@@ -152,6 +89,69 @@
             this.labelControl4.Size = new System.Drawing.Size(536, 20);
             this.labelControl4.TabIndex = 8;
             this.labelControl4.Text = "登录密码：";
+            // 
+            // edtDBUserID
+            // 
+            this.edtDBUserID.Location = new System.Drawing.Point(16, 172);
+            this.edtDBUserID.Name = "edtDBUserID";
+            this.edtDBUserID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edtDBUserID.Properties.Appearance.Options.UseFont = true;
+            this.edtDBUserID.Size = new System.Drawing.Size(536, 26);
+            this.edtDBUserID.TabIndex = 7;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl3.Location = new System.Drawing.Point(16, 146);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(536, 20);
+            this.labelControl3.TabIndex = 6;
+            this.labelControl3.Text = "登录用户名：";
+            // 
+            // edtDBName
+            // 
+            this.edtDBName.Location = new System.Drawing.Point(16, 114);
+            this.edtDBName.Name = "edtDBName";
+            this.edtDBName.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edtDBName.Properties.Appearance.Options.UseFont = true;
+            this.edtDBName.Size = new System.Drawing.Size(536, 26);
+            this.edtDBName.TabIndex = 5;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl2.Location = new System.Drawing.Point(16, 88);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(536, 20);
+            this.labelControl2.TabIndex = 4;
+            this.labelControl2.Text = "数据库名称：";
+            // 
+            // edtDBAddress
+            // 
+            this.edtDBAddress.Location = new System.Drawing.Point(16, 56);
+            this.edtDBAddress.Name = "edtDBAddress";
+            this.edtDBAddress.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edtDBAddress.Properties.Appearance.Options.UseFont = true;
+            this.edtDBAddress.Size = new System.Drawing.Size(536, 26);
+            this.edtDBAddress.TabIndex = 3;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl1.Location = new System.Drawing.Point(16, 30);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(536, 20);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "数据库地址：";
             // 
             // btnOK
             // 
@@ -179,8 +179,7 @@
             // 
             // frmSysParams
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(591, 339);
             this.Controls.Add(this.btnCancel);
@@ -195,10 +194,10 @@
             this.Load += new System.EventHandler(this.frmSysParams_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.edtDBAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDBName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDBUserID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtDBUserPWD.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDBUserID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDBName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDBAddress.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

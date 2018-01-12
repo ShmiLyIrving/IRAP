@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchSystemMNGNT_Asimco", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Global", "..\..\Global\IRAP.Global\IRAP.Global.csproj", "{325FFD07-7491-45C3-86F3-85F7DEF4C726}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPORM", "..\..\Server\IRAPORM\IRAPORM.csproj", "{954DEBC1-2FEC-4B7B-B32D-25287E1DF873}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAPShared", "..\..\Global\IRAPShared\IRAPShared.csproj", "{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{325FFD07-7491-45C3-86F3-85F7DEF4C726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{954DEBC1-2FEC-4B7B-B32D-25287E1DF873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{954DEBC1-2FEC-4B7B-B32D-25287E1DF873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{954DEBC1-2FEC-4B7B-B32D-25287E1DF873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{954DEBC1-2FEC-4B7B-B32D-25287E1DF873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF165361-FE05-4CC9-9D94-CA98C4A74AB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

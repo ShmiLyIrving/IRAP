@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityCustomLog" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAoAwAiCBEIAACACwIAAAACAMEQAgADAKAAAgkACIAA=</HashCode>
+      <FileName>Entities\TEntityCustomLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityIMTR01" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TEntityIMTR01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityINVA01" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TEntityINVA01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityMORV00" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TEntityMORV00.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityPICK08" Collapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TEntityPICK08.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityPORV01" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TEntityPORV01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
