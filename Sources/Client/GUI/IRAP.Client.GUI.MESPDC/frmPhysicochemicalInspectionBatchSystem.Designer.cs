@@ -75,7 +75,7 @@
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblFuncName.Size = new System.Drawing.Size(781, 56);
-            this.lblFuncName.Text = "熔炼与造型排程";
+            this.lblFuncName.Text = "熔炼理化检验";
             // 
             // panelControl1
             // 
@@ -91,15 +91,15 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(12, 12);
+            this.labelControl1.Location = new System.Drawing.Point(13, 14);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(56, 20);
+            this.labelControl1.Size = new System.Drawing.Size(98, 20);
             this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "炉次号：";
+            this.labelControl1.Text = "请输入炉次号：";
             // 
             // edtBatchNo
             // 
-            this.edtBatchNo.Location = new System.Drawing.Point(74, 9);
+            this.edtBatchNo.Location = new System.Drawing.Point(117, 11);
             this.edtBatchNo.Name = "edtBatchNo";
             this.edtBatchNo.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtBatchNo.Properties.Appearance.Options.UseFont = true;
@@ -126,6 +126,7 @@
             this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcMain.Location = new System.Drawing.Point(0, 104);
             this.tcMain.Name = "tcMain";
+            this.tcMain.Padding = new System.Windows.Forms.Padding(7);
             this.tcMain.SelectedTabPage = this.tabLQLH;
             this.tcMain.Size = new System.Drawing.Size(781, 414);
             this.tcMain.TabIndex = 5;
@@ -171,27 +172,30 @@
             this.scMPLH.Horizontal = false;
             this.scMPLH.Location = new System.Drawing.Point(2, 2);
             this.scMPLH.Name = "scMPLH";
+            this.scMPLH.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.scMPLH.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.scMPLH.Panel1.Controls.Add(this.grdPWOs);
-            this.scMPLH.Panel1.MinSize = 180;
+            this.scMPLH.Panel1.MinSize = 150;
+            this.scMPLH.Panel1.Padding = new System.Windows.Forms.Padding(7);
             this.scMPLH.Panel1.ShowCaption = true;
             this.scMPLH.Panel1.Text = "工单信息";
             this.scMPLH.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.scMPLH.Panel2.Padding = new System.Windows.Forms.Padding(8);
+            this.scMPLH.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.scMPLH.Panel2.ShowCaption = true;
             this.scMPLH.Panel2.Text = "检验内容";
             this.scMPLH.Size = new System.Drawing.Size(771, 337);
-            this.scMPLH.SplitterPosition = 180;
+            this.scMPLH.SplitterPosition = 150;
             this.scMPLH.TabIndex = 0;
             this.scMPLH.Text = "scMPLH";
             // 
             // grdPWOs
             // 
             this.grdPWOs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdPWOs.Location = new System.Drawing.Point(0, 0);
+            this.grdPWOs.Location = new System.Drawing.Point(7, 7);
             this.grdPWOs.MainView = this.grdvPWOs;
             this.grdPWOs.Name = "grdPWOs";
-            this.grdPWOs.Size = new System.Drawing.Size(767, 157);
+            this.grdPWOs.Padding = new System.Windows.Forms.Padding(7);
+            this.grdPWOs.Size = new System.Drawing.Size(753, 113);
             this.grdPWOs.TabIndex = 2;
             this.grdPWOs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvPWOs});
