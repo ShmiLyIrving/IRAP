@@ -159,7 +159,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 item.Scale = 6;
                 item.T20Code = "131231";
                 item.T20LeafID = 1231231;
-                item.T20Name = r.Next(1, 10000).ToString();
+                item.T20Name = "参数" + (i + 1).ToString();
                 item.UnitOfMeasure = "4";
                 item.DataXML = "<RF25><Row FactID =\"" + r.Next(1, 10000).ToString() + "\" Metric01=\"" + r.Next(1, 10000).ToString() + "\"></Row><Row FactID =\"" + r.Next(1, 10000).ToString() + "\" Metric01=\"" + r.Next(1, 10000).ToString() + "\"></Row></RF25>";
                 rlt.Add(item);
@@ -239,10 +239,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-                else
-                {
-                    InitInspectionItemsGrid(inspectionItems);
-                }
             }
             finally
             {
@@ -258,7 +254,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 item.Scale = 6;
                 item.T20Code = "131231";
                 item.T20LeafID = 1231231;
-                item.T20Name = r.Next(1, 10000).ToString();
+                item.T20Name = "参数" + (i + 1).ToString();
                 item.UnitOfMeasure = "4";
                 item.DataXML = "<RF25><Row FactID =\"" + r.Next(1, 10000).ToString() + "\" Metric01=\"" + r.Next(1, 10000).ToString() + "\"></Row><Row FactID =\"" + r.Next(1, 10000).ToString() + "\" Metric01=\"" + r.Next(1, 10000).ToString() + "\"></Row></RF25>";
                 inspectionItems.Add(item);

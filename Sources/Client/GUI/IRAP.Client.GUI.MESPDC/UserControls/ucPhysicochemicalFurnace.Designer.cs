@@ -73,9 +73,9 @@
             this.btn_save.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.Appearance.Options.UseFont = true;
             this.btn_save.Enabled = false;
-            this.btn_save.Location = new System.Drawing.Point(706, 45);
+            this.btn_save.Location = new System.Drawing.Point(706, 33);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(92, 24);
+            this.btn_save.Size = new System.Drawing.Size(92, 25);
             this.btn_save.TabIndex = 1;
             this.btn_save.Text = "保存";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
