@@ -42,61 +42,6 @@ namespace IRAP.BL.MES {
         #endregion
 
         /// <summary>
-        /// 获取信息站点上下文(工位或工作流结点功能信息)
-        /// </summary>
-        /// <param name="communityID">社区标识</param>
-        /// <param name="sysLogID">系统登录标识</param>
-        /// <returns></returns>
-        public IRAPJsonResult ufn_GetList_WIPStationsOfAHost(int communityID,long sysLogID, out int errCode,
-            out string errText) {
-            //todo:删除此句
-                sysLogID = GetSysLogID();
-            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
-                List<ProductionParam> datas = new List<ProductionParam>();
-
-                #region 创建数据库调用参数组，并赋值
-                IList<IDataParameter> paramList = new List<IDataParameter>();
-                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
-                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
-                WriteLog.Instance.Write(
-                    string.Format(
-                        "调用函数 IRAPMDM..ufn_GetList_WIPStationsOfAHost，" +
-                        "参数：CommunityID={0}|SysLogID={1}",
-                        communityID, sysLogID),
-                    strProcedureName);
-                #endregion
-
-                #region 执行数据库函数或存储过程
-                try {
-                    using (IRAPSQLConnection conn = new IRAPSQLConnection()) {
-                        string strSQL = "SELECT * " +
-                            "FROM IRAPMDM..ufn_GetList_WIPStationsOfAHost(" +
-                            "@CommunityID, @SysLogID)";
-
-                        IList<ProductionParam> lstDatas = conn.CallTableFunc<ProductionParam>(strSQL, paramList);
-                        datas = lstDatas.ToList<ProductionParam>();
-                        errCode = 0;
-                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
-                        WriteLog.Instance.Write(errText, strProcedureName);
-                    }
-                } catch (Exception error) {
-                    errCode = 99000;
-                    errText = string.Format("调用 IRAPMDM..ufn_GetList_WIPStationsOfAHost 函数发生异常：{0}", error.Message);
-                    WriteLog.Instance.Write(errText, strProcedureName);
-                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-                }
-                #endregion
-
-                return Json(datas);
-            } finally {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
-        }
-
-        /// <summary>
         /// 操作工编号检验
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -452,13 +397,25 @@ namespace IRAP.BL.MES {
         /// <param name="t133LeafID">设备叶标识</param>
         /// <param name="sysLogID">语言标识</param>
         /// <returns></returns>
-        public IRAPJsonResult ufn_GetInfo_SmeltBatchProduct(int communityID, int t107LeafID, int t216LeafID, int t133LeafID,
-             long sysLogID, out int errCode, out string errText) {
-            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+        public IRAPJsonResult ufn_GetInfo_SmeltBatchProduct(
+            int communityID,
+            int t107LeafID,
+            int t216LeafID,
+            int t133LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}", 
+                    className, 
+                    MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try {
-                List<SmeltBatchProductionInfo> datas = new List<SmeltBatchProductionInfo>();
+            try
+            {
+                SmeltBatchProductionInfo data = new SmeltBatchProductionInfo();
 
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
@@ -476,27 +433,43 @@ namespace IRAP.BL.MES {
                 #endregion
 
                 #region 执行数据库函数或存储过程
-                try {
-                    using (IRAPSQLConnection conn = new IRAPSQLConnection()) {
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
                         string strSQL = "SELECT * " +
                             "FROM IRAPMES..ufn_GetInfo_SmeltBatchProduct(" +
                             "@CommunityID,@T107LeafID,@T216LeafID,@T133LeafID, @SysLogID)";
-                        IList<SmeltBatchProductionInfo> lstDatas = conn.CallTableFunc<SmeltBatchProductionInfo>(strSQL, paramList);
-                        datas = lstDatas.ToList<SmeltBatchProductionInfo>();
+
+                        IList<SmeltBatchProductionInfo> lstDatas = 
+                            conn.CallTableFunc<SmeltBatchProductionInfo>(strSQL, paramList);
+                        if (lstDatas.Count > 0)
+                            data = lstDatas[0];
                         errCode = 0;
-                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        errText = string.Format("调用成功！共获得 {0} 条记录", lstDatas.Count);
                         WriteLog.Instance.Write(errText, strProcedureName);
                     }
-                } catch (Exception error) {
+                }
+                catch (Exception error)
+                {
                     errCode = 99000;
-                    errText = string.Format("调用函数ufn_GetInfo_SmeltBatchProduct发生异常：{0}", error.Message);
+                    errText = 
+                        string.Format(
+                            "调用函数 IRAPMES..ufn_GetInfo_SmeltBatchProduct 发生异常：{0}", 
+                            error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                 }
+                finally
+                {
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
                 #endregion
 
-                return Json(datas);
-            } finally {
+                return Json(data);
+            }
+            finally
+            {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
