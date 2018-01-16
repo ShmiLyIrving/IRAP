@@ -271,6 +271,12 @@
     <Compile Include="UserControls\ucBatchSysProduction.Designer.cs">
       <DependentUpon>ucBatchSysProduction.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucCasting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucCasting.Designer.cs">
+      <DependentUpon>ucCasting.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucDetailGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -441,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucBatchSysProduction.resx">
       <DependentUpon>ucBatchSysProduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucCasting.resx">
+      <DependentUpon>ucCasting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucDetailGrid.resx">
       <DependentUpon>ucDetailGrid.cs</DependentUpon>
