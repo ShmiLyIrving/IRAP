@@ -49,7 +49,7 @@ namespace IRAP.PLC.Collection
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 1, Name = "BF-0017", });
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 2, Name = "BF-0825", });
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 3, Name = "BF-Leak" });
-                cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 3, Name = "BF-Tighten" });
+                cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 4, Name = "BF-Tighten" });
             }
             else
             {
