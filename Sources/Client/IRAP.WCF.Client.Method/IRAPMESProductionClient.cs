@@ -67,13 +67,7 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-                        var datas = rlt as List<ProductionParam>;
-                        if (datas == null || datas.Count == 0) {
-                            errCode = 99;
-                            errText = "没有找到信息站点上下文，请检查配置！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                            return null;
-                        }
+                        var datas = rlt as List<ProductionParam>; 
                         return datas;
                     }
                 }
@@ -129,13 +123,7 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-                        var datas = rlt as List<long>;
-                        if (datas == null || datas.Count == 0) {
-                            errCode = 99;
-                            errText = "操作工不存在，请重新输入！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                            return false;
-                        }
+                        var datas = rlt as List<long>; 
                         return true;
                     }
                 }
@@ -199,13 +187,7 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-                        var datas = rlt as List<WaitingSmelt>;
-                        if (datas == null || datas.Count == 0) {
-                            errCode = 99;
-                            errText = "没有找到炉次号，请检查配置！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                            return null;
-                        }
+                        var datas = rlt as List<WaitingSmelt>; 
                         return datas;
                     }
                 }
@@ -263,13 +245,7 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-                        var datas = rlt as List<OrderInfo>;
-                        if (datas == null || datas.Count == 0) {
-                            errCode = 99;
-                            errText = "没有找到订单信息，请检查配置！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                            return null;
-                        }
+                        var datas = rlt as List<OrderInfo>; 
                         return datas;
                     }
                 }
@@ -339,13 +315,7 @@ namespace IRAP.WCF.Client.Method {
 //                        datas.Add(new SmeltMaterialItem() { Ordinal = 3, T101LeafID = 0003, T101Code = "0003", T101Name = "材料3号" });
 //                        #endregion
 //#else 
-                        var datas = rlt as List<SmeltMaterialItem>;
-                        if (datas == null || datas.Count == 0) {
-                            errCode = 99;
-                            errText = "没有找到配料信息，请检查配置！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                            return null;
-                        }
+                        var datas = rlt as List<SmeltMaterialItem>; 
 //#endif
 
                         return datas;
@@ -414,13 +384,7 @@ namespace IRAP.WCF.Client.Method {
 //                        datas.Add(new SmeltMethodItem() { Ordinal = 1, T20Code="0001", T20LeafID = 0001, T20Name = "开炉时间" });
 //                        datas.Add(new SmeltMethodItem() { Ordinal = 1, T20Code="0002", T20LeafID = 0002, T20Name = "电表开始度数" });
 //#else
-                         var datas = rlt as List<SmeltMethodItem>;
-                        if (datas == null || datas.Count == 0) {
-                            errCode = 99;
-                            errText = "没有找到生产开炉参数，请检查配置！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                            return null;
-                        }
+                         var datas = rlt as List<SmeltMethodItem>; 
                         
 //#endif
                         return datas;
@@ -480,10 +444,10 @@ namespace IRAP.WCF.Client.Method {
 
                 #region 执行存储过程或者函数
                 using (WCFClient client = new WCFClient()) {
-#if DEBUG
-                    errCode = 0;
-                    errText = "生产开始完成，请继续生产";
-#else
+//#if DEBUG
+//                    errCode = 0;
+//                    errText = "生产开始完成，请继续生产";
+//#else
                     object rlt =
                         client.WCFRESTFul(
                             "IRAP.BL.MES.dll",
@@ -493,7 +457,7 @@ namespace IRAP.WCF.Client.Method {
                         out errCode,
                         out errText);
 
-#endif
+//#endif
                     WriteLog.Instance.Write(
                         string.Format(
                             "({0}){1}", errCode, errText),
@@ -558,20 +522,17 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-#if DEBUG
-                        var datas = new List<SmeltBatchProductionInfo>();
-                        datas.Add(new SmeltBatchProductionInfo() { BatchNumber = "SD20180103003",BatchStartDate = new DateTime(2018,01,10,12,00,00),InProduction=1});
-#else
+//#if DEBUG
+//                        var datas = new List<SmeltBatchProductionInfo>();
+//                        datas.Add(new SmeltBatchProductionInfo() { BatchNumber = "SD20180103003",BatchStartDate = new DateTime(2018,01,10,12,00,00),InProduction=1,
+//                                                                   OperatorCode = "0000001", OperatorName = "Softland 开发人员"
+//                        });
+//#else
 
 
                         var datas = rlt as List<SmeltBatchProductionInfo>;
-                        if (datas == null || datas.Count == 0) {
-                            errCode = 99;
-                            errText = "没有找到重新加载信息，请检查配置！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                            return null;
-                        }
-#endif
+                         
+//#endif
                         return datas;
                     }
                 }
@@ -636,13 +597,7 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-                        var datas = rlt as List<SmeltMethodItemByOpType>;
-                        if (datas == null || datas.Count == 0) {
-                            errCode = 99;
-                            errText = "没有找到生产过程参数，请检查配置！";
-                            WriteLog.Instance.Write(errText, strProcedureName);
-                            return null;
-                        }
+                        var datas = rlt as List<SmeltMethodItemByOpType>; 
                         return datas;
                     }
                 }
@@ -698,7 +653,10 @@ namespace IRAP.WCF.Client.Method {
 
                 #region 执行存储过程或者函数
                 using (WCFClient client = new WCFClient()) {
-
+//#if DEBUG
+//                    errCode = 0;
+//                    errText = "保存成功！";
+//#else
                     object rlt =
                         client.WCFRESTFul(
                             "IRAP.BL.MES.dll",
@@ -711,6 +669,7 @@ namespace IRAP.WCF.Client.Method {
                         string.Format(
                             "({0}){1}", errCode, errText),
                         strProcedureName);
+//#endif 
 
                     if (errCode == 0) {
                         WriteLog.Instance.Write(errText, strProcedureName);
@@ -766,6 +725,11 @@ namespace IRAP.WCF.Client.Method {
 
                 #region 执行存储过程或者函数
                 using (WCFClient client = new WCFClient()) {
+//#if DEBUG
+//                    errCode = 0;
+//                    errText = "保存成功！";
+//#else
+
 
                     object rlt =
                         client.WCFRESTFul(
@@ -779,7 +743,7 @@ namespace IRAP.WCF.Client.Method {
                         string.Format(
                             "({0}){1}", errCode, errText),
                         strProcedureName);
-
+//#endif
                     if (errCode == 0) {
                         WriteLog.Instance.Write(errText, strProcedureName);
                         return;
