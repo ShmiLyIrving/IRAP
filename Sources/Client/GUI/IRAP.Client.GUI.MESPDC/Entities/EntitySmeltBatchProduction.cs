@@ -52,6 +52,15 @@ namespace IRAP.Client.GUI.MESPDC.Entities {
         /// </summary>
         public int Qty { get; set; }
 
+        /// <summary>
+        /// 是否只读
+        /// </summary>
+        public bool IsReadOnly {
+            get { return this._isReadOnly; }
+            set { this._isReadOnly = value; }
+        }
+        private bool _isReadOnly = false;
+
         public static SmeltMaterialItemClient Mapper<SmeltMaterialItemClient, SmeltMaterialItem>(SmeltMaterialItem s) {
             SmeltMaterialItemClient d = Activator.CreateInstance<SmeltMaterialItemClient>();
             try {
@@ -137,6 +146,8 @@ namespace IRAP.Client.GUI.MESPDC.Entities {
         } 
     }
 
-    
+    public enum Optype { 
+        Spectrum,Sample,Baked 
+    }
 
 }

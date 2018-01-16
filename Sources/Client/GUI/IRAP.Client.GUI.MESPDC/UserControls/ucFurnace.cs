@@ -15,6 +15,7 @@ using IRAP.Entity.UTS;
 using DevExpress.XtraGrid.Columns;
 using System.Xml;
 using IRAP.Client.GUI.MESPDC.Entities;
+using DevExpress.XtraVerticalGrid.Rows;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls {
     public partial class ucFurnace : XtraUserControl {
@@ -432,6 +433,241 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this._ProductingNow = info.InProduction == 1; 
         }
 
+        /// <summary>
+        /// 生产开始时，清空第一个页签
+        /// </summary>
+        private void ChangeTabPage() {
+            this.tabCtrlDetail.SelectedTabPage = this.tabPgSpectrum;
+            this.tabPgBurden.PageEnabled = false;
+        }
+
+        #endregion
+
+        #region 炉前光谱
+
+        /// <summary>
+        ///获取炉前光谱、浇三角试样、炉水出炉的参数
+        /// </summary>
+        private List<SmeltMethodItemByOpType> GetSmeltMethodItemByOpType(Optype opType) {
+            var operatorCode = this.txtOperator.Text;
+            var batchNumber = this.lblFurnaceTime.Text;
+            var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
+            int errCode;
+            string errText;
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                var datas = IRAPMESProductionClient.Instance.GetSmeltMethodItemByOpType(_communityID, GetOpType(opType),waitingSmelt.T131LeafID,
+                    _productionParam.T216LeafID,batchNumber, _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                return datas;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
+        private void SetParaGrid(Optype opType) {
+            switch (opType) {
+                case Optype.Spectrum:
+                    this.ucGrdSpectrum.Clear();
+                    break;
+                case Optype.Sample:
+                    this.ucGrdSample.Clear();
+                    break;
+                case Optype.Baked:
+                    this.ucGrdBaked.Clear();
+                    break;
+            }
+
+            var spectrumSmeltMethodItems = GetSmeltMethodItemByOpType(opType);
+            if (spectrumSmeltMethodItems==null||spectrumSmeltMethodItems.Count == 0) {
+                return;
+            }
+            InitInspectionItemsGrid(spectrumSmeltMethodItems, opType);
+        } 
+
+        /// <summary>
+        /// 生成参数值临时表
+        /// </summary>
+        /// <param name="items"></param>
+        private void InitInspectionItemsGrid(List<SmeltMethodItemByOpType> items,Optype opType) {
+            ucDetailGrid grd = this.ucGrdSpectrum;
+            switch (opType) {
+                case Optype.Spectrum:
+                    grd = this.ucGrdSpectrum;
+                    break;
+                case Optype.Sample:
+                     grd = this.ucGrdSample;
+                    break;
+                case Optype.Baked:
+                    grd = this.ucGrdBaked;
+                    break; 
+            }
+            DataTable dt = new DataTable();
+            foreach (SmeltMethodItemByOpType item in items) {
+                string colName = string.Format("Column{0}", item.Ordinal);
+                DataColumn dc = dt.Columns.Add(colName, typeof(string));
+                dc.Caption = item.T20Name;
+
+                EditorRow row = new EditorRow();
+                row.Properties.Caption = item.T20Name;
+                row.Properties.FieldName = colName;
+                grd.vGridControl.Rows.Add(row);
+            }
+
+            grd.DataSource = dt;
+            grd.vGridControl.BestFit();
+        }
+
+        private string GetOpType(Optype opType) {
+            switch (opType) {
+                default:
+                case Optype.Spectrum:
+                    return "LQGP";
+                case Optype.Sample:
+                    return "SSJSY";
+                case Optype.Baked:
+                    return "LLCL"; 
+            }
+        }
+
+        /// <summary>
+        /// 保存
+        /// </summary>
+        private bool SaveSmeltParas(Optype opType) { 
+            var batchNumber = this.lblFurnaceTime.Text; 
+            int errCode;
+            string errText;
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                IRAPMESProductionClient.Instance.SaveSmeltBatch(_communityID,GetOpType(opType), _productionParam.T216LeafID,
+                    _productionParam.T107LeafID, batchNumber, "", _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                } 
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                return true;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region 原材料调整
+        /// <summary>
+        /// 原材料调整保存
+        /// </summary>
+        private bool RowMatierialAjudgement() {
+            var operatorCode = this.txtOperator.Text;
+            var batchNumber = this.lblFurnaceTime.Text;
+            var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
+            var xml = GetRowMaterialXml(this.grdRowMaterial.DataSource as List<SmeltMaterialItemClient>);
+            int errCode;
+            string errText;
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                IRAPMESProductionClient.Instance.SaveSmeltBatchMaterial(_communityID, _productionParam.T216LeafID, _productionParam.T107LeafID,
+                    batchNumber, xml, _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                return true;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return false;
+        }
+
+        private void SetRowMaterial() { 
+            var smeltMaterialItems = GetSmeltMaterialItems();
+            if (smeltMaterialItems == null || smeltMaterialItems.Count == 0) {
+                return;
+            }
+            List<SmeltMaterialItemClient> newData = new List<SmeltMaterialItemClient>();
+            foreach (SmeltMaterialItemClient item in smeltMaterialItems) {
+                var historySmelt = GetHistorySmeltMaterial(item);
+                if (historySmelt ==null||historySmelt.Count == 0) {
+                    continue;
+                }
+                newData.AddRange(historySmelt);
+            }
+            newData.AddRange(smeltMaterialItems);
+            this.grdRowMaterial.DataSource = newData;
+        }
+
+        private string GetRowMaterialXml(List<SmeltMaterialItemClient> data) { 
+            if (data==null||data.Count == 0) {
+                return null;
+            }
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlElement root = xmlDoc.CreateElement("RSFact");
+            xmlDoc.AppendChild(root);  
+            
+            foreach (SmeltMaterialItemClient item in data) {
+                if (item.IsReadOnly) {
+                    continue;
+                }
+                var rF13Node = xmlDoc.CreateElement("RF13_1");
+                rF13Node.SetAttribute("Ordinal", item.Ordinal.ToString());
+                rF13Node.SetAttribute("T101LeafID", item.T101LeafID.ToString());
+                rF13Node.SetAttribute("LotNumber", item.LotNumber.ToString());
+                rF13Node.SetAttribute("Qty", item.Qty.ToString());
+                root.AppendChild(rF13Node);
+            }
+            return xmlDoc.OuterXml;
+        }
+
+        /// <summary>
+        /// 获取历史数据
+        /// </summary>
+        /// <param name="rowSmelt"></param>
+        /// <returns></returns>
+        private List<SmeltMaterialItemClient> GetHistorySmeltMaterial(SmeltMaterialItemClient rowSmelt) {
+            if (string.IsNullOrEmpty(rowSmelt.DataXML)) {
+                return null;
+            }
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(rowSmelt.DataXML);
+            var nodes = doc.SelectNodes("RF13/Row");
+            if (nodes==null||nodes.Count==0) {
+                return null;
+            }
+            List<SmeltMaterialItemClient> items = new List<SmeltMaterialItemClient>();
+            foreach (XmlNode node in nodes) {
+                SmeltMaterialItemClient item = new SmeltMaterialItemClient()
+                { IsReadOnly = true,T101Code = rowSmelt.T101Code,T101LeafID = rowSmelt.T101LeafID,T101Name = rowSmelt.T101Name};
+                var lotNumber = node.Attributes["LotNumber"] == null ? "" : node.Attributes["LotNumber"].Value;
+                var qty = node.Attributes["Qty"] == null ? 0 : Convert.ToInt32(node.Attributes["Qty"].Value);
+                item.LotNumber = lotNumber;
+                item.Qty = qty;
+                items.Add(item);
+            }
+            return items;
+        }
         #endregion
 
         #region 事件
@@ -455,7 +691,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 return;
             }
             SetCurrentSmeltInfo(smeltBatchProductionInfos[0]);
-
+            ChangeTabPage();
+            SetParaGrid(Optype.Spectrum);
+            SetParaGrid(Optype.Sample);
+            SetParaGrid(Optype.Baked);
+            SetRowMaterial();
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
@@ -476,11 +716,26 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 lblProductionTimeResult.Text += string.Format("{0}秒", span.Seconds);
 
         }
-        #endregion
+         
+        void ucGrdSpectrum_SaveClick(object sender, System.EventArgs e) {
+            if (!SaveSmeltParas(Optype.Spectrum)) {
+                return;
+            }
+            this.ucGrdSpectrum.DataSource.Rows.Clear();
+            this.ucGrdSpectrum.DataSource.Columns.Clear();
+            this.ucGrdSpectrum.vGridControl.Rows.Clear(); 
+        }
 
-       
+        private void btnRowMaterialSave_Click(object sender, EventArgs e) {
+            if (!RowMatierialAjudgement()) {
+                return;
+            }
+            SetRowMaterial();
+        }
+        #endregion  
 
-       
+        private void btnPrint_Click(object sender, EventArgs e) {
 
+        }
     }
 }

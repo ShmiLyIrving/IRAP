@@ -23,7 +23,6 @@
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             this.grpCtrProductionInfo = new DevExpress.XtraEditors.GroupControl();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
@@ -56,16 +55,23 @@
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.ColQty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabPgSpectrum = new DevExpress.XtraTab.XtraTabPage();
-            this.ucDetailGrid2 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
+            this.ucGrdSpectrum = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.tabPgMatieralAjustment = new DevExpress.XtraTab.XtraTabPage();
-            this.ucDetailGrid3 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
+            this.btnRowMaterialSave = new DevExpress.XtraEditors.SimpleButton();
+            this.grdRowMaterial = new DevExpress.XtraGrid.GridControl();
+            this.grdRowMaterialView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabPgSample = new DevExpress.XtraTab.XtraTabPage();
-            this.ucDetailGrid4 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
+            this.ucGrdSample = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.tabPgBaked = new DevExpress.XtraTab.XtraTabPage();
-            this.ucDetailGrid1 = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
+            this.ucGrdBaked = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.dtProductDate = new DevExpress.XtraEditors.DateEdit();
             this.lblFurnaceTime = new DevExpress.XtraEditors.LabelControl();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).BeginInit();
             this.grpCtrProductionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
@@ -87,6 +93,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             this.tabPgSpectrum.SuspendLayout();
             this.tabPgMatieralAjustment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRowMaterial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRowMaterialView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             this.tabPgSample.SuspendLayout();
             this.tabPgBaked.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -113,6 +122,7 @@
             this.btnPrint.Size = new System.Drawing.Size(75, 23);
             this.btnPrint.TabIndex = 1;
             this.btnPrint.Text = "打印";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // grdCtrProductionInfo
             // 
@@ -458,67 +468,168 @@
             // tabPgSpectrum
             // 
             this.tabPgSpectrum.AutoScroll = true;
-            this.tabPgSpectrum.Controls.Add(this.ucDetailGrid2);
+            this.tabPgSpectrum.Controls.Add(this.ucGrdSpectrum);
             this.tabPgSpectrum.Name = "tabPgSpectrum";
             this.tabPgSpectrum.Size = new System.Drawing.Size(766, 292);
             this.tabPgSpectrum.Text = "炉前光谱";
             this.tabPgSpectrum.Tooltip = "炉前光谱";
             // 
-            // ucDetailGrid2
+            // ucGrdSpectrum
             // 
-            this.ucDetailGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDetailGrid2.Location = new System.Drawing.Point(0, 0);
-            this.ucDetailGrid2.Name = "ucDetailGrid2";
-            this.ucDetailGrid2.Size = new System.Drawing.Size(766, 292);
-            this.ucDetailGrid2.TabIndex = 0;
+            this.ucGrdSpectrum.DataSource = null;
+            this.ucGrdSpectrum.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucGrdSpectrum.Location = new System.Drawing.Point(0, 0);
+            this.ucGrdSpectrum.Name = "ucGrdSpectrum";
+            this.ucGrdSpectrum.Size = new System.Drawing.Size(766, 292);
+            this.ucGrdSpectrum.TabIndex = 0;
+            this.ucGrdSpectrum.Title = "参数";
             // 
             // tabPgMatieralAjustment
             // 
-            this.tabPgMatieralAjustment.Controls.Add(this.ucDetailGrid3);
+            this.tabPgMatieralAjustment.Controls.Add(this.btnRowMaterialSave);
+            this.tabPgMatieralAjustment.Controls.Add(this.grdRowMaterial);
             this.tabPgMatieralAjustment.Name = "tabPgMatieralAjustment";
             this.tabPgMatieralAjustment.Size = new System.Drawing.Size(766, 292);
             this.tabPgMatieralAjustment.Text = "原材料调整";
             this.tabPgMatieralAjustment.Tooltip = "原材料调整";
             // 
-            // ucDetailGrid3
+            // btnRowMaterialSave
             // 
-            this.ucDetailGrid3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDetailGrid3.Location = new System.Drawing.Point(0, 0);
-            this.ucDetailGrid3.Name = "ucDetailGrid3";
-            this.ucDetailGrid3.Size = new System.Drawing.Size(766, 292);
-            this.ucDetailGrid3.TabIndex = 0;
+            this.btnRowMaterialSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRowMaterialSave.Location = new System.Drawing.Point(688, 2);
+            this.btnRowMaterialSave.Name = "btnRowMaterialSave";
+            this.btnRowMaterialSave.Size = new System.Drawing.Size(76, 45);
+            this.btnRowMaterialSave.TabIndex = 6;
+            this.btnRowMaterialSave.Text = "保存";
+            this.btnRowMaterialSave.Click += new System.EventHandler(this.btnRowMaterialSave_Click);
+            // 
+            // grdRowMaterial
+            // 
+            this.grdRowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdRowMaterial.Location = new System.Drawing.Point(1, 2);
+            this.grdRowMaterial.MainView = this.grdRowMaterialView;
+            this.grdRowMaterial.Name = "grdRowMaterial";
+            this.grdRowMaterial.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemComboBox2});
+            this.grdRowMaterial.Size = new System.Drawing.Size(685, 289);
+            this.grdRowMaterial.TabIndex = 1;
+            this.grdRowMaterial.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdRowMaterialView});
+            // 
+            // grdRowMaterialView
+            // 
+            this.grdRowMaterialView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4});
+            this.grdRowMaterialView.GridControl = this.grdRowMaterial;
+            this.grdRowMaterialView.Name = "grdRowMaterialView";
+            this.grdRowMaterialView.OptionsBehavior.AutoSelectAllInEditor = false;
+            this.grdRowMaterialView.OptionsBehavior.AutoUpdateTotalSummary = false;
+            this.grdRowMaterialView.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
+            this.grdRowMaterialView.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
+            this.grdRowMaterialView.OptionsCustomization.AllowColumnMoving = false;
+            this.grdRowMaterialView.OptionsCustomization.AllowGroup = false;
+            this.grdRowMaterialView.OptionsMenu.EnableColumnMenu = false;
+            this.grdRowMaterialView.OptionsMenu.EnableFooterMenu = false;
+            this.grdRowMaterialView.OptionsMenu.EnableGroupPanelMenu = false;
+            this.grdRowMaterialView.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.grdRowMaterialView.OptionsMenu.ShowAutoFilterRowItem = false;
+            this.grdRowMaterialView.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
+            this.grdRowMaterialView.OptionsMenu.ShowGroupSortSummaryItems = false;
+            this.grdRowMaterialView.OptionsMenu.ShowSplitItem = false;
+            this.grdRowMaterialView.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "原材料编号";
+            this.gridColumn1.FieldName = "T101Code";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn1.OptionsColumn.AllowMove = false;
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "原材料名称";
+            this.gridColumn2.FieldName = "T101Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.AllowMove = false;
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "批次号";
+            this.gridColumn3.ColumnEdit = this.repositoryItemComboBox2;
+            this.gridColumn3.FieldName = "LotNumber";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowMove = false;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // repositoryItemComboBox2
+            // 
+            this.repositoryItemComboBox2.AutoHeight = false;
+            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            this.repositoryItemComboBox2.ReadOnly = true;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "数量";
+            this.gridColumn4.FieldName = "Qty";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn4.OptionsColumn.AllowMove = false;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
             // 
             // tabPgSample
             // 
-            this.tabPgSample.Controls.Add(this.ucDetailGrid4);
+            this.tabPgSample.Controls.Add(this.ucGrdSample);
             this.tabPgSample.Name = "tabPgSample";
             this.tabPgSample.Size = new System.Drawing.Size(766, 292);
             this.tabPgSample.Text = "浇三角试样";
             this.tabPgSample.Tooltip = "浇三角试样";
             // 
-            // ucDetailGrid4
+            // ucGrdSample
             // 
-            this.ucDetailGrid4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDetailGrid4.Location = new System.Drawing.Point(0, 0);
-            this.ucDetailGrid4.Name = "ucDetailGrid4";
-            this.ucDetailGrid4.Size = new System.Drawing.Size(766, 292);
-            this.ucDetailGrid4.TabIndex = 0;
+            this.ucGrdSample.DataSource = null;
+            this.ucGrdSample.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucGrdSample.Location = new System.Drawing.Point(0, 0);
+            this.ucGrdSample.Name = "ucGrdSample";
+            this.ucGrdSample.Size = new System.Drawing.Size(766, 292);
+            this.ucGrdSample.TabIndex = 0;
+            this.ucGrdSample.Title = "参数";
             // 
             // tabPgBaked
             // 
-            this.tabPgBaked.Controls.Add(this.ucDetailGrid1);
+            this.tabPgBaked.Controls.Add(this.ucGrdBaked);
             this.tabPgBaked.Name = "tabPgBaked";
             this.tabPgBaked.Size = new System.Drawing.Size(766, 292);
             this.tabPgBaked.Text = "炉水出炉";
             this.tabPgBaked.Tooltip = "炉水出炉";
             // 
-            // ucDetailGrid1
+            // ucGrdBaked
             // 
-            this.ucDetailGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDetailGrid1.Location = new System.Drawing.Point(0, 0);
-            this.ucDetailGrid1.Name = "ucDetailGrid1";
-            this.ucDetailGrid1.Size = new System.Drawing.Size(766, 292);
-            this.ucDetailGrid1.TabIndex = 0;
+            this.ucGrdBaked.DataSource = null;
+            this.ucGrdBaked.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucGrdBaked.Location = new System.Drawing.Point(0, 0);
+            this.ucGrdBaked.Name = "ucGrdBaked";
+            this.ucGrdBaked.Size = new System.Drawing.Size(766, 292);
+            this.ucGrdBaked.TabIndex = 0;
+            this.ucGrdBaked.Title = "参数";
             // 
             // dtProductDate
             // 
@@ -589,6 +700,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             this.tabPgSpectrum.ResumeLayout(false);
             this.tabPgMatieralAjustment.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdRowMaterial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRowMaterialView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             this.tabPgSample.ResumeLayout(false);
             this.tabPgBaked.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).EndInit();
@@ -624,10 +738,8 @@
         private DevExpress.XtraTab.XtraTabPage tabPgMatieralAjustment;
         private DevExpress.XtraTab.XtraTabPage tabPgSample;
         private DevExpress.XtraTab.XtraTabPage tabPgBaked;
-        private ucDetailGrid ucDetailGrid2;
-        private ucDetailGrid ucDetailGrid3;
-        private ucDetailGrid ucDetailGrid4;
-        private ucDetailGrid ucDetailGrid1;
+        private ucDetailGrid ucGrdSample;
+        private ucDetailGrid ucGrdBaked;
         private DevExpress.XtraEditors.DateEdit dtProductDate;
         private DevExpress.XtraEditors.LabelControl lblFurnaceTime;
         private DevExpress.XtraGrid.Columns.GridColumn ColT101Code;
@@ -642,5 +754,14 @@
         private DevExpress.XtraEditors.LabelControl lblProductionTimeResult;
         private DevExpress.XtraEditors.LabelControl lblProductionTime;
         private System.Windows.Forms.Timer timer1;
+        private ucDetailGrid ucGrdSpectrum;
+        private DevExpress.XtraGrid.GridControl grdRowMaterial;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdRowMaterialView;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.SimpleButton btnRowMaterialSave;
     }
 }
