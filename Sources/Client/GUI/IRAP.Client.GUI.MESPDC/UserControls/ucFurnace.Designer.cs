@@ -24,6 +24,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.grpCtrProductionInfo = new DevExpress.XtraEditors.GroupControl();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
@@ -72,7 +73,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.dtProductDate = new DevExpress.XtraEditors.DateEdit();
             this.lblFurnaceTime = new DevExpress.XtraEditors.LabelControl();
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).BeginInit();
             this.grpCtrProductionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
@@ -634,7 +635,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             // dtProductDate
             // 
-            this.dtProductDate.EditValue = DateTime.Now;
+            this.dtProductDate.EditValue = new System.DateTime(2018, 1, 16, 14, 57, 23, 194);
             this.dtProductDate.Location = new System.Drawing.Point(263, 12);
             this.dtProductDate.Name = "dtProductDate";
             this.dtProductDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -646,6 +647,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.dtProductDate.Properties.NullDateCalendarValue = new System.DateTime(2018, 1, 3, 14, 12, 53, 0);
             this.dtProductDate.Size = new System.Drawing.Size(132, 20);
             this.dtProductDate.TabIndex = 10;
+            this.dtProductDate.EditValueChanged += new System.EventHandler(this.dtProductDate_EditValueChanged);
             // 
             // lblFurnaceTime
             // 

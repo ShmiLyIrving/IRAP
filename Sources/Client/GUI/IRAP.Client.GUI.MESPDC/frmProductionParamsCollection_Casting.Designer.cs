@@ -63,6 +63,7 @@
             this.tabPageControl.Name = "tabPageControl";
             this.tabPageControl.Size = new System.Drawing.Size(887, 435);
             this.tabPageControl.TabIndex = 0;
+            this.tabPageControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tabPageControl_SelectedPageChanged);
             // 
             // frmProductionParamsCollection_Casting
             // 

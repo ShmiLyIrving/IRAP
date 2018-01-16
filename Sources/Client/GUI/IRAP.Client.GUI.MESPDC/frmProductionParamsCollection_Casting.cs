@@ -92,7 +92,23 @@ namespace IRAP.Client.GUI.MESPDC {
             var furnaces = GetFurnaces();
             CreateFurnaceTabPages(furnaces);
         }
+
+        private void tabPageControl_SelectedPageChanged(object sender, TabPageChangedEventArgs e) {
+            var controls = this.tabPageControl.SelectedTabPage.Controls;
+            if (controls.Count == 0) {
+                return;
+            }
+            foreach (Control col in controls) {
+                var furnace = col as ucFurnace;
+                if (furnace == null) {
+                    continue;
+                }
+                furnace.RefreshFurnace();
+            }
+        }
         #endregion
+
+       
 
         
        

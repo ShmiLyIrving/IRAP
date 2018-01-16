@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.lblProductTimeSpan = new DevExpress.XtraEditors.LabelControl();
@@ -78,7 +77,7 @@
             this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
             this.btnEnd = new DevExpress.XtraEditors.SimpleButton();
             this.lblCurrentTime = new DevExpress.XtraEditors.LabelControl();
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
