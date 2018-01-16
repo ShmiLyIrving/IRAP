@@ -197,7 +197,14 @@ namespace IRAP.PLC.Collection
                 message.Text = FormatXML(xml);
                 message.Properties.SetString("Filter", "BWI");
                 message.Properties.SetString("ESBServerAddr", "");
-                message.Properties.SetString("ExCode", "MES2DPA");
+                if (!string.IsNullOrEmpty(SystemParams.Instance.ExCode))
+                {
+                    message.Properties.SetString("ExCode", SystemParams.Instance.ExCode);
+                }
+                else
+                {
+                    message.Properties.SetString("ExCode", "MES2DPA");
+                }
                 message.NMSType = "XML";
 
                 prod.Send(message, MsgDeliveryMode.Persistent, MsgPriority.Normal, TimeSpan.MinValue);

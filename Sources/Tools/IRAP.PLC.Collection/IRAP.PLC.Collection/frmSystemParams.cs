@@ -72,6 +72,7 @@ namespace IRAP.PLC.Collection
             cboDeviceType.SelectedIndex = SystemParams.Instance.DeviceType;
             edtLastCheckPoint.Value = SystemParams.Instance.BeginDT;
             edtT216Code.Text = SystemParams.Instance.T216Code;
+            edtExCode.Text = SystemParams.Instance.ExCode;
         }
 
         private void edtBrokeURI_Validated(object sender, EventArgs e)
@@ -140,6 +141,11 @@ namespace IRAP.PLC.Collection
         private void edtLastCheckPoint_ValueChanged(object sender, EventArgs e)
         {
             SystemParams.Instance.BeginDT = edtLastCheckPoint.Value;
+        }
+
+        private void edtExCode_Validated(object sender, EventArgs e)
+        {
+            SystemParams.Instance.ExCode = edtExCode.Text;
         }
     }
 

@@ -39,6 +39,14 @@ namespace IRAP.PLC.Collection
         }
 
         /// <summary>
+        /// ExCode
+        /// </summary>
+        public string ExCode
+        {
+            get { return IniFile.ReadString("ActiveMQ", "ExCode", "", attrFileName); }
+            set { IniFile.WriteString("ActiveMQ", "ExCode", value, attrFileName); }
+        }
+        /// <summary>
         /// 程序自动更新配置文件来源
         /// </summary>
         public string UpgradeURL

@@ -72,6 +72,8 @@ namespace IRAP.PLC.Collection
         private XmlNode CreateDataRow(XmlDocument xml, DataRow dr)
         {
             XmlNode node = xml.CreateElement("Row");
+            try
+            {
                 node.Attributes.Append(
                     CreateAttr(
                         xml,
@@ -89,7 +91,11 @@ namespace IRAP.PLC.Collection
                 node.Attributes.Append(CreateAttr(xml, "流量测试压损KPa", dr["流量测试压损KPa"].ToString().Trim()));
                 node.Attributes.Append(CreateAttr(xml, "工件号Num", dr["工件号Num"].ToString().Trim()));
                 node.Attributes.Append(CreateAttr(xml, "转盘号Num", dr["转盘号Num"].ToString().Trim()));
-
+            }
+            catch(Exception e)
+            {
+                WriteLogInThread(e.Message.ToString() + "请检查数据库文件是否选择正确");
+            }
             return node;
         }
     }

@@ -191,7 +191,7 @@ namespace IRAP.PLC.Collection
                 }
                 catch (Exception error)
                 {
-
+                    
                 }
             }
             finally

@@ -71,24 +71,30 @@ namespace IRAP.PLC.Collection
         private XmlNode CreateDataRow(XmlDocument xml, DataRow dr)
         {
             XmlNode node = xml.CreateElement("Row");
-            node.Attributes.Append(
-                CreateAttr(
-                    xml,
-                    "CollectingTime",
-                    StrDateTimeToUnitTime(dr["时间"].ToString().Trim())));
-            node.Attributes.Append(CreateAttr(xml, "EquipmentCode", SystemParams.Instance.DeviceCode));
-            node.Attributes.Append(CreateAttr(xml, "OperationCode", operationCode));
-            node.Attributes.Append(CreateAttr(xml, "时间", dr["时间"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "测试编码", dr["测试编码"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "测试结果", dr["测试结果"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "左装配位移", dr["左装配位移"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "右装配位移", dr["右装配位移"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "传感器压装位移", dr["传感器压装位移"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "传感器压装压力", dr["传感器压装压力"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "传感器电压", dr["传感器电压"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "拧紧枪扭矩", dr["拧紧枪扭矩"].ToString().Trim()));
-            node.Attributes.Append(CreateAttr(xml, "测试员", dr["测试员"].ToString().Trim()));
-
+            try
+            {
+                node.Attributes.Append(
+                    CreateAttr(
+                        xml,
+                        "CollectingTime",
+                        StrDateTimeToUnitTime(dr["时间"].ToString().Trim())));
+                node.Attributes.Append(CreateAttr(xml, "EquipmentCode", SystemParams.Instance.DeviceCode));
+                node.Attributes.Append(CreateAttr(xml, "OperationCode", operationCode));
+                node.Attributes.Append(CreateAttr(xml, "时间", dr["时间"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "测试编码", dr["测试编码"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "测试结果", dr["测试结果"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "左装配位移", dr["左装配位移"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "右装配位移", dr["右装配位移"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "传感器压装位移", dr["传感器压装位移"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "传感器压装压力", dr["传感器压装压力"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "传感器电压", dr["传感器电压"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "拧紧枪扭矩", dr["拧紧枪扭矩"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "测试员", dr["测试员"].ToString().Trim()));
+            }
+            catch(Exception e)
+            {
+                WriteLogInThread(e.Message.ToString() + "请检查数据库文件是否选择正确");
+            }
             return node;
         }
     }

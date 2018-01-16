@@ -57,6 +57,8 @@
             this.edtT133Code = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label9 = new System.Windows.Forms.Label();
+            this.edtExCode = new System.Windows.Forms.TextBox();
             this.gpxESBParams.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -66,6 +68,8 @@
             // gpxESBParams
             // 
             resources.ApplyResources(this.gpxESBParams, "gpxESBParams");
+            this.gpxESBParams.Controls.Add(this.edtExCode);
+            this.gpxESBParams.Controls.Add(this.label9);
             this.gpxESBParams.Controls.Add(this.edtQueueName);
             this.gpxESBParams.Controls.Add(this.lblQueueName);
             this.gpxESBParams.Controls.Add(this.edtBrokeURI);
@@ -195,19 +199,10 @@
             // 
             resources.ApplyResources(this.cboDeviceType, "cboDeviceType");
             this.cboDeviceType.Name = "cboDeviceType";
-            this.cboDeviceType.Properties.AccessibleDescription = resources.GetString("cboDeviceType.Properties.AccessibleDescription");
-            this.cboDeviceType.Properties.AccessibleName = resources.GetString("cboDeviceType.Properties.AccessibleName");
             this.cboDeviceType.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("cboDeviceType.Properties.Appearance.Font")));
-            this.cboDeviceType.Properties.Appearance.FontSizeDelta = ((int)(resources.GetObject("cboDeviceType.Properties.Appearance.FontSizeDelta")));
-            this.cboDeviceType.Properties.Appearance.FontStyleDelta = ((System.Drawing.FontStyle)(resources.GetObject("cboDeviceType.Properties.Appearance.FontStyleDelta")));
-            this.cboDeviceType.Properties.Appearance.GradientMode = ((System.Drawing.Drawing2D.LinearGradientMode)(resources.GetObject("cboDeviceType.Properties.Appearance.GradientMode")));
-            this.cboDeviceType.Properties.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("cboDeviceType.Properties.Appearance.Image")));
             this.cboDeviceType.Properties.Appearance.Options.UseFont = true;
-            this.cboDeviceType.Properties.AutoHeight = ((bool)(resources.GetObject("cboDeviceType.Properties.AutoHeight")));
             this.cboDeviceType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("cboDeviceType.Properties.Buttons"))))});
-            this.cboDeviceType.Properties.NullValuePrompt = resources.GetString("cboDeviceType.Properties.NullValuePrompt");
-            this.cboDeviceType.Properties.NullValuePromptShowForEmptyValue = ((bool)(resources.GetObject("cboDeviceType.Properties.NullValuePromptShowForEmptyValue")));
             this.cboDeviceType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboDeviceType.SelectedIndexChanged += new System.EventHandler(this.cboDeviceType_SelectedIndexChanged);
             // 
@@ -264,11 +259,22 @@
             this.openFileDialog.FileName = "openFileDialog1";
             resources.ApplyResources(this.openFileDialog, "openFileDialog");
             // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // edtExCode
+            // 
+            resources.ApplyResources(this.edtExCode, "edtExCode");
+            this.edtExCode.Name = "edtExCode";
+            this.edtExCode.Validated += new System.EventHandler(this.edtExCode_Validated);
+            // 
             // frmSystemParams
             // 
-            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -323,5 +329,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox edtT216Code;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox edtExCode;
+        private System.Windows.Forms.Label label9;
     }
 }
