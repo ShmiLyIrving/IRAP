@@ -635,7 +635,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             // dtProductDate
             // 
-            this.dtProductDate.EditValue = new System.DateTime(2018, 1, 16, 14, 57, 23, 194);
+            this.dtProductDate.EditValue = System.DateTime.Now;
             this.dtProductDate.Location = new System.Drawing.Point(263, 12);
             this.dtProductDate.Name = "dtProductDate";
             this.dtProductDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -643,8 +643,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.dtProductDate.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.False;
             this.dtProductDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtProductDate.Properties.MinValue = new System.DateTime(2018, 1, 2, 14, 23, 17, 448);
-            this.dtProductDate.Properties.NullDateCalendarValue = new System.DateTime(2018, 1, 3, 14, 12, 53, 0);
+            this.dtProductDate.Properties.MinValue = System.DateTime.Now.AddDays(-1);
+            this.dtProductDate.Properties.NullDateCalendarValue = System.DateTime.Now;
             this.dtProductDate.Size = new System.Drawing.Size(132, 20);
             this.dtProductDate.TabIndex = 10;
             this.dtProductDate.EditValueChanged += new System.EventHandler(this.dtProductDate_EditValueChanged);
