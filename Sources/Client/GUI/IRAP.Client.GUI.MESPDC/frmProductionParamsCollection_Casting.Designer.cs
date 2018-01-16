@@ -25,7 +25,6 @@
         private void InitializeComponent() {
             this.panelContent = new DevExpress.XtraEditors.PanelControl();
             this.tabPageControl = new DevExpress.XtraTab.XtraTabControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelContent)).BeginInit();
@@ -40,12 +39,6 @@
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblFuncName.Text = "frmCustomBase";
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.simpleButton1);
-            this.panelControl1.Controls.SetChildIndex(this.lblFuncName, 0);
-            this.panelControl1.Controls.SetChildIndex(this.simpleButton1, 0);
             // 
             // toolTipController
             // 
@@ -71,15 +64,6 @@
             this.tabPageControl.Size = new System.Drawing.Size(887, 435);
             this.tabPageControl.TabIndex = 0;
             // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(39, 12);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 1;
-            this.simpleButton1.Text = "重新加载界面";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // frmProductionParamsCollection_Casting
             // 
             this.Appearance.Options.UseFont = true;
@@ -101,7 +85,6 @@
         #endregion
 
         private DevExpress.XtraEditors.PanelControl panelContent;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraTab.XtraTabControl tabPageControl;
     }
 }

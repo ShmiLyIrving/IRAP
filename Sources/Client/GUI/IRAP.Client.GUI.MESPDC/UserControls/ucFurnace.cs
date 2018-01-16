@@ -735,6 +735,256 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         #endregion  
 
         private void btnPrint_Click(object sender, EventArgs e) {
+            //string strProcedureName =string.Format("{0}.{1}",className,MethodBase.GetCurrentMethod().Name);
+
+            //WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            //try {
+            //    string lotNumber = "";
+
+            //    #region 调用存储过程，在系统中登记当前生产工单的物料配送信息已经被打印
+            //    bool saveSucccessed = false;
+            //    saveSucccessed = SavePWOMaterialDeliver();
+            //    #endregion
+
+            //    if (saveSucccessed) {
+            //        #region 获取当前工单的生产批次号
+            //        {
+            //            int errCode = 0;
+            //            string errText = "";
+
+            //            IRAPMESClient.Instance.ufn_GetLotNumberFromPWO(
+            //                IRAPUser.Instance.CommunityID,
+            //                order.AF482PK,
+            //                order.PWONo,
+            //                ref lotNumber,
+            //                out errCode,
+            //                out errText);
+            //            WriteLog.Instance.Write(
+            //                string.Format("({0}){1}", errCode, errText),
+            //                strProcedureName);
+            //        }
+            //        #endregion
+
+            //        #region 打印
+            //        MemoryStream ms;
+            //        switch (IRAPUser.Instance.CommunityID) {
+            //            case 60023:
+            //                ms = new MemoryStream(Properties.Resources.WIPTransferTrackSheet_60023);
+            //                break;
+            //            default:
+            //                ms = new MemoryStream(Properties.Resources.WIPTransferTrackSheet);
+            //                break;
+            //        }
+            //        report.Load(ms);
+
+            //        if (printWIPProductInfoTrack && IRAPUser.Instance.CommunityID == 60010) {
+            //            ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
+            //            report1.Load(ms);
+            //        }
+
+            //        try {
+            //            switch (IRAPUser.Instance.CommunityID) {
+            //                case 60023:  // 新康达打印的生产流转卡
+            //                    #region 获取生产流传卡打印的要素
+            //                    int errCode = 0;
+            //                    string errText = "";
+            //                    List<ProductionFlowCard> datas = new List<ProductionFlowCard>();
+            //                    IRAPSCESClient.Instance.ufn_GetList_ProductionFlowCard(
+            //                        IRAPUser.Instance.CommunityID,
+            //                        orderFactID,
+            //                        IRAPUser.Instance.SysLogID,
+            //                        ref datas,
+            //                        out errCode,
+            //                        out errText);
+            //                    WriteLog.Instance.Write(
+            //                        string.Format("({0}){1}", errCode, errText),
+            //                        strProcedureName);
+            //                    if (errCode != 0) {
+            //                        ShowMessageBox.Show(
+            //                            errText,
+            //                            "获取流转卡打印要素",
+            //                            MessageBoxButtons.OK,
+            //                            MessageBoxIcon.Error);
+            //                        return;
+            //                    }
+            //                    #endregion
+
+            //                    #region 向内存表中插入记录，以便生成打印内容
+            //                    DataSet ds = new DataSet();
+            //                    DataTable dt = new DataTable();
+            //                    dt.TableName = "ProductionFlowCard";
+            //                    dt.Columns.Add("Ordinal", typeof(int));
+            //                    dt.Columns.Add("T102Code", typeof(string));
+            //                    dt.Columns.Add("T102NodeName", typeof(string));
+            //                    dt.Columns.Add("PWONo", typeof(string));
+            //                    dt.Columns.Add("PWOIssuingFactID", typeof(long));
+            //                    dt.Columns.Add("MONumber", typeof(string));
+            //                    dt.Columns.Add("OrderQty", typeof(string));
+            //                    dt.Columns.Add("StartTime", typeof(string));
+            //                    dt.Columns.Add("MaterialList", typeof(string));
+            //                    dt.Columns.Add("T134NodeName", typeof(string));
+            //                    dt.Columns.Add("T211NodeName", typeof(string));
+            //                    dt.Columns.Add("T216Name", typeof(string));
+            //                    dt.Columns.Add("T133Name", typeof(string));
+            //                    dt.Columns.Add("T106Name", typeof(string));
+            //                    dt.Columns.Add("Remark", typeof(string));
+
+            //                    foreach (ProductionFlowCard data in datas) {
+            //                        dt.Rows.Add(
+            //                            data.Ordinal,
+            //                            data.T102Code,
+            //                            data.T102NodeName,
+            //                            data.PWONo,
+            //                            data.PWOIssuingFactID,
+            //                            data.MONumber,
+            //                            data.OrderQuantity.ToString(),
+            //                            data.StartTime,
+            //                            data.MaterialList,
+            //                            data.T134NodeName,
+            //                            data.T211NodeName,
+            //                            data.T216Name,
+            //                            data.T133Name,
+            //                            data.T106Name,
+            //                            data.Remark);
+            //                    }
+
+            //                    ds.Tables.Add(dt);
+            //                    #endregion
+
+            //                    report.RegisterData(ds);
+            //                    report.GetDataSource("ProductionFlowCard").Enabled = true;
+
+            //                    break;
+            //                default:    // 仪征打印的生产流转卡
+            //                    report.Parameters.FindByName("BarCode").Value = order.PWONo;
+            //                    report.Parameters.FindByName("DeliveryWorkshop").Value = "";
+            //                    report.Parameters.FindByName("StorehouseCode").Value =
+            //                        string.Format(
+            //                            "{0}({1})",
+            //                            materials[0].T173Name,
+            //                            materials[0].T173Code);
+            //                    report.Parameters.FindByName("T106Code").Value = materials[0].AtStoreLocCode;
+            //                    report.Parameters.FindByName("WorkshopName").Value =
+            //                        string.Format(
+            //                            "{0}({1})",
+            //                            materials[0].DstWorkShopDesc,
+            //                            materials[0].DstWorkShopCode);
+            //                    report.Parameters.FindByName("ProductLine").Value = order.T134Name;
+            //                    report.Parameters.FindByName("AdvicedPickedQty").Value = materials[0].SuggestedQuantityToPick;
+            //                    report.Parameters.FindByName("StartingDate").Value = order.PlannedStartDate;
+            //                    report.Parameters.FindByName("CompletingDate").Value = order.PlannedCloseDate;
+            //                    report.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
+            //                    report.Parameters.FindByName("Unit").Value = materials[0].UnitOfMeasure;
+            //                    report.Parameters.FindByName("MONo").Value = order.MONumber;
+            //                    report.Parameters.FindByName("LineNo").Value = order.MOLineNo;
+            //                    report.Parameters.FindByName("LotNumber").Value = lotNumber;
+            //                    report.Parameters.FindByName("MaterialTexture").Value = materials[0].T131Code;
+            //                    report.Parameters.FindByName("ActualPickedBars").Value = materials[0].ActualQtyDecompose;
+            //                    report.Parameters.FindByName("OrderQty").Value = order.PlannedQuantity;
+            //                    report.Parameters.FindByName("MaterialCode").Value = materials[0].MaterialCode;
+            //                    report.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
+            //                    report.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
+            //                    if (materials[0].ActualQuantityToDeliver.IntValue != 0)
+            //                        report.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
+            //                    else
+            //                        report.Parameters.FindByName("InQuantity").Value = "";
+            //                    report.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;
+            //                    report.Parameters.FindByName("FatherMaterialName").Value = order.ProductDesc;
+            //                    report.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
+            //                    break;
+            //            }
+
+            //            if (printWIPProductInfoTrack && IRAPUser.Instance.CommunityID == 60010) {
+            //                report1.Parameters.FindByName("BarCode").Value = order.PWONo;
+            //                report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
+            //                report1.Parameters.FindByName("StorehouseCode").Value =
+            //                    string.Format(
+            //                        "{0}({1})",
+            //                        materials[0].T173Name,
+            //                        materials[0].T173Code);
+            //                report1.Parameters.FindByName("T106Code").Value = materials[0].AtStoreLocCode;
+            //                report1.Parameters.FindByName("WorkshopName").Value = materials[0].DstWorkShopCode;
+            //                report1.Parameters.FindByName("ProductLine").Value = order.T134Name;
+            //                report1.Parameters.FindByName("AdvicedPickedQty").Value = materials[0].SuggestedQuantityToPick;
+            //                report1.Parameters.FindByName("StartingDate").Value = order.PlannedStartDate.Substring(5, 5);
+            //                report1.Parameters.FindByName("CompletingDate").Value = order.PlannedCloseDate.Substring(5, 5);
+            //                report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
+            //                report1.Parameters.FindByName("Unit").Value = materials[0].UnitOfMeasure;
+            //                report1.Parameters.FindByName("MONo").Value = order.MONumber;
+            //                report1.Parameters.FindByName("LineNo").Value = order.MOLineNo;
+            //                report1.Parameters.FindByName("LotNumber").Value = lotNumber;
+            //                report1.Parameters.FindByName("MaterialTexture").Value = materials[0].T131Code;
+            //                report1.Parameters.FindByName("ActualPickedBars").Value = materials[0].ActualQtyDecompose;
+            //                report1.Parameters.FindByName("OrderQty").Value = order.PlannedQuantity.IntValue.ToString();
+            //                report1.Parameters.FindByName("MaterialCode").Value = materials[0].MaterialCode;
+            //                report1.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
+            //                report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
+            //                if (materials[0].ActualQuantityToDeliver.IntValue != 0)
+            //                    report1.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
+            //                else
+            //                    report1.Parameters.FindByName("InQuantity").Value = "";
+            //                report1.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;
+            //                report1.Parameters.FindByName("FatherMaterialName").Value = order.ProductDesc;
+            //                report1.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
+            //            }
+            //        } catch (Exception error) {
+            //            WriteLog.Instance.Write(error.Message, strProcedureName);
+            //            ShowMessageBox.Show(error.Message, "系统信息", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            return;
+            //        }
+
+            //        System.Drawing.Printing.PrinterSettings prnSetting =
+            //            new System.Drawing.Printing.PrinterSettings();
+            //        if (report.Prepare()) {
+            //            bool rePrinter = false;
+            //            do {
+            //                if (report.ShowPrintDialog(out prnSetting)) {
+            //                    report.PrintPrepared(prnSetting);
+            //                    rePrinter = (
+            //                        ShowMessageBox.Show(
+            //                            "物料配送流转卡已经打印完成，是否需要重新打印？",
+            //                            "系统信息",
+            //                            MessageBoxButtons.YesNo,
+            //                            MessageBoxIcon.Question,
+            //                            MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+            //                }
+            //            } while (rePrinter);
+            //        }
+
+            //        if (IRAPUser.Instance.CommunityID == 60010 && printWIPProductInfoTrack) {
+            //            IRAPMessageBox.Instance.ShowInformation(
+            //                "请将打印机中的打印纸更换为【产品信息跟踪卡】，更换完毕后点击确认开始打印");
+
+            //            if (report1.Prepare()) {
+            //                bool rePrint = false;
+            //                do {
+            //                    if (report1.ShowPrintDialog(out prnSetting)) {
+            //                        report1.PrintPrepared(prnSetting);
+            //                        rePrint =
+            //                            (
+            //                                ShowMessageBox.Show(
+            //                                    "【产品信息跟踪卡】已经打印完成，是否需要重新打印？",
+            //                                    "系统信息",
+            //                                    MessageBoxButtons.YesNo,
+            //                                    MessageBoxIcon.Question,
+            //                                    MessageBoxDefaultButton.Button2) == DialogResult.Yes
+            //                            );
+            //                    }
+            //                } while (rePrint);
+            //            }
+            //        }
+            //        btnClose.PerformClick();
+            //        #endregion
+            //    }
+            //} finally {
+            //    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            //}
+        }
+
+        /// <summary>
+        /// 刷新页面
+        /// </summary>
+        public void Refresh() {
 
         }
     }

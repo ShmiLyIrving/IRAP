@@ -1,4 +1,5 @@
-﻿namespace IRAP.Client.GUI.MESPDC.UserControls {
+﻿using System;
+namespace IRAP.Client.GUI.MESPDC.UserControls {
     partial class ucFurnace {
         /// <summary> 
         /// 必需的设计器变量。
@@ -633,7 +634,7 @@
             // 
             // dtProductDate
             // 
-            this.dtProductDate.EditValue = new System.DateTime(2018, 1, 3, 14, 10, 9, 0);
+            this.dtProductDate.EditValue = DateTime.Now;
             this.dtProductDate.Location = new System.Drawing.Point(263, 12);
             this.dtProductDate.Name = "dtProductDate";
             this.dtProductDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
