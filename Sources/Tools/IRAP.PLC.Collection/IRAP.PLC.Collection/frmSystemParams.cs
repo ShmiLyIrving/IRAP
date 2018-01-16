@@ -48,6 +48,8 @@ namespace IRAP.PLC.Collection
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 0, Name = "BF-0016/BF-0824", });
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 1, Name = "BF-0017", });
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 2, Name = "BF-0825", });
+                cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 3, Name = "BF-Leak" });
+                cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 3, Name = "BF-Tighten" });
             }
             else
             {
@@ -56,6 +58,8 @@ namespace IRAP.PLC.Collection
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 0, Name = "电镀设备-纽堡", });
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 1, Name = "脱氢炉设备-纽堡", });
                 cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 2, Name = "脱氢炉设备-耐美特", });
+                cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 3, Name = "测漏设备-阿普顿" });
+                cboDeviceType.Properties.Items.Add(new DeviceType() { ID = 4, Name = "拧紧设备-阿普顿" });
             }
 
             edtBrokeURI.Text = SystemParams.Instance.ActiveMQ_URI;

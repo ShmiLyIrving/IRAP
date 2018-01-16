@@ -116,6 +116,12 @@ namespace IRAP.PLC.Collection
                 case 2:
                     dataCollect = new DC_Baking_NMT(mmoLogs);
                     break;
+                case 3:
+                    dataCollect = new DC_Leak(mmoLogs);
+                    break;
+                case 4:
+                    dataCollect = new DC_Tighten(mmoLogs);
+                    break;
             }
 
             if (dataCollect == null)
