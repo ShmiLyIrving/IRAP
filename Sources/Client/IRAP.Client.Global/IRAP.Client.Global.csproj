@@ -87,6 +87,7 @@
     <EmbeddedResource Include="frmWaitting.resx">
       <DependentUpon>frmWaitting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.Global.cd" />

@@ -57,6 +57,15 @@ namespace IRAP.Client.Global
             set { SaveParams("ZLan6042IPAddr", value); }
         }
 
+        /// <summary>
+        /// 是否允许运行多个实例
+        /// </summary>
+        public bool MultiInstance
+        {
+            get { return GetBoolean("MultiInstance"); }
+            set { SaveParams("MultiInstance", value.ToString()); }
+        }
+
         private string GetString(string key)
         {
             string rlt = "";

@@ -30,16 +30,17 @@ namespace IRAP
         [STAThread]
         static void Main()
         {
-            #region 判断是否已经运行了本程序的另一个实例
-
-            Process instance = GetRunningInstance();
-            if (instance != null)
+            if (!IRAP.Client.Global.IRAPConst.Instance.MultiInstance)
             {
-                HandleRunningInstance(instance);
-                return;
+                #region 判断是否已经运行了本程序的另一个实例
+                Process instance = GetRunningInstance();
+                if (instance != null)
+                {
+                    HandleRunningInstance(instance);
+                    return;
+                }
+                #endregion
             }
-
-            #endregion
 
             #region 设置默认字体、日期格式、汉化DEV
             DevExpress.UserSkins.BonusSkins.Register();

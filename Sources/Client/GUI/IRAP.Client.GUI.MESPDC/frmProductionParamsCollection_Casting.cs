@@ -25,7 +25,7 @@ namespace IRAP.Client.GUI.MESPDC {
         #endregion
 #else
         private int _communityID=IRAPUser.Instance.CommunityID;
-        private int _sysLogID = IRAPUser.Instance.SysLogID;
+        private int _sysLogID = (int)IRAPUser.Instance.SysLogID;
 #endif
 
 

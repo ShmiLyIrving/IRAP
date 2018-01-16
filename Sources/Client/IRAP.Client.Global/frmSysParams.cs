@@ -28,6 +28,8 @@ namespace IRAP.Client.Global
                 }
             }
             edtZLan6042IPAddr.Text = IRAPConst.Instance.Zlan6042IPAddress;
+
+            chkMultInstance.Checked = IRAPConst.Instance.MultiInstance;
         }
 
         private void SaveParams()
@@ -43,6 +45,8 @@ namespace IRAP.Client.Global
                 IRAPConst.Instance.WarningLightCtrlBoxType = "";
             }
             IRAPConst.Instance.Zlan6042IPAddress = edtZLan6042IPAddr.Text.Trim();
+
+            IRAPConst.Instance.MultiInstance = chkMultInstance.Checked;
         }
 
         private void cboControlBoxType_SelectedIndexChanged(object sender, EventArgs e)
