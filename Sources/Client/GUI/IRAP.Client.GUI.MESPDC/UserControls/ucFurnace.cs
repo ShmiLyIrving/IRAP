@@ -503,8 +503,22 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 生产开始时，清空第一个页签
         /// </summary>
         private void ChangeTabPage() {
-            this.tabCtrlDetail.SelectedTabPage = this.tabPgSpectrum;
-            this.tabPgBurden.PageEnabled = false;
+            if (_ProductingNow) {
+                this.tabPgBurden.PageEnabled = false;
+                this.tabPgMatieralAjustment.PageEnabled = true;
+                this.tabPgSample.PageEnabled = true;
+                this.tabPgBaked.PageEnabled = true;
+                this.tabPgSpectrum.PageEnabled = true;
+                this.tabCtrlDetail.SelectedTabPage = this.tabPgSpectrum; 
+            } else {
+                this.tabPgBurden.PageEnabled = true;
+                this.tabPgMatieralAjustment.PageEnabled = false;
+                this.tabPgSample.PageEnabled = false;
+                this.tabPgBaked.PageEnabled = false;
+                this.tabPgSpectrum.PageEnabled = false;
+                this.tabCtrlDetail.SelectedTabPage = this.tabPgBurden;
+            }
+            
         }
 
         #endregion
@@ -804,6 +818,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private void dtProductDate_EditValueChanged(object sender, EventArgs e) {
             RefreshFurnace();
         }
+         
         #endregion  
 
         private void btnPrint_Click(object sender, EventArgs e) {
@@ -1059,6 +1074,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         public void RefreshFurnace() {
             var smeltBatchProductionInfos = ReLoadProduction();
             if (smeltBatchProductionInfos == null || smeltBatchProductionInfos.Count < 1 || smeltBatchProductionInfos[0] == null) {
+                RefreshWithNoProduction();
                 return;
             }
             var currentInfo = smeltBatchProductionInfos[0];
@@ -1071,20 +1087,28 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 _operatorName = currentInfo.OperatorName;
                 this.lblFurnaceTime.Text = currentInfo.BatchNumber;
                 this.lblFurnaceTime.Tag = currentInfo;
-                SetCurrentSmeltInfo(currentInfo);
-                ChangeTabPage();
+                SetCurrentSmeltInfo(currentInfo); 
                 SetParaGrid(Optype.Spectrum);
                 SetParaGrid(Optype.Sample);
                 SetParaGrid(Optype.Baked);
                 SetRowMaterial();
+                SetOrderInfo();
+                ChangeTabPage();
             } else if (currentInfo.InProduction == 0) {//没有在产产品
-                SetWaitingFurnace(); 
-                SetSmeltMaterialItems();
-                SetSmeltMethodItems();
-            }  
-            SetOrderInfo();
+                RefreshWithNoProduction();
+            }   
         }
 
-     
+        /// <summary>
+        /// 没有正在生产的产品
+        /// </summary>
+        private void RefreshWithNoProduction() {
+            _ProductingNow = false;
+            SetWaitingFurnace();
+            SetSmeltMaterialItems();
+            SetSmeltMethodItems();
+            SetOrderInfo();
+            ChangeTabPage();
+        }
     }
 }
