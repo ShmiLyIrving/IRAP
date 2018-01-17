@@ -419,8 +419,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 开始生产
         /// </summary>
-        private bool StartProduction() {
-            var operatorCode = this.txtOperator.Text;
+        private bool StartProduction() { 
             var batchNumber = this.lblFurnaceTime.Text;
             var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
             int errCode;
@@ -428,7 +427,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try {
                 IRAPMESProductionClient.Instance.StartProduct(_communityID, _productionParam.T216LeafID, _productionParam.T107LeafID,
-                   waitingSmelt.T131LeafID, operatorCode, batchNumber, GetMaterialXml(), _sysLogID, out errCode, out errText);
+                   waitingSmelt.T131LeafID, _operatorCode, batchNumber, GetMaterialXml(), _sysLogID, out errCode, out errText);
                 if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -459,10 +458,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 var rF13Node = xmlDoc.CreateElement("RF13_1");
                 foreach (SmeltMaterialItemClient item in smeltMaterilItems) {
                     var row = xmlDoc.CreateElement("Row");
-                    row.SetAttribute("Ordinal", item.Ordinal.ToString());
+                    row.SetAttribute("Ordinal", "1");
                     row.SetAttribute("T101LeafID", item.T101LeafID.ToString());
-                    row.SetAttribute("LotNumber", item.LotNumber.ToString());
+                    row.SetAttribute("LotNumber", item.LotNumber);
                     row.SetAttribute("Qty", item.Qty.ToString());
+                    row.SetAttribute("Scale", item.Scale.ToString());
+                    row.SetAttribute("UnitOfMeasure", item.UnitOfMeasure);
                     rF13Node.AppendChild(row);
                 }
                 root.AppendChild(rF13Node);
@@ -474,9 +475,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 var rF25Node = xmlDoc.CreateElement("RF25");
                 foreach (SmeltMethodItemClient item in smeltMethodItems) {
                     var row = xmlDoc.CreateElement("Row");
-                    row.SetAttribute("Ordinal", item.Ordinal.ToString());
+                    row.SetAttribute("Ordinal","1");
                     row.SetAttribute("T20LeafID", item.T20LeafID.ToString());
-                    row.SetAttribute("Metric01", item.Value.ToString());
+                    row.SetAttribute("Metric01", item.Value);
+                    row.SetAttribute("Scale", item.Scale.ToString());
+                    row.SetAttribute("UnitOfMeasure", item.UnitOfMeasure);
                     rF25Node.AppendChild(row);
                 }
                 root.AppendChild(rF25Node);
