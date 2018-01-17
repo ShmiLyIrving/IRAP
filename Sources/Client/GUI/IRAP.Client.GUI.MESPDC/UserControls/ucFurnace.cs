@@ -115,6 +115,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                 return false;
             }
+            if (operatorCode.IndexOf('[')>-1) {
+                operatorCode = operatorCode.Substring(1, operatorCode.IndexOf(']') - 1);
+            }
 
             IRAPUserClient.Instance.mfn_GetList_Users(_communityID, operatorCode, "", ref users, out errCode, out errText);
                 WriteLog.Instance.Write( string.Format("({0}){1}", errCode, errText), strProcedureName);
