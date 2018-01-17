@@ -2,6 +2,7 @@
 using DevExpress.XtraTab;
 using IRAP.Client.GUI.MESPDC.UserControls;
 using IRAP.Client.User;
+using IRAP.Entities.MDM;
 using IRAP.Entities.MES;
 using IRAP.Global;
 using IRAP.WCF.Client.Method;
@@ -33,7 +34,7 @@ namespace IRAP.Client.GUI.MESPDC {
             InitializeComponent();
         }
 
-        private List<ProductionParam> GetFurnaces() {
+        private List<WIPStation> GetFurnaces() {
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
@@ -54,19 +55,19 @@ namespace IRAP.Client.GUI.MESPDC {
             return null;
         }
 
-        private void CreateFurnaceTabPages(List<ProductionParam> furnaces) {
+        private void CreateFurnaceTabPages(List<WIPStation> furnaces) {
             #region 参数检查
             if (furnaces == null || furnaces.Count == 0) {
                 return;
             }
             #endregion
-            foreach (ProductionParam furnace in furnaces) {
+            foreach (WIPStation furnace in furnaces) {
                 CreateNewFurnacePage(furnace);
             }
 
         }
 
-        private void CreateNewFurnacePage(ProductionParam furnaceData) {
+        private void CreateNewFurnacePage(WIPStation furnaceData) {
             XtraTabPage tabPage = new XtraTabPage();
             tabPage.Text = furnaceData.T107Name;
             tabPage.Name = furnaceData.T107Name; 

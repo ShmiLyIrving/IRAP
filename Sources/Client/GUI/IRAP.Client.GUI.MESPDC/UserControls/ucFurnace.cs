@@ -18,10 +18,11 @@ using IRAP.Client.GUI.MESPDC.Entities;
 using DevExpress.XtraVerticalGrid.Rows;
 using IRAP.Entities.IRAP;
 using IRAP.Client.User;
+using IRAP.Entities.MDM;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls {
     public partial class ucFurnace : XtraUserControl {
-        public ucFurnace(ProductionParam param, int communityID, int sysLogID) {
+        public ucFurnace(WIPStation param, int communityID, int sysLogID) {
             InitializeComponent();
             this._productionParam = param;
             this._communityID = communityID;
@@ -42,10 +43,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 熔炉信息
         /// </summary>
-        public ProductionParam ProductionParam {
+        public WIPStation ProductionParam {
             get { return _productionParam; }
         }
-        private ProductionParam _productionParam;
+        private WIPStation _productionParam;
 
         /// <summary>
         /// 社区标识
