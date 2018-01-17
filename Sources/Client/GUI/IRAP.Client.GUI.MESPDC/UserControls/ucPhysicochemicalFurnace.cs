@@ -67,6 +67,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
             for (int i = 0; i < dtInspection.Columns.Count; i++)
             {
+                items[i].ResolveDataXML();
                 for (int j = 0; j < items[i].ItemValues.Count; j++)
                 {
                     DataRow dr = null;
