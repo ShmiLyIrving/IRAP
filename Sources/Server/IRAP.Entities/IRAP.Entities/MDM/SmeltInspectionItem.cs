@@ -50,34 +50,7 @@ namespace IRAP.Entities.MDM
             {
                 dataXML = value;
 
-                values.Clear();
-                XmlDocument xml = new XmlDocument();
-                try
-                {
-                    xml.LoadXml(value);
-                    XmlNode root = xml.SelectSingleNode("RF25");
-                    foreach (XmlNode node in root.ChildNodes)
-                    {
-                        if (node.Name == "Row")
-                        {
-                            SmeltInspectionItemValue itemValue =
-                                new SmeltInspectionItemValue();
-
-                            if (node.Attributes["FactID"] != null)
-                                itemValue.FactID = Tools.ConvertToInt64(node.Attributes["FactID"].Value);
-                            if (node.Attributes["Metric01"] != null)
-                                itemValue.Metric01 = Tools.ConvertToInt32(node.Attributes["Metric01"].Value);
-                            itemValue.Scale = Scale;
-                            itemValue.UnitOfMeasure = UnitOfMeasure;
-
-                            values.Add(itemValue);
-                        }
-                    }
-                }
-                catch(Exception e)
-                {
-                    e.Message.ToString();
-                }
+                values.Clear(); 
             }
         }
 
