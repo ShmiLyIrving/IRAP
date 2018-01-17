@@ -424,7 +424,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try {
                 IRAPMESProductionClient.Instance.StartProduct(_communityID, _productionParam.T216LeafID, _productionParam.T107LeafID,
-                   waitingSmelt.T131LeafID, operatorCode, batchNumber, "", _sysLogID, out errCode, out errText);
+                   waitingSmelt.T131LeafID, operatorCode, batchNumber, GetMaterialXml(), _sysLogID, out errCode, out errText);
                 if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -441,33 +441,47 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
 
         /// <summary>
-        /// 创建保存工艺参数xml
+        /// 生成保存xml
         /// </summary>
-        //private string CreateRSFactXml() {
-        //    XmlDocument xmlDoc = new XmlDocument();
-        //    XmlElement root = xmlDoc.CreateElement("RSFact");
-        //    xmlDoc.AppendChild(root);
-        //    //配料信息
-            
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private string GetMaterialXml() { 
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlElement root = xmlDoc.CreateElement("RSFact");
+            xmlDoc.AppendChild(root);
+            #region 配料信息
+            var smeltMaterilItems = this.grdBurdenInfo.DataSource as List<SmeltMaterialItemClient>;
+            if (smeltMaterilItems != null && smeltMaterilItems.Count > 0) {
+                var rF13Node = xmlDoc.CreateElement("RF13_1");
+                foreach (SmeltMaterialItemClient item in smeltMaterilItems) {
+                    var row = xmlDoc.CreateElement("Row");
+                    row.SetAttribute("Ordinal", item.Ordinal.ToString());
+                    row.SetAttribute("T101LeafID", item.T101LeafID.ToString());
+                    row.SetAttribute("LotNumber", item.LotNumber.ToString());
+                    row.SetAttribute("Qty", item.Qty.ToString());
+                    rF13Node.AppendChild(row);
+                }
+                root.AppendChild(rF13Node);
+            }
+            #endregion
+            #region 生产开炉参数
+            var smeltMethodItems = this.grdProductPara.DataSource as List<SmeltMethodItemClient>;
+            if (smeltMethodItems!=null||smeltMethodItems.Count>0) {
+                var rF25Node = xmlDoc.CreateElement("RF25");
+                foreach (SmeltMethodItemClient item in smeltMethodItems) {
+                    var row = xmlDoc.CreateElement("Row");
+                    row.SetAttribute("Ordinal", item.Ordinal.ToString());
+                    row.SetAttribute("T20LeafID", item.T20LeafID.ToString());
+                    row.SetAttribute("Metric01", item.Value.ToString());
+                    rF25Node.AppendChild(row);
+                }
+                root.AppendChild(rF25Node);
+            }
+            #endregion
+            return xmlDoc.OuterXml;
+        }
 
-        //    var rF13Data = grdBurdenInfo.DataSource as List<SmeltMaterialItem>;
-        //    if (rF13Data!=null&&rF13Data.Count>0) {
-        //        foreach (SmeltMaterialItem smeltMaterialItem in rF13Data) {
-        //            XmlNode rF13Node = xmlDoc.CreateElement("RF13_1");
-        //        }
-        //    }
-
-        //    root.AppendChild(rF13Node);
-        //    //生产开炉参数
-        //    XmlNode rF25Node = xmlDoc.CreateElement("RF25");
-
-
-
-            
-        //    root.AppendChild(rF25Node);
-        //    return xmlDoc.OuterXml;
-        //}
-
+         
         #endregion
 
         #region 重新加载
@@ -765,7 +779,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 SmeltMaterialItemClient item = new SmeltMaterialItemClient()
                 { IsReadOnly = true,T101Code = rowSmelt.T101Code,T101LeafID = rowSmelt.T101LeafID,T101Name = rowSmelt.T101Name};
                 var lotNumber = node.Attributes["LotNumber"] == null ? "" : node.Attributes["LotNumber"].Value;
-                var qty = node.Attributes["Qty"] == null ? 0 : Convert.ToInt32(node.Attributes["Qty"].Value);
+                var qty = node.Attributes["Qty"] == null || string.IsNullOrEmpty(node.Attributes["Qty"].Value) ? 0 : Convert.ToInt32(node.Attributes["Qty"].Value);
                 item.LotNumber = lotNumber;
                 item.Qty = qty;
                 items.Add(item);
