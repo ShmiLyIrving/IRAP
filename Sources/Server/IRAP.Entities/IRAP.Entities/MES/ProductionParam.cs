@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IRAPShared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -596,6 +597,12 @@ namespace IRAP.Entities.MES {
         /// 熔炼状态
         /// </summary>
         public int PWOStatus { get; set; }
+
+        /// <summary>
+        /// 是否需要打印
+        /// </summary>
+        [IRAPORMMap(ORMMap = false)]
+        public bool IsPrint { get; set; }
 
         
     }
