@@ -635,6 +635,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSpectrum.Size = new System.Drawing.Size(766, 164);
             this.ucGrdSpectrum.TabIndex = 0;
             this.ucGrdSpectrum.Title = "参数";
+            this.ucGrdSpectrum.SaveClick += ucGrdSpectrum_SaveClick;
             // 
             // tabPgMatieralAjustment
             // 
@@ -765,6 +766,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.Size = new System.Drawing.Size(766, 164);
             this.ucGrdSample.TabIndex = 0;
             this.ucGrdSample.Title = "参数";
+            this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;
             // 
             // tabPgBaked
             // 

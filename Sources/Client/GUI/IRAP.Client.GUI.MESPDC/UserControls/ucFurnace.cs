@@ -529,14 +529,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         private void ChangeTabPage() {
             if (_ProductingNow) {
-                this.tabPgBurden.PageEnabled = false;
+                this.grdBurdenInfoView.OptionsBehavior.Editable = false;
+                this.grdProductParaView.OptionsBehavior.Editable = false;
                 this.tabPgMatieralAjustment.PageEnabled = true;
                 this.tabPgSample.PageEnabled = true;
                 this.tabPgBaked.PageEnabled = true;
                 this.tabPgSpectrum.PageEnabled = true;
                 this.tabCtrlDetail.SelectedTabPage = this.tabPgSpectrum; 
             } else {
-                this.tabPgBurden.PageEnabled = true;
+                this.grdBurdenInfoView.OptionsBehavior.Editable = true;
+                this.grdProductParaView.OptionsBehavior.Editable = true;
                 this.tabPgMatieralAjustment.PageEnabled = false;
                 this.tabPgSample.PageEnabled = false;
                 this.tabPgBaked.PageEnabled = false;
@@ -631,7 +633,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             foreach (SmeltMethodItemByOpType item in items) {
                 string colName = string.Format("Column{0}", item.Ordinal);
                 DataColumn dc = dt.Columns.Add(colName, typeof(string));
-                dc.Caption = item.T20Name; 
+                dc.Caption = item.T20Name;
+                dc.ExtendedProperties["SmeltMethodItemByOpType"] = item;
 
                 EditorRow row = new EditorRow();
                 row.Properties.Caption = item.T20Name;
@@ -662,10 +665,25 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             var batchNumber = this.lblFurnaceTime.Text; 
             int errCode;
             string errText;
+            DataTable data;
+            switch (opType) {
+                case Optype.Spectrum:
+                    data = this.ucGrdSpectrum.DataSource as DataTable;
+                    break;
+                case Optype.Sample:
+                    data = this.ucGrdSample.DataSource as DataTable;
+                    break;
+                case Optype.Baked:
+                    data = this.ucGrdBaked.DataSource as DataTable;
+                    break;
+                default:
+                    data = this.ucGrdSpectrum.DataSource as DataTable;
+                    break;
+            }
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try {
                 IRAPMESProductionClient.Instance.SaveSmeltBatch(_communityID,GetOpType(opType), _productionParam.T216LeafID,
-                    _productionParam.T107LeafID, batchNumber, GetSaveMaterialXml(), _sysLogID, out errCode, out errText);
+                    _productionParam.T107LeafID, batchNumber, GetSaveMaterialXml(data), _sysLogID, out errCode, out errText);
                 if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -692,24 +710,33 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private string GetSaveMaterialXml() {
+        private string GetSaveMaterialXml(DataTable data) {
             XmlDocument xmlDoc = new XmlDocument();
             XmlElement root = xmlDoc.CreateElement("RSFact");
-            xmlDoc.AppendChild(root); 
-            #region 生产开炉参数
-            var smeltMethodItems = this.grdProductPara.DataSource as List<SmeltMethodItemClient>;
-            if (smeltMethodItems != null || smeltMethodItems.Count > 0) {
-                var rF25Node = xmlDoc.CreateElement("RF25");
-                foreach (SmeltMethodItemClient item in smeltMethodItems) {
-                    var row = xmlDoc.CreateElement("Row");
-                    row.SetAttribute("Ordinal", item.Ordinal.ToString());
-                    row.SetAttribute("T20LeafID", item.T20LeafID.ToString());
-                    row.SetAttribute("Metric01", item.Value.ToString());
-                    rF25Node.AppendChild(row);
-                }
+            xmlDoc.AppendChild(root);
+            var rF25Node = xmlDoc.CreateElement("RF25"); 
+            if (data == null || data.Rows.Count == 0) {
                 root.AppendChild(rF25Node);
+                return xmlDoc.OuterXml;
             }
-            #endregion
+            for (int i = 0; i < data.Columns.Count; i++) {
+                var col = data.Columns[i];
+                var item = col.ExtendedProperties["SmeltMethodItemByOpType"] as SmeltMethodItemByOpType;
+                if (item == null) {
+                    continue;
+                }
+                for (int j = 0; j < data.Rows.Count; j++) {
+                    var row = xmlDoc.CreateElement("Row");
+                    row.SetAttribute("Ordinal", (j+1).ToString());
+                    row.SetAttribute("FactID", "");
+                    row.SetAttribute("T20LeafID", item.T20LeafID.ToString());
+                    row.SetAttribute("Metric01", data.Rows[j][i].ToString());
+                    row.SetAttribute("Scale", item.Scale.ToString());
+                    row.SetAttribute("UnitOfMeasure", item.UnitOfMeasure.ToString());
+                    rF25Node.AppendChild(row);
+                } 
+            }
+            root.AppendChild(rF25Node);
             return xmlDoc.OuterXml;
         }
 
@@ -852,13 +879,22 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         }
          
-        void ucGrdSpectrum_SaveClick(object sender, System.EventArgs e) {
+        private void ucGrdSpectrum_SaveClick(object sender, System.EventArgs e) {
             if (!SaveSmeltParas(Optype.Spectrum)) {
                 return;
             }
             this.ucGrdSpectrum.DataSource.Rows.Clear();
             this.ucGrdSpectrum.DataSource.Columns.Clear();
             this.ucGrdSpectrum.vGridControl.Rows.Clear(); 
+        }
+
+        private void ucGrdSample_SaveClick(object sender, System.EventArgs e) {
+            if (!SaveSmeltParas(Optype.Sample)) {
+                return;
+            }
+            this.ucGrdSample.DataSource.Rows.Clear();
+            this.ucGrdSample.DataSource.Columns.Clear();
+            this.ucGrdSample.vGridControl.Rows.Clear();
         }
 
         private void btnRowMaterialSave_Click(object sender, EventArgs e) {
