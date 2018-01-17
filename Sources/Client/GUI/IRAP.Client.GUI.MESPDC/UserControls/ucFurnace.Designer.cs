@@ -29,6 +29,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.ColPWONo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColMOLineNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColT131Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColT102Code = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColPlateNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColLotNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColMachineModelling = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColFoldNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelController = new DevExpress.XtraEditors.LabelControl();
             this.txtOperator = new DevExpress.XtraEditors.TextEdit();
             this.labelProductionDate = new DevExpress.XtraEditors.LabelControl();
@@ -78,6 +88,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grpCtrProductionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrlCurrentInfo)).BeginInit();
             this.grpCtrlCurrentInfo.SuspendLayout();
@@ -134,6 +145,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdCtrProductionInfo.Location = new System.Drawing.Point(5, 24);
             this.grdCtrProductionInfo.MainView = this.gridView1;
             this.grdCtrProductionInfo.Name = "grdCtrProductionInfo";
+            this.grdCtrProductionInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit1});
             this.grdCtrProductionInfo.Size = new System.Drawing.Size(507, 112);
             this.grdCtrProductionInfo.TabIndex = 0;
             this.grdCtrProductionInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -141,6 +154,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colPrint,
+            this.ColPWONo,
+            this.ColMOLineNo,
+            this.ColT131Name,
+            this.ColT102Code,
+            this.ColPlateNo,
+            this.ColLotNumber,
+            this.ColMachineModelling,
+            this.ColFoldNumber});
             this.gridView1.GridControl = this.grdCtrProductionInfo;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -148,19 +171,134 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.gridView1.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowPartialGroups = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowPartialRedrawOnScrolling = false;
-            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AutoPopulateColumns = false;
             this.gridView1.OptionsBehavior.AutoUpdateTotalSummary = false;
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsCustomization.AllowColumnMoving = false;
-            this.gridView1.OptionsCustomization.AllowColumnResizing = false;
-            this.gridView1.OptionsCustomization.AllowFilter = false;
             this.gridView1.OptionsCustomization.AllowGroup = false;
-            this.gridView1.OptionsCustomization.AllowQuickHideColumns = false;
             this.gridView1.OptionsCustomization.AllowRowSizing = true;
-            this.gridView1.OptionsCustomization.AllowSort = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // colPrint
+            // 
+            this.colPrint.Caption = "打印";
+            this.colPrint.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.colPrint.FieldName = "IsPrint";
+            this.colPrint.Name = "colPrint";
+            this.colPrint.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.colPrint.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colPrint.OptionsColumn.AllowMove = false;
+            this.colPrint.OptionsColumn.AllowShowHide = false;
+            this.colPrint.Visible = true;
+            this.colPrint.VisibleIndex = 0;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
+            // ColPWONo
+            // 
+            this.ColPWONo.Caption = "订单号";
+            this.ColPWONo.FieldName = "PWONo";
+            this.ColPWONo.Name = "ColPWONo";
+            this.ColPWONo.OptionsColumn.AllowEdit = false;
+            this.ColPWONo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColPWONo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColPWONo.OptionsColumn.AllowMove = false;
+            this.ColPWONo.OptionsColumn.ReadOnly = true;
+            this.ColPWONo.Visible = true;
+            this.ColPWONo.VisibleIndex = 1;
+            // 
+            // ColMOLineNo
+            // 
+            this.ColMOLineNo.Caption = "行号";
+            this.ColMOLineNo.FieldName = "MOLineNo";
+            this.ColMOLineNo.Name = "ColMOLineNo";
+            this.ColMOLineNo.OptionsColumn.AllowEdit = false;
+            this.ColMOLineNo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColMOLineNo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColMOLineNo.OptionsColumn.AllowMove = false;
+            this.ColMOLineNo.OptionsColumn.ReadOnly = true;
+            this.ColMOLineNo.Visible = true;
+            this.ColMOLineNo.VisibleIndex = 2;
+            // 
+            // ColT131Name
+            // 
+            this.ColT131Name.Caption = "材质";
+            this.ColT131Name.FieldName = "T131Name";
+            this.ColT131Name.Name = "ColT131Name";
+            this.ColT131Name.OptionsColumn.AllowEdit = false;
+            this.ColT131Name.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColT131Name.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColT131Name.OptionsColumn.AllowMove = false;
+            this.ColT131Name.OptionsColumn.ReadOnly = true;
+            this.ColT131Name.Visible = true;
+            this.ColT131Name.VisibleIndex = 3;
+            // 
+            // ColT102Code
+            // 
+            this.ColT102Code.Caption = "物料号";
+            this.ColT102Code.FieldName = "T102Code";
+            this.ColT102Code.Name = "ColT102Code";
+            this.ColT102Code.OptionsColumn.AllowEdit = false;
+            this.ColT102Code.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColT102Code.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColT102Code.OptionsColumn.AllowMove = false;
+            this.ColT102Code.OptionsColumn.ReadOnly = true;
+            this.ColT102Code.Visible = true;
+            this.ColT102Code.VisibleIndex = 4;
+            // 
+            // ColPlateNo
+            // 
+            this.ColPlateNo.Caption = "型板";
+            this.ColPlateNo.FieldName = "PlateNo";
+            this.ColPlateNo.Name = "ColPlateNo";
+            this.ColPlateNo.OptionsColumn.AllowEdit = false;
+            this.ColPlateNo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColPlateNo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColPlateNo.OptionsColumn.AllowMove = false;
+            this.ColPlateNo.OptionsColumn.ReadOnly = true;
+            this.ColPlateNo.Visible = true;
+            this.ColPlateNo.VisibleIndex = 5;
+            // 
+            // ColLotNumber
+            // 
+            this.ColLotNumber.Caption = "毛坯批次号";
+            this.ColLotNumber.FieldName = "LotNumber";
+            this.ColLotNumber.Name = "ColLotNumber";
+            this.ColLotNumber.OptionsColumn.AllowEdit = false;
+            this.ColLotNumber.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColLotNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColLotNumber.OptionsColumn.AllowMove = false;
+            this.ColLotNumber.OptionsColumn.ReadOnly = true;
+            this.ColLotNumber.Visible = true;
+            this.ColLotNumber.VisibleIndex = 6;
+            // 
+            // ColMachineModelling
+            // 
+            this.ColMachineModelling.Caption = "造型机台";
+            this.ColMachineModelling.FieldName = "MachineModelling";
+            this.ColMachineModelling.Name = "ColMachineModelling";
+            this.ColMachineModelling.OptionsColumn.AllowEdit = false;
+            this.ColMachineModelling.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColMachineModelling.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColMachineModelling.OptionsColumn.AllowMove = false;
+            this.ColMachineModelling.OptionsColumn.ReadOnly = true;
+            this.ColMachineModelling.Visible = true;
+            this.ColMachineModelling.VisibleIndex = 7;
+            // 
+            // ColFoldNumber
+            // 
+            this.ColFoldNumber.Caption = "叠数";
+            this.ColFoldNumber.FieldName = "FoldNumber";
+            this.ColFoldNumber.Name = "ColFoldNumber";
+            this.ColFoldNumber.OptionsColumn.AllowEdit = false;
+            this.ColFoldNumber.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColFoldNumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColFoldNumber.OptionsColumn.AllowMove = false;
+            this.ColFoldNumber.OptionsColumn.ReadOnly = true;
+            this.ColFoldNumber.Visible = true;
+            this.ColFoldNumber.VisibleIndex = 8;
             // 
             // labelController
             // 
@@ -685,6 +823,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grpCtrProductionInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrlCurrentInfo)).EndInit();
             this.grpCtrlCurrentInfo.ResumeLayout(false);
@@ -766,5 +905,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraEditors.SimpleButton btnRowMaterialSave;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrint;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn ColPWONo;
+        private DevExpress.XtraGrid.Columns.GridColumn ColMOLineNo;
+        private DevExpress.XtraGrid.Columns.GridColumn ColT131Name;
+        private DevExpress.XtraGrid.Columns.GridColumn ColT102Code;
+        private DevExpress.XtraGrid.Columns.GridColumn ColPlateNo;
+        private DevExpress.XtraGrid.Columns.GridColumn ColLotNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn ColMachineModelling;
+        private DevExpress.XtraGrid.Columns.GridColumn ColFoldNumber;
     }
 }
