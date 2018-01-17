@@ -562,7 +562,7 @@ namespace IRAP.BL.MES {
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
-                paramList.Add(new IRAPProcParameter("@OpType", DbType.String, opType));
+                paramList.Add(new IRAPProcParameter("@Optype", DbType.String, opType));
                 paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.Int64, t216LeafID));
                 paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
                 paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
@@ -573,7 +573,7 @@ namespace IRAP.BL.MES {
                 WriteLog.Instance.Write(
                     string.Format("执行存储过程 " +
                         "IRAPMES..usp_SaveFact_SmeltBatchMethodConfirming，参数：" +
-                        "CommunityID={0}|OpType={1}|T216LeafID={2}|T107LeafID={3}|BatchNumber={4}|RSFactXML={5}|SysLogID={6}",
+                        "CommunityID={0}|Optype={1}|T216LeafID={2}|T107LeafID={3}|BatchNumber={4}|RSFactXML={5}|SysLogID={6}",
                         communityID, opType,t216LeafID, t107LeafID, batchNumber, rSFactXML, sysLogID),
                     strProcedureName);
                 #endregion
