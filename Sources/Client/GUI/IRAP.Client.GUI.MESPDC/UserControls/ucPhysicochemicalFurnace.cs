@@ -22,10 +22,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
-        private DataTable dtInspection =new DataTable();
+        private DataTable dtInspection = new DataTable();
         private string optype;
         private List<SmeltInspectionItem> inspectionItems = new List<SmeltInspectionItem>();
-        private BatchPWOInfo pwo;
+        private OrderInfo pwo;
 
         public string Optype
         {
@@ -79,7 +79,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     {
                         dr = dtInspection.Rows[j];
                     }
-                    
+
                     dr[i] = items[i].ItemValues[j].Metric01;
                 }
             }
@@ -141,7 +141,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
                 XtraMessageBox.Show(
                     errMsg,
-                    "",
+                    "提示信息",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -149,22 +149,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-#if DEBUG
-            for (int i = 0; i < 5; i++)
-            {
-                Random r = new Random();
-
-                SmeltInspectionItem item = new SmeltInspectionItem();
-                item.Ordinal = i;
-                item.Scale = 6;
-                item.T20Code = "131231";
-                item.T20LeafID = 1231231;
-                item.T20Name = "参数" + (i + 1).ToString();
-                item.UnitOfMeasure = "4";
-                item.DataXML = "<RF25><Row FactID =\"" + r.Next(1, 10000).ToString() + "\" Metric01=\"" + r.Next(1, 10000).ToString() + "\"></Row><Row FactID =\"" + r.Next(1, 10000).ToString() + "\" Metric01=\"" + r.Next(1, 10000).ToString() + "\"></Row></RF25>";
-                rlt.Add(item);
-            }
-#endif
             return rlt;
         }
 
@@ -179,8 +163,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             }
             else
             {
-                XtraMessageBox.Show("输入的炉次号不合法");
-                frmPhysicochemicalInspectionBatchSystem.currentBatchNo = null;
+                XtraMessageBox.Show(
+                    string.Format(
+                        "根据炉次号[{0}]无法找到检验项，可能该炉次号不存在或还未开始生产",
+                        frmPhysicochemicalInspectionBatchSystem.currentBatchNo),
+                    "提示信息",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                InitInspectionItemsGrid(new List<SmeltInspectionItem>());
             }
         }
 
@@ -206,7 +197,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 }
             }
         }
-        public void RefreshUC(BatchPWOInfo Pwo)
+        public void RefreshUC(OrderInfo Pwo)
         {
             pwo = Pwo;
             string strProcedureName =
@@ -244,22 +235,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-#if DEBUG
-            for (int i = 0; i < 5; i++)
-            {
-                Random r = new Random();
 
-                SmeltInspectionItem item = new SmeltInspectionItem();
-                item.Ordinal = i;
-                item.Scale = 6;
-                item.T20Code = "131231";
-                item.T20LeafID = 1231231;
-                item.T20Name = "参数" + (i + 1).ToString();
-                item.UnitOfMeasure = "4";
-                item.DataXML = "<RF25><Row FactID =\"" + r.Next(1, 10000).ToString() + "\" Metric01=\"" + r.Next(1, 10000).ToString() + "\"></Row><Row FactID =\"" + r.Next(1, 10000).ToString() + "\" Metric01=\"" + r.Next(1, 10000).ToString() + "\"></Row></RF25>";
-                inspectionItems.Add(item);
-            }
-#endif
             if (inspectionItems.Count > 0)
             {
                 InitInspectionItemsGrid(inspectionItems);
@@ -267,8 +243,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             }
             else
             {
-                XtraMessageBox.Show("输入的炉次号不合法");
-                frmPhysicochemicalInspectionBatchSystem.currentBatchNo = null;
+                XtraMessageBox.Show(
+                    string.Format(
+                        "未找到[({0}){1}]的检验项，可能主数据没有配置",
+                        Pwo.T102Code,
+                        Pwo.T102Name),
+                    "提示信息",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                InitInspectionItemsGrid(new List<SmeltInspectionItem>());
             }
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -295,12 +279,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     vgrdInspectParams.RefreshDataSource();
                     frmPhysicochemicalInspectionBatchSystem.saveState = false;
                 }
-            }          
+            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            
+
             if (dtInspection.Columns.Count < 0)
             {
                 XtraMessageBox.Show(
@@ -329,20 +313,20 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 return;
             }
 
-            if (optype =="MPLH")        //毛坯理化
+            if (optype == "MPLH")        //毛坯理化
             {
-                if (SaveFact_smeltInspection(pwo.FactID, pwo.T102LeafID, int.Parse(pwo.T107LeafID), pwo.LotNumber))
+                if (SaveFact_smeltInspection(pwo.FactID, pwo.T102LeafID, pwo.T107LeafID, pwo.LotNumber))
                 {
                     frmPhysicochemicalInspectionBatchSystem.saveState = true;
                     dtInspection.Rows.Clear();
                     dtInspection.Columns.Clear();
                     vgrdInspectParams.Rows.Clear();
                     RefreshUC(pwo);
-                }              
+                }
             }
-            else if(optype =="LQLH"||optype=="LHLH")    //炉前理化,炉后理化
+            else if (optype == "LQLH" || optype == "LHLH")    //炉前理化,炉后理化
             {
-                if(SaveFact_smeltInspection(0, 0, 0, "0"))
+                if (SaveFact_smeltInspection(0, 0, 0, "0"))
                 {
                     frmPhysicochemicalInspectionBatchSystem.saveState = true;
                     dtInspection.Rows.Clear();

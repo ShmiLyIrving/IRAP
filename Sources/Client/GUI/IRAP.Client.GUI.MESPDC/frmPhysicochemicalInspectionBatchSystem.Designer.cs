@@ -260,7 +260,7 @@
             // gridColumn4
             // 
             this.gridColumn4.Caption = "材质";
-            this.gridColumn4.FieldName = "Texture";
+            this.gridColumn4.FieldName = "T131Code";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 4;

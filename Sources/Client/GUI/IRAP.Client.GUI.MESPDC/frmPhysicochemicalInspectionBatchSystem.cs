@@ -22,7 +22,7 @@ namespace IRAP.Client.GUI.MESPDC
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
-        private List<BatchPWOInfo> pwos = new List<BatchPWOInfo>();
+        private List<OrderInfo> pwos = new List<OrderInfo>();
         public static string currentBatchNo = null;
         public static string currentOpType;
         public static bool saveState = true;//是否已保存
@@ -159,9 +159,9 @@ namespace IRAP.Client.GUI.MESPDC
         /// </summary>
         /// <param name="batchNumber">生产容器批次号</param>
         /// <returns></returns>
-        private List<BatchPWOInfo> GetPWOWithBatchNo(string batchNumber)
+        private List<OrderInfo> GetPWOWithBatchNo(string batchNumber)
         {
-            List<BatchPWOInfo> rlt = new List<BatchPWOInfo>();
+            List<OrderInfo> rlt = new List<OrderInfo>();
 
             string strProcedureName =
                 string.Format(
@@ -174,7 +174,7 @@ namespace IRAP.Client.GUI.MESPDC
                 int errCode = 0;
                 string errText = "";
 
-                IRAPMESClient.Instance.ufn_GetList_BatchPWONo(
+                IRAPMESSmeltClient.Instance.ufn_GetList_SmeltBatchPWONo(
                     IRAPUser.Instance.CommunityID,
                     batchNumber,
                     IRAPUser.Instance.SysLogID,
@@ -220,7 +220,7 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-#if DEBUG
+#if DEBUG1
             for (int i = 0; i < 5; i++)
             {
                 Random r = new Random();
