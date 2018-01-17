@@ -28,6 +28,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             set { this.vGridControl1.DataSource = value; }
         }
 
+        [Browsable(true)]
+        public string SaveBtnText {
+            get { return this.btnSave.Text; }
+            set { this.btnSave.Text = value; }
+        }
+
         public VGridControl vGridControl {
             get { return this.vGridControl1; }
         }
@@ -115,8 +121,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 }
             }
         }
-
-
+          
     }
  
     

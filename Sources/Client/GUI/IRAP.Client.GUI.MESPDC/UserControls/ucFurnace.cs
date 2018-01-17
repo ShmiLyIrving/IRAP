@@ -631,11 +631,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             foreach (SmeltMethodItemByOpType item in items) {
                 string colName = string.Format("Column{0}", item.Ordinal);
                 DataColumn dc = dt.Columns.Add(colName, typeof(string));
-                dc.Caption = item.T20Name;
+                dc.Caption = item.T20Name; 
 
                 EditorRow row = new EditorRow();
                 row.Properties.Caption = item.T20Name;
-                row.Properties.FieldName = colName;
+                row.Properties.FieldName = colName; 
                 grd.vGridControl.Rows.Add(row);
             }
 
@@ -665,7 +665,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try {
                 IRAPMESProductionClient.Instance.SaveSmeltBatch(_communityID,GetOpType(opType), _productionParam.T216LeafID,
-                    _productionParam.T107LeafID, batchNumber, "", _sysLogID, out errCode, out errText);
+                    _productionParam.T107LeafID, batchNumber, GetSaveMaterialXml(), _sysLogID, out errCode, out errText);
                 if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -685,6 +685,32 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return false;
+        }
+
+        /// <summary>
+        /// 生成保存xml
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private string GetSaveMaterialXml() {
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlElement root = xmlDoc.CreateElement("RSFact");
+            xmlDoc.AppendChild(root); 
+            #region 生产开炉参数
+            var smeltMethodItems = this.grdProductPara.DataSource as List<SmeltMethodItemClient>;
+            if (smeltMethodItems != null || smeltMethodItems.Count > 0) {
+                var rF25Node = xmlDoc.CreateElement("RF25");
+                foreach (SmeltMethodItemClient item in smeltMethodItems) {
+                    var row = xmlDoc.CreateElement("Row");
+                    row.SetAttribute("Ordinal", item.Ordinal.ToString());
+                    row.SetAttribute("T20LeafID", item.T20LeafID.ToString());
+                    row.SetAttribute("Metric01", item.Value.ToString());
+                    rF25Node.AppendChild(row);
+                }
+                root.AppendChild(rF25Node);
+            }
+            #endregion
+            return xmlDoc.OuterXml;
         }
 
         #endregion

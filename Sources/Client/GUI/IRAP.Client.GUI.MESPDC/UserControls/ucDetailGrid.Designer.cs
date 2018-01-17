@@ -36,16 +36,17 @@
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(694, 228);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(701, 96);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(68, 45);
+            this.btnSave.Size = new System.Drawing.Size(60, 20);
             this.btnSave.TabIndex = 12;
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // groupControl1
             // 
+            this.groupControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupControl1.Controls.Add(this.vGridControl1);
             this.groupControl1.Controls.Add(this.btnModify);
             this.groupControl1.Controls.Add(this.btnSave);
@@ -54,7 +55,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(765, 276);
+            this.groupControl1.Size = new System.Drawing.Size(765, 137);
             this.groupControl1.TabIndex = 13;
             this.groupControl1.Text = "参数";
             // 
@@ -65,15 +66,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.vGridControl1.Location = new System.Drawing.Point(3, 23);
             this.vGridControl1.Name = "vGridControl1";
-            this.vGridControl1.Size = new System.Drawing.Size(689, 250);
+            this.vGridControl1.Size = new System.Drawing.Size(693, 111);
             this.vGridControl1.TabIndex = 16;
             // 
             // btnModify
             // 
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModify.Location = new System.Drawing.Point(693, 53);
+            this.btnModify.Location = new System.Drawing.Point(701, 48);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(67, 23);
+            this.btnModify.Size = new System.Drawing.Size(60, 20);
             this.btnModify.TabIndex = 15;
             this.btnModify.Text = "修改";
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
@@ -81,9 +82,9 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(693, 82);
+            this.btnDelete.Location = new System.Drawing.Point(701, 72);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(67, 23);
+            this.btnDelete.Size = new System.Drawing.Size(60, 20);
             this.btnDelete.TabIndex = 14;
             this.btnDelete.Text = "删除";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -91,9 +92,9 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(693, 24);
+            this.btnAdd.Location = new System.Drawing.Point(701, 24);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(67, 23);
+            this.btnAdd.Size = new System.Drawing.Size(60, 20);
             this.btnAdd.TabIndex = 12;
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -104,7 +105,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupControl1);
             this.Name = "ucDetailGrid";
-            this.Size = new System.Drawing.Size(765, 276);
+            this.Size = new System.Drawing.Size(765, 137);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.vGridControl1)).EndInit();

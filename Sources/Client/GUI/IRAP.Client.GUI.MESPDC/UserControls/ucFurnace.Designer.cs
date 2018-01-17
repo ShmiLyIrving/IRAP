@@ -123,16 +123,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grpCtrProductionInfo.Controls.Add(this.grdCtrProductionInfo);
             this.grpCtrProductionInfo.Location = new System.Drawing.Point(3, 38);
             this.grpCtrProductionInfo.Name = "grpCtrProductionInfo";
-            this.grpCtrProductionInfo.Size = new System.Drawing.Size(517, 167);
+            this.grpCtrProductionInfo.Size = new System.Drawing.Size(517, 91);
             this.grpCtrProductionInfo.TabIndex = 0;
             this.grpCtrProductionInfo.Text = "生产信息";
             // 
             // btnPrint
             // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(438, 141);
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.Location = new System.Drawing.Point(463, 22);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.Size = new System.Drawing.Size(52, 23);
             this.btnPrint.TabIndex = 1;
             this.btnPrint.Text = "打印";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -142,12 +142,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdCtrProductionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdCtrProductionInfo.Location = new System.Drawing.Point(5, 24);
+            this.grdCtrProductionInfo.Location = new System.Drawing.Point(3, 22);
             this.grdCtrProductionInfo.MainView = this.gridView1;
             this.grdCtrProductionInfo.Name = "grdCtrProductionInfo";
             this.grdCtrProductionInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-            this.grdCtrProductionInfo.Size = new System.Drawing.Size(507, 112);
+            this.grdCtrProductionInfo.Size = new System.Drawing.Size(458, 66);
             this.grdCtrProductionInfo.TabIndex = 0;
             this.grdCtrProductionInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -342,7 +342,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grpCtrlCurrentInfo.Controls.Add(this.labCtrlStartTime);
             this.grpCtrlCurrentInfo.Location = new System.Drawing.Point(521, 38);
             this.grpCtrlCurrentInfo.Name = "grpCtrlCurrentInfo";
-            this.grpCtrlCurrentInfo.Size = new System.Drawing.Size(254, 136);
+            this.grpCtrlCurrentInfo.Size = new System.Drawing.Size(254, 91);
             this.grpCtrlCurrentInfo.TabIndex = 8;
             this.grpCtrlCurrentInfo.Text = "当前熔炼信息";
             // 
@@ -350,18 +350,22 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.lblProductionTimeResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProductionTimeResult.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductionTimeResult.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.lblProductionTimeResult.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lblProductionTimeResult.AutoEllipsis = true;
             this.lblProductionTimeResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblProductionTimeResult.Location = new System.Drawing.Point(100, 92);
+            this.lblProductionTimeResult.Location = new System.Drawing.Point(111, 66);
             this.lblProductionTimeResult.Name = "lblProductionTimeResult";
-            this.lblProductionTimeResult.Size = new System.Drawing.Size(146, 14);
+            this.lblProductionTimeResult.Size = new System.Drawing.Size(135, 14);
             this.lblProductionTimeResult.TabIndex = 15;
             // 
             // lblProductionTime
             // 
-            this.lblProductionTime.Location = new System.Drawing.Point(41, 92);
+            this.lblProductionTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductionTime.Location = new System.Drawing.Point(37, 63);
             this.lblProductionTime.Name = "lblProductionTime";
-            this.lblProductionTime.Size = new System.Drawing.Size(52, 14);
+            this.lblProductionTime.Size = new System.Drawing.Size(68, 21);
             this.lblProductionTime.TabIndex = 14;
             this.lblProductionTime.Text = "生产时长:";
             // 
@@ -369,37 +373,45 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.labProductStartTimeResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.labProductStartTimeResult.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labProductStartTimeResult.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.labProductStartTimeResult.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labProductStartTimeResult.AutoEllipsis = true;
             this.labProductStartTimeResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labProductStartTimeResult.Location = new System.Drawing.Point(100, 68);
+            this.labProductStartTimeResult.Location = new System.Drawing.Point(111, 46);
             this.labProductStartTimeResult.Name = "labProductStartTimeResult";
-            this.labProductStartTimeResult.Size = new System.Drawing.Size(146, 14);
+            this.labProductStartTimeResult.Size = new System.Drawing.Size(135, 14);
             this.labProductStartTimeResult.TabIndex = 13;
             // 
             // labCurrentFurnaceResult
             // 
             this.labCurrentFurnaceResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.labCurrentFurnaceResult.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labCurrentFurnaceResult.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.labCurrentFurnaceResult.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labCurrentFurnaceResult.AutoEllipsis = true;
             this.labCurrentFurnaceResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labCurrentFurnaceResult.Location = new System.Drawing.Point(100, 44);
+            this.labCurrentFurnaceResult.Location = new System.Drawing.Point(111, 26);
             this.labCurrentFurnaceResult.Name = "labCurrentFurnaceResult";
-            this.labCurrentFurnaceResult.Size = new System.Drawing.Size(146, 14);
+            this.labCurrentFurnaceResult.Size = new System.Drawing.Size(135, 14);
             this.labCurrentFurnaceResult.TabIndex = 12;
             // 
             // labCurrentFurnace
             // 
-            this.labCurrentFurnace.Location = new System.Drawing.Point(30, 44);
+            this.labCurrentFurnace.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labCurrentFurnace.Location = new System.Drawing.Point(21, 23);
             this.labCurrentFurnace.Name = "labCurrentFurnace";
-            this.labCurrentFurnace.Size = new System.Drawing.Size(64, 14);
+            this.labCurrentFurnace.Size = new System.Drawing.Size(84, 21);
             this.labCurrentFurnace.TabIndex = 10;
             this.labCurrentFurnace.Text = "当前炉次号:";
             // 
             // labCtrlStartTime
             // 
-            this.labCtrlStartTime.Location = new System.Drawing.Point(18, 68);
+            this.labCtrlStartTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labCtrlStartTime.Location = new System.Drawing.Point(5, 43);
             this.labCtrlStartTime.Name = "labCtrlStartTime";
-            this.labCtrlStartTime.Size = new System.Drawing.Size(76, 14);
+            this.labCtrlStartTime.Size = new System.Drawing.Size(100, 21);
             this.labCtrlStartTime.TabIndex = 8;
             this.labCtrlStartTime.Text = "生产开始时间:";
             // 
@@ -408,11 +420,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabCtrlDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabCtrlDetail.Location = new System.Drawing.Point(3, 211);
-            this.tabCtrlDetail.MinimumSize = new System.Drawing.Size(0, 321);
+            this.tabCtrlDetail.Location = new System.Drawing.Point(3, 130);
             this.tabCtrlDetail.Name = "tabCtrlDetail";
             this.tabCtrlDetail.SelectedTabPage = this.tabPgBurden;
-            this.tabCtrlDetail.Size = new System.Drawing.Size(772, 321);
+            this.tabCtrlDetail.Size = new System.Drawing.Size(772, 193);
             this.tabCtrlDetail.TabIndex = 9;
             this.tabCtrlDetail.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabPgBurden,
@@ -428,7 +439,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabPgBurden.Controls.Add(this.grpProductPara);
             this.tabPgBurden.Controls.Add(this.grpBurdenInfo);
             this.tabPgBurden.Name = "tabPgBurden";
-            this.tabPgBurden.Size = new System.Drawing.Size(766, 292);
+            this.tabPgBurden.Size = new System.Drawing.Size(766, 164);
             this.tabPgBurden.Text = "配料及开炉熔炼";
             this.tabPgBurden.Tooltip = "配料及开炉熔炼";
             // 
@@ -449,7 +460,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grpProductPara.Controls.Add(this.grdProductPara);
             this.grpProductPara.Location = new System.Drawing.Point(381, 3);
             this.grpProductPara.Name = "grpProductPara";
-            this.grpProductPara.Size = new System.Drawing.Size(302, 286);
+            this.grpProductPara.Size = new System.Drawing.Size(302, 158);
             this.grpProductPara.TabIndex = 4;
             this.grpProductPara.Text = "生产开炉参数";
             // 
@@ -459,7 +470,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdProductPara.Location = new System.Drawing.Point(2, 21);
             this.grdProductPara.MainView = this.grdProductParaView;
             this.grdProductPara.Name = "grdProductPara";
-            this.grdProductPara.Size = new System.Drawing.Size(298, 263);
+            this.grdProductPara.Size = new System.Drawing.Size(298, 135);
             this.grdProductPara.TabIndex = 0;
             this.grdProductPara.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdProductParaView});
@@ -511,7 +522,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grpBurdenInfo.Controls.Add(this.grdBurdenInfo);
             this.grpBurdenInfo.Location = new System.Drawing.Point(3, 3);
             this.grpBurdenInfo.Name = "grpBurdenInfo";
-            this.grpBurdenInfo.Size = new System.Drawing.Size(376, 286);
+            this.grpBurdenInfo.Size = new System.Drawing.Size(376, 158);
             this.grpBurdenInfo.TabIndex = 3;
             this.grpBurdenInfo.Text = "配料信息";
             // 
@@ -523,7 +534,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdBurdenInfo.Name = "grdBurdenInfo";
             this.grdBurdenInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
-            this.grdBurdenInfo.Size = new System.Drawing.Size(372, 263);
+            this.grdBurdenInfo.Size = new System.Drawing.Size(372, 135);
             this.grdBurdenInfo.TabIndex = 0;
             this.grdBurdenInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdBurdenInfoView});
@@ -610,7 +621,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabPgSpectrum.AutoScroll = true;
             this.tabPgSpectrum.Controls.Add(this.ucGrdSpectrum);
             this.tabPgSpectrum.Name = "tabPgSpectrum";
-            this.tabPgSpectrum.Size = new System.Drawing.Size(766, 292);
+            this.tabPgSpectrum.Size = new System.Drawing.Size(766, 164);
             this.tabPgSpectrum.Text = "炉前光谱";
             this.tabPgSpectrum.Tooltip = "炉前光谱";
             // 
@@ -620,7 +631,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSpectrum.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucGrdSpectrum.Location = new System.Drawing.Point(0, 0);
             this.ucGrdSpectrum.Name = "ucGrdSpectrum";
-            this.ucGrdSpectrum.Size = new System.Drawing.Size(766, 292);
+            this.ucGrdSpectrum.SaveBtnText = "保存";
+            this.ucGrdSpectrum.Size = new System.Drawing.Size(766, 164);
             this.ucGrdSpectrum.TabIndex = 0;
             this.ucGrdSpectrum.Title = "参数";
             // 
@@ -629,7 +641,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabPgMatieralAjustment.Controls.Add(this.btnRowMaterialSave);
             this.tabPgMatieralAjustment.Controls.Add(this.grdRowMaterial);
             this.tabPgMatieralAjustment.Name = "tabPgMatieralAjustment";
-            this.tabPgMatieralAjustment.Size = new System.Drawing.Size(766, 292);
+            this.tabPgMatieralAjustment.Size = new System.Drawing.Size(766, 164);
             this.tabPgMatieralAjustment.Text = "原材料调整";
             this.tabPgMatieralAjustment.Tooltip = "原材料调整";
             // 
@@ -653,7 +665,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdRowMaterial.Name = "grdRowMaterial";
             this.grdRowMaterial.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox2});
-            this.grdRowMaterial.Size = new System.Drawing.Size(685, 289);
+            this.grdRowMaterial.Size = new System.Drawing.Size(685, 159);
             this.grdRowMaterial.TabIndex = 1;
             this.grdRowMaterial.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdRowMaterialView});
@@ -739,7 +751,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.tabPgSample.Controls.Add(this.ucGrdSample);
             this.tabPgSample.Name = "tabPgSample";
-            this.tabPgSample.Size = new System.Drawing.Size(766, 292);
+            this.tabPgSample.Size = new System.Drawing.Size(766, 164);
             this.tabPgSample.Text = "浇三角试样";
             this.tabPgSample.Tooltip = "浇三角试样";
             // 
@@ -749,7 +761,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucGrdSample.Location = new System.Drawing.Point(0, 0);
             this.ucGrdSample.Name = "ucGrdSample";
-            this.ucGrdSample.Size = new System.Drawing.Size(766, 292);
+            this.ucGrdSample.SaveBtnText = "保存";
+            this.ucGrdSample.Size = new System.Drawing.Size(766, 164);
             this.ucGrdSample.TabIndex = 0;
             this.ucGrdSample.Title = "参数";
             // 
@@ -757,7 +770,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.tabPgBaked.Controls.Add(this.ucGrdBaked);
             this.tabPgBaked.Name = "tabPgBaked";
-            this.tabPgBaked.Size = new System.Drawing.Size(766, 292);
+            this.tabPgBaked.Size = new System.Drawing.Size(766, 164);
             this.tabPgBaked.Text = "炉水出炉";
             this.tabPgBaked.Tooltip = "炉水出炉";
             // 
@@ -767,7 +780,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucGrdBaked.Location = new System.Drawing.Point(0, 0);
             this.ucGrdBaked.Name = "ucGrdBaked";
-            this.ucGrdBaked.Size = new System.Drawing.Size(766, 292);
+            this.ucGrdBaked.SaveBtnText = "生产结束";
+            this.ucGrdBaked.Size = new System.Drawing.Size(766, 164);
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
             // 
@@ -806,7 +820,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.lblFurnaceTime);
             this.Controls.Add(this.dtProductDate);
             this.Controls.Add(this.tabCtrlDetail);
@@ -817,7 +831,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.Controls.Add(this.labelController);
             this.Controls.Add(this.grpCtrProductionInfo);
             this.Name = "ucFurnace";
-            this.Size = new System.Drawing.Size(778, 535);
+            this.Size = new System.Drawing.Size(778, 326);
             this.Load += new System.EventHandler(this.ucFurnace_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).EndInit();
             this.grpCtrProductionInfo.ResumeLayout(false);
