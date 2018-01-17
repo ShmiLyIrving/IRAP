@@ -415,7 +415,7 @@ namespace IRAP.BL.MES {
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                SmeltBatchProductionInfo data = new SmeltBatchProductionInfo();
+                List<SmeltBatchProductionInfo> data = new List<SmeltBatchProductionInfo>();
 
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
@@ -443,8 +443,7 @@ namespace IRAP.BL.MES {
 
                         IList<SmeltBatchProductionInfo> lstDatas = 
                             conn.CallTableFunc<SmeltBatchProductionInfo>(strSQL, paramList);
-                        if (lstDatas.Count > 0)
-                            data = lstDatas[0];
+                        data = lstDatas.ToList<SmeltBatchProductionInfo>();
                         errCode = 0;
                         errText = string.Format("调用成功！共获得 {0} 条记录", lstDatas.Count);
                         WriteLog.Instance.Write(errText, strProcedureName);
