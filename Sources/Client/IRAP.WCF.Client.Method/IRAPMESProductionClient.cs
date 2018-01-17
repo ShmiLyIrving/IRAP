@@ -1,4 +1,5 @@
-﻿using IRAP.Entities.MES;
+﻿using IRAP.Entities.MDM;
+using IRAP.Entities.MES;
 using IRAP.Entity.UTS;
 using IRAP.Global;
 using System;
@@ -32,7 +33,7 @@ namespace IRAP.WCF.Client.Method {
         /// <param name="communityID">社区标识</param>
         /// <param name="sysLogID">系统登录标识</param>
         /// <returns></returns>
-        public List<ProductionParam> GetFurnaceLists(int communityID, long sysLogID, out int errCode,out string errText) {
+        public List<WIPStation> GetFurnaceLists(int communityID, long sysLogID, out int errCode, out string errText) {
             string strProcedureName =string.Format("{0}.{1}",className,MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -55,8 +56,8 @@ namespace IRAP.WCF.Client.Method {
 
                     object rlt =
                         client.WCFRESTFul(
-                            "IRAP.BL.MES.dll",
-                            "IRAP.BL.MES.SmeltingProduction",
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
                             "ufn_GetList_WIPStationsOfAHost",
                         hashParams,
                         out errCode,
@@ -67,7 +68,7 @@ namespace IRAP.WCF.Client.Method {
                         strProcedureName);
 
                     if (errCode == 0) {
-                        var datas = rlt as List<ProductionParam>; 
+                        var datas = rlt as List<WIPStation>; 
                         return datas;
                     }
                 }
