@@ -786,6 +786,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.Size = new System.Drawing.Size(766, 164);
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
+            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;
             // 
             // dtProductDate
             // 
