@@ -563,6 +563,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdBurdenInfoView.OptionsMenu.ShowGroupSortSummaryItems = false;
             this.grdBurdenInfoView.OptionsMenu.ShowSplitItem = false;
             this.grdBurdenInfoView.OptionsView.ShowGroupPanel = false;
+            this.grdBurdenInfoView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grdBurdenInfoView_CustomRowCellEdit);
             // 
             // ColT101Code
             // 
@@ -637,6 +638,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSpectrum.TabIndex = 0;
             this.ucGrdSpectrum.Title = "参数";
             this.ucGrdSpectrum.SaveClick += ucGrdSpectrum_SaveClick;            // 
+            // 
             // tabPgMatieralAjustment
             // 
             this.tabPgMatieralAjustment.Controls.Add(this.btnRowMaterialSave);
@@ -768,6 +770,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.TabIndex = 0;
             this.ucGrdSample.Title = "参数";
             this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;            // 
+            // 
             // tabPgBaked
             // 
             this.tabPgBaked.Controls.Add(this.ucGrdBaked);
@@ -788,6 +791,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
             this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;            // 
+            // 
             // dtProductDate
             // 
             this.dtProductDate.EditValue = System.DateTime.Now;
