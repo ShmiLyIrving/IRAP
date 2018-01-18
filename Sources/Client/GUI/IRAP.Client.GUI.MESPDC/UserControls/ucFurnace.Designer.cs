@@ -28,7 +28,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grpCtrProductionInfo = new DevExpress.XtraEditors.GroupControl();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdCtrProductionInfoView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.ColPWONo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -87,7 +87,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).BeginInit();
             this.grpCtrProductionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrlCurrentInfo)).BeginInit();
@@ -143,18 +143,18 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdCtrProductionInfo.Location = new System.Drawing.Point(3, 22);
-            this.grdCtrProductionInfo.MainView = this.gridView1;
+            this.grdCtrProductionInfo.MainView = this.grdCtrProductionInfoView;
             this.grdCtrProductionInfo.Name = "grdCtrProductionInfo";
             this.grdCtrProductionInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
             this.grdCtrProductionInfo.Size = new System.Drawing.Size(458, 66);
             this.grdCtrProductionInfo.TabIndex = 0;
             this.grdCtrProductionInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.grdCtrProductionInfoView});
             // 
-            // gridView1
+            // grdCtrProductionInfoView
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grdCtrProductionInfoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colPrint,
             this.ColPWONo,
             this.ColMOLineNo,
@@ -164,19 +164,19 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ColLotNumber,
             this.ColMachineModelling,
             this.ColFoldNumber});
-            this.gridView1.GridControl = this.grdCtrProductionInfo;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowPartialGroups = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowPartialRedrawOnScrolling = false;
-            this.gridView1.OptionsBehavior.AutoPopulateColumns = false;
-            this.gridView1.OptionsBehavior.AutoUpdateTotalSummary = false;
-            this.gridView1.OptionsCustomization.AllowColumnMoving = false;
-            this.gridView1.OptionsCustomization.AllowGroup = false;
-            this.gridView1.OptionsCustomization.AllowRowSizing = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.grdCtrProductionInfoView.GridControl = this.grdCtrProductionInfo;
+            this.grdCtrProductionInfoView.Name = "grdCtrProductionInfoView";
+            this.grdCtrProductionInfoView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.grdCtrProductionInfoView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.grdCtrProductionInfoView.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.False;
+            this.grdCtrProductionInfoView.OptionsBehavior.AllowPartialGroups = DevExpress.Utils.DefaultBoolean.False;
+            this.grdCtrProductionInfoView.OptionsBehavior.AllowPartialRedrawOnScrolling = false;
+            this.grdCtrProductionInfoView.OptionsBehavior.AutoPopulateColumns = false;
+            this.grdCtrProductionInfoView.OptionsBehavior.AutoUpdateTotalSummary = false;
+            this.grdCtrProductionInfoView.OptionsCustomization.AllowColumnMoving = false;
+            this.grdCtrProductionInfoView.OptionsCustomization.AllowGroup = false;
+            this.grdCtrProductionInfoView.OptionsCustomization.AllowRowSizing = true;
+            this.grdCtrProductionInfoView.OptionsView.ShowGroupPanel = false;
             // 
             // colPrint
             // 
@@ -631,12 +631,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSpectrum.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucGrdSpectrum.Location = new System.Drawing.Point(0, 0);
             this.ucGrdSpectrum.Name = "ucGrdSpectrum";
+            this.ucGrdSpectrum.ReadOnlyCount = 0;
             this.ucGrdSpectrum.SaveBtnText = "保存";
             this.ucGrdSpectrum.Size = new System.Drawing.Size(766, 164);
             this.ucGrdSpectrum.TabIndex = 0;
             this.ucGrdSpectrum.Title = "参数";
-            this.ucGrdSpectrum.SaveClick += ucGrdSpectrum_SaveClick;
-            // 
+            this.ucGrdSpectrum.SaveClick += ucGrdSpectrum_SaveClick;            // 
             // tabPgMatieralAjustment
             // 
             this.tabPgMatieralAjustment.Controls.Add(this.btnRowMaterialSave);
@@ -762,12 +762,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucGrdSample.Location = new System.Drawing.Point(0, 0);
             this.ucGrdSample.Name = "ucGrdSample";
+            this.ucGrdSample.ReadOnlyCount = 0;
             this.ucGrdSample.SaveBtnText = "保存";
             this.ucGrdSample.Size = new System.Drawing.Size(766, 164);
             this.ucGrdSample.TabIndex = 0;
             this.ucGrdSample.Title = "参数";
-            this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;
-            // 
+            this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;            // 
             // tabPgBaked
             // 
             this.tabPgBaked.Controls.Add(this.ucGrdBaked);
@@ -782,12 +782,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucGrdBaked.Location = new System.Drawing.Point(0, 0);
             this.ucGrdBaked.Name = "ucGrdBaked";
+            this.ucGrdBaked.ReadOnlyCount = 0;
             this.ucGrdBaked.SaveBtnText = "生产结束";
             this.ucGrdBaked.Size = new System.Drawing.Size(766, 164);
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
-            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;
-            // 
+            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;            // 
             // dtProductDate
             // 
             this.dtProductDate.EditValue = System.DateTime.Now;
@@ -838,7 +838,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).EndInit();
             this.grpCtrProductionInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrlCurrentInfo)).EndInit();
@@ -879,7 +879,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private DevExpress.XtraEditors.LabelControl labelFurnaceTime;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraGrid.GridControl grdCtrProductionInfo;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdCtrProductionInfoView;
         private DevExpress.XtraEditors.GroupControl grpCtrlCurrentInfo;
         private DevExpress.XtraTab.XtraTabControl tabCtrlDetail;
         private DevExpress.XtraEditors.LabelControl labProductStartTimeResult;
