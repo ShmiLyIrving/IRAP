@@ -942,12 +942,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
         #endregion
 
-        #region 事件
-
-        private void ucFurnace_Load(object sender, EventArgs e) {
-            //RefreshFurnace();
-        }
-
+        #region 事件 
         private void btnStart_Click(object sender, EventArgs e) {
             if (!OperatorCodeValidate()) {
                 return;
@@ -958,7 +953,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (!StartProduction()) {
                 return;
             }
-            RefreshFurnace();
+            RefreshFurnace(true);
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
@@ -1270,9 +1265,17 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 刷新页面
         /// </summary>
         public void RefreshFurnace() {
+            RefreshFurnace(false);
+        } 
+
+        /// <summary>
+        /// 刷新页面
+        /// </summary>
+        /// <param name="keepMaterial"></param>
+        private void RefreshFurnace(bool keepMaterial) {
             var smeltBatchProductionInfos = ReLoadProduction();
             if (smeltBatchProductionInfos == null || smeltBatchProductionInfos.Count < 1 || smeltBatchProductionInfos[0] == null) {
-                RefreshWithNoProduction();
+                RefreshWithNoProduction(keepMaterial);
                 return;
             }
             var currentInfo = smeltBatchProductionInfos[0];
@@ -1285,7 +1288,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 _operatorName = currentInfo.OperatorName;
                 this.lblFurnaceTime.Text = currentInfo.BatchNumber;
                 this.lblFurnaceTime.Tag = currentInfo;
-                SetCurrentSmeltInfo(currentInfo); 
+                SetCurrentSmeltInfo(currentInfo);
                 SetParaGrid(Optype.Spectrum);
                 SetParaGrid(Optype.Sample);
                 SetParaGrid(Optype.Baked);
@@ -1293,19 +1296,21 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 SetOrderInfo();
                 ChangeTabPage();
             } else if (currentInfo.InProduction == 0) {//没有在产产品
-                RefreshWithNoProduction();
+                RefreshWithNoProduction(keepMaterial);
             }   
         }
 
         /// <summary>
         /// 没有正在生产的产品
         /// </summary>
-        private void RefreshWithNoProduction() {
+        private void RefreshWithNoProduction(bool keepMaterial) {
             _ProductingNow = false;
             SetCurrentSmeltInfo(null);
             SetWaitingFurnace();
-            SetSmeltMaterialItems();
-            SetSmeltMethodItems();
+            if (!keepMaterial) {
+                SetSmeltMaterialItems();
+                SetSmeltMethodItems();
+            } 
             SetOrderInfo();
             ChangeTabPage();
         }
