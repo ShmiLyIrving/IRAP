@@ -63,9 +63,18 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             DataRow dr = null;
             if (recordNo >= 0 && recordNo < items.Rows.Count)
                 dr = items.Rows[recordNo];
-
+            int extraCol = 0;
             for (int i = 0; i < items.Columns.Count; i++)
             {
+                //ReadOnly和FactID两列不用显示
+                if (items.Columns[i].ColumnName == "ReadOnly") {
+                    extraCol ++;
+                    continue;
+                }
+                if (items.Columns[i].ColumnName == "FactID") {
+                    extraCol++;
+                    continue;
+                }
                 LabelControl label =
                     new LabelControl()
                     {
@@ -95,7 +104,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 edits.Add(textEdit);
             }
 
-            Height = 40 + (items.Columns.Count * 30) + 116;
+            Height = 40 + ((items.Columns.Count - extraCol) * 30) + 116;
         }
 
         protected virtual void btnOK_Click(object sender, EventArgs e)

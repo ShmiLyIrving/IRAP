@@ -15,7 +15,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         public ucDetailGrid() {
             InitializeComponent();
         }
-
+        #region 属性 
         [Browsable(true)]
         public string Title {
             get { return this.groupControl1.Text; }
@@ -37,7 +37,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         public VGridControl vGridControl {
             get { return this.vGridControl1; }
         }
-
+         
+        /// <summary>
+        /// 小于此索引的列只读
+        /// </summary>
+        public int ReadOnlyCount {
+            get { return _readOnlyCount; }
+            set { _readOnlyCount = value; }
+        }
+        private int _readOnlyCount = 0;
+        #endregion
         public delegate void BtnSaveClick(object sender, EventArgs e);
         public BtnSaveClick SaveClick; 
         private void btnSave_Click_1(object sender, EventArgs e) {
@@ -73,36 +82,38 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.vGridControl1.Rows.Clear();
         }
 
-        private void btnModify_Click(object sender, EventArgs e) {
-            if (DataSource.Columns.Count < 0) {
-                XtraMessageBox.Show(
-                    "当前没有可配置的参数",
-                    "",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return;
-            }
-            int idx = this.vGridControl1.FocusedRecord;
-            if (idx < 0) {
-                XtraMessageBox.Show(
-                    "当前没有需要修改参数",
-                    "",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return;
-            }
+        #region 修改方法 （拿掉）
+        //private void btnModify_Click(object sender, EventArgs e) {
+        //    if (DataSource.Columns.Count < 0) {
+        //        XtraMessageBox.Show(
+        //            "当前没有可配置的参数",
+        //            "",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error);
+        //        return;
+        //    }
+        //    int idx = this.vGridControl1.FocusedRecord;
+        //    if (idx < 0) {
+        //        XtraMessageBox.Show(
+        //            "当前没有需要修改参数",
+        //            "",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error);
+        //        return;
+        //    }
 
-            using (Dialogs.frmItemsEditor formEditor =
-                new Dialogs.frmItemsEditor(
-                    EditStatus.Edit,
-                   this.groupControl1.Text,
-                    DataSource,
-                    idx)) {
-                if (formEditor.ShowDialog() == DialogResult.OK) {
-                    this.vGridControl1.RefreshDataSource();
-                }
-            }
-        }
+        //    using (Dialogs.frmItemsEditor formEditor =
+        //        new Dialogs.frmItemsEditor(
+        //            EditStatus.Edit,
+        //           this.groupControl1.Text,
+        //            DataSource,
+        //            idx)) {
+        //        if (formEditor.ShowDialog() == DialogResult.OK) {
+        //            this.vGridControl1.RefreshDataSource();
+        //        }
+        //    }
+        //}
+        #endregion
 
         private void btnDelete_Click(object sender, EventArgs e) {
             int idx = this.vGridControl1.FocusedRecord;
@@ -119,6 +130,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
                     this.vGridControl1.RefreshDataSource();
                 }
+            }
+        }
+
+        private void vGridControl1_ShownEditor(object sender, EventArgs e) {
+
+        }
+
+        private void vGridControl1_ShowingEditor(object sender, CancelEventArgs e) {
+            if (this.vGridControl1.FocusedRecord < _readOnlyCount) {
+                e.Cancel = true;
             }
         }
           

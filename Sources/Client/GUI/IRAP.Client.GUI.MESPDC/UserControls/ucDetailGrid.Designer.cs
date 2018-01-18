@@ -26,7 +26,6 @@
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.vGridControl1 = new DevExpress.XtraVerticalGrid.VGridControl();
-            this.btnModify = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -37,7 +36,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(701, 96);
+            this.btnSave.Location = new System.Drawing.Point(701, 70);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(60, 20);
             this.btnSave.TabIndex = 12;
@@ -48,14 +47,13 @@
             // 
             this.groupControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupControl1.Controls.Add(this.vGridControl1);
-            this.groupControl1.Controls.Add(this.btnModify);
             this.groupControl1.Controls.Add(this.btnSave);
             this.groupControl1.Controls.Add(this.btnDelete);
             this.groupControl1.Controls.Add(this.btnAdd);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(765, 137);
+            this.groupControl1.Size = new System.Drawing.Size(765, 93);
             this.groupControl1.TabIndex = 13;
             this.groupControl1.Text = "参数";
             // 
@@ -66,23 +64,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.vGridControl1.Location = new System.Drawing.Point(3, 23);
             this.vGridControl1.Name = "vGridControl1";
-            this.vGridControl1.Size = new System.Drawing.Size(693, 111);
+            this.vGridControl1.Size = new System.Drawing.Size(693, 67);
             this.vGridControl1.TabIndex = 16;
-            // 
-            // btnModify
-            // 
-            this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModify.Location = new System.Drawing.Point(701, 48);
-            this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(60, 20);
-            this.btnModify.TabIndex = 15;
-            this.btnModify.Text = "修改";
-            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            this.vGridControl1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.vGridControl1_ShowingEditor);
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(701, 72);
+            this.btnDelete.Location = new System.Drawing.Point(701, 47);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(60, 20);
             this.btnDelete.TabIndex = 14;
@@ -105,7 +94,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupControl1);
             this.Name = "ucDetailGrid";
-            this.Size = new System.Drawing.Size(765, 137);
+            this.Size = new System.Drawing.Size(765, 93);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.vGridControl1)).EndInit();
@@ -117,7 +106,6 @@
 
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton btnModify;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
         private DevExpress.XtraVerticalGrid.VGridControl vGridControl1;

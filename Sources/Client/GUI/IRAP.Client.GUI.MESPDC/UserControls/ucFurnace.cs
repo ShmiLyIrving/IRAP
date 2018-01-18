@@ -648,9 +648,61 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 row.Properties.FieldName = colName; 
                 grd.vGridControl.Rows.Add(row);
             }
-
+            dt.Columns.Add("FactID", typeof(string));
+            dt.Columns.Add("ReadOnly", typeof(bool));
+            FillOpTypeData(items,dt);
             grd.DataSource = dt;
+            grd.ReadOnlyCount = dt.Rows.Count;
             grd.vGridControl.BestFit();
+        }
+
+        /// <summary>
+        /// 获取历史记录
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="grd"></param>
+        /// <RF25 >
+        ///    <Row FactID="" Metric01=""> 								--  
+		/// </RF25 >
+        private void FillOpTypeData(List<SmeltMethodItemByOpType> items,DataTable dt) { 
+            if (dt == null || items == null || items.Count == 0) {
+                return;
+            }
+            
+            foreach (var item in items) {
+                if (string.IsNullOrEmpty(item.DataXML)) {
+                    return;
+                }
+                var colName = string.Format("Column{0}", item.Ordinal);
+                var col = dt.Columns[colName];
+                if (col == null) {
+                    return;
+                }
+                var doc = new XmlDocument();
+                doc.LoadXml(item.DataXML);
+                var nodes = doc.SelectNodes("RF25/Row");
+                if (nodes == null||nodes.Count==0) {
+                    return;
+                }
+                foreach (XmlElement node in nodes) {
+                    var factID = node.Attributes["FactID"] == null ? null : node.Attributes["FactID"].Value;
+                    if (string.IsNullOrEmpty(factID)) {
+                        continue;
+                    }
+                    var value = node.Attributes["Metric01"] == null?null:node.Attributes["Metric01"].Value;
+                    var rows = dt.Select(string.Format("FactID = {0}", factID));
+                    if (rows == null||rows.Length==0) {
+                        var row = dt.NewRow();
+                        row["FactID"] = factID;
+                        row[colName] = value;
+                        row["ReadOnly"] = true;
+                        dt.Rows.Add(row);
+                        continue;
+                    }
+                    var row1 = rows[0];//不会有重复的factId，所以rows的个数一定为1或0
+                    row1["FactID"] = factID;
+                }
+            } 
         }
 
         private string GetOpType(Optype opType) {
@@ -721,27 +773,36 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             XmlDocument xmlDoc = new XmlDocument();
             XmlElement root = xmlDoc.CreateElement("RSFact");
             xmlDoc.AppendChild(root);
-            var rF25Node = xmlDoc.CreateElement("RF25"); 
+            var rF25Node = xmlDoc.CreateElement("RF25");
             if (data == null || data.Rows.Count == 0) {
                 root.AppendChild(rF25Node);
                 return xmlDoc.OuterXml;
             }
-            for (int i = 0; i < data.Columns.Count; i++) {
-                var col = data.Columns[i];
-                var item = col.ExtendedProperties["SmeltMethodItemByOpType"] as SmeltMethodItemByOpType;
-                if (item == null) {
+            for (int j = 0; j < data.Rows.Count; j++) {
+                var colReadOnly = data.Columns["ReadOnly"]; 
+                if (colReadOnly == null) {
                     continue;
                 }
-                for (int j = 0; j < data.Rows.Count; j++) {
+                var readOnly = data.Rows[j][colReadOnly].ToString();
+                if (!string.IsNullOrEmpty(readOnly) && readOnly == "True") {
+                    continue;
+                }
+                for (int i = 0; i < data.Columns.Count; i++) {
+                    var col = data.Columns[i];
+                    var item = col.ExtendedProperties["SmeltMethodItemByOpType"] as SmeltMethodItemByOpType;
+                    if (item == null) {
+                        continue;
+                    }
+
                     var row = xmlDoc.CreateElement("Row");
-                    row.SetAttribute("Ordinal", (j+1).ToString());
+                    row.SetAttribute("Ordinal", (j + 1).ToString());
                     row.SetAttribute("FactID", "");
                     row.SetAttribute("T20LeafID", item.T20LeafID.ToString());
                     row.SetAttribute("Metric01", data.Rows[j][i].ToString());
                     row.SetAttribute("Scale", item.Scale.ToString());
                     row.SetAttribute("UnitOfMeasure", item.UnitOfMeasure.ToString());
                     rF25Node.AppendChild(row);
-                } 
+                }
             }
             root.AppendChild(rF25Node);
             return xmlDoc.OuterXml;
@@ -892,7 +953,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             this.ucGrdSpectrum.DataSource.Rows.Clear();
             this.ucGrdSpectrum.DataSource.Columns.Clear();
-            this.ucGrdSpectrum.vGridControl.Rows.Clear(); 
+            this.ucGrdSpectrum.vGridControl.Rows.Clear();
+            SetParaGrid(Optype.Spectrum);
+
         }
 
         private void ucGrdSample_SaveClick(object sender, System.EventArgs e) {
@@ -902,6 +965,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.DataSource.Rows.Clear();
             this.ucGrdSample.DataSource.Columns.Clear();
             this.ucGrdSample.vGridControl.Rows.Clear();
+            SetParaGrid(Optype.Sample);
         }
 
         private void btnRowMaterialSave_Click(object sender, EventArgs e) {
