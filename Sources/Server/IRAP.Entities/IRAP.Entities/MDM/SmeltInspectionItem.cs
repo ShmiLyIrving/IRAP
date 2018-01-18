@@ -117,9 +117,9 @@ namespace IRAP.Entities.MDM
                     SmeltInspectionItemValue itemValue =
                         new SmeltInspectionItemValue();
 
-                    if (node.Attributes["FactID"] != null)
+                    if (node.Attributes["FactID"] != null && !string.IsNullOrEmpty(node.Attributes["FactID"].Value))
                         itemValue.FactID = Tools.ConvertToInt64(node.Attributes["FactID"].Value);
-                    if (node.Attributes["Metric01"] != null)
+                    if (node.Attributes["Metric01"] != null&& !string.IsNullOrEmpty(node.Attributes["Metric01"].Value))
                         itemValue.Metric01 = Tools.ConvertToInt32(node.Attributes["Metric01"].Value);
                     itemValue.Scale = Scale;
                     itemValue.UnitOfMeasure = UnitOfMeasure;

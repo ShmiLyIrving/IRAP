@@ -88,11 +88,14 @@ namespace IRAP.Client.GUI.MESPDC
         {
             if (e.KeyCode == Keys.Return)
             {
-                
                 if (edtBatchNo.Text.Trim() != "")
                 {
-                    currentBatchNo = edtBatchNo.Text;
-                    ChangeUC();                   
+                    if (AlertConfirm())
+                    {
+                        currentBatchNo = edtBatchNo.Text;
+                        ChangeUC();
+                        saveState = true;
+                    }
                 }
             }
         }
