@@ -523,6 +523,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 this.labProductStartTimeResult.Tag = null;
                 this.labCurrentFurnaceResult.Text = "";
                 this.grpCtrlCurrentInfo.Tag = null;
+                this.lblProductionTimeResult.Text = "";
                 return;
             }
             this.labProductStartTimeResult.Text = info.BatchStartDate.ToShortDateString();
@@ -909,6 +910,38 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
         #endregion
 
+        #region 生产结束
+        private bool StopProduction() {
+            var batchNumber = this.lblFurnaceTime.Text;
+            int errCode;
+            string errText; 
+             
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                IRAPMESProductionClient.Instance.SmeltBatchProductionEnd(_communityID,_productionParam.T216LeafID,
+                    _productionParam.T107LeafID, batchNumber, _sysLogID, out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                XtraMessageBox.Show(
+                    errText,
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return true;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return false;
+        }
+        #endregion
+
         #region 事件
 
         private void ucFurnace_Load(object sender, EventArgs e) {
@@ -966,6 +999,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.DataSource.Columns.Clear();
             this.ucGrdSample.vGridControl.Rows.Clear();
             SetParaGrid(Optype.Sample);
+        }
+
+        private void ucGrdBaked_SaveClick(object sender, System.EventArgs e) {
+            StopProduction();
+            RefreshFurnace();
         }
 
         private void btnRowMaterialSave_Click(object sender, EventArgs e) {
