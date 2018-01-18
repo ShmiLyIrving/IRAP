@@ -261,6 +261,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 return;
             }
             this.grdCtrProductionInfo.DataSource = _orderInfo;
+            this.grdCtrProductionInfoView.BestFitColumns();
         }
 
         private List<OrderInfo> GetOrderInfo() {
