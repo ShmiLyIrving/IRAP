@@ -697,6 +697,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdRowMaterialView.OptionsMenu.ShowGroupSortSummaryItems = false;
             this.grdRowMaterialView.OptionsMenu.ShowSplitItem = false;
             this.grdRowMaterialView.OptionsView.ShowGroupPanel = false;
+            this.grdRowMaterialView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grdRowMaterialView_CustomRowCellEdit);
             // 
             // gridColumn1
             // 
@@ -769,7 +770,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.Size = new System.Drawing.Size(766, 164);
             this.ucGrdSample.TabIndex = 0;
             this.ucGrdSample.Title = "参数";
-            this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;            // 
+            this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;             // 
             // 
             // tabPgBaked
             // 
@@ -790,7 +791,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.Size = new System.Drawing.Size(766, 164);
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
-            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;            // 
+            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;               // 
             // 
             // dtProductDate
             // 
