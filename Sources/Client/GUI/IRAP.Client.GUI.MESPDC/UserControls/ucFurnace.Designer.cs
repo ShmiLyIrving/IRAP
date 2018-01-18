@@ -835,7 +835,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.Controls.Add(this.grpCtrProductionInfo);
             this.Name = "ucFurnace";
             this.Size = new System.Drawing.Size(778, 326);
-            this.Load += new System.EventHandler(this.ucFurnace_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).EndInit();
             this.grpCtrProductionInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).EndInit();
