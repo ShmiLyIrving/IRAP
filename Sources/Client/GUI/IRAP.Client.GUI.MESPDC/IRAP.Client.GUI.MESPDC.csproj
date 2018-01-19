@@ -468,6 +468,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.GUI.MESPDC.cd" />
+    <None Include="Resources\双环-铸造产品标识卡.frx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

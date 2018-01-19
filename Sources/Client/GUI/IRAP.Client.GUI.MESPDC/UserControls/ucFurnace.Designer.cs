@@ -85,12 +85,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.lblFurnaceTime = new DevExpress.XtraEditors.LabelControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).BeginInit();
             this.grpCtrProductionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
@@ -803,8 +803,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.Size = new System.Drawing.Size(766, 164);
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
-            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick; 
-            // 
+            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;             // 
             // dtProductDate
             // 
             this.dtProductDate.EditValue = System.DateTime.Now;
@@ -842,6 +841,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "删除";
+            this.barButtonItem1.Id = 0;
+            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // barManager1
             // 
@@ -883,12 +888,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.barDockControlRight.Location = new System.Drawing.Point(778, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
             // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "删除";
-            this.barButtonItem1.Id = 0;
-            this.barButtonItem1.Name = "barButtonItem1";
-            // 
             // ucFurnace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -903,6 +902,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.Controls.Add(this.txtOperator);
             this.Controls.Add(this.labelController);
             this.Controls.Add(this.grpCtrProductionInfo);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Name = "ucFurnace";
             this.Size = new System.Drawing.Size(778, 326);
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).EndInit();
