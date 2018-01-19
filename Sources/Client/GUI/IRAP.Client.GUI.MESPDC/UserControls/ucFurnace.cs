@@ -30,7 +30,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this._communityID = communityID;
             this._sysLogID = sysLogID;
         }
-  
+
+        #region 字段
         private string className = MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private ImportParam _importPara = new ImportParam();
@@ -41,8 +42,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private string _operatorName;
         private BindingList<SmeltMaterialItemClient> _smeltMaterialItems = new BindingList<SmeltMaterialItemClient>();
         private int _readOnlyCount = 0;
-
-
+        #endregion
+         
         #region 属性
         /// <summary>
         /// 熔炉信息
@@ -962,6 +963,32 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 items.Add(item);
             } 
         }
+
+        private string[] GetT101Code(List<SmeltMaterialItemClient> items) {
+            if (items == null || items.Count == 0) {
+                return null;
+            }
+            string[] lists = new string[items.Count];
+            for (int i = 0; i < items.Count; i++) {
+                lists[i] = items[i].T101Code;
+            }
+            return lists;
+        }
+
+        private void SetT101Code(GridView view, CustomRowCellEditEventArgs e) {
+            //if (e.RowHandle < 0) {
+            //    return;
+            //}
+            var smelts = view.Tag as List<SmeltMaterialItemClient>;
+            if (smelts == null || smelts.Count == 0) {
+                return;
+            }
+            RepositoryItemComboBox edit = new RepositoryItemComboBox();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            edit.Items.AddRange(GetT101Code(smelts));
+            edit.SelectedValueChanged += edit_SelectedValueChanged;
+            e.RepositoryItem = edit;
+        }
         #endregion
 
         #region 生产结束
@@ -1081,6 +1108,73 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 SetT101Code(sender as GridView, e);
                 return;
             }
+        }
+
+        private void edit_SelectedValueChanged(object sender, EventArgs e) {
+            var edit = sender as ComboBoxEdit;
+            if (edit.EditValue == null) {
+                return;
+            }
+            var t101Code = edit.EditValue.ToString();
+            var newData = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
+            if (newData == null) {
+                return;
+            }
+            newData.T101Code = t101Code; 
+            var currentItems = _smeltMaterialItems.Where(p => p.T101Code == t101Code).ToList<SmeltMaterialItemClient>();
+            if (currentItems == null || currentItems.Count == 0) {
+                return;
+            }
+            var currentItem = currentItems[0];
+            if (currentItem == null) {
+                return;
+            }
+            newData.T101Name = currentItem.T101Name;
+            newData.T101LeafID = currentItem.T101LeafID;
+            newData.UnitOfMeasure = currentItem.UnitOfMeasure;
+            newData.Scale = currentItem.Scale;
+        }
+
+        private void grdRowMaterialView_ShowingEditor(object sender, CancelEventArgs e) {
+            var view = sender as GridView;
+            var currentItem = view.GetFocusedRow() as SmeltMaterialItemClient;
+            if (currentItem == null) {
+                return;
+            }
+            if (currentItem.IsReadOnly) {
+                e.Cancel = true;
+            }
+        }
+
+        private void grdRowMaterialView_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
+            var view = sender as GridView;
+            if (view == null) {
+                return;
+            }
+            var item = view.GetFocusedRow() as SmeltMaterialItemClient;
+            if (item == null) {
+                return;
+            }
+            if (item.IsReadOnly) {
+                e.Cancel = true;
+            }
+        }
+
+        private void grdRowMaterialView_RowClick(object sender, RowClickEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+                popupMenu1.ShowPopup(Control.MousePosition);
+            }
+        }
+
+        private void barManager1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var currentRow = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
+            if (currentRow == null) {
+                return;
+            }
+            if (currentRow.IsReadOnly) {
+                return;
+            }
+            this.grdRowMaterialView.DeleteSelectedRows();
         }
         #endregion  
 
@@ -1331,12 +1425,13 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             //}
         }
 
+        #region 刷新页面
         /// <summary>
         /// 刷新页面
         /// </summary>
         public void RefreshFurnace() {
             RefreshFurnace(false);
-        } 
+        }
 
         /// <summary>
         /// 刷新页面
@@ -1367,7 +1462,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 ChangeTabPage();
             } else if (currentInfo.InProduction == 0) {//没有在产产品
                 RefreshWithNoProduction(keepMaterial);
-            }   
+            }
         }
 
         /// <summary>
@@ -1380,106 +1475,14 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (!keepMaterial) {
                 SetSmeltMaterialItems();
                 SetSmeltMethodItems();
-            } 
+            }
             SetOrderInfo();
             ChangeTabPage();
         } 
+        #endregion
+        
 
-        private string[] GetT101Code(List<SmeltMaterialItemClient> items) {
-            if (items == null||items.Count ==0) {
-                return null;
-            }
-            string[] lists = new string[items.Count];
-            for (int i = 0; i < items.Count; i++) {
-                lists[i] = items[i].T101Code;
-            }
-            return lists;
-        }
+        
 
-
-        private void SetT101Code(GridView view, CustomRowCellEditEventArgs e) {
-            //if (e.RowHandle < 0) {
-            //    return;
-            //}
-            var smelts = view.Tag as List<SmeltMaterialItemClient>;
-            if (smelts == null || smelts.Count == 0) {
-                return;
-            }
-            RepositoryItemComboBox edit = new RepositoryItemComboBox();
-            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            edit.Items.AddRange(GetT101Code(smelts));
-            edit.SelectedValueChanged += edit_SelectedValueChanged; 
-            e.RepositoryItem = edit;
-        }
-
-        void edit_SelectedValueChanged(object sender, EventArgs e) {
-            var edit = sender as ComboBoxEdit;
-            if (edit.EditValue==null) {
-                return;
-            }
-            var t101Code = edit.EditValue.ToString();
-            var newData = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
-            if (newData == null) {
-                return;
-            }
-            newData.T101Code = t101Code;
-            //var dataSource = this.grdRowMaterial.DataSource as BindingList<SmeltMaterialItemClient>;
-            //var newData = new SmeltMaterialItemClient() { T101Code = t101Code };
-            //dataSource.Add(newData);
-            var currentItems = _smeltMaterialItems.Where(p=>p.T101Code==t101Code).ToList<SmeltMaterialItemClient>();
-            if (currentItems==null||currentItems.Count == 0) {
-                return;
-            }
-            var currentItem = currentItems[0];
-            if (currentItem==null) {
-                return;
-            }
-            newData.T101Name = currentItem.T101Name;
-            newData.T101LeafID = currentItem.T101LeafID;
-            newData.UnitOfMeasure = currentItem.UnitOfMeasure;
-            newData.Scale = currentItem.Scale; 
-        } 
-
-        private void grdRowMaterialView_ShowingEditor(object sender, CancelEventArgs e) {
-            var view = sender as GridView;
-            var currentItem = view.GetFocusedRow() as SmeltMaterialItemClient;  
-            if (currentItem == null) {
-                return;
-            }
-            if (currentItem.IsReadOnly) {
-                e.Cancel = true;
-            }
-        }
-
-        private void grdRowMaterialView_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
-            var view = sender as GridView;
-            if (view ==null) {
-                return;
-            }
-            var item = view.GetFocusedRow() as SmeltMaterialItemClient;
-            if ( item == null) {
-                return;
-            }
-            if (item.IsReadOnly) {
-                e.Cancel = true;
-            }
-        }
-
-        private void grdRowMaterialView_RowClick(object sender, RowClickEventArgs e) {
-            if (e.Button == MouseButtons.Right) {
-                popupMenu1.ShowPopup(Control.MousePosition);
-            }
-        }
-
-        private void barManager1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var currentRow = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
-            if (currentRow == null) {
-                return;
-            }
-            if (currentRow.IsReadOnly) {
-                return;
-            }
-            this.grdRowMaterialView.DeleteSelectedRows();
-        }
     }
 }
