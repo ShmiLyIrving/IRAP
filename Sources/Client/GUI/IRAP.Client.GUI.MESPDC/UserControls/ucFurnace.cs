@@ -394,14 +394,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private void SetLotNumber(GridView view,CustomRowCellEditEventArgs e) {
             if (e.RowHandle > -1) {
                 var edit = new RepositoryItemComboBox();
-                var dataSource = view.DataController.GetAllFilteredAndSortedRows();
-                if (dataSource == null || dataSource.Count == 0) {
-                    return;
-                }
-                var currentRow = dataSource[e.RowHandle] as SmeltMaterialItemClient;
+                var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
                 if (currentRow == null) {
                     return;
-                }
+                } 
                 var data = GetLotNumber(currentRow.T101LeafID);
                 if (data == null || data.Count == 0) {
                     return;
@@ -922,20 +918,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             XmlDocument xmlDoc = new XmlDocument();
             XmlElement root = xmlDoc.CreateElement("RSFact");
-            xmlDoc.AppendChild(root);  
-            
+            xmlDoc.AppendChild(root);
+            var rF13Node = xmlDoc.CreateElement("RF13_1");
             foreach (SmeltMaterialItemClient item in data) {
                 if (item.IsReadOnly) {
                     continue;
                 }
-                var rF13Node = xmlDoc.CreateElement("RF13_1");
-                rF13Node.SetAttribute("Ordinal", item.Ordinal.ToString());
-                rF13Node.SetAttribute("T101LeafID", item.T101LeafID.ToString());
-                rF13Node.SetAttribute("LotNumber", item.LotNumber.ToString());
-                rF13Node.SetAttribute("Qty", item.Qty.ToString());
-                root.AppendChild(rF13Node);
+                var row = xmlDoc.CreateElement("Row");
+                row.SetAttribute("Ordinal", item.Ordinal.ToString());
+                row.SetAttribute("T101LeafID", item.T101LeafID.ToString());
+                row.SetAttribute("LotNumber", item.LotNumber.ToString());
+                row.SetAttribute("Qty", item.Qty.ToString());
+                row.SetAttribute("Scale", item.Scale.ToString());
+                row.SetAttribute("UnitOfMeasure", item.UnitOfMeasure);
+                rF13Node.AppendChild(row);
             }
-            return xmlDoc.OuterXml;
+            root.AppendChild(rF13Node);
+            return xmlDoc.OuterXml; 
         }
 
         /// <summary>
@@ -949,7 +948,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(rowSmelt.DataXML);
-            var nodes = doc.SelectNodes("RF13/Row");
+            var nodes = doc.SelectNodes("RF13_1/Row");
             if (nodes==null||nodes.Count==0) {
                 return;
             } 
@@ -968,11 +967,14 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (items == null || items.Count == 0) {
                 return null;
             }
-            string[] lists = new string[items.Count];
+            List<string> list = new List<string>(); 
             for (int i = 0; i < items.Count; i++) {
-                lists[i] = items[i].T101Code;
+                if (list.Contains(items[i].T101Code)) {
+                    continue;
+                }
+                list.Add(items[i].T101Code);
             }
-            return lists;
+            return list.ToArray<string>();
         }
 
         private void SetT101Code(GridView view, CustomRowCellEditEventArgs e) {
@@ -1133,7 +1135,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             newData.T101LeafID = currentItem.T101LeafID;
             newData.UnitOfMeasure = currentItem.UnitOfMeasure;
             newData.Scale = currentItem.Scale;
-        }
+            this.grdRowMaterialView.UpdateCurrentRow();
+          }
 
         private void grdRowMaterialView_ShowingEditor(object sender, CancelEventArgs e) {
             var view = sender as GridView;
@@ -1451,6 +1454,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 }
                 _operatorCode = currentInfo.OperatorCode;
                 _operatorName = currentInfo.OperatorName;
+                this.txtOperator.Enabled = false;
+                this.dtProductDate.Enabled = false;
                 this.lblFurnaceTime.Text = currentInfo.BatchNumber;
                 this.lblFurnaceTime.Tag = currentInfo;
                 SetCurrentSmeltInfo(currentInfo);
@@ -1470,6 +1475,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         private void RefreshWithNoProduction(bool keepMaterial) {
             _ProductingNow = false;
+            this.txtOperator.Enabled = true;
+            this.dtProductDate.Enabled = true;
             SetCurrentSmeltInfo(null);
             SetWaitingFurnace();
             if (!keepMaterial) {
