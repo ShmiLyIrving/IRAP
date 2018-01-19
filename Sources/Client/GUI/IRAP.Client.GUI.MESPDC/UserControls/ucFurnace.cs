@@ -19,6 +19,8 @@ using DevExpress.XtraVerticalGrid.Rows;
 using IRAP.Entities.IRAP;
 using IRAP.Client.User;
 using IRAP.Entities.MDM;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls {
     public partial class ucFurnace : XtraUserControl {
@@ -36,7 +38,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private List<OrderInfo> _orderInfo = new List<OrderInfo>();
         private bool _ProductingNow = false;//是否正在生产
         private string _operatorCode;
-        private string _operatorName; 
+        private string _operatorName;
+        private BindingList<SmeltMaterialItemClient> _smeltMaterialItems = new BindingList<SmeltMaterialItemClient>();
+        private int _readOnlyCount = 0;
 
 
         #region 属性
@@ -311,7 +315,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 获取配料信息
         /// </summary>
-        private List<SmeltMaterialItemClient> GetSmeltMaterialItems() {
+        private BindingList<SmeltMaterialItemClient> GetSmeltMaterialItems() {
             var batchNumber = this.lblFurnaceTime.Text; 
             int errCode;
             string errText;
@@ -336,7 +340,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
-                var datas = new List<SmeltMaterialItemClient>();
+                var datas = new BindingList<SmeltMaterialItemClient>();
                 foreach (SmeltMaterialItem item in data) { 
                     datas.Add(SmeltMaterialItemClient.Mapper<SmeltMaterialItemClient, SmeltMaterialItem>(item));
                 }
@@ -361,6 +365,56 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             this.grdBurdenInfo.DataSource = smeltMaterialItems;
             this.grdBurdenInfoView.Tag = smeltMaterialItems;
+            this.grdBurdenInfoView.BestFitColumns();
+        }
+
+        private List<SmeltBatchMaterial> GetLotNumber(int t101LeafID) {
+            int errCode;
+            string errText;
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            try {
+                var data = IRAPMESProductionClient.Instance.GetSmeltBatchMaterial(_communityID, t101LeafID, _sysLogID,
+                    out errCode, out errText);
+                if (errCode != 0) {
+                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                } 
+                return data;
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void SetLotNumber(GridView view,CustomRowCellEditEventArgs e) {
+            if (e.RowHandle > -1) {
+                var edit = new RepositoryItemComboBox();
+                var dataSource = view.DataController.GetAllFilteredAndSortedRows();
+                if (dataSource == null || dataSource.Count == 0) {
+                    return;
+                }
+                var currentRow = dataSource[e.RowHandle] as SmeltMaterialItemClient;
+                if (currentRow == null) {
+                    return;
+                }
+                var data = GetLotNumber(currentRow.T101LeafID);
+                if (data == null || data.Count == 0) {
+                    return;
+                }
+                currentRow.LotNumber = data[0] == null ? 0 : data[0].LotNumber;
+                foreach (var item in data) {
+                    if (data == null) {
+                        continue;
+                    }
+                    edit.Items.Add(item.LotNumber);
+                }
+                edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+                e.RepositoryItem = edit;
+            }
         }
 
         /// <summary>
@@ -461,7 +515,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                     var row = xmlDoc.CreateElement("Row");
                     row.SetAttribute("Ordinal", "1");
                     row.SetAttribute("T101LeafID", item.T101LeafID.ToString());
-                    row.SetAttribute("LotNumber", item.LotNumber);
+                    row.SetAttribute("LotNumber", item.LotNumber.ToString());
                     row.SetAttribute("Qty", item.Qty.ToString());
                     row.SetAttribute("Scale", item.Scale.ToString());
                     row.SetAttribute("UnitOfMeasure", item.UnitOfMeasure);
@@ -489,7 +543,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             return xmlDoc.OuterXml;
         }
 
-         
+        
+
         #endregion
 
         #region 重新加载
@@ -702,7 +757,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                         continue;
                     }
                     var row1 = rows[0];//不会有重复的factId，所以rows的个数一定为1或0
-                    row1["FactID"] = factID;
+                    row1[colName] = value;
+                    row1["ReadOnly"] = true;
                 }
             } 
         }
@@ -820,7 +876,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             var operatorCode = this.txtOperator.Text;
             var batchNumber = this.lblFurnaceTime.Text;
             var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
-            var xml = GetRowMaterialXml(this.grdRowMaterial.DataSource as List<SmeltMaterialItemClient>);
+            var xml = GetRowMaterialXml(this.grdRowMaterial.DataSource as BindingList<SmeltMaterialItemClient>);
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
@@ -844,23 +900,22 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         private void SetRowMaterial() {
             this.grdRowMaterial.DataSource = null;
-            var smeltMaterialItems = GetSmeltMaterialItems();
-            if (smeltMaterialItems == null || smeltMaterialItems.Count == 0) {
+            _readOnlyCount = 0;
+            _smeltMaterialItems = GetSmeltMaterialItems();
+            if (_smeltMaterialItems == null || _smeltMaterialItems.Count == 0) {
                 return;
             }
-            List<SmeltMaterialItemClient> newData = new List<SmeltMaterialItemClient>();
-            foreach (SmeltMaterialItemClient item in smeltMaterialItems) {
-                var historySmelt = GetHistorySmeltMaterial(item);
-                if (historySmelt ==null||historySmelt.Count == 0) {
-                    continue;
-                }
-                newData.AddRange(historySmelt);
-            }
-            newData.AddRange(smeltMaterialItems);
+            BindingList<SmeltMaterialItemClient> newData = new BindingList<SmeltMaterialItemClient>();
+            foreach (SmeltMaterialItemClient item in _smeltMaterialItems) {
+                GetHistorySmeltMaterial(item, newData); 
+            } 
             this.grdRowMaterial.DataSource = newData;
+            _readOnlyCount = newData.Count;
+            this.grdRowMaterialView.BestFitColumns();
+            this.grdRowMaterialView.Tag = new List<SmeltMaterialItemClient>(newData);
         }
 
-        private string GetRowMaterialXml(List<SmeltMaterialItemClient> data) { 
+        private string GetRowMaterialXml(BindingList<SmeltMaterialItemClient> data) { 
             if (data==null||data.Count == 0) {
                 return null;
             }
@@ -887,27 +942,25 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         /// <param name="rowSmelt"></param>
         /// <returns></returns>
-        private List<SmeltMaterialItemClient> GetHistorySmeltMaterial(SmeltMaterialItemClient rowSmelt) {
+        private void GetHistorySmeltMaterial(SmeltMaterialItemClient rowSmelt, BindingList<SmeltMaterialItemClient> items) {
             if (string.IsNullOrEmpty(rowSmelt.DataXML)) {
-                return null;
+                return;
             }
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(rowSmelt.DataXML);
             var nodes = doc.SelectNodes("RF13/Row");
             if (nodes==null||nodes.Count==0) {
-                return null;
-            }
-            List<SmeltMaterialItemClient> items = new List<SmeltMaterialItemClient>();
+                return;
+            } 
             foreach (XmlNode node in nodes) {
                 SmeltMaterialItemClient item = new SmeltMaterialItemClient()
                 { IsReadOnly = true,T101Code = rowSmelt.T101Code,T101LeafID = rowSmelt.T101LeafID,T101Name = rowSmelt.T101Name};
-                var lotNumber = node.Attributes["LotNumber"] == null ? "" : node.Attributes["LotNumber"].Value;
-                var qty = node.Attributes["Qty"] == null || string.IsNullOrEmpty(node.Attributes["Qty"].Value) ? 0 : Convert.ToInt32(node.Attributes["Qty"].Value);
+                var lotNumber = node.Attributes["LotNumber"] == null || string.IsNullOrEmpty(node.Attributes["LotNumber"].Value) ? 0 : Convert.ToInt32(node.Attributes["LotNumber"].Value);
+                var qty = node.Attributes["Qty"] == null || string.IsNullOrEmpty(node.Attributes["Qty"].Value) ? 0 : Convert.ToInt64(node.Attributes["Qty"].Value);
                 item.LotNumber = lotNumber;
                 item.Qty = qty;
                 items.Add(item);
-            }
-            return items;
+            } 
         }
         #endregion
 
@@ -1012,7 +1065,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private void dtProductDate_EditValueChanged(object sender, EventArgs e) {
             RefreshFurnace();
         }
-         
+
+        private void grdBurdenInfoView_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e) {
+            if (e.Column.FieldName == "LotNumber") {
+                SetLotNumber(sender as GridView, e); 
+            }
+        }
+
+        private void grdRowMaterialView_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e) {
+            if (e.Column.FieldName == "LotNumber") {
+                SetLotNumber(sender as GridView, e);
+                return;
+            }
+            if (e.Column.FieldName == "T101Code") {
+                SetT101Code(sender as GridView, e);
+                return;
+            }
+        }
         #endregion  
 
         private void btnPrint_Click(object sender, EventArgs e) {
@@ -1314,7 +1383,103 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             } 
             SetOrderInfo();
             ChangeTabPage();
+        } 
+
+        private string[] GetT101Code(List<SmeltMaterialItemClient> items) {
+            if (items == null||items.Count ==0) {
+                return null;
+            }
+            string[] lists = new string[items.Count];
+            for (int i = 0; i < items.Count; i++) {
+                lists[i] = items[i].T101Code;
+            }
+            return lists;
         }
- 
+
+
+        private void SetT101Code(GridView view, CustomRowCellEditEventArgs e) {
+            //if (e.RowHandle < 0) {
+            //    return;
+            //}
+            var smelts = view.Tag as List<SmeltMaterialItemClient>;
+            if (smelts == null || smelts.Count == 0) {
+                return;
+            }
+            RepositoryItemComboBox edit = new RepositoryItemComboBox();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            edit.Items.AddRange(GetT101Code(smelts));
+            edit.SelectedValueChanged += edit_SelectedValueChanged; 
+            e.RepositoryItem = edit;
+        }
+
+        void edit_SelectedValueChanged(object sender, EventArgs e) {
+            var edit = sender as ComboBoxEdit;
+            if (edit.EditValue==null) {
+                return;
+            }
+            var t101Code = edit.EditValue.ToString();
+            var newData = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
+            if (newData == null) {
+                return;
+            }
+            newData.T101Code = t101Code;
+            //var dataSource = this.grdRowMaterial.DataSource as BindingList<SmeltMaterialItemClient>;
+            //var newData = new SmeltMaterialItemClient() { T101Code = t101Code };
+            //dataSource.Add(newData);
+            var currentItems = _smeltMaterialItems.Where(p=>p.T101Code==t101Code).ToList<SmeltMaterialItemClient>();
+            if (currentItems==null||currentItems.Count == 0) {
+                return;
+            }
+            var currentItem = currentItems[0];
+            if (currentItem==null) {
+                return;
+            }
+            newData.T101Name = currentItem.T101Name;
+            newData.T101LeafID = currentItem.T101LeafID;
+            newData.UnitOfMeasure = currentItem.UnitOfMeasure;
+            newData.Scale = currentItem.Scale; 
+        } 
+
+        private void grdRowMaterialView_ShowingEditor(object sender, CancelEventArgs e) {
+            var view = sender as GridView;
+            var currentItem = view.GetFocusedRow() as SmeltMaterialItemClient;  
+            if (currentItem == null) {
+                return;
+            }
+            if (currentItem.IsReadOnly) {
+                e.Cancel = true;
+            }
+        }
+
+        private void grdRowMaterialView_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
+            var view = sender as GridView;
+            if (view ==null) {
+                return;
+            }
+            var item = view.GetFocusedRow() as SmeltMaterialItemClient;
+            if ( item == null) {
+                return;
+            }
+            if (item.IsReadOnly) {
+                e.Cancel = true;
+            }
+        }
+
+        private void grdRowMaterialView_RowClick(object sender, RowClickEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+                popupMenu1.ShowPopup(Control.MousePosition);
+            }
+        }
+
+        private void barManager1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            var currentRow = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
+            if (currentRow == null) {
+                return;
+            }
+            if (currentRow.IsReadOnly) {
+                return;
+            }
+            this.grdRowMaterialView.DeleteSelectedRows();
+        }
     }
 }

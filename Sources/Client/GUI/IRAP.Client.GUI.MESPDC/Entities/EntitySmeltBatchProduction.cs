@@ -45,12 +45,12 @@ namespace IRAP.Client.GUI.MESPDC.Entities {
         /// <summary>
         /// 批次号
         /// </summary>
-        public string LotNumber { get; set; }
+        public int LotNumber { get; set; }
 
         /// <summary>
         /// 数量
         /// </summary>
-        public int Qty { get; set; }
+        public long Qty { get; set; }
 
         /// <summary>
         /// 是否只读
