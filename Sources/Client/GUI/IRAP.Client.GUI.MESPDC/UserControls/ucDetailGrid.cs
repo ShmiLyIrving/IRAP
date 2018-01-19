@@ -117,6 +117,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         private void btnDelete_Click(object sender, EventArgs e) {
             int idx = this.vGridControl1.FocusedRecord;
+            if (idx < ReadOnlyCount) {
+                return;
+            }
             if (idx >= 0) {
                 if (XtraMessageBox.Show(
                     string.Format(
