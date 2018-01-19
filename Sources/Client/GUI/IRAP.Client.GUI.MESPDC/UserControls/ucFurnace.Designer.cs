@@ -84,6 +84,13 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.dtProductDate = new DevExpress.XtraEditors.DateEdit();
             this.lblFurnaceTime = new DevExpress.XtraEditors.LabelControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).BeginInit();
             this.grpCtrProductionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
@@ -113,6 +120,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabPgBaked.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // grpCtrProductionInfo
@@ -682,6 +691,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.gridColumn4});
             this.grdRowMaterialView.GridControl = this.grdRowMaterial;
             this.grdRowMaterialView.Name = "grdRowMaterialView";
+            this.grdRowMaterialView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.grdRowMaterialView.OptionsBehavior.AutoSelectAllInEditor = false;
             this.grdRowMaterialView.OptionsBehavior.AutoUpdateTotalSummary = false;
             this.grdRowMaterialView.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
@@ -696,19 +706,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdRowMaterialView.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
             this.grdRowMaterialView.OptionsMenu.ShowGroupSortSummaryItems = false;
             this.grdRowMaterialView.OptionsMenu.ShowSplitItem = false;
+            this.grdRowMaterialView.OptionsNavigation.AutoFocusNewRow = true;
+            this.grdRowMaterialView.OptionsNavigation.EnterMoveNextColumn = true;
+            this.grdRowMaterialView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.grdRowMaterialView.OptionsView.ShowGroupPanel = false;
+            this.grdRowMaterialView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdRowMaterialView_RowClick);
             this.grdRowMaterialView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grdRowMaterialView_CustomRowCellEdit);
+            this.grdRowMaterialView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grdRowMaterialView_ShowingEditor);
+            this.grdRowMaterialView.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.grdRowMaterialView_RowDeleting);
             // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "原材料编号";
             this.gridColumn1.FieldName = "T101Code";
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn1.OptionsColumn.AllowMove = false;
-            this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
@@ -717,9 +731,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.gridColumn2.Caption = "原材料名称";
             this.gridColumn2.FieldName = "T101Name";
             this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.OptionsColumn.AllowMove = false;
-            this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
@@ -770,7 +782,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.Size = new System.Drawing.Size(766, 164);
             this.ucGrdSample.TabIndex = 0;
             this.ucGrdSample.Title = "参数";
-            this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;             // 
+            this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;
             // 
             // tabPgBaked
             // 
@@ -791,7 +803,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.Size = new System.Drawing.Size(766, 164);
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
-            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;               // 
+            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick; 
             // 
             // dtProductDate
             // 
@@ -823,6 +835,59 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonItem1});
+            this.barManager1.MaxItemId = 1;
+            this.barManager1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barManager1_ItemClick);
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(778, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 326);
+            this.barDockControlBottom.Size = new System.Drawing.Size(778, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(778, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "删除";
+            this.barButtonItem1.Id = 0;
+            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // ucFurnace
             // 
@@ -870,6 +935,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabPgBaked.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -936,5 +1003,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private DevExpress.XtraGrid.Columns.GridColumn ColLotNumber;
         private DevExpress.XtraGrid.Columns.GridColumn ColMachineModelling;
         private DevExpress.XtraGrid.Columns.GridColumn ColFoldNumber;
+        private DevExpress.XtraBars.PopupMenu popupMenu1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
     }
 }
