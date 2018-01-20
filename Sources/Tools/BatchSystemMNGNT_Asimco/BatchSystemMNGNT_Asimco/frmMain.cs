@@ -13,6 +13,7 @@ using IRAP.Global;
 using IRAPORM;
 using IRAPShared;
 using BatchSystemMNGNT_Asimco.Entities;
+using BatchSystemMNGNT_Asimco.DAL;
 
 namespace BatchSystemMNGNT_Asimco
 {
@@ -23,57 +24,6 @@ namespace BatchSystemMNGNT_Asimco
         public frmMain()
         {
             InitializeComponent();
-        }
-
-        private void ShowErrorMessage(Exception error)
-        {
-            int errCode = -1;
-            string errText = "";
-
-            if (error.Data["ErrCode"] != null)
-                errCode = (int)error.Data["ErrCode"];
-            if (error.Data["ErrText"] != null)
-                errText = error.Data["ErrText"].ToString();
-
-            MessageBox.Show(
-                string.Format("({0}){1}", errCode, errText),
-                "错误信息",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-        }
-
-        private List<TTableMaterialStore> GetMaterialStore(string skuID)
-        {
-            try
-            {
-                using (IRAPSQLConnection conn =
-                    new IRAPSQLConnection(SysParams.Instance.DBConnectionString))
-                {
-                    IList<IDataParameter> paramList = new List<IDataParameter>();
-                    paramList.Add(new IRAPProcParameter("@SKUID", DbType.String, skuID));
-
-                    IList<TTableMaterialStore> lstDatas =
-                        conn.CallTableFunc<TTableMaterialStore>(
-                            "SELECT * FROM IRAPRIMCS..utb_MaterialStore " +
-                            "WHERE SKUID=@SKUID",
-                            paramList);
-
-                    if (lstDatas.Count > 0)
-                        return lstDatas.ToList();
-                    else
-                        return null;
-                }
-            }
-            catch (Exception error)
-            {
-                error.Data["ErrCode"] = 999999;
-                error.Data["ErrText"] =
-                    string.Format(
-                        "获取 SKUID[{0}] 物料的记录时发生异常：{1}",
-                        skuID,
-                        error.Message);
-                throw error;
-            }
         }
 
         private void ShowWaitForm(string description, string caption = "")
@@ -137,7 +87,7 @@ namespace BatchSystemMNGNT_Asimco
             }
             catch (Exception error)
             {
-                ShowErrorMessage(error);
+                MSGHelp.Instance.ShowErrorMessage(error);
             }
             finally
             {
@@ -180,13 +130,23 @@ namespace BatchSystemMNGNT_Asimco
 
                 try
                 {
-                    grdMaterialStore.DataSource = GetMaterialStore(log.SKUID);
+                    grdMaterialStore.DataSource = TDBHelper.GetMaterialStore(log.SKUID);
                 }
                 catch (Exception error)
                 {
-                    ShowErrorMessage(error);
+                    MSGHelp.Instance.ShowErrorMessage(error);
                     grdMaterialStore.DataSource = null;
                 }
+            }
+        }
+
+        private void grdvLogs_DoubleClick(object sender, EventArgs e)
+        {
+            int idx = grdvLogs.GetFocusedDataSourceRowIndex();
+            if (idx >= 0 && idx < TWebServShuttlingLogs.Instance.Logs.Count)
+            {
+                TEntityCustomLog log = TWebServShuttlingLogs.Instance.Logs[idx];
+                log.Do();
             }
         }
 

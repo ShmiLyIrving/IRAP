@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Windows.Forms;
+
+using DevExpress.XtraEditors;
 
 using IRAPShared;
 
@@ -110,11 +113,26 @@ namespace BatchSystemMNGNT_Asimco.Entities
             NextRetryTime = data.NextRetryTime;
         }
 
+        protected virtual bool ShowEditorDialogs()
+        {
+            return false;
+        }
+
         protected virtual void AfterExecute() { }
 
-        public void Execute()
+        /// <summary>
+        /// 处理当前的日志
+        /// </summary>
+        public void Do()
         {
-
+            if (ShowEditorDialogs())
+            {
+                XtraMessageBox.Show(
+                    (ExChange[0] as IXMLNodeObject).GetXMLString(),
+                    "提示信息",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }

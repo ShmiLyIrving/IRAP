@@ -60,7 +60,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBhelp.cs" />
+    <Compile Include="DAL\TBLStockDetails.cs" />
+    <Compile Include="DAL\TDBHelper.cs" />
+    <Compile Include="Dialogs\frmMaterialStoreIn4Shift.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmMaterialStoreIn4Shift.Designer.cs">
+      <DependentUpon>frmMaterialStoreIn4Shift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\frmEditorIMTR01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmEditorIMTR01.Designer.cs">
+      <DependentUpon>frmEditorIMTR01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\frmEditorPICK08.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmEditorPICK08.Designer.cs">
+      <DependentUpon>frmEditorPICK08.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TTableStockDetail.cs" />
+    <Compile Include="Tools\DBhelp.cs" />
+    <Compile Include="Editors\frmCustomEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmCustomEditor.Designer.cs">
+      <DependentUpon>frmCustomEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\TEntityCustomLog.cs" />
     <Compile Include="Entities\IXMLNodeObject.cs" />
     <Compile Include="Entities\TEntityIMTR01.cs" />
@@ -87,20 +114,33 @@
     <Compile Include="frmSysParams.Designer.cs">
       <DependentUpon>frmSysParams.cs</DependentUpon>
     </Compile>
-    <Compile Include="IRAPXMLUtils.cs" />
+    <Compile Include="Tools\IRAPXMLUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysParams.cs" />
+    <Compile Include="Tools\MSGHelp.cs" />
     <Compile Include="TStorageLocations.cs" />
-    <Compile Include="TWaitting.cs" />
+    <Compile Include="Tools\TWaitting.cs" />
     <Compile Include="TWebServShuttlingLog.cs" />
-    <Compile Include="TWebServShuttlingLogs.cs" />
+    <Compile Include="DAL\TWebServShuttlingLogs.cs" />
     <Compile Include="frmWaitting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmWaitting.designer.cs">
       <DependentUpon>frmWaitting.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\frmMaterialStoreIn4Shift.resx">
+      <DependentUpon>frmMaterialStoreIn4Shift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmCustomEditor.resx">
+      <DependentUpon>frmCustomEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmEditorIMTR01.resx">
+      <DependentUpon>frmEditorIMTR01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmEditorPICK08.resx">
+      <DependentUpon>frmEditorPICK08.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>

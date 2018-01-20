@@ -3,7 +3,7 @@
   <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityCustomLog" Collapsed="true">
     <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAoAwAiCBEIAACACwIAAAACAMEQAgADAKAAAgkACIAA=</HashCode>
+      <HashCode>QAoAwAiCBFIAACSAgJAAAACAMEAAgADAKAAQkkACMAI=</HashCode>
       <FileName>Entities\TEntityCustomLog.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -42,5 +42,63 @@
       <FileName>Entities\TEntityPORV01.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityXMLIMTR01" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAgoAAACAAAAAoABRIAQigEEQAEABEAAAAAAAAAQA=</HashCode>
+      <FileName>Entities\TEntityXMLIMTR01.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityXMLINVA01" Collapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAgoAAAAAAEAIACBBIIgiAEAQAAAAEQAAAAgAAgAA=</HashCode>
+      <FileName>Entities\TEntityXMLINVA01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityXMLMORV00" Collapsed="true">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAggEAAAAAAAAAAJBMgAiAEAAAAAIEQAAQAoAAAAE=</HashCode>
+      <FileName>Entities\TEntityXMLMORV00.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityXMLPICK08" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAggICAAEAAAAAChDIIAigEAAAAAAEAACAAgAACEA=</HashCode>
+      <FileName>Entities\TEntityXMLPICK08.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TEntityXMLPORV01" Collapsed="true">
+    <Position X="17.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQQggQAAAAAAAQAAJBMAgiAEAAAAAEEQAQQQABABBA=</HashCode>
+      <FileName>Entities\TEntityXMLPORV01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TTableMaterialStore" Collapsed="true">
+    <Position X="19" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQgAADAIAAAQAAAAgBgAgAAkEAwIiQAgCAAgMACBA=</HashCode>
+      <FileName>Entities\TTableMaterialStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BatchSystemMNGNT_Asimco.Entities.TTableMDM058" Collapsed="true">
+    <Position X="15.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAACAAAAgEgAiAAgEAAAIAAAAAAAAQABAAEAAAE=</HashCode>
+      <FileName>Entities\TTableMDM058.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BatchSystemMNGNT_Asimco.Entities.IXMLNodeObject" Collapsed="true">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\IXMLNodeObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>

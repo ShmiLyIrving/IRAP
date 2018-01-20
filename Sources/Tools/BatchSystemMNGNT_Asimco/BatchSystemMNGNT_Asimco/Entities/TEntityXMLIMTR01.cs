@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAP.Global;
+
 namespace BatchSystemMNGNT_Asimco.Entities
 {
     public class TEntityXMLIMTR01 : IXMLNodeObject
@@ -32,7 +34,7 @@ namespace BatchSystemMNGNT_Asimco.Entities
 
         public string GetXMLString()
         {
-            throw new NotImplementedException();
+            return IRAPXMLUtils.ObjectToXMLString(this, "Parameters", "Param");
         }
     }
 }

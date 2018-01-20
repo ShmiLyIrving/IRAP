@@ -163,6 +163,37 @@ namespace IRAP.Global
             }
             return rlt;
         }
+
+        /// <summary>
+        /// 生成对象的 XML 串
+        /// </summary>
+        /// <param name="obj">对象</param>
+        /// <param name="rootName">XML根名称</param>
+        /// <param name="nodeName">XML节点名称</param>
+        /// <returns></returns>
+        public static string ObjectToXMLString(object obj, string rootName, string nodeName)
+        {
+            XmlDocument xml = new XmlDocument();
+
+            XmlNode root = xml.CreateElement(rootName);
+            xml.AppendChild(root);
+
+            XmlNode node = xml.CreateElement(nodeName);
+            root.AppendChild(node);
+
+            PropertyInfo[] fields = obj.GetType().GetProperties();
+            foreach (PropertyInfo field in fields)
+            {
+                if (IsORMap(field))
+                {
+                    XmlAttribute xa = xml.CreateAttribute(field.Name);
+                    xa.Value = field.GetValue(obj, null).ToString();
+                    node.Attributes.Append(xa);
+                }
+            }
+
+            return xml.OuterXml;
+        }
     }
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = false)]

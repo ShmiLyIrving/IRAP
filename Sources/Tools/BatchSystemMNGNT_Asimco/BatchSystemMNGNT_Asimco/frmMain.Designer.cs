@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            this.grdclmnErrCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bbiSysParams = new DevExpress.XtraBars.BarButtonItem();
             this.sbMessage = new DevExpress.XtraBars.BarStaticItem();
@@ -46,18 +49,19 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.grdvLogs = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnChoice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnSKUID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnLogID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnExCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnItemNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnLotNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnBinFrom = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnBinTo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnOrderNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnOrderLineNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnLinkedLogID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnRetry = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.grdExChangeXML = new DevExpress.XtraGrid.GridControl();
             this.grdvExChangeXML = new DevExpress.XtraGrid.Views.Card.CardView();
@@ -110,6 +114,12 @@
             this.tcMain.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // grdclmnErrCode
+            // 
+            this.grdclmnErrCode.Caption = "ErrCode";
+            this.grdclmnErrCode.FieldName = "ErrCode";
+            this.grdclmnErrCode.Name = "grdclmnErrCode";
             // 
             // ribbon
             // 
@@ -181,7 +191,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1146, 628);
-            this.splitContainerControl1.SplitterPosition = 364;
+            this.splitContainerControl1.SplitterPosition = 390;
             this.splitContainerControl1.TabIndex = 2;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -193,7 +203,7 @@
             this.grdLogs.MainView = this.grdvLogs;
             this.grdLogs.MenuManager = this.ribbon;
             this.grdLogs.Name = "grdLogs";
-            this.grdLogs.Size = new System.Drawing.Size(760, 618);
+            this.grdLogs.Size = new System.Drawing.Size(734, 618);
             this.grdLogs.TabIndex = 1;
             this.grdLogs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvLogs});
@@ -261,20 +271,33 @@
             this.grdvLogs.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdvLogs.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.grdvLogs.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvLogs.Appearance.Row.ForeColor = System.Drawing.Color.Red;
             this.grdvLogs.Appearance.Row.Options.UseFont = true;
+            this.grdvLogs.Appearance.Row.Options.UseForeColor = true;
             this.grdvLogs.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn12,
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8,
-            this.gridColumn9,
-            this.gridColumn10,
-            this.gridColumn11});
+            this.grdclmnChoice,
+            this.grdclmnSKUID,
+            this.grdclmnLogID,
+            this.grdclmnExCode,
+            this.grdclmnItemNumber,
+            this.grdclmnLotNumber,
+            this.grdclmnBinFrom,
+            this.grdclmnBinTo,
+            this.grdclmnQuantity,
+            this.grdclmnOrderNo,
+            this.grdclmnOrderLineNo,
+            this.grdclmnLinkedLogID,
+            this.grdclmnRetry,
+            this.grdclmnErrCode});
+            gridFormatRule1.ApplyToRow = true;
+            gridFormatRule1.Column = this.grdclmnErrCode;
+            gridFormatRule1.Name = "Format0";
+            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.Green;
+            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue1.Value1 = 0;
+            gridFormatRule1.Rule = formatConditionRuleValue1;
+            this.grdvLogs.FormatRules.Add(gridFormatRule1);
             this.grdvLogs.GridControl = this.grdLogs;
             this.grdvLogs.GroupCount = 1;
             this.grdvLogs.Name = "grdvLogs";
@@ -282,139 +305,146 @@
             this.grdvLogs.OptionsView.EnableAppearanceEvenRow = true;
             this.grdvLogs.OptionsView.EnableAppearanceOddRow = true;
             this.grdvLogs.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.grdclmnSKUID, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.grdvLogs.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grdvLogs_FocusedRowChanged);
+            this.grdvLogs.DoubleClick += new System.EventHandler(this.grdvLogs_DoubleClick);
             // 
-            // gridColumn12
+            // grdclmnChoice
             // 
-            this.gridColumn12.Caption = "选择";
-            this.gridColumn12.FieldName = "Checked";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 0;
+            this.grdclmnChoice.Caption = "选择";
+            this.grdclmnChoice.FieldName = "Checked";
+            this.grdclmnChoice.Name = "grdclmnChoice";
+            this.grdclmnChoice.Visible = true;
+            this.grdclmnChoice.VisibleIndex = 0;
             // 
-            // gridColumn1
+            // grdclmnSKUID
             // 
-            this.gridColumn1.Caption = "SKUID";
-            this.gridColumn1.FieldName = "SKUID";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.grdclmnSKUID.Caption = "SKUID";
+            this.grdclmnSKUID.FieldName = "SKUID";
+            this.grdclmnSKUID.Name = "grdclmnSKUID";
+            this.grdclmnSKUID.OptionsColumn.AllowEdit = false;
+            this.grdclmnSKUID.Visible = true;
+            this.grdclmnSKUID.VisibleIndex = 0;
             // 
-            // gridColumn2
+            // grdclmnLogID
             // 
-            this.gridColumn2.Caption = "LogID";
-            this.gridColumn2.FieldName = "LogID";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn2.OptionsColumn.AllowMove = false;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.grdclmnLogID.Caption = "LogID";
+            this.grdclmnLogID.FieldName = "LogID";
+            this.grdclmnLogID.Name = "grdclmnLogID";
+            this.grdclmnLogID.OptionsColumn.AllowEdit = false;
+            this.grdclmnLogID.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnLogID.OptionsColumn.AllowMove = false;
+            this.grdclmnLogID.Visible = true;
+            this.grdclmnLogID.VisibleIndex = 1;
             // 
-            // gridColumn3
+            // grdclmnExCode
             // 
-            this.gridColumn3.Caption = "ExCode";
-            this.gridColumn3.FieldName = "ExCode";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn3.OptionsColumn.AllowMove = false;
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.grdclmnExCode.Caption = "ExCode";
+            this.grdclmnExCode.FieldName = "ExCode";
+            this.grdclmnExCode.Name = "grdclmnExCode";
+            this.grdclmnExCode.OptionsColumn.AllowEdit = false;
+            this.grdclmnExCode.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnExCode.OptionsColumn.AllowMove = false;
+            this.grdclmnExCode.Visible = true;
+            this.grdclmnExCode.VisibleIndex = 2;
             // 
-            // gridColumn4
+            // grdclmnItemNumber
             // 
-            this.gridColumn4.Caption = "ItemNumber";
-            this.gridColumn4.FieldName = "ItemNumber";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.OptionsColumn.AllowEdit = false;
-            this.gridColumn4.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn4.OptionsColumn.AllowMove = false;
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.grdclmnItemNumber.Caption = "ItemNumber";
+            this.grdclmnItemNumber.FieldName = "ItemNumber";
+            this.grdclmnItemNumber.Name = "grdclmnItemNumber";
+            this.grdclmnItemNumber.OptionsColumn.AllowEdit = false;
+            this.grdclmnItemNumber.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnItemNumber.OptionsColumn.AllowMove = false;
+            this.grdclmnItemNumber.Visible = true;
+            this.grdclmnItemNumber.VisibleIndex = 3;
             // 
-            // gridColumn5
+            // grdclmnLotNumber
             // 
-            this.gridColumn5.Caption = "LotNumber";
-            this.gridColumn5.FieldName = "LotNumber";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.OptionsColumn.AllowEdit = false;
-            this.gridColumn5.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn5.OptionsColumn.AllowMove = false;
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.grdclmnLotNumber.Caption = "LotNumber";
+            this.grdclmnLotNumber.FieldName = "LotNumber";
+            this.grdclmnLotNumber.Name = "grdclmnLotNumber";
+            this.grdclmnLotNumber.OptionsColumn.AllowEdit = false;
+            this.grdclmnLotNumber.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnLotNumber.OptionsColumn.AllowMove = false;
+            this.grdclmnLotNumber.Visible = true;
+            this.grdclmnLotNumber.VisibleIndex = 4;
             // 
-            // gridColumn6
+            // grdclmnBinFrom
             // 
-            this.gridColumn6.Caption = "BinFrom";
-            this.gridColumn6.FieldName = "BinFrom";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn6.OptionsColumn.AllowMove = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.grdclmnBinFrom.Caption = "BinFrom";
+            this.grdclmnBinFrom.FieldName = "BinFrom";
+            this.grdclmnBinFrom.Name = "grdclmnBinFrom";
+            this.grdclmnBinFrom.OptionsColumn.AllowEdit = false;
+            this.grdclmnBinFrom.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnBinFrom.OptionsColumn.AllowMove = false;
+            this.grdclmnBinFrom.Visible = true;
+            this.grdclmnBinFrom.VisibleIndex = 5;
             // 
-            // gridColumn7
+            // grdclmnBinTo
             // 
-            this.gridColumn7.Caption = "BinTo";
-            this.gridColumn7.FieldName = "BinTo";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.OptionsColumn.AllowEdit = false;
-            this.gridColumn7.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn7.OptionsColumn.AllowMove = false;
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
+            this.grdclmnBinTo.Caption = "BinTo";
+            this.grdclmnBinTo.FieldName = "BinTo";
+            this.grdclmnBinTo.Name = "grdclmnBinTo";
+            this.grdclmnBinTo.OptionsColumn.AllowEdit = false;
+            this.grdclmnBinTo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnBinTo.OptionsColumn.AllowMove = false;
+            this.grdclmnBinTo.Visible = true;
+            this.grdclmnBinTo.VisibleIndex = 6;
             // 
-            // gridColumn8
+            // grdclmnQuantity
             // 
-            this.gridColumn8.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.gridColumn8.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn8.Caption = "Quantity";
-            this.gridColumn8.FieldName = "Quantity";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
-            this.gridColumn8.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn8.OptionsColumn.AllowMove = false;
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
+            this.grdclmnQuantity.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnQuantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmnQuantity.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnQuantity.Caption = "Quantity";
+            this.grdclmnQuantity.FieldName = "Quantity";
+            this.grdclmnQuantity.Name = "grdclmnQuantity";
+            this.grdclmnQuantity.OptionsColumn.AllowEdit = false;
+            this.grdclmnQuantity.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnQuantity.OptionsColumn.AllowMove = false;
+            this.grdclmnQuantity.Visible = true;
+            this.grdclmnQuantity.VisibleIndex = 7;
             // 
-            // gridColumn9
+            // grdclmnOrderNo
             // 
-            this.gridColumn9.Caption = "OrderNo";
-            this.gridColumn9.FieldName = "OrderNo";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.OptionsColumn.AllowEdit = false;
-            this.gridColumn9.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn9.OptionsColumn.AllowMove = false;
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 8;
+            this.grdclmnOrderNo.Caption = "OrderNo";
+            this.grdclmnOrderNo.FieldName = "OrderNo";
+            this.grdclmnOrderNo.Name = "grdclmnOrderNo";
+            this.grdclmnOrderNo.OptionsColumn.AllowEdit = false;
+            this.grdclmnOrderNo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnOrderNo.OptionsColumn.AllowMove = false;
+            this.grdclmnOrderNo.Visible = true;
+            this.grdclmnOrderNo.VisibleIndex = 8;
             // 
-            // gridColumn10
+            // grdclmnOrderLineNo
             // 
-            this.gridColumn10.Caption = "OrderLineNo";
-            this.gridColumn10.FieldName = "OrderLineNo";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.OptionsColumn.AllowEdit = false;
-            this.gridColumn10.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn10.OptionsColumn.AllowMove = false;
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 9;
+            this.grdclmnOrderLineNo.Caption = "OrderLineNo";
+            this.grdclmnOrderLineNo.FieldName = "OrderLineNo";
+            this.grdclmnOrderLineNo.Name = "grdclmnOrderLineNo";
+            this.grdclmnOrderLineNo.OptionsColumn.AllowEdit = false;
+            this.grdclmnOrderLineNo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnOrderLineNo.OptionsColumn.AllowMove = false;
+            this.grdclmnOrderLineNo.Visible = true;
+            this.grdclmnOrderLineNo.VisibleIndex = 9;
             // 
-            // gridColumn11
+            // grdclmnLinkedLogID
             // 
-            this.gridColumn11.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.gridColumn11.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn11.Caption = "LinkeLogID";
-            this.gridColumn11.FieldName = "LinkedLogID";
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.OptionsColumn.AllowEdit = false;
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 10;
+            this.grdclmnLinkedLogID.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnLinkedLogID.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmnLinkedLogID.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnLinkedLogID.Caption = "LinkedLogID";
+            this.grdclmnLinkedLogID.FieldName = "LinkedLogID";
+            this.grdclmnLinkedLogID.Name = "grdclmnLinkedLogID";
+            this.grdclmnLinkedLogID.OptionsColumn.AllowEdit = false;
+            this.grdclmnLinkedLogID.Visible = true;
+            this.grdclmnLinkedLogID.VisibleIndex = 10;
+            // 
+            // grdclmnRetry
+            // 
+            this.grdclmnRetry.Caption = "重试";
+            this.grdclmnRetry.FieldName = "Retry";
+            this.grdclmnRetry.Name = "grdclmnRetry";
             // 
             // splitContainerControl2
             // 
@@ -429,7 +459,7 @@
             this.splitContainerControl2.Panel1.Text = "Exchange XML";
             this.splitContainerControl2.Panel2.Controls.Add(this.splitContainerControl3);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(364, 628);
+            this.splitContainerControl2.Size = new System.Drawing.Size(390, 628);
             this.splitContainerControl2.SplitterPosition = 352;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
@@ -442,7 +472,7 @@
             this.grdExChangeXML.MenuManager = this.ribbon;
             this.grdExChangeXML.Name = "grdExChangeXML";
             this.grdExChangeXML.Padding = new System.Windows.Forms.Padding(5);
-            this.grdExChangeXML.Size = new System.Drawing.Size(350, 250);
+            this.grdExChangeXML.Size = new System.Drawing.Size(376, 250);
             this.grdExChangeXML.TabIndex = 0;
             this.grdExChangeXML.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvExChangeXML});
@@ -489,7 +519,7 @@
             this.splitContainerControl3.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl3.Panel2.ShowCaption = true;
             this.splitContainerControl3.Panel2.Text = "WebService 执行结果";
-            this.splitContainerControl3.Size = new System.Drawing.Size(364, 352);
+            this.splitContainerControl3.Size = new System.Drawing.Size(390, 352);
             this.splitContainerControl3.SplitterPosition = 147;
             this.splitContainerControl3.TabIndex = 0;
             this.splitContainerControl3.Text = "splitContainerControl3";
@@ -502,7 +532,7 @@
             this.grdMaterialStore.MenuManager = this.ribbon;
             this.grdMaterialStore.Name = "grdMaterialStore";
             this.grdMaterialStore.Padding = new System.Windows.Forms.Padding(5);
-            this.grdMaterialStore.Size = new System.Drawing.Size(350, 133);
+            this.grdMaterialStore.Size = new System.Drawing.Size(376, 133);
             this.grdMaterialStore.TabIndex = 1;
             this.grdMaterialStore.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvMaterialStore});
@@ -578,7 +608,7 @@
             this.edtErrText.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtErrText.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtErrText.Properties.ReadOnly = true;
-            this.edtErrText.Size = new System.Drawing.Size(350, 160);
+            this.edtErrText.Size = new System.Drawing.Size(376, 160);
             this.edtErrText.TabIndex = 0;
             // 
             // panelControl1
@@ -798,16 +828,16 @@
         private DevExpress.XtraGrid.Views.Grid.GridView grdvLogs;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraEditors.SimpleButton btnGetLogs;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnSKUID;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnLogID;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnExCode;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnItemNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnLotNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnBinFrom;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnBinTo;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnQuantity;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnOrderNo;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnOrderLineNo;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
         private DevExpress.XtraEditors.CheckEdit chkFailureOnly;
         private DevExpress.XtraEditors.TextEdit edtMOLineNo;
@@ -818,8 +848,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit edtItemNumber;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnLinkedLogID;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnChoice;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl3;
         private DevExpress.XtraEditors.MemoEdit edtErrText;
@@ -841,5 +871,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
         private System.Windows.Forms.ToolStripMenuItem tsmiUnselectAll;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnRetry;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnErrCode;
     }
 }
