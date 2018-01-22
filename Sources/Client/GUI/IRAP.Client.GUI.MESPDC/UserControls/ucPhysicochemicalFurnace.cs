@@ -26,6 +26,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         private string optype;
         private List<SmeltInspectionItem> inspectionItems = new List<SmeltInspectionItem>();
         private OrderInfo pwo;
+        private int inspectionidx = 0;
 
         public string Optype
         {
@@ -84,7 +85,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     dr[i] = items[i].ItemValues[j].Metric01;
                 }
             }
-
+            inspectionidx = items[0].ItemValues.Count;
             this.vgrdInspectParams.DataSource = dtInspection;
             this.vgrdInspectParams.BestFit();
         }
@@ -316,7 +317,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
             if (optype == "MPLH")        //毛坯理化
             {
-                if (SaveFact_smeltInspection(pwo.FactID, pwo.T102LeafID, pwo.T107LeafID, pwo.LotNumber))
+                if (SaveFact_SmeltBatchInspecting(pwo.FactID, pwo.T102LeafID, pwo.T107LeafID, pwo.LotNumber,pwo.PWONo))
                 {
                     frmPhysicochemicalInspectionBatchSystem.saveState = true;
                     dtInspection.Rows.Clear();
@@ -327,7 +328,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             }
             else if (optype == "LQLH" || optype == "LHLH")    //炉前理化,炉后理化
             {
-                if (SaveFact_smeltInspection(0, 0, 0, "0"))
+                if (SaveFact_SmeltBatchManualInspecting(0, 0, 0, "0"))
                 {
                     frmPhysicochemicalInspectionBatchSystem.saveState = true;
                     dtInspection.Rows.Clear();
@@ -337,7 +338,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 }
             }
         }
-        private bool SaveFact_smeltInspection(
+        private bool SaveFact_SmeltBatchManualInspecting(
             long factID,
             int t102LeafID,
             int t107LeafID,
@@ -389,13 +390,67 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+        private bool SaveFact_SmeltBatchInspecting(
+            long factID,
+            int t102LeafID,
+            int t107LeafID,
+            string lotNumber,
+            string pWONo)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                IRAPMESClient.Instance.usp_SaveFact_SmeltBatchInspecting(
+                IRAPUser.Instance.CommunityID,
+                factID,
+                optype,
+                t102LeafID,
+                t107LeafID,
+                frmPhysicochemicalInspectionBatchSystem.currentBatchNo,
+                lotNumber,
+                pWONo,
+                GenerateRSFactXML(),
+                IRAPUser.Instance.SysLogID,
+                out errCode,
+                out errText);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return false;
+                }
+                else
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return true;
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
         private string GenerateRSFactXML()
         {
             string rlt = "";
-
-            for (int i = 0; i < dtInspection.Rows.Count; i++)
+            int rowNo = 0;
+            for (int i = inspectionidx; i < dtInspection.Rows.Count; i++)
             {
-                int rowNo = i + 1;
+                rowNo++;
                 for (int j = 0; j < dtInspection.Columns.Count; j++)
                 {
                     rlt +=
