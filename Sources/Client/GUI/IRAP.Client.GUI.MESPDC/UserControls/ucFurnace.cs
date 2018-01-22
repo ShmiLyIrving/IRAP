@@ -74,9 +74,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         #endregion
 
-        #region 单头信息
-        
-       
+        #region 单头信息 
         /// <summary>
         /// 操作工编号校验
         /// </summary>
@@ -176,7 +174,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 设置炉次号
         /// </summary>
-        private void SetWaitingFurnace(){
+        private void SetWaitingFurnace(){ 
             if (!ProductionDateValidate()) {
                 this.lblFurnaceTime.Text = "";
                 this.lblFurnaceTime.Tag = null; 
@@ -195,6 +193,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
 
         private bool ProductionDateValidate() {
+            this.dtProductDate.ErrorText = "";
             var date = this.dtProductDate.EditValue == null ? null : this.dtProductDate.EditValue.ToString();
             if (string.IsNullOrEmpty(date)) {
                 this.dtProductDate.ErrorText = "请选择生产日期！";
@@ -253,23 +252,20 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         //}
         #endregion 
 
-        private void SetOrderInfo() {
-            //GetImportInfoXml();
-            //CreateGridColumn();
-            _orderInfo = GetOrderInfo();
-            //if (!ColumnExistValidate()) {
-            //    return;
-            //}
+        private void SetOrderInfo() { 
+            _orderInfo = GetOrderInfo(); 
             InsertDataIntoOrderInfo();
         }
 
         private void InsertDataIntoOrderInfo(){
+            this.grdCtrProductionInfo.BeginUpdate();
             this.grdCtrProductionInfo.DataSource = null;
             if (_orderInfo ==null||_orderInfo.Count==0) {
                 return;
             }
             this.grdCtrProductionInfo.DataSource = _orderInfo;
             this.grdCtrProductionInfoView.BestFitColumns();
+            this.grdCtrProductionInfo.EndUpdate();
         }
 
         private List<OrderInfo> GetOrderInfo() {
@@ -292,26 +288,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-        }
-
-        /// <summary>
-        /// 判断列是否存在
-        /// </summary>
-        /// <returns></returns>
-        private bool ColumnExistValidate() {
-            if (_importMetaData == null || _importMetaData.Count == 0) {
-                return false;
-            }
-            OrderInfo or = new OrderInfo();
-            foreach (ImportMetaData meta in _importMetaData) {
-                var pro = or.GetType().GetProperty(meta.ColName);
-                if (pro == null) {
-                    continue;
-                }
-                return true;
-            }
-            return false;
-        }
+        } 
 
         #endregion
 
@@ -362,6 +339,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 设置配料信息
         /// </summary>
         private void SetSmeltMaterialItems(){
+            this.grdBurdenInfo.BeginUpdate();
             this.grdBurdenInfo.DataSource = null;
             var smeltMaterialItems = GetSmeltMaterialItems();
             if (smeltMaterialItems==null||smeltMaterialItems.Count == 0) {
@@ -370,6 +348,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdBurdenInfo.DataSource = smeltMaterialItems;
             this.grdBurdenInfoView.Tag = smeltMaterialItems;
             this.grdBurdenInfoView.BestFitColumns();
+            this.grdBurdenInfo.EndUpdate();
         }
 
         private List<SmeltBatchMaterial> GetLotNumber(int t101LeafID) {
@@ -394,27 +373,30 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
         }
 
-        private void SetLotNumber(GridView view,CustomRowCellEditEventArgs e) {
-            if (e.RowHandle > -1) {
-                var edit = new RepositoryItemComboBox();
-                var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
-                if (currentRow == null) {
-                    return;
-                } 
-                var data = GetLotNumber(currentRow.T101LeafID);
-                if (data == null || data.Count == 0) {
-                    return;
-                }
-                currentRow.LotNumber = data[0] == null ? 0 : data[0].LotNumber;
-                foreach (var item in data) {
-                    if (data == null) {
-                        continue;
-                    }
-                    edit.Items.Add(item.LotNumber);
-                }
-                edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-                e.RepositoryItem = edit;
+        private void SetLotNumber(GridView view, CustomRowCellEditEventArgs e) {
+            if (e.RowHandle < 0) {
+                return;
             }
+            view.BeginUpdate();
+            var edit = new RepositoryItemComboBox();
+            var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
+            if (currentRow == null) {
+                return;
+            }
+            var data = GetLotNumber(currentRow.T101LeafID);
+            if (data == null || data.Count == 0) {
+                return;
+            }
+            currentRow.LotNumber = data[0] == null ? 0 : data[0].LotNumber;
+            foreach (var item in data) {
+                if (data == null) {
+                    continue;
+                }
+                edit.Items.Add(item.LotNumber);
+            }
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            e.RepositoryItem = edit;
+            view.EndUpdate();
         }
 
         /// <summary>
@@ -460,6 +442,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
 
         private void SetSmeltMethodItems() {
+            this.grdProductPara.BeginUpdate();
             this.grdProductPara.DataSource = null;
             var smeltMethodItems = GetSmeltMethodItems();
             if (smeltMethodItems==null||smeltMethodItems.Count==0) {
@@ -467,6 +450,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             this.grdProductPara.DataSource = smeltMethodItems;
             this.grdProductParaView.Tag = smeltMethodItems;
+            this.grdProductPara.EndUpdate();
         }
         #endregion
 
@@ -541,10 +525,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             #endregion
             return xmlDoc.OuterXml;
-        }
-
-        
-
+        } 
         #endregion
 
         #region 重新加载
@@ -692,6 +673,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                     grd = this.ucGrdBaked;
                     break; 
             }
+            grd.vGridControl.BeginUpdate();
             grd.DataSource = null;
             DataTable dt = new DataTable();
             foreach (SmeltMethodItemByOpType item in items) {
@@ -711,6 +693,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             grd.DataSource = dt;
             grd.ReadOnlyCount = dt.Rows.Count;
             grd.vGridControl.BestFit();
+            grd.vGridControl.EndUpdate();
         }
 
         /// <summary>
@@ -899,6 +882,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
 
         private void SetRowMaterial() {
+            this.grdRowMaterial.BeginUpdate();
             this.grdRowMaterial.DataSource = null;
             _readOnlyCount = 0;
             _smeltMaterialItems = GetSmeltMaterialItems();
@@ -913,6 +897,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             _readOnlyCount = newData.Count;
             this.grdRowMaterialView.BestFitColumns();
             this.grdRowMaterialView.Tag = new List<SmeltMaterialItemClient>(newData);
+            this.grdRowMaterial.EndUpdate();
         }
 
         private string GetRowMaterialXml(BindingList<SmeltMaterialItemClient> data) { 
@@ -980,10 +965,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             return list.ToArray<string>();
         }
 
-        private void SetT101Code(GridView view, CustomRowCellEditEventArgs e) {
-            //if (e.RowHandle < 0) {
-            //    return;
-            //}
+        private void SetT101Code(GridView view, CustomRowCellEditEventArgs e) { 
             var smelts = view.Tag as List<SmeltMaterialItemClient>;
             if (smelts == null || smelts.Count == 0) {
                 return;
@@ -1028,7 +1010,103 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
         #endregion
 
-        #region 事件 
+        #region 刷新页面
+        /// <summary>
+        /// 刷新页面
+        /// </summary>
+        public void RefreshFurnace() {
+            RefreshFurnace(false);
+        }
+
+        /// <summary>
+        /// 刷新页面
+        /// </summary>
+        /// <param name="keepMaterial"></param>
+        private void RefreshFurnace(bool keepMaterial) { 
+            var smeltBatchProductionInfos = ReLoadProduction();
+            if (smeltBatchProductionInfos == null || smeltBatchProductionInfos.Count < 1 || smeltBatchProductionInfos[0] == null) {
+                RefreshWithNoProduction(keepMaterial); 
+                return;
+            }
+            var currentInfo = smeltBatchProductionInfos[0];
+            if (currentInfo.InProduction == 1) {//有在产产品
+                this.SuspendLayout();
+                _ProductingNow = true;
+                if (!string.IsNullOrEmpty(currentInfo.OperatorCode)) {
+                    this.txtOperator.Text = string.Format("[{0}]{1}", currentInfo.OperatorCode, currentInfo.OperatorName);
+                }
+                _operatorCode = currentInfo.OperatorCode;
+                _operatorName = currentInfo.OperatorName;
+                this.txtOperator.Enabled = false;
+                this.dtProductDate.Enabled = false;
+                this.lblFurnaceTime.Text = currentInfo.BatchNumber;
+                this.lblFurnaceTime.Tag = currentInfo;
+                SetCurrentSmeltInfo(currentInfo);
+                SetParaGrid(Optype.Spectrum);
+                SetParaGrid(Optype.Sample);
+                SetParaGrid(Optype.Baked);
+                SetRowMaterial();
+                SetOrderInfo();
+                ChangeTabPage();
+                this.ResumeLayout();
+            } else if (currentInfo.InProduction == 0) {//没有在产产品
+                RefreshWithNoProduction(keepMaterial);
+            }
+        }
+
+        /// <summary>
+        /// 没有正在生产的产品
+        /// </summary>
+        private void RefreshWithNoProduction(bool keepMaterial) {
+            this.SuspendLayout();
+            _ProductingNow = false;
+            this.txtOperator.Enabled = true;
+            this.dtProductDate.Enabled = true;
+            SetCurrentSmeltInfo(null);
+            SetWaitingFurnace();
+            if (!keepMaterial) {
+                SetSmeltMaterialItems();
+                SetSmeltMethodItems();
+            }
+            SetOrderInfo();
+            ChangeTabPage();
+            this.ResumeLayout();
+        }
+        #endregion
+
+        #region 打印
+        private void PrintOrderInfo(OrderInfo info) {
+            if (info == null) {
+                return;
+            }
+            _report.Parameters.FindByName("PWONo").Value = info.PWONo;
+            _report.Parameters.FindByName("PlatNo").Value = info.PlateNo;
+            _report.Parameters.FindByName("T102Code").Value = info.T102Code;
+            _report.Parameters.FindByName("LotNumber").Value = info.LotNumber;
+            _report.Parameters.FindByName("MachineModeling").Value = info.MachineModelling;
+            _report.Parameters.FindByName("Texture").Value = info.Texture;
+            _report.Parameters.FindByName("BatchNumber").Value = info.BatchNumber;
+            System.Drawing.Printing.PrinterSettings prnSetting =
+                     new System.Drawing.Printing.PrinterSettings();
+            if (_report.Prepare()) {
+                bool rePrinter = false;
+                do {
+                    if (_report.ShowPrintDialog(out prnSetting)) {
+                        _report.PrintPrepared(prnSetting);
+                        rePrinter = (
+                            ShowMessageBox.Show(
+                                "铸造产品标识卡已经打印完成，是否需要重新打印？",
+                                "系统信息",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question,
+                                MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+                    }
+                } while (rePrinter);
+            }
+        }
+        #endregion
+
+        #region 事件
         private void btnStart_Click(object sender, EventArgs e) {
             if (!OperatorCodeValidate()) {
                 return;
@@ -1182,67 +1260,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             this.grdRowMaterialView.DeleteSelectedRows();
         }
-        #endregion  
-         
-        #region 刷新页面
-        /// <summary>
-        /// 刷新页面
-        /// </summary>
-        public void RefreshFurnace() {
-            RefreshFurnace(false);
-        }
-
-        /// <summary>
-        /// 刷新页面
-        /// </summary>
-        /// <param name="keepMaterial"></param>
-        private void RefreshFurnace(bool keepMaterial) {
-            var smeltBatchProductionInfos = ReLoadProduction();
-            if (smeltBatchProductionInfos == null || smeltBatchProductionInfos.Count < 1 || smeltBatchProductionInfos[0] == null) {
-                RefreshWithNoProduction(keepMaterial);
-                return;
-            }
-            var currentInfo = smeltBatchProductionInfos[0];
-            if (currentInfo.InProduction == 1) {//有在产产品
-                _ProductingNow = true;
-                if (!string.IsNullOrEmpty(currentInfo.OperatorCode)) {
-                    this.txtOperator.Text = string.Format("[{0}]{1}", currentInfo.OperatorCode, currentInfo.OperatorName);
-                }
-                _operatorCode = currentInfo.OperatorCode;
-                _operatorName = currentInfo.OperatorName;
-                this.txtOperator.Enabled = false;
-                this.dtProductDate.Enabled = false;
-                this.lblFurnaceTime.Text = currentInfo.BatchNumber;
-                this.lblFurnaceTime.Tag = currentInfo;
-                SetCurrentSmeltInfo(currentInfo);
-                SetParaGrid(Optype.Spectrum);
-                SetParaGrid(Optype.Sample);
-                SetParaGrid(Optype.Baked);
-                SetRowMaterial();
-                SetOrderInfo();
-                ChangeTabPage();
-            } else if (currentInfo.InProduction == 0) {//没有在产产品
-                RefreshWithNoProduction(keepMaterial);
-            }
-        }
-
-        /// <summary>
-        /// 没有正在生产的产品
-        /// </summary>
-        private void RefreshWithNoProduction(bool keepMaterial) {
-            _ProductingNow = false;
-            this.txtOperator.Enabled = true;
-            this.dtProductDate.Enabled = true;
-            SetCurrentSmeltInfo(null);
-            SetWaitingFurnace();
-            if (!keepMaterial) {
-                SetSmeltMaterialItems();
-                SetSmeltMethodItems();
-            }
-            SetOrderInfo();
-            ChangeTabPage();
-        } 
-        #endregion
 
         private void btnPrint_Click(object sender, EventArgs e) {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
@@ -1259,7 +1276,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                     if (item.IsPrint) {
                         PrintOrderInfo(item);
                     }
-                } 
+                }
             } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 ShowMessageBox.Show(error.Message, "系统信息", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1268,36 +1285,17 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+        #endregion   
 
-        private void PrintOrderInfo(OrderInfo info) {
-            if (info==null) {
-                return;
-            }
-            _report.Parameters.FindByName("PWONo").Value = info.PWONo;
-            _report.Parameters.FindByName("PlatNo").Value = info.PlateNo;
-            _report.Parameters.FindByName("T102Code").Value = info.T102Code;
-            _report.Parameters.FindByName("LotNumber").Value = info.LotNumber;
-            _report.Parameters.FindByName("MachineModeling").Value = info.MachineModelling;
-            _report.Parameters.FindByName("Texture").Value = info.Texture;
-            _report.Parameters.FindByName("BatchNumber").Value = info.BatchNumber;
-            System.Drawing.Printing.PrinterSettings prnSetting =
-                     new System.Drawing.Printing.PrinterSettings();
-            if (_report.Prepare()) {
-                bool rePrinter = false;
-                do {
-                    if (_report.ShowPrintDialog(out prnSetting)) {
-                        _report.PrintPrepared(prnSetting);
-                        rePrinter = (
-                            ShowMessageBox.Show(
-                                "铸造产品标识卡已经打印完成，是否需要重新打印？",
-                                "系统信息",
-                                MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question,
-                                MessageBoxDefaultButton.Button2) == DialogResult.Yes);
-                    }
-                } while (rePrinter);
+        #region 界面优化
+        protected override CreateParams CreateParams {
+            get {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;//用双缓冲绘制窗口的所有子控件
+                return cp;
             }
         }
-
+        #endregion
+         
     }
 }
