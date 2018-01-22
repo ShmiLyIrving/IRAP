@@ -34,18 +34,18 @@
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.btnFindDatas = new DevExpress.XtraEditors.SimpleButton();
             this.btnFindData = new DevExpress.XtraEditors.SimpleButton();
-            this.edtBIN = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.edtQTY_BY_LOC = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.edt4ShiftBIN = new DevExpress.XtraEditors.TextEdit();
+            this.lblBIN = new DevExpress.XtraEditors.LabelControl();
+            this.edt4ShiftQTY_BY_LOC = new DevExpress.XtraEditors.TextEdit();
+            this.lblQTY_BY_LOC = new DevExpress.XtraEditors.LabelControl();
             this.edtQtyInStore = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.lblQtyInStore = new DevExpress.XtraEditors.LabelControl();
             this.edtT106Code = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.lblT106Code = new DevExpress.XtraEditors.LabelControl();
             this.edtRecvBatchNo = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.lblRecvBatchNo = new DevExpress.XtraEditors.LabelControl();
             this.edtSKUID = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblSKUID = new DevExpress.XtraEditors.LabelControl();
             this.btnExecute = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -55,8 +55,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtErrText.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             this.splitContainerControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edtBIN.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtQTY_BY_LOC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edt4ShiftBIN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edt4ShiftQTY_BY_LOC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtQtyInStore.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtT106Code.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtRecvBatchNo.Properties)).BeginInit();
@@ -121,23 +121,23 @@
             this.splitContainerControl2.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitContainerControl2.Panel1.Controls.Add(this.btnFindDatas);
             this.splitContainerControl2.Panel1.Controls.Add(this.btnFindData);
-            this.splitContainerControl2.Panel1.Controls.Add(this.edtBIN);
-            this.splitContainerControl2.Panel1.Controls.Add(this.labelControl3);
-            this.splitContainerControl2.Panel1.Controls.Add(this.edtQTY_BY_LOC);
-            this.splitContainerControl2.Panel1.Controls.Add(this.labelControl2);
+            this.splitContainerControl2.Panel1.Controls.Add(this.edt4ShiftBIN);
+            this.splitContainerControl2.Panel1.Controls.Add(this.lblBIN);
+            this.splitContainerControl2.Panel1.Controls.Add(this.edt4ShiftQTY_BY_LOC);
+            this.splitContainerControl2.Panel1.Controls.Add(this.lblQTY_BY_LOC);
             this.splitContainerControl2.Panel1.ShowCaption = true;
             this.splitContainerControl2.Panel1.Text = "四班库存";
             this.splitContainerControl2.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl2.Panel2.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitContainerControl2.Panel2.Controls.Add(this.edtQtyInStore);
-            this.splitContainerControl2.Panel2.Controls.Add(this.labelControl6);
+            this.splitContainerControl2.Panel2.Controls.Add(this.lblQtyInStore);
             this.splitContainerControl2.Panel2.Controls.Add(this.edtT106Code);
-            this.splitContainerControl2.Panel2.Controls.Add(this.labelControl5);
+            this.splitContainerControl2.Panel2.Controls.Add(this.lblT106Code);
             this.splitContainerControl2.Panel2.Controls.Add(this.edtRecvBatchNo);
-            this.splitContainerControl2.Panel2.Controls.Add(this.labelControl4);
+            this.splitContainerControl2.Panel2.Controls.Add(this.lblRecvBatchNo);
             this.splitContainerControl2.Panel2.Controls.Add(this.edtSKUID);
-            this.splitContainerControl2.Panel2.Controls.Add(this.labelControl1);
+            this.splitContainerControl2.Panel2.Controls.Add(this.lblSKUID);
             this.splitContainerControl2.Panel2.ShowCaption = true;
             this.splitContainerControl2.Panel2.Text = "批次系统库存";
             this.splitContainerControl2.Size = new System.Drawing.Size(311, 321);
@@ -153,7 +153,7 @@
             this.btnFindDatas.Location = new System.Drawing.Point(177, 71);
             this.btnFindDatas.Name = "btnFindDatas";
             this.btnFindDatas.Size = new System.Drawing.Size(125, 32);
-            this.btnFindDatas.TabIndex = 8;
+            this.btnFindDatas.TabIndex = 4;
             this.btnFindDatas.Text = "查找相似记录";
             this.btnFindDatas.Click += new System.EventHandler(this.btnFindDatas_Click);
             // 
@@ -165,189 +165,195 @@
             this.btnFindData.Location = new System.Drawing.Point(5, 71);
             this.btnFindData.Name = "btnFindData";
             this.btnFindData.Size = new System.Drawing.Size(125, 32);
-            this.btnFindData.TabIndex = 7;
+            this.btnFindData.TabIndex = 3;
             this.btnFindData.Text = "查找对应记录";
             this.btnFindData.Click += new System.EventHandler(this.btnFindData_Click);
             // 
-            // edtBIN
+            // edt4ShiftBIN
             // 
-            this.edtBIN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.edt4ShiftBIN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtBIN.EditValue = "";
-            this.edtBIN.Location = new System.Drawing.Point(108, 2);
-            this.edtBIN.Name = "edtBIN";
-            this.edtBIN.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.edtBIN.Properties.Appearance.Options.UseFont = true;
-            this.edtBIN.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.edtBIN.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.edtBIN.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-            this.edtBIN.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.edtBIN.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.edtBIN.Properties.ReadOnly = true;
-            this.edtBIN.Size = new System.Drawing.Size(194, 26);
-            this.edtBIN.TabIndex = 6;
+            this.edt4ShiftBIN.EditValue = "";
+            this.edt4ShiftBIN.EnterMoveNextControl = true;
+            this.edt4ShiftBIN.Location = new System.Drawing.Point(108, 2);
+            this.edt4ShiftBIN.Name = "edt4ShiftBIN";
+            this.edt4ShiftBIN.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edt4ShiftBIN.Properties.Appearance.Options.UseFont = true;
+            this.edt4ShiftBIN.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.edt4ShiftBIN.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.edt4ShiftBIN.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+            this.edt4ShiftBIN.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.edt4ShiftBIN.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.edt4ShiftBIN.Properties.ReadOnly = true;
+            this.edt4ShiftBIN.Size = new System.Drawing.Size(194, 26);
+            this.edt4ShiftBIN.TabIndex = 1;
             // 
-            // labelControl3
+            // lblBIN
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl3.Location = new System.Drawing.Point(5, 5);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(97, 20);
-            this.labelControl3.TabIndex = 5;
-            this.labelControl3.Text = "四班库位号";
+            this.lblBIN.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblBIN.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblBIN.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblBIN.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblBIN.Location = new System.Drawing.Point(5, 5);
+            this.lblBIN.Name = "lblBIN";
+            this.lblBIN.Size = new System.Drawing.Size(97, 20);
+            this.lblBIN.TabIndex = 5;
+            this.lblBIN.Text = "四班库位号";
             // 
-            // edtQTY_BY_LOC
+            // edt4ShiftQTY_BY_LOC
             // 
-            this.edtQTY_BY_LOC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.edt4ShiftQTY_BY_LOC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtQTY_BY_LOC.EditValue = "";
-            this.edtQTY_BY_LOC.Location = new System.Drawing.Point(108, 34);
-            this.edtQTY_BY_LOC.Name = "edtQTY_BY_LOC";
-            this.edtQTY_BY_LOC.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.edtQTY_BY_LOC.Properties.Appearance.Options.UseFont = true;
-            this.edtQTY_BY_LOC.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.edtQTY_BY_LOC.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.edtQTY_BY_LOC.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-            this.edtQTY_BY_LOC.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.edtQTY_BY_LOC.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.edtQTY_BY_LOC.Properties.ReadOnly = true;
-            this.edtQTY_BY_LOC.Size = new System.Drawing.Size(194, 26);
-            this.edtQTY_BY_LOC.TabIndex = 4;
+            this.edt4ShiftQTY_BY_LOC.EditValue = "";
+            this.edt4ShiftQTY_BY_LOC.EnterMoveNextControl = true;
+            this.edt4ShiftQTY_BY_LOC.Location = new System.Drawing.Point(108, 34);
+            this.edt4ShiftQTY_BY_LOC.Name = "edt4ShiftQTY_BY_LOC";
+            this.edt4ShiftQTY_BY_LOC.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edt4ShiftQTY_BY_LOC.Properties.Appearance.Options.UseFont = true;
+            this.edt4ShiftQTY_BY_LOC.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.edt4ShiftQTY_BY_LOC.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.edt4ShiftQTY_BY_LOC.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+            this.edt4ShiftQTY_BY_LOC.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.edt4ShiftQTY_BY_LOC.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.edt4ShiftQTY_BY_LOC.Properties.ReadOnly = true;
+            this.edt4ShiftQTY_BY_LOC.Size = new System.Drawing.Size(194, 26);
+            this.edt4ShiftQTY_BY_LOC.TabIndex = 2;
             // 
-            // labelControl2
+            // lblQTY_BY_LOC
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(5, 37);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(97, 20);
-            this.labelControl2.TabIndex = 3;
-            this.labelControl2.Text = "库存数量";
+            this.lblQTY_BY_LOC.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblQTY_BY_LOC.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblQTY_BY_LOC.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblQTY_BY_LOC.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblQTY_BY_LOC.Location = new System.Drawing.Point(5, 37);
+            this.lblQTY_BY_LOC.Name = "lblQTY_BY_LOC";
+            this.lblQTY_BY_LOC.Size = new System.Drawing.Size(97, 20);
+            this.lblQTY_BY_LOC.TabIndex = 3;
+            this.lblQTY_BY_LOC.Text = "库存数量";
             // 
             // edtQtyInStore
             // 
             this.edtQtyInStore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtQtyInStore.EditValue = "无记录";
+            this.edtQtyInStore.EnterMoveNextControl = true;
             this.edtQtyInStore.Location = new System.Drawing.Point(108, 104);
             this.edtQtyInStore.Name = "edtQtyInStore";
             this.edtQtyInStore.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtQtyInStore.Properties.Appearance.Options.UseFont = true;
-            this.edtQtyInStore.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtQtyInStore.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtQtyInStore.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtQtyInStore.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
             this.edtQtyInStore.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtQtyInStore.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtQtyInStore.Properties.ReadOnly = true;
             this.edtQtyInStore.Size = new System.Drawing.Size(194, 26);
-            this.edtQtyInStore.TabIndex = 14;
+            this.edtQtyInStore.TabIndex = 4;
             // 
-            // labelControl6
+            // lblQtyInStore
             // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(5, 107);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(97, 20);
-            this.labelControl6.TabIndex = 13;
-            this.labelControl6.Text = "库存数量";
+            this.lblQtyInStore.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblQtyInStore.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblQtyInStore.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblQtyInStore.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblQtyInStore.Location = new System.Drawing.Point(5, 107);
+            this.lblQtyInStore.Name = "lblQtyInStore";
+            this.lblQtyInStore.Size = new System.Drawing.Size(97, 20);
+            this.lblQtyInStore.TabIndex = 13;
+            this.lblQtyInStore.Text = "库存数量";
             // 
             // edtT106Code
             // 
             this.edtT106Code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtT106Code.EditValue = "无记录";
+            this.edtT106Code.EnterMoveNextControl = true;
             this.edtT106Code.Location = new System.Drawing.Point(108, 72);
             this.edtT106Code.Name = "edtT106Code";
             this.edtT106Code.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtT106Code.Properties.Appearance.Options.UseFont = true;
-            this.edtT106Code.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtT106Code.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtT106Code.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtT106Code.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
             this.edtT106Code.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtT106Code.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtT106Code.Properties.ReadOnly = true;
             this.edtT106Code.Size = new System.Drawing.Size(194, 26);
-            this.edtT106Code.TabIndex = 12;
+            this.edtT106Code.TabIndex = 3;
             // 
-            // labelControl5
+            // lblT106Code
             // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl5.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(5, 75);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(97, 20);
-            this.labelControl5.TabIndex = 11;
-            this.labelControl5.Text = "批次库位号";
+            this.lblT106Code.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblT106Code.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblT106Code.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblT106Code.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblT106Code.Location = new System.Drawing.Point(5, 75);
+            this.lblT106Code.Name = "lblT106Code";
+            this.lblT106Code.Size = new System.Drawing.Size(97, 20);
+            this.lblT106Code.TabIndex = 11;
+            this.lblT106Code.Text = "批次库位号";
             // 
             // edtRecvBatchNo
             // 
             this.edtRecvBatchNo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtRecvBatchNo.EditValue = "无记录";
+            this.edtRecvBatchNo.EnterMoveNextControl = true;
             this.edtRecvBatchNo.Location = new System.Drawing.Point(108, 40);
             this.edtRecvBatchNo.Name = "edtRecvBatchNo";
             this.edtRecvBatchNo.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtRecvBatchNo.Properties.Appearance.Options.UseFont = true;
-            this.edtRecvBatchNo.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtRecvBatchNo.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtRecvBatchNo.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtRecvBatchNo.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
             this.edtRecvBatchNo.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtRecvBatchNo.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtRecvBatchNo.Properties.ReadOnly = true;
             this.edtRecvBatchNo.Size = new System.Drawing.Size(194, 26);
-            this.edtRecvBatchNo.TabIndex = 10;
+            this.edtRecvBatchNo.TabIndex = 2;
             // 
-            // labelControl4
+            // lblRecvBatchNo
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(5, 43);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(97, 20);
-            this.labelControl4.TabIndex = 9;
-            this.labelControl4.Text = "批次号";
+            this.lblRecvBatchNo.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblRecvBatchNo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblRecvBatchNo.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblRecvBatchNo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblRecvBatchNo.Location = new System.Drawing.Point(5, 43);
+            this.lblRecvBatchNo.Name = "lblRecvBatchNo";
+            this.lblRecvBatchNo.Size = new System.Drawing.Size(97, 20);
+            this.lblRecvBatchNo.TabIndex = 9;
+            this.lblRecvBatchNo.Text = "批次号";
             // 
             // edtSKUID
             // 
             this.edtSKUID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtSKUID.EditValue = "";
+            this.edtSKUID.EnterMoveNextControl = true;
             this.edtSKUID.Location = new System.Drawing.Point(108, 8);
             this.edtSKUID.Name = "edtSKUID";
             this.edtSKUID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtSKUID.Properties.Appearance.Options.UseFont = true;
-            this.edtSKUID.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtSKUID.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtSKUID.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtSKUID.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
             this.edtSKUID.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtSKUID.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtSKUID.Properties.ReadOnly = true;
             this.edtSKUID.Size = new System.Drawing.Size(194, 26);
-            this.edtSKUID.TabIndex = 8;
+            this.edtSKUID.TabIndex = 1;
             // 
-            // labelControl1
+            // lblSKUID
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(5, 11);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(97, 20);
-            this.labelControl1.TabIndex = 7;
-            this.labelControl1.Text = "物料标签号";
+            this.lblSKUID.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblSKUID.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblSKUID.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblSKUID.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblSKUID.Location = new System.Drawing.Point(5, 11);
+            this.lblSKUID.Name = "lblSKUID";
+            this.lblSKUID.Size = new System.Drawing.Size(97, 20);
+            this.lblSKUID.TabIndex = 7;
+            this.lblSKUID.Text = "物料标签号";
             // 
             // btnExecute
             // 
@@ -399,8 +405,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtErrText.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.edtBIN.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtQTY_BY_LOC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edt4ShiftBIN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edt4ShiftQTY_BY_LOC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtQtyInStore.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtT106Code.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtRecvBatchNo.Properties)).EndInit();
@@ -413,22 +419,22 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
         public DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraEditors.TextEdit edtBIN;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit edtQTY_BY_LOC;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.TextEdit edt4ShiftBIN;
+        private DevExpress.XtraEditors.LabelControl lblBIN;
+        private DevExpress.XtraEditors.TextEdit edt4ShiftQTY_BY_LOC;
+        private DevExpress.XtraEditors.LabelControl lblQTY_BY_LOC;
         private DevExpress.XtraEditors.SimpleButton btnFindDatas;
         private DevExpress.XtraEditors.SimpleButton btnFindData;
         protected DevExpress.XtraEditors.MemoEdit edtErrText;
         private DevExpress.XtraEditors.SimpleButton btnExecute;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.TextEdit edtSKUID;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblSKUID;
         private DevExpress.XtraEditors.TextEdit edtQtyInStore;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl lblQtyInStore;
         private DevExpress.XtraEditors.TextEdit edtT106Code;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.LabelControl lblT106Code;
         private DevExpress.XtraEditors.TextEdit edtRecvBatchNo;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl lblRecvBatchNo;
     }
 }

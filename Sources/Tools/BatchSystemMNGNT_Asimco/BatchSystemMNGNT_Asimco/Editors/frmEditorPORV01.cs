@@ -10,33 +10,34 @@ using BatchSystemMNGNT_Asimco.Entities;
 
 namespace BatchSystemMNGNT_Asimco.Editors
 {
-    public partial class frmEditorPICK08 : BatchSystemMNGNT_Asimco.Editors.frmCustomEditor
+    public partial class frmEditorPORV01 : BatchSystemMNGNT_Asimco.Editors.frmCustomEditor
     {
-        public frmEditorPICK08()
+        public frmEditorPORV01()
         {
             InitializeComponent();
         }
 
-        public frmEditorPICK08(TEntityPICK08 entity) : this()
+        public frmEditorPORV01(TEntityPORV01 entity) : this()
         {
             SetEntity(entity);
 
             if (entity != null && entity.ExChange.Count > 0)
             {
-                TEntityXMLPICK08 exchange = entity.ExChange[0] as TEntityXMLPICK08;
+                TEntityXMLPORV01 exchange = entity.ExChange[0] as TEntityXMLPORV01;
 
                 edtUserID.Text = exchange.UserID;
                 edtPassword.Text = exchange.PassWord;
-                edtOrderNumber.Text = exchange.OrderNumber;
-                edtLineNumber.Text = exchange.LineNumber;
                 edtItemNumber.Text = exchange.ItemNumber;
-                edtLotNumber.Text = exchange.LotNumber;
-                edtStockroom.Text = exchange.Stockroom;
-                edtBin.Text = exchange.Bin;
-                edtIssuedQuantity.Text = exchange.IssuedQuantity;
+                edtLotNumberDefault.Text = exchange.LotNumberDefault;
+                edtPONumber.Text = exchange.PONumber;
+                edtPOLineNumber.Text = exchange.POLineNumber;
+                edtStockroom1.Text = exchange.Stockroom1;
+                edtBin1.Text = exchange.Bin1;
+                edtReceiptQuantityMove1.Text = exchange.ReceiptQuantityMove1;
+                edtPromisedDate.Text = exchange.PromisedDate;
 
                 itemNumber = exchange.ItemNumber;
-                lotNumber = exchange.LotNumber;
+                lotNumber = exchange.LotNumberDefault;
                 skuID = entity.SKUID;
 
                 edtErrText.Text = entity.ErrText;

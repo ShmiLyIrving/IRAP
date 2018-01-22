@@ -80,6 +80,12 @@
     <Compile Include="Editors\frmEditorPICK08.Designer.cs">
       <DependentUpon>frmEditorPICK08.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\frmEditorPORV01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmEditorPORV01.Designer.cs">
+      <DependentUpon>frmEditorPORV01.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\TTableStockDetail.cs" />
     <Compile Include="Tools\DBhelp.cs" />
     <Compile Include="Editors\frmCustomEditor.cs">
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmEditorPICK08.resx">
       <DependentUpon>frmEditorPICK08.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmEditorPORV01.resx">
+      <DependentUpon>frmEditorPORV01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

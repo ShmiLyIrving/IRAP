@@ -50,7 +50,10 @@ namespace BatchSystemMNGNT_Asimco
             if (lotNumber.Length == 14)
                 strSQL = string.Format(strSQL, "LOT=@LOT");
             else
+            {
                 strSQL = string.Format(strSQL, "LOT LIKE @LOT");
+                lotNumber = string.Format("%{0}%", lotNumber);
+            }
 
             paramList.Add(new IRAPProcParameter("@STK_ROOM", DbType.String, "28"));
             paramList.Add(new IRAPProcParameter("@ITEM", DbType.String, itemNumber));

@@ -115,6 +115,11 @@ namespace BatchSystemMNGNT_Asimco.Entities
 
         protected virtual bool ShowEditorDialogs()
         {
+            XtraMessageBox.Show(
+                string.Format("还未实现[{0}]的编辑器", ExCode),
+                "提示信息",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
             return false;
         }
 

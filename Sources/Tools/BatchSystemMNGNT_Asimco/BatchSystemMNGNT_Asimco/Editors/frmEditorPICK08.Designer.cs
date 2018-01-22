@@ -86,31 +86,30 @@
             // 
             // edtErrText
             // 
-            this.edtErrText.Location = new System.Drawing.Point(7, 26);
             this.edtErrText.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtErrText.Properties.Appearance.Options.UseFont = true;
             this.edtErrText.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtErrText.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.edtErrText.Size = new System.Drawing.Size(290, 148);
             // 
             // edtIssuedQuantity
             // 
             this.edtIssuedQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtIssuedQuantity.EditValue = "";
-            this.edtIssuedQuantity.Location = new System.Drawing.Point(149, 264);
+            this.edtIssuedQuantity.EnterMoveNextControl = true;
+            this.edtIssuedQuantity.Location = new System.Drawing.Point(188, 258);
             this.edtIssuedQuantity.Name = "edtIssuedQuantity";
             this.edtIssuedQuantity.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtIssuedQuantity.Properties.Appearance.Options.UseFont = true;
             this.edtIssuedQuantity.Properties.Appearance.Options.UseTextOptions = true;
             this.edtIssuedQuantity.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtIssuedQuantity.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.edtIssuedQuantity.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtIssuedQuantity.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtIssuedQuantity.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtIssuedQuantity.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
             this.edtIssuedQuantity.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtIssuedQuantity.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.edtIssuedQuantity.Size = new System.Drawing.Size(260, 26);
+            this.edtIssuedQuantity.Size = new System.Drawing.Size(221, 26);
             this.edtIssuedQuantity.TabIndex = 17;
             // 
             // labelControl9
@@ -119,9 +118,9 @@
             this.labelControl9.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl9.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl9.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl9.Location = new System.Drawing.Point(19, 267);
+            this.labelControl9.Location = new System.Drawing.Point(19, 261);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(124, 20);
+            this.labelControl9.Size = new System.Drawing.Size(163, 20);
             this.labelControl9.TabIndex = 16;
             this.labelControl9.Text = "IssuedQuantity";
             // 
@@ -130,13 +129,14 @@
             this.edtBin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtBin.EditValue = "";
-            this.edtBin.Location = new System.Drawing.Point(149, 232);
+            this.edtBin.EnterMoveNextControl = true;
+            this.edtBin.Location = new System.Drawing.Point(188, 226);
             this.edtBin.Name = "edtBin";
             this.edtBin.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtBin.Properties.Appearance.Options.UseFont = true;
-            this.edtBin.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtBin.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtBin.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.edtBin.Size = new System.Drawing.Size(260, 26);
+            this.edtBin.Size = new System.Drawing.Size(221, 26);
             this.edtBin.TabIndex = 15;
             // 
             // labelControl8
@@ -145,9 +145,9 @@
             this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl8.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl8.Location = new System.Drawing.Point(19, 235);
+            this.labelControl8.Location = new System.Drawing.Point(19, 229);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(124, 20);
+            this.labelControl8.Size = new System.Drawing.Size(163, 20);
             this.labelControl8.TabIndex = 14;
             this.labelControl8.Text = "Bin";
             // 
@@ -156,14 +156,15 @@
             this.edtStockroom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtStockroom.EditValue = "";
-            this.edtStockroom.Location = new System.Drawing.Point(149, 200);
+            this.edtStockroom.EnterMoveNextControl = true;
+            this.edtStockroom.Location = new System.Drawing.Point(188, 194);
             this.edtStockroom.Name = "edtStockroom";
             this.edtStockroom.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtStockroom.Properties.Appearance.Options.UseFont = true;
-            this.edtStockroom.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtStockroom.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtStockroom.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtStockroom.Properties.ReadOnly = true;
-            this.edtStockroom.Size = new System.Drawing.Size(260, 26);
+            this.edtStockroom.Size = new System.Drawing.Size(221, 26);
             this.edtStockroom.TabIndex = 13;
             // 
             // labelControl7
@@ -172,9 +173,9 @@
             this.labelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl7.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl7.Location = new System.Drawing.Point(19, 203);
+            this.labelControl7.Location = new System.Drawing.Point(19, 197);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(124, 20);
+            this.labelControl7.Size = new System.Drawing.Size(163, 20);
             this.labelControl7.TabIndex = 12;
             this.labelControl7.Text = "Stockroom";
             // 
@@ -183,13 +184,14 @@
             this.edtLotNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtLotNumber.EditValue = "";
-            this.edtLotNumber.Location = new System.Drawing.Point(149, 168);
+            this.edtLotNumber.EnterMoveNextControl = true;
+            this.edtLotNumber.Location = new System.Drawing.Point(188, 162);
             this.edtLotNumber.Name = "edtLotNumber";
             this.edtLotNumber.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtLotNumber.Properties.Appearance.Options.UseFont = true;
-            this.edtLotNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtLotNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtLotNumber.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.edtLotNumber.Size = new System.Drawing.Size(260, 26);
+            this.edtLotNumber.Size = new System.Drawing.Size(221, 26);
             this.edtLotNumber.TabIndex = 11;
             // 
             // labelControl6
@@ -198,9 +200,9 @@
             this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(19, 171);
+            this.labelControl6.Location = new System.Drawing.Point(19, 165);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(124, 20);
+            this.labelControl6.Size = new System.Drawing.Size(163, 20);
             this.labelControl6.TabIndex = 10;
             this.labelControl6.Text = "LotNumber";
             // 
@@ -209,14 +211,15 @@
             this.edtItemNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtItemNumber.EditValue = "";
-            this.edtItemNumber.Location = new System.Drawing.Point(149, 136);
+            this.edtItemNumber.EnterMoveNextControl = true;
+            this.edtItemNumber.Location = new System.Drawing.Point(188, 130);
             this.edtItemNumber.Name = "edtItemNumber";
             this.edtItemNumber.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtItemNumber.Properties.Appearance.Options.UseFont = true;
-            this.edtItemNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtItemNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtItemNumber.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtItemNumber.Properties.ReadOnly = true;
-            this.edtItemNumber.Size = new System.Drawing.Size(260, 26);
+            this.edtItemNumber.Size = new System.Drawing.Size(221, 26);
             this.edtItemNumber.TabIndex = 9;
             // 
             // labelControl5
@@ -225,9 +228,9 @@
             this.labelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl5.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(19, 139);
+            this.labelControl5.Location = new System.Drawing.Point(19, 133);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(124, 20);
+            this.labelControl5.Size = new System.Drawing.Size(163, 20);
             this.labelControl5.TabIndex = 8;
             this.labelControl5.Text = "ItemNumber";
             // 
@@ -236,20 +239,21 @@
             this.edtLineNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtLineNumber.EditValue = "";
-            this.edtLineNumber.Location = new System.Drawing.Point(149, 104);
+            this.edtLineNumber.EnterMoveNextControl = true;
+            this.edtLineNumber.Location = new System.Drawing.Point(188, 98);
             this.edtLineNumber.Name = "edtLineNumber";
             this.edtLineNumber.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtLineNumber.Properties.Appearance.Options.UseFont = true;
             this.edtLineNumber.Properties.Appearance.Options.UseTextOptions = true;
             this.edtLineNumber.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtLineNumber.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.edtLineNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtLineNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtLineNumber.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtLineNumber.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
             this.edtLineNumber.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtLineNumber.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtLineNumber.Properties.ReadOnly = true;
-            this.edtLineNumber.Size = new System.Drawing.Size(260, 26);
+            this.edtLineNumber.Size = new System.Drawing.Size(221, 26);
             this.edtLineNumber.TabIndex = 7;
             // 
             // labelControl4
@@ -258,9 +262,9 @@
             this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(19, 107);
+            this.labelControl4.Location = new System.Drawing.Point(19, 101);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(124, 20);
+            this.labelControl4.Size = new System.Drawing.Size(163, 20);
             this.labelControl4.TabIndex = 6;
             this.labelControl4.Text = "LineNumber";
             // 
@@ -269,14 +273,15 @@
             this.edtOrderNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtOrderNumber.EditValue = "";
-            this.edtOrderNumber.Location = new System.Drawing.Point(149, 72);
+            this.edtOrderNumber.EnterMoveNextControl = true;
+            this.edtOrderNumber.Location = new System.Drawing.Point(188, 66);
             this.edtOrderNumber.Name = "edtOrderNumber";
             this.edtOrderNumber.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtOrderNumber.Properties.Appearance.Options.UseFont = true;
-            this.edtOrderNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtOrderNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtOrderNumber.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtOrderNumber.Properties.ReadOnly = true;
-            this.edtOrderNumber.Size = new System.Drawing.Size(260, 26);
+            this.edtOrderNumber.Size = new System.Drawing.Size(221, 26);
             this.edtOrderNumber.TabIndex = 5;
             // 
             // labelControl3
@@ -285,9 +290,9 @@
             this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl3.Location = new System.Drawing.Point(19, 75);
+            this.labelControl3.Location = new System.Drawing.Point(19, 69);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(124, 20);
+            this.labelControl3.Size = new System.Drawing.Size(163, 20);
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "OrderNumber";
             // 
@@ -296,13 +301,14 @@
             this.edtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtPassword.EditValue = "";
-            this.edtPassword.Location = new System.Drawing.Point(149, 40);
+            this.edtPassword.EnterMoveNextControl = true;
+            this.edtPassword.Location = new System.Drawing.Point(188, 34);
             this.edtPassword.Name = "edtPassword";
             this.edtPassword.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtPassword.Properties.Appearance.Options.UseFont = true;
-            this.edtPassword.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtPassword.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtPassword.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.edtPassword.Size = new System.Drawing.Size(260, 26);
+            this.edtPassword.Size = new System.Drawing.Size(221, 26);
             this.edtPassword.TabIndex = 3;
             // 
             // labelControl2
@@ -311,23 +317,24 @@
             this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(19, 43);
+            this.labelControl2.Location = new System.Drawing.Point(19, 37);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(124, 20);
+            this.labelControl2.Size = new System.Drawing.Size(163, 20);
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Password";
             // 
             // edtUserID
             // 
             this.edtUserID.EditValue = "";
-            this.edtUserID.Location = new System.Drawing.Point(149, 8);
+            this.edtUserID.EnterMoveNextControl = true;
+            this.edtUserID.Location = new System.Drawing.Point(188, 2);
             this.edtUserID.Name = "edtUserID";
             this.edtUserID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.edtUserID.Properties.Appearance.Options.UseFont = true;
-            this.edtUserID.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.edtUserID.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtUserID.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtUserID.Properties.ReadOnly = true;
-            this.edtUserID.Size = new System.Drawing.Size(260, 26);
+            this.edtUserID.Size = new System.Drawing.Size(221, 26);
             this.edtUserID.TabIndex = 1;
             // 
             // labelControl1
@@ -336,9 +343,9 @@
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(19, 11);
+            this.labelControl1.Location = new System.Drawing.Point(19, 5);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(124, 20);
+            this.labelControl1.Size = new System.Drawing.Size(163, 20);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "UserID";
             // 

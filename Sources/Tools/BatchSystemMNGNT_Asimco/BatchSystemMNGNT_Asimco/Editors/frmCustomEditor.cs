@@ -18,10 +18,22 @@ namespace BatchSystemMNGNT_Asimco.Editors
         protected string itemNumber = "";
         protected string lotNumber = "";
         protected string skuID = "";
+        protected Entities.TEntityCustomLog entity = null;
 
         public frmCustomEditor()
         {
             InitializeComponent();
+        }
+
+        protected void SetEntity(Entities.TEntityCustomLog entity)
+        {
+            this.entity = entity;
+
+            if (entity != null && 
+                (!entity.Retried && entity.ErrCode != 0))
+                btnExecute.Enabled = true;
+            else
+                btnExecute.Enabled = false;
         }
 
         private void btnFindData_Click(object sender, EventArgs e)
@@ -35,23 +47,23 @@ namespace BatchSystemMNGNT_Asimco.Editors
                     List<Entities.TTableStockDetail> datas =
                         TBLStockDetails.Get(itemNumber, lotNumber);
 
-                    if (datas.Count > 0)
+                    if (datas.Count == 1)
                     {
-                        edtBIN.Text = datas[0].BIN;
-                        edtQTY_BY_LOC.Text = datas[0].QTY_BY_LOC.ToString();
+                        edt4ShiftBIN.Text = datas[0].BIN;
+                        edt4ShiftQTY_BY_LOC.Text = datas[0].QTY_BY_LOC.ToString();
                     }
                     else
                     {
-                        edtBIN.Text = "无记录";
-                        edtQTY_BY_LOC.Text = "无记录";
+                        edt4ShiftBIN.Text = "无记录";
+                        edt4ShiftQTY_BY_LOC.Text = "无记录";
                     }
 
                     TWaitting.Instance.CloseWaitForm();
                 }
                 catch (Exception error)
                 {
-                    edtQTY_BY_LOC.Text = "";
-                    edtBIN.Text = "";
+                    edt4ShiftQTY_BY_LOC.Text = "";
+                    edt4ShiftBIN.Text = "";
 
                     TWaitting.Instance.CloseWaitForm();
 
