@@ -114,17 +114,20 @@ namespace IRAP.Entities.MDM
             {
                 if (node.Name == "Row")
                 {
-                    SmeltInspectionItemValue itemValue =
-                        new SmeltInspectionItemValue();
+                    if (!string.IsNullOrEmpty(node.Attributes["FactID"].Value) && !string.IsNullOrEmpty(node.Attributes["Metric01"].Value))
+                    {
+                        SmeltInspectionItemValue itemValue =
+                            new SmeltInspectionItemValue();
 
-                    if (node.Attributes["FactID"] != null && !string.IsNullOrEmpty(node.Attributes["FactID"].Value))
-                        itemValue.FactID = Tools.ConvertToInt64(node.Attributes["FactID"].Value);
-                    if (node.Attributes["Metric01"] != null&& !string.IsNullOrEmpty(node.Attributes["Metric01"].Value))
-                        itemValue.Metric01 = Tools.ConvertToInt32(node.Attributes["Metric01"].Value);
-                    itemValue.Scale = Scale;
-                    itemValue.UnitOfMeasure = UnitOfMeasure;
+                        if (node.Attributes["FactID"] != null)
+                            itemValue.FactID = Tools.ConvertToInt64(node.Attributes["FactID"].Value);
+                        if (node.Attributes["Metric01"] != null)
+                            itemValue.Metric01 = Tools.ConvertToInt32(node.Attributes["Metric01"].Value);
+                        itemValue.Scale = Scale;
+                        itemValue.UnitOfMeasure = UnitOfMeasure;
 
-                    values.Add(itemValue);
+                        values.Add(itemValue);
+                    }
                 }
             }
         }

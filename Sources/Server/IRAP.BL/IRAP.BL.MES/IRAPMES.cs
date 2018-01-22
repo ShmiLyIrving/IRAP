@@ -1002,7 +1002,7 @@ namespace IRAP.BL.MES
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
-                paramList.Add(new IRAPProcParameter("@OpType", DbType.String, factID));
+                paramList.Add(new IRAPProcParameter("@OpType", DbType.String, opType));
                 paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
                 paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
                 paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
