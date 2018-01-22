@@ -222,6 +222,7 @@
             this.grdvPWOs.OptionsView.ColumnAutoWidth = false;
             this.grdvPWOs.OptionsView.ShowGroupPanel = false;
             this.grdvPWOs.FocusedRowObjectChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventHandler(this.grdvPWOs_FocusedRowObjectChanged);
+            this.grdvPWOs.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.grdvPWOs_BeforeLeaveRow);
             // 
             // grdclmnPWONo
             // 

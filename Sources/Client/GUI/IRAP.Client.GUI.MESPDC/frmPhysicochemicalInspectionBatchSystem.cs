@@ -94,7 +94,6 @@ namespace IRAP.Client.GUI.MESPDC
                     {
                         currentBatchNo = edtBatchNo.Text;
                         ChangeUC();
-                        saveState = true;
                     }
                 }
             }
@@ -122,7 +121,6 @@ namespace IRAP.Client.GUI.MESPDC
         {
             currentOpType = e.Page.Name.Substring(3);
             ChangeUC();
-            saveState = true;
         }
         /// <summary>
         /// 刷新自定义控件
@@ -155,6 +153,7 @@ namespace IRAP.Client.GUI.MESPDC
                     grdvPWOs.FocusedRowHandle = 0;
                 }
             }
+            saveState = true;
         }
        
         /// <summary>
@@ -230,8 +229,17 @@ namespace IRAP.Client.GUI.MESPDC
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
             if (idx >= 0 && idx < pwos.Count)
             {
-                ucMPLH.RefreshUC(pwos[idx]);              
+                ucMPLH.RefreshUC(pwos[idx]);
+                saveState = true;                      
             }            
+        }
+
+        private void grdvPWOs_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
+        {
+            if (!AlertConfirm())
+            {
+                e.Allow = false;
+            }
         }
     }
 }
