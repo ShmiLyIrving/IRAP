@@ -424,4 +424,31 @@ namespace IRAP.Entities.MES {
         /// </summary>
         public string DataXML { get; set; }
     }
+
+    public class SmeltBatchMaterial {
+        /// <summary>
+        /// 熔炼事实号
+        /// </summary>
+        public long Ordinal { get; set; }
+
+        /// <summary>
+        /// 物料叶标识
+        /// </summary>
+        public string T101LeafID { get; set; }
+
+        /// <summary>
+        /// 物料号
+        /// </summary>
+        public string T101Code { get; set; }
+
+        /// <summary>
+        /// 批次号
+        /// </summary>
+        public int LotNumber { get; set; }
+
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public long Qty { get; set; }
+    }
 }
