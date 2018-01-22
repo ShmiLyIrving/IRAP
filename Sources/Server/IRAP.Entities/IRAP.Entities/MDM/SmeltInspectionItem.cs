@@ -130,6 +130,7 @@ namespace IRAP.Entities.MDM
                     }
                 }
             }
+            values.Sort(0, values.Count, new SmeltInspectionItemValue_CompareByFactID());
         }
     }
 
@@ -156,6 +157,34 @@ namespace IRAP.Entities.MDM
         public Quantity MetricValue
         {
             get { return quantity; }
+        }
+    }
+    public class SmeltInspectionItemValue_CompareByFactID : IComparer<SmeltInspectionItemValue>
+    {
+        public int Compare(SmeltInspectionItemValue x, SmeltInspectionItemValue y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (y == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return x.FactID.CompareTo(y.FactID);
+                }
+            }
         }
     }
 }

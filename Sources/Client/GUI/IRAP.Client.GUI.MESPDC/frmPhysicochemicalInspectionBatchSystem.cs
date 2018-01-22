@@ -222,28 +222,6 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
-#if DEBUG1
-            for (int i = 0; i < 5; i++)
-            {
-                Random r = new Random();
-
-                BatchPWOInfo pwo = new BatchPWOInfo();
-                pwo.Ordinal = i;
-                pwo.PWONo = r.Next(1, 10000).ToString();
-                pwo.Texture = "铁";
-                pwo.Qty = r.Next(1, 10000);
-                pwo.T102Code = r.Next(1, 10000).ToString();
-                pwo.T102Name = r.Next(1, 10000).ToString();
-                pwo.T107LeafID = r.Next(1, 10000).ToString();
-                pwo.BatchNumber = currentBatchNo;
-                pwo.LotNumber = r.Next(1, 10000).ToString();
-                pwo.QCStatus = 0;
-                pwo.T102LeafID = r.Next(1, 10000);
-                pwo.T126LeafID = r.Next(1, 10000);
-                pwo.T216LeafID = r.Next(1, 10000);              
-                rlt.Add(pwo);
-            }
-#endif
             return rlt;
         }
 
