@@ -821,5 +821,63 @@ namespace IRAP.WCF.Client.Method {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取批次号
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t101LeafID">工序叶标识</param> 
+        /// <param name="sysLogID">语言标识</param>
+        /// <returns></returns>
+        public List<SmeltBatchMaterial> GetSmeltBatchMaterial(int communityID, int t101LeafID, long sysLogID, out int errCode, out string errText) {
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t101LeafID", t101LeafID); 
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数ufn_GetList_SmeltBatchMaterial," +
+                        "参数：CommunityID={0}|T101LeafID={1}|SysLogID={2}",
+                        communityID, t101LeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient()) {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.SmeltingProduction",
+                            "ufn_GetList_SmeltBatchMaterial",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0) {
+                        var datas = rlt as List<SmeltBatchMaterial>;
+                        return datas;
+                    }
+                }
+                #endregion
+            } catch (Exception error) {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            } finally {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
     }
 }
