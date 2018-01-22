@@ -199,8 +199,7 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     for (int i = rlt.Count - 1; i >= 0; i--)
                     {
-                        if (rlt[i].QCStatus != 0 ||
-                            rlt[i].BatchEndDate.Trim() == "")
+                        if (rlt[i].BatchEndDate.Trim() == "")
                             rlt.RemoveAt(i);
                     }
                 }
