@@ -239,9 +239,13 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void grdvPWOs_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
-            if (!AlertConfirm())
+            int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
+            if (idx >= 0 && idx < pwos.Count)
             {
-                e.Allow = false;
+                if (!AlertConfirm())
+                {
+                    e.Allow = false;
+                }
             }
         }
     }
