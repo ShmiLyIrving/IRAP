@@ -81,45 +81,18 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 操作工编号校验
         /// </summary>
         /// <returns></returns>
-        private bool OperatorCodeValidate() {
-            #region 注释
-            //int errCode;
-            //string errText;
-            //string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            //var operatorCode = this.txtOperator.Text;
-            //if (string.IsNullOrEmpty(operatorCode)) {
-            //    errCode = 9999;
-            //    errText = "操作工编号不可为空！";
-            //    this.txtOperator.ErrorText = errText;
-            //    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
-            //    return false;
-            //}
-            //try {
-            //    var hasOperator = IRAPMESProductionClient.Instance.OperatorCodeValidate(_communityID, operatorCode, out errCode, out errText);
-            //    if (!hasOperator) {
-            //        WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
-            //        this.txtOperator.ErrorText = errText;
-            //    }
-            //    return hasOperator;
-            //} catch (Exception error) {
-            //    WriteLog.Instance.Write(error.Message, strProcedureName);
-            //    XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //} finally {
-            //    WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            //}
-            //return false;
-            #endregion
+        private bool OperatorCodeValidate() { 
             string strProcedureName =string.Format("{0}.{1}",className,MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try {
                 int errCode = 0;
                 string errText = "";
+                this.txtOperator.ErrorText = "";
                 List<STB006> users = new List<STB006>();
                 var operatorCode =  this.txtOperator.Text;
             if (string.IsNullOrEmpty(operatorCode)) {
                 errCode = 9999;
-                errText = "操作工编号不可为空！";
-                this.txtOperator.ErrorText = errText;
+                this.txtOperator.ErrorText = errText = "操作工编号不可为空！"; 
                 WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                 return false;
             }
@@ -477,6 +450,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private bool StartProduction() { 
             var batchNumber = this.lblFurnaceTime.Text;
             var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
+            if (waitingSmelt == null) { 
+                XtraMessageBox.Show("没有可以熔炼的炉次！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
@@ -1132,7 +1109,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         #region 事件
         private void btnStart_Click(object sender, EventArgs e) {
-            if (!OperatorCodeValidate()) {
+            if (!string.IsNullOrEmpty(this.txtOperator.ErrorText)) {
+                XtraMessageBox.Show(this.txtOperator.ErrorText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(this.txtOperator.Text)) {
+                XtraMessageBox.Show("操作工编号不可为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (!ProductionDateValidate()) {
@@ -1310,5 +1292,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
         }
         #endregion   
+
+        private void txtOperator_Validating(object sender, CancelEventArgs e) {
+            OperatorCodeValidate();
+        }
     }
 }
