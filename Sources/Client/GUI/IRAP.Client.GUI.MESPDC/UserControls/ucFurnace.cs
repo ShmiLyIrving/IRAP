@@ -485,7 +485,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             XmlElement root = xmlDoc.CreateElement("RSFact");
             xmlDoc.AppendChild(root);
             #region 配料信息
-            var smeltMaterilItems = this.grdBurdenInfo.DataSource as List<SmeltMaterialItemClient>;
+            var smeltMaterilItems = this.grdBurdenInfo.DataSource as BindingList<SmeltMaterialItemClient>;
             if (smeltMaterilItems != null && smeltMaterilItems.Count > 0) {
                 var rF13Node = xmlDoc.CreateElement("RF13_1");
                 foreach (SmeltMaterialItemClient item in smeltMaterilItems) {
@@ -1291,10 +1291,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
-        #endregion   
-
+         
         private void txtOperator_Validating(object sender, CancelEventArgs e) {
             OperatorCodeValidate();
         }
+        #endregion   
+
     }
 }
