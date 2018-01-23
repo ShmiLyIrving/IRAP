@@ -147,10 +147,13 @@ namespace IRAP.Client.GUI.MESPDC
                     grdPWOs.DataSource = null;
                     pwos.Clear();
                     pwos = GetPWOWithBatchNo(currentBatchNo);
+                    if(pwos==null||pwos.Count == 0)
+                    {
+                        ucMPLH.RefreshUC(null);
+                    }
                     grdPWOs.DataSource = pwos;
                     grdPWOs.RefreshDataSource();
                     grdvPWOs.BestFitColumns();
-                    grdvPWOs.FocusedRowHandle = 0;
                 }
             }
             saveState = true;
@@ -194,14 +197,14 @@ namespace IRAP.Client.GUI.MESPDC
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-                else
-                {
-                    for (int i = rlt.Count - 1; i >= 0; i--)
-                    {
-                        if (rlt[i].BatchEndDate.Trim() == "")
-                            rlt.RemoveAt(i);
-                    }
-                }
+                //else
+                //{
+                //    for (int i = rlt.Count - 1; i >= 0; i--)
+                //    {
+                //        if (rlt[i].BatchEndDate.Trim() == "")
+                //            rlt.RemoveAt(i);
+                //    }
+                //}
             }
             catch (Exception error)
             {

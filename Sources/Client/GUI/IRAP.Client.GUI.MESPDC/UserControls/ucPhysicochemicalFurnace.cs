@@ -54,40 +54,43 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             dtInspection.Columns.Clear();
 
             vgrdInspectParams.Rows.Clear();
-            foreach (var item in items)
+            if (items.Count > 0)
             {
-                string colName = string.Format("Column{0}", item.Ordinal);
-                DataColumn dc = dtInspection.Columns.Add(colName, typeof(string));
-                dc.Caption = item.T20Name;
-
-                EditorRow row = new EditorRow();
-                row.Properties.Caption = item.T20Name;
-                row.Properties.FieldName = colName;
-                vgrdInspectParams.Rows.Add(row);
-            }
-
-            for (int i = 0; i < dtInspection.Columns.Count; i++)
-            {
-                items[i].ResolveDataXML();
-                for (int j = 0; j < items[i].ItemValues.Count; j++)
+                foreach (var item in items)
                 {
-                    DataRow dr = null;
-                    if (dtInspection.Rows.Count < j + 1)
-                    {
-                        dr = dtInspection.NewRow();
-                        dtInspection.Rows.Add(dr);
-                    }
-                    else
-                    {
-                        dr = dtInspection.Rows[j];
-                    }
+                    string colName = string.Format("Column{0}", item.Ordinal);
+                    DataColumn dc = dtInspection.Columns.Add(colName, typeof(string));
+                    dc.Caption = item.T20Name;
 
-                    dr[i] = items[i].ItemValues[j].Metric01;
+                    EditorRow row = new EditorRow();
+                    row.Properties.Caption = item.T20Name;
+                    row.Properties.FieldName = colName;
+                    vgrdInspectParams.Rows.Add(row);
                 }
+
+                for (int i = 0; i < dtInspection.Columns.Count; i++)
+                {
+                    items[i].ResolveDataXML();
+                    for (int j = 0; j < items[i].ItemValues.Count; j++)
+                    {
+                        DataRow dr = null;
+                        if (dtInspection.Rows.Count < j + 1)
+                        {
+                            dr = dtInspection.NewRow();
+                            dtInspection.Rows.Add(dr);
+                        }
+                        else
+                        {
+                            dr = dtInspection.Rows[j];
+                        }
+
+                        dr[i] = items[i].ItemValues[j].Metric01;
+                    }
+                }
+                inspectionidx = items[0].ItemValues.Count;
+                this.vgrdInspectParams.DataSource = dtInspection;
+                this.vgrdInspectParams.BestFit();
             }
-            inspectionidx = items[0].ItemValues.Count;
-            this.vgrdInspectParams.DataSource = dtInspection;
-            this.vgrdInspectParams.BestFit();
         }
         /// <summary>
         /// 根据炉次号获取检验项
@@ -201,60 +204,68 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         }
         public void RefreshUC(OrderInfo Pwo)
         {
-            pwo = Pwo;
-            string strProcedureName =
-                    string.Format(
-                        "{0}.{1}",
-                        className,
-                        MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
+            if (Pwo != null)
             {
-                int errCode = 0;
-                string errText = "";
+                pwo = Pwo;
+                string strProcedureName =
+                        string.Format(
+                            "{0}.{1}",
+                            className,
+                            MethodBase.GetCurrentMethod().Name);
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                try
+                {
+                    int errCode = 0;
+                    string errText = "";
 
-                IRAPMDMClient.Instance.ufn_GetList_SmeltInspectionItems(
-                    IRAPUser.Instance.CommunityID,
-                    frmPhysicochemicalInspectionBatchSystem.currentOpType,
-                    Pwo.T102LeafID,
-                    Pwo.T216LeafID,
-                    Pwo.PWONo,
-                    Pwo.BatchNumber,
-                    IRAPUser.Instance.SysLogID,
-                    ref inspectionItems,
-                    out errCode,
-                    out errText);
-                if (errCode != 0)
+                    IRAPMDMClient.Instance.ufn_GetList_SmeltInspectionItems(
+                        IRAPUser.Instance.CommunityID,
+                        frmPhysicochemicalInspectionBatchSystem.currentOpType,
+                        Pwo.T102LeafID,
+                        Pwo.T216LeafID,
+                        Pwo.PWONo,
+                        Pwo.BatchNumber,
+                        IRAPUser.Instance.SysLogID,
+                        ref inspectionItems,
+                        out errCode,
+                        out errText);
+                    if (errCode != 0)
+                    {
+                        XtraMessageBox.Show(
+                            errText,
+                            "",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+                finally
+                {
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
+                if (inspectionItems.Count > 0)
+                {
+                    InitInspectionItemsGrid(inspectionItems);
+                    RefreshCtrl();
+                }
+                else
                 {
                     XtraMessageBox.Show(
-                        errText,
-                        "",
+                        string.Format(
+                            "未找到[({0}){1}]的检验项，可能主数据没有配置",
+                            Pwo.T102Code,
+                            Pwo.T102Name),
+                        "提示信息",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                }
-            }
-            finally
-            {
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
-            }
 
-            if (inspectionItems.Count > 0)
-            {
-                InitInspectionItemsGrid(inspectionItems);
-                RefreshCtrl();
+                    InitInspectionItemsGrid(new List<SmeltInspectionItem>());
+                }
             }
             else
             {
-                XtraMessageBox.Show(
-                    string.Format(
-                        "未找到[({0}){1}]的检验项，可能主数据没有配置",
-                        Pwo.T102Code,
-                        Pwo.T102Name),
-                    "提示信息",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
-                InitInspectionItemsGrid(new List<SmeltInspectionItem>());
+                inspectionItems.Clear();
+                InitInspectionItemsGrid(inspectionItems);
+                RefreshCtrl();
             }
         }
         private void btnAdd_Click(object sender, EventArgs e)
