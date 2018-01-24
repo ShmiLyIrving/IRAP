@@ -627,16 +627,14 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         private void ChangeTabPage() {
             if (_ProductingNow) {
-                this.grdBurdenInfoView.OptionsBehavior.Editable = false;
-                this.grdProductParaView.OptionsBehavior.Editable = false;
+                this.tabPgBurden.PageEnabled = false;
                 this.tabPgMatieralAjustment.PageEnabled = true;
                 this.tabPgSample.PageEnabled = true;
                 this.tabPgBaked.PageEnabled = true;
                 this.tabPgSpectrum.PageEnabled = true;
                 this.tabCtrlDetail.SelectedTabPage = this.tabPgSpectrum; 
             } else {
-                this.grdBurdenInfoView.OptionsBehavior.Editable = true;
-                this.grdProductParaView.OptionsBehavior.Editable = true;
+                this.tabPgBurden.PageEnabled = true;
                 this.tabPgMatieralAjustment.PageEnabled = false;
                 this.tabPgSample.PageEnabled = false;
                 this.tabPgBaked.PageEnabled = false;
@@ -1063,22 +1061,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
         #endregion
 
-        #region 刷新页面
-        /// <summary>
-        /// 刷新页面
-        /// </summary>
-        public void RefreshFurnace() {
-            RefreshFurnace(false);
-        }
-
+        #region 刷新页面 
         /// <summary>
         /// 刷新页面
         /// </summary>
         /// <param name="keepMaterial"></param>
-        private void RefreshFurnace(bool keepMaterial) {
+        public void RefreshFurnace() {
             var smeltBatchProductionInfos = ReLoadProduction();
             if (smeltBatchProductionInfos == null || smeltBatchProductionInfos.Count < 1 || smeltBatchProductionInfos[0] == null) {
-                RefreshWithNoProduction(keepMaterial);
+                RefreshWithNoProduction();
                 return;
             }
             var currentInfo = smeltBatchProductionInfos[0];
@@ -1101,23 +1092,21 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 SetOrderInfo();
                 ChangeTabPage();
             } else if (currentInfo.InProduction == 0) {//没有在产产品
-                RefreshWithNoProduction(keepMaterial);
+                RefreshWithNoProduction();
             }
         }
 
         /// <summary>
         /// 没有正在生产的产品
         /// </summary>
-        private void RefreshWithNoProduction(bool keepMaterial) {
+        private void RefreshWithNoProduction() {
             _ProductingNow = false;
             this.txtOperator.Enabled = true;
             this.dtProductDate.Enabled = true;
             SetCurrentSmeltInfo(null);
             SetWaitingFurnace();
-            if (!keepMaterial) {
-                SetSmeltMaterialItems();
-                SetSmeltMethodItems();
-            }
+            SetSmeltMaterialItems();
+            SetSmeltMethodItems();
             SetOrderInfo();
             ChangeTabPage();
         }
@@ -1181,7 +1170,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (!StartProduction()) {
                 return;
             }
-            RefreshFurnace(true);
+            RefreshFurnace();
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
