@@ -245,12 +245,6 @@ namespace IRAP.Client.GUI.MESPDC
         }
         private void edtFileName_EditValueChanged(object sender, EventArgs e)
         {
-            string strProcedureName =
-               string.Format(
-                   "{0}.{1}",
-                   className,
-                   MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             if (!string.IsNullOrEmpty(edtFileName.Text))
             {
                 if (File.Exists(edtFileName.Text))
