@@ -274,5 +274,100 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 保存理化检验内容
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="factID">关联事实号（需要申请）</param>
+        /// <param name="opType">保存类型代码</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="batchNumber">炉次号</param>
+        /// <param name="lotNumber">生产批次号</param>
+        /// <param name="pwoNo">生产工单号</param>
+        /// <param name="rsFactXML">
+        /// 检查结果：
+        /// &lt;RSFact&gt;
+        /// 	&lt;RF6_2 RowNum="" Ordinal="" T20LeafID="" LowLimit="" Criterion="" HighLimit="" UnitOfMeasure="" Metric01="" IQCReport=""/&gt;
+        /// &lt;/RSFact&gt;
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_SaveFact_SmeltBatchInspecting(
+            int communityID,
+            long factID,
+            string opType,
+            int t102LeafID,
+            int t107LeafID,
+            string batchNumber,
+            string lotNumber,
+            string pwoNo,
+            string rsFactXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("factID", factID);
+                    hashParams.Add("opType", opType);
+                    hashParams.Add("t102LeafID", t102LeafID);
+                    hashParams.Add("t107LeafID", t107LeafID);
+                    hashParams.Add("batchNumber", batchNumber);
+                    hashParams.Add("lotNumber", lotNumber);
+                    hashParams.Add("pwoNo", pwoNo);
+                    hashParams.Add("rsFactXML", rsFactXML);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format("执行存储过程 usp_SaveFact_SmeltBatchInspecting，参数：" +
+                            "CommunityID={0}|FactID={1}|OpType={2}|T102LeafID={3}|" +
+                            "T107LeafID={4}|BatchNumber={5}|LotNumber={6}|PWONo={7}|" +
+                            "RSFactXML={8}|SysLogID={9}",
+                            communityID, factID, opType, t102LeafID, t107LeafID,
+                            batchNumber, lotNumber, pwoNo, rsFactXML, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.SmeltingProduction",
+                        "usp_SaveFact_SmeltBatchInspecting",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
