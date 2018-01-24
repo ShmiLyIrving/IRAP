@@ -323,6 +323,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.txtOperator.Name = "txtOperator";
             this.txtOperator.Size = new System.Drawing.Size(127, 20);
             this.txtOperator.TabIndex = 2;
+            this.txtOperator.Validating += new System.ComponentModel.CancelEventHandler(this.txtOperator_Validating);
             // 
             // labelProductionDate
             // 
