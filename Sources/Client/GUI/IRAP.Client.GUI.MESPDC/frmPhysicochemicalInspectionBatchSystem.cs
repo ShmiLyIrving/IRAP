@@ -49,7 +49,7 @@ namespace IRAP.Client.GUI.MESPDC
         private void edtFileName_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             openFileDialog.Title = "选择要上传的文件";
-            openFileDialog.Filter = "照片(*.jpg)|*.jpg|所有文件(*.*)|*.*";
+            openFileDialog.Filter = "照片(*.jpg;*jpeg;*.png)|*.jpg;*jpeg;*.png|所有文件(*.*)|*.*";
             if (openFileDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
@@ -223,11 +223,11 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void grdvPWOs_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
         {
+            edtFileName.Text = "";
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
             if (idx >= 0 && idx < pwos.Count)
             {
                 ucMPLH.RefreshUC(pwos[idx]);
-                edtFileName.Text = "";
                 saveState = true;                      
             }            
         }

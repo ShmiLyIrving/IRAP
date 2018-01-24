@@ -434,6 +434,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     XmlDocument xdoc = new XmlDocument();
                     xdoc.LoadXml(RSFact);
                     xdoc.FirstChild.FirstChild.Attributes["IQCReport"].InnerText = frmPhysicochemicalInspectionBatchSystem.currentbase64;
+                    RSFact = xdoc.InnerXml;
                 }
                 IRAPMESClient.Instance.usp_SaveFact_SmeltBatchInspecting(
                 IRAPUser.Instance.CommunityID,
@@ -444,7 +445,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 frmPhysicochemicalInspectionBatchSystem.currentBatchNo,
                 lotNumber,
                 pWONo,
-                GenerateRSFactXML(),
+                RSFact,
                 IRAPUser.Instance.SysLogID,
                 out errCode,
                 out errText);
