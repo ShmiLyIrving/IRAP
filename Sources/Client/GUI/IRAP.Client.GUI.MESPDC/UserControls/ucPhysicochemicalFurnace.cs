@@ -15,6 +15,7 @@ using System.Reflection;
 using IRAP.Global;
 using IRAP.WCF.Client.Method;
 using IRAP.Client.User;
+using System.Xml;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls
 {
@@ -204,6 +205,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         }
         public void RefreshUC(OrderInfo Pwo)
         {
+            inspectionItems.Clear();
             if (Pwo != null)
             {
                 pwo = Pwo;
@@ -242,12 +244,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 {
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
-                if (inspectionItems.Count > 0)
-                {
-                    InitInspectionItemsGrid(inspectionItems);
-                    RefreshCtrl();
-                }
-                else
+                if (inspectionItems.Count < 0)
                 {
                     XtraMessageBox.Show(
                         string.Format(
@@ -261,12 +258,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     InitInspectionItemsGrid(new List<SmeltInspectionItem>());
                 }
             }
-            else
-            {
-                inspectionItems.Clear();
-                InitInspectionItemsGrid(inspectionItems);
-                RefreshCtrl();
-            }
+            InitInspectionItemsGrid(inspectionItems);
+            RefreshCtrl();
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -349,6 +342,14 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 }
             }
         }
+        /// <summary>
+        /// 炉前炉后检验保存
+        /// </summary>
+        /// <param name="factID"></param>
+        /// <param name="t102LeafID"></param>
+        /// <param name="t107LeafID"></param>
+        /// <param name="lotNumber"></param>
+        /// <returns></returns>
         private bool SaveFact_SmeltBatchManualInspecting(
             long factID,
             int t102LeafID,
@@ -401,6 +402,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+        /// <summary>
+        /// 理化检验保存
+        /// </summary>
+        /// <param name="factID"></param>
+        /// <param name="t102LeafID"></param>
+        /// <param name="t107LeafID"></param>
+        /// <param name="lotNumber"></param>
+        /// <param name="pWONo"></param>
+        /// <returns></returns>
         private bool SaveFact_SmeltBatchInspecting(
             long factID,
             int t102LeafID,
@@ -418,6 +428,13 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             {
                 int errCode = 0;
                 string errText = "";
+                string RSFact = GenerateRSFactXML();
+                if(!string.IsNullOrEmpty(frmPhysicochemicalInspectionBatchSystem.currentbase64))
+                {
+                    XmlDocument xdoc = new XmlDocument();
+                    xdoc.LoadXml(RSFact);
+                    xdoc.FirstChild.FirstChild.Attributes["IQCReport"].InnerText = frmPhysicochemicalInspectionBatchSystem.currentbase64;
+                }
                 IRAPMESClient.Instance.usp_SaveFact_SmeltBatchInspecting(
                 IRAPUser.Instance.CommunityID,
                 factID,
@@ -447,6 +464,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         "",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+                    frmPhysicochemicalInspectionBatchSystem.currentbase64 = "";
                     return true;
                 }
             }
@@ -469,7 +487,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                             "<RF6_2 RowNum=\"{0}\" Ordinal=\"{1}\" " +
                             "T20LeafID=\"{2}\" LowLimit=\"\" " +
                             "Criterion=\"\" HighLimit=\"\" UnitOfMeasure=\"\" " +
-                            "Metric01=\"{3}\" />",
+                            "Metric01=\"{3}\" IQCReport=\"\" />",
                             rowNo,
                             inspectionItems[j].Ordinal,
                             inspectionItems[j].T20LeafID,

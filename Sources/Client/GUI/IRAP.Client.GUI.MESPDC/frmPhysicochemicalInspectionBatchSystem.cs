@@ -29,6 +29,8 @@ namespace IRAP.Client.GUI.MESPDC
         private UserControls.ucPhysicochemicalFurnace ucLQLH = new UserControls.ucPhysicochemicalFurnace();
         private UserControls.ucPhysicochemicalFurnace ucLHLH = new UserControls.ucPhysicochemicalFurnace();
         private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace();
+        public static string currentbase64;
+        
         public frmPhysicochemicalInspectionBatchSystem()
         {
             InitializeComponent();
@@ -197,14 +199,6 @@ namespace IRAP.Client.GUI.MESPDC
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-                //else
-                //{
-                //    for (int i = rlt.Count - 1; i >= 0; i--)
-                //    {
-                //        if (rlt[i].BatchEndDate.Trim() == "")
-                //            rlt.RemoveAt(i);
-                //    }
-                //}
             }
             catch (Exception error)
             {
@@ -233,6 +227,7 @@ namespace IRAP.Client.GUI.MESPDC
             if (idx >= 0 && idx < pwos.Count)
             {
                 ucMPLH.RefreshUC(pwos[idx]);
+                edtFileName.Text = "";
                 saveState = true;                      
             }            
         }
@@ -246,6 +241,13 @@ namespace IRAP.Client.GUI.MESPDC
                 {
                     e.Allow = false;
                 }
+            }
+        }
+        private void edtFileName_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(edtFileName.Text))
+            {
+                currentbase64 = GetBase64FromImage(edtFileName.Text);
             }
         }
     }
