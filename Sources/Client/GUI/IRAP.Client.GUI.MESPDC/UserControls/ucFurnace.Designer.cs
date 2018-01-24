@@ -573,7 +573,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdBurdenInfoView.OptionsMenu.ShowGroupSortSummaryItems = false;
             this.grdBurdenInfoView.OptionsMenu.ShowSplitItem = false;
             this.grdBurdenInfoView.OptionsView.ShowGroupPanel = false;
-            this.grdBurdenInfoView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grdBurdenInfoView_CustomRowCellEdit);
+            this.grdBurdenInfoView.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grdBurdenInfoView_CustomRowCellEditForEditing);
             // 
             // ColT101Code
             // 
@@ -616,6 +616,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             this.repositoryItemComboBox1.ReadOnly = true;
+            this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // 
             // ColQty
             // 
@@ -648,7 +649,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSpectrum.TabIndex = 0;
             this.ucGrdSpectrum.Title = "参数";
             this.ucGrdSpectrum.SaveClick += ucGrdSpectrum_SaveClick;            // 
-            // 
             // tabPgMatieralAjustment
             // 
             this.tabPgMatieralAjustment.Controls.Add(this.btnRowMaterialSave);
@@ -712,7 +712,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdRowMaterialView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.grdRowMaterialView.OptionsView.ShowGroupPanel = false;
             this.grdRowMaterialView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdRowMaterialView_RowClick);
-            this.grdRowMaterialView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grdRowMaterialView_CustomRowCellEdit);
+            this.grdRowMaterialView.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grdRowMaterialView_CustomRowCellEditForEditing);
             this.grdRowMaterialView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grdRowMaterialView_ShowingEditor);
             this.grdRowMaterialView.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.grdRowMaterialView_RowDeleting);
             // 
@@ -804,7 +804,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.Size = new System.Drawing.Size(766, 164);
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
-            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick;             // 
+            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick; 
+            // 
             // dtProductDate
             // 
             this.dtProductDate.EditValue = System.DateTime.Now;
