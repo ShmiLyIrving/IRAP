@@ -298,7 +298,7 @@
             this.edtFileName.Size = new System.Drawing.Size(386, 26);
             this.edtFileName.TabIndex = 1;
             this.edtFileName.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.edtFileName_ButtonClick);
-            this.edtFileName.EditValueChanged += new System.EventHandler(this.edtFileName_EditValueChanged);
+            this.edtFileName.Validating += new System.ComponentModel.CancelEventHandler(this.edtFileName_Validating);
             // 
             // labelControl2
             // 

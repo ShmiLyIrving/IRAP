@@ -245,6 +245,11 @@ namespace IRAP.Client.GUI.MESPDC
         }
         private void edtFileName_EditValueChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void edtFileName_Validating(object sender, CancelEventArgs e)
+        {
             if (!string.IsNullOrEmpty(edtFileName.Text))
             {
                 if (File.Exists(edtFileName.Text))
