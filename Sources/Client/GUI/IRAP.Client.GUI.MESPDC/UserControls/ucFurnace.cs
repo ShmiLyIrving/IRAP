@@ -1101,8 +1101,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         private void RefreshWithNoProduction() {
             _ProductingNow = false;
+            _operatorCode = "";
+            _operatorName = "";
+            this.txtOperator.Text = "";
             this.txtOperator.Enabled = true;
-            this.dtProductDate.Enabled = true;
+            this.dtProductDate.Enabled = true; 
             SetCurrentSmeltInfo(null);
             SetWaitingFurnace();
             SetSmeltMaterialItems();
