@@ -616,7 +616,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 this.lblProductionTimeResult.Text = "";
                 return;
             }
-            this.labProductStartTimeResult.Text = info.BatchStartDate.ToShortDateString();
+            this.labProductStartTimeResult.Text = info.BatchStartDate.ToString();
             this.labProductStartTimeResult.Tag = info.BatchStartDate;
             this.labCurrentFurnaceResult.Text = info.BatchNumber; 
             this.grpCtrlCurrentInfo.Tag = info;
