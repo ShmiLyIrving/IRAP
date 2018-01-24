@@ -45,6 +45,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private BindingList<SmeltMaterialItemClient> _smeltMaterialItems = new BindingList<SmeltMaterialItemClient>();
         private int _readOnlyCount = 0;
         private FastReport.Report _report = new FastReport.Report();
+        private Dictionary<string, Dictionary<int, long>> _lotNumberDictionary = new Dictionary<string, Dictionary<int, long>>();
         #endregion
          
         #region 属性
@@ -335,13 +336,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 设置配料信息
         /// </summary>
         private void SetSmeltMaterialItems(){
-            this.grdBurdenInfo.DataSource = null;
+            this.grdBurdenInfo.DataSource = null; 
             var smeltMaterialItems = GetSmeltMaterialItems();
             if (smeltMaterialItems==null||smeltMaterialItems.Count == 0) {
+                _lotNumberDictionary = null;
                 return;
-            }
+            } 
             this.grdBurdenInfo.DataSource = smeltMaterialItems;
             this.grdBurdenInfoView.Tag = smeltMaterialItems;
+            SetLotNumber(smeltMaterialItems);
             this.grdBurdenInfoView.BestFitColumns();
         }
 
@@ -367,27 +370,81 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
         }
 
-        private void SetLotNumber(GridView view,CustomRowCellEditEventArgs e) {
-            if (e.RowHandle > -1) {
-                var edit = new RepositoryItemComboBox();
-                var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
-                if (currentRow == null) {
-                    return;
-                } 
-                var data = GetLotNumber(currentRow.T101LeafID);
-                if (data == null || data.Count == 0) {
-                    return;
+        private void SetLotNumber(BindingList<SmeltMaterialItemClient> smeltMateriaItems) {
+            if (smeltMateriaItems == null || smeltMateriaItems.Count == 0) {
+                _lotNumberDictionary = null;
+            }
+            _lotNumberDictionary = new Dictionary<string, Dictionary<int, long>>();
+            foreach (var item in smeltMateriaItems) {
+                if (item == null) {
+                    continue;
                 }
-                currentRow.LotNumber = data[0] == null ? 0 : data[0].LotNumber;
-                foreach (var item in data) {
-                    if (data == null) {
+                if (_lotNumberDictionary.Keys.Contains(item.T101Code)) {
+                    continue;
+                }
+                var lotNumbers = GetLotNumber(item.T101LeafID);
+                if (lotNumbers==null||lotNumbers.Count==0) {
+                    continue;
+                }
+                Dictionary<int, long> dic = new Dictionary<int, long>();
+                foreach (var lotNumber in lotNumbers) {
+                    if (lotNumber == null) {
                         continue;
                     }
-                    edit.Items.Add(item.LotNumber);
+                    if (dic.Keys.Contains(lotNumber.LotNumber)) {
+                        continue;
+                    }
+                    dic.Add(lotNumber.LotNumber, lotNumber.Qty); 
                 }
-                edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-                e.RepositoryItem = edit;
+                _lotNumberDictionary.Add(item.T101Code, dic);
+            } 
+        }
+
+        private void SetLotNumberList(GridView view, CustomRowCellEditEventArgs e, bool isRowGrd) {
+            var edit = new RepositoryItemComboBox();
+            var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
+            if (currentRow == null) {
+                return;
             }
+            if (!_lotNumberDictionary.ContainsKey(currentRow.T101Code)) {
+                return;
+            }
+            var list = _lotNumberDictionary[currentRow.T101Code];
+            if (list == null || list.Count == 0) {
+                return;
+            }
+            foreach (var item in list) {
+                edit.Items.Add(item.Key);
+            }
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            if (isRowGrd) {
+                edit.SelectedValueChanged += edit3_SelectedValueChanged;
+            } else {
+                edit.SelectedValueChanged += edit2_SelectedValueChanged;
+            }
+            e.RepositoryItem = edit;
+
+        }
+
+        private void SetQty(GridView view, ComboBoxEdit edit) {
+            if (edit.EditValue == null || string.IsNullOrEmpty(edit.EditValue.ToString())) {
+                return;
+            }
+            var lot = Convert.ToInt32(edit.EditValue);
+            var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
+            if (currentRow == null) {
+                return;
+            }
+            currentRow.LotNumber = lot;
+            if (!_lotNumberDictionary.ContainsKey(currentRow.T101Code)) {
+                return;
+            }
+            var currentLot = _lotNumberDictionary[currentRow.T101Code];
+            if (!currentLot.ContainsKey(lot)) {
+                return;
+            }
+            currentRow.Qty = currentLot[lot];
+            view.UpdateCurrentRow();
         }
 
         /// <summary>
@@ -882,6 +939,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (_smeltMaterialItems == null || _smeltMaterialItems.Count == 0) {
                 return;
             }
+            SetLotNumber(_smeltMaterialItems);
             BindingList<SmeltMaterialItemClient> newData = new BindingList<SmeltMaterialItemClient>();
             foreach (SmeltMaterialItemClient item in _smeltMaterialItems) {
                 GetHistorySmeltMaterial(item, newData); 
@@ -1180,17 +1238,17 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         private void dtProductDate_EditValueChanged(object sender, EventArgs e) {
             RefreshFurnace();
-        }
+        } 
 
-        private void grdBurdenInfoView_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e) {
+        private void grdBurdenInfoView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e) {
             if (e.Column.FieldName == "LotNumber") {
-                SetLotNumber(sender as GridView, e); 
+                SetLotNumberList(sender as GridView, e, false);
             }
-        }
+        } 
 
-        private void grdRowMaterialView_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e) {
+        private void grdRowMaterialView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e) {
             if (e.Column.FieldName == "LotNumber") {
-                SetLotNumber(sender as GridView, e);
+                SetLotNumberList(sender as GridView, e, true);
                 return;
             }
             if (e.Column.FieldName == "T101Code") {
@@ -1222,6 +1280,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             newData.T101LeafID = currentItem.T101LeafID;
             newData.UnitOfMeasure = currentItem.UnitOfMeasure;
             newData.Scale = currentItem.Scale;
+            newData.LotNumber = 0;
+            newData.Qty = 0;
             this.grdRowMaterialView.UpdateCurrentRow();
           }
 
@@ -1295,7 +1355,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private void txtOperator_Validating(object sender, CancelEventArgs e) {
             OperatorCodeValidate();
         }
-        #endregion   
 
+        private void edit2_SelectedValueChanged(object sender, EventArgs e) {
+            var edit = sender as ComboBoxEdit;
+            SetQty(this.grdBurdenInfoView, edit);
+        }
+
+        private void edit3_SelectedValueChanged(object sender, EventArgs e) {
+            var edit = sender as ComboBoxEdit;
+            SetQty(this.grdRowMaterialView, edit);
+        }
+        #endregion     
     }
 }
