@@ -879,6 +879,9 @@ namespace IRAP.BL.MES
         /// <summary>
         /// 保存理化检验内容
         /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="factID">关联事实号（需要申请）</param>
+        /// <param name="opType">保存类型代码</param>
         public IRAPJsonResult usp_SaveFact_SmeltBatchInspecting(
             int communityID,
             long factID,
@@ -906,6 +909,7 @@ namespace IRAP.BL.MES
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@OpType", DbType.String, opType));
                 paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
                 paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
                 paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
@@ -918,11 +922,11 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.Write(
                     string.Format("执行存储过程 " +
                         "IRAPMES..usp_SaveFact_SmeltBatchInspecting，参数：" +
-                        "CommunityID={0}|FactID={1}|T102LeafID={2}|T107LeafID={3}|"+
-                        "BatchNumber={4}|LotNumber={5}|PWONo={6}|RSFactXML={7}|"+
-                        "SysLogID={8}",
-                        communityID, factID, t102LeafID, t107LeafID, batchNumber, 
-                        lotNumber, pwoNo, rsFactXML, sysLogID),
+                        "CommunityID={0}|FactID={1}|OpType={2}|T102LeafID={3}|" +
+                        "T107LeafID={4}|BatchNumber={5}|LotNumber={6}|PWONo={7}|" +
+                        "RSFactXML={8}|SysLogID={9}",
+                        communityID, factID, opType, t102LeafID, t107LeafID,
+                        batchNumber, lotNumber, pwoNo, rsFactXML, sysLogID),
                     strProcedureName);
                 #endregion
 
