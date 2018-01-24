@@ -245,9 +245,26 @@ namespace IRAP.Client.GUI.MESPDC
         }
         private void edtFileName_EditValueChanged(object sender, EventArgs e)
         {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             if (!string.IsNullOrEmpty(edtFileName.Text))
             {
-                currentbase64 = GetBase64FromImage(edtFileName.Text);
+                if (File.Exists(edtFileName.Text))
+                {
+                    currentbase64 = GetBase64FromImage(edtFileName.Text);
+                }
+                else
+                {
+                    XtraMessageBox.Show(
+                        "选择的文件不存在,请检查文件路径",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
     }

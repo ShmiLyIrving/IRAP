@@ -295,7 +295,6 @@
             this.edtFileName.Properties.Appearance.Options.UseFont = true;
             this.edtFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.edtFileName.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.edtFileName.Size = new System.Drawing.Size(386, 26);
             this.edtFileName.TabIndex = 1;
             this.edtFileName.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.edtFileName_ButtonClick);
