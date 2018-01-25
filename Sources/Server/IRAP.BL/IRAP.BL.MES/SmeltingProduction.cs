@@ -882,6 +882,18 @@ namespace IRAP.BL.MES
         /// <param name="communityID">社区标识</param>
         /// <param name="factID">关联事实号（需要申请）</param>
         /// <param name="opType">保存类型代码</param>
+        /// <param name="t102LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="batchNumber">炉次号</param>
+        /// <param name="lotNumber">生产批次号</param>
+        /// <param name="pwoNo">生产工单号</param>
+        /// <param name="rsFactXML">
+        /// 检查结果：
+        /// &lt;RSFact&gt;
+        /// 	&lt;RF6_2 RowNum="" Ordinal="" T20LeafID="" LowLimit="" Criterion="" HighLimit="" UnitOfMeasure="" Metric01="" IQCReport=""/&gt;
+        /// &lt;/RSFact&gt;
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult usp_SaveFact_SmeltBatchInspecting(
             int communityID,
             long factID,
