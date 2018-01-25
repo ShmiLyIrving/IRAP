@@ -47,12 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\IRAP\TREQGetInfoStationLogin.cs" />
+    <Compile Include="Exchange\IRAP\TGetInfoStationLogin.cs" />
     <Compile Include="Exchange\MES\ABC.cs" />
     <Compile Include="Exchange\MES\TGetOPCServerTagList.cs" />
     <Compile Include="TCustomWebAPICall.cs" />
     <Compile Include="Enums\TContentType.cs" />
     <Compile Include="Enums\TModuleType.cs" />
-    <Compile Include="Entities\IRAP\TRespUDFForm.cs" />
+    <Compile Include="Entities\IRAP\TRESPUDFForm.cs" />
     <Compile Include="Entities\MES\TREQOPCServerTagList.cs" />
     <Compile Include="Tools\JSONHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +65,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
