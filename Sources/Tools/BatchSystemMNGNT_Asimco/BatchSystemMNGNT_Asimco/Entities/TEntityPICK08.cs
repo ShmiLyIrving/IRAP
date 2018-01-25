@@ -6,11 +6,14 @@ using System.Xml;
 using System.Windows.Forms;
 
 using IRAP.Global;
+using IRAPShared;
 
 namespace BatchSystemMNGNT_Asimco.Entities
 {
     public class TEntityPICK08 : TEntityCustomLog
     {
+        public Quantity QtyLoaded = null;
+
         public TEntityPICK08() { }
 
         public TEntityPICK08(TEntityCustomLog source) : this()
@@ -52,6 +55,35 @@ namespace BatchSystemMNGNT_Asimco.Entities
                 new Editors.frmEditorPICK08(this))
             {
                 return form.ShowDialog() == DialogResult.OK;
+            }
+        }
+
+        protected override void AfterExecute(TEntityCustomLog log)
+        {
+            if (QtyLoaded != null)
+            {
+                try
+                {
+                    TWaitting.Instance.ShowWaitForm("更新批次系统提料数量");
+                    // 更新批次系统中的提料数量
+                    List<TTableRSFactPWOMaterialTrack> datas =
+                        DAL.TDBHelper.GetMaterialTrack(
+                            skuID,
+                            orderNo,
+                            Tools.ConvertToInt32(orderLineNo));
+                    if (datas != null && datas.Count > 0)
+                    {
+                        datas[0].QtyLoaded = QtyLoaded.IntValue;
+                        DAL.TDBHelper.UpdateMaterialTrack(datas[0]);
+                    }
+
+                    TWaitting.Instance.CloseWaitForm();
+                }
+                catch (Exception error)
+                {
+                    TWaitting.Instance.CloseWaitForm();
+                    MSGHelp.Instance.ShowErrorMessage(error);
+                }
             }
         }
     }

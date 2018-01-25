@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using IRAP.Global;
 using BatchSystemMNGNT_Asimco.Entities;
 
 namespace BatchSystemMNGNT_Asimco.Editors
@@ -42,6 +43,58 @@ namespace BatchSystemMNGNT_Asimco.Editors
 
                 edtErrText.Text = entity.ErrText;
             }
+        }
+
+        protected override bool SetValue()
+        {
+            if (entity != null && entity.ExChange.Count > 0)
+            {
+                TEntityXMLIMTR01 exchange =
+                    entity.ExChange[0] as TEntityXMLIMTR01;
+
+                //try
+                //{
+                //    Quantity issuedQty = new Quantity()
+                //    {
+                //        Scale = materialTrack.Scale,
+                //        DoubleValue = Convert.ToDouble(edtIssuedQuantity.Text),
+                //    };
+
+                //    if (issuedQty.IntValue != materialTrack.QtyLoaded)
+                //    {
+                //        ((TEntityPICK08)entity).QtyLoaded = issuedQty;
+                //    }
+                //}
+                //catch (Exception error)
+                //{
+                //    error.Data["ErrCode"] = 999999;
+                //    error.Data["ErrText"] =
+                //        string.Format(
+                //            "无法将 [{0}] 转换成数值！",
+                //            edtIssuedQuantity.Text);
+                //    MSGHelp.Instance.ShowErrorMessage(error);
+
+                //    edtIssuedQuantity.Text = exchange.IssuedQuantity;
+                //    edtIssuedQuantity.Focus();
+
+                //    return false;
+                //}
+
+                exchange.UserID = edtUserID.Text;
+                exchange.PassWord = edtPassword.Text;
+                exchange.ItemNumber = edtItemNumber.Text;
+                exchange.StockroomFrom = edtStockroomFrom.Text;
+                exchange.BinFrom = edtBinFrom.Text;
+                exchange.LotNumberFrom = edtLotNumberFrom.Text;
+                exchange.StockroomTo = edtStockroomTo.Text;
+                exchange.BinTo = edtBinTo.Text;
+                exchange.LotNumberTo = edtLotNumberTo.Text;
+                exchange.InventoryQuantity = edtInventoryQuantity.Text;
+
+                return true;
+            }
+            else
+                return false;
         }
 
         private void edtLotNumberFrom_EditValueChanged(object sender, EventArgs e)

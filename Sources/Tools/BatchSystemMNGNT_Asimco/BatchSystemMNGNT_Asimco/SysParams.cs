@@ -81,6 +81,15 @@ namespace BatchSystemMNGNT_Asimco
             set { SaveParam("Database UserPWD", value); }
         }
 
+        /// <summary>
+        /// 是否有管理员权限
+        /// </summary>
+        public bool IsAdmin
+        {
+            get { return GetBoolean("Administrator"); }
+            set { SaveParam("Administrator", value.ToString()); }
+        }
+
         private void SaveParam(string key, string value)
         {
             Configuration config =

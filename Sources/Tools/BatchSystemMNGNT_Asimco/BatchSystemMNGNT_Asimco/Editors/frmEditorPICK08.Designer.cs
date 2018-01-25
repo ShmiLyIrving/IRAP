@@ -46,6 +46,9 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.edtUserID = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.edtQtyLoaded = new DevExpress.XtraEditors.TextEdit();
+            this.lblQtyLoaded = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtErrText.Properties)).BeginInit();
@@ -58,12 +61,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtOrderNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtUserID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtQtyLoaded.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl1.Panel1.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl1.Panel1.Controls.Add(this.groupControl1);
             this.splitContainerControl1.Panel1.Controls.Add(this.edtIssuedQuantity);
             this.splitContainerControl1.Panel1.Controls.Add(this.labelControl1);
             this.splitContainerControl1.Panel1.Controls.Add(this.edtOrderNumber);
@@ -349,6 +356,53 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "UserID";
             // 
+            // groupControl1
+            // 
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.Controls.Add(this.edtQtyLoaded);
+            this.groupControl1.Controls.Add(this.lblQtyLoaded);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupControl1.Location = new System.Drawing.Point(0, 415);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(433, 64);
+            this.groupControl1.TabIndex = 18;
+            this.groupControl1.Text = "批次系统中的提料信息";
+            // 
+            // edtQtyLoaded
+            // 
+            this.edtQtyLoaded.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.edtQtyLoaded.EditValue = "";
+            this.edtQtyLoaded.EnterMoveNextControl = true;
+            this.edtQtyLoaded.Location = new System.Drawing.Point(188, 24);
+            this.edtQtyLoaded.Name = "edtQtyLoaded";
+            this.edtQtyLoaded.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edtQtyLoaded.Properties.Appearance.Options.UseFont = true;
+            this.edtQtyLoaded.Properties.Appearance.Options.UseTextOptions = true;
+            this.edtQtyLoaded.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.edtQtyLoaded.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.edtQtyLoaded.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.edtQtyLoaded.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.edtQtyLoaded.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+            this.edtQtyLoaded.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.edtQtyLoaded.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.edtQtyLoaded.Properties.ReadOnly = true;
+            this.edtQtyLoaded.Size = new System.Drawing.Size(221, 26);
+            this.edtQtyLoaded.TabIndex = 19;
+            // 
+            // lblQtyLoaded
+            // 
+            this.lblQtyLoaded.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblQtyLoaded.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblQtyLoaded.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblQtyLoaded.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblQtyLoaded.Location = new System.Drawing.Point(19, 27);
+            this.lblQtyLoaded.Name = "lblQtyLoaded";
+            this.lblQtyLoaded.Size = new System.Drawing.Size(163, 20);
+            this.lblQtyLoaded.TabIndex = 18;
+            this.lblQtyLoaded.Text = "提料数量";
+            // 
             // frmEditorPICK08
             // 
             this.Appearance.Options.UseFont = true;
@@ -367,6 +421,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtOrderNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtUserID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.edtQtyLoaded.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -390,5 +447,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit edtUserID;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.TextEdit edtQtyLoaded;
+        private DevExpress.XtraEditors.LabelControl lblQtyLoaded;
     }
 }

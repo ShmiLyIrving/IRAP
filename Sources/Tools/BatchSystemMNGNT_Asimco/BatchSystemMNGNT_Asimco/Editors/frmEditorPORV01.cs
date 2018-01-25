@@ -43,5 +43,20 @@ namespace BatchSystemMNGNT_Asimco.Editors
                 edtErrText.Text = entity.ErrText;
             }
         }
+
+        protected override bool SetValue()
+        {
+            if (entity != null && entity.ExChange.Count > 0)
+            {
+                TEntityXMLPORV01 exchange = entity.ExChange[0] as TEntityXMLPORV01;
+
+                exchange.PassWord = edtPassword.Text;
+                exchange.PromisedDate = edtPromisedDate.Text;
+
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }

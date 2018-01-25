@@ -33,7 +33,21 @@ namespace IRAP.Global
                 errCode = (int)error.Data["ErrCode"];
             if (error.Data["ErrText"] != null)
                 errText = error.Data["ErrText"].ToString();
+            else
+                errText = error.Message;
 
+            XtraMessageBox.Show(
+                string.Format(
+                    errCode == -1 ? "{1}" : "({0}){1}",
+                    errCode,
+                    errText),
+                "错误信息",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
+
+        public void ShowErrorMessage(int errCode, string errText)
+        {
             XtraMessageBox.Show(
                 string.Format("({0}){1}", errCode, errText),
                 "错误信息",
@@ -41,5 +55,22 @@ namespace IRAP.Global
                 MessageBoxIcon.Error);
         }
 
+        public void ShowErrorMessage(string errText)
+        {
+            XtraMessageBox.Show(
+                errText,
+                "错误信息",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
+
+        public void ShowNormalMessage(string msgText)
+        {
+            XtraMessageBox.Show(
+                msgText,
+                "提示信息",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
     }
 }

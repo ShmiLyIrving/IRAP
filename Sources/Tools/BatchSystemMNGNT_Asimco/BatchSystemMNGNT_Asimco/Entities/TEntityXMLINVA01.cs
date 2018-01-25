@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAP.Global;
+
 namespace BatchSystemMNGNT_Asimco.Entities
 {
-    public class TEntityXMLINVA01
+    public class TEntityXMLINVA01 : IXMLNodeObject
     {
         public string AgencyLeaf { get; set; }
         public string SysLogID { get; set; }
@@ -28,5 +30,10 @@ namespace BatchSystemMNGNT_Asimco.Entities
         public string LotIdentifier { get; set; }
         public string LotNumber { get; set; }
         public string VendorLotNumber { get; set; }
+
+        public string GetXMLString()
+        {
+            return IRAPXMLUtils.ObjectToXMLString(this, "Parameters", "Param");
+        }
     }
 }

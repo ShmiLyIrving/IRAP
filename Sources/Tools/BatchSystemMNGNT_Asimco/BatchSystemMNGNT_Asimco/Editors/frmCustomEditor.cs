@@ -29,11 +29,23 @@ namespace BatchSystemMNGNT_Asimco.Editors
         {
             this.entity = entity;
 
-            if (entity != null && 
-                (!entity.Retried && entity.ErrCode != 0))
+            // 如果当前程序具有管理员权限，则对所有的日志记录具有执行的功能，
+            // 否则只有对等待重试的记录具有执行功能
+            if (SysParams.Instance.IsAdmin)
                 btnExecute.Enabled = true;
             else
-                btnExecute.Enabled = false;
+            {
+                if (entity != null &&
+                    (!entity.Retried && entity.ErrCode != 0))
+                    btnExecute.Enabled = true;
+                else
+                    btnExecute.Enabled = false;
+            }
+        }
+
+        protected virtual bool SetValue()
+        {
+            throw new NotImplementedException();
         }
 
         private void btnFindData_Click(object sender, EventArgs e)
@@ -72,7 +84,7 @@ namespace BatchSystemMNGNT_Asimco.Editors
             }
         }
 
-        private void frmCustomEditor_Load(object sender, EventArgs e)
+        protected virtual void GetMaterialInfo()
         {
             btnFindData.PerformClick();
 
@@ -115,6 +127,11 @@ namespace BatchSystemMNGNT_Asimco.Editors
             }
         }
 
+        private void frmCustomEditor_Load(object sender, EventArgs e)
+        {
+            GetMaterialInfo();
+        }
+
         private void btnFindDatas_Click(object sender, EventArgs e)
         {
             using (Dialogs.frmMaterialStoreIn4Shift form =
@@ -122,6 +139,12 @@ namespace BatchSystemMNGNT_Asimco.Editors
             {
                 form.ShowDialog();
             }
+        }
+
+        private void btnExecute_Click(object sender, EventArgs e)
+        {
+            if (SetValue())
+                DialogResult = DialogResult.OK;
         }
     }
 }

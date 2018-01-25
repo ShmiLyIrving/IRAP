@@ -335,6 +335,7 @@
             this.edtReceiptQuantityMove1.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
             this.edtReceiptQuantityMove1.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtReceiptQuantityMove1.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.edtReceiptQuantityMove1.Properties.ReadOnly = true;
             this.edtReceiptQuantityMove1.Size = new System.Drawing.Size(231, 26);
             this.edtReceiptQuantityMove1.TabIndex = 29;
             // 

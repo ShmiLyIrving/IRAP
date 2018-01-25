@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Windows.Forms;
+using System.Data;
 
 using IRAP.Global;
+using IRAPShared;
+using IRAPORM;
 
 namespace BatchSystemMNGNT_Asimco.Entities
 {
@@ -52,6 +55,49 @@ namespace BatchSystemMNGNT_Asimco.Entities
                 new Editors.frmEditorPORV01(this))
             {
                 return form.ShowDialog() == DialogResult.OK;
+            }
+        }
+
+        protected override void AfterExecute(TEntityCustomLog log)
+        {
+            if (log.ErrCode == 0 && log.Retried)
+            {
+                string[] splitString = log.ErrText.Split(',');
+                string recvBatchNo = splitString[49];
+
+                string strSQL =
+                    "UPDATE IRAPRIMCS..utb_MaterialStore " +
+                    "SET RecvBatchNo=@RecvBatchNo " +
+                    "WHERE SKUID=@SKUID";
+                IList<IDataParameter> paramList =
+                    new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@RecvBatchNo", DbType.String, recvBatchNo));
+                paramList.Add(new IRAPProcParameter("@SKUID", DbType.String, skuID));
+
+                try
+                {
+                    using (IRAPSQLConnection conn =
+                        new IRAPSQLConnection(SysParams.Instance.DBConnectionString))
+                    {
+                        conn.Update(strSQL, paramList);
+                    }
+                }
+                catch (Exception error)
+                {
+                    MSGHelp.Instance.ShowErrorMessage(
+                        string.Format(
+                            "将SKUID[{0}]的RecvBatchNo更新为[{1}]的操作未成功，原因：[{2}]",
+                            skuID,
+                            recvBatchNo,
+                            error.Message));
+                }
+            }
+            else
+            {
+                MSGHelp.Instance.ShowErrorMessage(
+                    string.Format(
+                        "执行未成功，不能进行后续处理，结果：[{0}]",
+                        log.ErrText));
             }
         }
     }

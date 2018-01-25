@@ -93,21 +93,21 @@
             this.groupControl2.Location = new System.Drawing.Point(0, 321);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl2.Size = new System.Drawing.Size(311, 181);
+            this.groupControl2.Size = new System.Drawing.Size(304, 181);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "WebService 执行结果";
             // 
             // edtErrText
             // 
             this.edtErrText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.edtErrText.Location = new System.Drawing.Point(7, 32);
+            this.edtErrText.Location = new System.Drawing.Point(7, 26);
             this.edtErrText.Name = "edtErrText";
             this.edtErrText.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtErrText.Properties.Appearance.Options.UseFont = true;
             this.edtErrText.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtErrText.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.edtErrText.Properties.ReadOnly = true;
-            this.edtErrText.Size = new System.Drawing.Size(297, 142);
+            this.edtErrText.Size = new System.Drawing.Size(290, 148);
             this.edtErrText.TabIndex = 1;
             // 
             // splitContainerControl2
@@ -140,7 +140,7 @@
             this.splitContainerControl2.Panel2.Controls.Add(this.lblSKUID);
             this.splitContainerControl2.Panel2.ShowCaption = true;
             this.splitContainerControl2.Panel2.Text = "批次系统库存";
-            this.splitContainerControl2.Size = new System.Drawing.Size(311, 321);
+            this.splitContainerControl2.Size = new System.Drawing.Size(304, 321);
             this.splitContainerControl2.SplitterPosition = 143;
             this.splitContainerControl2.TabIndex = 1;
             this.splitContainerControl2.Text = "splitContainerControl2";
@@ -150,7 +150,7 @@
             this.btnFindDatas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFindDatas.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFindDatas.Appearance.Options.UseFont = true;
-            this.btnFindDatas.Location = new System.Drawing.Point(177, 71);
+            this.btnFindDatas.Location = new System.Drawing.Point(170, 71);
             this.btnFindDatas.Name = "btnFindDatas";
             this.btnFindDatas.Size = new System.Drawing.Size(125, 32);
             this.btnFindDatas.TabIndex = 4;
@@ -185,7 +185,7 @@
             this.edt4ShiftBIN.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edt4ShiftBIN.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edt4ShiftBIN.Properties.ReadOnly = true;
-            this.edt4ShiftBIN.Size = new System.Drawing.Size(194, 26);
+            this.edt4ShiftBIN.Size = new System.Drawing.Size(187, 26);
             this.edt4ShiftBIN.TabIndex = 1;
             // 
             // lblBIN
@@ -216,7 +216,7 @@
             this.edt4ShiftQTY_BY_LOC.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edt4ShiftQTY_BY_LOC.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edt4ShiftQTY_BY_LOC.Properties.ReadOnly = true;
-            this.edt4ShiftQTY_BY_LOC.Size = new System.Drawing.Size(194, 26);
+            this.edt4ShiftQTY_BY_LOC.Size = new System.Drawing.Size(187, 26);
             this.edt4ShiftQTY_BY_LOC.TabIndex = 2;
             // 
             // lblQTY_BY_LOC
@@ -247,7 +247,7 @@
             this.edtQtyInStore.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtQtyInStore.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtQtyInStore.Properties.ReadOnly = true;
-            this.edtQtyInStore.Size = new System.Drawing.Size(194, 26);
+            this.edtQtyInStore.Size = new System.Drawing.Size(187, 26);
             this.edtQtyInStore.TabIndex = 4;
             // 
             // lblQtyInStore
@@ -278,7 +278,7 @@
             this.edtT106Code.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtT106Code.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtT106Code.Properties.ReadOnly = true;
-            this.edtT106Code.Size = new System.Drawing.Size(194, 26);
+            this.edtT106Code.Size = new System.Drawing.Size(187, 26);
             this.edtT106Code.TabIndex = 3;
             // 
             // lblT106Code
@@ -309,7 +309,7 @@
             this.edtRecvBatchNo.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtRecvBatchNo.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtRecvBatchNo.Properties.ReadOnly = true;
-            this.edtRecvBatchNo.Size = new System.Drawing.Size(194, 26);
+            this.edtRecvBatchNo.Size = new System.Drawing.Size(187, 26);
             this.edtRecvBatchNo.TabIndex = 2;
             // 
             // lblRecvBatchNo
@@ -340,7 +340,7 @@
             this.edtSKUID.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtSKUID.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtSKUID.Properties.ReadOnly = true;
-            this.edtSKUID.Size = new System.Drawing.Size(194, 26);
+            this.edtSKUID.Size = new System.Drawing.Size(187, 26);
             this.edtSKUID.TabIndex = 1;
             // 
             // lblSKUID
@@ -360,12 +360,12 @@
             this.btnExecute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExecute.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExecute.Appearance.Options.UseFont = true;
-            this.btnExecute.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnExecute.Location = new System.Drawing.Point(780, 12);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(103, 31);
             this.btnExecute.TabIndex = 1;
             this.btnExecute.Text = "执行";
+            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
             // 
             // btnCancel
             // 

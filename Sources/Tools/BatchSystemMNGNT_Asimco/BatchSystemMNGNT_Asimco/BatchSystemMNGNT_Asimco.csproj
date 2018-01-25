@@ -74,6 +74,12 @@
     <Compile Include="Editors\frmEditorIMTR01.Designer.cs">
       <DependentUpon>frmEditorIMTR01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\frmEditorINVA01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\frmEditorINVA01.Designer.cs">
+      <DependentUpon>frmEditorINVA01.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\frmEditorPICK08.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,7 @@
     <Compile Include="Editors\frmEditorPORV01.Designer.cs">
       <DependentUpon>frmEditorPORV01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\TTableRSFactPWOMaterialTrack.cs" />
     <Compile Include="Entities\TTableStockDetail.cs" />
     <Compile Include="Tools\DBhelp.cs" />
     <Compile Include="Editors\frmCustomEditor.cs">
@@ -143,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmEditorIMTR01.resx">
       <DependentUpon>frmEditorIMTR01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\frmEditorINVA01.resx">
+      <DependentUpon>frmEditorINVA01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\frmEditorPICK08.resx">
       <DependentUpon>frmEditorPICK08.cs</DependentUpon>

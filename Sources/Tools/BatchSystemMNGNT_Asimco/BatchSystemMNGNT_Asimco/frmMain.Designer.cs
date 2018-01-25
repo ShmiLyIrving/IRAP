@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             this.grdclmnErrCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bbiSysParams = new DevExpress.XtraBars.BarButtonItem();
@@ -74,7 +76,8 @@
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.edtErrText = new DevExpress.XtraEditors.MemoEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.chkFailureOnly = new DevExpress.XtraEditors.CheckEdit();
+            this.btnClearCondition = new DevExpress.XtraEditors.SimpleButton();
+            this.chkWaitForRetry = new DevExpress.XtraEditors.CheckEdit();
             this.edtMOLineNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.edtMONo = new DevExpress.XtraEditors.TextEdit();
@@ -105,7 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtErrText.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkFailureOnly.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWaitForRetry.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMOLineNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMONo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtRecvBatchNo.Properties)).BeginInit();
@@ -239,12 +242,14 @@
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 6);
+            this.toolStripMenuItem2.Visible = false;
             // 
             // tsmiRetry
             // 
             this.tsmiRetry.Name = "tsmiRetry";
             this.tsmiRetry.Size = new System.Drawing.Size(136, 22);
             this.tsmiRetry.Text = "重试";
+            this.tsmiRetry.Visible = false;
             // 
             // toolStripMenuItem1
             // 
@@ -256,6 +261,7 @@
             this.tsmiDelete.Name = "tsmiDelete";
             this.tsmiDelete.Size = new System.Drawing.Size(136, 22);
             this.tsmiDelete.Text = "删除";
+            this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
             // grdvLogs
             // 
@@ -297,7 +303,16 @@
             formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
             formatConditionRuleValue1.Value1 = 0;
             gridFormatRule1.Rule = formatConditionRuleValue1;
+            gridFormatRule2.ApplyToRow = true;
+            gridFormatRule2.Name = "Format1";
+            formatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.NavajoWhite;
+            formatConditionRuleExpression1.Appearance.ForeColor = System.Drawing.Color.Black;
+            formatConditionRuleExpression1.Appearance.Options.UseBackColor = true;
+            formatConditionRuleExpression1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleExpression1.Expression = "[ErrCode] <> 0 And [Retried] = 0";
+            gridFormatRule2.Rule = formatConditionRuleExpression1;
             this.grdvLogs.FormatRules.Add(gridFormatRule1);
+            this.grdvLogs.FormatRules.Add(gridFormatRule2);
             this.grdvLogs.GridControl = this.grdLogs;
             this.grdvLogs.GroupCount = 1;
             this.grdvLogs.Name = "grdvLogs";
@@ -443,7 +458,7 @@
             // grdclmnRetry
             // 
             this.grdclmnRetry.Caption = "重试";
-            this.grdclmnRetry.FieldName = "Retry";
+            this.grdclmnRetry.FieldName = "Retried";
             this.grdclmnRetry.Name = "grdclmnRetry";
             // 
             // splitContainerControl2
@@ -615,7 +630,8 @@
             // 
             this.panelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelControl1.Appearance.Options.UseFont = true;
-            this.panelControl1.Controls.Add(this.chkFailureOnly);
+            this.panelControl1.Controls.Add(this.btnClearCondition);
+            this.panelControl1.Controls.Add(this.chkWaitForRetry);
             this.panelControl1.Controls.Add(this.edtMOLineNo);
             this.panelControl1.Controls.Add(this.labelControl5);
             this.panelControl1.Controls.Add(this.edtMONo);
@@ -632,18 +648,29 @@
             this.panelControl1.Size = new System.Drawing.Size(1146, 41);
             this.panelControl1.TabIndex = 0;
             // 
-            // chkFailureOnly
+            // btnClearCondition
             // 
-            this.chkFailureOnly.EditValue = true;
-            this.chkFailureOnly.Enabled = false;
-            this.chkFailureOnly.Location = new System.Drawing.Point(892, 8);
-            this.chkFailureOnly.MenuManager = this.ribbon;
-            this.chkFailureOnly.Name = "chkFailureOnly";
-            this.chkFailureOnly.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkFailureOnly.Properties.Appearance.Options.UseFont = true;
-            this.chkFailureOnly.Properties.Caption = "仅失败";
-            this.chkFailureOnly.Size = new System.Drawing.Size(75, 24);
-            this.chkFailureOnly.TabIndex = 11;
+            this.btnClearCondition.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearCondition.Appearance.Options.UseFont = true;
+            this.btnClearCondition.Location = new System.Drawing.Point(973, 6);
+            this.btnClearCondition.Name = "btnClearCondition";
+            this.btnClearCondition.Size = new System.Drawing.Size(75, 26);
+            this.btnClearCondition.TabIndex = 12;
+            this.btnClearCondition.Text = "清除";
+            this.btnClearCondition.Click += new System.EventHandler(this.btnClearCondition_Click);
+            // 
+            // chkWaitForRetry
+            // 
+            this.chkWaitForRetry.EditValue = true;
+            this.chkWaitForRetry.Enabled = false;
+            this.chkWaitForRetry.Location = new System.Drawing.Point(892, 8);
+            this.chkWaitForRetry.MenuManager = this.ribbon;
+            this.chkWaitForRetry.Name = "chkWaitForRetry";
+            this.chkWaitForRetry.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkWaitForRetry.Properties.Appearance.Options.UseFont = true;
+            this.chkWaitForRetry.Properties.Caption = "等待重试";
+            this.chkWaitForRetry.Size = new System.Drawing.Size(75, 24);
+            this.chkWaitForRetry.TabIndex = 11;
             // 
             // edtMOLineNo
             // 
@@ -802,7 +829,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkFailureOnly.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWaitForRetry.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMOLineNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMONo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtRecvBatchNo.Properties)).EndInit();
@@ -839,7 +866,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnOrderNo;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnOrderLineNo;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
-        private DevExpress.XtraEditors.CheckEdit chkFailureOnly;
+        private DevExpress.XtraEditors.CheckEdit chkWaitForRetry;
         private DevExpress.XtraEditors.TextEdit edtMOLineNo;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit edtMONo;
@@ -873,5 +900,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnRetry;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnErrCode;
+        private DevExpress.XtraEditors.SimpleButton btnClearCondition;
     }
 }

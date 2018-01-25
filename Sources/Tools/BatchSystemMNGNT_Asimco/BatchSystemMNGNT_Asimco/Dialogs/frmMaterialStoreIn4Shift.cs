@@ -22,10 +22,27 @@ namespace BatchSystemMNGNT_Asimco.Dialogs
             string itemNumber,
             string lotNumber) : this()
         {
-            grdvStockDetail.BeginDataUpdate();
-            grdStockDetail.DataSource = TBLStockDetails.Get(itemNumber, lotNumber);
-            grdvStockDetail.BestFitColumns();
-            grdvStockDetail.EndDataUpdate();
+            try
+            {
+                TWaitting.Instance.ShowWaitForm("正在查询四班库存");
+
+                grdvStockDetail.BeginDataUpdate();
+                grdStockDetail.DataSource = TBLStockDetails.Get(itemNumber, lotNumber);
+                grdvStockDetail.BestFitColumns();
+                grdvStockDetail.EndDataUpdate();
+
+                TWaitting.Instance.CloseWaitForm();
+            }
+            catch (Exception error)
+            {
+                TWaitting.Instance.CloseWaitForm();
+
+                XtraMessageBox.Show(
+                    string.Format("查询时发生错误：[{0}]", error.Message),
+                    "提示信息",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Windows.Forms;
 
 using IRAP.Global;
 
@@ -41,6 +42,15 @@ namespace BatchSystemMNGNT_Asimco.Entities
                 exchange.Add(IRAPXMLUtils.NodeToObject<TEntityXMLINVA01>(node));
             }
             catch { }
+        }
+
+        protected override bool ShowEditorDialogs()
+        {
+            using (Editors.frmEditorINVA01 form =
+                new Editors.frmEditorINVA01(this))
+            {
+                return form.ShowDialog() == DialogResult.OK;
+            }
         }
     }
 }

@@ -62,7 +62,7 @@ namespace BatchSystemMNGNT_Asimco
             try
             {
                 ShowWaitForm("获取数据", "程序正在处理，请稍等......");
-                if (chkFailureOnly.Enabled)
+                if (chkWaitForRetry.Enabled)
                 {
                     TWebServShuttlingLogs.Instance.GetLogs(
                         "",
@@ -70,7 +70,7 @@ namespace BatchSystemMNGNT_Asimco
                         edtRecvBatchNo.Text,
                         edtMONo.Text,
                         edtMOLineNo.Text,
-                        chkFailureOnly.Checked);
+                        chkWaitForRetry.Checked);
                 }
                 else
                 {
@@ -97,15 +97,15 @@ namespace BatchSystemMNGNT_Asimco
 
         private void edtLinkedLogID_EditValueChanged(object sender, EventArgs e)
         {
-            chkFailureOnly.Enabled =
+            chkWaitForRetry.Enabled =
                 edtItemNumber.Text.Trim() != "" ||
                 edtRecvBatchNo.Text.Trim() != "" ||
                 edtMONo.Text.Trim() != "" ||
                 edtMOLineNo.Text.Trim() != "";
 
-            if (!chkFailureOnly.Enabled)
+            if (!chkWaitForRetry.Enabled)
             {
-                chkFailureOnly.Checked = true;
+                chkWaitForRetry.Checked = true;
             }
         }
 
@@ -130,10 +130,13 @@ namespace BatchSystemMNGNT_Asimco
 
                 try
                 {
+                    TWaitting.Instance.ShowWaitForm("获取批次系统的库存");
                     grdMaterialStore.DataSource = TDBHelper.GetMaterialStore(log.SKUID);
+                    TWaitting.Instance.CloseWaitForm();
                 }
                 catch (Exception error)
                 {
+                    TWaitting.Instance.CloseWaitForm();
                     MSGHelp.Instance.ShowErrorMessage(error);
                     grdMaterialStore.DataSource = null;
                 }
@@ -147,6 +150,8 @@ namespace BatchSystemMNGNT_Asimco
             {
                 TEntityCustomLog log = TWebServShuttlingLogs.Instance.Logs[idx];
                 log.Do();
+
+                btnGetLogs.PerformClick();
             }
         }
 
@@ -184,6 +189,28 @@ namespace BatchSystemMNGNT_Asimco
                 log.Checked = false ;
             }
             grdvLogs.EndDataUpdate();
+        }
+
+        private void btnClearCondition_Click(object sender, EventArgs e)
+        {
+            edtItemNumber.Text = "";
+            edtRecvBatchNo.Text = "";
+            edtMONo.Text = "";
+            edtMOLineNo.Text = "";
+            chkWaitForRetry.Checked = true;
+        }
+
+        private void tsmiDelete_Click(object sender, EventArgs e)
+        {
+            foreach (TEntityCustomLog log in TWebServShuttlingLogs.Instance.Logs)
+            {
+                if (log.Checked)
+                {
+                    log.Delete();
+                }
+            }
+
+            btnGetLogs.PerformClick();
         }
     }
 }
