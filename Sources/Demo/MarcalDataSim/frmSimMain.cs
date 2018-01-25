@@ -56,8 +56,7 @@ namespace MarcalDataSim
                 int idxUnitOfMeasure = rgpUnifOfMeasure.SelectedIndex;
                 outBufferStr =
                     edtSimData.Text.Trim() +
-                    rgpUnifOfMeasure.Properties.Items[idxUnitOfMeasure].Value.ToString() +
-                    "\r";
+                    rgpUnifOfMeasure.Properties.Items[idxUnitOfMeasure].Value.ToString();
                 WriteLog(outBufferStr);
                 outBuffer = Encoding.ASCII.GetBytes(outBufferStr);
 
