@@ -423,37 +423,40 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                    "{0}.{1}",
                    className,
                    MethodBase.GetCurrentMethod().Name);
+
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
                 int errCode = 0;
                 string errText = "";
+
                 string RSFact = GenerateRSFactXML();
-                if(!string.IsNullOrEmpty(frmPhysicochemicalInspectionBatchSystem.currentbase64))
+                if (!string.IsNullOrEmpty(frmPhysicochemicalInspectionBatchSystem.currentbase64))
                 {
                     XmlDocument xdoc = new XmlDocument();
                     xdoc.LoadXml(RSFact);
-                    xdoc.FirstChild.FirstChild.Attributes["IQCReport"].InnerText = frmPhysicochemicalInspectionBatchSystem.currentbase64;
+                    xdoc.FirstChild.FirstChild.Attributes["IQCReport"].InnerText = 
+                        frmPhysicochemicalInspectionBatchSystem.currentbase64;
                     RSFact = xdoc.InnerXml;
                 }
-                IRAPMESClient.Instance.usp_SaveFact_SmeltBatchInspecting(
-                IRAPUser.Instance.CommunityID,
-                factID,
-                optype,
-                t102LeafID,
-                t107LeafID,
-                frmPhysicochemicalInspectionBatchSystem.currentBatchNo,
-                lotNumber,
-                pWONo,
-                RSFact,
-                IRAPUser.Instance.SysLogID,
-                out errCode,
-                out errText);
+                IRAPMESSmeltClient.Instance.usp_SaveFact_SmeltBatchInspecting(
+                    IRAPUser.Instance.CommunityID,
+                    factID,
+                    optype,
+                    t102LeafID,
+                    t107LeafID,
+                    frmPhysicochemicalInspectionBatchSystem.currentBatchNo,
+                    lotNumber,
+                    pWONo,
+                    RSFact,
+                    IRAPUser.Instance.SysLogID,
+                    out errCode,
+                    out errText);
                 if (errCode != 0)
                 {
                     XtraMessageBox.Show(
                         errText,
-                        "",
+                        "提示信息",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return false;
@@ -462,7 +465,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 {
                     XtraMessageBox.Show(
                         errText,
-                        "",
+                        "提示信息",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     frmPhysicochemicalInspectionBatchSystem.currentbase64 = "";
@@ -474,6 +477,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
         private string GenerateRSFactXML()
         {
             string rlt = "";

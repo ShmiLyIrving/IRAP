@@ -25,13 +25,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            this.grpCtrProductionInfo = new DevExpress.XtraEditors.GroupControl();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
             this.grdCtrProductionInfoView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.ColPWONo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColMONumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColMOLineNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColT131Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColT102Code = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -43,7 +42,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.txtOperator = new DevExpress.XtraEditors.TextEdit();
             this.labelProductionDate = new DevExpress.XtraEditors.LabelControl();
             this.labelFurnaceTime = new DevExpress.XtraEditors.LabelControl();
-            this.grpCtrlCurrentInfo = new DevExpress.XtraEditors.GroupControl();
             this.lblProductionTimeResult = new DevExpress.XtraEditors.LabelControl();
             this.lblProductionTime = new DevExpress.XtraEditors.LabelControl();
             this.labProductStartTimeResult = new DevExpress.XtraEditors.LabelControl();
@@ -52,12 +50,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.labCtrlStartTime = new DevExpress.XtraEditors.LabelControl();
             this.tabCtrlDetail = new DevExpress.XtraTab.XtraTabControl();
             this.tabPgBurden = new DevExpress.XtraTab.XtraTabPage();
-            this.btnStart = new DevExpress.XtraEditors.SimpleButton();
-            this.grpProductPara = new DevExpress.XtraEditors.GroupControl();
-            this.grdProductPara = new DevExpress.XtraGrid.GridControl();
-            this.grdProductParaView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.ColT20Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ColValue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
             this.grpBurdenInfo = new DevExpress.XtraEditors.GroupControl();
             this.grdBurdenInfo = new DevExpress.XtraGrid.GridControl();
             this.grdBurdenInfoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -66,6 +59,13 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ColBatchLot = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.ColQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grpProductPara = new DevExpress.XtraEditors.GroupControl();
+            this.grdProductPara = new DevExpress.XtraGrid.GridControl();
+            this.grdProductParaView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ColT20Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColValue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.btnStart = new DevExpress.XtraEditors.SimpleButton();
             this.tabPgSpectrum = new DevExpress.XtraTab.XtraTabPage();
             this.ucGrdSpectrum = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.tabPgMatieralAjustment = new DevExpress.XtraTab.XtraTabPage();
@@ -91,26 +91,31 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).BeginInit();
-            this.grpCtrProductionInfo.SuspendLayout();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOperator.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grpCtrlCurrentInfo)).BeginInit();
-            this.grpCtrlCurrentInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabCtrlDetail)).BeginInit();
             this.tabCtrlDetail.SuspendLayout();
             this.tabPgBurden.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grpProductPara)).BeginInit();
-            this.grpProductPara.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdProductPara)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdProductParaView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).BeginInit();
+            this.splitContainerControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpBurdenInfo)).BeginInit();
             this.grpBurdenInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grpProductPara)).BeginInit();
+            this.grpProductPara.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductPara)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductParaView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
+            this.panelControl4.SuspendLayout();
             this.tabPgSpectrum.SuspendLayout();
             this.tabPgMatieralAjustment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRowMaterial)).BeginInit();
@@ -122,50 +127,55 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
+            this.splitContainerControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // grpCtrProductionInfo
-            // 
-            this.grpCtrProductionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpCtrProductionInfo.Controls.Add(this.btnPrint);
-            this.grpCtrProductionInfo.Controls.Add(this.grdCtrProductionInfo);
-            this.grpCtrProductionInfo.Location = new System.Drawing.Point(3, 38);
-            this.grpCtrProductionInfo.Name = "grpCtrProductionInfo";
-            this.grpCtrProductionInfo.Size = new System.Drawing.Size(517, 91);
-            this.grpCtrProductionInfo.TabIndex = 0;
-            this.grpCtrProductionInfo.Text = "生产信息";
             // 
             // btnPrint
             // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(463, 22);
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnPrint.Appearance.Options.UseFont = true;
+            this.btnPrint.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnPrint.Location = new System.Drawing.Point(5, 84);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(52, 23);
+            this.btnPrint.Size = new System.Drawing.Size(90, 32);
             this.btnPrint.TabIndex = 1;
             this.btnPrint.Text = "打印";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // grdCtrProductionInfo
             // 
-            this.grdCtrProductionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdCtrProductionInfo.Location = new System.Drawing.Point(3, 22);
+            this.grdCtrProductionInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdCtrProductionInfo.Location = new System.Drawing.Point(5, 5);
             this.grdCtrProductionInfo.MainView = this.grdCtrProductionInfoView;
             this.grdCtrProductionInfo.Name = "grdCtrProductionInfo";
             this.grdCtrProductionInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-            this.grdCtrProductionInfo.Size = new System.Drawing.Size(458, 66);
+            this.grdCtrProductionInfo.Size = new System.Drawing.Size(494, 111);
             this.grdCtrProductionInfo.TabIndex = 0;
             this.grdCtrProductionInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdCtrProductionInfoView});
             // 
             // grdCtrProductionInfoView
             // 
+            this.grdCtrProductionInfoView.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grdCtrProductionInfoView.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grdCtrProductionInfoView.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.grdCtrProductionInfoView.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdCtrProductionInfoView.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdCtrProductionInfoView.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grdCtrProductionInfoView.Appearance.Row.Options.UseFont = true;
             this.grdCtrProductionInfoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colPrint,
-            this.ColPWONo,
+            this.ColMONumber,
             this.ColMOLineNo,
             this.ColT131Name,
             this.ColT102Code,
@@ -185,6 +195,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdCtrProductionInfoView.OptionsCustomization.AllowColumnMoving = false;
             this.grdCtrProductionInfoView.OptionsCustomization.AllowGroup = false;
             this.grdCtrProductionInfoView.OptionsCustomization.AllowRowSizing = true;
+            this.grdCtrProductionInfoView.OptionsView.ColumnAutoWidth = false;
             this.grdCtrProductionInfoView.OptionsView.ShowGroupPanel = false;
             // 
             // colPrint
@@ -205,18 +216,18 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.repositoryItemCheckEdit1.AutoHeight = false;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
-            // ColPWONo
+            // ColMONumber
             // 
-            this.ColPWONo.Caption = "订单号";
-            this.ColPWONo.FieldName = "PWONo";
-            this.ColPWONo.Name = "ColPWONo";
-            this.ColPWONo.OptionsColumn.AllowEdit = false;
-            this.ColPWONo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.ColPWONo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.ColPWONo.OptionsColumn.AllowMove = false;
-            this.ColPWONo.OptionsColumn.ReadOnly = true;
-            this.ColPWONo.Visible = true;
-            this.ColPWONo.VisibleIndex = 1;
+            this.ColMONumber.Caption = "订单号";
+            this.ColMONumber.FieldName = "MONumber";
+            this.ColMONumber.Name = "ColMONumber";
+            this.ColMONumber.OptionsColumn.AllowEdit = false;
+            this.ColMONumber.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColMONumber.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.ColMONumber.OptionsColumn.AllowMove = false;
+            this.ColMONumber.OptionsColumn.ReadOnly = true;
+            this.ColMONumber.Visible = true;
+            this.ColMONumber.VisibleIndex = 1;
             // 
             // ColMOLineNo
             // 
@@ -311,50 +322,41 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             // labelController
             // 
-            this.labelController.Location = new System.Drawing.Point(9, 15);
+            this.labelController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelController.Location = new System.Drawing.Point(3, 3);
             this.labelController.Name = "labelController";
-            this.labelController.Size = new System.Drawing.Size(40, 14);
+            this.labelController.Size = new System.Drawing.Size(45, 20);
             this.labelController.TabIndex = 1;
             this.labelController.Text = "操作工:";
             // 
             // txtOperator
             // 
-            this.txtOperator.Location = new System.Drawing.Point(55, 12);
+            this.txtOperator.EnterMoveNextControl = true;
+            this.txtOperator.Location = new System.Drawing.Point(54, 0);
             this.txtOperator.Name = "txtOperator";
-            this.txtOperator.Size = new System.Drawing.Size(127, 20);
+            this.txtOperator.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOperator.Properties.Appearance.Options.UseFont = true;
+            this.txtOperator.Size = new System.Drawing.Size(127, 26);
             this.txtOperator.TabIndex = 2;
             this.txtOperator.Validating += new System.ComponentModel.CancelEventHandler(this.txtOperator_Validating);
             // 
             // labelProductionDate
             // 
-            this.labelProductionDate.Location = new System.Drawing.Point(204, 15);
+            this.labelProductionDate.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProductionDate.Location = new System.Drawing.Point(203, 3);
             this.labelProductionDate.Name = "labelProductionDate";
-            this.labelProductionDate.Size = new System.Drawing.Size(52, 14);
+            this.labelProductionDate.Size = new System.Drawing.Size(59, 20);
             this.labelProductionDate.TabIndex = 3;
             this.labelProductionDate.Text = "生产日期:";
             // 
             // labelFurnaceTime
             // 
-            this.labelFurnaceTime.Location = new System.Drawing.Point(424, 15);
+            this.labelFurnaceTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFurnaceTime.Location = new System.Drawing.Point(448, 3);
             this.labelFurnaceTime.Name = "labelFurnaceTime";
-            this.labelFurnaceTime.Size = new System.Drawing.Size(28, 14);
+            this.labelFurnaceTime.Size = new System.Drawing.Size(31, 20);
             this.labelFurnaceTime.TabIndex = 5;
             this.labelFurnaceTime.Text = "炉次:";
-            // 
-            // grpCtrlCurrentInfo
-            // 
-            this.grpCtrlCurrentInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpCtrlCurrentInfo.Controls.Add(this.lblProductionTimeResult);
-            this.grpCtrlCurrentInfo.Controls.Add(this.lblProductionTime);
-            this.grpCtrlCurrentInfo.Controls.Add(this.labProductStartTimeResult);
-            this.grpCtrlCurrentInfo.Controls.Add(this.labCurrentFurnaceResult);
-            this.grpCtrlCurrentInfo.Controls.Add(this.labCurrentFurnace);
-            this.grpCtrlCurrentInfo.Controls.Add(this.labCtrlStartTime);
-            this.grpCtrlCurrentInfo.Location = new System.Drawing.Point(521, 38);
-            this.grpCtrlCurrentInfo.Name = "grpCtrlCurrentInfo";
-            this.grpCtrlCurrentInfo.Size = new System.Drawing.Size(254, 91);
-            this.grpCtrlCurrentInfo.TabIndex = 8;
-            this.grpCtrlCurrentInfo.Text = "当前熔炼信息";
             // 
             // lblProductionTimeResult
             // 
@@ -365,19 +367,19 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.lblProductionTimeResult.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lblProductionTimeResult.AutoEllipsis = true;
             this.lblProductionTimeResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblProductionTimeResult.Location = new System.Drawing.Point(111, 66);
+            this.lblProductionTimeResult.Location = new System.Drawing.Point(130, 89);
             this.lblProductionTimeResult.Name = "lblProductionTimeResult";
-            this.lblProductionTimeResult.Size = new System.Drawing.Size(135, 14);
+            this.lblProductionTimeResult.Size = new System.Drawing.Size(171, 14);
             this.lblProductionTimeResult.TabIndex = 15;
             // 
             // lblProductionTime
             // 
             this.lblProductionTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductionTime.Location = new System.Drawing.Point(37, 63);
+            this.lblProductionTime.Location = new System.Drawing.Point(44, 86);
             this.lblProductionTime.Name = "lblProductionTime";
-            this.lblProductionTime.Size = new System.Drawing.Size(68, 21);
+            this.lblProductionTime.Size = new System.Drawing.Size(80, 21);
             this.lblProductionTime.TabIndex = 14;
-            this.lblProductionTime.Text = "生产时长:";
+            this.lblProductionTime.Text = "生产时长：";
             // 
             // labProductStartTimeResult
             // 
@@ -388,9 +390,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.labProductStartTimeResult.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labProductStartTimeResult.AutoEllipsis = true;
             this.labProductStartTimeResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labProductStartTimeResult.Location = new System.Drawing.Point(111, 46);
+            this.labProductStartTimeResult.Location = new System.Drawing.Point(130, 54);
             this.labProductStartTimeResult.Name = "labProductStartTimeResult";
-            this.labProductStartTimeResult.Size = new System.Drawing.Size(135, 14);
+            this.labProductStartTimeResult.Size = new System.Drawing.Size(171, 14);
             this.labProductStartTimeResult.TabIndex = 13;
             // 
             // labCurrentFurnaceResult
@@ -402,38 +404,50 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.labCurrentFurnaceResult.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labCurrentFurnaceResult.AutoEllipsis = true;
             this.labCurrentFurnaceResult.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labCurrentFurnaceResult.Location = new System.Drawing.Point(111, 26);
+            this.labCurrentFurnaceResult.Location = new System.Drawing.Point(130, 19);
             this.labCurrentFurnaceResult.Name = "labCurrentFurnaceResult";
-            this.labCurrentFurnaceResult.Size = new System.Drawing.Size(135, 14);
+            this.labCurrentFurnaceResult.Size = new System.Drawing.Size(171, 14);
             this.labCurrentFurnaceResult.TabIndex = 12;
             // 
             // labCurrentFurnace
             // 
             this.labCurrentFurnace.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labCurrentFurnace.Location = new System.Drawing.Point(21, 23);
+            this.labCurrentFurnace.Location = new System.Drawing.Point(28, 16);
             this.labCurrentFurnace.Name = "labCurrentFurnace";
-            this.labCurrentFurnace.Size = new System.Drawing.Size(84, 21);
+            this.labCurrentFurnace.Size = new System.Drawing.Size(96, 21);
             this.labCurrentFurnace.TabIndex = 10;
-            this.labCurrentFurnace.Text = "当前炉次号:";
+            this.labCurrentFurnace.Text = "当前炉次号：";
             // 
             // labCtrlStartTime
             // 
             this.labCtrlStartTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labCtrlStartTime.Location = new System.Drawing.Point(5, 43);
+            this.labCtrlStartTime.Location = new System.Drawing.Point(12, 51);
             this.labCtrlStartTime.Name = "labCtrlStartTime";
-            this.labCtrlStartTime.Size = new System.Drawing.Size(100, 21);
+            this.labCtrlStartTime.Size = new System.Drawing.Size(112, 21);
             this.labCtrlStartTime.TabIndex = 8;
-            this.labCtrlStartTime.Text = "生产开始时间:";
+            this.labCtrlStartTime.Text = "生产开始时间：";
             // 
             // tabCtrlDetail
             // 
-            this.tabCtrlDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabCtrlDetail.Location = new System.Drawing.Point(3, 130);
+            this.tabCtrlDetail.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabCtrlDetail.Appearance.Options.UseFont = true;
+            this.tabCtrlDetail.AppearancePage.Header.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.tabCtrlDetail.AppearancePage.Header.Options.UseFont = true;
+            this.tabCtrlDetail.AppearancePage.HeaderActive.Font = new System.Drawing.Font("微软雅黑", 10.5F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabCtrlDetail.AppearancePage.HeaderActive.FontStyleDelta = System.Drawing.FontStyle.Underline;
+            this.tabCtrlDetail.AppearancePage.HeaderActive.ForeColor = System.Drawing.Color.Blue;
+            this.tabCtrlDetail.AppearancePage.HeaderActive.Options.UseFont = true;
+            this.tabCtrlDetail.AppearancePage.HeaderActive.Options.UseForeColor = true;
+            this.tabCtrlDetail.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Underline);
+            this.tabCtrlDetail.AppearancePage.HeaderHotTracked.FontStyleDelta = System.Drawing.FontStyle.Underline;
+            this.tabCtrlDetail.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+            this.tabCtrlDetail.AppearancePage.PageClient.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.tabCtrlDetail.AppearancePage.PageClient.Options.UseFont = true;
+            this.tabCtrlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabCtrlDetail.Location = new System.Drawing.Point(0, 0);
             this.tabCtrlDetail.Name = "tabCtrlDetail";
             this.tabCtrlDetail.SelectedTabPage = this.tabPgBurden;
-            this.tabCtrlDetail.Size = new System.Drawing.Size(772, 193);
+            this.tabCtrlDetail.Size = new System.Drawing.Size(926, 293);
             this.tabCtrlDetail.TabIndex = 9;
             this.tabCtrlDetail.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabPgBurden,
@@ -445,112 +459,64 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // tabPgBurden
             // 
             this.tabPgBurden.AutoScroll = true;
-            this.tabPgBurden.Controls.Add(this.btnStart);
-            this.tabPgBurden.Controls.Add(this.grpProductPara);
-            this.tabPgBurden.Controls.Add(this.grpBurdenInfo);
+            this.tabPgBurden.Controls.Add(this.splitContainerControl3);
+            this.tabPgBurden.Controls.Add(this.panelControl4);
             this.tabPgBurden.Name = "tabPgBurden";
-            this.tabPgBurden.Size = new System.Drawing.Size(766, 164);
+            this.tabPgBurden.Size = new System.Drawing.Size(920, 258);
             this.tabPgBurden.Text = "配料及开炉熔炼";
             this.tabPgBurden.Tooltip = "配料及开炉熔炼";
             // 
-            // btnStart
+            // splitContainerControl3
             // 
-            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(685, 3);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(78, 45);
-            this.btnStart.TabIndex = 5;
-            this.btnStart.Text = "生产开始";
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // grpProductPara
-            // 
-            this.grpProductPara.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpProductPara.Controls.Add(this.grdProductPara);
-            this.grpProductPara.Location = new System.Drawing.Point(381, 3);
-            this.grpProductPara.Name = "grpProductPara";
-            this.grpProductPara.Size = new System.Drawing.Size(302, 158);
-            this.grpProductPara.TabIndex = 4;
-            this.grpProductPara.Text = "生产开炉参数";
-            // 
-            // grdProductPara
-            // 
-            this.grdProductPara.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdProductPara.Location = new System.Drawing.Point(2, 21);
-            this.grdProductPara.MainView = this.grdProductParaView;
-            this.grdProductPara.Name = "grdProductPara";
-            this.grdProductPara.Size = new System.Drawing.Size(298, 135);
-            this.grdProductPara.TabIndex = 0;
-            this.grdProductPara.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grdProductParaView});
-            // 
-            // grdProductParaView
-            // 
-            this.grdProductParaView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.ColT20Name,
-            this.ColValue});
-            this.grdProductParaView.GridControl = this.grdProductPara;
-            this.grdProductParaView.Name = "grdProductParaView";
-            this.grdProductParaView.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.False;
-            this.grdProductParaView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.grdProductParaView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.grdProductParaView.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.False;
-            this.grdProductParaView.OptionsMenu.EnableColumnMenu = false;
-            this.grdProductParaView.OptionsMenu.EnableFooterMenu = false;
-            this.grdProductParaView.OptionsMenu.EnableGroupPanelMenu = false;
-            this.grdProductParaView.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
-            this.grdProductParaView.OptionsView.ShowGroupPanel = false;
-            // 
-            // ColT20Name
-            // 
-            this.ColT20Name.Caption = "参数名称";
-            this.ColT20Name.FieldName = "T20Name";
-            this.ColT20Name.Name = "ColT20Name";
-            this.ColT20Name.OptionsColumn.AllowEdit = false;
-            this.ColT20Name.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.ColT20Name.OptionsColumn.AllowMove = false;
-            this.ColT20Name.OptionsColumn.ReadOnly = true;
-            this.ColT20Name.Visible = true;
-            this.ColT20Name.VisibleIndex = 0;
-            // 
-            // ColValue
-            // 
-            this.ColValue.Caption = "参数值";
-            this.ColValue.FieldName = "Value";
-            this.ColValue.Name = "ColValue";
-            this.ColValue.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.ColValue.OptionsColumn.AllowMove = false;
-            this.ColValue.Visible = true;
-            this.ColValue.VisibleIndex = 1;
+            this.splitContainerControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl3.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
+            this.splitContainerControl3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl3.Name = "splitContainerControl3";
+            this.splitContainerControl3.Panel1.Controls.Add(this.grpBurdenInfo);
+            this.splitContainerControl3.Panel1.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl3.Panel1.Text = "Panel1";
+            this.splitContainerControl3.Panel2.Controls.Add(this.grpProductPara);
+            this.splitContainerControl3.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl3.Panel2.Text = "Panel2";
+            this.splitContainerControl3.Size = new System.Drawing.Size(806, 258);
+            this.splitContainerControl3.SplitterPosition = 395;
+            this.splitContainerControl3.TabIndex = 7;
+            this.splitContainerControl3.Text = "splitContainerControl3";
             // 
             // grpBurdenInfo
             // 
-            this.grpBurdenInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpBurdenInfo.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grpBurdenInfo.AppearanceCaption.Options.UseFont = true;
             this.grpBurdenInfo.Controls.Add(this.grdBurdenInfo);
-            this.grpBurdenInfo.Location = new System.Drawing.Point(3, 3);
+            this.grpBurdenInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBurdenInfo.Location = new System.Drawing.Point(5, 5);
             this.grpBurdenInfo.Name = "grpBurdenInfo";
-            this.grpBurdenInfo.Size = new System.Drawing.Size(376, 158);
+            this.grpBurdenInfo.Size = new System.Drawing.Size(396, 248);
             this.grpBurdenInfo.TabIndex = 3;
             this.grpBurdenInfo.Text = "配料信息";
             // 
             // grdBurdenInfo
             // 
             this.grdBurdenInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdBurdenInfo.Location = new System.Drawing.Point(2, 21);
+            this.grdBurdenInfo.Location = new System.Drawing.Point(2, 27);
             this.grdBurdenInfo.MainView = this.grdBurdenInfoView;
             this.grdBurdenInfo.Name = "grdBurdenInfo";
             this.grdBurdenInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
-            this.grdBurdenInfo.Size = new System.Drawing.Size(372, 135);
+            this.grdBurdenInfo.Size = new System.Drawing.Size(392, 219);
             this.grdBurdenInfo.TabIndex = 0;
             this.grdBurdenInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdBurdenInfoView});
             // 
             // grdBurdenInfoView
             // 
+            this.grdBurdenInfoView.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grdBurdenInfoView.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grdBurdenInfoView.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.grdBurdenInfoView.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdBurdenInfoView.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdBurdenInfoView.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grdBurdenInfoView.Appearance.Row.Options.UseFont = true;
             this.grdBurdenInfoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.ColT101Code,
             this.ColT101Name,
@@ -628,12 +594,103 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ColQty.Visible = true;
             this.ColQty.VisibleIndex = 3;
             // 
+            // grpProductPara
+            // 
+            this.grpProductPara.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grpProductPara.AppearanceCaption.Options.UseFont = true;
+            this.grpProductPara.Controls.Add(this.grdProductPara);
+            this.grpProductPara.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpProductPara.Location = new System.Drawing.Point(5, 5);
+            this.grpProductPara.Name = "grpProductPara";
+            this.grpProductPara.Size = new System.Drawing.Size(385, 248);
+            this.grpProductPara.TabIndex = 4;
+            this.grpProductPara.Text = "生产开炉参数";
+            // 
+            // grdProductPara
+            // 
+            this.grdProductPara.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdProductPara.Location = new System.Drawing.Point(2, 27);
+            this.grdProductPara.MainView = this.grdProductParaView;
+            this.grdProductPara.Name = "grdProductPara";
+            this.grdProductPara.Size = new System.Drawing.Size(381, 219);
+            this.grdProductPara.TabIndex = 0;
+            this.grdProductPara.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdProductParaView});
+            // 
+            // grdProductParaView
+            // 
+            this.grdProductParaView.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grdProductParaView.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grdProductParaView.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.grdProductParaView.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdProductParaView.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdProductParaView.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grdProductParaView.Appearance.Row.Options.UseFont = true;
+            this.grdProductParaView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ColT20Name,
+            this.ColValue});
+            this.grdProductParaView.GridControl = this.grdProductPara;
+            this.grdProductParaView.Name = "grdProductParaView";
+            this.grdProductParaView.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsMenu.EnableColumnMenu = false;
+            this.grdProductParaView.OptionsMenu.EnableFooterMenu = false;
+            this.grdProductParaView.OptionsMenu.EnableGroupPanelMenu = false;
+            this.grdProductParaView.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.False;
+            this.grdProductParaView.OptionsView.ShowGroupPanel = false;
+            // 
+            // ColT20Name
+            // 
+            this.ColT20Name.Caption = "参数名称";
+            this.ColT20Name.FieldName = "T20Name";
+            this.ColT20Name.Name = "ColT20Name";
+            this.ColT20Name.OptionsColumn.AllowEdit = false;
+            this.ColT20Name.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColT20Name.OptionsColumn.AllowMove = false;
+            this.ColT20Name.OptionsColumn.ReadOnly = true;
+            this.ColT20Name.Visible = true;
+            this.ColT20Name.VisibleIndex = 0;
+            // 
+            // ColValue
+            // 
+            this.ColValue.Caption = "参数值";
+            this.ColValue.FieldName = "Value";
+            this.ColValue.Name = "ColValue";
+            this.ColValue.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ColValue.OptionsColumn.AllowMove = false;
+            this.ColValue.Visible = true;
+            this.ColValue.VisibleIndex = 1;
+            // 
+            // panelControl4
+            // 
+            this.panelControl4.Controls.Add(this.btnStart);
+            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelControl4.Location = new System.Drawing.Point(806, 0);
+            this.panelControl4.Name = "panelControl4";
+            this.panelControl4.Padding = new System.Windows.Forms.Padding(5);
+            this.panelControl4.Size = new System.Drawing.Size(114, 258);
+            this.panelControl4.TabIndex = 6;
+            // 
+            // btnStart
+            // 
+            this.btnStart.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnStart.Appearance.Options.UseFont = true;
+            this.btnStart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStart.Location = new System.Drawing.Point(7, 7);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(100, 32);
+            this.btnStart.TabIndex = 5;
+            this.btnStart.Text = "生产开始";
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
             // tabPgSpectrum
             // 
             this.tabPgSpectrum.AutoScroll = true;
             this.tabPgSpectrum.Controls.Add(this.ucGrdSpectrum);
             this.tabPgSpectrum.Name = "tabPgSpectrum";
-            this.tabPgSpectrum.Size = new System.Drawing.Size(766, 164);
+            this.tabPgSpectrum.Size = new System.Drawing.Size(920, 258);
             this.tabPgSpectrum.Text = "炉前光谱";
             this.tabPgSpectrum.Tooltip = "炉前光谱";
             // 
@@ -645,23 +702,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSpectrum.Name = "ucGrdSpectrum";
             this.ucGrdSpectrum.ReadOnlyCount = 0;
             this.ucGrdSpectrum.SaveBtnText = "保存";
-            this.ucGrdSpectrum.Size = new System.Drawing.Size(766, 164);
+            this.ucGrdSpectrum.Size = new System.Drawing.Size(920, 258);
             this.ucGrdSpectrum.TabIndex = 0;
             this.ucGrdSpectrum.Title = "参数";
-            this.ucGrdSpectrum.SaveClick += ucGrdSpectrum_SaveClick;            // 
+            // 
             // tabPgMatieralAjustment
             // 
             this.tabPgMatieralAjustment.Controls.Add(this.btnRowMaterialSave);
             this.tabPgMatieralAjustment.Controls.Add(this.grdRowMaterial);
             this.tabPgMatieralAjustment.Name = "tabPgMatieralAjustment";
-            this.tabPgMatieralAjustment.Size = new System.Drawing.Size(766, 164);
+            this.tabPgMatieralAjustment.Size = new System.Drawing.Size(920, 258);
             this.tabPgMatieralAjustment.Text = "原材料调整";
             this.tabPgMatieralAjustment.Tooltip = "原材料调整";
             // 
             // btnRowMaterialSave
             // 
             this.btnRowMaterialSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRowMaterialSave.Location = new System.Drawing.Point(688, 2);
+            this.btnRowMaterialSave.Location = new System.Drawing.Point(842, 2);
             this.btnRowMaterialSave.Name = "btnRowMaterialSave";
             this.btnRowMaterialSave.Size = new System.Drawing.Size(76, 45);
             this.btnRowMaterialSave.TabIndex = 6;
@@ -678,7 +735,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdRowMaterial.Name = "grdRowMaterial";
             this.grdRowMaterial.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox2});
-            this.grdRowMaterial.Size = new System.Drawing.Size(685, 159);
+            this.grdRowMaterial.Size = new System.Drawing.Size(839, 253);
             this.grdRowMaterial.TabIndex = 1;
             this.grdRowMaterial.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdRowMaterialView});
@@ -768,7 +825,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.tabPgSample.Controls.Add(this.ucGrdSample);
             this.tabPgSample.Name = "tabPgSample";
-            this.tabPgSample.Size = new System.Drawing.Size(766, 164);
+            this.tabPgSample.Size = new System.Drawing.Size(920, 258);
             this.tabPgSample.Text = "浇三角试样";
             this.tabPgSample.Tooltip = "浇三角试样";
             // 
@@ -780,16 +837,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdSample.Name = "ucGrdSample";
             this.ucGrdSample.ReadOnlyCount = 0;
             this.ucGrdSample.SaveBtnText = "保存";
-            this.ucGrdSample.Size = new System.Drawing.Size(766, 164);
+            this.ucGrdSample.Size = new System.Drawing.Size(920, 258);
             this.ucGrdSample.TabIndex = 0;
             this.ucGrdSample.Title = "参数";
-            this.ucGrdSample.SaveClick += ucGrdSample_SaveClick;
             // 
             // tabPgBaked
             // 
             this.tabPgBaked.Controls.Add(this.ucGrdBaked);
             this.tabPgBaked.Name = "tabPgBaked";
-            this.tabPgBaked.Size = new System.Drawing.Size(766, 164);
+            this.tabPgBaked.Size = new System.Drawing.Size(920, 258);
             this.tabPgBaked.Text = "炉水出炉";
             this.tabPgBaked.Tooltip = "炉水出炉";
             // 
@@ -801,35 +857,42 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked.Name = "ucGrdBaked";
             this.ucGrdBaked.ReadOnlyCount = 0;
             this.ucGrdBaked.SaveBtnText = "生产结束";
-            this.ucGrdBaked.Size = new System.Drawing.Size(766, 164);
+            this.ucGrdBaked.Size = new System.Drawing.Size(920, 258);
             this.ucGrdBaked.TabIndex = 0;
             this.ucGrdBaked.Title = "参数";
-            this.ucGrdBaked.SaveClick += ucGrdBaked_SaveClick; 
             // 
             // dtProductDate
             // 
-            this.dtProductDate.EditValue = System.DateTime.Now;
-            this.dtProductDate.Location = new System.Drawing.Point(263, 12);
+            this.dtProductDate.EditValue = new System.DateTime(2018, 1, 25, 10, 41, 25, 67);
+            this.dtProductDate.Location = new System.Drawing.Point(268, 0);
             this.dtProductDate.Name = "dtProductDate";
+            this.dtProductDate.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtProductDate.Properties.Appearance.Options.UseFont = true;
             this.dtProductDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtProductDate.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.False;
             this.dtProductDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtProductDate.Properties.MinValue = System.DateTime.Now.AddDays(-1);
-            this.dtProductDate.Properties.NullDateCalendarValue = System.DateTime.Now;
-            this.dtProductDate.Size = new System.Drawing.Size(132, 20);
+            this.dtProductDate.Properties.DisplayFormat.FormatString = "yyyy 年 M 月 d 日";
+            this.dtProductDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtProductDate.Properties.EditFormat.FormatString = "yyyy 年 M 月 d 日";
+            this.dtProductDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtProductDate.Properties.Mask.EditMask = "yyyy 年 M 月 d 日";
+            this.dtProductDate.Properties.MinValue = new System.DateTime(2018, 1, 24, 10, 41, 25, 67);
+            this.dtProductDate.Properties.NullDateCalendarValue = new System.DateTime(2018, 1, 25, 10, 41, 25, 67);
+            this.dtProductDate.Size = new System.Drawing.Size(149, 26);
             this.dtProductDate.TabIndex = 10;
             this.dtProductDate.EditValueChanged += new System.EventHandler(this.dtProductDate_EditValueChanged);
             // 
             // lblFurnaceTime
             // 
+            this.lblFurnaceTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFurnaceTime.AutoEllipsis = true;
-            this.lblFurnaceTime.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblFurnaceTime.Location = new System.Drawing.Point(458, 15);
+            this.lblFurnaceTime.Location = new System.Drawing.Point(485, 3);
             this.lblFurnaceTime.Name = "lblFurnaceTime";
-            this.lblFurnaceTime.Size = new System.Drawing.Size(107, 14);
+            this.lblFurnaceTime.Size = new System.Drawing.Size(10, 20);
             this.lblFurnaceTime.TabIndex = 12;
+            this.lblFurnaceTime.Text = "A";
             // 
             // timer1
             // 
@@ -866,71 +929,144 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(778, 0);
+            this.barDockControlTop.Location = new System.Drawing.Point(5, 5);
+            this.barDockControlTop.Size = new System.Drawing.Size(926, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 326);
-            this.barDockControlBottom.Size = new System.Drawing.Size(778, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(5, 482);
+            this.barDockControlBottom.Size = new System.Drawing.Size(926, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
+            this.barDockControlLeft.Location = new System.Drawing.Point(5, 5);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 477);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(778, 0);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
+            this.barDockControlRight.Location = new System.Drawing.Point(931, 5);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 477);
+            // 
+            // splitContainerControl1
+            // 
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl1.Horizontal = false;
+            this.splitContainerControl1.IsSplitterFixed = true;
+            this.splitContainerControl1.Location = new System.Drawing.Point(5, 34);
+            this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
+            this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel2.Controls.Add(this.tabCtrlDetail);
+            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Size = new System.Drawing.Size(926, 448);
+            this.splitContainerControl1.SplitterPosition = 150;
+            this.splitContainerControl1.TabIndex = 1;
+            this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
+            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            this.splitContainerControl2.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.splitContainerControl2.Panel1.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl2.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl2.Panel1.Controls.Add(this.panelControl2);
+            this.splitContainerControl2.Panel1.Controls.Add(this.panelControl3);
+            this.splitContainerControl2.Panel1.ShowCaption = true;
+            this.splitContainerControl2.Panel1.Text = "生产信息";
+            this.splitContainerControl2.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.splitContainerControl2.Panel2.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl2.Panel2.Controls.Add(this.lblProductionTimeResult);
+            this.splitContainerControl2.Panel2.Controls.Add(this.labCurrentFurnace);
+            this.splitContainerControl2.Panel2.Controls.Add(this.lblProductionTime);
+            this.splitContainerControl2.Panel2.Controls.Add(this.labCtrlStartTime);
+            this.splitContainerControl2.Panel2.Controls.Add(this.labProductStartTimeResult);
+            this.splitContainerControl2.Panel2.Controls.Add(this.labCurrentFurnaceResult);
+            this.splitContainerControl2.Panel2.ShowCaption = true;
+            this.splitContainerControl2.Panel2.Text = "当前熔炼信息";
+            this.splitContainerControl2.Size = new System.Drawing.Size(926, 150);
+            this.splitContainerControl2.SplitterPosition = 313;
+            this.splitContainerControl2.TabIndex = 0;
+            this.splitContainerControl2.Text = "splitContainerControl2";
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl2.Controls.Add(this.grdCtrProductionInfo);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 0);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Padding = new System.Windows.Forms.Padding(5);
+            this.panelControl2.Size = new System.Drawing.Size(504, 121);
+            this.panelControl2.TabIndex = 2;
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl3.Controls.Add(this.btnPrint);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelControl3.Location = new System.Drawing.Point(504, 0);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Padding = new System.Windows.Forms.Padding(5);
+            this.panelControl3.Size = new System.Drawing.Size(100, 121);
+            this.panelControl3.TabIndex = 3;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.labelController);
+            this.panelControl1.Controls.Add(this.txtOperator);
+            this.panelControl1.Controls.Add(this.lblFurnaceTime);
+            this.panelControl1.Controls.Add(this.labelProductionDate);
+            this.panelControl1.Controls.Add(this.dtProductDate);
+            this.panelControl1.Controls.Add(this.labelFurnaceTime);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(5, 5);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(926, 29);
+            this.panelControl1.TabIndex = 0;
             // 
             // ucFurnace
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.lblFurnaceTime);
-            this.Controls.Add(this.dtProductDate);
-            this.Controls.Add(this.tabCtrlDetail);
-            this.Controls.Add(this.grpCtrlCurrentInfo);
-            this.Controls.Add(this.labelFurnaceTime);
-            this.Controls.Add(this.labelProductionDate);
-            this.Controls.Add(this.txtOperator);
-            this.Controls.Add(this.labelController);
-            this.Controls.Add(this.grpCtrProductionInfo);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.splitContainerControl1);
+            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ucFurnace";
-            this.Size = new System.Drawing.Size(778, 326);
-            ((System.ComponentModel.ISupportInitialize)(this.grpCtrProductionInfo)).EndInit();
-            this.grpCtrProductionInfo.ResumeLayout(false);
+            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Size = new System.Drawing.Size(936, 487);
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOperator.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grpCtrlCurrentInfo)).EndInit();
-            this.grpCtrlCurrentInfo.ResumeLayout(false);
-            this.grpCtrlCurrentInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabCtrlDetail)).EndInit();
             this.tabCtrlDetail.ResumeLayout(false);
             this.tabPgBurden.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grpProductPara)).EndInit();
-            this.grpProductPara.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdProductPara)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdProductParaView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
+            this.splitContainerControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpBurdenInfo)).EndInit();
             this.grpBurdenInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdBurdenInfoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grpProductPara)).EndInit();
+            this.grpProductPara.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductPara)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductParaView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
+            this.panelControl4.ResumeLayout(false);
             this.tabPgSpectrum.ResumeLayout(false);
             this.tabPgMatieralAjustment.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdRowMaterial)).EndInit();
@@ -942,14 +1078,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
+            this.splitContainerControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.GroupControl grpCtrProductionInfo;
         private DevExpress.XtraEditors.LabelControl labelController;
         private DevExpress.XtraEditors.TextEdit txtOperator;
         private DevExpress.XtraEditors.LabelControl labelProductionDate;
@@ -957,7 +1102,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraGrid.GridControl grdCtrProductionInfo;
         private DevExpress.XtraGrid.Views.Grid.GridView grdCtrProductionInfoView;
-        private DevExpress.XtraEditors.GroupControl grpCtrlCurrentInfo;
         private DevExpress.XtraTab.XtraTabControl tabCtrlDetail;
         private DevExpress.XtraEditors.LabelControl labProductStartTimeResult;
         private DevExpress.XtraEditors.LabelControl labCurrentFurnaceResult;
@@ -1000,7 +1144,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private DevExpress.XtraEditors.SimpleButton btnRowMaterialSave;
         private DevExpress.XtraGrid.Columns.GridColumn colPrint;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn ColPWONo;
+        private DevExpress.XtraGrid.Columns.GridColumn ColMONumber;
         private DevExpress.XtraGrid.Columns.GridColumn ColMOLineNo;
         private DevExpress.XtraGrid.Columns.GridColumn ColT131Name;
         private DevExpress.XtraGrid.Columns.GridColumn ColT102Code;
@@ -1015,5 +1159,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl3;
+        private DevExpress.XtraEditors.PanelControl panelControl4;
     }
 }

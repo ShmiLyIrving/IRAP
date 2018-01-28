@@ -251,7 +251,7 @@ namespace IRAP.Client.GUI.MESPDC
                         }
                     }
 
-                    needCallOLTPUDFForm = outputStr.Contains("<OLTPDisalbed");
+                    needCallOLTPUDFForm = !outputStr.ToUpper().Contains("OLTPDISABLED");
                     outputStr = "";
                 }
                 catch (Exception err)
