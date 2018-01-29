@@ -6,23 +6,26 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using IRAP.Entities.MES;
 using System.Reflection;
+using System.Xml;
+using System.IO;
+
+using DevExpress.XtraEditors;
+using DevExpress.XtraVerticalGrid.Rows;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
+
 using IRAP.Global;
 using IRAP.WCF.Client.Method;
 using IRAP.Entity.UTS;
-using DevExpress.XtraGrid.Columns;
-using System.Xml;
-using IRAP.Client.GUI.MESPDC.Entities;
-using DevExpress.XtraVerticalGrid.Rows;
 using IRAP.Entities.IRAP;
 using IRAP.Client.User;
 using IRAP.Entities.MDM;
-using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraGrid.Views.Grid;
-using System.IO;
+using IRAP.Client.Global;
+using IRAP.Entities.MES;
 using IRAP.Client.Global.GUI.Dialogs;
+using IRAP.Client.GUI.MESPDC.Entities;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls {
     public partial class ucFurnace : XtraUserControl
@@ -33,6 +36,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this._productionParam = param;
             this._communityID = communityID;
             this._sysLogID = sysLogID;
+
+            dtProductDate.DateTime = DateTime.Now;
+
+            ucGrdSpectrum.SaveClick = ucGrdSpectrum_SaveClick;
+            ucGrdSample.SaveClick = ucGrdSample_SaveClick;
+            ucGrdBaked.SaveClick = ucGrdBaked_SaveClick;
         }
 
         #region 字段
@@ -1263,8 +1272,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         public void RefreshFurnace()
         {
             var smeltBatchProductionInfos = ReLoadProduction();
-            if (smeltBatchProductionInfos == null || 
-                smeltBatchProductionInfos.Count < 1 || 
+            if (smeltBatchProductionInfos == null ||
+                smeltBatchProductionInfos.Count < 1 ||
                 smeltBatchProductionInfos[0] == null)
             {
                 RefreshWithNoProduction();
@@ -1279,10 +1288,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 _ProductingNow = true;
                 if (!string.IsNullOrEmpty(currentInfo.OperatorCode))
                 {
-                    txtOperator.Text = 
+                    txtOperator.Text =
                         string.Format(
-                            "[{0}]{1}", 
-                            currentInfo.OperatorCode, 
+                            "[{0}]{1}",
+                            currentInfo.OperatorCode,
                             currentInfo.OperatorName);
                 }
                 _operatorCode = currentInfo.OperatorCode;
@@ -1461,7 +1470,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         private void dtProductDate_EditValueChanged(object sender, EventArgs e)
         {
-            RefreshFurnace();
+            try
+            {
+                //TWaitting.Instance.ShowWaitForm("正在刷新页面");
+
+                RefreshFurnace();
+            }
+            finally
+            {
+                //TWaitting.Instance.CloseWaitForm();
+            }
         }
 
         private void grdBurdenInfoView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
