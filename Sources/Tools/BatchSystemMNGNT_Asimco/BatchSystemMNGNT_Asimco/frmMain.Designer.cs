@@ -55,6 +55,7 @@
             this.grdclmnSKUID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnLogID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnExCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnTimeWritten = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnItemNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnLotNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnBinFrom = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -285,6 +286,7 @@
             this.grdclmnSKUID,
             this.grdclmnLogID,
             this.grdclmnExCode,
+            this.grdclmnTimeWritten,
             this.grdclmnItemNumber,
             this.grdclmnLotNumber,
             this.grdclmnBinFrom,
@@ -363,6 +365,16 @@
             this.grdclmnExCode.Visible = true;
             this.grdclmnExCode.VisibleIndex = 2;
             // 
+            // grdclmnTimeWritten
+            // 
+            this.grdclmnTimeWritten.Caption = "TimeWritten";
+            this.grdclmnTimeWritten.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.grdclmnTimeWritten.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.grdclmnTimeWritten.FieldName = "TimeWritten";
+            this.grdclmnTimeWritten.Name = "grdclmnTimeWritten";
+            this.grdclmnTimeWritten.Visible = true;
+            this.grdclmnTimeWritten.VisibleIndex = 3;
+            // 
             // grdclmnItemNumber
             // 
             this.grdclmnItemNumber.Caption = "ItemNumber";
@@ -372,7 +384,7 @@
             this.grdclmnItemNumber.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnItemNumber.OptionsColumn.AllowMove = false;
             this.grdclmnItemNumber.Visible = true;
-            this.grdclmnItemNumber.VisibleIndex = 3;
+            this.grdclmnItemNumber.VisibleIndex = 4;
             // 
             // grdclmnLotNumber
             // 
@@ -383,7 +395,7 @@
             this.grdclmnLotNumber.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnLotNumber.OptionsColumn.AllowMove = false;
             this.grdclmnLotNumber.Visible = true;
-            this.grdclmnLotNumber.VisibleIndex = 4;
+            this.grdclmnLotNumber.VisibleIndex = 5;
             // 
             // grdclmnBinFrom
             // 
@@ -394,7 +406,7 @@
             this.grdclmnBinFrom.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnBinFrom.OptionsColumn.AllowMove = false;
             this.grdclmnBinFrom.Visible = true;
-            this.grdclmnBinFrom.VisibleIndex = 5;
+            this.grdclmnBinFrom.VisibleIndex = 6;
             // 
             // grdclmnBinTo
             // 
@@ -405,7 +417,7 @@
             this.grdclmnBinTo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnBinTo.OptionsColumn.AllowMove = false;
             this.grdclmnBinTo.Visible = true;
-            this.grdclmnBinTo.VisibleIndex = 6;
+            this.grdclmnBinTo.VisibleIndex = 7;
             // 
             // grdclmnQuantity
             // 
@@ -419,7 +431,7 @@
             this.grdclmnQuantity.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnQuantity.OptionsColumn.AllowMove = false;
             this.grdclmnQuantity.Visible = true;
-            this.grdclmnQuantity.VisibleIndex = 7;
+            this.grdclmnQuantity.VisibleIndex = 8;
             // 
             // grdclmnOrderNo
             // 
@@ -430,7 +442,7 @@
             this.grdclmnOrderNo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnOrderNo.OptionsColumn.AllowMove = false;
             this.grdclmnOrderNo.Visible = true;
-            this.grdclmnOrderNo.VisibleIndex = 8;
+            this.grdclmnOrderNo.VisibleIndex = 9;
             // 
             // grdclmnOrderLineNo
             // 
@@ -441,7 +453,7 @@
             this.grdclmnOrderLineNo.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnOrderLineNo.OptionsColumn.AllowMove = false;
             this.grdclmnOrderLineNo.Visible = true;
-            this.grdclmnOrderLineNo.VisibleIndex = 9;
+            this.grdclmnOrderLineNo.VisibleIndex = 10;
             // 
             // grdclmnLinkedLogID
             // 
@@ -453,7 +465,7 @@
             this.grdclmnLinkedLogID.Name = "grdclmnLinkedLogID";
             this.grdclmnLinkedLogID.OptionsColumn.AllowEdit = false;
             this.grdclmnLinkedLogID.Visible = true;
-            this.grdclmnLinkedLogID.VisibleIndex = 10;
+            this.grdclmnLinkedLogID.VisibleIndex = 11;
             // 
             // grdclmnRetry
             // 
@@ -901,5 +913,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnRetry;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnErrCode;
         private DevExpress.XtraEditors.SimpleButton btnClearCondition;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnTimeWritten;
     }
 }

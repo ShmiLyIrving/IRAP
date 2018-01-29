@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IRAP.Global;
+
 namespace BatchSystemMNGNT_Asimco.Entities
 {
-    public class TEntityXMLPORV01
+    public class TEntityXMLPORV01 : IXMLNodeObject
     {
         public string AgencyLeaf { get; set; }
         public string SysLogID { get; set; }
@@ -33,5 +35,10 @@ namespace BatchSystemMNGNT_Asimco.Entities
         public string FirstReceiptDate { get; set; }
         public string PromisedDate { get; set; }
         public string POReceiptDate { get; set; }
+
+        public string GetXMLString()
+        {
+            return IRAPXMLUtils.ObjectToXMLString(this, "Parameters", "Param");
+        }
     }
 }

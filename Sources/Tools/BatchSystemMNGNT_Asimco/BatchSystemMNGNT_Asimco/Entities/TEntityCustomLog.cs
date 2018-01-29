@@ -262,7 +262,7 @@ namespace BatchSystemMNGNT_Asimco.Entities
                             {
                                 if (logWait4Exec.ErrCode == 0)
                                 {
-                                    MSGHelp.Instance.ShowNormalMessage("手工处理成功，稍后进行后续处理");
+                                    //MSGHelp.Instance.ShowNormalMessage("手工处理成功，稍后进行后续处理");
                                     AfterExecute(logWait4Exec);
                                 }
                                 else

@@ -60,10 +60,10 @@ namespace BatchSystemMNGNT_Asimco.Entities
 
         protected override void AfterExecute(TEntityCustomLog log)
         {
-            if (log.ErrCode == 0 && log.Retried)
+            if (log.ErrCode == 0)
             {
                 string[] splitString = log.ErrText.Split(',');
-                string recvBatchNo = splitString[49];
+                string recvBatchNo = splitString[49].Replace("\"", "");
 
                 string strSQL =
                     "UPDATE IRAPRIMCS..utb_MaterialStore " +
