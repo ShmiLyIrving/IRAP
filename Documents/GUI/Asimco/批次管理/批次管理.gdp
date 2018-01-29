@@ -26,11 +26,19 @@
 			ViewSettings = ""/>
 		<File
 			RootPath = "$Container"
-			RelativePathname = ".\铸环车间-理化检验.gui"
+			RelativePathname = ".\铸环车间-熔炼与造型排程.gui"
 			ViewSettings = ""/>
 		<File
 			RootPath = "$Container"
-			RelativePathname = ".\铸环车间-熔炼与造型排程.gui"
+			RelativePathname = ".\铸环车间-理化检验.gui"
+			ViewSettings = ""/>
+		<File
+			RootPath = "$Absolute"
+			RelativePathname = "\\vmware-host\Shared Folders\文稿\工作\客户\亚新科双环\批次系统\铸环车间-理化检验2.gui"
+			ViewSettings = ""/>
+		<File
+			RootPath = "$Absolute"
+			RelativePathname = "\\vmware-host\Shared Folders\文稿\工作\客户\亚新科双环\批次系统\铸环车间-理化检验.gui"
 			ViewSettings = ""/>
 	</OpenFiles>
 </Project>
