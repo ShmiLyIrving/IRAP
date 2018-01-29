@@ -32,7 +32,7 @@ namespace IRAPGeneralGateway
         /// <summary>
         /// 每秒允许的最大客户端连接数
         /// </summary>
-        private int _maxConnectedPerSecond = 0;
+        private int _maxConnectedPerSecond = 10;
         /// <summary>
         /// 当前服务连接的数据库类型
         /// </summary>
@@ -129,7 +129,7 @@ namespace IRAPGeneralGateway
                 strBytes =
                     Encoding.UTF8.GetBytes(
                         string.Format(
-                            "{ErrCode:999999,ErrText:'{0}'}",
+                            "{ErrCode:999998,ErrText:'{0}'}",
                             error.Message));
             }
 
@@ -222,7 +222,7 @@ namespace IRAPGeneralGateway
                     // 记录日志
                     WriteLog.Instance.Write(
                         string.Format(
-                            "客户端：[{0}|{1}]连接数量超过最大允许数量[{2]]",
+                            "客户端：[{0}|{1}]连接数量超过最大允许数量[{2}]",
                             clientID,
                             exCode,
                             _maxConnectedPerSecond),
