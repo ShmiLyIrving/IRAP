@@ -121,17 +121,71 @@
   <data name="gpxESBParams.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="edtExCode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="edtFilter.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="edtFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 98</value>
+  </data>
+  <data name="edtFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>374, 21</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="edtFilter.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;edtFilter.Name" xml:space="preserve">
+    <value>edtFilter</value>
+  </data>
+  <data name="&gt;&gt;edtFilter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;edtFilter.Parent" xml:space="preserve">
+    <value>gpxESBParams</value>
+  </data>
+  <data name="&gt;&gt;edtFilter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 101</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Filter：</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>gpxESBParams</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="edtExCode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="edtExCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 71</value>
   </data>
   <data name="edtExCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>374, 21</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="edtExCode.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -145,7 +199,7 @@
     <value>gpxESBParams</value>
   </data>
   <data name="&gt;&gt;edtExCode.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -175,7 +229,7 @@
     <value>gpxESBParams</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="edtQueueName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -199,7 +253,7 @@
     <value>gpxESBParams</value>
   </data>
   <data name="&gt;&gt;edtQueueName.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="lblQueueName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -226,7 +280,7 @@
     <value>gpxESBParams</value>
   </data>
   <data name="&gt;&gt;lblQueueName.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="edtBrokeURI.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -250,7 +304,7 @@
     <value>gpxESBParams</value>
   </data>
   <data name="&gt;&gt;edtBrokeURI.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="lblBrokeURI.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -277,13 +331,13 @@
     <value>gpxESBParams</value>
   </data>
   <data name="&gt;&gt;lblBrokeURI.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="gpxESBParams.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
   </data>
   <data name="gpxESBParams.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 103</value>
+    <value>492, 133</value>
   </data>
   <data name="gpxESBParams.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -307,7 +361,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="btnSwitch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 342</value>
+    <value>3, 375</value>
   </data>
   <data name="btnSwitch.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 23</value>
@@ -388,7 +442,7 @@
     <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 121</value>
+    <value>12, 151</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>492, 51</value>
@@ -418,7 +472,7 @@
     <value>True</value>
   </data>
   <data name="chkWriteLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 337</value>
+    <value>46, 370</value>
   </data>
   <data name="chkWriteLog.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 16</value>
@@ -445,7 +499,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>348, 333</value>
+    <value>348, 366</value>
   </data>
   <data name="btnOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -475,7 +529,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 333</value>
+    <value>429, 366</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -893,7 +947,7 @@
     <value>13</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 178</value>
+    <value>12, 208</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>492, 143</value>
@@ -929,7 +983,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>516, 368</value>
+    <value>516, 401</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>新宋体, 9pt</value>

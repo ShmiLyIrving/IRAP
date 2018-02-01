@@ -46,6 +46,15 @@ namespace IRAP.PLC.Collection
             get { return IniFile.ReadString("ActiveMQ", "ExCode", "", attrFileName); }
             set { IniFile.WriteString("ActiveMQ", "ExCode", value, attrFileName); }
         }
+
+        /// <summary>
+        /// 设备编号
+        /// </summary>
+        public string Filter
+        {
+            get { return IniFile.ReadString("ActiveMQ", "Filter", "", attrFileName); }
+            set { IniFile.WriteString("ActiveMQ", "Filter", value, attrFileName); }
+        }
         /// <summary>
         /// 程序自动更新配置文件来源
         /// </summary>

@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSystemParams));
             this.gpxESBParams = new System.Windows.Forms.GroupBox();
+            this.edtFilter = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.edtExCode = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.edtQueueName = new System.Windows.Forms.TextBox();
             this.lblQueueName = new System.Windows.Forms.Label();
             this.edtBrokeURI = new System.Windows.Forms.TextBox();
@@ -57,8 +61,6 @@
             this.edtT133Code = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.label9 = new System.Windows.Forms.Label();
-            this.edtExCode = new System.Windows.Forms.TextBox();
             this.gpxESBParams.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -68,6 +70,8 @@
             // gpxESBParams
             // 
             resources.ApplyResources(this.gpxESBParams, "gpxESBParams");
+            this.gpxESBParams.Controls.Add(this.edtFilter);
+            this.gpxESBParams.Controls.Add(this.label10);
             this.gpxESBParams.Controls.Add(this.edtExCode);
             this.gpxESBParams.Controls.Add(this.label9);
             this.gpxESBParams.Controls.Add(this.edtQueueName);
@@ -76,6 +80,28 @@
             this.gpxESBParams.Controls.Add(this.lblBrokeURI);
             this.gpxESBParams.Name = "gpxESBParams";
             this.gpxESBParams.TabStop = false;
+            // 
+            // edtFilter
+            // 
+            resources.ApplyResources(this.edtFilter, "edtFilter");
+            this.edtFilter.Name = "edtFilter";
+            this.edtFilter.Validated += new System.EventHandler(this.edtFilter_Validated);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // edtExCode
+            // 
+            resources.ApplyResources(this.edtExCode, "edtExCode");
+            this.edtExCode.Name = "edtExCode";
+            this.edtExCode.Validated += new System.EventHandler(this.edtExCode_Validated);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
             // 
             // edtQueueName
             // 
@@ -259,17 +285,6 @@
             this.openFileDialog.FileName = "openFileDialog1";
             resources.ApplyResources(this.openFileDialog, "openFileDialog");
             // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // edtExCode
-            // 
-            resources.ApplyResources(this.edtExCode, "edtExCode");
-            this.edtExCode.Name = "edtExCode";
-            this.edtExCode.Validated += new System.EventHandler(this.edtExCode_Validated);
-            // 
             // frmSystemParams
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -331,5 +346,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox edtExCode;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox edtFilter;
+        private System.Windows.Forms.Label label10;
     }
 }

@@ -73,6 +73,7 @@ namespace IRAP.PLC.Collection
             edtLastCheckPoint.Value = SystemParams.Instance.BeginDT;
             edtT216Code.Text = SystemParams.Instance.T216Code;
             edtExCode.Text = SystemParams.Instance.ExCode;
+            edtFilter.Text = SystemParams.Instance.Filter;
         }
 
         private void edtBrokeURI_Validated(object sender, EventArgs e)
@@ -146,6 +147,11 @@ namespace IRAP.PLC.Collection
         private void edtExCode_Validated(object sender, EventArgs e)
         {
             SystemParams.Instance.ExCode = edtExCode.Text;
+        }
+
+        private void edtFilter_Validated(object sender, EventArgs e)
+        {
+            SystemParams.Instance.Filter = edtFilter.Text;
         }
     }
 

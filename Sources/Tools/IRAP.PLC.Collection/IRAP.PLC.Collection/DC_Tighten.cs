@@ -36,8 +36,8 @@ namespace IRAP.PLC.Collection
             DataTable dt = GetData(sql);
 
             XmlDocument xml = new XmlDocument();
-            XmlNode node = xml.CreateXmlDeclaration("1.0", "utf-8", "");
-            xml.AppendChild(node);
+            //XmlNode node = xml.CreateXmlDeclaration("1.0", "utf-8", "");
+            //xml.AppendChild(node);
 
             if (dt != null &&
                 dt.Rows.Count > 0)
@@ -89,6 +89,8 @@ namespace IRAP.PLC.Collection
                 node.Attributes.Append(CreateAttr(xml, "传感器压装压力", dr["传感器压装压力"].ToString().Trim()));
                 node.Attributes.Append(CreateAttr(xml, "传感器电压", dr["传感器电压"].ToString().Trim()));
                 node.Attributes.Append(CreateAttr(xml, "拧紧枪扭矩", dr["拧紧枪扭矩"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "拧紧枪角度", dr["拧紧枪角度"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "批次", dr["批次"].ToString().Trim()));
                 node.Attributes.Append(CreateAttr(xml, "测试员", dr["测试员"].ToString().Trim()));
             }
             catch(Exception e)

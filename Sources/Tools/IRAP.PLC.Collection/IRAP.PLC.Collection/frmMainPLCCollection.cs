@@ -134,7 +134,12 @@ namespace IRAP.PLC.Collection
                 return;
             }
             else
+            {
                 dataCollect.StartWatch();
+                btnStart.Enabled = false;
+                btnStop.Enabled = true;
+            }
+                
         }
 
         private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -155,7 +160,11 @@ namespace IRAP.PLC.Collection
             if (dataCollect != null)
             {
                 if (dataCollect.Enabled)
+                {
                     dataCollect.Enabled = false;
+                    btnStart.Enabled = true;
+                    btnStop.Enabled = false;
+                }
             }
         }
 

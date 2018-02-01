@@ -194,15 +194,17 @@ namespace IRAP.PLC.Collection
                 }
 
                 ITextMessage message = prod.CreateTextMessage();
-                message.Text = FormatXML(xml);
-                message.Properties.SetString("Filter", "BWI");
+                message.Text = FormatXML(xml); 
                 message.Properties.SetString("ESBServerAddr", "");
                 if (!string.IsNullOrEmpty(SystemParams.Instance.ExCode))
                 {
                     message.Properties.SetString("ExCode", SystemParams.Instance.ExCode);
+                    message.Properties.SetString("Filter", SystemParams.Instance.Filter);
+                    message.NMSCorrelationID = TimeParser.LocalTimeToUnix(DateTime.Now).ToString();
                 }
                 else
                 {
+                    message.Properties.SetString("Filter", "BWI");
                     message.Properties.SetString("ExCode", "MES2DPA");
                 }
                 message.NMSType = "XML";

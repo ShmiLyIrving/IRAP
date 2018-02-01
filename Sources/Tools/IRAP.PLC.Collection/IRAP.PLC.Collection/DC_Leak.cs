@@ -37,8 +37,8 @@ namespace IRAP.PLC.Collection
             DataTable dt = GetData(sql);
 
             XmlDocument xml = new XmlDocument();
-            XmlNode node = xml.CreateXmlDeclaration("1.0", "utf-8", "");
-            xml.AppendChild(node);
+            //XmlNode node = xml.CreateXmlDeclaration("1.0", "utf-8", "");
+            //xml.AppendChild(node);
 
             if (dt != null &&
                 dt.Rows.Count > 0)
@@ -90,6 +90,7 @@ namespace IRAP.PLC.Collection
                 node.Attributes.Append(CreateAttr(xml, "流量测试值L_min", dr["流量测试值L_min"].ToString().Trim()));
                 node.Attributes.Append(CreateAttr(xml, "流量测试压损KPa", dr["流量测试压损KPa"].ToString().Trim()));
                 node.Attributes.Append(CreateAttr(xml, "工件号Num", dr["工件号Num"].ToString().Trim()));
+                node.Attributes.Append(CreateAttr(xml, "批次", dr["批次"].ToString().Trim()));
                 node.Attributes.Append(CreateAttr(xml, "转盘号Num", dr["转盘号Num"].ToString().Trim()));
             }
             catch(Exception e)
