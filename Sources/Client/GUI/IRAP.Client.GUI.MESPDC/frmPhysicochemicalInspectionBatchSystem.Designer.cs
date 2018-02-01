@@ -289,6 +289,7 @@
             // 
             // edtFileName
             // 
+            this.edtFileName.Enabled = false;
             this.edtFileName.Location = new System.Drawing.Point(101, 5);
             this.edtFileName.Name = "edtFileName";
             this.edtFileName.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

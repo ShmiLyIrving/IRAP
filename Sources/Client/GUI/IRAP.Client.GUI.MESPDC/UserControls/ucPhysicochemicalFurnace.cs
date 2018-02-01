@@ -69,20 +69,19 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             string strbaser64 = "";
             try
             {
-                Bitmap bmp = new Bitmap(imagefile);
-                MemoryStream ms = new MemoryStream();
-                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                byte[] arr = new byte[ms.Length];
-                ms.Position = 0;
-                ms.Read(arr, 0, (int)ms.Length);
-                ms.Close();
-                strbaser64 = Convert.ToBase64String(arr);
+                byte[] Buffer = File.ReadAllBytes(imagefile);
+                strbaser64 = Convert.ToBase64String(Buffer);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception("Something wrong during convert!");
+                throw new Exception("转换图片时发生错误:"+e.Message.ToString());
             }
             return strbaser64;
+        }
+        private void GetImageFromBase64(string base64string)
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64string);
+            File.WriteAllBytes(@"c:\test.Pdf", imageBytes);
         }
         /// <summary>
         /// 生成理化检验值临时表
@@ -128,8 +127,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     }
                 }
                 inspectionidx = items[0].ItemValues.Count;
-                this.vgrdInspectParams.DataSource = dtInspection;
                 _readOnlyCount = dtInspection.Rows.Count;
+                this.vgrdInspectParams.DataSource = dtInspection;          
                 this.vgrdInspectParams.BestFit();
             }
         }

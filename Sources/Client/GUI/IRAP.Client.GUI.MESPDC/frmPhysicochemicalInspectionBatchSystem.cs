@@ -30,9 +30,7 @@ namespace IRAP.Client.GUI.MESPDC
         private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace();
         private UserControls.ucPhysicochemicalFurnace ucLQLH = new UserControls.ucPhysicochemicalFurnace();
         private UserControls.ucPhysicochemicalFurnace ucLHLH = new UserControls.ucPhysicochemicalFurnace();
-       
-        public static string currentbase64;
-        
+      
         public frmPhysicochemicalInspectionBatchSystem()
         {
             InitializeComponent();
@@ -57,7 +55,7 @@ namespace IRAP.Client.GUI.MESPDC
         private void edtFileName_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             openFileDialog.Title = "选择要上传的文件";
-            openFileDialog.Filter = "照片(*.jpg;*jpeg;*.png)|*.jpg;*jpeg;*.png|所有文件(*.*)|*.*";
+            openFileDialog.Filter = "照片(*.pdf)|*.pdf";
             if (openFileDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
@@ -67,33 +65,8 @@ namespace IRAP.Client.GUI.MESPDC
                 edtFileName.Text = openFileDialog.FileName;
             }
         }
-        private Bitmap GetImageFromBase64(string base64string)
-        {
-            byte[] b = Convert.FromBase64String(base64string);
-            MemoryStream ms = new MemoryStream(b);
-            Bitmap bitmap = new Bitmap(ms);
-            return bitmap;
-        }
-        private string GetBase64FromImage(string imagefile)
-        {
-            string strbaser64 = "";
-            try
-            {
-                Bitmap bmp = new Bitmap(imagefile);
-                MemoryStream ms = new MemoryStream();
-                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                byte[] arr = new byte[ms.Length];
-                ms.Position = 0;
-                ms.Read(arr, 0, (int)ms.Length);
-                ms.Close();
-                strbaser64 = Convert.ToBase64String(arr);
-            }
-            catch (Exception)
-            {
-                throw new Exception("Something wrong during convert!");
-            }
-            return strbaser64;
-        }
+  
+       
         private void edtBatchNo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
