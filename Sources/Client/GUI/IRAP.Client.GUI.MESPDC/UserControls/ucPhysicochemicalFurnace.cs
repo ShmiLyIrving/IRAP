@@ -16,6 +16,7 @@ using IRAP.Global;
 using IRAP.WCF.Client.Method;
 using IRAP.Client.User;
 using System.Xml;
+using System.IO;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls
 {
@@ -23,27 +24,65 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
-        private DataTable dtInspection = new DataTable();
-        private string optype;
+        private DataTable dtInspection = new DataTable();        
         private List<SmeltInspectionItem> inspectionItems = new List<SmeltInspectionItem>();
         private OrderInfo pwo;
         private int inspectionidx = 0;
-
+        private int _readOnlyCount = 0;
+        public delegate void RefreshPath(bool enabled,string path);
+        public RefreshPath refreshpath;
+        public int ReadOnlyCount
+        {
+            get { return _readOnlyCount; }
+            set { _readOnlyCount = value; }
+        }
+        
+        private string optype;
         public string Optype
         {
-            get
-            {
-                return optype;
-            }
-
-            set
-            {
-                optype = value;
-            }
+            get{ return optype; }
+            set{ optype = value; }
         }
+        [Browsable(true)]
+        public DataTable DataSource
+        {
+            get { return this.vgrdInspectParams.DataSource as DataTable; }
+            set { this.vgrdInspectParams.DataSource = value; }
+        }
+        private Dictionary<int,string> photos = new Dictionary<int, string>();
+        public Dictionary<int,string> Photos
+        {
+            get { return photos; }
+            set { photos = value; }
+        }
+        public int Rowidx
+        {
+            get { return this.vgrdInspectParams.FocusedRecord+1-ReadOnlyCount; }
+        }
+
         public ucPhysicochemicalFurnace()
         {
             InitializeComponent();
+        }
+        private string GetBase64FromImage(string imagefile)
+        {
+            string strbaser64 = "";
+            try
+            {
+                Bitmap bmp = new Bitmap(imagefile);
+                MemoryStream ms = new MemoryStream();
+                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] arr = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(arr, 0, (int)ms.Length);
+                ms.Close();
+                strbaser64 = Convert.ToBase64String(arr);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Something wrong during convert!");
+            }
+            return strbaser64;
         }
         /// <summary>
         /// 生成理化检验值临时表
@@ -90,6 +129,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 }
                 inspectionidx = items[0].ItemValues.Count;
                 this.vgrdInspectParams.DataSource = dtInspection;
+                _readOnlyCount = dtInspection.Rows.Count;
                 this.vgrdInspectParams.BestFit();
             }
         }
@@ -186,20 +226,43 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             if (frmPhysicochemicalInspectionBatchSystem.currentBatchNo == null)
             {
                 btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                btnModify.Enabled = false;
                 btn_save.Enabled = false;
             }
             else
             {
-
                 if (vgrdInspectParams.Rows.Count > 0)
                 {
                     btnAdd.Enabled = true;
-                    btn_save.Enabled = true;
+                    int idx = this.vgrdInspectParams.FocusedRecord;                    
+                    if(frmPhysicochemicalInspectionBatchSystem.saveState == true)
+                    {
+                        btnModify.Enabled = false;
+                        btnDelete.Enabled = false;
+                        btn_save.Enabled = false;
+                    }
+                    else
+                    {
+                        btn_save.Enabled = true;
+                        if (idx>=0 && idx < _readOnlyCount)
+                        {
+                            btnModify.Enabled = false;
+                            btnDelete.Enabled = false;
+                        }
+                        else
+                        {
+                            btnModify.Enabled = true;
+                            btnDelete.Enabled = true;
+                        }                                          
+                    }
                 }
                 else
                 {
                     btnAdd.Enabled = false;
                     btn_save.Enabled = false;
+                    btnDelete.Enabled = false;
+                    btnModify.Enabled = false;
                 }
             }
         }
@@ -283,7 +346,93 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 if (formEditor.ShowDialog() == DialogResult.OK)
                 {
                     vgrdInspectParams.RefreshDataSource();
+                    vgrdInspectParams.FocusedRecord = vgrdInspectParams.RecordCount - 1;                  
                     frmPhysicochemicalInspectionBatchSystem.saveState = false;
+                    RefreshCtrl();
+                }
+            }
+        }
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (dtInspection.Columns.Count < 0)
+            {
+                XtraMessageBox.Show(
+                    "当前没有配置检验项",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            int idx = this.vgrdInspectParams.FocusedRecord;
+            if (idx < _readOnlyCount)
+            {
+                return;
+            }
+            if (idx >= 0)
+            {
+                using (Dialogs.frmNoneblankEditor formEditor =
+                new Dialogs.frmNoneblankEditor(
+                    EditStatus.Edit,
+                    "修改",
+                    dtInspection,
+                    idx))
+                {
+                    if (formEditor.ShowDialog() == DialogResult.OK)
+                    {
+                        vgrdInspectParams.RefreshDataSource();
+                        frmPhysicochemicalInspectionBatchSystem.saveState = false;
+                        RefreshCtrl();
+                    }
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dtInspection.Columns.Count < 0)
+            {
+                XtraMessageBox.Show(
+                    "当前没有配置检验项",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            int idx = this.vgrdInspectParams.FocusedRecord;
+            if (idx < _readOnlyCount)
+            {
+                return;
+            }
+            if (idx >= 0)
+            {
+                if (XtraMessageBox.Show(
+                    string.Format(
+                        "是否要删除选择的第[{0}]组参数值？",
+                        idx + 1),
+                    "",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    dtInspection.Rows.RemoveAt(idx);
+                    int rowidx = idx + 1 - ReadOnlyCount;
+                    for(int i =rowidx;i<photos.Count;i++)
+                    {
+                        photos.Remove(rowidx);
+                        photos.Add(rowidx, photos[rowidx + 1]);
+                    }
+                    photos.Remove(photos.Count);
+                    this.vgrdInspectParams.RefreshDataSource();
+                    if(dtInspection.Rows.Count == _readOnlyCount)
+                    {
+                        frmPhysicochemicalInspectionBatchSystem.saveState = true;
+                    }
+                    else
+                    {
+                        frmPhysicochemicalInspectionBatchSystem.saveState = false;
+                    }
+                    RefreshCtrl();
+                    RefreshpathCtrl();
                 }
             }
         }
@@ -431,12 +580,21 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 string errText = "";
 
                 string RSFact = GenerateRSFactXML();
-                if (!string.IsNullOrEmpty(frmPhysicochemicalInspectionBatchSystem.currentbase64))
+                if (photos.Count>0)
                 {
                     XmlDocument xdoc = new XmlDocument();
                     xdoc.LoadXml(RSFact);
-                    xdoc.FirstChild.FirstChild.Attributes["IQCReport"].InnerText = 
-                        frmPhysicochemicalInspectionBatchSystem.currentbase64;
+                    foreach (var photo in photos)
+                    {
+                        foreach (XmlNode node in xdoc.FirstChild.ChildNodes)
+                        {
+                            if (node.Attributes["RowNum"].Value == photo.Key.ToString() && node.Attributes["Ordinal"].Value=="1")
+                            {
+                                node.Attributes["IQCReport"].InnerText = GetBase64FromImage(photo.Value);
+                                break;
+                            }
+                        }
+                    }
                     RSFact = xdoc.InnerXml;
                 }
                 IRAPMESSmeltClient.Instance.usp_SaveFact_SmeltBatchInspecting(
@@ -468,7 +626,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         "提示信息",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-                    frmPhysicochemicalInspectionBatchSystem.currentbase64 = "";
+
+                    photos.Clear();
                     return true;
                 }
             }
@@ -502,6 +661,31 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
             rlt = string.Format("<RSFact>{0}</RSFact>", rlt);
             return rlt;
+        }
+        private void RefreshpathCtrl()
+        {
+            int idx = vgrdInspectParams.FocusedRecord;
+            string path = "";
+            if (idx < ReadOnlyCount)
+            {
+                refreshpath(false, path);
+            }
+            else
+            {
+                if (photos != null && photos.Count > 0)
+                {
+                    photos.TryGetValue(idx + 1 - ReadOnlyCount, out path);
+                }
+                refreshpath(true, path);
+            }
+        }
+        private void vgrdInspectParams_FocusedRecordChanged(object sender, DevExpress.XtraVerticalGrid.Events.IndexChangedEventArgs e)
+        {
+            RefreshCtrl();
+            if (optype == "MPLH")
+            {
+                RefreshpathCtrl();
+            }
         }
     }
 }

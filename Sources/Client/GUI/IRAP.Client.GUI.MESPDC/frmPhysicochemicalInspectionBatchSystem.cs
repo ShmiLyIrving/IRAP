@@ -26,9 +26,11 @@ namespace IRAP.Client.GUI.MESPDC
         public static string currentBatchNo = null;
         public static string currentOpType;
         public static bool saveState = true;//是否已保存
+
+        private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace();
         private UserControls.ucPhysicochemicalFurnace ucLQLH = new UserControls.ucPhysicochemicalFurnace();
         private UserControls.ucPhysicochemicalFurnace ucLHLH = new UserControls.ucPhysicochemicalFurnace();
-        private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace();
+       
         public static string currentbase64;
         
         public frmPhysicochemicalInspectionBatchSystem()
@@ -44,8 +46,14 @@ namespace IRAP.Client.GUI.MESPDC
             tcMain.TabPages[2].Controls["plMPLH"].Controls["scMPLH"].Controls[1].Controls.Add(ucMPLH);
             ucMPLH.Dock = DockStyle.Fill;
             ucMPLH.Optype = "MPLH";
+            ucMPLH.refreshpath = Refreshphoto;
         }
 
+        private void Refreshphoto(bool enabled,string path)
+        {
+            this.edtFileName.Enabled = enabled;
+            edtFileName.Text = path;
+        }
         private void edtFileName_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             openFileDialog.Title = "选择要上传的文件";
@@ -243,10 +251,6 @@ namespace IRAP.Client.GUI.MESPDC
                 }
             }
         }
-        private void edtFileName_EditValueChanged(object sender, EventArgs e)
-        {
-            
-        }
 
         private void edtFileName_Validating(object sender, CancelEventArgs e)
         {
@@ -254,7 +258,7 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 if (File.Exists(edtFileName.Text))
                 {
-                    currentbase64 = GetBase64FromImage(edtFileName.Text);
+                    ucMPLH.Photos.Add(ucMPLH.Rowidx, edtFileName.Text);
                 }
                 else
                 {
