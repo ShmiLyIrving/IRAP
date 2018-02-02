@@ -224,14 +224,18 @@ namespace IRAP.Client.GUI.MESPDC
                 }
             }
         }
-
         private void edtFileName_Validating(object sender, CancelEventArgs e)
         {
             if (!string.IsNullOrEmpty(edtFileName.Text))
             {
                 if (File.Exists(edtFileName.Text))
                 {
-                    ucMPLH.Photos.Add(ucMPLH.Rowidx, edtFileName.Text);
+                    int idx = ucMPLH.Rowidx;
+                    if (ucMPLH.Photos.Keys.Contains(idx))
+                    {
+                        ucMPLH.Photos.Remove(idx);
+                    }
+                    ucMPLH.Photos.Add(idx, edtFileName.Text);                   
                 }
                 else
                 {
