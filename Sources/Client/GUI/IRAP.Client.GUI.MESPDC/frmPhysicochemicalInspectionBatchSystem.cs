@@ -205,6 +205,7 @@ namespace IRAP.Client.GUI.MESPDC
         private void grdvPWOs_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
         {
             edtFileName.Text = "";
+
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
             if (idx >= 0 && idx < pwos.Count)
             {

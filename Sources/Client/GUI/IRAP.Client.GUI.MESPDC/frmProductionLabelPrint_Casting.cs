@@ -201,6 +201,7 @@ namespace IRAP.Client.GUI.MESPDC
                 this.lblFurnaceTime.Tag = null;
                 return;
             }
+            this.dtProductDate.ErrorText = null;
             string date = this.dtProductDate.EditValue == null ? null : this.dtProductDate.EditValue.ToString();
             List<WaitingSmelt> furnaces = GetWaitingSmelts(date);
             if (furnaces == null || furnaces.Count == 0 || furnaces[0] == null)

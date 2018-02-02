@@ -91,8 +91,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         {
             dtInspection.Clear();
             dtInspection.Columns.Clear();
-
             vgrdInspectParams.Rows.Clear();
+            photos.Clear();
             if (items.Count > 0)
             {
                 foreach (var item in items)
