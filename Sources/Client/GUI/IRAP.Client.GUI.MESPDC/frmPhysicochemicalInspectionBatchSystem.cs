@@ -227,11 +227,12 @@ namespace IRAP.Client.GUI.MESPDC
         }
         private void edtFileName_Validating(object sender, CancelEventArgs e)
         {
+            int idx = ucMPLH.Rowidx;
             if (!string.IsNullOrEmpty(edtFileName.Text))
             {
                 if (File.Exists(edtFileName.Text))
                 {
-                    int idx = ucMPLH.Rowidx;
+                    
                     if (ucMPLH.Photos.Keys.Contains(idx))
                     {
                         ucMPLH.Photos.Remove(idx);
@@ -246,6 +247,10 @@ namespace IRAP.Client.GUI.MESPDC
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
+            }
+            else if(edtFileName.Text =="")
+            {
+                ucMPLH.Photos.Remove(idx);
             }
         }
     }

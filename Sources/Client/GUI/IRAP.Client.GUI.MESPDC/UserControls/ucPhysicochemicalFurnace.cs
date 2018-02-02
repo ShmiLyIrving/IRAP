@@ -95,7 +95,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             photos.Clear();
             if (items.Count > 0)
             {
-                foreach (var item in items)
+                foreach (SmeltInspectionItem item in items)
                 {
                     string colName = string.Format("Column{0}", item.Ordinal);
                     DataColumn dc = dtInspection.Columns.Add(colName, typeof(string));
@@ -583,7 +583,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 {
                     XmlDocument xdoc = new XmlDocument();
                     xdoc.LoadXml(RSFact);
-                    foreach (var photo in photos)
+                    foreach (KeyValuePair<int,string> photo in photos)
                     {
                         foreach (XmlNode node in xdoc.FirstChild.ChildNodes)
                         {

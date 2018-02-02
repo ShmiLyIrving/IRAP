@@ -131,7 +131,7 @@ namespace IRAP.Client.GUI.MESPDC
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                var orderInfo = IRAPMESProductionClient.Instance.GetOrderInfo(_communityID, this.lblFurnaceTime.Text, _sysLogID,
+                List<OrderInfo> orderInfo = IRAPMESProductionClient.Instance.GetOrderInfo(_communityID, this.lblFurnaceTime.Text, _sysLogID,
                     out errCode, out errText);
                 if (errCode != 0)
                 {
@@ -238,7 +238,7 @@ namespace IRAP.Client.GUI.MESPDC
                 MemoryStream ms;
                 ms = new MemoryStream(Properties.Resources.双环_铸造产品标识卡);
                 _report.Load(ms);
-                foreach (var item in data)
+                foreach (OrderInfo item in data)
                 {
                     if (item.IsPrint)
                     {
@@ -262,7 +262,5 @@ namespace IRAP.Client.GUI.MESPDC
             RefreshOrderInfo();
         }
         #endregion
-
-
     }
 }
