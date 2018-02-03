@@ -986,11 +986,37 @@ namespace IRAP.Client.GUI.MESPDC
         {
             if (sender is SimpleButton)
             {
+                string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+
                 SimpleButton button = sender as SimpleButton;
                 try
                 {
                     button.Enabled = false;
-                    busUDFForm.PrintLabel();
+
+                    if (busUDFForm.OutputStr != "")
+                    {
+                        object tag = null;
+                        try
+                        {
+                            UDFActions.DoActions(
+                                busUDFForm.OutputStr,
+                                new ExtendEventHandler(RefreshForm),
+                                ref tag);
+                        }
+                        catch (Exception error)
+                        {
+                            WriteLog.Instance.Write(
+                                string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                                    error.Message,
+                                    error.StackTrace),
+                                strProcedureName);
+                            xucIRAPListView.WriteLog(-1, error.Message, DateTime.Now);
+                        }
+                    }
                 }
                 finally
                 {
