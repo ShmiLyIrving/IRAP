@@ -130,9 +130,16 @@ namespace IRAP.Client.GUI.MESPDC
                     grdPWOs.DataSource = null;
                     pwos.Clear();
                     pwos = GetPWOWithBatchNo(currentBatchNo);
-                    if(pwos==null||pwos.Count == 0)
+                    if (pwos == null || pwos.Count == 0)
                     {
                         ucMPLH.RefreshUC(null);
+                        XtraMessageBox.Show(
+                            string.Format(
+                                "根据炉次号[{0}]无法找到生产信息，可能该炉次号不存在或还未开始生产",
+                                frmPhysicochemicalInspectionBatchSystem.currentBatchNo),
+                            "提示信息",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                     grdPWOs.DataSource = pwos;
                     grdPWOs.RefreshDataSource();
