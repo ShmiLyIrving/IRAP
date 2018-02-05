@@ -35,7 +35,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this._communityID = communityID;
             this._sysLogID = sysLogID;
 
-            dtProductDate.DateTime = DateTime.Now;
+            this.dtProductDate.DateTime = DateTime.Now;
+            this.dtProductDate.Properties.MinValue = System.DateTime.Now.AddDays(-1);
+            this.dtProductDate.Properties.NullDateCalendarValue = System.DateTime.Now;
 
             ucGrdSpectrum.SaveClick = ucGrdSpectrum_SaveClick;
             ucGrdSample.SaveClick = ucGrdSample_SaveClick;
