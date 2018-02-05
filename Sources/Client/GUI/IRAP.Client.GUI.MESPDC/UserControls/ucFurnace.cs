@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Xml;
@@ -14,15 +12,12 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraVerticalGrid.Rows;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Columns;
 
 using IRAP.Global;
 using IRAP.WCF.Client.Method;
 using IRAP.Entity.UTS;
 using IRAP.Entities.IRAP;
-using IRAP.Client.User;
 using IRAP.Entities.MDM;
-using IRAP.Client.Global;
 using IRAP.Entities.MES;
 using IRAP.Client.Global.GUI.Dialogs;
 using IRAP.Client.GUI.MESPDC.Entities;
@@ -87,8 +82,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         #endregion
 
         #region 单头信息
-
-
+         
         /// <summary>
         /// 操作工编号校验
         /// </summary>
