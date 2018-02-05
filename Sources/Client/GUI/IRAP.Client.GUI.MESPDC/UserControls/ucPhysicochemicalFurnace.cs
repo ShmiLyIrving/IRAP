@@ -414,13 +414,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     dtInspection.Rows.RemoveAt(idx);
-                    int rowidx = idx + 1 - ReadOnlyCount;
-                    for(int i =rowidx;i<photos.Count;i++)
+                    if (optype == "MPLH")
                     {
-                        photos.Remove(rowidx);
-                        photos.Add(rowidx, photos[rowidx + 1]);
+                        int rowidx = idx + 1 - ReadOnlyCount;
+                        for (int i = rowidx; i < photos.Count; i++)
+                        {
+                            photos.Remove(rowidx);
+                            photos.Add(rowidx, photos[rowidx + 1]);
+                        }
+                        photos.Remove(photos.Count);
                     }
-                    photos.Remove(photos.Count);
                     this.vgrdInspectParams.RefreshDataSource();
                     if(dtInspection.Rows.Count == _readOnlyCount)
                     {
@@ -431,7 +434,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         frmPhysicochemicalInspectionBatchSystem.saveState = false;
                     }
                     RefreshCtrl();
-                    RefreshpathCtrl();
+                    if (optype == "MPLH")
+                    {
+                        RefreshpathCtrl();
+                    }
                 }
             }
         }
