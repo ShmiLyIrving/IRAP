@@ -28,10 +28,8 @@ using IRAP.Client.Global.GUI.Dialogs;
 using IRAP.Client.GUI.MESPDC.Entities;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls {
-    public partial class ucFurnace : XtraUserControl
-    {
-        public ucFurnace(WIPStation param, int communityID, int sysLogID)
-        {
+    public partial class ucFurnace : XtraUserControl {
+        public ucFurnace(WIPStation param, int communityID, int sysLogID) {
             InitializeComponent();
             this._productionParam = param;
             this._communityID = communityID;
@@ -63,8 +61,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 熔炉信息
         /// </summary>
-        public WIPStation ProductionParam
-        {
+        public WIPStation ProductionParam {
             get { return _productionParam; }
         }
         private WIPStation _productionParam;
@@ -72,8 +69,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 社区标识
         /// </summary>
-        public int CommunityID
-        {
+        public int CommunityID {
             get { return _communityID; }
         }
         private int _communityID;
@@ -81,8 +77,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 登录标识
         /// </summary>
-        public int SysLogID
-        {
+        public int SysLogID {
             get { return _sysLogID; }
         }
         private int _sysLogID;
@@ -96,38 +91,32 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 操作工编号校验
         /// </summary>
         /// <returns></returns>
-        private bool OperatorCodeValidate()
-        {
+        private bool OperatorCodeValidate() {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
+            try {
                 int errCode = 0;
                 string errText = "";
                 this.txtOperator.ErrorText = "";
                 List<STB006> users = new List<STB006>();
                 var operatorCode = this.txtOperator.Text;
-                if (string.IsNullOrEmpty(operatorCode))
-                {
+                if (string.IsNullOrEmpty(operatorCode)) {
                     errCode = 9999;
                     this.txtOperator.ErrorText = errText = "操作工编号不可为空！";
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     return false;
                 }
-                if (operatorCode.IndexOf('[') > -1)
-                {
+                if (operatorCode.IndexOf('[') > -1) {
                     operatorCode = operatorCode.Substring(1, operatorCode.IndexOf(']') - 1);
                 }
 
                 IRAPUserClient.Instance.mfn_GetList_Users(_communityID, operatorCode, "", ref users, out errCode, out errText);
                 WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     this.txtOperator.ErrorText = errText;
                     return false;
                 }
-                if (users == null || users.Count == 0 || users[0] == null)
-                {
+                if (users == null || users.Count == 0 || users[0] == null) {
                     this.txtOperator.ErrorText = string.Format("未找到[{0}]的用户", operatorCode);
                     return false;
                 }
@@ -135,9 +124,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 _operatorName = users[0].UserName;
                 this.txtOperator.Text = string.Format("[{0}]{1}", _operatorCode, _operatorName);
                 return true;
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
@@ -147,30 +134,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         /// <param name="startDate"></param>
         /// <returns></returns>
-        private List<WaitingSmelt> GetWaitingSmelts(string startDate)
-        {
+        private List<WaitingSmelt> GetWaitingSmelts(string startDate) {
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 var data = IRAPMESProductionClient.Instance.GetWaitingSmeilts(_communityID, _productionParam.T107LeafID,
                     _productionParam.T216LeafID, _productionParam.T133LeafID, startDate, _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 return data;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
@@ -179,18 +159,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 设置炉次号
         /// </summary>
-        private void SetWaitingFurnace()
-        {
-            if (!ProductionDateValidate())
-            {
+        private void SetWaitingFurnace() {
+            if (!ProductionDateValidate()) {
                 this.lblFurnaceTime.Text = "";
                 this.lblFurnaceTime.Tag = null;
                 return;
             }
             var date = this.dtProductDate.EditValue == null ? null : this.dtProductDate.EditValue.ToString();
             var furnaces = GetWaitingSmelts(date);
-            if (furnaces == null || furnaces.Count == 0 || furnaces[0] == null)
-            {
+            if (furnaces == null || furnaces.Count == 0 || furnaces[0] == null) {
                 this.lblFurnaceTime.Text = "";
                 this.lblFurnaceTime.Tag = null;
                 return;
@@ -200,11 +177,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.lblFurnaceTime.Tag = currentFurnace;
         }
 
-        private bool ProductionDateValidate()
-        {
+        private bool ProductionDateValidate() {
             var date = this.dtProductDate.EditValue == null ? null : this.dtProductDate.EditValue.ToString();
-            if (string.IsNullOrEmpty(date))
-            {
+            if (string.IsNullOrEmpty(date)) {
                 this.dtProductDate.ErrorText = "请选择生产日期！";
                 return false;
             }
@@ -259,10 +234,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         //    }
         //    this.gridView1.BestFitColumns();
         //}
-        #endregion 
+        #endregion
 
-        private void SetOrderInfo()
-        {
+        private void SetOrderInfo() {
             //GetImportInfoXml();
             //CreateGridColumn();
             _orderInfo = GetOrderInfo();
@@ -272,42 +246,33 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             InsertDataIntoOrderInfo();
         }
 
-        private void InsertDataIntoOrderInfo()
-        {
+        private void InsertDataIntoOrderInfo() {
             this.grdCtrProductionInfo.DataSource = null;
-            if (_orderInfo == null || _orderInfo.Count == 0)
-            {
+            if (_orderInfo == null || _orderInfo.Count == 0) {
                 return;
             }
             this.grdCtrProductionInfo.DataSource = _orderInfo;
             this.grdCtrProductionInfoView.BestFitColumns();
         }
 
-        private List<OrderInfo> GetOrderInfo()
-        {
+        private List<OrderInfo> GetOrderInfo() {
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 var orderInfo = IRAPMESProductionClient.Instance.GetOrderInfo(_communityID, this.lblFurnaceTime.Text, _sysLogID,
                     out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 return orderInfo;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
@@ -316,18 +281,14 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 判断列是否存在
         /// </summary>
         /// <returns></returns>
-        private bool ColumnExistValidate()
-        {
-            if (_importMetaData == null || _importMetaData.Count == 0)
-            {
+        private bool ColumnExistValidate() {
+            if (_importMetaData == null || _importMetaData.Count == 0) {
                 return false;
             }
             OrderInfo or = new OrderInfo();
-            foreach (ImportMetaData meta in _importMetaData)
-            {
+            foreach (ImportMetaData meta in _importMetaData) {
                 var pro = or.GetType().GetProperty(meta.ColName);
-                if (pro == null)
-                {
+                if (pro == null) {
                     continue;
                 }
                 return true;
@@ -341,52 +302,40 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 获取配料信息
         /// </summary>
-        private BindingList<SmeltMaterialItemClient> GetSmeltMaterialItems()
-        {
+        private BindingList<SmeltMaterialItemClient> GetSmeltMaterialItems() {
             var batchNumber = this.lblFurnaceTime.Text;
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             int t131LeafID = 0;
-            if (_ProductingNow)
-            {
+            if (_ProductingNow) {
                 var info = this.lblFurnaceTime.Tag as SmeltBatchProductionInfo;
-                if (info != null)
-                {
+                if (info != null) {
                     t131LeafID = info.T131LeafID;
                 }
-            }
-            else {
+            } else {
                 var info = this.lblFurnaceTime.Tag as WaitingSmelt;
-                if (info != null)
-                {
+                if (info != null) {
                     t131LeafID = info.T131LeafID;
                 }
             }
-            try
-            {
+            try {
                 var data = IRAPMESProductionClient.Instance.GetSmeltMaterialItems(_communityID, t131LeafID, _productionParam.T216LeafID,
                     batchNumber, _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 var datas = new BindingList<SmeltMaterialItemClient>();
-                foreach (SmeltMaterialItem item in data)
-                {
+                foreach (SmeltMaterialItem item in data) {
                     datas.Add(SmeltMaterialItemClient.Mapper<SmeltMaterialItemClient, SmeltMaterialItem>(item));
                 }
                 return datas;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
@@ -395,12 +344,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 设置配料信息
         /// </summary>
-        private void SetSmeltMaterialItems()
-        {
+        private void SetSmeltMaterialItems() {
             this.grdBurdenInfo.DataSource = null;
             var smeltMaterialItems = GetSmeltMaterialItems();
-            if (smeltMaterialItems == null || smeltMaterialItems.Count == 0)
-            {
+            if (smeltMaterialItems == null || smeltMaterialItems.Count == 0) {
                 _lotNumberDictionary = null;
                 return;
             }
@@ -410,66 +357,50 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdBurdenInfoView.BestFitColumns();
         }
 
-        private List<SmeltBatchMaterial> GetLotNumber(int t101LeafID)
-        {
+        private List<SmeltBatchMaterial> GetLotNumber(int t101LeafID) {
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 var data = IRAPMESProductionClient.Instance.GetSmeltBatchMaterial(_communityID, t101LeafID, _sysLogID,
                     out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 return data;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
 
-        private void SetLotNumber(BindingList<SmeltMaterialItemClient> smeltMateriaItems)
-        {
-            if (smeltMateriaItems == null || smeltMateriaItems.Count == 0)
-            {
+        private void SetLotNumber(BindingList<SmeltMaterialItemClient> smeltMateriaItems) {
+            if (smeltMateriaItems == null || smeltMateriaItems.Count == 0) {
                 _lotNumberDictionary = null;
             }
             _lotNumberDictionary = new Dictionary<string, Dictionary<int, long>>();
-            foreach (var item in smeltMateriaItems)
-            {
-                if (item == null)
-                {
+            foreach (var item in smeltMateriaItems) {
+                if (item == null) {
                     continue;
                 }
-                if (_lotNumberDictionary.Keys.Contains(item.T101Code))
-                {
+                if (_lotNumberDictionary.Keys.Contains(item.T101Code)) {
                     continue;
                 }
                 var lotNumbers = GetLotNumber(item.T101LeafID);
-                if (lotNumbers == null || lotNumbers.Count == 0)
-                {
+                if (lotNumbers == null || lotNumbers.Count == 0) {
                     continue;
                 }
                 Dictionary<int, long> dic = new Dictionary<int, long>();
-                foreach (var lotNumber in lotNumbers)
-                {
-                    if (lotNumber == null)
-                    {
+                foreach (var lotNumber in lotNumbers) {
+                    if (lotNumber == null) {
                         continue;
                     }
-                    if (dic.Keys.Contains(lotNumber.LotNumber))
-                    {
+                    if (dic.Keys.Contains(lotNumber.LotNumber)) {
                         continue;
                     }
                     dic.Add(lotNumber.LotNumber, lotNumber.Qty);
@@ -478,59 +409,47 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
         }
 
-        private void SetLotNumberList(GridView view, CustomRowCellEditEventArgs e, bool isRowGrd)
-        {
+        private void SetLotNumberList(GridView view, CustomRowCellEditEventArgs e, bool isRowGrd) {
             var edit = new RepositoryItemComboBox();
             var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
-            if (currentRow == null)
-            {
+            if (currentRow == null) {
                 return;
             }
-            if (!_lotNumberDictionary.ContainsKey(currentRow.T101Code))
-            {
+            if (!_lotNumberDictionary.ContainsKey(currentRow.T101Code)) {
                 return;
             }
             var list = _lotNumberDictionary[currentRow.T101Code];
-            if (list == null || list.Count == 0)
-            {
+            if (list == null || list.Count == 0) {
                 return;
             }
-            foreach (var item in list)
-            {
+            foreach (var item in list) {
                 edit.Items.Add(item.Key);
             }
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            if (isRowGrd)
-            {
+            if (isRowGrd) {
                 edit.SelectedValueChanged += edit3_SelectedValueChanged;
-            }
-            else {
+            } else {
                 edit.SelectedValueChanged += edit2_SelectedValueChanged;
             }
             e.RepositoryItem = edit;
 
         }
 
-        private void SetQty(GridView view, ComboBoxEdit edit)
-        {
-            if (edit.EditValue == null || string.IsNullOrEmpty(edit.EditValue.ToString()))
-            {
+        private void SetQty(GridView view, ComboBoxEdit edit) {
+            if (edit.EditValue == null || string.IsNullOrEmpty(edit.EditValue.ToString())) {
                 return;
             }
             var lot = Convert.ToInt32(edit.EditValue);
             var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
-            if (currentRow == null)
-            {
+            if (currentRow == null) {
                 return;
             }
             currentRow.LotNumber = lot;
-            if (!_lotNumberDictionary.ContainsKey(currentRow.T101Code))
-            {
+            if (!_lotNumberDictionary.ContainsKey(currentRow.T101Code)) {
                 return;
             }
             var currentLot = _lotNumberDictionary[currentRow.T101Code];
-            if (!currentLot.ContainsKey(lot))
-            {
+            if (!currentLot.ContainsKey(lot)) {
                 return;
             }
             currentRow.Qty = currentLot[lot];
@@ -540,63 +459,49 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 获取生产开炉参数
         /// </summary>
-        private List<SmeltMethodItemClient> GetSmeltMethodItems()
-        {
+        private List<SmeltMethodItemClient> GetSmeltMethodItems() {
             var batchNumber = this.lblFurnaceTime.Text;
             int t131LeafID = 0;
-            if (_ProductingNow)
-            {
+            if (_ProductingNow) {
                 var info = this.lblFurnaceTime.Tag as SmeltBatchProductionInfo;
-                if (info != null)
-                {
+                if (info != null) {
                     t131LeafID = info.T131LeafID;
                 }
-            }
-            else {
+            } else {
                 var info = this.lblFurnaceTime.Tag as WaitingSmelt;
-                if (info != null)
-                {
+                if (info != null) {
                     t131LeafID = info.T131LeafID;
                 }
             }
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 var data = IRAPMESProductionClient.Instance.GetSmeltMethodItems(_communityID, t131LeafID, _productionParam.T216LeafID,
                     batchNumber, _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 var datas = new List<SmeltMethodItemClient>();
-                foreach (SmeltMethodItem item in data)
-                {
+                foreach (SmeltMethodItem item in data) {
                     datas.Add(SmeltMethodItemClient.Mapper<SmeltMethodItemClient, SmeltMethodItem>(item));
                 }
                 return datas;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
         }
 
-        private void SetSmeltMethodItems()
-        {
+        private void SetSmeltMethodItems() {
             this.grdProductPara.DataSource = null;
             var smeltMethodItems = GetSmeltMethodItems();
-            if (smeltMethodItems == null || smeltMethodItems.Count == 0)
-            {
+            if (smeltMethodItems == null || smeltMethodItems.Count == 0) {
                 return;
             }
             this.grdProductPara.DataSource = smeltMethodItems;
@@ -608,37 +513,29 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 开始生产
         /// </summary>
-        private bool StartProduction()
-        {
+        private bool StartProduction() {
             var batchNumber = this.lblFurnaceTime.Text;
             var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
-            if (waitingSmelt == null)
-            {
+            if (waitingSmelt == null) {
                 XtraMessageBox.Show("没有可以熔炼的炉次！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 IRAPMESProductionClient.Instance.StartProduct(_communityID, _productionParam.T216LeafID, _productionParam.T107LeafID,
                    waitingSmelt.T131LeafID, _operatorCode, batchNumber, GetMaterialXml(), _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 return true;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return false;
@@ -649,18 +546,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private string GetMaterialXml()
-        {
+        private string GetMaterialXml() {
             XmlDocument xmlDoc = new XmlDocument();
             XmlElement root = xmlDoc.CreateElement("RSFact");
             xmlDoc.AppendChild(root);
             #region 配料信息
             var smeltMaterilItems = this.grdBurdenInfo.DataSource as BindingList<SmeltMaterialItemClient>;
-            if (smeltMaterilItems != null && smeltMaterilItems.Count > 0)
-            {
+            if (smeltMaterilItems != null && smeltMaterilItems.Count > 0) {
                 var rF13Node = xmlDoc.CreateElement("RF13_1");
-                foreach (SmeltMaterialItemClient item in smeltMaterilItems)
-                {
+                foreach (SmeltMaterialItemClient item in smeltMaterilItems) {
                     var row = xmlDoc.CreateElement("Row");
                     row.SetAttribute("Ordinal", "1");
                     row.SetAttribute("T101LeafID", item.T101LeafID.ToString());
@@ -675,11 +569,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             #endregion
             #region 生产开炉参数
             var smeltMethodItems = this.grdProductPara.DataSource as List<SmeltMethodItemClient>;
-            if (smeltMethodItems != null || smeltMethodItems.Count > 0)
-            {
+            if (smeltMethodItems != null || smeltMethodItems.Count > 0) {
                 var rF25Node = xmlDoc.CreateElement("RF25");
-                foreach (SmeltMethodItemClient item in smeltMethodItems)
-                {
+                foreach (SmeltMethodItemClient item in smeltMethodItems) {
                     var row = xmlDoc.CreateElement("Row");
                     row.SetAttribute("Ordinal", "1");
                     row.SetAttribute("T20LeafID", item.T20LeafID.ToString());
@@ -702,39 +594,30 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 重新加载
         /// </summary>
-        private List<SmeltBatchProductionInfo> ReLoadProduction()
-        {
+        private List<SmeltBatchProductionInfo> ReLoadProduction() {
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 var datas = IRAPMESProductionClient.Instance.ReloadSmeltBatchProduct(_communityID, _productionParam.T107LeafID, _productionParam.T216LeafID,
                    _productionParam.T133LeafID, _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 return datas;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
         }
 
-        private void SetCurrentSmeltInfo(SmeltBatchProductionInfo info)
-        {
-            if (info == null)
-            {
+        private void SetCurrentSmeltInfo(SmeltBatchProductionInfo info) {
+            if (info == null) {
                 this.labProductStartTimeResult.Text = "";
                 this.labProductStartTimeResult.Tag = null;
                 this.labCurrentFurnaceResult.Text = "";
@@ -751,18 +634,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 生产开始时，清空第一个页签
         /// </summary>
-        private void ChangeTabPage()
-        {
-            if (_ProductingNow)
-            {
+        private void ChangeTabPage() {
+            if (_ProductingNow) {
                 this.tabPgBurden.PageEnabled = false;
                 this.tabPgMatieralAjustment.PageEnabled = true;
                 this.tabPgSample.PageEnabled = true;
                 this.tabPgBaked.PageEnabled = true;
                 this.tabPgSpectrum.PageEnabled = true;
                 this.tabCtrlDetail.SelectedTabPage = this.tabPgSpectrum;
-            }
-            else {
+            } else {
                 this.tabPgBurden.PageEnabled = true;
                 this.tabPgMatieralAjustment.PageEnabled = false;
                 this.tabPgSample.PageEnabled = false;
@@ -780,23 +660,18 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         ///获取炉前光谱、浇三角试样、炉水出炉的参数
         /// </summary>
-        private List<SmeltMethodItemByOpType> GetSmeltMethodItemByOpType(Optype opType)
-        {
+        private List<SmeltMethodItemByOpType> GetSmeltMethodItemByOpType(Optype opType) {
             var operatorCode = _operatorCode;
             var batchNumber = this.lblFurnaceTime.Text;
             int t131LeafID = 0;
-            if (_ProductingNow)
-            {
+            if (_ProductingNow) {
                 var info = this.lblFurnaceTime.Tag as SmeltBatchProductionInfo;
-                if (info != null)
-                {
+                if (info != null) {
                     t131LeafID = info.T131LeafID;
                 }
-            }
-            else {
+            } else {
                 var info = this.lblFurnaceTime.Tag as WaitingSmelt;
-                if (info != null)
-                {
+                if (info != null) {
                     t131LeafID = info.T131LeafID;
                 }
             }
@@ -804,33 +679,25 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 var datas = IRAPMESProductionClient.Instance.GetSmeltMethodItemByOpType(_communityID, GetOpType(opType), t131LeafID,
                     _productionParam.T216LeafID, batchNumber, _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     return null;
                 }
                 return datas;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return null;
         }
 
-        private void SetParaGrid(Optype opType)
-        {
-            switch (opType)
-            {
+        private void SetParaGrid(Optype opType) {
+            switch (opType) {
                 case Optype.Spectrum:
                     this.ucGrdSpectrum.Clear();
                     break;
@@ -843,8 +710,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
 
             var spectrumSmeltMethodItems = GetSmeltMethodItemByOpType(opType);
-            if (spectrumSmeltMethodItems == null || spectrumSmeltMethodItems.Count == 0)
-            {
+            if (spectrumSmeltMethodItems == null || spectrumSmeltMethodItems.Count == 0) {
                 return;
             }
             InitInspectionItemsGrid(spectrumSmeltMethodItems, opType);
@@ -854,11 +720,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 生成参数值临时表
         /// </summary>
         /// <param name="items"></param>
-        private void InitInspectionItemsGrid(List<SmeltMethodItemByOpType> items, Optype opType)
-        {
+        private void InitInspectionItemsGrid(List<SmeltMethodItemByOpType> items, Optype opType) {
             ucDetailGrid grd = this.ucGrdSpectrum;
-            switch (opType)
-            {
+            switch (opType) {
                 case Optype.Spectrum:
                     grd = this.ucGrdSpectrum;
                     break;
@@ -871,8 +735,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             grd.DataSource = null;
             DataTable dt = new DataTable();
-            foreach (SmeltMethodItemByOpType item in items)
-            {
+            foreach (SmeltMethodItemByOpType item in items) {
                 string colName = string.Format("Column{0}", item.Ordinal);
                 DataColumn dc = dt.Columns.Add(colName, typeof(string));
                 dc.Caption = item.T20Name;
@@ -898,44 +761,35 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <param name="grd"></param>
         /// <RF25 >
         ///    <Row FactID="" Metric01=""> 								--  
-		/// </RF25 >
-        private void FillOpTypeData(List<SmeltMethodItemByOpType> items, DataTable dt)
-        {
-            if (dt == null || items == null || items.Count == 0)
-            {
+        /// </RF25 >
+        private void FillOpTypeData(List<SmeltMethodItemByOpType> items, DataTable dt) {
+            if (dt == null || items == null || items.Count == 0) {
                 return;
             }
 
-            foreach (var item in items)
-            {
-                if (string.IsNullOrEmpty(item.DataXML))
-                {
+            foreach (var item in items) {
+                if (string.IsNullOrEmpty(item.DataXML)) {
                     return;
                 }
                 var colName = string.Format("Column{0}", item.Ordinal);
                 var col = dt.Columns[colName];
-                if (col == null)
-                {
+                if (col == null) {
                     return;
                 }
                 var doc = new XmlDocument();
                 doc.LoadXml(item.DataXML);
                 var nodes = doc.SelectNodes("RF25/Row");
-                if (nodes == null || nodes.Count == 0)
-                {
+                if (nodes == null || nodes.Count == 0) {
                     return;
                 }
-                foreach (XmlElement node in nodes)
-                {
+                foreach (XmlElement node in nodes) {
                     var factID = node.Attributes["FactID"] == null ? null : node.Attributes["FactID"].Value;
-                    if (string.IsNullOrEmpty(factID))
-                    {
+                    if (string.IsNullOrEmpty(factID)) {
                         continue;
                     }
                     var value = node.Attributes["Metric01"] == null ? null : node.Attributes["Metric01"].Value;
                     var rows = dt.Select(string.Format("FactID = {0}", factID));
-                    if (rows == null || rows.Length == 0)
-                    {
+                    if (rows == null || rows.Length == 0) {
                         var row = dt.NewRow();
                         row["FactID"] = factID;
                         row[colName] = value;
@@ -950,10 +804,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
         }
 
-        private string GetOpType(Optype opType)
-        {
-            switch (opType)
-            {
+        private string GetOpType(Optype opType) {
+            switch (opType) {
                 default:
                 case Optype.Spectrum:
                     return "LQGP";
@@ -967,14 +819,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 保存
         /// </summary>
-        private bool SaveSmeltParas(Optype opType)
-        {
+        private bool SaveSmeltParas(Optype opType) {
             var batchNumber = this.lblFurnaceTime.Text;
             int errCode;
             string errText;
             DataTable data;
-            switch (opType)
-            {
+            switch (opType) {
                 case Optype.Spectrum:
                     data = this.ucGrdSpectrum.DataSource as DataTable;
                     break;
@@ -989,12 +839,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                     break;
             }
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 IRAPMESProductionClient.Instance.SaveSmeltBatch(_communityID, GetOpType(opType), _productionParam.T216LeafID,
                     _productionParam.T107LeafID, batchNumber, GetSaveMaterialXml(data), _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -1006,14 +854,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                     MessageBoxIcon.Information);
 
                 return true;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return false;
@@ -1024,35 +868,28 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private string GetSaveMaterialXml(DataTable data)
-        {
+        private string GetSaveMaterialXml(DataTable data) {
             XmlDocument xmlDoc = new XmlDocument();
             XmlElement root = xmlDoc.CreateElement("RSFact");
             xmlDoc.AppendChild(root);
             var rF25Node = xmlDoc.CreateElement("RF25");
-            if (data == null || data.Rows.Count == 0)
-            {
+            if (data == null || data.Rows.Count == 0) {
                 root.AppendChild(rF25Node);
                 return xmlDoc.OuterXml;
             }
-            for (int j = 0; j < data.Rows.Count; j++)
-            {
+            for (int j = 0; j < data.Rows.Count; j++) {
                 var colReadOnly = data.Columns["ReadOnly"];
-                if (colReadOnly == null)
-                {
+                if (colReadOnly == null) {
                     continue;
                 }
                 var readOnly = data.Rows[j][colReadOnly].ToString();
-                if (!string.IsNullOrEmpty(readOnly) && readOnly == "True")
-                {
+                if (!string.IsNullOrEmpty(readOnly) && readOnly == "True") {
                     continue;
                 }
-                for (int i = 0; i < data.Columns.Count; i++)
-                {
+                for (int i = 0; i < data.Columns.Count; i++) {
                     var col = data.Columns[i];
                     var item = col.ExtendedProperties["SmeltMethodItemByOpType"] as SmeltMethodItemByOpType;
-                    if (item == null)
-                    {
+                    if (item == null) {
                         continue;
                     }
 
@@ -1076,8 +913,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 原材料调整保存
         /// </summary>
-        private bool RowMatierialAjudgement()
-        {
+        private bool RowMatierialAjudgement() {
             var operatorCode = this.txtOperator.Text;
             var batchNumber = this.lblFurnaceTime.Text;
             var waitingSmelt = this.lblFurnaceTime.Tag as WaitingSmelt;
@@ -1085,43 +921,34 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 IRAPMESProductionClient.Instance.SaveSmeltBatchMaterial(_communityID, _productionParam.T216LeafID, _productionParam.T107LeafID,
                     batchNumber, xml, _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 return true;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return false;
         }
 
-        private void SetRowMaterial()
-        {
+        private void SetRowMaterial() {
             this.grdRowMaterial.DataSource = null;
             _readOnlyCount = 0;
             _smeltMaterialItems = GetSmeltMaterialItems();
-            if (_smeltMaterialItems == null || _smeltMaterialItems.Count == 0)
-            {
+            if (_smeltMaterialItems == null || _smeltMaterialItems.Count == 0) {
                 return;
             }
             SetLotNumber(_smeltMaterialItems);
             BindingList<SmeltMaterialItemClient> newData = new BindingList<SmeltMaterialItemClient>();
-            foreach (SmeltMaterialItemClient item in _smeltMaterialItems)
-            {
+            foreach (SmeltMaterialItemClient item in _smeltMaterialItems) {
                 GetHistorySmeltMaterial(item, newData);
             }
             this.grdRowMaterial.DataSource = newData;
@@ -1130,20 +957,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdRowMaterialView.Tag = new List<SmeltMaterialItemClient>(newData);
         }
 
-        private string GetRowMaterialXml(BindingList<SmeltMaterialItemClient> data)
-        {
-            if (data == null || data.Count == 0)
-            {
+        private string GetRowMaterialXml(BindingList<SmeltMaterialItemClient> data) {
+            if (data == null || data.Count == 0) {
                 return null;
             }
             XmlDocument xmlDoc = new XmlDocument();
             XmlElement root = xmlDoc.CreateElement("RSFact");
             xmlDoc.AppendChild(root);
             var rF13Node = xmlDoc.CreateElement("RF13_1");
-            foreach (SmeltMaterialItemClient item in data)
-            {
-                if (item.IsReadOnly)
-                {
+            foreach (SmeltMaterialItemClient item in data) {
+                if (item.IsReadOnly) {
                     continue;
                 }
                 var row = xmlDoc.CreateElement("Row");
@@ -1164,23 +987,18 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// </summary>
         /// <param name="rowSmelt"></param>
         /// <returns></returns>
-        private void GetHistorySmeltMaterial(SmeltMaterialItemClient rowSmelt, BindingList<SmeltMaterialItemClient> items)
-        {
-            if (string.IsNullOrEmpty(rowSmelt.DataXML))
-            {
+        private void GetHistorySmeltMaterial(SmeltMaterialItemClient rowSmelt, BindingList<SmeltMaterialItemClient> items) {
+            if (string.IsNullOrEmpty(rowSmelt.DataXML)) {
                 return;
             }
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(rowSmelt.DataXML);
             var nodes = doc.SelectNodes("RF13_1/Row");
-            if (nodes == null || nodes.Count == 0)
-            {
+            if (nodes == null || nodes.Count == 0) {
                 return;
             }
-            foreach (XmlNode node in nodes)
-            {
-                SmeltMaterialItemClient item = new SmeltMaterialItemClient()
-                { IsReadOnly = true, T101Code = rowSmelt.T101Code, T101LeafID = rowSmelt.T101LeafID, T101Name = rowSmelt.T101Name };
+            foreach (XmlNode node in nodes) {
+                SmeltMaterialItemClient item = new SmeltMaterialItemClient() { IsReadOnly = true, T101Code = rowSmelt.T101Code, T101LeafID = rowSmelt.T101LeafID, T101Name = rowSmelt.T101Name };
                 var lotNumber = node.Attributes["LotNumber"] == null || string.IsNullOrEmpty(node.Attributes["LotNumber"].Value) ? 0 : Convert.ToInt32(node.Attributes["LotNumber"].Value);
                 var qty = node.Attributes["Qty"] == null || string.IsNullOrEmpty(node.Attributes["Qty"].Value) ? 0 : Convert.ToInt64(node.Attributes["Qty"].Value);
                 item.LotNumber = lotNumber;
@@ -1189,17 +1007,13 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
         }
 
-        private string[] GetT101Code(List<SmeltMaterialItemClient> items)
-        {
-            if (items == null || items.Count == 0)
-            {
+        private string[] GetT101Code(List<SmeltMaterialItemClient> items) {
+            if (items == null || items.Count == 0) {
                 return null;
             }
             List<string> list = new List<string>();
-            for (int i = 0; i < items.Count; i++)
-            {
-                if (list.Contains(items[i].T101Code))
-                {
+            for (int i = 0; i < items.Count; i++) {
+                if (list.Contains(items[i].T101Code)) {
                     continue;
                 }
                 list.Add(items[i].T101Code);
@@ -1207,14 +1021,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             return list.ToArray<string>();
         }
 
-        private void SetT101Code(GridView view, CustomRowCellEditEventArgs e)
-        {
+        private void SetT101Code(GridView view, CustomRowCellEditEventArgs e) {
             //if (e.RowHandle < 0) {
             //    return;
             //}
             var smelts = view.Tag as List<SmeltMaterialItemClient>;
-            if (smelts == null || smelts.Count == 0)
-            {
+            if (smelts == null || smelts.Count == 0) {
                 return;
             }
             RepositoryItemComboBox edit = new RepositoryItemComboBox();
@@ -1226,19 +1038,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         #endregion
 
         #region 生产结束
-        private bool StopProduction()
-        {
+        private bool StopProduction() {
             var batchNumber = this.lblFurnaceTime.Text;
             int errCode;
             string errText;
 
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
-            try
-            {
+            try {
                 IRAPMESProductionClient.Instance.SmeltBatchProductionEnd(_communityID, _productionParam.T216LeafID,
                     _productionParam.T107LeafID, batchNumber, _sysLogID, out errCode, out errText);
-                if (errCode != 0)
-                {
+                if (errCode != 0) {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                     XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -1250,32 +1059,26 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                     MessageBoxIcon.Information);
 
                 return true;
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 XtraMessageBox.Show(error.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
             return false;
         }
         #endregion
 
-        #region 刷新页面 
+        #region 刷新页面
         /// <summary>
         /// 刷新页面
         /// </summary>
         /// <param name="keepMaterial"></param>
-        public void RefreshFurnace()
-        {
+        public void RefreshFurnace() {
             var smeltBatchProductionInfos = ReLoadProduction();
             if (smeltBatchProductionInfos == null ||
                 smeltBatchProductionInfos.Count < 1 ||
-                smeltBatchProductionInfos[0] == null)
-            {
+                smeltBatchProductionInfos[0] == null) {
                 RefreshWithNoProduction();
 
                 //lblFurnaceTime.Text = "当前设备还没有排定生产计划或者排定的生产计划已经全部完成";
@@ -1286,8 +1089,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (currentInfo.InProduction == 1)          //有在产产品
             {
                 _ProductingNow = true;
-                if (!string.IsNullOrEmpty(currentInfo.OperatorCode))
-                {
+                if (!string.IsNullOrEmpty(currentInfo.OperatorCode)) {
                     txtOperator.Text =
                         string.Format(
                             "[{0}]{1}",
@@ -1307,8 +1109,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 SetRowMaterial();
                 SetOrderInfo();
                 ChangeTabPage();
-            }
-            else if (currentInfo.InProduction == 0)     //没有在产产品
+            } else if (currentInfo.InProduction == 0)     //没有在产产品
             {
                 RefreshWithNoProduction();
             }
@@ -1317,8 +1118,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// <summary>
         /// 没有正在生产的产品
         /// </summary>
-        private void RefreshWithNoProduction()
-        {
+        private void RefreshWithNoProduction() {
             _ProductingNow = false;
             _operatorCode = "";
             _operatorName = "";
@@ -1335,10 +1135,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         #endregion
 
         #region 打印
-        private void PrintOrderInfo(OrderInfo info)
-        {
-            if (info == null)
-            {
+        private void PrintOrderInfo(OrderInfo info) {
+            if (info == null) {
                 return;
             }
             _report.Parameters.FindByName("PWONo").Value = info.PWONo;
@@ -1350,13 +1148,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             _report.Parameters.FindByName("BatchNumber").Value = info.BatchNumber;
             System.Drawing.Printing.PrinterSettings prnSetting =
                      new System.Drawing.Printing.PrinterSettings();
-            if (_report.Prepare())
-            {
+            if (_report.Prepare()) {
                 bool rePrinter = false;
-                do
-                {
-                    if (_report.ShowPrintDialog(out prnSetting))
-                    {
+                do {
+                    if (_report.ShowPrintDialog(out prnSetting)) {
                         _report.PrintPrepared(prnSetting);
                         rePrinter = (
                             ShowMessageBox.Show(
@@ -1372,10 +1167,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         #endregion
 
         #region 界面优化
-        protected override CreateParams CreateParams
-        {
-            get
-            {
+        protected override CreateParams CreateParams {
+            get {
                 CreateParams cp = base.CreateParams;
                 cp.ExStyle |= 0x02000000;//用双缓冲绘制窗口的所有子控件
                 return cp;
@@ -1384,33 +1177,26 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         #endregion
 
         #region 事件
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(this.txtOperator.ErrorText))
-            {
+        private void btnStart_Click(object sender, EventArgs e) {
+            if (!string.IsNullOrEmpty(this.txtOperator.ErrorText)) {
                 XtraMessageBox.Show(this.txtOperator.ErrorText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(this.txtOperator.Text))
-            {
+            if (string.IsNullOrEmpty(this.txtOperator.Text)) {
                 XtraMessageBox.Show("操作工编号不可为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!ProductionDateValidate())
-            {
+            if (!ProductionDateValidate()) {
                 return;
             }
-            if (!StartProduction())
-            {
+            if (!StartProduction()) {
                 return;
             }
             RefreshFurnace();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (!_ProductingNow)
-            {
+        private void timer1_Tick(object sender, EventArgs e) {
+            if (!_ProductingNow) {
                 return;
             }
             var now = DateTime.Now;
@@ -1428,10 +1214,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         }
 
-        private void ucGrdSpectrum_SaveClick(object sender, System.EventArgs e)
-        {
-            if (!SaveSmeltParas(Optype.Spectrum))
-            {
+        private void ucGrdSpectrum_SaveClick(object sender, System.EventArgs e) {
+            if (!SaveSmeltParas(Optype.Spectrum)) {
                 return;
             }
             this.ucGrdSpectrum.DataSource.Rows.Clear();
@@ -1441,10 +1225,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         }
 
-        private void ucGrdSample_SaveClick(object sender, System.EventArgs e)
-        {
-            if (!SaveSmeltParas(Optype.Sample))
-            {
+        private void ucGrdSample_SaveClick(object sender, System.EventArgs e) {
+            if (!SaveSmeltParas(Optype.Sample)) {
                 return;
             }
             this.ucGrdSample.DataSource.Rows.Clear();
@@ -1453,79 +1235,62 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             SetParaGrid(Optype.Sample);
         }
 
-        private void ucGrdBaked_SaveClick(object sender, System.EventArgs e)
-        {
+        private void ucGrdBaked_SaveClick(object sender, System.EventArgs e) {
             StopProduction();
             RefreshFurnace();
         }
 
-        private void btnRowMaterialSave_Click(object sender, EventArgs e)
-        {
-            if (!RowMatierialAjudgement())
-            {
+        private void btnRowMaterialSave_Click(object sender, EventArgs e) {
+            if (!RowMatierialAjudgement()) {
                 return;
             }
             SetRowMaterial();
         }
 
-        private void dtProductDate_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
+        private void dtProductDate_EditValueChanged(object sender, EventArgs e) {
+            try {
                 //TWaitting.Instance.ShowWaitForm("正在刷新页面");
 
                 RefreshFurnace();
-            }
-            finally
-            {
+            } finally {
                 //TWaitting.Instance.CloseWaitForm();
             }
         }
 
-        private void grdBurdenInfoView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
-        {
-            if (e.Column.FieldName == "LotNumber")
-            {
+        private void grdBurdenInfoView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e) {
+            if (e.Column.FieldName == "LotNumber") {
                 SetLotNumberList(sender as GridView, e, false);
             }
         }
 
-        private void grdRowMaterialView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
-        {
-            if (e.Column.FieldName == "LotNumber")
-            {
+        private void grdRowMaterialView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e) {
+            if (e.Column.FieldName == "LotNumber") {
                 SetLotNumberList(sender as GridView, e, true);
                 return;
             }
-            if (e.Column.FieldName == "T101Code")
-            {
+            if (e.Column.FieldName == "T101Code") {
                 SetT101Code(sender as GridView, e);
                 return;
             }
         }
 
-        private void edit_SelectedValueChanged(object sender, EventArgs e)
-        {
+        private void edit_SelectedValueChanged(object sender, EventArgs e) {
             var edit = sender as ComboBoxEdit;
-            if (edit.EditValue == null)
-            {
+            if (edit.EditValue == null) {
                 return;
             }
             var t101Code = edit.EditValue.ToString();
             var newData = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
-            if (newData == null)
-            {
+            if (newData == null) {
                 return;
             }
             newData.T101Code = t101Code;
             var currentItems = _smeltMaterialItems.Where(p => p.T101Code == t101Code).ToList<SmeltMaterialItemClient>();
-            if (currentItems == null || currentItems.Count == 0)
-            {
+            if (currentItems == null || currentItems.Count == 0) {
                 return;
             }
             var currentItem = currentItems[0];
-            if (currentItem == null)
-            {
+            if (currentItem == null) {
                 return;
             }
             newData.T101Name = currentItem.T101Name;
@@ -1537,110 +1302,86 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdRowMaterialView.UpdateCurrentRow();
         }
 
-        private void grdRowMaterialView_ShowingEditor(object sender, CancelEventArgs e)
-        {
+        private void grdRowMaterialView_ShowingEditor(object sender, CancelEventArgs e) {
             var view = sender as GridView;
             var currentItem = view.GetFocusedRow() as SmeltMaterialItemClient;
-            if (currentItem == null)
-            {
+            if (currentItem == null) {
                 return;
             }
-            if (currentItem.IsReadOnly)
-            {
+            if (currentItem.IsReadOnly) {
                 e.Cancel = true;
             }
         }
 
-        private void grdRowMaterialView_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e)
-        {
+        private void grdRowMaterialView_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
             var view = sender as GridView;
-            if (view == null)
-            {
+            if (view == null) {
                 return;
             }
             var item = view.GetFocusedRow() as SmeltMaterialItemClient;
-            if (item == null)
-            {
+            if (item == null) {
                 return;
             }
-            if (item.IsReadOnly)
-            {
+            if (item.IsReadOnly) {
                 e.Cancel = true;
             }
         }
 
-        private void grdRowMaterialView_RowClick(object sender, RowClickEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
+        private void grdRowMaterialView_RowClick(object sender, RowClickEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
                 popupMenu1.ShowPopup(Control.MousePosition);
             }
         }
 
-        private void barManager1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void barManager1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             var currentRow = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
-            if (currentRow == null)
-            {
+            if (currentRow == null) {
                 return;
             }
-            if (currentRow.IsReadOnly)
-            {
+            if (currentRow.IsReadOnly) {
                 return;
             }
             this.grdRowMaterialView.DeleteSelectedRows();
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
+        private void btnPrint_Click(object sender, EventArgs e) {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-            try
-            {
+            try {
                 var data = this.grdCtrProductionInfo.DataSource as List<OrderInfo>;
-                if (data == null || data.Count == 0)
-                {
+                if (data == null || data.Count == 0) {
                     return;
                 }
                 MemoryStream ms;
                 ms = new MemoryStream(Properties.Resources.双环_铸造产品标识卡);
                 _report.Load(ms);
-                foreach (var item in data)
-                {
-                    if (item.IsPrint)
-                    {
+                foreach (var item in data) {
+                    if (item.IsPrint) {
                         PrintOrderInfo(item);
                     }
                 }
-            }
-            catch (Exception error)
-            {
+            } catch (Exception error) {
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 ShowMessageBox.Show(error.Message, "系统信息", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-            finally
-            {
+            } finally {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
 
-        private void txtOperator_Validating(object sender, CancelEventArgs e)
-        {
+        private void txtOperator_Validating(object sender, CancelEventArgs e) {
             OperatorCodeValidate();
         }
 
-        private void edit2_SelectedValueChanged(object sender, EventArgs e)
-        {
+        private void edit2_SelectedValueChanged(object sender, EventArgs e) {
             var edit = sender as ComboBoxEdit;
             SetQty(this.grdBurdenInfoView, edit);
         }
 
-        private void edit3_SelectedValueChanged(object sender, EventArgs e)
-        {
+        private void edit3_SelectedValueChanged(object sender, EventArgs e) {
             var edit = sender as ComboBoxEdit;
             SetQty(this.grdRowMaterialView, edit);
         }
-        #endregion     
+        #endregion
     }
 }
