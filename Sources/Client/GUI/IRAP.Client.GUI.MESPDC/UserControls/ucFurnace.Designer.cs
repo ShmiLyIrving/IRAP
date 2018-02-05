@@ -677,8 +677,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.btnStart.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnStart.Appearance.Options.UseFont = true;
-            this.btnStart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnStart.Location = new System.Drawing.Point(7, 7);
+            this.btnStart.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnStart.Location = new System.Drawing.Point(7, 219);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(100, 32);
             this.btnStart.TabIndex = 5;
@@ -717,10 +717,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             // btnRowMaterialSave
             // 
-            this.btnRowMaterialSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRowMaterialSave.Location = new System.Drawing.Point(842, 2);
+            this.btnRowMaterialSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRowMaterialSave.Location = new System.Drawing.Point(843, 222);
             this.btnRowMaterialSave.Name = "btnRowMaterialSave";
-            this.btnRowMaterialSave.Size = new System.Drawing.Size(76, 45);
+            this.btnRowMaterialSave.Size = new System.Drawing.Size(74, 33);
             this.btnRowMaterialSave.TabIndex = 6;
             this.btnRowMaterialSave.Text = "保存";
             this.btnRowMaterialSave.Click += new System.EventHandler(this.btnRowMaterialSave_Click);
