@@ -69,6 +69,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabPgSpectrum = new DevExpress.XtraTab.XtraTabPage();
             this.ucGrdSpectrum = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.tabPgMatieralAjustment = new DevExpress.XtraTab.XtraTabPage();
+            this.btnRowMaterialDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnRowMaterialSave = new DevExpress.XtraEditors.SimpleButton();
             this.grdRowMaterial = new DevExpress.XtraGrid.GridControl();
             this.grdRowMaterialView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -84,13 +85,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.dtProductDate = new DevExpress.XtraEditors.DateEdit();
             this.lblFurnaceTime = new DevExpress.XtraEditors.LabelControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -125,8 +119,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabPgBaked.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
@@ -708,12 +700,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             // tabPgMatieralAjustment
             // 
+            this.tabPgMatieralAjustment.Controls.Add(this.btnRowMaterialDelete);
             this.tabPgMatieralAjustment.Controls.Add(this.btnRowMaterialSave);
             this.tabPgMatieralAjustment.Controls.Add(this.grdRowMaterial);
             this.tabPgMatieralAjustment.Name = "tabPgMatieralAjustment";
             this.tabPgMatieralAjustment.Size = new System.Drawing.Size(920, 258);
             this.tabPgMatieralAjustment.Text = "原材料调整";
             this.tabPgMatieralAjustment.Tooltip = "原材料调整";
+            // 
+            // btnRowMaterialDelete
+            // 
+            this.btnRowMaterialDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRowMaterialDelete.Location = new System.Drawing.Point(843, 2);
+            this.btnRowMaterialDelete.Name = "btnRowMaterialDelete";
+            this.btnRowMaterialDelete.Size = new System.Drawing.Size(74, 33);
+            this.btnRowMaterialDelete.TabIndex = 7;
+            this.btnRowMaterialDelete.Text = "删除";
+            this.btnRowMaterialDelete.Click += new System.EventHandler(this.btnRowMaterialDelete_Click);
             // 
             // btnRowMaterialSave
             // 
@@ -768,7 +771,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.grdRowMaterialView.OptionsNavigation.EnterMoveNextColumn = true;
             this.grdRowMaterialView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.grdRowMaterialView.OptionsView.ShowGroupPanel = false;
-            this.grdRowMaterialView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdRowMaterialView_RowClick);
             this.grdRowMaterialView.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grdRowMaterialView_CustomRowCellEditForEditing);
             this.grdRowMaterialView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grdRowMaterialView_ShowingEditor);
             this.grdRowMaterialView.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.grdRowMaterialView_RowDeleting);
@@ -900,59 +902,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // popupMenu1
-            // 
-            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "删除";
-            this.barButtonItem1.Id = 0;
-            this.barButtonItem1.Name = "barButtonItem1";
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonItem1});
-            this.barManager1.MaxItemId = 1;
-            this.barManager1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barManager1_ItemClick);
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(5, 5);
-            this.barDockControlTop.Size = new System.Drawing.Size(926, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(5, 482);
-            this.barDockControlBottom.Size = new System.Drawing.Size(926, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(5, 5);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 477);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(931, 5);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 477);
-            // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1040,10 +989,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.barDockControlLeft);
-            this.Controls.Add(this.barDockControlRight);
-            this.Controls.Add(this.barDockControlBottom);
-            this.Controls.Add(this.barDockControlTop);
             this.Name = "ucFurnace";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Size = new System.Drawing.Size(936, 487);
@@ -1076,8 +1021,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.tabPgBaked.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
@@ -1090,7 +1033,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1152,13 +1094,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private DevExpress.XtraGrid.Columns.GridColumn ColLotNumber;
         private DevExpress.XtraGrid.Columns.GridColumn ColMachineModelling;
         private DevExpress.XtraGrid.Columns.GridColumn ColFoldNumber;
-        private DevExpress.XtraBars.PopupMenu popupMenu1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
         private DevExpress.XtraEditors.PanelControl panelControl2;
@@ -1166,5 +1101,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl3;
         private DevExpress.XtraEditors.PanelControl panelControl4;
+        private DevExpress.XtraEditors.SimpleButton btnRowMaterialDelete;
     }
 }

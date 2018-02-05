@@ -1325,24 +1325,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (item.IsReadOnly) {
                 e.Cancel = true;
             }
-        }
-
-        private void grdRowMaterialView_RowClick(object sender, RowClickEventArgs e) {
-            if (e.Button == MouseButtons.Right) {
-                popupMenu1.ShowPopup(Control.MousePosition);
-            }
-        }
-
-        private void barManager1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            var currentRow = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
-            if (currentRow == null) {
-                return;
-            }
-            if (currentRow.IsReadOnly) {
-                return;
-            }
-            this.grdRowMaterialView.DeleteSelectedRows();
-        }
+        } 
 
         private void btnPrint_Click(object sender, EventArgs e) {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
@@ -1382,6 +1365,19 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             var edit = sender as ComboBoxEdit;
             SetQty(this.grdRowMaterialView, edit);
         }
+
+        private void btnRowMaterialDelete_Click(object sender, EventArgs e) {
+            var currentRow = this.grdRowMaterialView.GetFocusedRow() as SmeltMaterialItemClient;
+            if (currentRow == null) {
+                return;
+            }
+            if (currentRow.IsReadOnly) {
+                return;
+            }
+            this.grdRowMaterialView.DeleteSelectedRows();
+        }
         #endregion
+
+        
     }
 }
