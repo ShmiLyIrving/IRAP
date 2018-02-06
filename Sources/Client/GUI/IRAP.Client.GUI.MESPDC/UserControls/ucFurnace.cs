@@ -21,11 +21,13 @@ using IRAP.Entities.MDM;
 using IRAP.Entities.MES;
 using IRAP.Client.Global.GUI.Dialogs;
 using IRAP.Client.GUI.MESPDC.Entities;
+using DevExpress.XtraEditors.Controls;
 
 namespace IRAP.Client.GUI.MESPDC.UserControls {
     public partial class ucFurnace : XtraUserControl {
         public ucFurnace(WIPStation param, int communityID, int sysLogID) {
             InitializeComponent();
+            DevExpress.XtraEditors.Controls.Localizer.Active = new MessboxClass();  
             this._productionParam = param;
             this._communityID = communityID;
             this._sysLogID = sysLogID;
@@ -425,7 +427,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (isRowGrd) {
                 edit.SelectedValueChanged += edit3_SelectedValueChanged;
             } else {
-                edit.SelectedValueChanged += edit2_SelectedValueChanged;
+                edit.SelectedValueChanged += edit2_SelectedValueChanged; 
             }
             e.RepositoryItem = edit;
 
@@ -448,8 +450,37 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (!currentLot.ContainsKey(lot)) {
                 return;
             }
+            EditSelectConfirm(view, edit, currentRow);//如果选择的不是第一个批次，则提示用户
             currentRow.Qty = currentLot[lot];
             view.UpdateCurrentRow();
+        }
+
+        /// <summary>
+        /// 验证是否选择的是第一个批次号，如果不是则弹出提示框。如果用户取消选择则恢复上次选择的内容。
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="edit"></param>
+        /// <param name="data"></param>
+        private void EditSelectConfirm(GridView view, ComboBoxEdit edit, SmeltMaterialItemClient data) {
+            var index = edit.SelectedIndex;
+            var value = edit.EditValue;
+            if (index > 0) {
+                var newArr = new string[index]; 
+                for (int i = 0; i < index; i++) {
+                    newArr[i] = edit.Properties.Items[i].ToString();
+                }
+                var lotStr = string.Join(",", newArr);
+                var message = string.Format("原材料编号：{0}，原材料名称：{1}。请确认{2}的库存为0。"
+                , data.T101Code, data.T101Name, lotStr);
+                if (XtraMessageBox.Show(message, "警告", MessageBoxButtons.YesNo) == DialogResult.No) {
+                    edit.EditValue = edit.OldEditValue;
+                    return;
+                }
+                if (XtraMessageBox.Show("请确认" + message, "警告", MessageBoxButtons.YesNo) == DialogResult.No) {
+                    edit.EditValue = edit.OldEditValue;
+                    return;
+                }
+            }
         }
 
         /// <summary>
@@ -1244,13 +1275,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         }
 
         private void dtProductDate_EditValueChanged(object sender, EventArgs e) {
-            try {
-                //TWaitting.Instance.ShowWaitForm("正在刷新页面");
-
-                RefreshFurnace();
-            } finally {
-                //TWaitting.Instance.CloseWaitForm();
-            }
+            RefreshFurnace();
         }
 
         private void grdBurdenInfoView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e) {
@@ -1354,6 +1379,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
 
         private void edit2_SelectedValueChanged(object sender, EventArgs e) {
             var edit = sender as ComboBoxEdit;
+            
             SetQty(this.grdBurdenInfoView, edit);
         }
 
@@ -1372,8 +1398,24 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             this.grdRowMaterialView.DeleteSelectedRows();
         }
-        #endregion
-
-        
+        #endregion 
     }
+
+    public class MessboxClass : Localizer {
+        public override string GetLocalizedString(DevExpress.XtraEditors.Controls.StringId id) {
+            switch (id) {
+                case StringId.XtraMessageBoxCancelButtonText:
+                    return "取消";
+                case StringId.XtraMessageBoxOkButtonText:
+                    return "确定";
+                case StringId.XtraMessageBoxYesButtonText:
+                    return "是";
+                case StringId.XtraMessageBoxNoButtonText:
+                    return "否";
+                default:
+                    return base.GetLocalizedString(id);
+            }
+        }
+    }  
+
 }
