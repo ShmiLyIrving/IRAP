@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRAPESBConsumer.cs" />
+    <Compile Include="IRAPESBProducer.cs" />
     <Compile Include="IRAPXMLUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeParser.cs" />

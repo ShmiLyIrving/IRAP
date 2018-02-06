@@ -64,6 +64,8 @@
     <Compile Include="OPCGatewayService.cs" />
     <Compile Include="Interfaces\IOPCGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TIRAPESBGlobalProducer.cs" />
+    <Compile Include="TIRAPOPCTagValueQueueOut.cs" />
     <Compile Include="TKepServerListener.cs" />
     <Compile Include="TOPCGatewayGlobal.cs" />
     <Compile Include="TOPCGatewayServiceControl.cs" />

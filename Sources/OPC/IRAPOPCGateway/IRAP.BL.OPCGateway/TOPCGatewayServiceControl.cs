@@ -55,7 +55,7 @@ namespace IRAP.BL.OPCGateway
             TIRAPOPCDevices.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
 
             //
-            //TIRAPOPCTagValueQueueOut.Instance.Start();
+            TIRAPOPCTagValueQueueOut.Instance.Start();
 
             // 根据配置文件内容，创建 KepServer 连接
             TIRAPOPCServers.Instance.LoadFromDataFile(TOPCGatewayGlobal.Instance.ConfigurationFile);
@@ -91,7 +91,7 @@ namespace IRAP.BL.OPCGateway
             }
 
             // 终止 OPC Value 消息队列处理线程
-            //TIRAPOPCTagValueQueueOut.Instance.Stop();
+            TIRAPOPCTagValueQueueOut.Instance.Stop();
         }
     }
 }
