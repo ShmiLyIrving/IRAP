@@ -53,7 +53,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private BindingList<SmeltMaterialItemClient> _smeltMaterialItems = new BindingList<SmeltMaterialItemClient>();
         private int _readOnlyCount = 0;
         private FastReport.Report _report = new FastReport.Report();
-        private Dictionary<string, Dictionary<int, long>> _lotNumberDictionary = new Dictionary<string, Dictionary<int, long>>();
+        private Dictionary<string, Dictionary<string, long>> _lotNumberDictionary = new Dictionary<string, Dictionary<string, long>>();
         #endregion
 
         #region 属性
@@ -381,7 +381,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (smeltMateriaItems == null || smeltMateriaItems.Count == 0) {
                 _lotNumberDictionary = null;
             }
-            _lotNumberDictionary = new Dictionary<string, Dictionary<int, long>>();
+            _lotNumberDictionary = new Dictionary<string, Dictionary<string, long>>();
             foreach (var item in smeltMateriaItems) {
                 if (item == null) {
                     continue;
@@ -393,7 +393,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
                 if (lotNumbers == null || lotNumbers.Count == 0) {
                     continue;
                 }
-                Dictionary<int, long> dic = new Dictionary<int, long>();
+                Dictionary<string, long> dic = new Dictionary<string, long>();
                 foreach (var lotNumber in lotNumbers) {
                     if (lotNumber == null) {
                         continue;
@@ -437,7 +437,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             if (edit.EditValue == null || string.IsNullOrEmpty(edit.EditValue.ToString())) {
                 return;
             }
-            var lot = Convert.ToInt32(edit.EditValue);
+            var lot = edit.EditValue.ToString();
             var currentRow = view.GetFocusedRow() as SmeltMaterialItemClient;
             if (currentRow == null) {
                 return;
@@ -464,7 +464,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         private void EditSelectConfirm(GridView view, ComboBoxEdit edit, SmeltMaterialItemClient data) {
             var index = edit.SelectedIndex;
             var value = edit.EditValue;
-            if (index > 0) {
+            if (index > 0 && edit.EditValue != edit.OldEditValue) {
                 var newArr = new string[index]; 
                 for (int i = 0; i < index; i++) {
                     newArr[i] = edit.Properties.Items[i].ToString();
@@ -1026,7 +1026,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             }
             foreach (XmlNode node in nodes) {
                 SmeltMaterialItemClient item = new SmeltMaterialItemClient() { IsReadOnly = true, T101Code = rowSmelt.T101Code, T101LeafID = rowSmelt.T101LeafID, T101Name = rowSmelt.T101Name };
-                var lotNumber = node.Attributes["LotNumber"] == null || string.IsNullOrEmpty(node.Attributes["LotNumber"].Value) ? 0 : Convert.ToInt32(node.Attributes["LotNumber"].Value);
+                var lotNumber = node.Attributes["LotNumber"] == null || string.IsNullOrEmpty(node.Attributes["LotNumber"].Value) ? "" : node.Attributes["LotNumber"].Value.ToString();
                 var qty = node.Attributes["Qty"] == null || string.IsNullOrEmpty(node.Attributes["Qty"].Value) ? 0 : Convert.ToInt64(node.Attributes["Qty"].Value);
                 item.LotNumber = lotNumber;
                 item.Qty = qty;
@@ -1318,7 +1318,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             newData.T101LeafID = currentItem.T101LeafID;
             newData.UnitOfMeasure = currentItem.UnitOfMeasure;
             newData.Scale = currentItem.Scale;
-            newData.LotNumber = 0;
+            newData.LotNumber = "";
             newData.Qty = 0;
             this.grdRowMaterialView.UpdateCurrentRow();
         }

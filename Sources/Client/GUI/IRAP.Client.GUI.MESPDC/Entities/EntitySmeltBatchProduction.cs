@@ -45,7 +45,7 @@ namespace IRAP.Client.GUI.MESPDC.Entities {
         /// <summary>
         /// 批次号
         /// </summary>
-        public int LotNumber { get; set; }
+        public string LotNumber { get; set; }
 
         /// <summary>
         /// 数量
