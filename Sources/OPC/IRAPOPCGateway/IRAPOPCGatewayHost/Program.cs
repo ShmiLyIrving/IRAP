@@ -40,13 +40,13 @@ namespace IRAPOPCGatewayHost
                             //kepServer.WriteTagValue("Channel1.Device1.COMPOS_02", "true");
                             break;
                         case "NEWDEVICE":
-                            TIRAPOPCDevice device = new TIRAPOPCDevice()
+                            TIRAPOPCLocDevice device = new TIRAPOPCLocDevice()
                             {
                                 DeviceCode = "10010",
                                 KepServerAddr = "127.0.0.1",
                                 KepServerName = "KepServer.KEPServerEX.V5",
                             };
-                            TIRAPOPCDevices.Instance.ModifyDataFile(
+                            TIRAPLocOPCDevices.Instance.ModifyDataFile(
                                 1,
                                 device,
                                 string.Format(

@@ -7,6 +7,7 @@ using System.Collections;
 using IRAP.Interface.OPC;
 using IRAP.OPC.Entity;
 using IRAP.OPC.Library;
+using IRAP.OPCGateway.Global;
 
 namespace IRAP.BL.OPCGateway.Actions
 {

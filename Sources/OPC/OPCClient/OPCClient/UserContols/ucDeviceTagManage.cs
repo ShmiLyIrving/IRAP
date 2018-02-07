@@ -165,7 +165,7 @@ namespace OPCClient.UserContols
             DialogResult resault = XtraMessageBox.Show("是否删除所选设备？", "删除所选设备", MessageBoxButtons.OKCancel);
             if(resault ==DialogResult.OK)
             {
-                TIRAPOPCDevice device = IRAPOPCDevices.Instance.GetDeviceWithDeviceCode(tlDevices.FocusedNode.Tag.ToString());
+                TIRAPOPCLocDevice device = IRAPOPCDevices.Instance.GetDeviceWithDeviceCode(tlDevices.FocusedNode.Tag.ToString());
                 TUpdateDeviceTagsContent content = new TUpdateDeviceTagsContent();
                 content.Head.ExCode = "UpdateDeviceTags";
                 content.Request.ExCode = "UpdateDeviceTags";

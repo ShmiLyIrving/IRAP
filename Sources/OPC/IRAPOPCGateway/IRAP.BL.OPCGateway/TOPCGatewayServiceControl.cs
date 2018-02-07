@@ -7,7 +7,9 @@ using System.Diagnostics;
 using System.Reflection;
 
 using IRAP.OPC.Entity;
+using IRAP.OPC.Entity.IRAPServer;
 using IRAP.OPC.Library;
+using IRAP.OPCGateway.Global;
 
 namespace IRAP.BL.OPCGateway
 {
@@ -52,7 +54,20 @@ namespace IRAP.BL.OPCGateway
             }
 
             // 加载本地保存的已注册的设备列表
-            TIRAPOPCDevices.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
+            //TIRAPOPCDevices.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
+
+            // 加载数据库中已注册的设备列表
+            TIRAPOPCDevices.Instance.SetWebAPIParams(
+                TOPCGatewayGlobal.Instance.WebAPIParam.BrokeUri,
+                TOPCGatewayGlobal.Instance.WebAPIParam.ContentType,
+                TOPCGatewayGlobal.Instance.WebAPIParam.ClientID);
+            TIRAPOPCDevices.Instance.GetDevices(
+                TOPCGatewayGlobal.Instance.SysParams.CommunityID,
+                TOPCGatewayGlobal.Instance.SysParams.SysLogID);
+
+            Debug.WriteLine(
+                "当前在 IRAP 系统中注册的 OPCDevice 数量[{0}]", 
+                TIRAPOPCDevices.Instance.Devices.Count);
 
             //
             TIRAPOPCTagValueQueueOut.Instance.Start();

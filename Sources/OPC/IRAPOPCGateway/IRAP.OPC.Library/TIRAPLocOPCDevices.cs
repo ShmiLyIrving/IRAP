@@ -12,23 +12,23 @@ using IRAP.Global;
 
 namespace IRAP.OPC.Library
 {
-    public class TIRAPOPCDevices
+    public class TIRAPLocOPCDevices
     {
-        private static TIRAPOPCDevices _instance = null;
+        private static TIRAPLocOPCDevices _instance = null;
 
-        public static TIRAPOPCDevices Instance
+        public static TIRAPLocOPCDevices Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new TIRAPOPCDevices();
+                    _instance = new TIRAPLocOPCDevices();
                 return _instance;
             }
         }
 
-        private List<TIRAPOPCDevice> items = new List<TIRAPOPCDevice>();
+        private List<TIRAPOPCLocDevice> items = new List<TIRAPOPCLocDevice>();
 
-        private TIRAPOPCDevices() { }
+        private TIRAPLocOPCDevices() { }
 
         /// <summary>
         /// 在节点中增加属性
@@ -46,7 +46,7 @@ namespace IRAP.OPC.Library
             return node;
         }
 
-        public List<TIRAPOPCDevice> Devices
+        public List<TIRAPOPCLocDevice> Devices
         {
             get { return items; }
         }
@@ -62,7 +62,7 @@ namespace IRAP.OPC.Library
         /// <param name="device">设备及其标签信息对象</param>
         /// <param name="dataFileName"></param>
         /// <returns></returns>
-        public int Add(TIRAPOPCDevice device, string dataFileName)
+        public int Add(TIRAPOPCLocDevice device, string dataFileName)
         {
             ModifyDataFile(1, device, dataFileName);
             items.Add(device);
@@ -70,10 +70,10 @@ namespace IRAP.OPC.Library
             return items.Count - 1;
         }
 
-        public void Modify(TIRAPOPCDevice device, string dataFileName)
+        public void Modify(TIRAPOPCLocDevice device, string dataFileName)
         {
             ModifyDataFile(1, device, dataFileName);
-            TIRAPOPCDevice old = GetDeviceWithDeviceCode(device.DeviceCode);
+            TIRAPOPCLocDevice old = GetDeviceWithDeviceCode(device.DeviceCode);
             items.Remove(old);
             items.Add(device);
         }
@@ -85,8 +85,8 @@ namespace IRAP.OPC.Library
         /// <param name="dataFileName"></param>
         public void Remove(string deviceCode, string dataFileName)
         {
-            TIRAPOPCDevice findRlt = null;
-            foreach (TIRAPOPCDevice item in items)
+            TIRAPOPCLocDevice findRlt = null;
+            foreach (TIRAPOPCLocDevice item in items)
             {
                 if (item.DeviceCode == deviceCode)
                 {
@@ -114,7 +114,7 @@ namespace IRAP.OPC.Library
         /// <param name="type">编辑类别：1-保存；2-删除</param>
         /// <param name="device">设备对象</param>
         /// <param name="dataFileName">本地持久化文件名</param>
-        public void ModifyDataFile(int type, TIRAPOPCDevice device, string dataFileName)
+        public void ModifyDataFile(int type, TIRAPOPCLocDevice device, string dataFileName)
         {
             XmlDocument xml = new XmlDocument();
             XmlNode rootNode = null;
@@ -214,7 +214,7 @@ namespace IRAP.OPC.Library
 
             foreach (XmlNode child in devicesNode.ChildNodes)
             {
-                TIRAPOPCDevice device = TIRAPOPCDevice.LoadFromXMLNode(child);
+                TIRAPOPCLocDevice device = TIRAPOPCLocDevice.LoadFromXMLNode(child);
                 if (device != null)
                     items.Add(device);
             }
@@ -225,9 +225,9 @@ namespace IRAP.OPC.Library
         /// </summary>
         /// <param name="code">设备代码</param>
         /// <returns>设备对象</returns>
-        public TIRAPOPCDevice GetDeviceWithDeviceCode(string code)
+        public TIRAPOPCLocDevice GetDeviceWithDeviceCode(string code)
         {
-            foreach (TIRAPOPCDevice device in items)
+            foreach (TIRAPOPCLocDevice device in items)
             {
                 if (device.DeviceCode == code)
                     return device;

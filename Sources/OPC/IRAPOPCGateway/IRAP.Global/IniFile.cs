@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.InteropServices;
 
-namespace IRAP.BL.OPCGateway
+namespace IRAP.Global
 {
     public class IniFile
     {

@@ -39,14 +39,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRAPServer\TIRAPOPCDevices.cs" />
     <Compile Include="TIRAPOPCKepDeviceTagInfo.cs" />
     <Compile Include="TIRAPOPCServer.cs" />
     <Compile Include="TIRAPOPCTagItem.cs" />
-    <Compile Include="TIRAPOPCDevice.cs" />
+    <Compile Include="TIRAPOPCLocDevice.cs" />
     <Compile Include="TIRAPOPCTagValueItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Client\ServerClient\IRAP.WebAPI.Client\IRAP.WebAPI.Client.csproj">
+      <Project>{fb9027c7-057a-4fa8-8698-4e288ea2c0a9}</Project>
+      <Name>IRAP.WebAPI.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRAP.BL.OPCGateway.Global\IRAP.BL.OPCGateway.Global.csproj">
+      <Project>{ec877c0f-adc2-4882-9a04-7a969842338f}</Project>
+      <Name>IRAP.BL.OPCGateway.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.Global\IRAP.Global.csproj">
       <Project>{e2f182fa-2148-4247-b054-25893a67c9c9}</Project>
       <Name>IRAP.Global</Name>

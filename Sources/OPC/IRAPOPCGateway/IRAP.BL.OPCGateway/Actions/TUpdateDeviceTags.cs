@@ -8,6 +8,7 @@ using IRAP.Interface.OPC;
 using IRAP.BL.OPCGateway.Interfaces;
 using IRAP.OPC.Entity;
 using IRAP.OPC.Library;
+using IRAP.OPCGateway.Global;
 
 namespace IRAP.BL.OPCGateway.Actions
 {
@@ -44,13 +45,13 @@ namespace IRAP.BL.OPCGateway.Actions
                 {
                     if (content.Request.ExCode == "UpdateDeviceTags")
                     {
-                        TIRAPOPCDevice device = null;
+                        TIRAPOPCLocDevice device = null;
 
                         switch (content.Request.UpdateType)
                         {
                             case 1:     // 新增设备
                                 device =
-                                    TIRAPOPCDevices.Instance.GetDeviceWithDeviceCode(
+                                    TIRAPLocOPCDevices.Instance.GetDeviceWithDeviceCode(
                                         content.Request.DeviceCode);
                                 if (device != null)
                                 {
@@ -64,8 +65,8 @@ namespace IRAP.BL.OPCGateway.Actions
                                     throw error;
                                 }
 
-                                device = new TIRAPOPCDevice(content.Request);
-                                TIRAPOPCDevices.Instance.Add(
+                                device = new TIRAPOPCLocDevice(content.Request);
+                                TIRAPLocOPCDevices.Instance.Add(
                                     device,
                                     TOPCGatewayGlobal.Instance.ConfigurationFile);
 
@@ -75,7 +76,7 @@ namespace IRAP.BL.OPCGateway.Actions
                                 break;
                             case 2:     // 修改设备及标签信息
                                 device =
-                                    TIRAPOPCDevices.Instance.GetDeviceWithDeviceCode(
+                                    TIRAPLocOPCDevices.Instance.GetDeviceWithDeviceCode(
                                         content.Request.DeviceCode);
                                 if (device == null)
                                 {
@@ -88,8 +89,8 @@ namespace IRAP.BL.OPCGateway.Actions
                                     throw error;
                                 }
 
-                                device = new TIRAPOPCDevice(content.Request);
-                                TIRAPOPCDevices.Instance.Modify(
+                                device = new TIRAPOPCLocDevice(content.Request);
+                                TIRAPLocOPCDevices.Instance.Modify(
                                     device,
                                     TOPCGatewayGlobal.Instance.ConfigurationFile);
 
@@ -99,7 +100,7 @@ namespace IRAP.BL.OPCGateway.Actions
                                 break;
                             case 3:     // 删除设备
                                 string deviceCode = content.Request.DeviceCode;
-                                TIRAPOPCDevices.Instance.Remove(
+                                TIRAPLocOPCDevices.Instance.Remove(
                                     deviceCode,
                                     TOPCGatewayGlobal.Instance.ConfigurationFile);
 

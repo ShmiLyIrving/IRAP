@@ -13,7 +13,10 @@ namespace IRAP.WebAPI.Exchange.MES
         private TREQOPCServerTagList reqBody = null;
         private TRESPOPCServerTagListSet respBody = null;
 
-        public TGetOPCServerTagList()
+        public TGetOPCServerTagList(
+            string webAPIUrl,
+            TContentType contentType,
+            string clientID) : base(webAPIUrl, contentType, clientID)
         {
             moduleType = TModuleType.Exchange;
             exCode = "IRAP_MES_GetOPCServerTagList";

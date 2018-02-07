@@ -46,7 +46,7 @@ namespace IRAP.BL.OPCGateway.Actions
                     if (content.Request.ExCode == "GetDevices")
                     {
                         int ordinal = 1;
-                        foreach (TIRAPOPCDevice device in TIRAPOPCDevices.Instance.Devices)
+                        foreach (TIRAPOPCLocDevice device in TIRAPLocOPCDevices.Instance.Devices)
                         {
                             content.Response.AddDeviceDetail(
                                 new TGetDevicesRspDetail()

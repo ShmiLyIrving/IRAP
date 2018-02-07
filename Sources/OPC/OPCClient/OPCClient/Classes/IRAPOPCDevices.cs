@@ -22,14 +22,14 @@ namespace OPCClient.Classes
             }
         }
 
-        private List<TIRAPOPCDevice> items = new List<TIRAPOPCDevice>();
+        private List<TIRAPOPCLocDevice> items = new List<TIRAPOPCLocDevice>();
         private IRAPOPCDevices() { }
-        public List<TIRAPOPCDevice> Devices
+        public List<TIRAPOPCLocDevice> Devices
         {
             get { return items; }
         }
         //获取设备列表
-        public List<TIRAPOPCDevice> GetDevices()
+        public List<TIRAPOPCLocDevice> GetDevices()
         {
             items.Clear();
             TGetDevicesContent content = new TGetDevicesContent();
@@ -43,7 +43,7 @@ namespace OPCClient.Classes
                     items.Clear();
                     foreach (var d in content.Response.Details)
                     {
-                        TIRAPOPCDevice device = new TIRAPOPCDevice(d);
+                        TIRAPOPCLocDevice device = new TIRAPOPCLocDevice(d);
                         items.Add(device);
                     }
                 };
@@ -58,9 +58,9 @@ namespace OPCClient.Classes
         {
             get { return items.Count; }
         }
-        public TIRAPOPCDevice GetDeviceWithDeviceCode(string code)
+        public TIRAPOPCLocDevice GetDeviceWithDeviceCode(string code)
         {
-            foreach (TIRAPOPCDevice device in items)
+            foreach (TIRAPOPCLocDevice device in items)
             {
                 if (device.DeviceCode == code)
                     return device;

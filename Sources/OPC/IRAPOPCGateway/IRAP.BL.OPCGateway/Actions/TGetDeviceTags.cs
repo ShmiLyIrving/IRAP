@@ -43,8 +43,8 @@ namespace IRAP.BL.OPCGateway.Actions
                 {
                     if (content.Request.ExCode == "GetDeviceTags")
                     {
-                        TIRAPOPCDevice device =
-                            TIRAPOPCDevices.Instance.GetDeviceWithDeviceCode(
+                        TIRAPOPCLocDevice device =
+                            TIRAPLocOPCDevices.Instance.GetDeviceWithDeviceCode(
                                 content.Request.DeviceCode);
                         if (device == null)
                         {

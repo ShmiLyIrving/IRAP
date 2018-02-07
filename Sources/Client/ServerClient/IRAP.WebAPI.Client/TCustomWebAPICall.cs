@@ -40,7 +40,7 @@ namespace IRAP.WebAPI
         /// </summary>
         private TErrorMessage errorMessage = new TErrorMessage();
 
-        public TCustomWebAPICall()
+        private TCustomWebAPICall()
         {
             webAPIUrl = GetValueFromAppSettings("WebAPI Broker", "http://127.0.0.1:55552/");
 
@@ -49,6 +49,13 @@ namespace IRAP.WebAPI
             catch { contentType = TContentType.JSON; }
 
             clientID = GetValueFromAppSettings("ClientID", "MESDeveloper");
+        }
+
+        public TCustomWebAPICall(string webAPIUrl, TContentType contentType, string clientID)
+        {
+            this.webAPIUrl = webAPIUrl;
+            this.contentType = contentType;
+            this.clientID = clientID;
         }
 
         /// <summary>

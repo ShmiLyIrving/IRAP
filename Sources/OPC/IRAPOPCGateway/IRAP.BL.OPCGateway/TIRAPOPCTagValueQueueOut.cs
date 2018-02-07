@@ -8,8 +8,10 @@ using System.Threading;
 
 using IRAP.Global;
 using IRAP.OPC.Entity;
+using IRAP.OPC.Entity.IRAPServer;
 using IRAP.OPC.Library;
 using IRAP.Interface.DCS;
+using IRAP.OPCGateway.Global;
 
 namespace IRAP.BL.OPCGateway
 {
@@ -176,38 +178,13 @@ namespace IRAP.BL.OPCGateway
 
                     try
                     {
-                        TDC_TestReqBodyTD testData =
-                            new TDC_TestReqBodyTD()
-                            {
-                                T128LeafID = 0,
-                                MetricName = "测试项名称",
-                                Remark = value.TagName,
-                            };
+                        TIRAPOPCTag tag =
+                            TIRAPOPCDevices.Instance.FindOPCTagItem(value.TagName);
 
-                        long metric = 0;
-                        try
+                        if (tag != null)
                         {
-                            Convert.ToInt64(value.Value);
+                            tag.SetTagValue(value.Value, value.TimeStamp);
                         }
-                        catch { metric = value.Value.ToUpper() == "TRUE" ? 1 : 0; }
-                        testData.Metric01 = metric;
-
-                        TDC_TestReqBody request = new TDC_TestReqBody();
-                        request.EndTime = value.TimeStamp;
-
-                        request.TestDatas.Add(testData);
-                        request.PossibleFailureModes.Add(
-                            new TDC_TestReqBodyPFM());
-                        request.Recipes.Add(
-                            new TDC_TestReqBodyRecipe());
-                        TDC_TestContent content =
-                            new TDC_TestContent(
-                                request,
-                                null,
-                                null,
-                                null);
-
-                        esbProducer.SendToESB(content.GenerateRequestContent());
                     }
                     catch (Exception error)
                     {

@@ -19,7 +19,7 @@ namespace OPCClient.Dialogs
     public partial class dlgImportDeviceTag: UDFdialog
     {
         private List<TIRAPOPCKepDeviceTagInfo> tags = new List<TIRAPOPCKepDeviceTagInfo>();
-        private TIRAPOPCDevice device;
+        private TIRAPOPCLocDevice device;
 
         public dlgImportDeviceTag()
         {

@@ -59,19 +59,20 @@
     <Compile Include="Actions\TGetKepServList.cs" />
     <Compile Include="Actions\TUpdateDeviceTags.cs" />
     <Compile Include="Actions\TUpdateKepServ.cs" />
-    <Compile Include="IniFile.cs" />
     <Compile Include="Interfaces\IWebAPIAction.cs" />
     <Compile Include="OPCGatewayService.cs" />
     <Compile Include="Interfaces\IOPCGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TIRAPESBGlobalProducer.cs" />
     <Compile Include="TIRAPOPCTagValueQueueOut.cs" />
     <Compile Include="TKepServerListener.cs" />
-    <Compile Include="TOPCGatewayGlobal.cs" />
     <Compile Include="TOPCGatewayServiceControl.cs" />
     <Compile Include="WriteLog.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IRAP.BL.OPCGateway.Global\IRAP.BL.OPCGateway.Global.csproj">
+      <Project>{ec877c0f-adc2-4882-9a04-7a969842338f}</Project>
+      <Name>IRAP.BL.OPCGateway.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.Global\IRAP.Global.csproj">
       <Project>{e2f182fa-2148-4247-b054-25893a67c9c9}</Project>
       <Name>IRAP.Global</Name>

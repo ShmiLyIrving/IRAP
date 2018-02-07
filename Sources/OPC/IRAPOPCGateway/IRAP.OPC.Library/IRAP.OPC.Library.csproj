@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TIRAPOPCDevices.cs" />
+    <Compile Include="TIRAPLocOPCDevices.cs" />
     <Compile Include="TIRAPOPCServers.cs" />
     <Compile Include="TIRAPOPCTagValueItemQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

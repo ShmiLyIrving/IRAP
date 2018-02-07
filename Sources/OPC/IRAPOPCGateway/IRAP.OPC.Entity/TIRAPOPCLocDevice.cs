@@ -11,13 +11,13 @@ using System.Diagnostics;
 
 namespace IRAP.OPC.Entity
 {
-    public class TIRAPOPCDevice
+    public class TIRAPOPCLocDevice
     {
         private List<TIRAPOPCKepDeviceTagInfo> tags = new List<TIRAPOPCKepDeviceTagInfo>();
 
-        public TIRAPOPCDevice() { }
+        public TIRAPOPCLocDevice() { }
 
-        public TIRAPOPCDevice(TUpdateDeviceTagsReqBody request)
+        public TIRAPOPCLocDevice(TUpdateDeviceTagsReqBody request)
         {
             DeviceCode = request.DeviceCode;
             DeviceName = request.DeviceName;
@@ -32,7 +32,7 @@ namespace IRAP.OPC.Entity
                 tags.Add(new TIRAPOPCKepDeviceTagInfo(detail, prefix));
             }
         }
-        public TIRAPOPCDevice(TGetDevicesRspDetail detail)
+        public TIRAPOPCLocDevice(TGetDevicesRspDetail detail)
         {
             DeviceCode = detail.DeviceCode;
             DeviceName = detail.DeviceName;
@@ -88,12 +88,12 @@ namespace IRAP.OPC.Entity
         }
         
 
-        public static TIRAPOPCDevice LoadFromXMLNode(XmlNode node)
+        public static TIRAPOPCLocDevice LoadFromXMLNode(XmlNode node)
         {
             if (node.Name == "Device"||node.Name =="Row")
             {
-                TIRAPOPCDevice device = new TIRAPOPCDevice();
-                device = IRAPXMLUtils.LoadValueFromXMLNode(node, device) as TIRAPOPCDevice;
+                TIRAPOPCLocDevice device = new TIRAPOPCLocDevice();
+                device = IRAPXMLUtils.LoadValueFromXMLNode(node, device) as TIRAPOPCLocDevice;
 
                 foreach (XmlNode child in node.ChildNodes)
                 {

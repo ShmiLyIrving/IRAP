@@ -232,7 +232,7 @@ namespace IRAP.Interface.DCS
         /// <summary>
         /// 第1个测量值
         /// </summary>
-        public long Metric01 { get; set; }
+        public string Metric01 { get; set; }
         /// <summary>
         /// 第2个测量值
         /// </summary>
