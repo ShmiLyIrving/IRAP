@@ -1023,8 +1023,17 @@ namespace IRAP.Client.GUI.MESPDC
                     button.Enabled = true;
                 }
 
-                RefreshTheButtonControl();
-                firstFocusedObject.Focus();
+                //RefreshTheButtonControl();
+
+                // 在编辑框数组中，第一个可见的并且可编辑的输入框获得焦点
+                for (int i = 0; i < _edits.Count; i++)
+                {
+                    if (_edits[i].Enabled && _edits[i].Visible)
+                    {
+                        _edits[i].Focus();
+                        break;
+                    }
+                }
             }
         }
 
