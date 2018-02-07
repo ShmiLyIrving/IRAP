@@ -434,7 +434,7 @@ namespace IRAP.Entities.MES {
         /// <summary>
         /// 物料叶标识
         /// </summary>
-        public string T101LeafID { get; set; }
+        public int T101LeafID { get; set; }
 
         /// <summary>
         /// 物料号
@@ -444,7 +444,7 @@ namespace IRAP.Entities.MES {
         /// <summary>
         /// 批次号
         /// </summary>
-        public int LotNumber { get; set; }
+        public string LotNumber { get; set; }
 
         /// <summary>
         /// 数量
