@@ -31,7 +31,7 @@ namespace IRAP.Interface.OPC
             TGetDevicesRspBody rlt = new TGetDevicesRspBody();
             rlt = IRAPXMLUtils.LoadValueFromXMLNode(GetEX(node), rlt) as TGetDevicesRspBody;
             XmlNode paramxml = GetRspBodyNode(node);
-            if (paramxml != null&& paramxml.FirstChild.Name =="Row")
+            if (paramxml != null&&paramxml.FirstChild!=null&& paramxml.FirstChild.Name =="Row")
             {
                 foreach(XmlNode child in paramxml.ChildNodes)
                 {

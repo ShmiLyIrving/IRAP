@@ -76,9 +76,9 @@ namespace OPCClient.UserContols
                     TreeListNode tn = tlDevices.AppendNode(new object[] { d.DeviceName }, 0);
                     tn.Tag = d.DeviceCode;
                 }
-            }
-            tlDevices.ExpandAll();
-            tlDevices.SetFocusedNode(tlDevices.Nodes[0].Nodes[0]);
+                tlDevices.ExpandAll();
+                tlDevices.SetFocusedNode(tlDevices.Nodes[0].Nodes[0]);
+            }           
         }
         
         private void tlDevices_Load(object sender, EventArgs e)
