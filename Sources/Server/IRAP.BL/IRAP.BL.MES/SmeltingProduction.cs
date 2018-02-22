@@ -107,6 +107,73 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+        /// <summary>
+        /// 获取指定设备上指定日期的所有炉次号
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="t107LeafID"></param>
+        /// <param name="t216LeafID"></param>
+        /// <param name="t133LeafID"></param>
+        /// <param name="planStartDate"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetList_AllSmeltBatchProduction(int communityID, int t107LeafID, int t216LeafID, int t133LeafID,
+            string planStartDate, long sysLogID, out int errCode, out string errText)
+        {
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<WaitingSmelt> datas = new List<WaitingSmelt>();
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID", DbType.Int32, t107LeafID));
+                paramList.Add(new IRAPProcParameter("@T216LeafID", DbType.String, t216LeafID));
+                paramList.Add(new IRAPProcParameter("@T133LeafID", DbType.String, t133LeafID));
+                paramList.Add(new IRAPProcParameter("@PlanStartDate", DbType.String, planStartDate));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数ufn_GetList_AllSmeltBatchProduction," +
+                        "参数：CommunityID={0}|T107LeafID={1}||T216LeafID={2}|T133LeafID={3}|PlanStartDate={4}|SysLogID={5}",
+                        communityID, t107LeafID, t216LeafID, t133LeafID, planStartDate, sysLogID),
+                    strProcedureName);
+                #endregion
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetList_AllSmeltBatchProduction(" +
+                            "@CommunityID,@T107LeafID,@T216LeafID,@T133LeafID,@PlanStartDate, @SysLogID)";
+                        IList<WaitingSmelt> lstDatas = conn.CallTableFunc<WaitingSmelt>(strSQL, paramList);
+                        datas = lstDatas.ToList<WaitingSmelt>();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format("调用函数ufn_GetList_AllSmeltBatchProduction发生异常：{0}", error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
 
         /// <summary>
         /// 获取当前工位正在生产的容次号
