@@ -139,5 +139,27 @@ namespace BatchSystemMNGNT_Asimco.DAL
                 throw error;
             }
         }
+
+        public static void UpdateMaterialStore(TTableMaterialStore row)
+        {
+            try
+            {
+                using (IRAPSQLConnection conn =
+                    new IRAPSQLConnection(SysParams.Instance.DBConnectionString))
+                {
+                    conn.UpdateTable("IRAPRIMCS..utb_MaterialStore", row);
+                }
+            }
+            catch (Exception error)
+            {
+                error.Data["ErrCode"] = 999999;
+                error.Data["ErrText"] =
+                    string.Format(
+                        "更新 SKUID[{0} 物料的库存数据时发生异常：{1}",
+                        row.SKUID,
+                        error.Message);
+                throw error;
+            }
+        }
     }
 }

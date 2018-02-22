@@ -48,6 +48,8 @@
             this.lblSKUID = new DevExpress.XtraEditors.LabelControl();
             this.btnExecute = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.chkModifyRecvBatchNo = new DevExpress.XtraEditors.CheckEdit();
+            this.chkModifyQtyInStore = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -61,6 +63,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtT106Code.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtRecvBatchNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtSKUID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkModifyRecvBatchNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkModifyQtyInStore.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -130,6 +134,8 @@
             this.splitContainerControl2.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl2.Panel2.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl2.Panel2.Controls.Add(this.chkModifyQtyInStore);
+            this.splitContainerControl2.Panel2.Controls.Add(this.chkModifyRecvBatchNo);
             this.splitContainerControl2.Panel2.Controls.Add(this.edtQtyInStore);
             this.splitContainerControl2.Panel2.Controls.Add(this.lblQtyInStore);
             this.splitContainerControl2.Panel2.Controls.Add(this.edtT106Code);
@@ -235,7 +241,7 @@
             // 
             this.edtQtyInStore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtQtyInStore.EditValue = "无记录";
+            this.edtQtyInStore.EditValue = "无库存";
             this.edtQtyInStore.EnterMoveNextControl = true;
             this.edtQtyInStore.Location = new System.Drawing.Point(108, 104);
             this.edtQtyInStore.Name = "edtQtyInStore";
@@ -247,7 +253,7 @@
             this.edtQtyInStore.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtQtyInStore.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtQtyInStore.Properties.ReadOnly = true;
-            this.edtQtyInStore.Size = new System.Drawing.Size(187, 26);
+            this.edtQtyInStore.Size = new System.Drawing.Size(164, 26);
             this.edtQtyInStore.TabIndex = 4;
             // 
             // lblQtyInStore
@@ -266,7 +272,7 @@
             // 
             this.edtT106Code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtT106Code.EditValue = "无记录";
+            this.edtT106Code.EditValue = "无库存";
             this.edtT106Code.EnterMoveNextControl = true;
             this.edtT106Code.Location = new System.Drawing.Point(108, 72);
             this.edtT106Code.Name = "edtT106Code";
@@ -278,7 +284,7 @@
             this.edtT106Code.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtT106Code.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtT106Code.Properties.ReadOnly = true;
-            this.edtT106Code.Size = new System.Drawing.Size(187, 26);
+            this.edtT106Code.Size = new System.Drawing.Size(164, 26);
             this.edtT106Code.TabIndex = 3;
             // 
             // lblT106Code
@@ -297,7 +303,7 @@
             // 
             this.edtRecvBatchNo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.edtRecvBatchNo.EditValue = "无记录";
+            this.edtRecvBatchNo.EditValue = "无库存";
             this.edtRecvBatchNo.EnterMoveNextControl = true;
             this.edtRecvBatchNo.Location = new System.Drawing.Point(108, 40);
             this.edtRecvBatchNo.Name = "edtRecvBatchNo";
@@ -309,7 +315,7 @@
             this.edtRecvBatchNo.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtRecvBatchNo.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtRecvBatchNo.Properties.ReadOnly = true;
-            this.edtRecvBatchNo.Size = new System.Drawing.Size(187, 26);
+            this.edtRecvBatchNo.Size = new System.Drawing.Size(164, 26);
             this.edtRecvBatchNo.TabIndex = 2;
             // 
             // lblRecvBatchNo
@@ -340,7 +346,7 @@
             this.edtSKUID.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.edtSKUID.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.edtSKUID.Properties.ReadOnly = true;
-            this.edtSKUID.Size = new System.Drawing.Size(187, 26);
+            this.edtSKUID.Size = new System.Drawing.Size(164, 26);
             this.edtSKUID.TabIndex = 1;
             // 
             // lblSKUID
@@ -379,6 +385,28 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
             // 
+            // chkModifyRecvBatchNo
+            // 
+            this.chkModifyRecvBatchNo.Location = new System.Drawing.Point(279, 43);
+            this.chkModifyRecvBatchNo.Name = "chkModifyRecvBatchNo";
+            this.chkModifyRecvBatchNo.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkModifyRecvBatchNo.Properties.Appearance.Options.UseFont = true;
+            this.chkModifyRecvBatchNo.Properties.Caption = "";
+            this.chkModifyRecvBatchNo.Size = new System.Drawing.Size(16, 19);
+            this.chkModifyRecvBatchNo.TabIndex = 14;
+            this.chkModifyRecvBatchNo.CheckedChanged += new System.EventHandler(this.chkModifyRecvBatchNo_CheckedChanged);
+            // 
+            // chkModifyQtyInStore
+            // 
+            this.chkModifyQtyInStore.Location = new System.Drawing.Point(279, 107);
+            this.chkModifyQtyInStore.Name = "chkModifyQtyInStore";
+            this.chkModifyQtyInStore.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkModifyQtyInStore.Properties.Appearance.Options.UseFont = true;
+            this.chkModifyQtyInStore.Properties.Caption = "";
+            this.chkModifyQtyInStore.Size = new System.Drawing.Size(16, 19);
+            this.chkModifyQtyInStore.TabIndex = 15;
+            this.chkModifyQtyInStore.CheckedChanged += new System.EventHandler(this.chkModifyQtyInStore_CheckedChanged);
+            // 
             // frmCustomEditor
             // 
             this.Appearance.Options.UseFont = true;
@@ -411,6 +439,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtT106Code.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtRecvBatchNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtSKUID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkModifyRecvBatchNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkModifyQtyInStore.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -436,5 +466,7 @@
         private DevExpress.XtraEditors.LabelControl lblT106Code;
         private DevExpress.XtraEditors.TextEdit edtRecvBatchNo;
         private DevExpress.XtraEditors.LabelControl lblRecvBatchNo;
+        private DevExpress.XtraEditors.CheckEdit chkModifyQtyInStore;
+        private DevExpress.XtraEditors.CheckEdit chkModifyRecvBatchNo;
     }
 }

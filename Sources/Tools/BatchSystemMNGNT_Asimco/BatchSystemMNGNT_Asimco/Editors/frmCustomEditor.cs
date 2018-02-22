@@ -20,6 +20,8 @@ namespace BatchSystemMNGNT_Asimco.Editors
         protected string skuID = "";
         protected Entities.TEntityCustomLog entity = null;
 
+        private Entities.TTableMaterialStore material = null;
+
         public frmCustomEditor()
         {
             InitializeComponent();
@@ -66,8 +68,8 @@ namespace BatchSystemMNGNT_Asimco.Editors
                     }
                     else
                     {
-                        edt4ShiftBIN.Text = "无记录";
-                        edt4ShiftQTY_BY_LOC.Text = "无记录";
+                        edt4ShiftBIN.Text = "无库存";
+                        edt4ShiftQTY_BY_LOC.Text = "无库存";
                     }
 
                     TWaitting.Instance.CloseWaitForm();
@@ -98,27 +100,42 @@ namespace BatchSystemMNGNT_Asimco.Editors
                         DAL.TDBHelper.GetMaterialStore(skuID);
                     if (datas.Count > 0)
                     {
+                        material = datas[0];
+
                         edtSKUID.Text = datas[0].SKUID;
                         edtRecvBatchNo.Text = datas[0].RecvBatchNo;
                         edtT106Code.Text = datas[0].StorageBin;
                         edtQtyInStore.Text = datas[0].QtyInStore.ToString();
+
+                        chkModifyQtyInStore.Enabled = true;
+                        chkModifyRecvBatchNo.Enabled = true;
                     }
                     else
                     {
+                        material = null;
+
                         edtSKUID.Text = skuID;
-                        edtRecvBatchNo.Text = "无记录";
-                        edtT106Code.Text = "无记录";
-                        edtQtyInStore.Text = "无记录";
+                        edtRecvBatchNo.Text = "无库存";
+                        edtT106Code.Text = "无库存";
+                        edtQtyInStore.Text = "无库存";
+
+                        chkModifyQtyInStore.Enabled = false;
+                        chkModifyRecvBatchNo.Enabled = false;
                     }
 
                     TWaitting.Instance.CloseWaitForm();
                 }
                 catch (Exception error)
                 {
+                    material = null;
+
                     edtSKUID.Text = skuID;
-                    edtRecvBatchNo.Text = "无记录";
-                    edtT106Code.Text = "无记录";
-                    edtQtyInStore.Text = "无记录";
+                    edtRecvBatchNo.Text = "无库存";
+                    edtT106Code.Text = "无库存";
+                    edtQtyInStore.Text = "无库存";
+
+                    chkModifyQtyInStore.Enabled = false;
+                    chkModifyRecvBatchNo.Enabled = false;
 
                     TWaitting.Instance.CloseWaitForm();
 
@@ -134,6 +151,8 @@ namespace BatchSystemMNGNT_Asimco.Editors
 
         private void btnFindDatas_Click(object sender, EventArgs e)
         {
+            string lotNumber = this.lotNumber.Substring(0, 11).Trim();
+
             using (Dialogs.frmMaterialStoreIn4Shift form =
                 new Dialogs.frmMaterialStoreIn4Shift(itemNumber, lotNumber))
             {
@@ -143,8 +162,41 @@ namespace BatchSystemMNGNT_Asimco.Editors
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
+            if (material != null && 
+                (chkModifyQtyInStore.Checked || chkModifyRecvBatchNo.Checked))
+            {
+                TWaitting.Instance.ShowWaitForm("正在更新批次系统库存数据");
+                try
+                {
+                    if (chkModifyQtyInStore.Checked)
+                        material.QtyInStore = Convert.ToInt64(edtQtyInStore.Text);
+                    if (chkModifyRecvBatchNo.Checked)
+                        material.RecvBatchNo = edtRecvBatchNo.Text;
+
+                    DAL.TDBHelper.UpdateMaterialStore(material);
+                    TWaitting.Instance.CloseWaitForm();
+                }
+                catch (Exception error)
+                {
+                    TWaitting.Instance.CloseWaitForm();
+                    MSGHelp.Instance.ShowErrorMessage(error);
+
+                    return;
+                }
+            }
+
             if (SetValue())
                 DialogResult = DialogResult.OK;
+        }
+
+        private void chkModifyRecvBatchNo_CheckedChanged(object sender, EventArgs e)
+        {
+            edtRecvBatchNo.ReadOnly = !chkModifyRecvBatchNo.Checked;
+        }
+
+        private void chkModifyQtyInStore_CheckedChanged(object sender, EventArgs e)
+        {
+            edtQtyInStore.ReadOnly = !chkModifyQtyInStore.Checked;
         }
     }
 }

@@ -153,7 +153,6 @@
             // 
             // sbMessage
             // 
-            this.sbMessage.Caption = "barStaticItem1";
             this.sbMessage.Id = 1;
             this.sbMessage.Name = "sbMessage";
             this.sbMessage.TextAlignment = System.Drawing.StringAlignment.Near;
