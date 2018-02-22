@@ -63,6 +63,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         public ucPhysicochemicalFurnace()
         {
             InitializeComponent();
+            DevExpress.XtraEditors.Controls.Localizer.Active = new MessboxClass();
         }
         private string GetBase64FromImage(string imagefile)
         {

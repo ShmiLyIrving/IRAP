@@ -46,6 +46,11 @@ namespace IRAP.Entities.MES {
         /// 结束时间
         /// </summary>
         public string BatchEndDate { get; set; }
+
+        public override string ToString()
+        {
+                return BatchNumber;
+        }
     }
 
     public class OrderInfo {

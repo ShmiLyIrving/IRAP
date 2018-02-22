@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.lblFurnaceTime = new DevExpress.XtraEditors.LabelControl();
+            this.cboBatchNo = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboFurnaces = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelProductionDate = new DevExpress.XtraEditors.LabelControl();
             this.dtProductDate = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelFurnaceTime = new DevExpress.XtraEditors.LabelControl();
-            this.lbcFurnace = new DevExpress.XtraEditors.ListBoxControl();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.btn_Print = new DevExpress.XtraEditors.SimpleButton();
+            this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
             this.grdCtrProductionInfoView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColMONumber = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -45,21 +48,22 @@
             this.ColLotNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColMachineModelling = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColFoldNumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.btn_Print = new DevExpress.XtraEditors.SimpleButton();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboBatchNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboFurnaces.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbcFurnace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfoView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -83,33 +87,55 @@
             this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.LookAndFeel.SkinName = "Blue";
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
             // panelControl2
             // 
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl2.Controls.Add(this.lblFurnaceTime);
+            this.panelControl2.Controls.Add(this.cboBatchNo);
+            this.panelControl2.Controls.Add(this.cboFurnaces);
             this.panelControl2.Controls.Add(this.labelProductionDate);
             this.panelControl2.Controls.Add(this.dtProductDate);
+            this.panelControl2.Controls.Add(this.labelControl1);
             this.panelControl2.Controls.Add(this.labelFurnaceTime);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl2.Location = new System.Drawing.Point(0, 56);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(878, 29);
+            this.panelControl2.Size = new System.Drawing.Size(878, 56);
             this.panelControl2.TabIndex = 2;
             // 
-            // lblFurnaceTime
+            // cboBatchNo
             // 
-            this.lblFurnaceTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFurnaceTime.AutoEllipsis = true;
-            this.lblFurnaceTime.Location = new System.Drawing.Point(270, 3);
-            this.lblFurnaceTime.Name = "lblFurnaceTime";
-            this.lblFurnaceTime.Size = new System.Drawing.Size(10, 20);
-            this.lblFurnaceTime.TabIndex = 12;
-            this.lblFurnaceTime.Text = "A";
+            this.cboBatchNo.Location = new System.Drawing.Point(654, 18);
+            this.cboBatchNo.Name = "cboBatchNo";
+            this.cboBatchNo.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cboBatchNo.Properties.Appearance.Options.UseFont = true;
+            this.cboBatchNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboBatchNo.Size = new System.Drawing.Size(153, 26);
+            this.cboBatchNo.TabIndex = 11;
+            this.cboBatchNo.SelectedIndexChanged += new System.EventHandler(this.cboBatchNo_SelectedIndexChanged);
+            // 
+            // cboFurnaces
+            // 
+            this.cboFurnaces.Location = new System.Drawing.Point(297, 18);
+            this.cboFurnaces.Name = "cboFurnaces";
+            this.cboFurnaces.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cboFurnaces.Properties.Appearance.Options.UseFont = true;
+            this.cboFurnaces.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboFurnaces.Size = new System.Drawing.Size(289, 26);
+            this.cboFurnaces.TabIndex = 11;
+            this.cboFurnaces.SelectedIndexChanged += new System.EventHandler(this.cboFurnaces_SelectedIndexChanged);
             // 
             // labelProductionDate
             // 
             this.labelProductionDate.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductionDate.Location = new System.Drawing.Point(13, 3);
+            this.labelProductionDate.Location = new System.Drawing.Point(18, 21);
             this.labelProductionDate.Name = "labelProductionDate";
             this.labelProductionDate.Size = new System.Drawing.Size(59, 20);
             this.labelProductionDate.TabIndex = 3;
@@ -118,7 +144,7 @@
             // dtProductDate
             // 
             this.dtProductDate.EditValue = new System.DateTime(2018, 1, 25, 10, 41, 25, 67);
-            this.dtProductDate.Location = new System.Drawing.Point(78, 0);
+            this.dtProductDate.Location = new System.Drawing.Point(83, 18);
             this.dtProductDate.Name = "dtProductDate";
             this.dtProductDate.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtProductDate.Properties.Appearance.Options.UseFont = true;
@@ -138,28 +164,49 @@
             this.dtProductDate.TabIndex = 10;
             this.dtProductDate.EditValueChanged += new System.EventHandler(this.dtProductDate_EditValueChanged);
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(617, 21);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(31, 20);
+            this.labelControl1.TabIndex = 5;
+            this.labelControl1.Text = "炉次:";
+            // 
             // labelFurnaceTime
             // 
             this.labelFurnaceTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFurnaceTime.Location = new System.Drawing.Point(233, 3);
+            this.labelFurnaceTime.Location = new System.Drawing.Point(260, 21);
             this.labelFurnaceTime.Name = "labelFurnaceTime";
             this.labelFurnaceTime.Size = new System.Drawing.Size(31, 20);
             this.labelFurnaceTime.TabIndex = 5;
-            this.labelFurnaceTime.Text = "炉次:";
+            this.labelFurnaceTime.Text = "设备:";
             // 
-            // lbcFurnace
+            // btn_Print
             // 
-            this.lbcFurnace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbcFurnace.Location = new System.Drawing.Point(3, 3);
-            this.lbcFurnace.Name = "lbcFurnace";
-            this.lbcFurnace.Size = new System.Drawing.Size(293, 408);
-            this.lbcFurnace.TabIndex = 1;
-            this.lbcFurnace.SelectedIndexChanged += new System.EventHandler(this.lbcFurnace_SelectedIndexChanged);
+            this.btn_Print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Print.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Print.Appearance.Options.UseFont = true;
+            this.btn_Print.Location = new System.Drawing.Point(786, 118);
+            this.btn_Print.Name = "btn_Print";
+            this.btn_Print.Size = new System.Drawing.Size(88, 45);
+            this.btn_Print.TabIndex = 5;
+            this.btn_Print.Text = "打印";
+            this.btn_Print.Click += new System.EventHandler(this.btn_Print_Click);
             // 
-            // repositoryItemCheckEdit1
+            // grdCtrProductionInfo
             // 
-            this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.grdCtrProductionInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdCtrProductionInfo.Location = new System.Drawing.Point(7, 7);
+            this.grdCtrProductionInfo.MainView = this.grdCtrProductionInfoView;
+            this.grdCtrProductionInfo.Margin = new System.Windows.Forms.Padding(5);
+            this.grdCtrProductionInfo.Name = "grdCtrProductionInfo";
+            this.grdCtrProductionInfo.Padding = new System.Windows.Forms.Padding(5);
+            this.grdCtrProductionInfo.Size = new System.Drawing.Size(766, 393);
+            this.grdCtrProductionInfo.TabIndex = 3;
+            this.grdCtrProductionInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdCtrProductionInfoView,
+            this.gridView1});
             // 
             // grdCtrProductionInfoView
             // 
@@ -312,53 +359,23 @@
             this.ColFoldNumber.Visible = true;
             this.ColFoldNumber.VisibleIndex = 8;
             // 
-            // grdCtrProductionInfo
+            // gridView1
             // 
-            this.grdCtrProductionInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdCtrProductionInfo.Location = new System.Drawing.Point(3, 3);
-            this.grdCtrProductionInfo.MainView = this.grdCtrProductionInfoView;
-            this.grdCtrProductionInfo.MaximumSize = new System.Drawing.Size(0, 800);
-            this.grdCtrProductionInfo.Name = "grdCtrProductionInfo";
-            this.grdCtrProductionInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemCheckEdit1});
-            this.grdCtrProductionInfo.Size = new System.Drawing.Size(452, 408);
-            this.grdCtrProductionInfo.TabIndex = 3;
-            this.grdCtrProductionInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grdCtrProductionInfoView});
+            this.gridView1.GridControl = this.grdCtrProductionInfo;
+            this.gridView1.Name = "gridView1";
             // 
-            // splitContainerControl1
+            // panelControl3
             // 
-            this.splitContainerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 85);
-            this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.splitContainerControl1.Panel1.Controls.Add(this.lbcFurnace);
-            this.splitContainerControl1.Panel1.Padding = new System.Windows.Forms.Padding(3);
-            this.splitContainerControl1.Panel1.ShowCaption = true;
-            this.splitContainerControl1.Panel1.Text = "设备列表";
-            this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.splitContainerControl1.Panel2.Controls.Add(this.grdCtrProductionInfo);
-            this.splitContainerControl1.Panel2.Padding = new System.Windows.Forms.Padding(3);
-            this.splitContainerControl1.Panel2.ShowCaption = true;
-            this.splitContainerControl1.Panel2.Text = "生产信息";
-            this.splitContainerControl1.Size = new System.Drawing.Size(770, 437);
-            this.splitContainerControl1.SplitterPosition = 303;
-            this.splitContainerControl1.TabIndex = 4;
-            this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // btn_Print
-            // 
-            this.btn_Print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Print.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Print.Appearance.Options.UseFont = true;
-            this.btn_Print.Location = new System.Drawing.Point(783, 85);
-            this.btn_Print.Name = "btn_Print";
-            this.btn_Print.Size = new System.Drawing.Size(83, 45);
-            this.btn_Print.TabIndex = 5;
-            this.btn_Print.Text = "打印";
-            this.btn_Print.Click += new System.EventHandler(this.btn_Print_Click);
+            this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.panelControl3.Controls.Add(this.grdCtrProductionInfo);
+            this.panelControl3.Location = new System.Drawing.Point(0, 116);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Padding = new System.Windows.Forms.Padding(5);
+            this.panelControl3.Size = new System.Drawing.Size(780, 407);
+            this.panelControl3.TabIndex = 6;
             // 
             // frmProductionLabelPrint_Casting
             // 
@@ -366,40 +383,44 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 523);
-            this.Controls.Add(this.btn_Print);
-            this.Controls.Add(this.splitContainerControl1);
+            this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.btn_Print);
             this.Name = "frmProductionLabelPrint_Casting";
             this.Text = "产品标识卡打印";
+            this.Controls.SetChildIndex(this.btn_Print, 0);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.panelControl2, 0);
-            this.Controls.SetChildIndex(this.splitContainerControl1, 0);
-            this.Controls.SetChildIndex(this.btn_Print, 0);
+            this.Controls.SetChildIndex(this.panelControl3, 0);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboBatchNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboFurnaces.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbcFurnace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdCtrProductionInfoView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.LabelControl lblFurnaceTime;
         private DevExpress.XtraEditors.LabelControl labelProductionDate;
         private DevExpress.XtraEditors.DateEdit dtProductDate;
         private DevExpress.XtraEditors.LabelControl labelFurnaceTime;
-        private DevExpress.XtraEditors.ListBoxControl lbcFurnace;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraEditors.SimpleButton btn_Print;
+        private DevExpress.XtraEditors.ComboBoxEdit cboBatchNo;
+        private DevExpress.XtraEditors.ComboBoxEdit cboFurnaces;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraGrid.GridControl grdCtrProductionInfo;
         private DevExpress.XtraGrid.Views.Grid.GridView grdCtrProductionInfoView;
         private DevExpress.XtraGrid.Columns.GridColumn colPrint;
         private DevExpress.XtraGrid.Columns.GridColumn ColMONumber;
@@ -410,8 +431,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn ColLotNumber;
         private DevExpress.XtraGrid.Columns.GridColumn ColMachineModelling;
         private DevExpress.XtraGrid.Columns.GridColumn ColFoldNumber;
-        private DevExpress.XtraGrid.GridControl grdCtrProductionInfo;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraEditors.SimpleButton btn_Print;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
     }
 }

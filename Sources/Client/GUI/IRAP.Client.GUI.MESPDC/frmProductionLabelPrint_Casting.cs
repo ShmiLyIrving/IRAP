@@ -23,8 +23,13 @@ namespace IRAP.Client.GUI.MESPDC
         public frmProductionLabelPrint_Casting()
         {
             InitializeComponent();
-            this.lbcFurnace.DataSource = GetFurnaces();
+            List<WIPStation> Stations = GetFurnaces();
+            foreach (WIPStation station in Stations)
+            {
+                cboFurnaces.Properties.Items.Add(station);
+            }
             dtProductDate.DateTime = DateTime.Now;
+            this.cboFurnaces.SelectedIndex = 0;
         }
         #region 字段
         private string className = MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -67,19 +72,19 @@ namespace IRAP.Client.GUI.MESPDC
             return null;
         }
         /// <summary>
-        /// 获取炉次号
+        /// 获取指定设备上指定日期的所有炉次号
         /// </summary>
         /// <param name="startDate"></param>
         /// <returns></returns>
-        private List<WaitingSmelt> GetWaitingSmelts(string startDate)
+        private List<WaitingSmelt> GetAllSmelts(string startDate)
         {
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                List<WaitingSmelt> data = IRAPMESProductionClient.Instance.GetWaitingSmeilts(_communityID, _productionParam.T107LeafID,
-                    _productionParam.T216LeafID, _productionParam.T133LeafID, startDate, _sysLogID, out errCode, out errText);
+                List<WaitingSmelt> data = IRAPMESProductionClient.Instance.GetAllSmelts(_communityID, 0,
+                    0, _productionParam.T133LeafID, startDate, _sysLogID, out errCode, out errText);
                 if (errCode != 0)
                 {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
@@ -99,15 +104,23 @@ namespace IRAP.Client.GUI.MESPDC
             }
             return null;
         }
-        private bool ProductionDateValidate()
+        private bool ProductionValidate()
         {
             string date = this.dtProductDate.EditValue == null ? null : this.dtProductDate.EditValue.ToString();
-            if (string.IsNullOrEmpty(date))
+            string Furnace = this.cboFurnaces.Text;
+            if (!string.IsNullOrEmpty(date)&&!string.IsNullOrEmpty(Furnace))
+            {
+                return true;
+            }
+            else if(string.IsNullOrEmpty(date))
             {
                 this.dtProductDate.ErrorText = "请选择生产日期！";
-                return false;
             }
-            return true;
+            else if(string.IsNullOrEmpty(Furnace))
+            {
+                this.cboFurnaces.ErrorText = "请选择设备！";
+            }
+            return false;
         }
         private void InsertDataIntoOrderInfo()
         {
@@ -131,7 +144,7 @@ namespace IRAP.Client.GUI.MESPDC
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                List<OrderInfo> orderInfo = IRAPMESProductionClient.Instance.GetOrderInfo(_communityID, this.lblFurnaceTime.Text, _sysLogID,
+                List<OrderInfo> orderInfo = IRAPMESProductionClient.Instance.GetOrderInfo(_communityID, this.cboBatchNo.Text, _sysLogID,
                     out errCode, out errText);
                 if (errCode != 0)
                 {
@@ -191,39 +204,43 @@ namespace IRAP.Client.GUI.MESPDC
             }
         }
         /// <summary>
-        /// 刷新订单信息
+        /// 刷新炉次列表
         /// </summary>
-        private void RefreshOrderInfo()
+        private void RefreshBatchNo()
         {
-            if (!ProductionDateValidate())
+            if (!ProductionValidate())
             {
-                this.lblFurnaceTime.Text = "";
-                this.lblFurnaceTime.Tag = null;
+                this.cboBatchNo.Properties.Items.Clear();
+                this.cboBatchNo.Text = null;
+                this.cboBatchNo.Tag = null;
                 return;
             }
             this.dtProductDate.ErrorText = null;
+            this.cboFurnaces.ErrorText = null;
             string date = this.dtProductDate.EditValue == null ? null : this.dtProductDate.EditValue.ToString();
-            List<WaitingSmelt> furnaces = GetWaitingSmelts(date);
+            List<WaitingSmelt> furnaces = GetAllSmelts(date);
             if (furnaces == null || furnaces.Count == 0 || furnaces[0] == null)
             {
                 this.grdCtrProductionInfo.DataSource = null;
-                this.lblFurnaceTime.Text = "";
-                this.lblFurnaceTime.Tag = null;
+                this.cboBatchNo.Properties.Items.Clear();
+                this.cboBatchNo.Text = null;
+                this.cboBatchNo.Tag = null;
+                this.cboBatchNo.ErrorText = "没有发现当前日期设备上的炉次号！";
                 return;
             }
+            this.cboBatchNo.Properties.Items.Clear();
+            this.cboBatchNo.Text = null;
+            this.cboBatchNo.ErrorText = null;
             WaitingSmelt currentFurnace = furnaces[0];
-            this.lblFurnaceTime.Text = currentFurnace.BatchNumber;
-            this.lblFurnaceTime.Tag = currentFurnace;
-            InsertDataIntoOrderInfo();
+            foreach (WaitingSmelt smelt in furnaces)
+            {
+                cboBatchNo.Properties.Items.Add(smelt);
+            }
+            cboBatchNo.SelectedIndex = 0;
+            this.cboBatchNo.Tag = currentFurnace;
         }
         #endregion
-        #region 事件
-        private void lbcFurnace_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _productionParam = lbcFurnace.SelectedItem as WIPStation;
-            RefreshOrderInfo();
-        }
-       
+        #region 事件       
         private void btn_Print_Click(object sender, EventArgs e)
         {
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
@@ -259,7 +276,18 @@ namespace IRAP.Client.GUI.MESPDC
         }
         private void dtProductDate_EditValueChanged(object sender, EventArgs e)
         {
-            RefreshOrderInfo();
+            RefreshBatchNo();
+        }
+       
+        private void cboFurnaces_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _productionParam = cboFurnaces.SelectedItem as WIPStation;
+            RefreshBatchNo();
+        }
+
+        private void cboBatchNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InsertDataIntoOrderInfo();
         }
         #endregion
     }

@@ -138,6 +138,80 @@ namespace IRAP.WCF.Client.Method {
             }
             return false;
         }
+        /// <summary>
+        /// 获取指定设备上指定日期的所有炉次号
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="t107LeafID"></param>
+        /// <param name="t216LeafID"></param>
+        /// <param name="t133LeafID"></param>
+        /// <param name="planStartDate"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public List<WaitingSmelt> GetAllSmelts(int communityID, int t107LeafID, int t216LeafID, int t133LeafID,
+            string planStartDate, long sysLogID, out int errCode, out string errText){
+            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("t216LeafID", t216LeafID);
+                hashParams.Add("t133LeafID", t133LeafID);
+                hashParams.Add("planStartDate", planStartDate);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_AllSmeltBatchProduction 函数， " +
+                        "参数：CommunityID={0}|T107LeafID={1}||T216LeafID={2}|T133LeafID={3}|PlanStartDate={4}|SysLogID={5}",
+                        communityID, t107LeafID, t216LeafID, t133LeafID, planStartDate, sysLogID),
+                    strProcedureName);
+                #endregion
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.SmeltingProduction",
+                            "ufn_GetList_AllSmeltBatchProduction",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        var datas = rlt as List<WaitingSmelt>;
+                        return datas;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+            return null;
+        }
+
+
+
 
         /// <summary>
         /// 获取当前工位正在生产的容次号
