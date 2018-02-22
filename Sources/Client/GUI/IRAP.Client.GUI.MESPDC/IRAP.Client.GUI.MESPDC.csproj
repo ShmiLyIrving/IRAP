@@ -173,6 +173,12 @@
     <Compile Include="frmProcessFIFO.Designer.cs">
       <DependentUpon>frmProcessFIFO.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProductionLabelPrint_Casting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductionLabelPrint_Casting.Designer.cs">
+      <DependentUpon>frmProductionLabelPrint_Casting.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProductionParamsCollection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -392,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcessFIFO.resx">
       <DependentUpon>frmProcessFIFO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductionLabelPrint_Casting.resx">
+      <DependentUpon>frmProductionLabelPrint_Casting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductionParamsCollection.resx">
       <DependentUpon>frmProductionParamsCollection.cs</DependentUpon>
