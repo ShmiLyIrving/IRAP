@@ -178,12 +178,33 @@ namespace IRAP.BL.OPCGateway
 
                     try
                     {
+                        string fullTagName =
+                            string.Format(
+                                "{0}.{1}",
+                                value.KepServerName,
+                                value.TagName);
+                        Debug.WriteLine(string.Format("TagName:[{0}]", fullTagName));
+
                         TIRAPOPCTag tag =
-                            TIRAPOPCDevices.Instance.FindOPCTagItem(value.TagName);
+                            TIRAPOPCDevices.Instance.FindOPCTagItem(fullTagName);
 
                         if (tag != null)
                         {
+                            Console.WriteLine(
+                                string.Format(
+                                    "[线程 #{0}]处理 OPC 出队消息：TagName:[{1}],Value:[{2}]",
+                                    threadID,
+                                    value.TagName,
+                                    value.Value));
                             tag.SetTagValue(value.Value, value.TimeStamp);
+                        }
+                        else
+                        {
+                            if (fullTagName.IndexOf("BF-0957") >= 0)
+                                Console.WriteLine(
+                                    string.Format(
+                                        "KepS:[{0}]",
+                                        fullTagName));
                         }
                     }
                     catch (Exception error)

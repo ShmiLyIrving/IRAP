@@ -237,4 +237,10 @@ namespace IRAP.OPCGateway.Global
         public string Key { get; set; }
         public string Value { get; set; }
     }
+
+    public delegate void WriteTagValueHandle(
+        int tagServerHandle, 
+        string tagValue, 
+        out int errCode, 
+        out string errText);
 }

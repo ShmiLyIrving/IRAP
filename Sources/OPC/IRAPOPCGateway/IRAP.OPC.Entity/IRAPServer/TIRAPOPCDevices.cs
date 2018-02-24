@@ -181,6 +181,7 @@ namespace IRAP.OPC.Entity.IRAPServer
         {
             TDC_TestReqBody request = new TDC_TestReqBody();
             request.EndTime = tag.TagValueTime;
+            request.WIPStationCode = tag.Device.T133Code;
             request.PossibleFailureModes.Add(new TDC_TestReqBodyPFM());
             request.Recipes.Add(new TDC_TestReqBodyRecipe());
 
@@ -229,6 +230,7 @@ namespace IRAP.OPC.Entity.IRAPServer
         {
             TDC_TestReqBody request = new TDC_TestReqBody();
             request.EndTime = tag.TagValueTime;
+            request.WIPStationCode = tag.Device.T133Code;
             request.PossibleFailureModes.Add(new TDC_TestReqBodyPFM());
             request.Recipes.Add(new TDC_TestReqBodyRecipe());
 
@@ -338,6 +340,14 @@ namespace IRAP.OPC.Entity.IRAPServer
         public string TagValueTime { get { return timeStamp; } }
         public TIRAPTagT20ObjectCollection TestItems { get { return items; } }
         public TIRAPOPCDevice Device { get; set; }
+        /// <summary>
+        /// KepwareServer 标签值回写句柄
+        /// </summary>
+        public int ServerHandle { get; set; }
+        /// <summary>
+        /// 回写 Tag 值委托
+        /// </summary>
+        public WriteTagValueHandle WriteTagValueMethod { get; set; }
 
         /// <summary>
         /// 根据 XMLNode 创建 TIRAPOPCTag 实例
@@ -378,9 +388,35 @@ namespace IRAP.OPC.Entity.IRAPServer
                         Device.SendSimgleTag(this);
                         break;
                     case 2:             // 发送 ESB 消息
-                        Device.SendBatchTags(this);
+                        if (Tools.ConvertToBoolean(tagValue))
+                        {
+                            Device.SendBatchTags(this);
+                            if (WriteTagValueMethod != null)
+                            {
+                                int errCode = 0;
+                                string errText = "";
+                                WriteTagValueMethod(ServerHandle, "0", out errCode, out errText);
+                                Debug.WriteLineIf(errCode != 0, errText);
+                            }
+                        }
                         break;
                 }
+            }
+        }
+
+        public void WriteTagValueBack(
+            string value, 
+            out int errCode, 
+            out string errText)
+        {
+            if (WriteTagValueMethod != null)
+            {
+                WriteTagValueMethod(ServerHandle, value, out errCode, out errText);
+            }
+            else
+            {
+                errCode = -1;
+                errText = "没有设置回写事件句柄，无法回写";
             }
         }
     }

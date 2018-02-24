@@ -7,6 +7,7 @@ using System.Diagnostics;
 using OPCAutomation;
 
 using IRAP.OPC.Entity;
+using IRAP.OPC.Entity.IRAPServer;
 using IRAP.OPC.Library;
 
 namespace IRAP.BL.OPCGateway
@@ -193,11 +194,24 @@ namespace IRAP.BL.OPCGateway
             for (int i = 0; i < tags.Count; i++)
             {
                 tags[i].ServerHandle = kepItems.AddItem(tags[i].TagName, i + 1).ServerHandle;
-                Debug.WriteLine(
-                    string.Format(
-                        "TagName:[{0}], ServerHandle:[{1}]", 
-                        tags[i].TagName, 
-                        tags[i].ServerHandle));
+
+                TIRAPOPCTag tag =
+                    TIRAPOPCDevices.Instance.FindOPCTagItem(
+                        string.Format(
+                            "{0}.{1}",
+                            nameKepServer,
+                            tags[i].TagName));
+                if (tag != null)
+                {
+                    tag.ServerHandle = tags[i].ServerHandle;
+                    tag.WriteTagValueMethod = WriteTagValue;
+
+                    Debug.WriteLine(
+                        string.Format(
+                            "TagName:[{0}], ServerHandle:[{1}]",
+                            tag.TagName,
+                            tag.ServerHandle));
+                }
             }
 
             return true;
@@ -216,6 +230,33 @@ namespace IRAP.BL.OPCGateway
                     }
                     break;
                 }
+            }
+        }
+
+        public void WriteTagValue(
+            int tagServerHandle, 
+            string tagValue,
+            out int errCode,
+            out string errText)
+        {
+            errCode = 0;
+            errText = "写入完成";
+
+            OPCItem item = kepItems.GetOPCItem(tagServerHandle);
+            if (item != null)
+                try
+                {
+                    item.Write(tagValue);
+                }
+                catch (Exception error)
+                {
+                    errCode = -1;
+                    errText = string.Format("写入时发生错误：{0}", error.Message);
+                }
+            else
+            {
+                errCode = -2;
+                errText = "没有找到需要写入的 Tag";
             }
         }
     }

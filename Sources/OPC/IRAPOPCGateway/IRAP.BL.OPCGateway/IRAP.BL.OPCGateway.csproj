@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\TDeviceTagValueRW.cs" />
     <Compile Include="Actions\TGetDevices.cs" />
     <Compile Include="Actions\TGetDeviceTags.cs" />
     <Compile Include="Actions\TGetKepServList.cs" />

@@ -3,7 +3,7 @@
   <Class Name="IRAP.Interface.TSoftlandContent" Collapsed="true">
     <Position X="5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAQAAAAwACAAIAAEAAAAAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AIAQBQAA4ACAAIAAEBAAAAAAAAAACAAAAAAAAAACAgQ=</HashCode>
       <FileName>TSoftlandContent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="IRAP.Interface.TSoftlandBody" Collapsed="true">
     <Position X="11.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAABAAAAAAAAAEAACAAAAAAAAAEAAAAA=</HashCode>
       <FileName>TSoftlandContent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,7 +31,7 @@
   <Class Name="IRAP.Interface.OPC.TGetDevicesContent" Collapsed="true">
     <Position X="0.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAiAAAAAAAAAACAAA=</HashCode>
       <FileName>OPC\TGetDevicesContent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,21 +45,21 @@
   <Class Name="IRAP.Interface.OPC.TGetDevicesRspBody" Collapsed="true">
     <Position X="12.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAQAAAAAAEEAAAAAAAAAAAEAAACA=</HashCode>
+      <HashCode>AAAAAAAQAAABAAAAASAQAAAAEEAAAAAAAAAAAEAAACA=</HashCode>
       <FileName>OPC\TGetDevicesRspBody.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Interface.OPC.TGetDevicesRspDetail" Collapsed="true">
     <Position X="24" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAACAAAAAACBAAAAAEEAAAEAAAAAAIAAAAABA=</HashCode>
+      <HashCode>ABAAAAAAAAAAAAAAIDAAAAAEEBAAAAABAAAIAAAAABA=</HashCode>
       <FileName>OPC\TGetDevicesRspDetail.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Interface.OPC.TGetDeviceTagsContent" Collapsed="true">
     <Position X="9.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAiAAAAAAAAAACAAA=</HashCode>
       <FileName>OPC\TGetDeviceTagsContent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,21 +73,21 @@
   <Class Name="IRAP.Interface.OPC.TGetDeviceTagsRspBody" Collapsed="true">
     <Position X="10.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEQACABAAAACQAAAAAEEEAAEAAAAAAIAEAAAAA=</HashCode>
+      <HashCode>AAAAAAEQACABAAAACSAQAAAEEEAAEAAAAAAIAEAAAAA=</HashCode>
       <FileName>OPC\TGetDeviceTagsRspBody.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Interface.OPC.TGetDeviceTagsRspDetail" Collapsed="true">
     <Position X="25.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIgAAAAABAAAAAAEAAAAAAAAAAAAAAACBA=</HashCode>
+      <HashCode>AAAAAAAAAAIgAAAAADAAAAAAEAAAAAAAAAAAAAAACBA=</HashCode>
       <FileName>OPC\TGetDeviceTagsRspDetail.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Interface.OPC.TGetKepServListContent" Collapsed="true">
     <Position X="7.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAiAAAAAAAAAACAAA=</HashCode>
       <FileName>OPC\TGetKepServListContent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -101,21 +101,21 @@
   <Class Name="IRAP.Interface.OPC.TGetKepServListRspBody" Collapsed="true">
     <Position X="3.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAACAAAAAgAAAAAEEAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAACAAAACgQAAAAEEAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>OPC\TGetKepServListRspBody.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Interface.OPC.TGetKepServListRspDetail" Collapsed="true">
     <Position X="27.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAABAAAAAAEAAAEAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAADAAAAAAEAAAEAAAAAAAAAAAABA=</HashCode>
       <FileName>OPC\TGetKepServListRspDetail.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Interface.OPC.TUpdateDeviceTagsContent" Collapsed="true">
     <Position X="5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAiAAAAAAAAAACAAA=</HashCode>
       <FileName>OPC\TUpdateDeviceTagsContent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -129,21 +129,21 @@
   <Class Name="IRAP.Interface.OPC.TUpdateDeviceTagsReqDetail" Collapsed="true">
     <Position X="27.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIgAAAAACAAAAAAAAAAAAQAAAAAAAAACBA=</HashCode>
+      <HashCode>AAAAAAAAAAIgAAAAADAAAAAAEAAAAAAAAAAAAAAACBA=</HashCode>
       <FileName>OPC\TUpdateDeviceTagsReqDetail.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Interface.OPC.TUpdateDeviceTagsRspBody" Collapsed="true">
     <Position X="5.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAEEAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAAAACAQAAAAEEAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>OPC\TUpdateDeviceTagsRspBody.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Interface.OPC.TUpdateKepServContent" Collapsed="true">
     <Position X="2.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAiAAAAAAAAAACAAA=</HashCode>
       <FileName>OPC\TUpdateKepServContent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -157,8 +157,15 @@
   <Class Name="IRAP.Interface.OPC.TUpdateKepServRspBody" Collapsed="true">
     <Position X="19.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAEEAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAAAACAQAAAAEEAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>OPC\TUpdateKepServRspBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Interface.OPC.TDeviceTagValueRWContent">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAiAAAAAAAAAACAAA=</HashCode>
+      <FileName>OPC\TDeviceTagValueRWContent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

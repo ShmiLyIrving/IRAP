@@ -67,6 +67,11 @@ namespace IRAP.OPC.Entity
         /// </summary>
         [IRAPXMLNodeAttrORMap(IsORMap = false)]
         public string Quality { get; set; }
+        /// <summary>
+        /// KepwareServer 标签值回写句柄值
+        /// </summary>
+        [IRAPXMLNodeAttrORMap(IsORMap = false)]
+        public int ServerHandle { get; set; }
 
         public XmlNode GenerateXMLNode()
         {

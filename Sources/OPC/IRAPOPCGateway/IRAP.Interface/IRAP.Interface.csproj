@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="DCS\TDC_Test.cs" />
     <Compile Include="DCS\TUserAuthenticate.cs" />
+    <Compile Include="OPC\TDeviceTagValueRWReqBody.cs" />
+    <Compile Include="OPC\TDeviceTagValueRWRspBody.cs" />
     <Compile Include="OPC\TGetDevicesContent.cs" />
     <Compile Include="OPC\TGetDevicesReqBody.cs" />
     <Compile Include="OPC\TGetDevicesRspBody.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="OPC\TUpdateKepServRspBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCustomXMLArea.cs" />
+    <Compile Include="OPC\TDeviceTagValueRWContent.cs" />
     <Compile Include="TSoftlandContent.cs" />
     <Compile Include="TSoftlandRowSet.cs" />
   </ItemGroup>
