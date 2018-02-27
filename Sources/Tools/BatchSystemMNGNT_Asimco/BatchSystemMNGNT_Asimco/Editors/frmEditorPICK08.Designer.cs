@@ -363,7 +363,7 @@
             this.groupControl1.Controls.Add(this.edtQtyLoaded);
             this.groupControl1.Controls.Add(this.lblQtyLoaded);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl1.Location = new System.Drawing.Point(0, 415);
+            this.groupControl1.Location = new System.Drawing.Point(0, 409);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(433, 64);
             this.groupControl1.TabIndex = 18;

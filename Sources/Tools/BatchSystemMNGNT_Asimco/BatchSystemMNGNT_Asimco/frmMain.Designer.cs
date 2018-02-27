@@ -371,6 +371,9 @@
             this.grdclmnTimeWritten.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.grdclmnTimeWritten.FieldName = "TimeWritten";
             this.grdclmnTimeWritten.Name = "grdclmnTimeWritten";
+            this.grdclmnTimeWritten.OptionsColumn.AllowEdit = false;
+            this.grdclmnTimeWritten.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnTimeWritten.OptionsColumn.AllowMove = false;
             this.grdclmnTimeWritten.Visible = true;
             this.grdclmnTimeWritten.VisibleIndex = 3;
             // 

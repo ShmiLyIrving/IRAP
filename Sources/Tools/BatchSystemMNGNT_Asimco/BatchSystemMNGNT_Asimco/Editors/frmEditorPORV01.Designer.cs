@@ -91,10 +91,12 @@
             // 
             // edtErrText
             // 
+            this.edtErrText.Location = new System.Drawing.Point(7, 26);
             this.edtErrText.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtErrText.Properties.Appearance.Options.UseFont = true;
             this.edtErrText.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.edtErrText.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.edtErrText.Size = new System.Drawing.Size(290, 148);
             // 
             // edtPassword
             // 
@@ -389,6 +391,7 @@
             this.Appearance.Options.UseFont = true;
             this.ClientSize = new System.Drawing.Size(895, 526);
             this.Name = "frmEditorPORV01";
+            this.Text = "入库";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtErrText.Properties)).EndInit();
