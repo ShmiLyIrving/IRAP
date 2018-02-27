@@ -79,8 +79,8 @@ namespace IRAP.OPC.Entity.IRAPServer
             {
                 Debug.WriteLine(
                     string.Format(
-                        "({0}){1}", 
-                        exchange.Error.ErrCode, 
+                        "({0}){1}",
+                        exchange.Error.ErrCode,
                         exchange.Error.ErrText),
                     "");
             }
@@ -94,6 +94,10 @@ namespace IRAP.OPC.Entity.IRAPServer
                     if (device != null)
                         devices.Add(device);
                 }
+                devices.IndexTags =
+                    devices.IndexTags.OrderBy(
+                        p => p.Key).ToDictionary(
+                            p => p.Key, o => o.Value);
             }
         }
 
@@ -105,25 +109,11 @@ namespace IRAP.OPC.Entity.IRAPServer
         /// <returns></returns>
         public TIRAPOPCTag FindOPCTagItem(string tagName)
         {
-            lock (lockObject)
-            {
-                for (int i = 0; i < devices.Count; i++)
-                {
-                    TIRAPOPCDevice device = devices[i];
-                    for (int j = 0; j < device.Tags.Count; j++)
-                    {
-                        TIRAPOPCTag tag = device.Tags[j];
-                        string fullTagName =
-                            string.Format(
-                                "{0}.{1}",
-                                device.ServerName,
-                                tag.TagName);
-                        if (fullTagName == tagName)
-                            return tag;
-                    }
-                }
-                return null;
-            }
+            TIRAPOPCTag rlt = null;
+            if (!devices.IndexTags.TryGetValue(tagName, out rlt))
+                rlt = null;
+
+            return rlt;
         }
     }
 
@@ -133,8 +123,12 @@ namespace IRAP.OPC.Entity.IRAPServer
     public class TIRAPOPCDevice : TRESPOPCServerTagList
     {
         private TIRAPOPCTagCollection items = new TIRAPOPCTagCollection();
+        private Dictionary<string, TIRAPOPCTag> indexTags = 
+            new Dictionary<string, TIRAPOPCTag>();
 
         public TIRAPOPCTagCollection Tags { get { return items; } }
+        public Dictionary<string, TIRAPOPCTag> TagIndex { get { return indexTags; } }
+
 
         /// <summary>
         /// 根据 TRESPOPCServerTagList 对象创建 TIRAPOPCDevice 实例
@@ -165,6 +159,12 @@ namespace IRAP.OPC.Entity.IRAPServer
                         {
                             tag.Device = rlt;
                             rlt.Tags.Add(tag);
+                            rlt.TagIndex.Add(
+                                string.Format(
+                                    "{0}.{1}", 
+                                    rlt.ServerName, 
+                                    tag.TagName), 
+                                tag);
                         }
                     }
                 }
@@ -286,6 +286,8 @@ namespace IRAP.OPC.Entity.IRAPServer
     public class TIRAPOPCDeviceCollection
     {
         private List<TIRAPOPCDevice> items = new List<TIRAPOPCDevice>();
+        private Dictionary<string, TIRAPOPCTag> indexTags =
+            new Dictionary<string, TIRAPOPCTag>();
 
         public TIRAPOPCDevice this[int index]
         {
@@ -300,10 +302,23 @@ namespace IRAP.OPC.Entity.IRAPServer
 
         public int Count { get { return items.Count; } }
 
+        public Dictionary<string, TIRAPOPCTag> IndexTags
+        {
+            get { return indexTags; }
+            set { indexTags = value; }
+        }
+
         public void Add(TIRAPOPCDevice item)
         {
             if (item != null)
+            {
                 items.Add(item);
+                
+                foreach (KeyValuePair<string, TIRAPOPCTag> idxItem in item.TagIndex)
+                {
+                    indexTags.Add(idxItem.Key, idxItem.Value);
+                }
+            }
         }
 
         public void Remove(TIRAPOPCDevice item)
@@ -390,12 +405,23 @@ namespace IRAP.OPC.Entity.IRAPServer
                     case 2:             // 发送 ESB 消息
                         if (Tools.ConvertToBoolean(tagValue))
                         {
+                            DateTime start1 = DateTime.Now;
                             Device.SendBatchTags(this);
+                            TimeSpan sendTimeSpan = DateTime.Now - start1;
+
                             if (WriteTagValueMethod != null)
                             {
                                 int errCode = 0;
                                 string errText = "";
+                                DateTime start2 = DateTime.Now;
                                 WriteTagValueMethod(ServerHandle, "0", out errCode, out errText);
+                                Console.WriteLine(
+                                    string.Format(
+                                        "ErrCode={0}|ErrText={1}|发送消息花费时间={2}秒|回写花费时间={3}秒",
+                                        errCode,
+                                        errText,
+                                        sendTimeSpan.TotalSeconds,
+                                        (DateTime.Now - start2).TotalSeconds));
                                 Debug.WriteLineIf(errCode != 0, errText);
                             }
                         }

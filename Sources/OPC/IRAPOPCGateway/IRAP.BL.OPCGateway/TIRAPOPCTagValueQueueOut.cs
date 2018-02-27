@@ -200,11 +200,10 @@ namespace IRAP.BL.OPCGateway
                         }
                         else
                         {
-                            if (fullTagName.IndexOf("BF-0957") >= 0)
-                                Console.WriteLine(
-                                    string.Format(
-                                        "KepS:[{0}]",
-                                        fullTagName));
+                            Debug.WriteLine(
+                                string.Format(
+                                    "KepTag:未注册[{0}]",
+                                    fullTagName));
                         }
                     }
                     catch (Exception error)

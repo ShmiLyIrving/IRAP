@@ -14,6 +14,7 @@ namespace IRAP.BL.OPCGateway
     {
         private static WriteLog _instance = null;
         private static object _lockStatus = new object();
+        private Guid localGuid = Guid.NewGuid();
 
         public static WriteLog Instance
         {
@@ -183,7 +184,7 @@ namespace IRAP.BL.OPCGateway
         public void Write(string logFileName, string msg, string modeName = "COMM")
         {
             WriteLogFileName = logFileName;
-            Write(msg, modeName);
+            Write(localGuid, msg, modeName);
         }
 
         public void WriteBeginSplitter(string modeName)
@@ -192,7 +193,7 @@ namespace IRAP.BL.OPCGateway
             msg = msg.PadLeft(msg.Length + 15, '=');
             msg = msg.PadRight(msg.Length + 15, '=');
 
-            Write(msg, modeName);
+            Write(localGuid, msg, modeName);
         }
 
         public void WriteBeginSplitter(string logFileName, string modeName)
@@ -207,7 +208,7 @@ namespace IRAP.BL.OPCGateway
             msg = msg.PadLeft(msg.Length + 15, '=');
             msg = msg.PadRight(msg.Length + 15, '=');
 
-            Write(msg, modeName);
+            Write(localGuid, msg, modeName);
         }
 
         public void WriteEndSplitter(string logFileName, string modeName)

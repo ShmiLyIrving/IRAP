@@ -69,7 +69,7 @@ namespace IRAP.BL.OPCGateway
                 "当前在 IRAP 系统中注册的 OPCDevice 数量[{0}]", 
                 TIRAPOPCDevices.Instance.Devices.Count);
 
-            //
+            // 创建 OPCTag 出队处理线程池
             TIRAPOPCTagValueQueueOut.Instance.Start();
 
             // 根据配置文件内容，创建 KepServer 连接

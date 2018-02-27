@@ -67,6 +67,7 @@
     <Compile Include="TIRAPOPCTagValueQueueOut.cs" />
     <Compile Include="TKepServerListener.cs" />
     <Compile Include="TOPCGatewayServiceControl.cs" />
+    <Compile Include="TOPCTagValueThread.cs" />
     <Compile Include="WriteLog.cs" />
   </ItemGroup>
   <ItemGroup>

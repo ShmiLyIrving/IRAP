@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 
 using OPCAutomation;
 
@@ -30,6 +31,8 @@ namespace IRAP.BL.OPCGateway
         ///  当前是否已经连接到 KepServer
         /// </summary>
         private bool kepServerConnected = false;
+
+        private int transactionID = 1;
 
         public TKepServerListener()
         {
@@ -123,11 +126,16 @@ namespace IRAP.BL.OPCGateway
                                 "入队：TagName[{0}],Value[{1}],Quality[{2}],TimeStamp[{3}]，共[{4}]条消息",
                                 item.TagName, item.Value, item.Quality, item.TimeStamp,
                                 TIRAPOPCTagValueItemQueue.Instance.QueueItemCount));
+                        //TOPCTagValueThread settleThread =
+                        //    new TOPCTagValueThread(item);
+                        //Thread thread = new Thread(new ThreadStart(settleThread.Start));
+                        //thread.Start();
                     }
                 }
                 catch (Exception error)
                 {
-                    Debug.WriteLine(string.Format("入队时出错：[{0}]", error.Message));                    
+                    //Debug.WriteLine(string.Format("入队时出错：[{0}]", error.Message));                    
+                    Debug.WriteLine(string.Format("处理时出错：[{0}]", error.Message));                    
                 }
             }
         }
@@ -246,7 +254,21 @@ namespace IRAP.BL.OPCGateway
             if (item != null)
                 try
                 {
-                    item.Write(tagValue);
+                    //item.Write(tagValue);
+
+                    int[] temp = new int[2] { 0, item.ServerHandle };
+                    Array serverHandles = (Array)temp;
+                    object[] valueTemp = new object[2] { "", tagValue };
+                    Array values = (Array)valueTemp;
+                    Array error;
+                    int cancelID;
+                    kepGroup.AsyncWrite(
+                        1,
+                        ref serverHandles,
+                        ref values,
+                        out error,
+                        transactionID++,
+                        out cancelID);
                 }
                 catch (Exception error)
                 {
