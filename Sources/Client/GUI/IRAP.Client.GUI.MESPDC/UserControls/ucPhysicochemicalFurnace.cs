@@ -27,10 +27,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         private DataTable dtInspection = new DataTable();        
         private List<SmeltInspectionItem> inspectionItems = new List<SmeltInspectionItem>();
         private OrderInfo pwo;
+        private string[] strfilename= {""};
         private int inspectionidx = 0;
         private int _readOnlyCount = 0;
-        public delegate void RefreshPath(bool enabled,string path);
-        public RefreshPath refreshpath;
+
         public int ReadOnlyCount
         {
             get { return _readOnlyCount; }
@@ -49,21 +49,21 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             get { return this.vgrdInspectParams.DataSource as DataTable; }
             set { this.vgrdInspectParams.DataSource = value; }
         }
-        private Dictionary<int,string> photos = new Dictionary<int, string>();
-        public Dictionary<int,string> Photos
-        {
-            get { return photos; }
-            set { photos = value; }
-        }
         public int Rowidx
         {
             get { return this.vgrdInspectParams.FocusedRecord+1-ReadOnlyCount; }
         }
 
-        public ucPhysicochemicalFurnace()
+        public ucPhysicochemicalFurnace(bool hide)
         {
             InitializeComponent();
             DevExpress.XtraEditors.Controls.Localizer.Active = new MessboxClass();
+            if(hide)
+            {
+                btnDelete.Visible = false;
+                btnModify.Visible = false;
+                btn_save.Visible = false;
+            }
         }
         private string GetBase64FromImage(string imagefile)
         {
@@ -93,7 +93,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             dtInspection.Clear();
             dtInspection.Columns.Clear();
             vgrdInspectParams.Rows.Clear();
-            photos.Clear();
             if (items.Count > 0)
             {
                 foreach (SmeltInspectionItem item in items)
@@ -335,25 +334,61 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     MessageBoxIcon.Error);
                 return;
             }
-
-            using (Dialogs.frmNoneblankEditor formEditor =
-                new Dialogs.frmNoneblankEditor(
-                    EditStatus.New,
-                    "新增",
-                    dtInspection,
-                    -1))
+            if (frmPhysicochemicalInspectionBatchSystem.currentOpType == "MPLH")
             {
-                if (formEditor.ShowDialog() == DialogResult.OK)
+                using (Dialogs.frmNoneblankphotoEditor photoEditor =
+                    new Dialogs.frmNoneblankphotoEditor(
+                        EditStatus.New,
+                        "新增",
+                        dtInspection,
+                        -1,
+                        strfilename))
                 {
-                    vgrdInspectParams.RefreshDataSource();
-                    vgrdInspectParams.FocusedRecord = vgrdInspectParams.RecordCount - 1;                  
-                    frmPhysicochemicalInspectionBatchSystem.saveState = false;
-                    RefreshCtrl();
+                    if (photoEditor.ShowDialog() == DialogResult.OK)
+                    {
+
+                        vgrdInspectParams.RefreshDataSource();
+                        vgrdInspectParams.FocusedRecord = vgrdInspectParams.RecordCount - 1;
+                        frmPhysicochemicalInspectionBatchSystem.saveState = false;
+                        SaveFact_SmeltBatchInspecting(pwo.FactID, pwo.T102LeafID, pwo.T107LeafID, pwo.LotNumber, pwo.PWONo);
+                        frmPhysicochemicalInspectionBatchSystem.saveState = true;
+                        dtInspection.Rows.Clear();
+                        dtInspection.Columns.Clear();
+                        vgrdInspectParams.Rows.Clear();
+                        RefreshUC(pwo);
+                    }
+                }
+            }
+            else
+            {
+                using (Dialogs.frmNoneblankEditor formEditor =
+                    new Dialogs.frmNoneblankEditor(
+                        EditStatus.New,
+                        "新增",
+                        dtInspection,
+                        -1))
+                {
+                    if (formEditor.ShowDialog() == DialogResult.OK)
+                    {
+                        vgrdInspectParams.RefreshDataSource();
+                        vgrdInspectParams.FocusedRecord = vgrdInspectParams.RecordCount - 1;
+                        frmPhysicochemicalInspectionBatchSystem.saveState = false;
+                        RefreshCtrl();                      
+                    }
                 }
             }
         }
         private void btnModify_Click(object sender, EventArgs e)
         {
+            if (optype == "MPLH")
+            {
+                XtraMessageBox.Show(
+                    "当前不能修改检验项",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
             if (dtInspection.Columns.Count < 0)
             {
                 XtraMessageBox.Show(
@@ -389,6 +424,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (optype == "MPLH")
+            {
+                XtraMessageBox.Show(
+                    "当前不能修改检验项",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
             if (dtInspection.Columns.Count < 0)
             {
                 XtraMessageBox.Show(
@@ -415,16 +459,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     dtInspection.Rows.RemoveAt(idx);
-                    if (optype == "MPLH")
-                    {
-                        int rowidx = idx + 1 - ReadOnlyCount;
-                        for (int i = rowidx; i < photos.Count; i++)
-                        {
-                            photos.Remove(rowidx);
-                            photos.Add(rowidx, photos[rowidx + 1]);
-                        }
-                        photos.Remove(photos.Count);
-                    }
                     this.vgrdInspectParams.RefreshDataSource();
                     if(dtInspection.Rows.Count == _readOnlyCount)
                     {
@@ -435,17 +469,21 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         frmPhysicochemicalInspectionBatchSystem.saveState = false;
                     }
                     RefreshCtrl();
-                    if (optype == "MPLH")
-                    {
-                        RefreshpathCtrl();
-                    }
                 }
             }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-
+            if(optype =="MPLH")
+            {
+                XtraMessageBox.Show(
+                   "当前不能保存检验项",
+                   "",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                return;
+            }
             if (dtInspection.Columns.Count < 0)
             {
                 XtraMessageBox.Show(
@@ -586,21 +624,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 string errText = "";
 
                 string RSFact = GenerateRSFactXML();
-                if (photos.Count>0)
+                if (!string.IsNullOrEmpty(strfilename[0]))
                 {
                     XmlDocument xdoc = new XmlDocument();
                     xdoc.LoadXml(RSFact);
-                    foreach (KeyValuePair<int,string> photo in photos)
-                    {
-                        foreach (XmlNode node in xdoc.FirstChild.ChildNodes)
-                        {
-                            if (node.Attributes["RowNum"].Value == photo.Key.ToString() && node.Attributes["Ordinal"].Value=="1")
-                            {
-                                node.Attributes["IQCReport"].InnerText = GetBase64FromImage(photo.Value);
-                                break;
-                            }
-                        }
-                    }
+                    xdoc.FirstChild.FirstChild.Attributes["IQCReport"].InnerText= GetBase64FromImage(strfilename[0]);       
                     RSFact = xdoc.InnerXml;
                 }
                 IRAPMESSmeltClient.Instance.usp_SaveFact_SmeltBatchInspecting(
@@ -632,8 +660,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         "提示信息",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-
-                    photos.Clear();
                     return true;
                 }
             }
@@ -668,30 +694,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             rlt = string.Format("<RSFact>{0}</RSFact>", rlt);
             return rlt;
         }
-        private void RefreshpathCtrl()
-        {
-            int idx = vgrdInspectParams.FocusedRecord;
-            string path = "";
-            if (idx < ReadOnlyCount)
-            {
-                refreshpath(false, path);
-            }
-            else
-            {
-                if (photos != null && photos.Count > 0)
-                {
-                    photos.TryGetValue(idx + 1 - ReadOnlyCount, out path);
-                }
-                refreshpath(true, path);
-            }
-        }
+       
         private void vgrdInspectParams_FocusedRecordChanged(object sender, DevExpress.XtraVerticalGrid.Events.IndexChangedEventArgs e)
         {
             RefreshCtrl();
-            if (optype == "MPLH")
-            {
-                RefreshpathCtrl();
-            }
         }
     }
 }

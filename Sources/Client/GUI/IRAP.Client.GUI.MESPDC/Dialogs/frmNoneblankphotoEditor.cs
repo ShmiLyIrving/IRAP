@@ -6,24 +6,27 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
 namespace IRAP.Client.GUI.MESPDC.Dialogs
 {
-    public partial class frmNoneblankEditor : IRAP.Client.GUI.MESPDC.Dialogs.frmItemsEditor
+    public partial class frmNoneblankphotoEditor : IRAP.Client.GUI.MESPDC.Dialogs.frmItemsEditor
     {
-        public frmNoneblankEditor()
+        private string[] strfilename= { "" };
+        public frmNoneblankphotoEditor()
         {
             InitializeComponent();
         }
-        public frmNoneblankEditor(
+        public frmNoneblankphotoEditor(
             EditStatus editStatus,
             string caption,
             DataTable dt,
-            int recordNo) :
+            int recordNo,string[] Strfilename) :
             this()
         {
+            strfilename = Strfilename;
             dtParams = dt;
             this.recordNo = recordNo;
 
@@ -79,20 +82,54 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                     textEdit.Text = dr[i].ToString();
                 edits.Add(textEdit);
                 notEmptyValidationRule.ErrorText = label.Text+"不能为空";
-                dxValidationProvider1.SetValidationRule(textEdit, notEmptyValidationRule);
-                this.dxValidationProvider1.SetIconAlignment(textEdit, ErrorIconAlignment.MiddleRight);
+                dxValidationProvider2.SetValidationRule(textEdit, notEmptyValidationRule);
+                this.dxValidationProvider2.SetIconAlignment(textEdit, ErrorIconAlignment.MiddleRight);
             }
 
-            Height = 40 + (items.Columns.Count * 30) + 116;
+            Height = 40 + (items.Columns.Count * 30) + 196;
         }
         protected override void btnOK_Click(object sender, EventArgs e)
         {
-           
+            
+        }
+
+        private void edtFileName_Validating(object sender, CancelEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(edtFileName.Text))
+            {
+                if (File.Exists(edtFileName.Text))
+                {
+                    strfilename[0] = edtFileName.Text;
+                }
+                else
+                {
+                    XtraMessageBox.Show(
+                        "选择的文件不存在,请检查文件路径",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    edtFileName.Text = "";
+                }
+            }
+        }
+
+        private void edtFileName_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            openFileDialog.Title = "选择要上传的文件";
+            openFileDialog.Filter = "照片(*.pdf)|*.pdf";
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                edtFileName.Text = openFileDialog.FileName;
+            }
         }
 
         private void btnOK_Click_1(object sender, EventArgs e)
         {
-            if (dxValidationProvider1.Validate())
+            if (dxValidationProvider2.Validate())
             {
                 DataRow dr = null;
                 switch (editStatus)
@@ -111,7 +148,6 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                         dr = dtParams.Rows[recordNo];
                         for (int i = 0; i < edits.Count; i++)
                             dr[i] = edits[i].Text;
-
                         DialogResult = DialogResult.OK;
                         break;
                 }

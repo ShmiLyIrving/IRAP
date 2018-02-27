@@ -52,7 +52,7 @@
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(563, 234);
+            this.groupControl1.Size = new System.Drawing.Size(563, 410);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "生产工单";
             // 
@@ -62,7 +62,7 @@
             this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(480, 262);
+            this.btnCancel.Location = new System.Drawing.Point(480, 438);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(95, 37);
             this.btnCancel.TabIndex = 4;
@@ -73,7 +73,7 @@
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Appearance.Options.UseFont = true;
-            this.btnOK.Location = new System.Drawing.Point(365, 262);
+            this.btnOK.Location = new System.Drawing.Point(365, 438);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(95, 37);
             this.btnOK.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(587, 311);
+            this.ClientSize = new System.Drawing.Size(587, 487);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupControl1);
@@ -97,7 +97,7 @@
         #endregion
 
         protected DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnOK;
+        public DevExpress.XtraEditors.SimpleButton btnCancel;
+        public DevExpress.XtraEditors.SimpleButton btnOK;
     }
 }

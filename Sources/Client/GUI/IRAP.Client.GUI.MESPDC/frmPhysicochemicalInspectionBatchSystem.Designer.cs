@@ -45,9 +45,6 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.edtFileName = new DevExpress.XtraEditors.ButtonEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -63,9 +60,6 @@
             this.scMPLH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPWOs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPWOs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
-            this.panelControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edtFileName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -152,7 +146,6 @@
             // tabMPLH
             // 
             this.tabMPLH.Controls.Add(this.plMPLH);
-            this.tabMPLH.Controls.Add(this.panelControl4);
             this.tabMPLH.Name = "tabMPLH";
             this.tabMPLH.Size = new System.Drawing.Size(775, 379);
             this.tabMPLH.Text = "毛坯理化";
@@ -163,7 +156,7 @@
             this.plMPLH.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plMPLH.Location = new System.Drawing.Point(0, 0);
             this.plMPLH.Name = "plMPLH";
-            this.plMPLH.Size = new System.Drawing.Size(775, 341);
+            this.plMPLH.Size = new System.Drawing.Size(775, 379);
             this.plMPLH.TabIndex = 0;
             // 
             // scMPLH
@@ -183,7 +176,7 @@
             this.scMPLH.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.scMPLH.Panel2.ShowCaption = true;
             this.scMPLH.Panel2.Text = "检验内容";
-            this.scMPLH.Size = new System.Drawing.Size(771, 337);
+            this.scMPLH.Size = new System.Drawing.Size(771, 375);
             this.scMPLH.SplitterPosition = 150;
             this.scMPLH.TabIndex = 0;
             this.scMPLH.Text = "scMPLH";
@@ -277,39 +270,6 @@
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
             // 
-            // panelControl4
-            // 
-            this.panelControl4.Controls.Add(this.edtFileName);
-            this.panelControl4.Controls.Add(this.labelControl2);
-            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl4.Location = new System.Drawing.Point(0, 341);
-            this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(775, 38);
-            this.panelControl4.TabIndex = 1;
-            // 
-            // edtFileName
-            // 
-            this.edtFileName.Enabled = false;
-            this.edtFileName.Location = new System.Drawing.Point(101, 5);
-            this.edtFileName.Name = "edtFileName";
-            this.edtFileName.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edtFileName.Properties.Appearance.Options.UseFont = true;
-            this.edtFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.edtFileName.Size = new System.Drawing.Size(386, 26);
-            this.edtFileName.TabIndex = 1;
-            this.edtFileName.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.edtFileName_ButtonClick);
-            this.edtFileName.Validating += new System.ComponentModel.CancelEventHandler(this.edtFileName_Validating);
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(11, 8);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(84, 20);
-            this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "上传文件名：";
-            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
@@ -342,10 +302,6 @@
             this.scMPLH.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPWOs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPWOs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
-            this.panelControl4.ResumeLayout(false);
-            this.panelControl4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edtFileName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,10 +315,7 @@
         private DevExpress.XtraTab.XtraTabPage tabLQLH;
         private DevExpress.XtraTab.XtraTabPage tabLHLH;
         private DevExpress.XtraTab.XtraTabPage tabMPLH;
-        private DevExpress.XtraEditors.PanelControl panelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.PanelControl plMPLH;
-        private DevExpress.XtraEditors.ButtonEdit edtFileName;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private DevExpress.XtraEditors.SplitContainerControl scMPLH;
         private DevExpress.XtraGrid.GridControl grdPWOs;

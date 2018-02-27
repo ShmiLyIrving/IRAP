@@ -27,9 +27,9 @@ namespace IRAP.Client.GUI.MESPDC
         public static string currentOpType;
         public static bool saveState = true;//是否已保存
 
-        private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace();
-        private UserControls.ucPhysicochemicalFurnace ucLQLH = new UserControls.ucPhysicochemicalFurnace();
-        private UserControls.ucPhysicochemicalFurnace ucLHLH = new UserControls.ucPhysicochemicalFurnace();
+        private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace(true);
+        private UserControls.ucPhysicochemicalFurnace ucLQLH = new UserControls.ucPhysicochemicalFurnace(false);
+        private UserControls.ucPhysicochemicalFurnace ucLHLH = new UserControls.ucPhysicochemicalFurnace(false);
       
         public frmPhysicochemicalInspectionBatchSystem()
         {
@@ -44,26 +44,12 @@ namespace IRAP.Client.GUI.MESPDC
             tcMain.TabPages[2].Controls["plMPLH"].Controls["scMPLH"].Controls[1].Controls.Add(ucMPLH);
             ucMPLH.Dock = DockStyle.Fill;
             ucMPLH.Optype = "MPLH";
-            ucMPLH.refreshpath = Refreshphoto;
         }
 
-        private void Refreshphoto(bool enabled,string path)
-        {
-            this.edtFileName.Enabled = enabled;
-            edtFileName.Text = path;
-        }
+
         private void edtFileName_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            openFileDialog.Title = "选择要上传的文件";
-            openFileDialog.Filter = "照片(*.pdf)|*.pdf";
-            if (openFileDialog.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-            else
-            {
-                edtFileName.Text = openFileDialog.FileName;
-            }
+           
         }
   
        
@@ -211,7 +197,6 @@ namespace IRAP.Client.GUI.MESPDC
 
         private void grdvPWOs_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
         {
-            edtFileName.Text = "";
 
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
             if (idx >= 0 && idx < pwos.Count)
@@ -234,31 +219,6 @@ namespace IRAP.Client.GUI.MESPDC
         }
         private void edtFileName_Validating(object sender, CancelEventArgs e)
         {
-            int idx = ucMPLH.Rowidx;
-            if (!string.IsNullOrEmpty(edtFileName.Text))
-            {
-                if (File.Exists(edtFileName.Text))
-                {
-                    
-                    if (ucMPLH.Photos.Keys.Contains(idx))
-                    {
-                        ucMPLH.Photos.Remove(idx);
-                    }
-                    ucMPLH.Photos.Add(idx, edtFileName.Text);                   
-                }
-                else
-                {
-                    XtraMessageBox.Show(
-                        "选择的文件不存在,请检查文件路径",
-                        "",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
-            else if(edtFileName.Text =="")
-            {
-                ucMPLH.Photos.Remove(idx);
-            }
         }
     }
 }
