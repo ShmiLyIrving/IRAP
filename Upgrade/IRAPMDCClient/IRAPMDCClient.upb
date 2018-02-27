@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\IRAP.PLC.Collection.exe" version="6.1.6353.20463" md5="e40aef36d094f04a44319dfe7386f8f1" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\Apache.NMS.ActiveMQ.dll" version="1.7.2.4108" md5="bd557caebf32005b3f6025870c873aa6" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\Apache.NMS.dll" version="1.7.1.3894" md5="4d47a43a48cdd4476e8c40ae860f0682" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\DevExpress.Data.v15.2.dll" version="15.2.4.0" md5="62049e84c443f5515bfb9873582d9784" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\DevExpress.Printing.v15.2.Core.dll" version="15.2.4.0" md5="1ea47fe75f01316c9e015230ef409fec" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\DevExpress.Sparkline.v15.2.Core.dll" version="15.2.4.0" md5="b5105dd3e119f37d3d3542472b5fe7b2" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\DevExpress.Utils.v15.2.dll" version="15.2.4.0" md5="cc33470e0b0053eeb0e657ea34643733" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\DevExpress.XtraEditors.v15.2.dll" version="15.2.4.0" md5="db51889238458c10c108606074bd8e18" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\IRAP.AutoUpgrade.dll" version="6.1.6343.37286" md5="5655d07d2e441ffd8f314bc91d17aed2" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\IRAP.Client.Global.Resources.dll" version="6.1.6300.22682" md5="94825e6052ac7286614db1ce658500a1" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAP.PLC.Collection\IRAP.PLC.Collection\bin\Release\IRAP.Global.dll" version="6.1.6300.22682" md5="947b4b505c7ab554c7f62bbe71ded1aa" selected="True"/>
+</root>

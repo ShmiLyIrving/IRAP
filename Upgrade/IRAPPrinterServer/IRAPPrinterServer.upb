@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAPPrinterServer.exe" version="6.1.6217.19238" md5="44301f2e0a0beec96a3babeb1c6d948b" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\Apache.NMS.ActiveMQ.dll" version="1.7.2.4108" md5="bd557caebf32005b3f6025870c873aa6" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\Apache.NMS.dll" version="1.7.1.3894" md5="4d47a43a48cdd4476e8c40ae860f0682" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\DevExpress.Data.v15.2.dll" version="15.2.4.0" md5="62049e84c443f5515bfb9873582d9784" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\DevExpress.Printing.v15.2.Core.dll" version="15.2.4.0" md5="1ea47fe75f01316c9e015230ef409fec" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\DevExpress.Sparkline.v15.2.Core.dll" version="15.2.4.0" md5="b5105dd3e119f37d3d3542472b5fe7b2" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\DevExpress.Utils.v15.2.dll" version="15.2.4.0" md5="cc33470e0b0053eeb0e657ea34643733" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\DevExpress.XtraEditors.v15.2.dll" version="15.2.4.0" md5="db51889238458c10c108606074bd8e18" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\FastReport.Bars.dll" version="2013.2.5.0" md5="96e0c5bdbce4df3ed48c40af486159cc" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\FastReport.dll" version="0.0.0.0" md5="c9201ed67a011e7433c91bfadeb3c71f" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\FastReport.Editor.dll" version="2013.2.5.0" md5="7a76c332fab99cfbe9753c8dafbbea39" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.AutoUpgrade.dll" version="6.1.6217.18965" md5="65e134999950fd64da1bc409c8ebea7d" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Client.Actions.dll" version="6.1.6217.19238" md5="fd7f2701c157a65817033efb90218a37" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Client.Global.Resources.dll" version="6.1.6200.17615" md5="6d9d5f75b30b907b172d81983feb547f" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Entities.dll" version="6.1.6217.18965" md5="69602f7c2ba82769b3d06764c591ce25" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Entity.FVS.dll" version="6.1.6217.18965" md5="da091a5a682d56d8590893bc18327f65" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Entity.Kanban.dll" version="6.1.6215.42076" md5="7b956d67968601d6dd80b4522ae295f0" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Entity.MDM.dll" version="6.1.6217.18965" md5="e642b1ce57d484b49bbed898e43c9685" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Entity.MES.dll" version="6.1.6217.18965" md5="7e0207ade57e915feeab27c7ff52992a" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Entity.SSO.dll" version="6.1.6217.18965" md5="f032d9f3f545054de50d5ba7c9dfb44d" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.Global.dll" version="6.1.6217.18964" md5="41dd97a9333bceb0f3ad81019f068072" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.WCF.Client.dll" version="6.1.6215.42074" md5="988e944018c45fb9b5a7f5f0fb60ed05" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAP.WCF.Client.Method.dll" version="6.1.6217.18965" md5="2522294acd64ff2466f92f3a0e4d88bc" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\IRAPShared.dll" version="6.0.5636.21648" md5="7cc421c29f39407d875f8989f325473f" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\Newtonsoft.Json.dll" version="4.5.11.15520" md5="8611795b70cd1f321cb5cb5aad95ff7b" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Sources\Tools\IRAPPrinterServer\IRAPPrinterServer\bin\Release\Oracle.DataAccess.dll" version="4.112.3.0" md5="3bf768bc471e2effa78594703d12be89" selected="True"/>
+</root>
