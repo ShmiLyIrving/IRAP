@@ -70,7 +70,7 @@ namespace IRAP.BL.OPCGateway
                 TIRAPOPCDevices.Instance.Devices.Count);
 
             // 创建 OPCTag 出队处理线程池
-            TIRAPOPCTagValueQueueOut.Instance.Start();
+            //TIRAPOPCTagValueQueueOut.Instance.Start();
 
             // 根据配置文件内容，创建 KepServer 连接
             TIRAPOPCServers.Instance.LoadFromDataFile(TOPCGatewayGlobal.Instance.ConfigurationFile);

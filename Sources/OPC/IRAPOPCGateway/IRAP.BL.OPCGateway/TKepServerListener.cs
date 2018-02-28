@@ -120,16 +120,19 @@ namespace IRAP.BL.OPCGateway
                             TimeStamp = timeStamp.GetValue(i).ToString(),
                         };
 
-                        TIRAPOPCTagValueItemQueue.Instance.Add(item);
-                        Debug.WriteLine(
-                            string.Format(
-                                "入队：TagName[{0}],Value[{1}],Quality[{2}],TimeStamp[{3}]，共[{4}]条消息",
-                                item.TagName, item.Value, item.Quality, item.TimeStamp,
-                                TIRAPOPCTagValueItemQueue.Instance.QueueItemCount));
-                        //TOPCTagValueThread settleThread =
-                        //    new TOPCTagValueThread(item);
-                        //Thread thread = new Thread(new ThreadStart(settleThread.Start));
-                        //thread.Start();
+                        // 将收到的消息放入待处理消息队列中
+                        //TIRAPOPCTagValueItemQueue.Instance.Add(item);
+                        //Debug.WriteLine(
+                        //    string.Format(
+                        //        "入队：TagName[{0}],Value[{1}],Quality[{2}],TimeStamp[{3}]，共[{4}]条消息",
+                        //        item.TagName, item.Value, item.Quality, item.TimeStamp,
+                        //        TIRAPOPCTagValueItemQueue.Instance.QueueItemCount));
+
+                        // 直接生成消息处理线程处理收到的消息
+                        TOPCTagValueThread settleThread =
+                            new TOPCTagValueThread(item);
+                        Thread thread = new Thread(new ThreadStart(settleThread.Start));
+                        thread.Start();
                     }
                 }
                 catch (Exception error)
