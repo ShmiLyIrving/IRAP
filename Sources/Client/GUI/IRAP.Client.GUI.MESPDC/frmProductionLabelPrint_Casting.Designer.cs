@@ -110,13 +110,14 @@
             // 
             // cboBatchNo
             // 
-            this.cboBatchNo.Location = new System.Drawing.Point(654, 18);
+            this.cboBatchNo.Location = new System.Drawing.Point(683, 18);
             this.cboBatchNo.Name = "cboBatchNo";
             this.cboBatchNo.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cboBatchNo.Properties.Appearance.Options.UseFont = true;
             this.cboBatchNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboBatchNo.Size = new System.Drawing.Size(153, 26);
+            this.cboBatchNo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboBatchNo.Size = new System.Drawing.Size(162, 26);
             this.cboBatchNo.TabIndex = 11;
             this.cboBatchNo.SelectedIndexChanged += new System.EventHandler(this.cboBatchNo_SelectedIndexChanged);
             // 
@@ -128,7 +129,8 @@
             this.cboFurnaces.Properties.Appearance.Options.UseFont = true;
             this.cboFurnaces.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboFurnaces.Size = new System.Drawing.Size(289, 26);
+            this.cboFurnaces.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboFurnaces.Size = new System.Drawing.Size(332, 26);
             this.cboFurnaces.TabIndex = 11;
             this.cboFurnaces.SelectedIndexChanged += new System.EventHandler(this.cboFurnaces_SelectedIndexChanged);
             // 
@@ -137,14 +139,14 @@
             this.labelProductionDate.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelProductionDate.Location = new System.Drawing.Point(18, 21);
             this.labelProductionDate.Name = "labelProductionDate";
-            this.labelProductionDate.Size = new System.Drawing.Size(59, 20);
+            this.labelProductionDate.Size = new System.Drawing.Size(70, 20);
             this.labelProductionDate.TabIndex = 3;
-            this.labelProductionDate.Text = "生产日期:";
+            this.labelProductionDate.Text = "生产日期：";
             // 
             // dtProductDate
             // 
             this.dtProductDate.EditValue = new System.DateTime(2018, 1, 25, 10, 41, 25, 67);
-            this.dtProductDate.Location = new System.Drawing.Point(83, 18);
+            this.dtProductDate.Location = new System.Drawing.Point(94, 18);
             this.dtProductDate.Name = "dtProductDate";
             this.dtProductDate.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtProductDate.Properties.Appearance.Options.UseFont = true;
@@ -167,20 +169,20 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(617, 21);
+            this.labelControl1.Location = new System.Drawing.Point(635, 21);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(31, 20);
+            this.labelControl1.Size = new System.Drawing.Size(42, 20);
             this.labelControl1.TabIndex = 5;
-            this.labelControl1.Text = "炉次:";
+            this.labelControl1.Text = "炉次：";
             // 
             // labelFurnaceTime
             // 
             this.labelFurnaceTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFurnaceTime.Location = new System.Drawing.Point(260, 21);
+            this.labelFurnaceTime.Location = new System.Drawing.Point(249, 21);
             this.labelFurnaceTime.Name = "labelFurnaceTime";
-            this.labelFurnaceTime.Size = new System.Drawing.Size(31, 20);
+            this.labelFurnaceTime.Size = new System.Drawing.Size(42, 20);
             this.labelFurnaceTime.TabIndex = 5;
-            this.labelFurnaceTime.Text = "设备:";
+            this.labelFurnaceTime.Text = "设备：";
             // 
             // btn_Print
             // 

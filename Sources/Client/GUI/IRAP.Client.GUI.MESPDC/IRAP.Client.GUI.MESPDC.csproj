@@ -98,6 +98,12 @@
     <Compile Include="Dialogs\frmNoneblankEditor.Designer.cs">
       <DependentUpon>frmNoneblankEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmNoneblankphotoEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmNoneblankphotoEditor.designer.cs">
+      <DependentUpon>frmNoneblankphotoEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmPWOInProductionEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,6 +369,9 @@
     <EmbeddedResource Include="Dialogs\frmNoneblankEditor.resx">
       <DependentUpon>frmNoneblankEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmNoneblankphotoEditor.resx">
+      <DependentUpon>frmNoneblankphotoEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor.resx">
       <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -447,6 +456,7 @@
     <EmbeddedResource Include="frmUpdateCustomerBindingInfo.resx">
       <DependentUpon>frmUpdateCustomerBindingInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -186,21 +186,22 @@ namespace IRAP.Client.GUI.MESPDC
                      new System.Drawing.Printing.PrinterSettings();
             if (_report.Prepare())
             {
-                bool rePrinter = false;
-                do
-                {
+                // 取消循环打印-李智颖 2018-3-2
+                //bool rePrinter = false;
+                //do
+                //{
                     if (_report.ShowPrintDialog(out prnSetting))
                     {
                         _report.PrintPrepared(prnSetting);
-                        rePrinter = (
-                            ShowMessageBox.Show(
-                                "铸造产品标识卡已经打印完成，是否需要重新打印？",
-                                "系统信息",
-                                MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question,
-                                MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+                        //rePrinter = (
+                        //    ShowMessageBox.Show(
+                        //        "铸造产品标识卡已经打印完成，是否需要重新打印？",
+                        //        "系统信息",
+                        //        MessageBoxButtons.YesNo,
+                        //        MessageBoxIcon.Question,
+                        //        MessageBoxDefaultButton.Button2) == DialogResult.Yes);
                     }
-                } while (rePrinter);
+                //} while (rePrinter);
             }
         }
         /// <summary>
