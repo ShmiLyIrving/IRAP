@@ -389,8 +389,14 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         out errText);
                 if (errCode != 0)
                 {
-                    WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
-                    XtraMessageBox.Show(errText, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}", errCode, errText), 
+                        strProcedureName);
+                    XtraMessageBox.Show(
+                        errText, 
+                        "提示", 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     return null;
                 }
                 var datas = new BindingList<SmeltMaterialItemClient>();
@@ -598,21 +604,27 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         {
             var batchNumber = this.lblFurnaceTime.Text;
             int t131LeafID = 0;
-            if (_ProductingNow)
+            //if (_ProductingNow)
+            //{
+            //    var info = this.lblFurnaceTime.Tag as SmeltBatchProductionInfo;
+            //    if (info != null)
+            //    {
+            //        t131LeafID = info.T131LeafID;
+            //    }
+            //}
+            //else {
+            //    var info = this.lblFurnaceTime.Tag as WaitingSmelt;
+            //    if (info != null)
+            //    {
+            //        t131LeafID = info.T131LeafID;
+            //    }
+            //}
+            List<OrderInfo> orders = grdCtrProductionInfo.DataSource as List<OrderInfo>;
+            if (orders != null && orders.Count > 0)
             {
-                var info = this.lblFurnaceTime.Tag as SmeltBatchProductionInfo;
-                if (info != null)
-                {
-                    t131LeafID = info.T131LeafID;
-                }
+                t131LeafID = orders[0].T131LeafID;
             }
-            else {
-                var info = this.lblFurnaceTime.Tag as WaitingSmelt;
-                if (info != null)
-                {
-                    t131LeafID = info.T131LeafID;
-                }
-            }
+
             int errCode;
             string errText;
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
@@ -839,20 +851,25 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             var operatorCode = _operatorCode;
             var batchNumber = this.lblFurnaceTime.Text;
             int t131LeafID = 0;
-            if (_ProductingNow)
+            //if (_ProductingNow)
+            //{
+            //    var info = this.lblFurnaceTime.Tag as SmeltBatchProductionInfo;
+            //    if (info != null)
+            //    {
+            //        t131LeafID = info.T131LeafID;
+            //    }
+            //}
+            //else {
+            //    var info = this.lblFurnaceTime.Tag as WaitingSmelt;
+            //    if (info != null)
+            //    {
+            //        t131LeafID = info.T131LeafID;
+            //    }
+            //}
+            List<OrderInfo> orders = grdCtrProductionInfo.DataSource as List<OrderInfo>;
+            if (orders != null && orders.Count > 0)
             {
-                var info = this.lblFurnaceTime.Tag as SmeltBatchProductionInfo;
-                if (info != null)
-                {
-                    t131LeafID = info.T131LeafID;
-                }
-            }
-            else {
-                var info = this.lblFurnaceTime.Tag as WaitingSmelt;
-                if (info != null)
-                {
-                    t131LeafID = info.T131LeafID;
-                }
+                t131LeafID = orders[0].T131LeafID;
             }
 
             int errCode;
