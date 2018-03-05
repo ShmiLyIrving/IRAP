@@ -323,14 +323,15 @@ namespace ESBtoxFile
                 {
                     return;
                 }
-                string _dataDir = SysParams.Instance.LocalFileSaveLocation;
-                string[] fileList = Directory.GetFiles(_dataDir, "*.xml" );
-                if (fileList.Length > 0)
-                {
-                    Thread.Sleep(500);               
-                    //目录下有文件就不继续生成文件了！
-                    return;
-                }
+
+                //string _dataDir = SysParams.Instance.LocalFileSaveLocation;
+                //string[] fileList = Directory.GetFiles(_dataDir, "*.xml" );
+                //if (fileList.Length > 0)
+                //{
+                //    Thread.Sleep(500);               
+                //    //目录下有文件就不继续生成文件了！
+                //    return;
+                //}
                
                 string temp = wait4WriteToxFile[0];
                 lock (lockArea)
