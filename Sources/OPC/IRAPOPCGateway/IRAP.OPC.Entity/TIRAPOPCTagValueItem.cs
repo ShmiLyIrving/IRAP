@@ -14,5 +14,6 @@ namespace IRAP.OPC.Entity
         public string Value { get; set; }
         public string Quality { get; set; }
         public string TimeStamp { get; set; }
+        public DateTime ReceiveTime { get; set; }
     }
 }

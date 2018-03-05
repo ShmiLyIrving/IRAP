@@ -34,6 +34,8 @@ namespace IRAP.BL.OPCGateway
 
         private int transactionID = 1;
 
+        private TKepServerWriter writter = new TKepServerWriter();
+
         public TKepServerListener()
         {
             kepServer.ServerShutDown += new DIOPCServerEvent_ServerShutDownEventHandler(KepServer_ServerShutDown);
@@ -65,7 +67,7 @@ namespace IRAP.BL.OPCGateway
         public string KepServerIP { get { return ipKepServer; } }
 
         /// <summary>
-        /// KE盘Server 的服务器名称
+        /// KepServer 的服务器名称
         /// </summary>
         public string KepServerName { get { return nameKepServer; } }
 
@@ -118,7 +120,14 @@ namespace IRAP.BL.OPCGateway
                             Value = strValue,
                             Quality = qualities.GetValue(i).ToString(),
                             TimeStamp = timeStamp.GetValue(i).ToString(),
+                            ReceiveTime = DateTime.Now,
                         };
+
+                        //Console.WriteLine(
+                        //    string.Format(
+                        //        "[{0}]收到消息事件：TagName[{1}],Value[{2}],TimeStamp[{3}]",
+                        //        DateTime.Now.ToString("HH:mm:ss.fff"),
+                        //        item.TagName, item.Value, item.TimeStamp));
 
                         // 将收到的消息放入待处理消息队列中
                         //TIRAPOPCTagValueItemQueue.Instance.Add(item);
@@ -129,8 +138,7 @@ namespace IRAP.BL.OPCGateway
                         //        TIRAPOPCTagValueItemQueue.Instance.QueueItemCount));
 
                         // 直接生成消息处理线程处理收到的消息
-                        TOPCTagValueThread settleThread =
-                            new TOPCTagValueThread(item);
+                        TOPCTagValueThread settleThread = new TOPCTagValueThread(item);
                         Thread thread = new Thread(new ThreadStart(settleThread.Start));
                         thread.Start();
                     }
@@ -141,6 +149,26 @@ namespace IRAP.BL.OPCGateway
                     Debug.WriteLine(string.Format("处理时出错：[{0}]", error.Message));                    
                 }
             }
+        }
+
+        private void KepGroup_AsyncWriteComplete(
+            int transactionID,
+            int numItems,
+            ref Array clientHandles,
+            ref Array errors)
+        {
+            string outputStr = "";
+            for (int i = 1; i <= numItems; i++)
+            {
+                outputStr +=
+                    string.Format(
+                        "[{0}]Trans:[{1}] CH:[{2}] Errors:[{3}]",
+                        DateTime.Now.ToString("HH:mm:ss.fff"),
+                        transactionID,
+                        clientHandles.GetValue(i).ToString(),
+                        errors.GetValue(i).ToString());
+            }
+            Console.WriteLine(outputStr);
         }
 
         public bool Init(string ipKepServer, string nameKepServer)
@@ -191,7 +219,7 @@ namespace IRAP.BL.OPCGateway
             // 建立数据变化的侦听
             kepGroups = kepServer.OPCGroups;
             kepGroups.RemoveAll();
-            kepGroup = kepGroups.Add("OPCDOTNETGROUP");
+            kepGroup = kepGroups.Add("OPCLISTENERGROUP");
 
             kepGroups.DefaultGroupIsActive = true;
             kepGroups.DefaultGroupDeadband = 0;
@@ -200,30 +228,36 @@ namespace IRAP.BL.OPCGateway
             kepGroup.IsSubscribed = true;
 
             kepGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(KepGroup_DataChange);
+            kepGroup.AsyncWriteComplete += new DIOPCGroupEvent_AsyncWriteCompleteEventHandler(KepGroup_AsyncWriteComplete);
 
             kepItems = kepGroup.OPCItems;
             for (int i = 0; i < tags.Count; i++)
             {
-                tags[i].ServerHandle = kepItems.AddItem(tags[i].TagName, i + 1).ServerHandle;
+                //if (!tags[i].TagName.Contains("DATA_READY"))
+                //{
+                    tags[i].ServerHandle = kepItems.AddItem(tags[i].TagName, i + 1).ServerHandle;
 
-                TIRAPOPCTag tag =
-                    TIRAPOPCDevices.Instance.FindOPCTagItem(
-                        string.Format(
-                            "{0}.{1}",
-                            nameKepServer,
-                            tags[i].TagName));
-                if (tag != null)
-                {
-                    tag.ServerHandle = tags[i].ServerHandle;
-                    tag.WriteTagValueMethod = WriteTagValue;
+                    TIRAPOPCTag tag =
+                        TIRAPOPCDevices.Instance.FindOPCTagItem(
+                            string.Format(
+                                "{0}.{1}",
+                                nameKepServer,
+                                tags[i].TagName));
+                    if (tag != null)
+                    {
+                        tag.ServerHandle = tags[i].ServerHandle;
+                        tag.WriteTagValueMethod = WriteTagValue;
 
-                    Debug.WriteLine(
-                        string.Format(
-                            "TagName:[{0}], ServerHandle:[{1}]",
-                            tag.TagName,
-                            tag.ServerHandle));
-                }
+                        Debug.WriteLine(
+                            string.Format(
+                                "TagName:[{0}], ServerHandle:[{1}]",
+                                tag.TagName,
+                                tag.ServerHandle));
+                    }
+                //}
             }
+
+            //writter.Init(ipKepServer, nameKepServer);
 
             return true;
         }

@@ -61,11 +61,12 @@
     <Compile Include="Actions\TUpdateDeviceTags.cs" />
     <Compile Include="Actions\TUpdateKepServ.cs" />
     <Compile Include="Interfaces\IWebAPIAction.cs" />
+    <Compile Include="KepServer\TKepServerWriter.cs" />
     <Compile Include="OPCGatewayService.cs" />
     <Compile Include="Interfaces\IOPCGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TIRAPOPCTagValueQueueOut.cs" />
-    <Compile Include="TKepServerListener.cs" />
+    <Compile Include="KepServer\TKepServerListener.cs" />
     <Compile Include="TOPCGatewayServiceControl.cs" />
     <Compile Include="TOPCTagValueThread.cs" />
     <Compile Include="WriteLog.cs" />

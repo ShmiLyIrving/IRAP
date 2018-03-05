@@ -417,7 +417,8 @@ namespace IRAP.OPC.Entity.IRAPServer
                                 WriteTagValueMethod(ServerHandle, "0", out errCode, out errText);
                                 Console.WriteLine(
                                     string.Format(
-                                        "ErrCode={0}|ErrText={1}|发送消息花费时间={2}秒|回写花费时间={3}秒",
+                                        "[{0}]ErrCode={1}|ErrText={2}|发送消息花费时间={3}秒|回写花费时间={4}秒",
+                                        DateTime.Now.ToString("HH:mm:ss.fff"),
                                         errCode,
                                         errText,
                                         sendTimeSpan.TotalSeconds,
@@ -437,7 +438,15 @@ namespace IRAP.OPC.Entity.IRAPServer
         {
             if (WriteTagValueMethod != null)
             {
+                DateTime start = DateTime.Now;
                 WriteTagValueMethod(ServerHandle, value, out errCode, out errText);
+                Console.WriteLine(
+                    string.Format(
+                        "[{0}]ErrCode={1}|ErrText={2}|回写花费时间={3}秒",
+                        DateTime.Now.ToString("HH:mm:ss.fff"),
+                        errCode,
+                        errText,
+                        (DateTime.Now - start).TotalSeconds));
             }
             else
             {

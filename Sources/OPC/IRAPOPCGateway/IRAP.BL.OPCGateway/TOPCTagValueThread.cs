@@ -61,9 +61,16 @@ namespace IRAP.BL.OPCGateway
 
                 if (tag != null)
                 {
+
                     Console.WriteLine(
                         string.Format(
-                            "[线程 #{0}]处理 OPC 消息：TagName:[{1}],Value:[{2}]",
+                            "[{0}]收到消息事件：TagName[{1}],Value[{2}],TimeStamp[{3}]",
+                            item.ReceiveTime.ToString("HH:mm:ss.fff"),
+                            item.TagName, item.Value, item.TimeStamp));
+                    Console.WriteLine(
+                        string.Format(
+                            "[{0}][线程 #{1}]处理 OPC 消息：TagName:[{2}],Value:[{3}]",
+                            DateTime.Now.ToString("HH:mm:ss.fff"),
                             threadID,
                             item.TagName,
                             item.Value));
