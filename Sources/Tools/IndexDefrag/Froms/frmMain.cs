@@ -228,6 +228,10 @@ namespace IndexDefrag
                         btnDefrag.Enabled = true;
                         break;
                     }
+                    else
+                    {
+                        SetMsgState("无可清理项目","",ToolTipIcon.None);
+                    }
                 }
             btnCancel.Enabled = false;
             btnScan.Enabled = true;

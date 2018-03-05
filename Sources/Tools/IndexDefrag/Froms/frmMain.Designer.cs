@@ -160,7 +160,7 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageLocation = DevExpress.XtraEditors.ImageLocation.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(325, 1);
+            this.btnClose.Location = new System.Drawing.Point(324, 2);
             this.btnClose.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnClose.Name = "btnClose";
             this.btnClose.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
