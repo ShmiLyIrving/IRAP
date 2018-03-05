@@ -1420,6 +1420,17 @@
         geoDgAxssIIMlicIADs=
 </value>
   </data>
+  <data name="memoEdit1.EditValue" xml:space="preserve">
+    <value>1.此软件最多能将索引碎片清理至10以下，超过此阔值可能清理无效。 
+
+2.最大并行线程请设置在10-100之间，否则会影响效率。
+
+3.当扫描数据量较大时，建议勾选“保存扫描记录”，这样下次扫描时会提高效率。
+
+4.忽略扫描次数指被扫描的表不满足设置的阔值条件，被忽略的次数，设置“最大忽略次数”来忽略不必要扫描的表。
+
+5.保存扫描数据时点击取消按钮，会取消保存，但不影响后续的索引碎片清理</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAICAAAAAAIACoEAAAJgAAAEBAAAAAACAAKEIAAM4QAAAoAAAAIAAAAEAAAAABACAAAAAAAAAg

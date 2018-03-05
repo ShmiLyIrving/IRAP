@@ -1022,9 +1022,7 @@
             // memoEdit1
             // 
             this.memoEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit1.EditValue = "1.此软件最多能将索引碎片清理至10以下，超过此阔值可能清理无效。 \r\n\r\n2.最大并行线程请设置在10-100之间，否则会影响效率。\r\n\r\n3.当扫描数据量较大" +
-    "时，建议勾选“保存扫描记录”，这样下次扫描时会提高效率。\r\n\r\n4.忽略扫描次数指被扫描的表不满足设置的阔值条件，被忽略的次数，设置“最大忽略次数”来忽略不必要" +
-    "扫描的表。";
+            this.memoEdit1.EditValue = resources.GetString("memoEdit1.EditValue");
             this.memoEdit1.Location = new System.Drawing.Point(0, 0);
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Azure;
