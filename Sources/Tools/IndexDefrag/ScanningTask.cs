@@ -145,14 +145,21 @@ namespace IndexDefrag
                             SetAccumTask("正在保存数据");
                             Task t = new Task(() =>
                             {
-                                SetlbHead("任务：");
-                                foreach (DB db in Server.Instance.databases)
+                                if (SysParams.Instance.ScanningLog)
                                 {
-                                    if (db.tables != null)
+                                    SetlbHead("任务：");
+                                    foreach (DB db in Server.Instance.databases)
                                     {
-                                        foreach (DBTable table in db.tables)
+                                        if (db.tables != null)
                                         {
-                                            XmlFile.Instance.SavaDBInfo(db, table);
+                                            foreach (DBTable table in db.tables)
+                                            {
+                                                if (cts.IsCancellationRequested)
+                                                {
+                                                    break;
+                                                }
+                                                XmlFile.Instance.SavaDBInfo(db, table);
+                                            }
                                         }
                                     }
                                 }

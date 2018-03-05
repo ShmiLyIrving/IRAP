@@ -36,6 +36,12 @@ namespace IndexDefrag
             get { return GetBoolean("WriteLog"); }
             set { SaveParams("WriteLog", value.ToString()); }
         }
+        public bool ScanningLog
+        {
+            get { return GetBoolean("ScanningLog"); }
+            set { SaveParams("ScanningLog", value.ToString()); }
+        }
+
         /// <summary>
         /// 扫描完成后是否自动清理
         /// </summary>
@@ -99,10 +105,10 @@ namespace IndexDefrag
         /// <summary>
         /// 扫描时间间隔
         /// </summary>
-        public string ScaningInertval
+        public string ScanningInertval
         {
-            get { return GetString("ScaningInertval"); }
-            set { SaveParams("ScaningInertval", value); }
+            get { return GetString("ScanningInertval"); }
+            set { SaveParams("ScanningInertval", value); }
         }
         /// <summary>
         /// 最多忽略扫描次数

@@ -70,6 +70,7 @@
             this.PgConf = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.btnConfSave = new DevExpress.XtraEditors.SimpleButton();
+            this.chkLogScan = new DevExpress.XtraEditors.CheckEdit();
             this.chkWriteLog = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
@@ -96,6 +97,8 @@
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.edtUpgradeURL = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.pgabout = new DevExpress.XtraTab.XtraTabPage();
+            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -123,6 +126,7 @@
             this.PgConf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkLogScan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkWriteLog.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
@@ -142,6 +146,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtUpgradeURL.Properties)).BeginInit();
+            this.pgabout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -257,7 +263,8 @@
             this.pgDB,
             this.peState,
             this.pgDefrag,
-            this.PgConf});
+            this.PgConf,
+            this.pgabout});
             this.tabDetail.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tabDetail_SelectedPageChanged);
             // 
             // pgDB
@@ -625,6 +632,7 @@
             this.groupControl3.Appearance.BackColor = System.Drawing.Color.Azure;
             this.groupControl3.Appearance.Options.UseBackColor = true;
             this.groupControl3.Controls.Add(this.btnConfSave);
+            this.groupControl3.Controls.Add(this.chkLogScan);
             this.groupControl3.Controls.Add(this.chkWriteLog);
             this.groupControl3.Controls.Add(this.groupControl6);
             this.groupControl3.Controls.Add(this.groupControl5);
@@ -648,16 +656,30 @@
             this.btnConfSave.Text = "保存";
             this.btnConfSave.Click += new System.EventHandler(this.btnConfSave_Click);
             // 
+            // chkLogScan
+            // 
+            this.chkLogScan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkLogScan.EditValue = true;
+            this.chkLogScan.Location = new System.Drawing.Point(111, 446);
+            this.chkLogScan.Name = "chkLogScan";
+            this.chkLogScan.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkLogScan.Properties.Appearance.Options.UseFont = true;
+            this.chkLogScan.Properties.Caption = "是否保存扫描记录";
+            this.chkLogScan.Size = new System.Drawing.Size(119, 21);
+            this.chkLogScan.TabIndex = 9;
+            // 
             // chkWriteLog
             // 
             this.chkWriteLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkWriteLog.Location = new System.Drawing.Point(6, 447);
+            this.chkWriteLog.EditValue = true;
+            this.chkWriteLog.Location = new System.Drawing.Point(7, 446);
             this.chkWriteLog.Name = "chkWriteLog";
             this.chkWriteLog.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkWriteLog.Properties.Appearance.Options.UseFont = true;
             this.chkWriteLog.Properties.Caption = "是否记录日志";
-            this.chkWriteLog.Size = new System.Drawing.Size(343, 21);
+            this.chkWriteLog.Size = new System.Drawing.Size(98, 21);
             this.chkWriteLog.TabIndex = 9;
             // 
             // groupControl6
@@ -990,6 +1012,32 @@
             this.labelControl7.TabIndex = 10;
             this.labelControl7.Text = "更新地址：";
             // 
+            // pgabout
+            // 
+            this.pgabout.Controls.Add(this.memoEdit1);
+            this.pgabout.Name = "pgabout";
+            this.pgabout.Size = new System.Drawing.Size(357, 488);
+            this.pgabout.Text = "说明";
+            // 
+            // memoEdit1
+            // 
+            this.memoEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memoEdit1.EditValue = "1.此软件最多能将索引碎片清理至10以下，超过此阔值可能清理无效。 \r\n\r\n2.最大并行线程请设置在10-100之间，否则会影响效率。\r\n\r\n3.当扫描数据量较大" +
+    "时，建议勾选“保存扫描记录”，这样下次扫描时会提高效率。\r\n\r\n4.忽略扫描次数指被扫描的表不满足设置的阔值条件，被忽略的次数，设置“最大忽略次数”来忽略不必要" +
+    "扫描的表。";
+            this.memoEdit1.Location = new System.Drawing.Point(0, 0);
+            this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Azure;
+            this.memoEdit1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.memoEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.memoEdit1.Properties.Appearance.Options.UseFont = true;
+            this.memoEdit1.Properties.Appearance.Options.UseTextOptions = true;
+            this.memoEdit1.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.memoEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.memoEdit1.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.memoEdit1.Size = new System.Drawing.Size(357, 488);
+            this.memoEdit1.TabIndex = 0;
+            // 
             // frmMain
             // 
             this.ActiveGlowColor = System.Drawing.Color.White;
@@ -1047,6 +1095,7 @@
             this.PgConf.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkLogScan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkWriteLog.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
             this.groupControl6.ResumeLayout(false);
@@ -1067,6 +1116,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtUpgradeURL.Properties)).EndInit();
+            this.pgabout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1139,5 +1190,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.TextEdit edtMaxFragmentCount;
         private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.CheckEdit chkLogScan;
+        private DevExpress.XtraTab.XtraTabPage pgabout;
+        private DevExpress.XtraEditors.MemoEdit memoEdit1;
     }
 }

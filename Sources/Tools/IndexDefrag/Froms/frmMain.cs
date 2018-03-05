@@ -147,6 +147,7 @@ namespace IndexDefrag
             edtMaxDefragThreadCount.Text = SysParams.Instance.MaxDefragThreadCount;
 
             chkAutoDefag.Checked = SysParams.Instance.AutoDefrag;
+            chkLogScan.Checked = SysParams.Instance.ScanningLog;
         }
         private void TimeCheck(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -424,6 +425,7 @@ namespace IndexDefrag
             }
             SysParams.Instance.UpgradeURL = edtUpgradeURL.Text.Trim();
             SysParams.Instance.IsWriteLog = chkWriteLog.Checked;
+            SysParams.Instance.ScanningLog = chkLogScan.Checked;
 
             SysParams.Instance.DBServer = edtDBAdress.Text.Trim();
             SysParams.Instance.DBUid = edtDBUid.Text.Trim();
@@ -436,6 +438,7 @@ namespace IndexDefrag
             SysParams.Instance.MaxDefragThreadCount = edtMaxDefragThreadCount.Text.Trim();
 
             SysParams.Instance.TimerDefrag = chkTimerDefrag.Checked;
+
             if (serverchanged)
             {
                 try
@@ -464,12 +467,16 @@ namespace IndexDefrag
             if (SysParams.Instance.TimerDefrag)
             {
                 timer.Enabled = true;
-                timer.Start();               
+                timer.Start();
+                SysParams.Instance.AutoDefrag = true;
+                chkAutoDefag.Checked = true;               
             }
             else
             {
                 timer.Stop();
                 timer.Enabled = false;
+                SysParams.Instance.AutoDefrag = false;
+                chkAutoDefag.Checked = false;
             }
             lbMsgState.Text = "保存成功";
         }
