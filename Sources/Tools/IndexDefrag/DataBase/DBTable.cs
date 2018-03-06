@@ -22,7 +22,8 @@ namespace IndexDefrag
             accumchecked = GetAccumChecked();
         }
 
-        private object objectlock =new object();
+        private static object objectlock =new object();
+        private static object Loglock = new object();
         private int databaseid;
         private string dbname;        
         private int tableid;
@@ -165,7 +166,7 @@ namespace IndexDefrag
                 }
                 catch (Exception e)
                 {
-                    lock (objectlock)
+                    lock (Loglock)
                     {
                         WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                         WriteLog.Instance.Write(

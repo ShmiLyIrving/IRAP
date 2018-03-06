@@ -24,7 +24,6 @@ namespace IndexDefrag
                 return _instance;
             }
         }
-        private int threadID = 0;
         public delegate void SetTextHandler(string text);
         public SetTextHandler SetBtnText = null;
         public SetTextHandler SetAccumTask = null;
@@ -38,11 +37,6 @@ namespace IndexDefrag
         public SetEnableHandler SetPicAnimate = null;
         public delegate void SetBtnEnablHandler(int page, bool enable);
         public SetBtnEnablHandler SetBtnEnable = null;
-   
-        ~ScanningTask()
-        {
-            Debug.WriteLine(string.Format("释放线程 [Thread #{0}]", threadID));
-        }
         
         public void GetTableStruct(CancellationToken cts)
         {
@@ -99,12 +93,9 @@ namespace IndexDefrag
         public void Scan(CancellationToken cts)
         {
             try
-            {
-                
+            {            
                 SetlbHead("正在扫描：");
-                
-                Stopwatch w = new Stopwatch();
-                w.Start();
+              
                 TaskFactory fac = new TaskFactory(new LimitedConcurrencyLevelTaskScheduler(int.Parse(SysParams.Instance.MaxScanningThreadCount)));
                 if (Server.Instance.databases != null)
                 {
@@ -166,17 +157,14 @@ namespace IndexDefrag
                                 }
                             });
                             t.Start();
-                            w.Restart();
                             t.ContinueWith(c =>
                             {
-                                w.Stop();
                                 SetMsgState($"扫描完成", "", ToolTipIcon.Info);
                                 SetAccumTask("扫描完成");
                                 AfterScan();
                             }, TaskContinuationOptions.OnlyOnRanToCompletion);
                             t.ContinueWith(c =>
                             {
-                                w.Stop();
                                 SetMsgState($"保存数据失败(双击查看日志)","", ToolTipIcon.Error);
 
                             }, TaskContinuationOptions.NotOnRanToCompletion);
@@ -189,7 +177,6 @@ namespace IndexDefrag
                             SetBtnEnable(1, true);
                         }
                     });
-                    //test.Start();
                 }
             }
             catch(Exception e)

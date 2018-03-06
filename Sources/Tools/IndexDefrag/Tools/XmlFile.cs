@@ -108,6 +108,7 @@ namespace IndexDefrag
         {
             try
             {
+                dt.Rows.Clear();
                 xmlIAUConfig = new XmlDocument();
                 xmlIAUConfig.Load(XMLPath);
                 foreach (XmlNode xmlserver in xmlIAUConfig.ChildNodes[2].ChildNodes)

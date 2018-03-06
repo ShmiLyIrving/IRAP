@@ -21,6 +21,7 @@ namespace IndexDefrag
         private string DBName;
         private DBhelp dbhelp = null;
         private static object SyncLock = new object();
+        private static object Loglock = new object();
         public List<DBTable> tables= new List<DBTable>();
 
         public int dataBaseID
@@ -89,7 +90,7 @@ namespace IndexDefrag
             }
             catch(Exception e)
             {
-                lock (SyncLock)
+                lock (Loglock)
                 {
                     WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                     WriteLog.Instance.Write(

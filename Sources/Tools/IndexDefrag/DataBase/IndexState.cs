@@ -22,6 +22,7 @@ namespace IndexDefrag
             this.Fragment_count = Fragment_count;
         }
         private static object LockArea = new object();
+        private static object Loglock = new object();
         private int indexID;
         private int partionID;
         private double avg_fragmentation_in_percent;
@@ -100,7 +101,7 @@ namespace IndexDefrag
             }
             catch(Exception e)
             {
-                lock (LockArea)
+                lock (Loglock)
                 {
                     WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                     WriteLog.Instance.Write(

@@ -27,7 +27,7 @@ namespace IndexDefrag
             dtAccumChecked.Columns.Add("Databaseid");
             dtAccumChecked.Columns.Add("Tableid");
             dtAccumChecked.Columns.Add("AccumChecked");
-            XmlFile.Instance.ReadAccumChecked(dtAccumChecked);
+            
             dbserver = DBAddress;
         }
         [IRAPXMLNodeAttrORMap(IsORMap =false)]
@@ -48,6 +48,7 @@ namespace IndexDefrag
             databases.Clear();
             try
             {
+                XmlFile.Instance.ReadAccumChecked(dtAccumChecked);
                 DBhelp test = new DBhelp("master");
                 string sql = "SELECT dbid DatabaseID,name DBName FROM sysdatabases where name not in ('master','tempdb','model','msdb')";
                 DataTable dtdbs = test.Query(sql).Tables["ds"];
