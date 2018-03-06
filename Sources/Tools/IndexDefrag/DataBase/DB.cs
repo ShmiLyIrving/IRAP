@@ -68,7 +68,7 @@ namespace IndexDefrag
                         return;
                     }
 
-                    Debug.WriteLine($"Get DB {DBName}");
+                    WriteLog.Instance.Write(DBName, strProcedureName);
                     ScanningTask.Instance.SetAccumTask(DBName);
                     string sql = $"SELECT object_id TableID,name TableName FROM {DBName}.sys.tables";
                     dbhelp = new DBhelp(DBName);
@@ -82,7 +82,6 @@ namespace IndexDefrag
                             {
                                 return;
                             }
-
                             tables.Add(new DBTable(DataBaseID, DBName, dbhelp, (int)(r[0]), r[1].ToString()));
                         }
                     }
@@ -90,13 +89,16 @@ namespace IndexDefrag
             }
             catch(Exception e)
             {
-                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-                WriteLog.Instance.Write(
-                       string.Format("错误信息:{0}。跟踪堆栈:{1}。",
-                           e.Message,
-                           e.StackTrace),
-                       strProcedureName);
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                lock (SyncLock)
+                {
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                    WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               e.Message,
+                               e.StackTrace),
+                           strProcedureName);
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
                 throw e;
             }
         }

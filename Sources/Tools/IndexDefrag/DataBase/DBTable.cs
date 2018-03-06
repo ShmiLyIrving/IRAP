@@ -165,13 +165,16 @@ namespace IndexDefrag
                 }
                 catch (Exception e)
                 {
-                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-                    WriteLog.Instance.Write(
-                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
-                               e.Message,
-                               e.StackTrace),
-                           strProcedureName);
-                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                    lock (objectlock)
+                    {
+                        WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                        WriteLog.Instance.Write(
+                               string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                                   e.Message,
+                                   e.StackTrace),
+                               strProcedureName);
+                        WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                    }
                     throw e;
                 }
             }

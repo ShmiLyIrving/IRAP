@@ -21,6 +21,7 @@ namespace IndexDefrag
             this.Avg_fragmentation_in_percent = Avg_fragmentation_in_percent;
             this.Fragment_count = Fragment_count;
         }
+        private static object LockArea = new object();
         private int indexID;
         private int partionID;
         private double avg_fragmentation_in_percent;
@@ -99,13 +100,16 @@ namespace IndexDefrag
             }
             catch(Exception e)
             {
-                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-                WriteLog.Instance.Write(
-                       string.Format("错误信息:{0}。跟踪堆栈:{1}。",
-                           e.Message,
-                           e.StackTrace),
-                       strProcedureName);
-                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                lock (LockArea)
+                {
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                    WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               e.Message,
+                               e.StackTrace),
+                           strProcedureName);
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
                 throw e;
             }
 

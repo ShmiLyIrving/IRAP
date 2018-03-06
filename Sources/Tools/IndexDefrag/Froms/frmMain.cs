@@ -227,12 +227,12 @@ namespace IndexDefrag
                     {
                         btnDefrag.Enabled = true;
                         break;
-                    }
-                    else
-                    {
-                        SetMsgState("无可清理项目","",ToolTipIcon.None);
-                    }
+                    }                  
                 }
+            if(btnDefrag.Enabled ==false)
+            {
+                lbMsgState.Text = "无可清理项目";
+            }
             btnCancel.Enabled = false;
             btnScan.Enabled = true;
             SetlbHead("");
@@ -470,6 +470,11 @@ namespace IndexDefrag
             }
             if (SysParams.Instance.TimerDefrag)
             {
+                if(string.IsNullOrEmpty(cmbHour.Text)||string.IsNullOrEmpty(cmbMin.Text))
+                {
+                    lbMsgState.Text = "保存失败，请选择定时时间！";
+                    return;
+                }
                 timer.Enabled = true;
                 timer.Start();
                 SysParams.Instance.AutoDefrag = true;
