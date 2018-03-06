@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Reflection;
 
 namespace IndexDefrag
 {
@@ -84,6 +85,10 @@ namespace IndexDefrag
             {
                 return;
             }
+            string strProcedureName = string.Format(
+                "{0}.{1}",
+                MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                MethodBase.GetCurrentMethod().Name);
             Debug.WriteLine("Defraging Table:" + tablename);
             ScanningTask.Instance.SetAccumTask(tablename + "/" + indexID);
             try
@@ -94,6 +99,13 @@ namespace IndexDefrag
             }
             catch(Exception e)
             {
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                WriteLog.Instance.Write(
+                       string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                           e.Message,
+                           e.StackTrace),
+                       strProcedureName);
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 throw e;
             }
 

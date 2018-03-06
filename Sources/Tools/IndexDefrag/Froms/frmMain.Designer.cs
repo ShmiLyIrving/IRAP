@@ -181,6 +181,7 @@
             this.lbMsgState.Size = new System.Drawing.Size(363, 22);
             this.lbMsgState.TabIndex = 0;
             this.lbMsgState.Text = "空闲";
+            this.lbMsgState.DoubleClick += new System.EventHandler(this.lbMsgState_DoubleClick);
             // 
             // labelControl4
             // 

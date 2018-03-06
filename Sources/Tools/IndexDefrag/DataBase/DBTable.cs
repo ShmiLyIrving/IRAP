@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Diagnostics;
 using System.Threading;
+using System.Reflection;
 
 namespace IndexDefrag
 {
@@ -114,11 +115,15 @@ namespace IndexDefrag
             return XmlFile.Instance.GetAccumChecked(SysParams.Instance.DBServer, databaseid, tableid);
         }
         public void InitIndexState(CancellationToken cts)
-        {
+        {           
             if (cts.IsCancellationRequested)
             {
                 return;
             }
+            string strProcedureName = string.Format(
+                    "{0}.{1}",
+                    MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    MethodBase.GetCurrentMethod().Name);
             NeedDefrag =false;
             if (Server.Instance.GetAccumChecked(this)< int.Parse(SysParams.Instance.MaxIgnoreSacningTimes))
             {
@@ -160,6 +165,13 @@ namespace IndexDefrag
                 }
                 catch (Exception e)
                 {
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                    WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               e.Message,
+                               e.StackTrace),
+                           strProcedureName);
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
                     throw e;
                 }
             }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Diagnostics;
 using System.Threading;
+using System.Reflection;
 
 namespace IndexDefrag
 {
@@ -54,6 +55,10 @@ namespace IndexDefrag
         }
         public void InitDB(CancellationToken cts)
         {
+            string strProcedureName = string.Format(
+                "{0}.{1}",
+                MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                MethodBase.GetCurrentMethod().Name);
             try
             {
                 lock (SyncLock)
@@ -62,6 +67,7 @@ namespace IndexDefrag
                     {
                         return;
                     }
+
                     Debug.WriteLine($"Get DB {DBName}");
                     ScanningTask.Instance.SetAccumTask(DBName);
                     string sql = $"SELECT object_id TableID,name TableName FROM {DBName}.sys.tables";
@@ -84,6 +90,13 @@ namespace IndexDefrag
             }
             catch(Exception e)
             {
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                WriteLog.Instance.Write(
+                       string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                           e.Message,
+                           e.StackTrace),
+                       strProcedureName);
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 throw e;
             }
         }

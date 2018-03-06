@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.IO;
 using System.Data;
+using System.Reflection;
 
 namespace IndexDefrag
 {
@@ -69,6 +70,14 @@ namespace IndexDefrag
             }           
             catch(Exception e)
             {
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               e.Message,
+                               e.StackTrace),
+                           string.Format(
+                    "{0}.{1}",
+                    MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    MethodBase.GetCurrentMethod().Name));
                 throw e;
             }
         }
@@ -130,6 +139,14 @@ namespace IndexDefrag
             }
             catch (Exception e)
             {
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               e.Message,
+                               e.StackTrace),
+                           string.Format(
+                    "{0}.{1}",
+                    MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    MethodBase.GetCurrentMethod().Name));
                 throw e;
             }
         }
@@ -238,6 +255,14 @@ namespace IndexDefrag
             }
             catch (Exception e)
             {
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               e.Message,
+                               e.StackTrace),
+                           string.Format(
+                    "{0}.{1}",
+                    MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    MethodBase.GetCurrentMethod().Name));
                 throw e;
             }
             return 0;
@@ -323,6 +348,14 @@ namespace IndexDefrag
             }
             catch(Exception e)
             {
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               e.Message,
+                               e.StackTrace),
+                           string.Format(
+                    "{0}.{1}",
+                    MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    MethodBase.GetCurrentMethod().Name));
                 throw e;
             }
         }

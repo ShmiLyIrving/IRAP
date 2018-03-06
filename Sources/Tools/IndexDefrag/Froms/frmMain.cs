@@ -596,5 +596,24 @@ namespace IndexDefrag
         }
 
         #endregion
+
+        private void lbMsgState_DoubleClick(object sender, EventArgs e)
+        {
+            string logPath = string.Format("{0}{1}_{2}.log",
+                                    string.Format(@"{0}Log\",
+                                    AppDomain.CurrentDomain.BaseDirectory),
+                                    "IRAP",
+                                    DateTime.Now.ToString("yyyy-MM-dd"));
+            if (System.IO.File.Exists(logPath))
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(logPath); //打开此文件。
+                }
+                catch
+                {
+                }
+            }
+        }
     }
 }

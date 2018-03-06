@@ -78,7 +78,7 @@ namespace IndexDefrag
                     }                  
                     if (!cts.IsCancellationRequested)
                     {
-                        SetMsgState($"扫描成功：{nSuccessed}个，未成功：{nFailed}个", "", ToolTipIcon.None);
+                        SetMsgState($"扫描成功：{nSuccessed}个，未成功：{nFailed}个(双击查看日志)", "", ToolTipIcon.None);
                         Scan(cts);
                     }
                     else
@@ -176,7 +176,7 @@ namespace IndexDefrag
                             t.ContinueWith(c =>
                             {
                                 w.Stop();
-                                SetMsgState($"保存数据失败,请查看日志", "", ToolTipIcon.Error);
+                                SetMsgState($"保存数据失败(双击查看日志)","", ToolTipIcon.Error);
 
                             }, TaskContinuationOptions.NotOnRanToCompletion);
                         }
@@ -227,7 +227,7 @@ namespace IndexDefrag
                     if (!cts.IsCancellationRequested)
                     {
                         SetAccumTask("清理完成");
-                        SetMsgState($"清理成功：{nSuccessed}个，未成功：{nFailed}个", "", ToolTipIcon.Info);
+                        SetMsgState($"清理成功：{nSuccessed}个，未成功：{nFailed}个(双击查看日志)", "", ToolTipIcon.Info);
                         AfterDefrag();
                     }
                     else
