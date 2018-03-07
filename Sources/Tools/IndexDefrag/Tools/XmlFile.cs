@@ -48,7 +48,6 @@ namespace IndexDefrag
                     }
                     else
                     {
-
                         XMLDoc.Load(XMLPath);
                         XmlNode root = XMLDoc.ChildNodes[2];
                         XmlNode server = XMLUtils.GetChildNodeWithPropertyValue(root,"DBServer", SysParams.Instance.DBServer);

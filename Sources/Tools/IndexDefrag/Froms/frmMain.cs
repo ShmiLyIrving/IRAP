@@ -288,7 +288,7 @@ namespace IndexDefrag
             else
             {
                 lbMsgState.Text = string.Format("{0}\r\n", msg);
-                WriteLog.Instance.Write(msg, "");
+                WriteLog.Instance.Write(msg, modeName);
                 ShowMessageInBalloon(msg, icon, 500);
             }
         }
@@ -476,16 +476,12 @@ namespace IndexDefrag
                     return;
                 }
                 timer.Enabled = true;
-                timer.Start();
-                SysParams.Instance.AutoDefrag = true;
-                chkAutoDefag.Checked = true;               
+                timer.Start();           
             }
             else
             {
                 timer.Stop();
                 timer.Enabled = false;
-                SysParams.Instance.AutoDefrag = false;
-                chkAutoDefag.Checked = false;
             }
             lbMsgState.Text = "保存成功";
         }

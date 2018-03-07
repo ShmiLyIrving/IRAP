@@ -91,13 +91,13 @@ namespace IndexDefrag
                 "{0}.{1}",
                 MethodBase.GetCurrentMethod().DeclaringType.FullName,
                 MethodBase.GetCurrentMethod().Name);
-            Debug.WriteLine("Defraging Table:" + tablename);
+            //Debug.WriteLine("Defraging Table:" + tablename);
             ScanningTask.Instance.SetAccumTask(tablename + "/" + indexID);
             try
             {
                 string sql = $"DBCC INDEXDEFRAG ({databaseid},{tableid},{indexID},{partionID})";// WITH NO_INFOMSGS
                 string r =dbhelp.GetSingle(sql).ToString();
-                Debug.WriteLine(r);
+                ScanningTask.Instance.SetMsgState("Pages Scanned:"+r,"Table:"+tablename+",Index:"+indexID,System.Windows.Forms.ToolTipIcon.None);
             }
             catch(Exception e)
             {
