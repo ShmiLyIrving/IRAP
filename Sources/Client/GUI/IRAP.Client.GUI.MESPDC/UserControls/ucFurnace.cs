@@ -688,8 +688,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
             try
             {
-                IRAPMESProductionClient.Instance.StartProduct(_communityID, _productionParam.T216LeafID, _productionParam.T107LeafID,
-                   waitingSmelt.T131LeafID, _operatorCode, batchNumber, GetMaterialXml(), _sysLogID, out errCode, out errText);
+                List<OrderInfo> orders =
+                    grdCtrProductionInfo.DataSource as List<OrderInfo>;
+                int t131LeafID = 0;
+                if (orders != null && orders.Count > 0)
+                    t131LeafID = orders[0].T131LeafID;
+
+                IRAPMESProductionClient.Instance.StartProduct(
+                    _communityID, 
+                    _productionParam.T216LeafID, 
+                    _productionParam.T107LeafID,
+                    t131LeafID, //waitingSmelt.T131LeafID, 
+                    _operatorCode, 
+                    batchNumber, 
+                    GetMaterialXml(), 
+                    _sysLogID, 
+                    out errCode, 
+                    out errText);
                 if (errCode != 0)
                 {
                     WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
@@ -727,14 +742,17 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 var rF13Node = xmlDoc.CreateElement("RF13_1");
                 foreach (SmeltMaterialItemClient item in smeltMaterilItems)
                 {
-                    var row = xmlDoc.CreateElement("Row");
-                    row.SetAttribute("Ordinal", "1");
-                    row.SetAttribute("T101LeafID", item.T101LeafID.ToString());
-                    row.SetAttribute("LotNumber", item.LotNumber.ToString());
-                    row.SetAttribute("Qty", item.Qty.ToString());
-                    row.SetAttribute("Scale", item.Scale.ToString());
-                    row.SetAttribute("UnitOfMeasure", item.UnitOfMeasure);
-                    rF13Node.AppendChild(row);
+                    if (item.Qty != 0)
+                    {
+                        var row = xmlDoc.CreateElement("Row");
+                        row.SetAttribute("Ordinal", "1");
+                        row.SetAttribute("T101LeafID", item.T101LeafID.ToString());
+                        row.SetAttribute("LotNumber", item.LotNumber.ToString());
+                        row.SetAttribute("Qty", item.Qty.ToString());
+                        row.SetAttribute("Scale", item.Scale.ToString());
+                        row.SetAttribute("UnitOfMeasure", item.UnitOfMeasure);
+                        rF13Node.AppendChild(row);
+                    }
                 }
                 root.AppendChild(rF13Node);
             }

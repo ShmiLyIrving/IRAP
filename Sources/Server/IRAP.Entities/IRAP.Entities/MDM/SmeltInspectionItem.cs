@@ -122,7 +122,7 @@ namespace IRAP.Entities.MDM
                         if (node.Attributes["FactID"] != null)
                             itemValue.FactID = Tools.ConvertToInt64(node.Attributes["FactID"].Value);
                         if (node.Attributes["Metric01"] != null)
-                            itemValue.Metric01 = Tools.ConvertToInt32(node.Attributes["Metric01"].Value);
+                            itemValue.Metric01 = node.Attributes["Metric01"].Value;
                         itemValue.Scale = Scale;
                         itemValue.UnitOfMeasure = UnitOfMeasure;
 
@@ -139,10 +139,10 @@ namespace IRAP.Entities.MDM
         private Quantity quantity = new Quantity();
 
         public long FactID { get; set; }
-        public long Metric01
+        public string Metric01
         {
-            get { return quantity.IntValue; }
-            set { quantity.IntValue = value; }
+            get;// { return quantity.IntValue; }
+            set;// { quantity.IntValue = value; }
         }
         public int Scale
         {
