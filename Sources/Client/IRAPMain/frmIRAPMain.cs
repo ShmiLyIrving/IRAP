@@ -13,6 +13,7 @@ using System.Threading;
 
 using DevExpress.XtraEditors;
 using DevExpress.XtraBars;
+using DevExpress.XtraBars.Helpers;
 using DevExpress.XtraBars.Ribbon;
 
 using IRAP.Global;
@@ -41,9 +42,62 @@ namespace IRAP
         private string message = "";
         private string caption = "";
 
+        private Dictionary<string, string> skins =
+            new Dictionary<string, string>();
+
         public frmIRAPMain()
         {
             InitializeComponent();
+
+            skins.Add("DevExpress Style", "DevExpress Style");
+            skins.Add("DevExpress Dark Style", "DevExpress Dark Style");
+            skins.Add("Office 2016 Colorful", "Office 2016 Colorful");
+            skins.Add("Office 2016 Dark", "Office 2016 Dark");
+            skins.Add("Office 2013 White", "Office 2013");
+            skins.Add("Office 2013 Dark Gray", "Office 2013 Dark Gray");
+            skins.Add("Office 2013 Light Gray", "Office 2013 Light Gray");
+            skins.Add("Office 2010 Blue", "Office 2010 Blue");
+            skins.Add("Office 2010 Black", "Office 2010 Black");
+            skins.Add("Office 2010 Silver", "Office 2010 Silver");
+            skins.Add("Visual Studio 2013 Blue", "Visual Studio 2013 Blue");
+            skins.Add("Visual Studio 2013 Dark", "Visual Studio 2013 Dark");
+            skins.Add("Visual Studio 2013 Light", "Visual Studio 2013 Light");
+            skins.Add("Seven Classic", "Seven Classic");
+            skins.Add("Visual Studio 2010", "VS2010");
+            skins.Add("Black", "Black");
+            skins.Add("Blue", "Blue");
+            skins.Add("Caramel", "Caramel");
+            skins.Add("Coffee", "Coffee");
+            skins.Add("Dark Side", "Dark Side");
+            skins.Add("Darkroom", "Darkroom");
+            skins.Add("Foggy", "Foggy");
+            skins.Add("Glass Oceans", "Glass Oceans");
+            skins.Add("High Contrast", "High Contrast");
+            skins.Add("iMaginary", "iMaginary");
+            skins.Add("Lilian", "Lilian");
+            skins.Add("Liquid Sky", "Liquid Sky");
+            skins.Add("London Liquid Sky", "London Liquid Sky");
+            skins.Add("Metropolis", "Metropolis");
+            skins.Add("Metropolis Dark", "Metropolis Dark");
+            skins.Add("Money Twins", "Money Twins");
+            skins.Add("Office 2007 Black", "Office 2007 Black");
+            skins.Add("Office 2007 Blue", "Office 2007 Blue");
+            skins.Add("Office 2007 Green", "Office 2007 Green");
+            skins.Add("Office 2007 Pink", "Office 2007 Pink");
+            skins.Add("Office 2007 Silver", "Office 2007 Silver");
+            skins.Add("Seven", "Seven");
+            skins.Add("Sharp", "Sharp");
+            skins.Add("Sharp Plus", "Sharp Plus");
+            skins.Add("Stardust", "Stardust");
+            skins.Add("The Asphalt World", "The Asphalt World");
+            skins.Add("Pumpkin", "Pumpkin");
+            skins.Add("Springtime", "Springtime");
+            skins.Add("Summer", "Summer 2008");
+            skins.Add("Valentine", "Valentine");
+            skins.Add("Xmas (Blue)", "Xmas 2008 Blue");
+            skins.Add("McSkin", "McSkin");
+            skins.Add("Blueprint", "Blueprint");
+            skins.Add("Whiteprint", "Whiteprint");
 
             if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                 caption = "System tip";
@@ -59,7 +113,7 @@ namespace IRAP
                     @"{0}\IRAP.ini",
                     AppDomain.CurrentDomain.SetupInformation.ApplicationBase));
 
-            defaultLookAndFeel.LookAndFeel.SkinName = skinName;
+            defaultLookAndFeel.LookAndFeel.SetSkinStyle(skinName);
         }
 
         private RibbonPage GetRibbonPageWithItemID(int itemID)
@@ -624,6 +678,8 @@ namespace IRAP
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                SkinHelper.InitSkinGallery(skinBarItem);
+
                 if (Thread.CurrentThread.CurrentUICulture.Name.Substring(0, 2) == "en")
                     message = "{0}-[Login user：{1}{2}]-[{3}]-[{4}]";
                 else
@@ -853,11 +909,18 @@ namespace IRAP
 
         private void skinBarItem_GalleryItemClick(object sender, GalleryItemClickEventArgs e)
         {
-            defaultLookAndFeel.LookAndFeel.SkinName = e.Item.Caption;
+            defaultLookAndFeel.LookAndFeel.SetSkinStyle(e.Item.Caption);
+
+            string skinName = "DevExpress Style";
+            if (skins.ContainsKey(e.Item.Caption))
+            {
+                skins.TryGetValue(e.Item.Caption, out skinName);
+            }
+
             IniFile.WriteString(
                 "AppSetting",
                 "Skin",
-                defaultLookAndFeel.LookAndFeel.SkinName,
+                skinName,
                 string.Format(
                     @"{0}\IRAP.ini",
                     AppDomain.CurrentDomain.SetupInformation.ApplicationBase));

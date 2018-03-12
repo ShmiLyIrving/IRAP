@@ -31,7 +31,7 @@ namespace IRAP.Client.Global
                     @"{0}\IRAP.ini",
                     AppDomain.CurrentDomain.SetupInformation.ApplicationBase));
 
-            defaultLookAndFeel.LookAndFeel.SkinName = skinName;
+            defaultLookAndFeel.LookAndFeel.SetSkinStyle(skinName);
         }
 
         private void frmCustomBase_Activated(object sender, EventArgs e)

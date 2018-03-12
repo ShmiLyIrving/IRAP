@@ -152,7 +152,7 @@
             // 
             // defaultLookAndFeel
             // 
-            this.defaultLookAndFeel.LookAndFeel.SkinName = "Blue";
+            this.defaultLookAndFeel.LookAndFeel.SkinName = "VS2010";
             // 
             // ucOptions
             // 

@@ -45,6 +45,7 @@ namespace IRAP
             #region 设置默认字体、日期格式、汉化DEV
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.Skins.SkinManager.EnableFormSkins();
+
             DevExpress.Utils.AppearanceObject.DefaultFont =
                 new System.Drawing.Font("微软雅黑", 10.5f);
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CHS");
