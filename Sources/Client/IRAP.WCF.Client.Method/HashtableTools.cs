@@ -27,7 +27,10 @@ namespace IRAP.WCF.Client.Method
             {
                 try
                 {
-                    value = dict[key].ToString();
+                    if (dict[key] != null)
+                        value = dict[key].ToString();
+                    else
+                        value = "";
                 }
                 catch (Exception error)
                 {
@@ -47,7 +50,10 @@ namespace IRAP.WCF.Client.Method
             {
                 try
                 {
-                    value = Convert.ToInt64(dict[key].ToString());
+                    if (dict[key] != null)
+                        value = Convert.ToInt64(dict[key].ToString());
+                    else
+                        value = -1;
                 }
                 catch (Exception error)
                 {
@@ -67,7 +73,10 @@ namespace IRAP.WCF.Client.Method
             {
                 try
                 {
-                    value = Convert.ToInt32(dict[key].ToString());
+                    if (dict[key] != null)
+                        value = Convert.ToInt32(dict[key].ToString());
+                    else
+                        value = -1;
                 }
                 catch (Exception error)
                 {
@@ -87,7 +96,10 @@ namespace IRAP.WCF.Client.Method
             {
                 try
                 {
-                    value = Convert.ToBoolean(dict[key].ToString());
+                    if (dict[key] != null)
+                        value = Convert.ToBoolean(dict[key].ToString());
+                    else
+                        value = false;
                 }
                 catch (Exception error)
                 {
