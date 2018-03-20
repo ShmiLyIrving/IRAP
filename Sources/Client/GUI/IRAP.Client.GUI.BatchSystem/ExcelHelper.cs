@@ -36,15 +36,20 @@ namespace IRAP.Client.GUI.BatchSystem
             switch (cell.CellType)
             {
                 case CellType.Blank:
-                    return null;
+                    return "";
                 case CellType.Boolean:
                     return cell.BooleanCellValue;
                 case CellType.Numeric:
                     short format = cell.CellStyle.DataFormat;
-                    if (format != 0)
-                        return cell.DateCellValue;
-                    else
-                        return cell.NumericCellValue;
+                    switch (format)
+                    {
+                        case 14:
+                        case 178:
+                        case 179:
+                            return cell.DateCellValue;
+                        default:
+                            return cell.NumericCellValue;
+                    }
                 case CellType.String:
                     return cell.StringCellValue;
                 case CellType.Error:
