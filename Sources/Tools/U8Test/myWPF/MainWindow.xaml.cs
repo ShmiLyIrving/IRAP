@@ -524,66 +524,32 @@ namespace myWPF
 <cvouchtype>{txtcvouchtype2.Text.Trim()}</cvouchtype>
 <cwhcode>{txtcwhcode2.Text.Trim()}</cwhcode>
 <brdflag>{txtbrdflag2.Text.Trim()}</brdflag>
+<cdepcode>{txtcdepcode2.Text.Trim()}</cdepcode>
+<cpersoncode>{txtcpersoncode2.Text.Trim()}</cpersoncode>
+<crdcode>{txtcrdcode2.Text.Trim()}</crdcode>
+<vt_id>{txtvt_id2.Text.Trim()}</vt_id>
+<cvenpuomprotocol>{txtcvenpuomprotocol2.Text.Trim()}</cvenpuomprotocol>
 <csource>{txtcsource2.Text.Trim()}</csource>
-<cdepcode>0907</cdepcode>
-<cpersoncode>000094</cpersoncode>
-<crdcode>101</crdcode>
 </row>
 </table>
 ";
 
                     b = $@"<table>
-     <row>
-
+<row>
+<autoid>{txtautoid2.Text.Trim()}</autoid>
+<id>{txtfid2.Text.Trim()}</id>
 <cinvcode>{txtcinvcode0.Text.Trim()}</cinvcode>
-
-<id>1</id>
-<cinvaddcode>1</cinvaddcode>
-<cinvname>1</cinvname>
-<cinvstd>1</cinvstd>
-<cinvm_unit>1</cinvm_unit>
-<cinva_unit>1</cinva_unit>
-<creplaceitem>1</creplaceitem>
-<cbatch>1</cbatch>
-<iinvexchrate>1</iinvexchrate>
-<inum>1</inum>
-<iquantity>1</iquantity>
-<isoutquantity>1</isoutquantity>
-<isoutnum>1</isoutnum>
-<ifquantity>1</ifquantity>
-<ifnum>1</ifnum>
-<cvouchcode>1</cvouchcode>
-<inquantity>1</inquantity>
-<innum>1</innum>
-<dmadedate>2016-11-1010:10:10</dmadedate>
-<impoids>1</impoids>
-<isodid>1</isodid>
-<cbvencode>1</cbvencode>
-<cinvouchcode>1</cinvouchcode>
-<cvenname>1</cvenname>
-<imassdate>2016-11-1010:10:10</imassdate>
-<cassunit>1</cassunit>
-<corufts>1</corufts>
-<cposname>1</cposname>
-<cmassunit>1</cmassunit>
-<csocode>1</csocode>
-<cvmivencode>1</cvmivencode>
-<cvmivenname>1</cvmivenname>
-<bvmiused>1</bvmiused>
-<ivmisettlequantity>1</ivmisettlequantity>
-<ivmisettlenum>1</ivmisettlenum>
-<cdemandmemo>1</cdemandmemo>
-<iordertype>1</iordertype>
-<iorderdid>1</iorderdid>
-<iordercode>1</iordercode>
-<iorderseq>1</iorderseq>
-<cciqbookcode>1</cciqbookcode>
-<ibondedsumqty>1</ibondedsumqty>
-
-<cname>1</cname>
-<citem_class>1</citem_class>
-<citemcname>1</citemcname>
- </row></table> ";
+<cinvm_unit>{txtcinvm_unit2.Text.Trim()}</cinvm_unit>
+<iquantity>{txtiquantity2.Text.Trim()}</iquantity>
+<editprop>{txteditprop2.Text.Trim()}</editprop>
+<iMatSettleState>{txtiMatSettleState.Text.Trim()}</iMatSettleState>
+<impoids>{txtimpoids2.Text.Trim()}</impoids>
+<cposname>{txtcposname2.Text.Trim()}</cposname>
+<cposition>{txtcposname2.Text.Trim()}</cposition>
+<cdefine22>{txtcdefine222.Text.Trim()}</cdefine22>
+<cdefine23>{txtcdefine232.Text.Trim()}</cdefine23>
+<cdefine24>{txtcdefine242.Text.Trim()}</cdefine24>
+</row></table> ";
 
                     sVouchType = "01";
                     domPosition = "";
@@ -665,25 +631,30 @@ namespace myWPF
 <dtvdate>{dpdtvdate3.Text.Trim()}</dtvdate>
 <cwhname>{txtcwhname3.Text.Trim()}</cwhname>
 <cwhname_1>{txtcwhname3_1.Text.Trim()}</cwhname_1>
-
-<cwhcode>M051</cwhcode>
-<cdepcode>0907</cdepcode>
+<crdname_1>{txtcrdname_13.Text.Trim()}</crdname_1>
+<crdname>{txtcrdname3.Text.Trim()}</crdname>
+<csource>{txtcsource3.Text.Trim()}</csource>
+<cmaker>{txtcmaker3.Text.Trim()}</cmaker>
+<vt_id>{txtvt_id3.Text.Trim()}</vt_id>
+<iproorderid>{txtiproorderid3.Text.Trim()}</iproorderid>
 <cpersoncode>000381</cpersoncode>
-<crdcode>106</crdcode>
-<csource>1</csource>
-
-     </row>
-    </table>
+</row>
+</table>
 ";
 
                     b = $@"<table>
-     <row>
-   <autoid>{txtautoid3.Text.Trim()}</autoid>
+<row>
+<autoid>{txtautoid3.Text.Trim()}</autoid>
 <cinvcode>{txtcinvcode3.Text.Trim()}</cinvcode>
 <editprop>{txteditprop3.Text.Trim()}</editprop>
+<iquantity>{txtiquantity3.Text.Trim()}</iquantity>
+<cinvm_unit>{txtcinvm_unit3.Text.Trim()}</cinvm_unit>
+<cmocode>{txtcmocode3.Text.Trim()}</cmocode>
+<imoseq>{txtimoseq3.Text.Trim()}</imoseq>
+<impoids>{txtimpoids3.Text.Trim()}</impoids>
+<iquantity>1</inquantity>
 <id>1</id>
 <ifnum>1</ifnum>
-<inquantity>1</inquantity>
 <innum>1</innum>
 <cbatchproperty1>1</cbatchproperty1>
  </row></table> ";
@@ -776,25 +747,33 @@ namespace myWPF
 <brdflag>{txtbrdflag4.Text.Trim()}</brdflag>
 <ccuscode>{txtccuscode4.Text.Trim()}</ccuscode>
 <bisstqc>{txtbisstqc4.Text.Trim()}</bisstqc>
-
-<cdepcode>0907</cdepcode>
-<cpersoncode>000381</cpersoncode>
-<crdcode>201</crdcode>
+<cbuscode>{txtcbuscode4.Text.Trim()}</cbuscode>
+<cstcode>{txtcstcode4.Text.Trim()}</cstcode>
+<vt_id>{txtvt_id4.Text.Trim()}</vt_id>
+<cdepcode>{txtcdepcode4.Text.Trim()}</cdepcode>
+<cpersoncode>{txtcdepcode4.Text.Trim()}</cpersoncode>
+<crdcode>{txtcrdcode4.Text.Trim()}</crdcode>
 </row>
 </table>
 ";
 
                     b = $@"<table>
-     <row>
+<row>
 <autoid>{txtautoid4.Text.Trim()}</autoid>
 <cinvm_unit>{txtcinvm_unit4.Text.Trim()}</cinvm_unit>
 <iquantity>{txtiquantity4.Text.Trim()}</iquantity>
 <cinvcode>{txtcinvcode4.Text.Trim()}</cinvcode>
 <id>{txtfid4.Text.Trim()}</id>
 <editprop>{txteditprop4.Text.Trim()}</editprop>
-
+<cposname>{txtcposname4.Text.Trim()}</cposname>
+<cposition>{txtcposname4.Text.Trim()}</cposition>
+<cdefine22>{txtcdefine224.Text.Trim()}</cdefine22>
+<cdefine23>{txtcdefine234.Text.Trim()}</cdefine23>
+<cdefine24>{txtcdefine244.Text.Trim()}</cdefine24>
+<cdefine26>{txtcdefine264.Text.Trim()}</cdefine26>
 <cinvaddcode>1</cinvaddcode>
-<cinvname>1</cinvname>
+<cinvname>{txtcinvcode4.Text.Trim()}</cinvname>
+<cbatch>{txtcbatch4.Text.Trim()}</cbatch>
  </row></table> ";
 
                     sVouchType = "32";
@@ -866,21 +845,25 @@ namespace myWPF
                 //<cinvcode>5122000000</cinvcode>
                 //<editprop>A</editprop>
                 case 5:
-                    mode = "产品入库";
+                    mode = "其他入库";
                     h = $@"<table>
      <row>
 <id>{txtid5.Text.Trim()}</id>
 <ccode>{txtccode5.Text.Trim()}</ccode>
 <ddate>{dpddate5.Text.Trim()}</ddate>
 <cwhname>{txtcwhname5.Text.Trim()}</cwhname>
-<cwhcode>M051</cwhcode>
+<cwhcode>{txtcwhname5.Text.Trim()}</cwhcode>
+<cbustype>{txtcbustype5.Text.Trim()}</cbustype>
 <cdepcode>0907</cdepcode>
 <cpersoncode>000381</cpersoncode>
-<crdcode>102</crdcode>
-<csource>1</csource>
-
-     </row>
-    </table>
+<crdcode>{txtcrdcode5.Text.Trim()}</crdcode>
+<csource>{txtcsource5.Text.Trim()}</csource>
+<cbuscode>{txtcbuscode5.Text.Trim()}</cbuscode>
+<cmaker>{txtcmaker5.Text.Trim()}</cmaker>
+<vt_id>{txtvt_id5.Text.Trim()}</vt_id>
+<brdflag>{txtbrdflag5.Text.Trim()}</brdflag>
+</row>
+</table>
 ";
 
                     b = $@"<table>
@@ -888,6 +871,13 @@ namespace myWPF
    <autoid>{txtautoid5.Text.Trim()}</autoid>
 <cinvcode>{txtcinvcode5.Text.Trim()}</cinvcode>
 <editprop>{txteditprop5.Text.Trim()}</editprop>
+<iquantity>{txtiquantity5.Text.Trim()}</iquantity>
+<cbatch>{txtcbatch5.Text.Trim()}</cbatch>
+<cbaccounter>{txtcbaccounter5.Text.Trim()}</cbaccounter>
+<cposition>{txtcposname5.Text.Trim()}</cposition>
+<cdefine22>{txtcdefine225.Text.Trim()}</cdefine22>
+<cdefine23>{txtcdefine235.Text.Trim()}</cdefine23>
+<cdefine24>{txtcdefine245.Text.Trim()}</cdefine24>
 <id>1</id>
 <ifnum>1</ifnum>
 <inquantity>1</inquantity>
@@ -971,28 +961,37 @@ namespace myWPF
 <ccode>{txtccode6.Text.Trim()}</ccode>
 <ddate>{dpddate6.Text.Trim()}</ddate>
 <cwhname>{txtcwhname6.Text.Trim()}</cwhname>
-
-
-<cwhcode>M051</cwhcode>
+<cwhcode>{txtcwhname6.Text.Trim()}</cwhcode>
+<cbustype>{txtcbustype6.Text.Trim()}</cbustype>
 <cdepcode>0907</cdepcode>
 <cpersoncode>000381</cpersoncode>
-<crdcode>206</crdcode>
-
-     </row>
-    </table>
+<crdcode>{txtcrdcode6.Text.Trim()}</crdcode>
+<csource>{txtcsource6.Text.Trim()}</csource>
+<cbuscode>{txtcbuscode6.Text.Trim()}</cbuscode>
+<cmaker>{txtcmaker6.Text.Trim()}</cmaker>
+<vt_id>{txtvt_id6.Text.Trim()}</vt_id>
+<brdflag>{txtbrdflag6.Text.Trim()}</brdflag>
+</row>
+</table>
 ";
 
                     b = $@"<table>
-     <row>
-   <autoid>{txtautoid6.Text.Trim()}</autoid>
+<row>
+<autoid>{txtautoid6.Text.Trim()}</autoid>
 <cinvcode>{txtcinvcode6.Text.Trim()}</cinvcode>
 <editprop>{txteditprop6.Text.Trim()}</editprop>
+<iquantity>{txtiquantity6.Text.Trim()}</iquantity>
+<cbatch>{txtcbatch6.Text.Trim()}</cbatch>
+<cbaccounter>{txtcbaccounter5.Text.Trim()}</cbaccounter>
+<cposition>{txtcposname6.Text.Trim()}</cposition>
+<cdefine22>{txtcdefine226.Text.Trim()}</cdefine22>
+<cdefine23>{txtcdefine236.Text.Trim()}</cdefine23>
+<cdefine24>{txtcdefine246.Text.Trim()}</cdefine24>
 <id>1</id>
 <cinvaddcode>1</cinvaddcode>
 <ifnum>1</ifnum>
 <inquantity>1</inquantity>
 <innum>1</innum>
-
  </row></table> ";
 
                     sVouchType = "09";
