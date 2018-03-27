@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="12/06/2016 09:32:42" ReportInfo.Modified="01/16/2018 10:40:41" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/06/2016 09:32:42" ReportInfo.Modified="03/27/2018 16:12:55" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace FastReport
     <Parameter Name="Texture" DataType="System.String"/>
     <Parameter Name="BatchNumber" DataType="System.String"/>
   </Dictionary>
-  <ReportPage Name="Page1" PaperWidth="148.1" PaperHeight="210.1" RawPaperSize="11" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
+  <ReportPage Name="Page1" PaperWidth="148.1" PaperHeight="210.1" RawPaperSize="11" TopMargin="12" BottomMargin="8" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
     <DataBand Name="Data1" Width="484.22" Height="680.4">
       <TextObject Name="Text1" Left="1.89" Top="1.89" Width="480.06" Height="676.62" Border.Lines="All" Border.Style="Double" Font="宋体, 9pt"/>
       <TextObject Name="Text2" Left="18.9" Top="34.02" Width="71.82" Height="18.9" Text="CYPR" HorzAlign="Center" VertAlign="Center" Font="新宋体, 16pt, style=Bold"/>
@@ -58,7 +58,7 @@ namespace FastReport
       <TextObject Name="Text19" Left="236.25" Top="497.07" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text20" Left="236.25" Top="557.55" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="[BatchNumber]" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text21" Left="236.25" Top="618.03" Width="243.81" Height="60.48" Border.Lines="Top" VertAlign="Center" Font="新宋体, 16pt"/>
-      <BarcodeObject Name="PWONo" Left="35.91" Top="88.83" Width="413.75" Height="94.5" AutoSize="false" Barcode="Code93"/>
+      <BarcodeObject Name="PWONo" Left="35.91" Top="88.83" Width="413.75" Height="94.5" AutoSize="false" Text="379AV38SQD80323104" Barcode="Code128" Barcode.AutoEncode="true"/>
     </DataBand>
   </ReportPage>
 </Report>

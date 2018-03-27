@@ -50,6 +50,7 @@
             this.ColFoldNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -73,12 +74,12 @@
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblFuncName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblFuncName.Size = new System.Drawing.Size(878, 56);
+            this.lblFuncName.Size = new System.Drawing.Size(1053, 56);
             this.lblFuncName.Text = "产品标识卡打印";
             // 
             // panelControl1
             // 
-            this.panelControl1.Size = new System.Drawing.Size(878, 56);
+            this.panelControl1.Size = new System.Drawing.Size(1053, 56);
             // 
             // toolTipController
             // 
@@ -96,6 +97,7 @@
             // panelControl2
             // 
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl2.Controls.Add(this.btnRefresh);
             this.panelControl2.Controls.Add(this.cboBatchNo);
             this.panelControl2.Controls.Add(this.cboFurnaces);
             this.panelControl2.Controls.Add(this.labelProductionDate);
@@ -105,7 +107,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl2.Location = new System.Drawing.Point(0, 56);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(878, 56);
+            this.panelControl2.Size = new System.Drawing.Size(1053, 56);
             this.panelControl2.TabIndex = 2;
             // 
             // cboBatchNo
@@ -189,7 +191,7 @@
             this.btn_Print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Print.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Print.Appearance.Options.UseFont = true;
-            this.btn_Print.Location = new System.Drawing.Point(786, 118);
+            this.btn_Print.Location = new System.Drawing.Point(961, 118);
             this.btn_Print.Name = "btn_Print";
             this.btn_Print.Size = new System.Drawing.Size(88, 45);
             this.btn_Print.TabIndex = 5;
@@ -204,7 +206,7 @@
             this.grdCtrProductionInfo.Margin = new System.Windows.Forms.Padding(5);
             this.grdCtrProductionInfo.Name = "grdCtrProductionInfo";
             this.grdCtrProductionInfo.Padding = new System.Windows.Forms.Padding(5);
-            this.grdCtrProductionInfo.Size = new System.Drawing.Size(766, 393);
+            this.grdCtrProductionInfo.Size = new System.Drawing.Size(941, 393);
             this.grdCtrProductionInfo.TabIndex = 3;
             this.grdCtrProductionInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdCtrProductionInfoView,
@@ -376,15 +378,26 @@
             this.panelControl3.Location = new System.Drawing.Point(0, 116);
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Padding = new System.Windows.Forms.Padding(5);
-            this.panelControl3.Size = new System.Drawing.Size(780, 407);
+            this.panelControl3.Size = new System.Drawing.Size(955, 407);
             this.panelControl3.TabIndex = 6;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Appearance.Options.UseFont = true;
+            this.btnRefresh.Location = new System.Drawing.Point(860, 15);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(95, 30);
+            this.btnRefresh.TabIndex = 12;
+            this.btnRefresh.Text = "刷新炉次号";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // frmProductionLabelPrint_Casting
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 523);
+            this.ClientSize = new System.Drawing.Size(1053, 523);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.btn_Print);
@@ -436,5 +449,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.SimpleButton btnRefresh;
     }
 }

@@ -304,6 +304,12 @@
     <Compile Include="UserControls\ucFurnace.Designer.cs">
       <DependentUpon>ucFurnace.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucPCInspect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPCInspect.Designer.cs">
+      <DependentUpon>ucPCInspect.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucPhysicochemicalFurnace.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -478,6 +484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucFurnace.resx">
       <DependentUpon>ucFurnace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucPCInspect.resx">
+      <DependentUpon>ucPCInspect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucPhysicochemicalFurnace.resx">
       <DependentUpon>ucPhysicochemicalFurnace.cs</DependentUpon>

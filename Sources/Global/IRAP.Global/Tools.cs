@@ -463,5 +463,32 @@ namespace IRAP.Global
             string decodedString = utf8.GetString(encodedBytes);
             return decodedString;
         }
+
+        /// <summary>
+        /// 读取文件内容并转换成 BASE64 编码的字符串
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <returns>string</returns>
+        public static string FileToBase64(string fileName)
+        {
+            string rlt = "";
+            try
+            {
+                byte[] buffer = File.ReadAllBytes(fileName);
+                rlt = Convert.ToBase64String(buffer);
+            }
+            catch (Exception error)
+            {
+                error.Data.Add("ErrCode", -1);
+                error.Data.Add(
+                    "ErrText", 
+                    string.Format(
+                        "读取文件并转换成 BASE64 编码时出错：[{0}]", 
+                        error.Message));
+                throw error;
+            }
+
+            return rlt;
+        }
     }
 }

@@ -36,7 +36,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             this._sysLogID = sysLogID;
 
             this.dtProductDate.DateTime = DateTime.Now;
+#if !DEBUG
             this.dtProductDate.Properties.MinValue = System.DateTime.Now.AddDays(-1);
+#endif
             this.dtProductDate.Properties.NullDateCalendarValue = System.DateTime.Now;
 
             ucGrdSpectrum.SaveClick = ucGrdSpectrum_SaveClick;
@@ -819,17 +821,20 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         {
             if (info == null)
             {
-                this.labProductStartTimeResult.Text = "";
-                this.labProductStartTimeResult.Tag = null;
-                this.labCurrentFurnaceResult.Text = "";
-                this.Tag = null;
-                this.lblProductionTimeResult.Text = "";
+                labProductStartTimeResult.Text = "";
+                labProductStartTimeResult.Tag = null;
+                labCurrentFurnaceResult.Text = "";
+                Tag = null;
+                lblProductionTimeResult.Text = "";
                 return;
             }
-            this.labProductStartTimeResult.Text = info.BatchStartDate.ToString();
-            this.labProductStartTimeResult.Tag = info.BatchStartDate;
-            this.labCurrentFurnaceResult.Text = info.BatchNumber;
-            this.Tag = info;
+            else
+            {
+                labProductStartTimeResult.Text = info.BatchStartDate.ToString();
+                labProductStartTimeResult.Tag = info.BatchStartDate;
+                labCurrentFurnaceResult.Text = info.BatchNumber;
+                Tag = info;
+            }
         }
 
         /// <summary>
@@ -1410,14 +1415,16 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             _ProductingNow = false;
             _operatorCode = "";
             _operatorName = "";
-            this.txtOperator.Text = "";
-            this.txtOperator.Enabled = true;
-            this.dtProductDate.Enabled = true;
+
+            txtOperator.Text = "";
+            txtOperator.Enabled = true;
+            dtProductDate.Enabled = true;
+
             SetCurrentSmeltInfo(null);
             SetWaitingFurnace();
+            SetOrderInfo();
             SetSmeltMaterialItems();
             SetSmeltMethodItems();
-            SetOrderInfo();
             ChangeTabPage();
         }
         #endregion

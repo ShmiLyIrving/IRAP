@@ -579,7 +579,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // ColQty
             // 
             this.ColQty.Caption = "数量";
-            this.ColQty.FieldName = "Qty";
+            this.ColQty.DisplayFormat.FormatString = "#,##0.00";
+            this.ColQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.ColQty.FieldName = "MaterialQuantity";
             this.ColQty.Name = "ColQty";
             this.ColQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.ColQty.OptionsColumn.AllowMove = false;
@@ -816,7 +818,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // gridColumn4
             // 
             this.gridColumn4.Caption = "数量";
-            this.gridColumn4.FieldName = "Qty";
+            this.gridColumn4.DisplayFormat.FormatString = "#,##0.00";
+            this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumn4.FieldName = "MaterialQuantity";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn4.OptionsColumn.AllowMove = false;

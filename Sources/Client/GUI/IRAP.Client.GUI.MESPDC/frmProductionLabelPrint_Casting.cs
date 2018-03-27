@@ -291,5 +291,10 @@ namespace IRAP.Client.GUI.MESPDC
             InsertDataIntoOrderInfo();
         }
         #endregion
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshBatchNo();
+        }
     }
 }

@@ -27,7 +27,11 @@ namespace IRAP.Client.GUI.MESPDC
         public static string currentOpType;
         public static bool saveState = true;//是否已保存
 
+#if DEBUG
+        private UserControls.ucPCInspect ucMPLH = new UserControls.ucPCInspect();
+#else
         private UserControls.ucPhysicochemicalFurnace ucMPLH = new UserControls.ucPhysicochemicalFurnace(true);
+#endif
         private UserControls.ucPhysicochemicalFurnace ucLQLH = new UserControls.ucPhysicochemicalFurnace(false);
         private UserControls.ucPhysicochemicalFurnace ucLHLH = new UserControls.ucPhysicochemicalFurnace(false);
       
@@ -43,7 +47,7 @@ namespace IRAP.Client.GUI.MESPDC
             ucLHLH.Optype = "LHLH";
             tcMain.TabPages[2].Controls["plMPLH"].Controls["scMPLH"].Controls[1].Controls.Add(ucMPLH);
             ucMPLH.Dock = DockStyle.Fill;
-            ucMPLH.Optype = "MPLH";
+            //ucMPLH.Optype = "MPLH";
         }
 
 
