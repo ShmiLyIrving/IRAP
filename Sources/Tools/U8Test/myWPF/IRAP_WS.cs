@@ -64,7 +64,7 @@ namespace myWPF
                 if (!u8Login.Login(ref sSubId, ref sAccID, ref sYear, ref sUserID, ref sPassword, ref sDate, ref sServer, ref sSerial))
                 {
                     errMsg = "登陆失败，原因：" + u8Login.ShareString;
-                    Console.WriteLine(errMsg);
+                    WriteLog.Instance.Write(errMsg);
                     Marshal.FinalReleaseComObject(u8Login);
                     domMsgO = null;
                     return false;
@@ -397,7 +397,7 @@ namespace myWPF
             catch (Exception e)
             {
                 domMsgO = null;
-                errMsg = "web服务错误：" + e.Message+e.StackTrace;
+                errMsg = "提交前发生错误," + e.Message+e.StackTrace;
                 return false;
             }
         }
@@ -440,7 +440,7 @@ namespace myWPF
                 if (!u8Login.Login(ref sSubId, ref sAccID, ref sYear, ref sUserID, ref sPassword, ref sDate, ref sServer, ref sSerial))
                 {
                     errMsg = "登陆失败，原因：" + u8Login.ShareString;
-                    Console.WriteLine(errMsg);
+                    WriteLog.Instance.Write(errMsg);
                     Marshal.FinalReleaseComObject(u8Login);
                     domMsgO = null;
                     return false;
@@ -725,20 +725,20 @@ namespace myWPF
                         if (apiEx is MomSysException)
                         {
                             MomSysException sysEx = apiEx as MomSysException;
-                            Console.WriteLine("系统异常：" + sysEx.Message);
+                            WriteLog.Instance.Write("系统异常：" + sysEx.Message);
                             //todo:异常处理
                         }
                         else if (apiEx is MomBizException)
                         {
                             MomBizException bizEx = apiEx as MomBizException;
-                            Console.WriteLine("API异常：" + bizEx.Message);
+                            WriteLog.Instance.Write("API异常：" + bizEx.Message);
                             //todo:异常处理
                         }
                         //异常原因
                         String exReason = broker.GetExceptionString();
                         if (exReason.Length != 0)
                         {
-                            Console.WriteLine("异常原因：" + exReason);
+                            WriteLog.Instance.Write("异常原因：" + exReason);
                         }
                     }
                     //结束本次调用，释放API资源
@@ -773,7 +773,7 @@ namespace myWPF
             catch (Exception e)
             {
                 domMsgO = null;
-                errMsg = "web服务错误：" + e.Message;
+                errMsg = "提交前发生错误," + e.Message;
                 return false;
             }
         }
@@ -815,7 +815,7 @@ namespace myWPF
                 if (!u8Login.Login(ref sSubId, ref sAccID, ref sYear, ref sUserID, ref sPassword, ref sDate, ref sServer, ref sSerial))
                 {
                     errMsg = "登陆失败，原因：" + u8Login.ShareString;
-                    Console.WriteLine(errMsg);
+                    WriteLog.Instance.Write(errMsg);
                     Marshal.FinalReleaseComObject(u8Login);
                     domMsgO = null;
                     return false;
@@ -1100,20 +1100,20 @@ namespace myWPF
                         if (apiEx is MomSysException)
                         {
                             MomSysException sysEx = apiEx as MomSysException;
-                            Console.WriteLine("系统异常：" + sysEx.Message);
+                            WriteLog.Instance.Write("系统异常：" + sysEx.Message);
                             //todo:异常处理
                         }
                         else if (apiEx is MomBizException)
                         {
                             MomBizException bizEx = apiEx as MomBizException;
-                            Console.WriteLine("API异常：" + bizEx.Message);
+                            WriteLog.Instance.Write("API异常：" + bizEx.Message);
                             //todo:异常处理
                         }
                         //异常原因
                         String exReason = broker.GetExceptionString();
                         if (exReason.Length != 0)
                         {
-                            Console.WriteLine("异常原因：" + exReason);
+                            WriteLog.Instance.Write("异常原因：" + exReason);
                         }
                     }
                     //结束本次调用，释放API资源
@@ -1148,7 +1148,7 @@ namespace myWPF
             catch (Exception e)
             {
                 domMsgO = null;
-                errMsg = "web服务错误：" + e.Message;
+                errMsg = "提交前发生错误," + e.Message;
                 return false;
             }
         }
@@ -1190,7 +1190,7 @@ namespace myWPF
                 if (!u8Login.Login(ref sSubId, ref sAccID, ref sYear, ref sUserID, ref sPassword, ref sDate, ref sServer, ref sSerial))
                 {
                     errMsg = "登陆失败，原因：" + u8Login.ShareString;
-                    Console.WriteLine(errMsg);
+                    WriteLog.Instance.Write(errMsg);
                     Marshal.FinalReleaseComObject(u8Login);
                     domMsgO = null;
                     return false;
@@ -1476,20 +1476,20 @@ namespace myWPF
                         if (apiEx is MomSysException)
                         {
                             MomSysException sysEx = apiEx as MomSysException;
-                            Console.WriteLine("系统异常：" + sysEx.Message);
+                            WriteLog.Instance.Write("系统异常：" + sysEx.Message);
                             //todo:异常处理
                         }
                         else if (apiEx is MomBizException)
                         {
                             MomBizException bizEx = apiEx as MomBizException;
-                            Console.WriteLine("API异常：" + bizEx.Message);
+                            WriteLog.Instance.Write("API异常：" + bizEx.Message);
                             //todo:异常处理
                         }
                         //异常原因
                         String exReason = broker.GetExceptionString();
                         if (exReason.Length != 0)
                         {
-                            Console.WriteLine("异常原因：" + exReason);
+                            WriteLog.Instance.Write("异常原因：" + exReason);
                         }
                     }
                     //结束本次调用，释放API资源
@@ -1524,7 +1524,7 @@ namespace myWPF
             catch (Exception e)
             {
                 domMsgO = null;
-                errMsg = "web服务错误：" + e.Message;
+                errMsg = "提交前发生错误," + e.Message;
                 return false;
             }
         }
@@ -1566,7 +1566,7 @@ namespace myWPF
                 if (!u8Login.Login(ref sSubId, ref sAccID, ref sYear, ref sUserID, ref sPassword, ref sDate, ref sServer, ref sSerial))
                 {
                     errMsg = "登陆失败，原因：" + u8Login.ShareString;
-                    Console.WriteLine(errMsg);
+                    WriteLog.Instance.Write(errMsg);
                     Marshal.FinalReleaseComObject(u8Login);
                     domMsgO = null;
                     return false;
@@ -1851,20 +1851,20 @@ namespace myWPF
                         if (apiEx is MomSysException)
                         {
                             MomSysException sysEx = apiEx as MomSysException;
-                            Console.WriteLine("系统异常：" + sysEx.Message);
+                            WriteLog.Instance.Write("系统异常：" + sysEx.Message);
                             //todo:异常处理
                         }
                         else if (apiEx is MomBizException)
                         {
                             MomBizException bizEx = apiEx as MomBizException;
-                            Console.WriteLine("API异常：" + bizEx.Message);
+                            WriteLog.Instance.Write("API异常：" + bizEx.Message);
                             //todo:异常处理
                         }
                         //异常原因
                         String exReason = broker.GetExceptionString();
                         if (exReason.Length != 0)
                         {
-                            Console.WriteLine("异常原因：" + exReason);
+                            WriteLog.Instance.Write("异常原因：" + exReason);
                         }
                     }
                     //结束本次调用，释放API资源
@@ -1899,7 +1899,7 @@ namespace myWPF
             catch (Exception e)
             {
                 domMsgO = null;
-                errMsg = "web服务错误：" + e.Message;
+                errMsg = "提交前发生错误," + e.Message;
                 return false;
             }
         }
@@ -1941,7 +1941,7 @@ namespace myWPF
                 if (!u8Login.Login(ref sSubId, ref sAccID, ref sYear, ref sUserID, ref sPassword, ref sDate, ref sServer, ref sSerial))
                 {
                     errMsg = "登陆失败，原因：" + u8Login.ShareString;
-                    Console.WriteLine(errMsg);
+                    WriteLog.Instance.Write(errMsg);
                     Marshal.FinalReleaseComObject(u8Login);
                     domMsgO = null;
                     return false;
@@ -2226,20 +2226,20 @@ namespace myWPF
                         if (apiEx is MomSysException)
                         {
                             MomSysException sysEx = apiEx as MomSysException;
-                            Console.WriteLine("系统异常：" + sysEx.Message);
+                            WriteLog.Instance.Write("系统异常：" + sysEx.Message);
                             //todo:异常处理
                         }
                         else if (apiEx is MomBizException)
                         {
                             MomBizException bizEx = apiEx as MomBizException;
-                            Console.WriteLine("API异常：" + bizEx.Message);
+                            WriteLog.Instance.Write("API异常：" + bizEx.Message);
                             //todo:异常处理
                         }
                         //异常原因
                         String exReason = broker.GetExceptionString();
                         if (exReason.Length != 0)
                         {
-                            Console.WriteLine("异常原因：" + exReason);
+                            WriteLog.Instance.Write("异常原因：" + exReason);
                         }
                     }
                     //结束本次调用，释放API资源
@@ -2274,7 +2274,7 @@ namespace myWPF
             catch (Exception e)
             {
                 domMsgO = null;
-                errMsg = "web服务错误：" + e.Message;
+                errMsg = "提交前发生错误，" + e.Message;
                 return false;
             }
         }
@@ -2316,7 +2316,7 @@ namespace myWPF
                 if (!u8Login.Login(ref sSubId, ref sAccID, ref sYear, ref sUserID, ref sPassword, ref sDate, ref sServer, ref sSerial))
                 {
                     errMsg = "登陆失败，原因：" + u8Login.ShareString;
-                    Console.WriteLine(errMsg);
+                    WriteLog.Instance.Write(errMsg);
                     Marshal.FinalReleaseComObject(u8Login);
                     domMsgO = null;
                     return false;
@@ -2601,20 +2601,20 @@ namespace myWPF
                         if (apiEx is MomSysException)
                         {
                             MomSysException sysEx = apiEx as MomSysException;
-                            Console.WriteLine("系统异常：" + sysEx.Message);
+                            WriteLog.Instance.Write("系统异常：" + sysEx.Message);
                             //todo:异常处理
                         }
                         else if (apiEx is MomBizException)
                         {
                             MomBizException bizEx = apiEx as MomBizException;
-                            Console.WriteLine("API异常：" + bizEx.Message);
+                            WriteLog.Instance.Write("API异常：" + bizEx.Message);
                             //todo:异常处理
                         }
                         //异常原因
                         String exReason = broker.GetExceptionString();
                         if (exReason.Length != 0)
                         {
-                            Console.WriteLine("异常原因：" + exReason);
+                            WriteLog.Instance.Write("异常原因：" + exReason);
                         }
                     }
                     //结束本次调用，释放API资源
@@ -2649,7 +2649,7 @@ namespace myWPF
             catch (Exception e)
             {
                 domMsgO = null;
-                errMsg = "web服务错误：" + e.Message;
+                errMsg = "提交前发生错误," + e.Message;
                 return false;
             }
         }

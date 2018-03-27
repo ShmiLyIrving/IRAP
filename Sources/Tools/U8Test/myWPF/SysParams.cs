@@ -30,6 +30,17 @@ namespace myWPF
             get { return GetBoolean("WriteLog"); }
             set { SaveParams("WriteLog", value.ToString()); }
         }
+        public bool bCheck
+        {
+            get { return GetBoolean("bCheck"); }
+            set { SaveParams("bCheck", value.ToString()); }
+        }
+        public bool bBeforCheckStock
+        {
+            get { return GetBoolean("bBeforCheckStock"); }
+            set { SaveParams("bBeforCheckStock", value.ToString()); }
+        }
+
 
         /// <summary>
         /// 程序自动更新配置文件来源

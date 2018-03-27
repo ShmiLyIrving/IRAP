@@ -64,7 +64,7 @@ namespace myWPF
             trayIcon = new NotifyIcon
             {
                 Icon = new System.Drawing.Icon("Photos/gftp.ico"),
-                Text = "NotifyIconStd"
+                Text = "U8Test"
             };
             trayIcon.Visible = true;
             trayIcon.DoubleClick += new EventHandler(delegate { this.trayIcon_DoubleClick(null, null); });
@@ -100,14 +100,31 @@ namespace myWPF
             txtServerIP.Text = SysParams.Instance.U8ServerIP;
             txtuid.Text = SysParams.Instance.U8uid;
             txtpwd.Password = SysParams.Instance.U8pwd;
+            chkbCheck.IsChecked = SysParams.Instance.bCheck;
+            chkbBeforeCheckStocks.IsChecked = SysParams.Instance.bBeforCheckStock;
         }
         private void UpdateBtn(bool enable)
         {
-            this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-                (ThreadStart)delegate ()
-                {
-                    SetBtn(enable);
-                });
+            try
+            {
+                this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                    (ThreadStart)delegate ()
+                    {
+                        SetBtn(enable);
+                    });
+            }
+            catch (Exception error)
+            {
+                System.Windows.MessageBox.Show(string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           "");
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           "");
+            }
         }
         private void SetBtn(bool enable)
         {
@@ -115,23 +132,53 @@ namespace myWPF
         }
         private void UpdateLog(string msg, string modeName, ToolTipIcon icon)
         {
-            this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-                  (ThreadStart)delegate ()
-                  {
-                      OutputLog(msg, modeName, icon);
-                  }
-                );
+            try
+            {
+                this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                      (ThreadStart)delegate ()
+                      {
+                          OutputLog(msg, modeName, icon);
+                      }
+                    );
+            }
+            catch (Exception error)
+            {
+                System.Windows.MessageBox.Show(string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           "");
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           "");
+            }
         }
         private void OutputLog(string msg, string modeName, ToolTipIcon icon)
         {
-            if (msg != null)
+            try
             {
-                WriteLog.Instance.Write(msg, modeName);
-                Paragraph p = new Paragraph();
-                Run run = new Run() { Text = msg };
-                p.Inlines.Add(run);
-                edtLogs.Document.Blocks.Add(p);
-                ShowMessageInBalloon(msg, icon, 5000);
+                if (msg != null)
+                {
+                    WriteLog.Instance.Write(msg, modeName);
+                    Paragraph p = new Paragraph();
+                    Run run = new Run() { Text = msg };
+                    p.Inlines.Add(run);
+                    edtLogs.Document.Blocks.Add(p);
+                    ShowMessageInBalloon(msg, icon, 5000);
+                }
+            }
+            catch (Exception error)
+            {
+                System.Windows.MessageBox.Show(string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           "");
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           "");
             }
         }
         private void ShowMessageInBalloon(
@@ -209,8 +256,23 @@ namespace myWPF
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadConfig();
-            AddTrayIcon();           
+            try
+            {
+                LoadConfig();
+                AddTrayIcon();
+            }
+            catch(Exception error)
+            {
+                System.Windows.MessageBox.Show(string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           "");
+                WriteLog.Instance.Write(
+                           string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                               error.Message,
+                               error.StackTrace),
+                           "");
+            }          
         }
         
       
@@ -225,6 +287,8 @@ namespace myWPF
             SysParams.Instance.U8uid = txtuid.Text;
             SysParams.Instance.U8pwd = txtpwd.Password;
             SysParams.Instance.U8ServerIP = txtServerIP.Text;
+            SysParams.Instance.bCheck = (bool)(chkbCheck.IsChecked);
+            SysParams.Instance.bBeforCheckStock = (bool)(chkbBeforeCheckStocks.IsChecked);
             System.Windows.MessageBox.Show("保存成功！");
         }
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -266,14 +330,15 @@ namespace myWPF
             ADODB.Connection cnnFromO = null;
             System.String VouchId;//
 
-            System.Boolean bCheck;
-            System.Boolean bBeforCheckStock;
+            System.Boolean bCheck = SysParams.Instance.bCheck;
+            System.Boolean bBeforCheckStock = SysParams.Instance.bBeforCheckStock;
             System.Boolean bIsRedVouch;
             System.String sAddedState = "";
             System.Boolean bReMote;
 
-            switch (tabBo.SelectedIndex)
+          switch (tabBo.SelectedIndex)
             {
+
                 #region 材料出库单
                 //<ccode>1AQOT1APCM70321033</ccode>
                 //<cwhname>M051</cwhname>      
@@ -291,14 +356,13 @@ namespace myWPF
 <id>{txtid0.Text.Trim()}</id>
 <ccode>{txtccode0.Text.Trim()}</ccode>
 <ddate>{dpddate0.Text.Trim()}</ddate>
-<cwhname>{txtcwhname0.Text.Trim()}</cwhname>
 <cwhcode>{txtcwhname0.Text.Trim()}</cwhcode>
 <cmpocode>{txtcmpocode0.Text.Trim()}</cmpocode>
 <iproorderid>{txtimpoids0.Text.Trim()}</iproorderid>
 <cmaker>{txtcmaker0.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime0.Text.Trim()}</dnmaketime>
 <cbustype>{txtcbustype0.Text.Trim()}</cbustype>
 <crdcode>{txtcrdname0.Text.Trim()}</crdcode>
-<crdname>{txtcrdname0.Text.Trim()}</crdname>
 <vt_id>{txtvt_id0.Text.Trim()}</vt_id>
 <cdepcode>0907</cdepcode>
 <cpersoncode>000094</cpersoncode>
@@ -314,6 +378,10 @@ namespace myWPF
 <cmocode>{txtcmpocode0.Text.Trim()}</cmocode>
 <imoseq>{txtimoseq0.Text.Trim()}</imoseq>
 <impoids>{txtimpoids0.Text.Trim()}</impoids>
+<cposition>{txtcposname0.Text.Trim()}</cposition>
+<cdefine22>{txtcdefine220.Text.Trim()}</cdefine22>
+<cdefine23>{txtcdefine230.Text.Trim()}</cdefine23>
+<cdefine24>{txtcdefine240.Text.Trim()}</cdefine24>
 <editprop>A</editprop>
 </row></table> ";
 
@@ -323,9 +391,6 @@ namespace myWPF
                     errMsg = "";
                     cnnFromO = null;
                     VouchId = "aw";//
-
-                    bCheck = true;
-                    bBeforCheckStock = false;
                     bIsRedVouch = false;
                     sAddedState = "";
                     bReMote = false;
@@ -400,20 +465,19 @@ namespace myWPF
 <id>{txtid1.Text.Trim()}</id>
 <ccode>{txtccode1.Text.Trim()}</ccode>
 <ddate>{dpddate1.Text.Trim()}</ddate>
-<cwhname>{txtcwhname1.Text.Trim()}</cwhname>
 <cwhcode>{txtcwhname1.Text.Trim()}</cwhcode>
 <cmpocode>{txtcmpocode1.Text.Trim()}</cmpocode>
 <crdcode>{txtcrdname1.Text.Trim()}</crdcode>
 <crdname>{txtcrdname1.Text.Trim()}</crdname>
 <cmaker>{txtcmaker1.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime1.Text.Trim()}</dnmaketime>
 <cdepcode>{txtcdepname1.Text.Trim()}</cdepcode>
 <cbustype>{txtcbustype1.Text.Trim()}</cbustype>
 <iproorderid>{txtimpoids1.Text.Trim()}</iproorderid>
 <vt_id>{txtvt_id1.Text.Trim()}</vt_id>
-<cprobatch>1703002</cprobatch>
+<cprobatch></cprobatch>
 <csource>生产订单</csource>
-</row>
-</table>
+</row></table>
 ";
 
                     b = $@"<table>
@@ -421,22 +485,14 @@ namespace myWPF
 <autoid>{txtautoid1.Text.Trim()}</autoid>
 <cinvcode>{txtcinvcode1.Text.Trim()}</cinvcode>
 <cbatch>{txtcbatch1.Text.Trim()}</cbatch>
-<inquantity>{txtiquantity1.Text.Trim()}</inquantity>
+<iquantity>{txtiquantity1.Text.Trim()}</iquantity>
 <cmocode>{txtcmpocode1.Text.Trim()}</cmocode>
 <imoseq>{txtimoseq1.Text.Trim()}</imoseq>
 <impoids>{txtimpoids1.Text.Trim()}</impoids>
-<cposname>{txtcposname1.Text.Trim()}</cposname>
 <cposition>{txtcposname1.Text.Trim()}</cposition>
 <cdefine22>{txtcdefine221.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine231.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine241.Text.Trim()}</cdefine24>
-<cdefine26>0</cdefine26>
-<cmolotcode>1703002</cmolotcode>
-<isotype>0</isotype>
-<iordertype>0</iordertype>
-<iorderdid>0</iorderdid>
-
-
 </row></table> ";
 
                     sVouchType = "10";
@@ -444,9 +500,6 @@ namespace myWPF
                     errMsg = "";
                     cnnFromO = null;
                     VouchId = "aw";//
-
-                    bCheck = true;
-                    bBeforCheckStock = true;
                     bIsRedVouch = false;
                     sAddedState = "";
                     bReMote = false; ;
@@ -478,7 +531,7 @@ namespace myWPF
                             }
                             else
                             {
-                                UpdateLog(errMsg, mode, ToolTipIcon.Info);
+                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
                             }
                             if (domMsg != null)
                                 UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
@@ -516,6 +569,7 @@ namespace myWPF
 <cvenabbname>{txtcvenabbname2.Text.Trim()}</cvenabbname>
 <cbustype>{txtcbustype2.Text.Trim()}</cbustype>
 <cmaker>{txtcmaker2.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime2.Text.Trim()}</dnmaketime>
 <iexchrate>{txtiexchrate2.Text.Trim()}</iexchrate>
 <cexch_name>{txtcexch_name2.Text.Trim()}</cexch_name>
 <ufts>{txtufts2.Text.Trim()}</ufts>
@@ -529,26 +583,29 @@ namespace myWPF
 <crdcode>{txtcrdcode2.Text.Trim()}</crdcode>
 <vt_id>{txtvt_id2.Text.Trim()}</vt_id>
 <cvenpuomprotocol>{txtcvenpuomprotocol2.Text.Trim()}</cvenpuomprotocol>
+<cptcode>{txtcptcode2.Text.Trim()}</cptcode>
 <csource>{txtcsource2.Text.Trim()}</csource>
-</row>
-</table>
+</row></table>
 ";
 
                     b = $@"<table>
 <row>
 <autoid>{txtautoid2.Text.Trim()}</autoid>
 <id>{txtfid2.Text.Trim()}</id>
-<cinvcode>{txtcinvcode0.Text.Trim()}</cinvcode>
+<cinvcode>{txtcinvcode2.Text.Trim()}</cinvcode>
 <cinvm_unit>{txtcinvm_unit2.Text.Trim()}</cinvm_unit>
 <iquantity>{txtiquantity2.Text.Trim()}</iquantity>
 <editprop>{txteditprop2.Text.Trim()}</editprop>
 <iMatSettleState>{txtiMatSettleState.Text.Trim()}</iMatSettleState>
 <impoids>{txtimpoids2.Text.Trim()}</impoids>
-<cposname>{txtcposname2.Text.Trim()}</cposname>
+<cpoid>{txtcpoid2.Text.Trim()}</cpoid>
+<cbatch>{txtcbatch2.Text.Trim()}</cbatch>
 <cposition>{txtcposname2.Text.Trim()}</cposition>
 <cdefine22>{txtcdefine222.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine232.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine242.Text.Trim()}</cdefine24>
+<iunitcost>{txtiunitcost2.Text.Trim()}</iunitcost>
+<iprice>{txtiprice2.Text.Trim()}</iprice>
 </row></table> ";
 
                     sVouchType = "01";
@@ -556,9 +613,6 @@ namespace myWPF
                     errMsg = "";
                     cnnFromO = null;
                     VouchId = "aw";//
-
-                    bCheck = true;
-                    bBeforCheckStock = false;
                     bIsRedVouch = false;
                     sAddedState = "";
                     bReMote = false; ;
@@ -591,7 +645,7 @@ namespace myWPF
                             }
                             else
                             {
-                                UpdateLog(errMsg, mode, ToolTipIcon.Info);
+                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
                             }
                             if (domMsg != null)
                                 UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
@@ -625,21 +679,24 @@ namespace myWPF
                 case 3:
                     mode = "调拨";
                     h = $@"<table>
-     <row>
+<row>
 <id>{txtid3.Text.Trim()}</id>
 <ctvcode>{txtctvcode3.Text.Trim()}</ctvcode>
 <dtvdate>{dpdtvdate3.Text.Trim()}</dtvdate>
-<cwhname>{txtcwhname3.Text.Trim()}</cwhname>
-<cwhname_1>{txtcwhname3_1.Text.Trim()}</cwhname_1>
-<crdname_1>{txtcrdname_13.Text.Trim()}</crdname_1>
-<crdname>{txtcrdname3.Text.Trim()}</crdname>
+<codepcode>{txtcodepcode3.Text.Trim()}</codepcode>
+<cidepcode>{txtcidepcode3.Text.Trim()}</cidepcode>
+<cirdcode>{txtcirdcode3.Text.Trim()}</cirdcode>
+<cordcode>{txtcordcode3.Text.Trim()}</cordcode>
 <csource>{txtcsource3.Text.Trim()}</csource>
 <cmaker>{txtcmaker3.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime3.Text.Trim()}</dnmaketime>
 <vt_id>{txtvt_id3.Text.Trim()}</vt_id>
 <iproorderid>{txtiproorderid3.Text.Trim()}</iproorderid>
-<cpersoncode>000381</cpersoncode>
-</row>
-</table>
+<cowhcode>{txtcowhcode3.Text.Trim()}</cowhcode>
+<ciwhcode>{txtciwhcode3.Text.Trim()}</ciwhcode>
+<ctranrequestcode>{txtctranrequestcode3.Text.Trim()}</ctranrequestcode>
+<itransflag>{txtitransflag3.Text.Trim()}</itransflag>
+</row></table>
 ";
 
                     b = $@"<table>
@@ -647,26 +704,22 @@ namespace myWPF
 <autoid>{txtautoid3.Text.Trim()}</autoid>
 <cinvcode>{txtcinvcode3.Text.Trim()}</cinvcode>
 <editprop>{txteditprop3.Text.Trim()}</editprop>
-<iquantity>{txtiquantity3.Text.Trim()}</iquantity>
+<itvquantity>{txtitvquantity3.Text.Trim()}</itvquantity>
 <cinvm_unit>{txtcinvm_unit3.Text.Trim()}</cinvm_unit>
 <cmocode>{txtcmocode3.Text.Trim()}</cmocode>
 <imoseq>{txtimoseq3.Text.Trim()}</imoseq>
 <impoids>{txtimpoids3.Text.Trim()}</impoids>
-<iquantity>1</inquantity>
-<id>1</id>
-<ifnum>1</ifnum>
-<innum>1</innum>
-<cbatchproperty1>1</cbatchproperty1>
- </row></table> ";
+<coutposcode>{txtcoutposcode3.Text.Trim()}</coutposcode>
+<cinposcode>{txtcinposcode3.Text.Trim()}</cinposcode>
+<ctvbatch>{txtctvbatch3.Text.Trim()}</ctvbatch>
+<itrids>{txtitrids3.Text.Trim()}</itrids>
+</row></table> ";
 
                     sVouchType = "12";
                     domPosition = "";
                     errMsg = "";
                     cnnFromO = null;
                     VouchId = "aw";//
-
-                    bCheck = true;
-                    bBeforCheckStock = false;
                     bIsRedVouch = false;
                     sAddedState = "";
                     bReMote = false; ;
@@ -698,7 +751,7 @@ namespace myWPF
                             }
                             else
                             {
-                                UpdateLog(errMsg, mode, ToolTipIcon.Info);
+                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
                             }
                             if (domMsg != null)
                                 UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
@@ -734,12 +787,12 @@ namespace myWPF
 <id>{txtid4.Text.Trim()}</id>
 <ccode>{txtccode4.Text.Trim()}</ccode>
 <ddate>{dpddate4.Text.Trim()}</ddate>
-<cwhname>{txtcwhname4.Text.Trim()}</cwhname>
 <cbustype>{txtcbustype4.Text.Trim()}</cbustype>
 <iverifystate>{txtiverifystate4.Text.Trim()}</iverifystate>
 <iswfcontrolled>{txtiswfcontrolled4.Text.Trim()}</iswfcontrolled>
 <ccusabbname>{txtccusabbname4.Text.Trim()}</ccusabbname>
 <cmaker>{txtcmaker4.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime4.Text.Trim()}</dnmaketime>
 <ufts>{txtufts4.Text.Trim()}</ufts>
 <cvouchtype>{txtcvouchtype4.Text.Trim()}</cvouchtype>
 <cwhcode>{txtcwhcode4.Text.Trim()}</cwhcode>
@@ -751,7 +804,6 @@ namespace myWPF
 <cstcode>{txtcstcode4.Text.Trim()}</cstcode>
 <vt_id>{txtvt_id4.Text.Trim()}</vt_id>
 <cdepcode>{txtcdepcode4.Text.Trim()}</cdepcode>
-<cpersoncode>{txtcdepcode4.Text.Trim()}</cpersoncode>
 <crdcode>{txtcrdcode4.Text.Trim()}</crdcode>
 </row>
 </table>
@@ -765,7 +817,6 @@ namespace myWPF
 <cinvcode>{txtcinvcode4.Text.Trim()}</cinvcode>
 <id>{txtfid4.Text.Trim()}</id>
 <editprop>{txteditprop4.Text.Trim()}</editprop>
-<cposname>{txtcposname4.Text.Trim()}</cposname>
 <cposition>{txtcposname4.Text.Trim()}</cposition>
 <cdefine22>{txtcdefine224.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine234.Text.Trim()}</cdefine23>
@@ -781,9 +832,6 @@ namespace myWPF
                     errMsg = "";
                     cnnFromO = null;
                     VouchId = "aw";//
-
-                    bCheck = true;
-                    bBeforCheckStock = false;
                     bIsRedVouch = false;
                     sAddedState = "";
                     bReMote = false; ;
@@ -815,7 +863,7 @@ namespace myWPF
                             }
                             else
                             {
-                                UpdateLog(errMsg, mode, ToolTipIcon.Info);
+                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
                             }
                             if (domMsg != null)
                                 UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
@@ -860,6 +908,7 @@ namespace myWPF
 <csource>{txtcsource5.Text.Trim()}</csource>
 <cbuscode>{txtcbuscode5.Text.Trim()}</cbuscode>
 <cmaker>{txtcmaker5.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime5.Text.Trim()}</dnmaketime>
 <vt_id>{txtvt_id5.Text.Trim()}</vt_id>
 <brdflag>{txtbrdflag5.Text.Trim()}</brdflag>
 </row>
@@ -878,11 +927,6 @@ namespace myWPF
 <cdefine22>{txtcdefine225.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine235.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine245.Text.Trim()}</cdefine24>
-<id>1</id>
-<ifnum>1</ifnum>
-<inquantity>1</inquantity>
-<innum>1</innum>
-<cbatchproperty1>1</cbatchproperty1>
  </row></table> ";
 
                     sVouchType = "08";
@@ -890,9 +934,6 @@ namespace myWPF
                     errMsg = "";
                     cnnFromO = null;
                     VouchId = "aw";//
-
-                    bCheck = true;
-                    bBeforCheckStock = false;
                     bIsRedVouch = false;
                     sAddedState = "";
                     bReMote = false; ;
@@ -924,7 +965,7 @@ namespace myWPF
                             }
                             else
                             {
-                                UpdateLog(errMsg, mode, ToolTipIcon.Info);
+                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
                             }
                             if (domMsg != null)
                                 UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
@@ -969,10 +1010,10 @@ namespace myWPF
 <csource>{txtcsource6.Text.Trim()}</csource>
 <cbuscode>{txtcbuscode6.Text.Trim()}</cbuscode>
 <cmaker>{txtcmaker6.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime6.Text.Trim()}</dnmaketime>
 <vt_id>{txtvt_id6.Text.Trim()}</vt_id>
 <brdflag>{txtbrdflag6.Text.Trim()}</brdflag>
-</row>
-</table>
+</row></table>
 ";
 
                     b = $@"<table>
@@ -987,11 +1028,6 @@ namespace myWPF
 <cdefine22>{txtcdefine226.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine236.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine246.Text.Trim()}</cdefine24>
-<id>1</id>
-<cinvaddcode>1</cinvaddcode>
-<ifnum>1</ifnum>
-<inquantity>1</inquantity>
-<innum>1</innum>
  </row></table> ";
 
                     sVouchType = "09";
@@ -1000,8 +1036,6 @@ namespace myWPF
                     cnnFromO = null;
                     VouchId = "aw";//
 
-                    bCheck = true;
-                    bBeforCheckStock = false;
                     bIsRedVouch = false;
                     sAddedState = "";
                     bReMote = false;
@@ -1033,7 +1067,7 @@ namespace myWPF
                             }
                             else
                             {
-                                UpdateLog(errMsg, mode, ToolTipIcon.Info);
+                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
                             }
                             if (domMsg != null)
                                 UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
