@@ -1148,7 +1148,7 @@ $"<Param Mode=\"MaterialOutAdd\" sAccID =\"333\" sVouchType=\"11\" VouchId=\"11\
             OutputLog(Excode,mode,ToolTipIcon.None);
             try
             {
-                OutputLog(client.IRAPUES(ZipUtil.Zip(Excode)), mode, ToolTipIcon.Info);
+                OutputLog(ZipUtil.UnZip(client.IRAPUES(ZipUtil.Zip(Excode))), mode, ToolTipIcon.Info);
             }
             catch(Exception ex)
             {
