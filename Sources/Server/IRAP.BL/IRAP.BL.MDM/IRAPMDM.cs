@@ -751,9 +751,85 @@ namespace IRAP.BL.MDM
         /// <summary>
         /// 获取 058 表中指定树标识和代码的叶子信息
         /// </summary>
-        public IRAPJsonResult mfn_GetInfo_Entity058WithCode(int treeID, string code, out int errCode, out string errText)
+        /// <param name="communityID">社区标识</param>
+        /// <param name="treeID">树标识</param>
+        /// <param name="code">叶子代码</param>
+        public IRAPJsonResult mfn_GetInfo_Entity058WithCode(
+            int communityID,
+            int treeID, 
+            string code, 
+            out int errCode, 
+            out string errText)
         {
-            throw new System.NotImplementedException();
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                Stb058 data = new Stb058();
+                long partitioningKey = communityID * 10000 + treeID;
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@PartitioningKey", DbType.Int64, partitioningKey));
+                paramList.Add(new IRAPProcParameter("@TreeID", DbType.Int32, treeID));
+                paramList.Add(new IRAPProcParameter("@Code", DbType.String, code));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "查询 IRAPMDM..stb058，" +
+                        "过滤条件：PartitioningKey={0}|TreeID={1}|Code={2}",
+                        partitioningKey, treeID, code),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..stb058 WHERE " +
+                            "PartitioningKey=@PartitioningKey AND "+
+                            "TreeID=@TreeID AND Code=@Code";
+
+                        IList<Stb058> lstDatas =
+                            conn.CallTableFunc<Stb058>(strSQL, paramList);
+                        if (lstDatas.Count > 0)
+                        {
+                            data = lstDatas[0].Clone();
+                            errCode = 0;
+                            errText = "查询成功！";
+                        }
+                        else
+                        {
+                            errCode = -99001;
+                            errText = "没有找到";
+                        }
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "查询 IRAPMDM..stb058 表发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(data);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
 
         /// <summary>
