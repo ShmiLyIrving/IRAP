@@ -32,6 +32,8 @@
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRunningSPPModify));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.lstEquipments = new DevExpress.XtraEditors.ListBoxControl();
@@ -49,6 +51,8 @@
             this.pnlCommand = new System.Windows.Forms.Panel();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
+            this.ribeDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.grdclmnDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -57,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOrders)).BeginInit();
             this.pnlCommand.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ribeDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -79,6 +84,7 @@
             this.gridColumn1.Caption = "gridColumn1";
             this.gridColumn1.FieldName = "ErrCode";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Width = 30;
             // 
             // splitContainerControl1
             // 
@@ -120,6 +126,8 @@
             this.grdOrders.Location = new System.Drawing.Point(5, 5);
             this.grdOrders.MainView = this.grdvOrders;
             this.grdOrders.Name = "grdOrders";
+            this.grdOrders.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.ribeDelete});
             this.grdOrders.Size = new System.Drawing.Size(460, 400);
             this.grdOrders.TabIndex = 1;
             this.grdOrders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -127,10 +135,14 @@
             // 
             // grdvOrders
             // 
+            this.grdvOrders.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvOrders.Appearance.HeaderPanel.Options.UseFont = true;
             this.grdvOrders.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.grdvOrders.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.grdvOrders.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdvOrders.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.grdvOrders.Appearance.Row.ForeColor = System.Drawing.Color.Red;
+            this.grdvOrders.Appearance.Row.Options.UseFont = true;
             this.grdvOrders.Appearance.Row.Options.UseForeColor = true;
             this.grdvOrders.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdclmnMONumber,
@@ -142,7 +154,8 @@
             this.grdclmnMachineModelling,
             this.grdclmnFoldNumber,
             this.gridColumn1,
-            this.grdclmnErrText});
+            this.grdclmnErrText,
+            this.grdclmnDelete});
             gridFormatRule1.ApplyToRow = true;
             gridFormatRule1.Column = this.gridColumn1;
             gridFormatRule1.Name = "Format0";
@@ -183,6 +196,7 @@
             this.grdclmnMONumber.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnMONumber.Visible = true;
             this.grdclmnMONumber.VisibleIndex = 0;
+            this.grdclmnMONumber.Width = 30;
             // 
             // grdclmnMOLineNo
             // 
@@ -194,17 +208,19 @@
             this.grdclmnMOLineNo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnMOLineNo.Visible = true;
             this.grdclmnMOLineNo.VisibleIndex = 1;
+            this.grdclmnMOLineNo.Width = 30;
             // 
             // grdclmnTexture
             // 
             this.grdclmnTexture.Caption = "材质";
-            this.grdclmnTexture.FieldName = "Texture";
+            this.grdclmnTexture.FieldName = "T131Code";
             this.grdclmnTexture.Name = "grdclmnTexture";
             this.grdclmnTexture.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnTexture.OptionsColumn.AllowMove = false;
             this.grdclmnTexture.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnTexture.Visible = true;
             this.grdclmnTexture.VisibleIndex = 2;
+            this.grdclmnTexture.Width = 30;
             // 
             // grclmnT102Code
             // 
@@ -216,7 +232,7 @@
             this.grclmnT102Code.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grclmnT102Code.Visible = true;
             this.grclmnT102Code.VisibleIndex = 3;
-            this.grclmnT102Code.Width = 36;
+            this.grclmnT102Code.Width = 30;
             // 
             // grdclmnPlateNo
             // 
@@ -228,6 +244,7 @@
             this.grdclmnPlateNo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnPlateNo.Visible = true;
             this.grdclmnPlateNo.VisibleIndex = 4;
+            this.grdclmnPlateNo.Width = 30;
             // 
             // grdclmnLotNumber
             // 
@@ -239,7 +256,7 @@
             this.grdclmnLotNumber.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnLotNumber.Visible = true;
             this.grdclmnLotNumber.VisibleIndex = 5;
-            this.grdclmnLotNumber.Width = 34;
+            this.grdclmnLotNumber.Width = 30;
             // 
             // grdclmnMachineModelling
             // 
@@ -251,6 +268,7 @@
             this.grdclmnMachineModelling.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnMachineModelling.Visible = true;
             this.grdclmnMachineModelling.VisibleIndex = 6;
+            this.grdclmnMachineModelling.Width = 30;
             // 
             // grdclmnFoldNumber
             // 
@@ -262,6 +280,7 @@
             this.grdclmnFoldNumber.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnFoldNumber.Visible = true;
             this.grdclmnFoldNumber.VisibleIndex = 7;
+            this.grdclmnFoldNumber.Width = 30;
             // 
             // grdclmnErrText
             // 
@@ -271,6 +290,7 @@
             this.grdclmnErrText.OptionsColumn.ReadOnly = true;
             this.grdclmnErrText.Visible = true;
             this.grdclmnErrText.VisibleIndex = 8;
+            this.grdclmnErrText.Width = 30;
             // 
             // pnlCommand
             // 
@@ -285,21 +305,42 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.Location = new System.Drawing.Point(8, 402);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(125, 30);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "保存";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnRefresh.Appearance.Options.UseFont = true;
             this.btnRefresh.Location = new System.Drawing.Point(8, 6);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(125, 30);
             this.btnRefresh.TabIndex = 1;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // ribeDelete
+            // 
+            this.ribeDelete.AutoHeight = false;
+            this.ribeDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("ribeDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            this.ribeDelete.Name = "ribeDelete";
+            this.ribeDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // grdclmnDelete
+            // 
+            this.grdclmnDelete.Caption = "删除";
+            this.grdclmnDelete.ColumnEdit = this.ribeDelete;
+            this.grdclmnDelete.Name = "grdclmnDelete";
+            this.grdclmnDelete.Visible = true;
+            this.grdclmnDelete.VisibleIndex = 9;
             // 
             // frmRunningSPPModify
             // 
@@ -320,6 +361,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOrders)).EndInit();
             this.pnlCommand.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ribeDelete)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -343,5 +385,7 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnErrText;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnDelete;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ribeDelete;
     }
 }

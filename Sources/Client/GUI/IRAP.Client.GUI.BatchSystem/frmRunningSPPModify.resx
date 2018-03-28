@@ -120,4 +120,16 @@
   <metadata name="toolTipController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ribeDelete.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAI3RFWHRUaXRsZQBDYW5jZWw7
+        U3RvcDtFeGl0O0JhcnM7UmliYm9uO0yWlrIAAADCSURBVDhPjZNLCgIxEERzOGFWegkvIH4QRhyv6UkU
+        V20VpCTpTquLB0n9GAZSzKzct6s1mHn+B2Qv7PCs8gsYuPqwB5lbzbKzoXCqgkhH4Kks9jLOzggj0Hz5
+        SL0NpCM4D8vkM1CDfmQBaZl0AwQBP9LSlUl3EQiORkKZBIEg7D+bLKNsEBAclUUY6S4I+PIBhB/bdr6W
+        Gy8d+VkW0IYjNPgwWiOUBTw/MlOcwKMKaVkgo5EnmCRyZOfDGcjyAU5mVt7SQJzMJkqbYgAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
 </root>

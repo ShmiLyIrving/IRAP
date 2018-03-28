@@ -24,7 +24,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.grdCtrProductionInfo = new DevExpress.XtraGrid.GridControl();
             this.grdCtrProductionInfoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -84,7 +83,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.ucGrdBaked = new IRAP.Client.GUI.MESPDC.UserControls.ucDetailGrid();
             this.dtProductDate = new DevExpress.XtraEditors.DateEdit();
             this.lblFurnaceTime = new DevExpress.XtraEditors.LabelControl();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -317,38 +316,38 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             this.labelController.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelController.Location = new System.Drawing.Point(3, 3);
             this.labelController.Name = "labelController";
-            this.labelController.Size = new System.Drawing.Size(45, 20);
+            this.labelController.Size = new System.Drawing.Size(56, 20);
             this.labelController.TabIndex = 1;
-            this.labelController.Text = "操作工:";
+            this.labelController.Text = "操作工：";
             // 
             // txtOperator
             // 
             this.txtOperator.EnterMoveNextControl = true;
-            this.txtOperator.Location = new System.Drawing.Point(54, 0);
+            this.txtOperator.Location = new System.Drawing.Point(65, 0);
             this.txtOperator.Name = "txtOperator";
             this.txtOperator.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOperator.Properties.Appearance.Options.UseFont = true;
-            this.txtOperator.Size = new System.Drawing.Size(127, 26);
+            this.txtOperator.Size = new System.Drawing.Size(189, 26);
             this.txtOperator.TabIndex = 2;
             this.txtOperator.Validating += new System.ComponentModel.CancelEventHandler(this.txtOperator_Validating);
             // 
             // labelProductionDate
             // 
             this.labelProductionDate.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductionDate.Location = new System.Drawing.Point(203, 3);
+            this.labelProductionDate.Location = new System.Drawing.Point(260, 3);
             this.labelProductionDate.Name = "labelProductionDate";
-            this.labelProductionDate.Size = new System.Drawing.Size(59, 20);
+            this.labelProductionDate.Size = new System.Drawing.Size(70, 20);
             this.labelProductionDate.TabIndex = 3;
-            this.labelProductionDate.Text = "生产日期:";
+            this.labelProductionDate.Text = "生产日期：";
             // 
             // labelFurnaceTime
             // 
             this.labelFurnaceTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFurnaceTime.Location = new System.Drawing.Point(448, 3);
+            this.labelFurnaceTime.Location = new System.Drawing.Point(491, 3);
             this.labelFurnaceTime.Name = "labelFurnaceTime";
-            this.labelFurnaceTime.Size = new System.Drawing.Size(31, 20);
+            this.labelFurnaceTime.Size = new System.Drawing.Size(42, 20);
             this.labelFurnaceTime.TabIndex = 5;
-            this.labelFurnaceTime.Text = "炉次:";
+            this.labelFurnaceTime.Text = "炉次：";
             // 
             // lblProductionTimeResult
             // 
@@ -870,7 +869,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // dtProductDate
             // 
             this.dtProductDate.EditValue = new System.DateTime(2018, 1, 25, 10, 41, 25, 67);
-            this.dtProductDate.Location = new System.Drawing.Point(268, 0);
+            this.dtProductDate.Location = new System.Drawing.Point(336, 0);
             this.dtProductDate.Name = "dtProductDate";
             this.dtProductDate.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtProductDate.Properties.Appearance.Options.UseFont = true;
@@ -894,7 +893,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls {
             // 
             this.lblFurnaceTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFurnaceTime.AutoEllipsis = true;
-            this.lblFurnaceTime.Location = new System.Drawing.Point(485, 3);
+            this.lblFurnaceTime.Location = new System.Drawing.Point(539, 3);
             this.lblFurnaceTime.Name = "lblFurnaceTime";
             this.lblFurnaceTime.Size = new System.Drawing.Size(10, 20);
             this.lblFurnaceTime.TabIndex = 12;

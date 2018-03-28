@@ -32,6 +32,8 @@ namespace IRAP.Client.GUI.BatchSystem
         {
             InitializeComponent();
 
+            grdvOrders.BestFitColumns();
+
             GetStation();
             lstEquipments.Items.Clear();
             foreach (WIPStation station in equipments)
@@ -207,14 +209,19 @@ namespace IRAP.Client.GUI.BatchSystem
                 items.Add(
                     new PWOItem()
                     {
+                        BatchNumber = order.BatchNumber,
+                        PWONo = order.PWONo,
                         MONumber = order.MONumber,
                         MOLineNo = order.MOLineNo,
-                        Texture = order.Texture,
+                        T131Code = order.Texture,
                         T102Code = order.T102Code,
+                        LinkedFactID = order.FactID,
+                        Qty = order.Qty,
                         PlateNo = order.PlateNo,
                         LotNumber = order.LotNumber,
                         MachineModelling = order.MachineModelling,
                         FoldNumber = order.FoldNumber,
+                        RecordStatus = 0,
                         ErrCode = 0,
                         ErrText = "",
                     });
@@ -222,7 +229,7 @@ namespace IRAP.Client.GUI.BatchSystem
             // 保存该炉次所熔炼的材质
             if (items.Count > 0 &&
                 infoSmeltProduct != null)
-                infoSmeltProduct.T131Code = items[0].Texture.Substring(0, 3);
+                infoSmeltProduct.T131Code = items[0].T131Code.Substring(0, 3);
 
             grdvOrders.BeginDataUpdate();
             BindingSource bsSource = new BindingSource();
@@ -321,7 +328,7 @@ namespace IRAP.Client.GUI.BatchSystem
                 PWOItem order = e.Row as PWOItem;
 
                 // 校验材质
-                if (order.Texture.Substring(0, 3) != infoSmeltProduct.T131Code)
+                if (order.T131Code.Substring(0, 3) != infoSmeltProduct.T131Code)
                 {
                     order.ErrCode = 99;
                     order.ErrText = string.Format("材质必须是 [{0}] 系列的", infoSmeltProduct.T131Code);
@@ -376,18 +383,31 @@ namespace IRAP.Client.GUI.BatchSystem
         {
             grdvOrders.BestFitColumns();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     internal class PWOItem
     {
+        public string BatchNumber { get; set; }
+        public string PWONo { get; set; }
         public string MONumber { get; set; }
         public int MOLineNo { get; set; }
-        public string Texture { get; set; }
         public string T102Code { get; set; }
+        public long LinkedFactID { get; set; }
+        public string T131Code { get; set; }
+        public long Qty { get; set; }
         public string PlateNo { get; set; }
         public string LotNumber { get; set; }
         public string MachineModelling { get; set; }
         public int FoldNumber { get; set; }
+        /// <summary>
+        /// 当前记录状态：0-正常；1-新增；2-修改；3-删除
+        /// </summary>
+        public int RecordStatus { get; set; }
         public int ErrCode { get; set; }
         public string ErrText { get; set; }
     }

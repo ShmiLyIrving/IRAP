@@ -97,6 +97,155 @@ namespace IRAP.BL.MES
         }
 
         /// <summary>
+        ///  获取社区全部未结生产工单
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetList_OpenPWOs(
+            int communityID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<OpenPWOInfo> datas = new List<OpenPWOInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES..ufn_GetList_OpenPWOs，" +
+                        "参数：CommunityID={0}",
+                        communityID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetList_OpenPWOs(" +
+                            "@CommunityID) ORDER BY Ordinal";
+
+                        IList<OpenPWOInfo> lstDatas =
+                            conn.CallTableFunc<OpenPWOInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetList_OpenPWOs 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据订单号和行号获取未结生产工单
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="moNumber"></param>
+        /// <param name="moLineNo"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult mfn_GetInfo_OpenPWOs(
+            int communityID,
+            string moNumber,
+            int moLineNo,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<OpenPWOInfo> datas = new List<OpenPWOInfo>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@MONumber", DbType.String, moNumber));
+                paramList.Add(new IRAPProcParameter("@MOLineNo", DbType.Int32, moLineNo));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES..ufn_GetList_OpenPWOs，" +
+                        "参数：CommunityID={0}|MONumber={1}|MOLineNo={2}",
+                        communityID, moNumber, moLineNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetList_OpenPWOs(" +
+                            "@CommunityID) WHERE MONumber=@MONumber AND " +
+                            "MOLineNo=@MOLineNo ORDER BY Ordinal";
+
+                        IList<OpenPWOInfo> lstDatas =
+                            conn.CallTableFunc<OpenPWOInfo>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetList_OpenPWOs 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取可访问的返工工单清单
         /// </summary>
         /// <param name="communityID">社区标识</param>
