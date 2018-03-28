@@ -22,5 +22,15 @@ namespace myWPF.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:50702/IRAP_WebService.asmx")]
+        public string U8Test_Web_IRAP_WebService {
+            get {
+                return ((string)(this["U8Test_Web_IRAP_WebService"]));
+            }
+        }
     }
 }

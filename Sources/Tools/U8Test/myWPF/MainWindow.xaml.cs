@@ -1094,6 +1094,70 @@ namespace myWPF
             }
         }
 
-        
+        private void btn_WebConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            btn_WebConfirm.IsEnabled = false;
+            Web.IRAP_WebService client = new Web.IRAP_WebService();
+            string Excode = "";
+            string h, b,mode="";
+            switch (tabBo.SelectedIndex)
+            {
+                #region 材料出库
+                case 0:
+                    mode = "材料出库";
+                    h = $@"&lt;table&gt;
+&lt;row&gt;
+&lt;id&gt;{txtid0.Text.Trim()}&lt;/id&gt;
+&lt;ccode&gt;{txtccode0.Text.Trim()}&lt;/ccode&gt;
+&lt;ddate&gt;{dpddate0.Text.Trim()}&lt;/ddate&gt;
+&lt;cwhcode&gt;{txtcwhname0.Text.Trim()}&lt;/cwhcode&gt;
+&lt;cmpocode&gt;{txtcmpocode0.Text.Trim()}&lt;/cmpocode&gt;
+&lt;iproorderid&gt;{txtimpoids0.Text.Trim()}&lt;/iproorderid&gt;
+&lt;cmaker&gt;{txtcmaker0.Text.Trim()}&lt;/cmaker&gt;
+&lt;dnmaketime&gt;{dpdnmaketime0.Text.Trim()}&lt;/dnmaketime&gt;
+&lt;cbustype&gt;{txtcbustype0.Text.Trim()}&lt;/cbustype&gt;
+&lt;crdcode&gt;{txtcrdname0.Text.Trim()}&lt;/crdcode&gt;
+&lt;vt_id&gt;{txtvt_id0.Text.Trim()}&lt;/vt_id&gt;
+&lt;cdepcode&gt;0907&lt;/cdepcode&gt;
+&lt;cpersoncode&gt;000094&lt;/cpersoncode&gt;
+&lt;cproinvaddcode&gt;1&lt;/cproinvaddcode&gt;
+&lt;/row&gt;&lt;/table&gt;";
+
+                    b = $@"&lt;table&gt;
+&lt;row&gt;
+&lt;autoid&gt;1&lt;/autoid&gt;
+&lt;cinvcode&gt;{txtcinvcode0.Text.Trim()}&lt;/cinvcode&gt;
+&lt;cbatch&gt;{txtcbatch0.Text.Trim()}&lt;/cbatch&gt;
+&lt;iquantity&gt;{txtiquantity0.Text.Trim()}&lt;/iquantity&gt;
+&lt;cmocode&gt;{txtcmpocode0.Text.Trim()}&lt;/cmocode&gt;
+&lt;imoseq&gt;{txtimoseq0.Text.Trim()}&lt;/imoseq&gt;
+&lt;impoids&gt;{txtimpoids0.Text.Trim()}&lt;/impoids&gt;
+&lt;cposition&gt;{txtcposname0.Text.Trim()}&lt;/cposition&gt;
+&lt;cdefine22&gt;{txtcdefine220.Text.Trim()}&lt;/cdefine22&gt;
+&lt;cdefine23&gt;{txtcdefine230.Text.Trim()}&lt;/cdefine23&gt;
+&lt;cdefine24&gt;{txtcdefine240.Text.Trim()}&lt;/cdefine24&gt;
+&lt;editprop&gt;A&lt;/editprop&gt;
+&lt;/row&gt;&lt;/table&gt;";
+                    Excode = "<Parameters>"+
+$"<Param Mode=\"MaterialOutAdd\" sAccID =\"333\" sVouchType=\"11\" VouchId=\"11\" bCheck=\"{SysParams.Instance.bCheck}\" bBeforCheckStock=\"{SysParams.Instance.bBeforCheckStock}\" bIsRedVouch=\"false\" sAddedState=\"1\" bReMote=\"false\" body=\"{b}\" head=\"{h}\"/>" +
+                        "</Parameters>";
+
+                    break;
+                    #endregion
+            }
+            OutputLog(Excode,mode,ToolTipIcon.None);
+            try
+            {
+                OutputLog(client.IRAPUES(ZipUtil.Zip(Excode)), mode, ToolTipIcon.Info);
+            }
+            catch(Exception ex)
+            {
+                OutputLog(ex.Message, mode, ToolTipIcon.Error);
+            }
+            finally
+            {
+                btn_WebConfirm.IsEnabled = true;
+            }
+        }
     }
 }
