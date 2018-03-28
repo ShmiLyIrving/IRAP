@@ -48,11 +48,12 @@
             this.grdclmnMachineModelling = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnFoldNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnErrText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnDelete = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ribeDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlCommand = new System.Windows.Forms.Panel();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
-            this.ribeDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.grdclmnDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -60,8 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lstEquipments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOrders)).BeginInit();
-            this.pnlCommand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribeDelete)).BeginInit();
+            this.pnlCommand.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -155,7 +156,8 @@
             this.grdclmnFoldNumber,
             this.gridColumn1,
             this.grdclmnErrText,
-            this.grdclmnDelete});
+            this.grdclmnDelete,
+            this.gridColumn2});
             gridFormatRule1.ApplyToRow = true;
             gridFormatRule1.Column = this.gridColumn1;
             gridFormatRule1.Name = "Format0";
@@ -292,6 +294,29 @@
             this.grdclmnErrText.VisibleIndex = 8;
             this.grdclmnErrText.Width = 30;
             // 
+            // grdclmnDelete
+            // 
+            this.grdclmnDelete.Caption = "删除";
+            this.grdclmnDelete.ColumnEdit = this.ribeDelete;
+            this.grdclmnDelete.Name = "grdclmnDelete";
+            this.grdclmnDelete.Visible = true;
+            this.grdclmnDelete.VisibleIndex = 9;
+            // 
+            // ribeDelete
+            // 
+            this.ribeDelete.AutoHeight = false;
+            this.ribeDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "DeleteRow", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("ribeDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            this.ribeDelete.Name = "ribeDelete";
+            this.ribeDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.ribeDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ribeDelete_ButtonClick);
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "gridColumn2";
+            this.gridColumn2.FieldName = "RecordStatus";
+            this.gridColumn2.Name = "gridColumn2";
+            // 
             // pnlCommand
             // 
             this.pnlCommand.Controls.Add(this.btnSave);
@@ -326,22 +351,6 @@
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // ribeDelete
-            // 
-            this.ribeDelete.AutoHeight = false;
-            this.ribeDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("ribeDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.ribeDelete.Name = "ribeDelete";
-            this.ribeDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // grdclmnDelete
-            // 
-            this.grdclmnDelete.Caption = "删除";
-            this.grdclmnDelete.ColumnEdit = this.ribeDelete;
-            this.grdclmnDelete.Name = "grdclmnDelete";
-            this.grdclmnDelete.Visible = true;
-            this.grdclmnDelete.VisibleIndex = 9;
-            // 
             // frmRunningSPPModify
             // 
             this.Appearance.Options.UseFont = true;
@@ -360,8 +369,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lstEquipments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOrders)).EndInit();
-            this.pnlCommand.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ribeDelete)).EndInit();
+            this.pnlCommand.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -387,5 +396,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnErrText;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ribeDelete;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }
