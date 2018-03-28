@@ -176,7 +176,7 @@ namespace IRAP.BL.MES
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
         /// <returns></returns>
-        public IRAPJsonResult mfn_GetInfo_OpenPWOs(
+        public IRAPJsonResult mfn_GetList_OpenPWOs(
             int communityID,
             string moNumber,
             int moLineNo,
