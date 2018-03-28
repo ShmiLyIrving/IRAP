@@ -770,7 +770,7 @@ namespace IRAP.BL.MDM
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                Stb058 data = new Stb058();
+                Entities.MDM.Tables.Stb058 data = new Entities.MDM.Tables.Stb058();
                 long partitioningKey = communityID * 10000 + treeID;
 
                 #region 创建数据库调用参数组，并赋值
@@ -796,8 +796,8 @@ namespace IRAP.BL.MDM
                             "PartitioningKey=@PartitioningKey AND "+
                             "TreeID=@TreeID AND Code=@Code";
 
-                        IList<Stb058> lstDatas =
-                            conn.CallTableFunc<Stb058>(strSQL, paramList);
+                        IList<Entities.MDM.Tables.Stb058> lstDatas =
+                            conn.CallTableFunc<Entities.MDM.Tables.Stb058>(strSQL, paramList);
                         if (lstDatas.Count > 0)
                         {
                             data = lstDatas[0].Clone();
