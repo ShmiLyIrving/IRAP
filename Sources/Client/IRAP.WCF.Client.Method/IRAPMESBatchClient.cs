@@ -344,7 +344,7 @@ namespace IRAP.WCF.Client.Method
                     string.Format(
                         "调用 usp_SaveFact_SmeltBatchMethodCancel，参数：" +
                         "CommunityID={0}|T216LeafID={1}|T107LeafID={2}|"+
-                        "BatchNumber={3}|OpType={4}|FactID={5}" +
+                        "BatchNumber={3}|OpType={4}|FactID={5}|" +
                         "SysLogID={6}",
                         communityID, t216LeafID, t107LeafID, batchNumber, 
                         opType, factID, sysLogID),
