@@ -93,6 +93,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     column.Caption = dc.Caption;
                     column.Visible = true;
                     column.FieldName = dc.ColumnName;
+
+                    // 每行记录的事实编号
+                    dc = dtInspection.Columns.Add("FactID", typeof(long));
+                    dc.Caption = "事实编号";
+                    column = grdvInspectItems.Columns.Add();
+                    column.Caption = dc.Caption;
+                    column.Visible = true;
+                    column.FieldName = dc.ColumnName;
+                    column.OptionsColumn.AllowEdit = false;
                 }
                 #endregion
 
@@ -123,6 +132,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                             {
                                 dr = dtInspection.NewRow();
                                 dr["RecordStatus"] = 0;
+                                dr["FactID"] = 0;
                                 dtInspection.Rows.Add(dr);
                             }
                             else
@@ -131,6 +141,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                             }
 
                             dr[i] = items[i].ItemValues[j].Metric01;
+                            if ((long)dr["FactID"] == 0)
+                                dr["FactID"] = items[i].ItemValues[j].FactID;
                         }
                     }
                 }
