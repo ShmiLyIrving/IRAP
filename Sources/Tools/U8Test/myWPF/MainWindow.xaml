@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:myWPF"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit" xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/charts/rangecontrolclient" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="myWPF.MainWindow"
-        mc:Ignorable="d" Height="834.317" Width="905.666" Foreground="Black" Background="Black" Loaded="Window_Loaded" BorderBrush="#FFB96B6B" Closing="Window_Closing" Icon="Photos/gftp.png" Title="上行接口测试">
+        mc:Ignorable="d" Height="854.317" Width="905.666" Foreground="Black" Background="Black" Loaded="Window_Loaded" BorderBrush="#FFB96B6B" Closing="Window_Closing" Icon="Photos/gftp.png" Title="上行接口测试">
     <Window.Effect>
         <DropShadowEffect/>
     </Window.Effect>
@@ -16,10 +16,10 @@
             <TabItem x:Name="tiBo" Header="表单" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80" IsSelected="True" FontWeight="Bold" FontSize="14" Background="#FF979797">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="521*"/>
-                        <RowDefinition Height="229*"/>
+                        <RowDefinition Height="44*"/>
+                        <RowDefinition Height="15*"/>
                     </Grid.RowDefinitions>
-                    <GroupBox x:Name="groupBox1" Header="操作日志" Margin="10,10,126,10" FontSize="14" FontWeight="Bold" Grid.Row="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                    <GroupBox x:Name="groupBox1" Header="操作日志" Margin="10,10,126,10" FontSize="14" FontWeight="Bold" Grid.Row="1">
                         <RichTextBox x:Name="edtLogs" Margin="0,0,-2,0" Background="#FFB5DAE2" BorderBrush="#FFECF0E1" BorderThickness="2" Foreground="#FF131313" FontSize="14" TextChanged="edtLogs_TextChanged">
                             <RichTextBox.Effect>
                                 <DropShadowEffect Color="White" ShadowDepth="3" Opacity="0.8" BlurRadius="3" RenderingBias="Quality"/>
@@ -27,11 +27,11 @@
                             <FlowDocument/>
                         </RichTextBox>
                     </GroupBox>
-                    <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Height="5" Margin="10,0" VerticalAlignment="Top" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Grid.Row="1" Background="#FF836F6F"/>
-                    <TabControl x:Name="tabBo" Margin="10" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                    <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Height="5" Margin="10,0" VerticalAlignment="Top" Grid.Row="1" Background="#FF836F6F"/>
+                    <TabControl x:Name="tabBo" Margin="10">
                         <TabItem x:Name="tiMaterialOut" Header="材料出库" Margin="0" Height="26" Opacity="0.95" FontSize="16" FontWeight="Bold" FontFamily="Microsoft YaHei" Width="80" OpacityMask="Black" Background="#FFB89A68" Foreground="#FF2F363A">
                             <Grid Background="#FFE5E5E5">
-                                <GroupBox x:Name="groupBox2_Copy1" Header="表头参数" Margin="5,5,10,0" FontSize="14" FontWeight="Bold" Background="#FFB5DAE2" Foreground="Black" Height="201" VerticalAlignment="Top">
+                                <GroupBox x:Name="groupBox2_Copy1" Header="表头参数" Margin="5,5,10,0" FontSize="14" FontWeight="Bold" Background="#FFB5DAE2" Foreground="Black" Height="252" VerticalAlignment="Top">
                                     <StackPanel Margin="10,10,-2,2.697" Orientation="Horizontal">
                                         <StackPanel Margin="0,0,0,10" Width="104.166">
                                             <Label x:Name="label2" Content="主键（id）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -39,13 +39,15 @@
                                             <Label x:Name="label_Copy3" Content="出库单号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                                             <Label x:Name="label_Copy4" Content="出库日期：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.535,1.654"/>
                                             <Label x:Name="label_Copy50" Content="制单人：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.535,1.654"/>
+                                            <Label x:Name="label_Copy95" Content="部门编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.535,1.654"/>
                                         </StackPanel>
-                                        <ToolBarOverflowPanel Width="261" Height="174.827" VerticalAlignment="Top">
+                                        <ToolBarOverflowPanel Width="261" Height="186" VerticalAlignment="Top">
                                             <TextBox x:Name="txtid0" TextWrapping="Wrap" Margin="-120.5,0,-109.5,1" Height="25" VerticalAlignment="Bottom" Text="1"/>
                                             <DatePicker x:Name="dpdnmaketime0" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="230" Margin="-120.5,30,-109.5,-30"/>
                                             <TextBox x:Name="txtccode0" TextWrapping="Wrap" Margin="-120.5,0,-109.5,-60" Height="25" VerticalAlignment="Bottom" Text="1"/>
                                             <DatePicker x:Name="dpddate0" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="230" Margin="-120.5,91,-109.5,-91"/>
-                                            <TextBox x:Name="txtcmaker0" TextWrapping="Wrap" Margin="-120.5,0,-109.5,-121" Height="25" VerticalAlignment="Bottom"/>
+                                            <TextBox x:Name="txtcmaker0" TextWrapping="Wrap" Margin="-120,0,-110,-116" Height="25" VerticalAlignment="Bottom"/>
+                                            <TextBox x:Name="txtcdepcode0" TextWrapping="Wrap" Margin="-120,0,-110,-141" Height="25" VerticalAlignment="Bottom"/>
                                         </ToolBarOverflowPanel>
                                         <StackPanel Margin="0,0,0,10" Width="122.166">
                                             <Label x:Name="label2_Copy32" Content="仓库编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -63,7 +65,7 @@
                                         </ToolBarOverflowPanel>
                                     </StackPanel>
                                 </GroupBox>
-                                <GroupBox x:Name="groupBox2_Copy" Header="表体参数" Margin="5,211,10,0" FontSize="14" FontWeight="Bold" Height="220.756" VerticalAlignment="Top" Foreground="Black" Background="#FFB5DAE2">
+                                <GroupBox x:Name="groupBox2_Copy" Header="表体参数" Margin="5,262,10,10" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2">
                                     <StackPanel Margin="0,0,-2,-2.303" Orientation="Horizontal">
                                         <StackPanel Margin="0,0,0,10" Width="118.166">
                                             <Label x:Name="label_Copy6" Content="材料编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
@@ -97,7 +99,7 @@
                         </TabItem>
                         <TabItem Header="产品入库" Margin="0" Height="26" Opacity="0.95" FontSize="16" FontWeight="Bold" FontFamily="Microsoft YaHei" Width="80" OpacityMask="Black" Background="#FFB89A68" Foreground="#FF2F363A" VerticalAlignment="Top" d:LayoutOverrides="Height">
                             <Grid Background="#FFE5E5E5" Margin="0">
-                                <GroupBox x:Name="groupBox2_Copy2" Header="表头参数" Margin="0,5,10,218.213" FontSize="14" FontWeight="Bold" Background="#FFB5DAE2" Foreground="Black">
+                                <GroupBox x:Name="groupBox2_Copy2" Header="表头参数" Margin="0,5,10,0" FontSize="14" FontWeight="Bold" Background="#FFB5DAE2" Foreground="Black" Height="297" VerticalAlignment="Top">
                                     <StackPanel Margin="10,10,-2,0.697" Orientation="Horizontal">
                                         <StackPanel Margin="0,0,0,10" Width="131.166">
                                             <Label x:Name="label4" Content="主键（id）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -131,7 +133,7 @@
                                         </ToolBarOverflowPanel>
                                     </StackPanel>
                                 </GroupBox>
-                                <GroupBox x:Name="groupBox2_Copy3" Header="表体参数" Margin="0,232,10,0" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2" Height="199.756" VerticalAlignment="Top">
+                                <GroupBox x:Name="groupBox2_Copy3" Header="表体参数" Margin="0,307,10,10" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2">
                                     <StackPanel Margin="10,0,-2,-2.303" Orientation="Horizontal">
                                         <StackPanel Margin="0,0,0,10" Width="135.166">
                                             <Label x:Name="label5" Content="主键（autoid）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -167,7 +169,7 @@
                         </TabItem>
                         <TabItem Header="采购入库" Margin="0" Height="26" Opacity="0.95" FontSize="16" FontWeight="Bold" FontFamily="Microsoft YaHei" Width="80" OpacityMask="Black" Background="#FFB89A68" Foreground="#FF2F363A">
                             <Grid Background="#FFE5E5E5">
-                                <TabControl x:Name="tabControl2_Copy1" Margin="0,5,5,5">
+                                <TabControl x:Name="tabControl2_Copy1" Margin="0,10,5,5">
                                     <TabItem Header="表头参数" FontSize="14">
                                         <Grid Background="#FFE5E5E5" Margin="0,0,0,-7">
                                             <GroupBox x:Name="groupBox2_Copy4" Header="表头参数" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" Background="#FFB5DAE2">
@@ -187,14 +189,16 @@
                                                         <Label x:Name="label2_Copy35" Content="部门编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label2_Copy38" Content="模版号：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label2_Copy73" Content="税率：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label2_Copy75" Content="采购订单ID：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label2_Copy78" Content="是否立账为单据：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                     </StackPanel>
-                                                    <ToolBarOverflowPanel Width="248" Height="402" VerticalAlignment="Top">
+                                                    <ToolBarOverflowPanel Width="248" Height="455" VerticalAlignment="Top">
                                                         <TextBox x:Name="txtid2" TextWrapping="Wrap" Margin="-118.5,0,-113.564,1" Height="25" VerticalAlignment="Bottom" Text="1"/>
                                                         <TextBox x:Name="txtbomfirst2" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-24" Height="25" VerticalAlignment="Bottom" Text="0"/>
                                                         <TextBox x:Name="txtccode2" TextWrapping="Wrap" Margin="-118.064,0,-114,-54" Height="25" VerticalAlignment="Bottom" Text="1"/>
                                                         <DatePicker x:Name="dpddate2" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="232.064" Margin="-118.064,85,-114,-85"/>
-                                                        <TextBox x:Name="txtiverifystate2" TextWrapping="Wrap" Margin="-118.064,0,-114,-110" Height="25" VerticalAlignment="Bottom" Text="2"/>
-                                                        <TextBox x:Name="txtiswfcontrolled2" TextWrapping="Wrap" Margin="-118.064,0,-114,-140" Height="25" VerticalAlignment="Bottom" Text="1"/>
+                                                        <TextBox x:Name="txtiverifystate2" TextWrapping="Wrap" Margin="-118.064,0,-114,-110" Height="25" VerticalAlignment="Bottom" Text="0"/>
+                                                        <TextBox x:Name="txtiswfcontrolled2" TextWrapping="Wrap" Margin="-118.064,0,-114,-140" Height="25" VerticalAlignment="Bottom" Text="0"/>
                                                         <TextBox x:Name="txtcvenabbname2" TextWrapping="Wrap" Margin="-118.064,0,-114,-170" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtcbustype2" TextWrapping="Wrap" Margin="-118.064,0,-114,-195" Height="25" VerticalAlignment="Bottom" Text="普通采购"/>
                                                         <TextBox x:Name="txtcmaker2" TextWrapping="Wrap" Margin="-118.064,0,-114,-225" Height="25" VerticalAlignment="Bottom"/>
@@ -203,6 +207,8 @@
                                                         <TextBox x:Name="txtvt_id2" TextWrapping="Wrap" Margin="-118,0,-114,-341" Height="25" VerticalAlignment="Bottom" Text="27"/>
                                                         <DatePicker x:Name="dpdnmaketime2" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" Height="26.476" Margin="-118.5,0,-114,-256.476" VerticalAlignment="Bottom" Width="232.5"/>
                                                         <TextBox x:Name="txtvt_id2_Copy" TextWrapping="Wrap" Margin="-118,0,-115,-371" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtipurorderid2" TextWrapping="Wrap" Margin="-118,0,-115,-396" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtbcredit2" TextWrapping="Wrap" Margin="-118,0,-115,-421" Height="25" VerticalAlignment="Bottom"/>
                                                     </ToolBarOverflowPanel>
                                                     <StackPanel Width="125">
                                                         <Label x:Name="label7" Content="汇率：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -217,10 +223,12 @@
                                                         <Label x:Name="label2_Copy36" Content="入库类别编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label2_Copy37" Content="采购类型编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label2_Copy39" Content="收付款协议编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
-                                                        <Label x:Name="label2_Copy16" Content="订单号：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label2_Copy16" Content="采购订单号：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label2_Copy74" Content="到货单号：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label2_Copy76" Content="采购到货单ID：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label2_Copy77" Content="到货单ID：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                     </StackPanel>
-                                                    <ToolBarOverflowPanel Width="248" Height="402" VerticalAlignment="Top">
+                                                    <ToolBarOverflowPanel Width="248" Height="455" VerticalAlignment="Top">
                                                         <TextBox x:Name="txtiexchrate2" TextWrapping="Wrap" Margin="-118.5,0,-113.564,1" Height="25" VerticalAlignment="Bottom" Text="1"/>
                                                         <TextBox x:Name="txtcexch_name2" TextWrapping="Wrap" Margin="-118.064,0,-114,-24" Height="25" VerticalAlignment="Bottom" Text="人民币"/>
                                                         <TextBox x:Name="txtufts2" TextWrapping="Wrap" Margin="-118.064,0,-114,-54" Height="25" VerticalAlignment="Bottom"/>
@@ -233,8 +241,10 @@
                                                         <TextBox x:Name="txtcrdcode2" TextWrapping="Wrap" Margin="-118.064,0,-114,-255" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtcptcode2" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-285" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtcvenpuomprotocol2" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-315" Height="25" VerticalAlignment="Bottom"/>
-                                                        <TextBox x:Name="txtcvenpuomprotocol2_Copy" TextWrapping="Wrap" Margin="-119,0,-114,-340" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcordercode2" TextWrapping="Wrap" Margin="-119,0,-114,-340" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtcvenpuomprotocol2_Copy1" TextWrapping="Wrap" Margin="-119,0,-114,-365" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtipurarriveid2" TextWrapping="Wrap" Margin="-119,0,-114,-390" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiarriveid2" TextWrapping="Wrap" Margin="-119,0,-114,-420" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="233"/>
                                                     </ToolBarOverflowPanel>
                                                 </StackPanel>
                                             </GroupBox>
@@ -242,7 +252,7 @@
                                     </TabItem>
                                     <TabItem Header="表体参数" FontSize="14">
                                         <Grid Background="#FFE5E5E5" Margin="0">
-                                            <GroupBox x:Name="groupBox2_Copy5" Header="表体参数" Margin="10,10,10,0" FontSize="14" FontWeight="Bold" Height="381.279" VerticalAlignment="Top" Foreground="Black" Background="#FFB5DAE2">
+                                            <GroupBox x:Name="groupBox2_Copy5" Header="表体参数" Margin="10,10,10,0" FontSize="14" FontWeight="Bold" Height="460" VerticalAlignment="Top" Foreground="Black" Background="#FFB5DAE2">
                                                 <StackPanel Margin="10,0,-2,-2.303" Orientation="Horizontal">
                                                     <StackPanel Margin="0,0,0,10" Width="164.166">
                                                         <Label x:Name="label8" Content="主键（autoid）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -252,9 +262,16 @@
                                                         <Label x:Name="label_Copy18" Content="数量：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy19" Content="编辑属性：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy20" Content="iMatSettleState：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
-                                                        <Label x:Name="label_Copy61" Content="生产订单子表ID：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy96" Content="采购单子表ID：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy97" Content="行号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy98" Content="单价标准：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy102" Content="原币含税单价：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy103" Content="原币单价：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy104" Content="原币金额：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy105" Content="原币税额：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy106" Content="原币价税合计：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                     </StackPanel>
-                                                    <ToolBarOverflowPanel Width="222" Height="268.843" VerticalAlignment="Top">
+                                                    <ToolBarOverflowPanel Width="222" Height="426" VerticalAlignment="Top">
                                                         <TextBox x:Name="txtautoid2" TextWrapping="Wrap" Margin="-111,0,-105.573,-27.78" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="1"/>
                                                         <TextBox x:Name="txtfid2" TextWrapping="Wrap" Margin="-111,0,-105.573,-57.56" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="1"/>
                                                         <TextBox x:Name="txtcinvcode2" TextWrapping="Wrap" Margin="-111,0,-105.573,-87.34" d:LayoutOverrides="HorizontalAlignment" Height="24.78" VerticalAlignment="Bottom"/>
@@ -262,10 +279,17 @@
                                                         <TextBox x:Name="txtiquantity2" TextWrapping="Wrap" Margin="-111,0,-105.573,-139.98" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
                                                         <TextBox x:Name="txteditprop2" TextWrapping="Wrap" Margin="-111,0,-105.573,-169.76" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="A"/>
                                                         <TextBox x:Name="txtiMatSettleState" TextWrapping="Wrap" Margin="-111,0,-105.573,-199.54" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="0"/>
-                                                        <TextBox x:Name="txtimpoids2" TextWrapping="Wrap" Margin="-111,0,-105.573,-229.32" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
+                                                        <TextBox x:Name="txtiposid2" TextWrapping="Wrap" Margin="-111,0,-106,-225" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtivouchrowno2" TextWrapping="Wrap" Margin="-111,0,-106,-250" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtbtaxcost2" TextWrapping="Wrap" Margin="-111,0,-106,-280" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtioritaxcost2" TextWrapping="Wrap" Margin="-111,0,-106,-305" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtioricost2" TextWrapping="Wrap" Margin="-111,0,-106,-335" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiorimoney2" TextWrapping="Wrap" Margin="-111,0,-106,-365" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtioritaxprice2" TextWrapping="Wrap" Margin="-111,0,-106,-395" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiorisum2" TextWrapping="Wrap" Margin="-111,0,-106,-425" Height="25" VerticalAlignment="Bottom"/>
                                                     </ToolBarOverflowPanel>
                                                     <StackPanel Width="121.166" Margin="0,0,0,10">
-                                                        <Label x:Name="label_Copy84" Content="订单号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.586,0.441"/>
+                                                        <Label x:Name="label_Copy84" Content="采购订单号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.586,0.441"/>
                                                         <Label x:Name="label_Copy85" Content="批号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label20" Content="货位：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label_Copy54" Content="表体自定义项1：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
@@ -273,8 +297,15 @@
                                                         <Label x:Name="label_Copy56" Content="表体自定义项3：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label_Copy86" Content="本币单价：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
                                                         <Label x:Name="label_Copy87" Content="本币金额：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
+                                                        <Label x:Name="label_Copy61" Content="需求跟踪方式：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
+                                                        <Label x:Name="label_Copy99" Content="时间戳：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
+                                                        <Label x:Name="label_Copy107" Content="税率：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
+                                                        <Label x:Name="label_Copy108" Content="本币税额：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
+                                                        <Label x:Name="label_Copy109" Content="本币价税合计：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
+                                                        <Label x:Name="label_Copy110" Content="暂估单价：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
+                                                        <Label x:Name="label_Copy111" Content="暂估金额：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.56,1.833"/>
                                                     </StackPanel>
-                                                    <ToolBarOverflowPanel Width="231" Height="319.345" VerticalAlignment="Top" d:LayoutOverrides="TopMargin, BottomMargin">
+                                                    <ToolBarOverflowPanel Width="231" Height="426" VerticalAlignment="Top">
                                                         <TextBox x:Name="txtcposname2" TextWrapping="Wrap" Margin="-105.5,0,-110.073,-84.005" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
                                                         <TextBox x:Name="txtcdefine222" TextWrapping="Wrap" Margin="-105.5,0,-110.073,-113.785" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
                                                         <TextBox x:Name="txtcdefine232" TextWrapping="Wrap" Margin="-105.5,0,-110.073,-143.565" d:LayoutOverrides="HorizontalAlignment" Height="24.78" VerticalAlignment="Bottom"/>
@@ -282,7 +313,14 @@
                                                         <TextBox x:Name="txtcpoid2" TextWrapping="Wrap" Margin="-105.5,0,-110.073,-24.78" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
                                                         <TextBox x:Name="txtcbatch2" TextWrapping="Wrap" Margin="-105.5,0,-110.073,-54.225" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
                                                         <TextBox x:Name="txtiunitcost2" TextWrapping="Wrap" Margin="-105.5,0,-110.073,-198.125" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
-                                                        <TextBox x:Name="txtiprice2" TextWrapping="Wrap" Margin="-105.5,0,-110.073,-227.905" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
+                                                        <TextBox x:Name="txtiprice2" TextWrapping="Wrap" Margin="-106,0,-110,-223" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtisotype2" TextWrapping="Wrap" Margin="-106,0,-110,-248" Height="25" VerticalAlignment="Bottom" Text="0"/>
+                                                        <TextBox x:Name="txtcorufts2" TextWrapping="Wrap" Margin="-106,0,-110,-278" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtitaxrate2" TextWrapping="Wrap" Margin="-106,0,-110,-309" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtitaxprice2" TextWrapping="Wrap" Margin="-106,0,-110,-339" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtisum2" TextWrapping="Wrap" Margin="-106,0,-110,-364" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtfacost2" TextWrapping="Wrap" Margin="-106,0,-110,-389" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiaprice2" TextWrapping="Wrap" Margin="-106,0,-110,-416" Height="25" VerticalAlignment="Bottom"/>
                                                     </ToolBarOverflowPanel>
                                                 </StackPanel>
                                             </GroupBox>
@@ -323,7 +361,7 @@
                                             <Label x:Name="label_Copy58" Content="制单时间：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.446,0.515"/>
                                             <Label x:Name="label_Copy77" Content="模板号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                                             <Label x:Name="label_Copy89" Content="转入仓库编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
-                                            <Label x:Name="label_Copy94" Content="转入仓库编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy94" Content="调拨方向：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                                         </StackPanel>
                                         <ToolBarOverflowPanel Width="249" Height="235.556" VerticalAlignment="Top">
                                             <TextBox x:Name="txtcordcode3" TextWrapping="Wrap" Margin="-124.5,0,-96.584,1" Height="25" VerticalAlignment="Bottom" Text="205"/>
@@ -377,7 +415,7 @@
                         </TabItem>
                         <TabItem Header="销售出库" Margin="0" Height="26" Opacity="0.95" FontSize="16" FontWeight="Bold" FontFamily="Microsoft YaHei" Width="80" OpacityMask="Black" Background="#FFB89A68" Foreground="#FF2F363A">
                             <Grid Background="#FFE5E5E5">
-                                <TabControl x:Name="tabControl2_Copy3" Margin="0,10,10,10">
+                                <TabControl x:Name="tabControl2_Copy3" Margin="0,10,10,20">
                                     <TabItem Header="表头参数" FontSize="14">
                                         <Grid Background="#FFE5E5E5">
                                             <GroupBox x:Name="groupBox2_Copy8" Header="表头参数" Margin="5,5,5,0" FontSize="14" FontWeight="Bold" Background="#FFB5DAE2">
@@ -394,9 +432,10 @@
                                                         <Label x:Name="label2_Copy43" Content="模板号：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" RenderTransformOrigin="0.574,0.57"/>
                                                         <Label x:Name="label2_Copy45" Content="业务员编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" RenderTransformOrigin="0.574,0.57"/>
                                                         <Label x:Name="label2_Copy69" Content="制单时间：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" RenderTransformOrigin="0.574,0.57"/>
+                                                        <Label x:Name="label2_Copy79" Content="发货单ID：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" RenderTransformOrigin="0.574,0.57"/>
                                                     </StackPanel>
                                                     <ToolBarOverflowPanel Width="248" Height="437.577" VerticalAlignment="Top">
-                                                        <TextBox x:Name="txtid4" TextWrapping="Wrap" Margin="-118.5,0,-113.564,1" Height="25" VerticalAlignment="Bottom" Text="1"/>
+                                                        <TextBox x:Name="txtid4" TextWrapping="Wrap" Margin="-118.5,0,-113.564,1" Height="25" VerticalAlignment="Bottom" IsEnabled="False"/>
                                                         <TextBox x:Name="txtccode4" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-24" Height="25" VerticalAlignment="Bottom" Text="1"/>
                                                         <DatePicker x:Name="dpddate4" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="232.064" Margin="-118.064,55,-114,-55"/>
                                                         <TextBox x:Name="txtiverifystate4" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-115" Height="25" VerticalAlignment="Bottom" Text="2"/>
@@ -405,8 +444,9 @@
                                                         <TextBox x:Name="txtccusabbname4" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-170" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtcbuscode4" TextWrapping="Wrap" Margin="-118.064,0,-114,-200" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtvt_id4" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-230" Height="25" VerticalAlignment="Bottom" Text="87"/>
-                                                        <TextBox x:Name="txtcpersoncode4" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-260" Height="25" VerticalAlignment="Bottom"/>
-                                                        <DatePicker x:Name="dpdnmaketime4" SelectedDate="{x:Static sys:DateTime.Now}" Height="26.476" Margin="-117.628,0,-114,-291.476" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcpersoncode4" TextWrapping="Wrap" Margin="-118,0,-114,-255" Height="25" VerticalAlignment="Bottom"/>
+                                                        <DatePicker x:Name="dpdnmaketime4" SelectedDate="{x:Static sys:DateTime.Now}" Height="26" Margin="-118,0,-114,-286" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcdlcode4" TextWrapping="Wrap" Margin="-119,0,-114,-316" Height="25" VerticalAlignment="Bottom"/>
                                                     </ToolBarOverflowPanel>
                                                     <StackPanel Margin="0,0,0,10" Width="107.166">
                                                         <Label x:Name="label12" Content="制单人：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -420,6 +460,7 @@
                                                         <Label x:Name="label2_Copy42" Content="销售类型编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label2_Copy44" Content="部门编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                         <Label x:Name="label2_Copy46" Content="出库类别编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label2_Copy80" Content="发货单号：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                                     </StackPanel>
                                                     <ToolBarOverflowPanel Width="248" Height="437.577" VerticalAlignment="Top">
                                                         <TextBox x:Name="txtcmaker4" TextWrapping="Wrap" Margin="-124,0,-108.064,-4" Height="25" VerticalAlignment="Bottom"/>
@@ -431,16 +472,17 @@
                                                         <TextBox x:Name="txtccuscode4" TextWrapping="Wrap" Margin="-124,0,-108.064,-174" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtbisstqc4" TextWrapping="Wrap" Margin="-124,0,-108.064,-204" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtcstcode4" TextWrapping="Wrap" Margin="-124,0,-108.064,-234" Height="25" VerticalAlignment="Bottom" Text="01"/>
-                                                        <TextBox x:Name="txtcdepcode4" TextWrapping="Wrap" Margin="-124,0,-108.064,-264" Height="25" VerticalAlignment="Bottom"/>
-                                                        <TextBox x:Name="txtcrdcode4" TextWrapping="Wrap" Margin="-124,0,-108.064,-294" Height="25" VerticalAlignment="Bottom" Text="202"/>
+                                                        <TextBox x:Name="txtcdepcode4" TextWrapping="Wrap" Margin="-124,0,-109,-259" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcrdcode4" TextWrapping="Wrap" Margin="-124,0,-109,-289" Height="25" VerticalAlignment="Bottom" Text="202"/>
+                                                        <TextBox x:Name="txtiarriveid4" TextWrapping="Wrap" Margin="-125,0,-108,-319" Height="25" VerticalAlignment="Bottom"/>
                                                     </ToolBarOverflowPanel>
                                                 </StackPanel>
                                             </GroupBox>
                                         </Grid>
                                     </TabItem>
                                     <TabItem Header="表体参数" FontSize="14">
-                                        <Grid Background="#FFE5E5E5" Margin="0">
-                                            <GroupBox x:Name="groupBox2_Copy9" Header="表体参数" Margin="10,10,10,0" FontSize="14" FontWeight="Bold" Height="424.017" VerticalAlignment="Top" Foreground="Black" Background="#FFB5DAE2">
+                                        <Grid Background="#FFE5E5E5" Margin="0,0,0,-18">
+                                            <GroupBox x:Name="groupBox2_Copy9" Header="表体参数" Margin="10,10,10,0" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2" Height="468" VerticalAlignment="Top">
                                                 <StackPanel Margin="10,0,-2,-2.303" Orientation="Horizontal">
                                                     <StackPanel Margin="0,0,0,10" Width="151.166">
                                                         <Label x:Name="label13" Content="主键（autoid）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -453,22 +495,52 @@
                                                         <Label x:Name="label_Copy63" Content="表体自定义项1：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy64" Content="表体自定义项2：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy65" Content="表体自定义项3：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
-                                                        <Label x:Name="label_Copy66" Content="表体自定义项5：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy66" Content="总重：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy73" Content="批号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy100" Content="发货单号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy101" Content="发货单子表id：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                     </StackPanel>
-                                                    <ToolBarOverflowPanel Width="395" Height="390.843" VerticalAlignment="Top">
-                                                        <TextBox x:Name="txtautoid4" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-28.78" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="1"/>
-                                                        <TextBox x:Name="txtcinvcode4" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-113.12" d:LayoutOverrides="HorizontalAlignment" Height="24.78" VerticalAlignment="Bottom"/>
-                                                        <TextBox x:Name="txtcinvm_unit4" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-53.56" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="kg"/>
-                                                        <TextBox x:Name="txtiquantity4" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-83.34" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
-                                                        <TextBox x:Name="txteditprop4" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-167.68" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="A"/>
-                                                        <TextBox x:Name="txtfid4" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-137.9" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="1"/>
-                                                        <TextBox x:Name="txtcposname4" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-197.46" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
-                                                        <TextBox x:Name="txtcdefine224" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-227.24" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
-                                                        <TextBox x:Name="txtcdefine234" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-257.02" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
-                                                        <TextBox x:Name="txtcdefine244" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-286.8" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
-                                                        <TextBox x:Name="txtcdefine264" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-311.58" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
-                                                        <TextBox x:Name="txtcbatch4" TextWrapping="Wrap" Margin="-187.5,0,-78.073,-341.36" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
+                                                    <ToolBarOverflowPanel Width="255" Height="401" VerticalAlignment="Top">
+                                                        <TextBox x:Name="txtautoid4" TextWrapping="Wrap" Margin="-118,-1,-106,-24" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcinvcode4" TextWrapping="Wrap" Margin="-118,0,-106,-108" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcinvm_unit4" TextWrapping="Wrap" Margin="-118,0,-106,-49" Height="25" VerticalAlignment="Bottom" Text="kg"/>
+                                                        <TextBox x:Name="txtiquantity4" TextWrapping="Wrap" Margin="-118,0,-106,-78" Height="24" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txteditprop4" TextWrapping="Wrap" Margin="-118,0,-106,-163" Height="25" VerticalAlignment="Bottom" Text="A"/>
+                                                        <TextBox x:Name="txtfid4" TextWrapping="Wrap" Margin="-118,0,-106,-133" Height="25" VerticalAlignment="Bottom" Text="1"/>
+                                                        <TextBox x:Name="txtcposname4" TextWrapping="Wrap" Margin="-118,0,-106,-192" Height="24" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcdefine224" TextWrapping="Wrap" Margin="-118,0,-106,-222" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcdefine234" TextWrapping="Wrap" Margin="-118,0,-106,-252" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcdefine244" TextWrapping="Wrap" Margin="-118,0,-106,-282" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcdefine264" TextWrapping="Wrap" Margin="-118,0,-106,-307" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcbatch4" TextWrapping="Wrap" Margin="-118,0,-106,-336" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcbdlcode4" TextWrapping="Wrap" Margin="-118,0,-106,-361" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtidlsid4" TextWrapping="Wrap" Margin="-118,0,-106,-391" Height="25" VerticalAlignment="Bottom"/>
+                                                    </ToolBarOverflowPanel>
+                                                    <StackPanel Width="142">
+                                                        <Label x:Name="label25" Content="存货代码:" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy" Content="销售单价（不含税）：" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy1" Content="销售金额（不含税）：" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy2" Content="销售单价（含税）:" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy3" Content="成本单价:" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy7" Content="金额:" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy8" Content="单价:" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy9" Content="销售订单号:" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy10" Content="销售订单子表ID:" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy11" Content="销售订单类别:" HorizontalAlignment="Right"/>
+                                                        <Label x:Name="label25_Copy12" Content="销售订单ID:" HorizontalAlignment="Right"/>
+                                                    </StackPanel>
+                                                    <ToolBarOverflowPanel Width="266" Height="426" VerticalAlignment="Top">
+                                                        <TextBox x:Name="txtcinvaddcode4" TextWrapping="Wrap" Margin="-128,0,-96,-25" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcinvaddcode4_Copy" TextWrapping="Wrap" Margin="-128,0,-96,-55" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcinvaddcode4_Copy1" TextWrapping="Wrap" Margin="-128,0,-96,-85" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcinvaddcode4_Copy2" TextWrapping="Wrap" Margin="-128,0,-96,-110" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox TextWrapping="Wrap" Margin="-128,0,-96,-140" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiprice4" TextWrapping="Wrap" Margin="-128,0,-96,-170" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiunitcost4" TextWrapping="Wrap" Margin="-128,0,-96,-195" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiordercode4" TextWrapping="Wrap" Margin="-128,0,-96,-225" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtisodid4" TextWrapping="Wrap" Margin="-128,0,-96,-250" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiordertype4" TextWrapping="Wrap" Margin="-128,0,-96,-280" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiorderdid4" TextWrapping="Wrap" Margin="-128,0,-96,-305" Height="25" VerticalAlignment="Bottom"/>
                                                     </ToolBarOverflowPanel>
                                                 </StackPanel>
                                             </GroupBox>
@@ -515,7 +587,7 @@
                                         </ToolBarOverflowPanel>
                                     </StackPanel>
                                 </GroupBox>
-                                <GroupBox x:Name="groupBox2_Copy11" Header="表体参数" Margin="5,247.5,10,0" FontSize="14" FontWeight="Bold" Height="197.713" VerticalAlignment="Top" Foreground="Black" Background="#FFB5DAE2">
+                                <GroupBox x:Name="groupBox2_Copy11" Header="表体参数" Margin="5,252,10,10" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2">
                                     <StackPanel Margin="10,0,-2,-2.303" Orientation="Horizontal">
                                         <StackPanel Margin="0,0,0,10" Width="137.166">
                                             <Label x:Name="label15" Content="主键（autoid）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -587,7 +659,7 @@
                                         </ToolBarOverflowPanel>
                                     </StackPanel>
                                 </GroupBox>
-                                <GroupBox x:Name="groupBox2_Copy13" Header="表体参数" Margin="5,231.5,10,0" FontSize="14" FontWeight="Bold" Height="200.256" VerticalAlignment="Top" Foreground="Black" Background="#FFB5DAE2">
+                                <GroupBox x:Name="groupBox2_Copy13" Header="表体参数" Margin="5,232,10,10" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2">
                                     <StackPanel Margin="10,0,-2,-2.303" Orientation="Horizontal">
                                         <StackPanel Margin="0,0,0,10" Width="151.166">
                                             <Label x:Name="label17" Content="主键（autoid）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -621,8 +693,74 @@
                                 </GroupBox>
                             </Grid>
                         </TabItem>
+                        <TabItem Header="形态转换" Width="80" Height="26" Margin="0" FontSize="16" BorderBrush="#FFACACAC" Background="#FFB89A68" Foreground="#FF2F363A" OpacityMask="#FF2F363A">
+                            <Grid Background="#FFE5E5E5">
+                                <GroupBox x:Name="groupBox2_Copy14" Header="表头参数" Margin="5,0,10,295" FontSize="14" FontWeight="Bold" Background="#FFB5DAE2" Foreground="Black">
+                                    <StackPanel Margin="10,0,-2,-5.303" Orientation="Horizontal">
+                                        <StackPanel Margin="0,0,0,10" Width="151.166">
+                                            <Label x:Name="label26" Content="主键（id）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy112" Content="单据号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy113" Content="日期：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy119" Content="部门编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy120" Content="单据类型：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy115" Content="经手人：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </StackPanel>
+                                        <ToolBarOverflowPanel Width="249" Height="245.549" VerticalAlignment="Top">
+                                            <TextBox x:Name="txtid7" TextWrapping="Wrap" Margin="-124.5,0,-96.584,1" Height="25" VerticalAlignment="Bottom" IsEnabled="False"/>
+                                            <TextBox x:Name="txtcavcode7" TextWrapping="Wrap" Margin="-124.5,0,-96.584,-29" Height="25" VerticalAlignment="Bottom" Text="1"/>
+                                            <DatePicker x:Name="dpdavdate7" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="221.084" Margin="-124.5,60,-96.584,-60"/>
+                                            <TextBox x:Name="txtcdepcode7" TextWrapping="Wrap" Margin="-124,0,-98,-85" Height="25" VerticalAlignment="Bottom"/>
+                                            <TextBox x:Name="txtcvouchtype7" TextWrapping="Wrap" Margin="-124,0,-98,-110" Height="25" VerticalAlignment="Bottom" Text="15"/>
+                                            <TextBox x:Name="txtcpersonname7" TextWrapping="Wrap" Margin="-125,0,-97,-140" Height="25" VerticalAlignment="Bottom"/>
+                                        </ToolBarOverflowPanel>
+                                        <StackPanel Width="111.166">
+                                            <Label x:Name="label27" Content="出库类别编码：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy114" Content="入库类别编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy116" Content="制单人：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy117" Content="制单时间：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.446,0.515"/>
+                                            <Label x:Name="label_Copy118" Content="模板号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </StackPanel>
+                                        <ToolBarOverflowPanel Width="249" Height="235.556" VerticalAlignment="Top">
+                                            <TextBox x:Name="txtcordcode7" TextWrapping="Wrap" Margin="-124.5,0,-96.584,1" Height="25" VerticalAlignment="Bottom" Text="213"/>
+                                            <TextBox x:Name="txtcirdcode7" TextWrapping="Wrap" Margin="-124.5,0,-96.584,-29" Height="25" VerticalAlignment="Bottom" Text="112"/>
+                                            <TextBox x:Name="txtcmaker7" TextWrapping="Wrap" Margin="-124,0,-98,-54" Height="25" VerticalAlignment="Bottom"/>
+                                            <TextBox x:Name="txtvt_id7" TextWrapping="Wrap" Margin="-123,0,-99,-115" Height="25" VerticalAlignment="Bottom" Text="89"/>
+                                            <DatePicker x:Name="dpdnmaketime7" Height="26" SelectedDate="{x:Static sys:DateTime.Now}" Margin="-123,0,-98,-85" VerticalAlignment="Bottom"/>
+                                        </ToolBarOverflowPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox x:Name="groupBox2_Copy15" Header="表体参数" Margin="5,0,10,0" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2" Height="290" VerticalAlignment="Bottom">
+                                    <StackPanel Margin="10,0,-2,2.697" Orientation="Horizontal">
+                                        <StackPanel Margin="0,10,0,0" Width="151.166">
+                                            <Label x:Name="label28" Content="主键（autoid）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy121" Content="存货编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy122" Content="编辑属性：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy123" Content="数量：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy124" Content="主计量单位：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy125" Content="类型：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </StackPanel>
+                                        <ToolBarOverflowPanel Width="222" Height="183.317" VerticalAlignment="Top">
+                                            <TextBox x:Name="txtautoid7" TextWrapping="Wrap" Margin="-107.573,0,-111,-34.78" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" IsEnabled="False"/>
+                                            <TextBox x:Name="txtcinvcode7" TextWrapping="Wrap" Margin="-107.573,0,-111,-64.56" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
+                                            <TextBox x:Name="txteditprop7" TextWrapping="Wrap" Margin="-107.573,0,-111,-94.34" d:LayoutOverrides="HorizontalAlignment" Height="24.78" VerticalAlignment="Bottom" Text="A"/>
+                                            <TextBox x:Name="txtiavquantity7" TextWrapping="Wrap" Margin="-107.573,0,-111,-124.12" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
+                                            <TextBox x:Name="txtcinvm_unit7" TextWrapping="Wrap" Margin="-108,0,-111,-149" Height="25" VerticalAlignment="Bottom"/>
+                                            <TextBox x:Name="txtbavtype7" TextWrapping="Wrap" Margin="-108,0,-111,-179" Height="25" VerticalAlignment="Bottom"/>
+                                        </ToolBarOverflowPanel>
+                                        <StackPanel Margin="0,10,0,0" Width="137.166">
+                                            <Label x:Name="label_Copy128" Content="批号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy126" Content="仓库编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </StackPanel>
+                                        <ToolBarOverflowPanel Width="222" Height="183.317" VerticalAlignment="Top">
+                                            <TextBox x:Name="txtcavbatch7" TextWrapping="Wrap" Margin="-108,0,-111,-32" Height="25" VerticalAlignment="Bottom"/>
+                                            <TextBox x:Name="txtcwhcode7" TextWrapping="Wrap" Margin="-108,0,-111,-62" Height="25" VerticalAlignment="Bottom"/>
+                                        </ToolBarOverflowPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </TabItem>
                     </TabControl>
-                    <Button x:Name="btn_Confirm" Content="提交" HorizontalAlignment="Right" Height="32" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="111" Background="#FF534B4B" Foreground="White" RenderTransformOrigin="1.252,0.625" Click="btn_Confirm_Click" Grid.Row="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                    <Button x:Name="btn_Confirm" Content="提交" HorizontalAlignment="Right" Height="32" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="111" Background="#FF534B4B" Foreground="White" RenderTransformOrigin="1.252,0.625" Click="btn_Confirm_Click" Grid.Row="1">
                         <Button.Effect>
                             <DropShadowEffect Color="White" ShadowDepth="3" BlurRadius="3" Opacity="0.8"/>
                         </Button.Effect>

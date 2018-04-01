@@ -364,9 +364,11 @@ namespace myWPF
 <cbustype>{txtcbustype0.Text.Trim()}</cbustype>
 <crdcode>{txtcrdname0.Text.Trim()}</crdcode>
 <vt_id>{txtvt_id0.Text.Trim()}</vt_id>
-<cdepcode>0907</cdepcode>
+<cdepcode>{txtcdepcode0.Text.Trim()}</cdepcode>
+<cprobatch></cprobatch>
 <cpersoncode>000094</cpersoncode>
 <cproinvaddcode>1</cproinvaddcode>
+<csource>生产订单</csource>
 </row></table>";
 
                     b = $@"<table>
@@ -583,8 +585,11 @@ namespace myWPF
 <crdcode>{txtcrdcode2.Text.Trim()}</crdcode>
 <vt_id>{txtvt_id2.Text.Trim()}</vt_id>
 <cvenpuomprotocol>{txtcvenpuomprotocol2.Text.Trim()}</cvenpuomprotocol>
+<cordercode>{txtcordercode2.Text.Trim()}</cordercode>
 <cptcode>{txtcptcode2.Text.Trim()}</cptcode>
 <csource>{txtcsource2.Text.Trim()}</csource>
+<ipurorderid>{txtipurorderid2.Text.Trim()}</ipurorderid>
+<bcredit>{txtbcredit2.Text.Trim()}</bcredit>
 </row></table>
 ";
 
@@ -597,15 +602,28 @@ namespace myWPF
 <iquantity>{txtiquantity2.Text.Trim()}</iquantity>
 <editprop>{txteditprop2.Text.Trim()}</editprop>
 <iMatSettleState>{txtiMatSettleState.Text.Trim()}</iMatSettleState>
-<impoids>{txtimpoids2.Text.Trim()}</impoids>
+<iposid>{txtiposid2.Text.Trim()}</iposid>
 <cpoid>{txtcpoid2.Text.Trim()}</cpoid>
 <cbatch>{txtcbatch2.Text.Trim()}</cbatch>
 <cposition>{txtcposname2.Text.Trim()}</cposition>
 <cdefine22>{txtcdefine222.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine232.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine242.Text.Trim()}</cdefine24>
+<isotype>{txtisotype2.Text.Trim()}</isotype>
+<btaxcost>{txtbtaxcost2.Text.Trim()}</btaxcost>
 <iunitcost>{txtiunitcost2.Text.Trim()}</iunitcost>
-<iprice>{txtiprice2.Text.Trim()}</iprice>
+<corufts>{txtcorufts2.Text.Trim()}</corufts>
+<ioritaxcost>{txtioritaxcost2.Text.Trim()}</ioritaxcost>
+<ioricost>{txtioricost2.Text.Trim()}</ioricost>
+<iorimoney>{txtiorimoney2.Text.Trim()}</iorimoney>
+<ioritaxprice>{txtioritaxprice2.Text.Trim()}</ioritaxprice>
+<iorisum>{txtiorisum2.Text.Trim()}</iorisum>
+<itaxrate>{txtitaxrate2.Text.Trim()}</itaxrate>
+<itaxprice>{txtitaxprice2.Text.Trim()}</itaxprice>
+<isum>{txtisum2.Text.Trim()}</isum>
+<facost>{txtfacost2.Text.Trim()}</facost>
+<iaprice>{txtiaprice2.Text.Trim()}</iaprice>
+
 </row></table> ";
 
                     sVouchType = "01";
@@ -805,6 +823,8 @@ namespace myWPF
 <vt_id>{txtvt_id4.Text.Trim()}</vt_id>
 <cdepcode>{txtcdepcode4.Text.Trim()}</cdepcode>
 <crdcode>{txtcrdcode4.Text.Trim()}</crdcode>
+<cdlcode>{txtcdlcode4.Text.Trim()}</cdlcode>
+<iarriveid>{txtiarriveid4.Text.Trim()}</iarriveid>
 </row>
 </table>
 ";
@@ -822,9 +842,17 @@ namespace myWPF
 <cdefine23>{txtcdefine234.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine244.Text.Trim()}</cdefine24>
 <cdefine26>{txtcdefine264.Text.Trim()}</cdefine26>
-<cinvaddcode>1</cinvaddcode>
+<cinvaddcode>{txtcinvaddcode4.Text.Trim()}</cinvaddcode>
 <cinvname>{txtcinvcode4.Text.Trim()}</cinvname>
 <cbatch>{txtcbatch4.Text.Trim()}</cbatch>
+<idlsid>{txtidlsid4.Text.Trim()}</idlsid>
+<cbdlcode>{txtcbdlcode4.Text.Trim()}</cbdlcode>
+<iprice>{txtiprice4.Text.Trim()}</iprice>
+<iunitcost>{txtiunitcost4.Text.Trim()}</iunitcost>
+<iordercode>{txtiordercode4.Text.Trim()}</iordercode>
+<isodid>{txtisodid4.Text.Trim()}</isodid>
+<iordertype>{txtiordertype4.Text.Trim()}</iordertype>
+<iorderdid>{txtiorderdid4.Text.Trim()}</iorderdid>
  </row></table> ";
 
                     sVouchType = "32";
@@ -1090,7 +1118,103 @@ namespace myWPF
                     });
                     t.Start();
                     break;
-                    #endregion 其他出库单
+                #endregion 其他出库单
+                #region 形态转换单
+                //<ccode>1AQOT1APCM70321033</ccode>
+                //<cwhname>M051</cwhname>      
+                //<cinvcode>5122000000</cinvcode>
+                //<editprop>A</editprop>
+                case 7:
+                    mode = "形态转换单";
+                    h = $@"<table>
+<row>
+<id>{txtid7.Text.Trim()}</id>
+<cavcode>{txtcavcode7.Text.Trim()}</cavcode>
+<davdate>{dpdavdate7.Text.Trim()}</davdate>
+<cdepcode>{txtcdepcode7.Text.Trim()}</cdepcode>
+<cvouchtype>{txtcvouchtype7.Text.Trim()}</cvouchtype>
+<cpersonname>{txtcpersonname7.Text.Trim()}</cpersonname>
+<cirdcode>{txtcirdcode7.Text.Trim()}</cirdcode>
+<cordcode>{txtcordcode7.Text.Trim()}</cordcode>
+<cmaker>{txtcmaker7.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime7.Text.Trim()}</dnmaketime>
+<vt_id>{txtvt_id7.Text.Trim()}</vt_id>
+</row></table>
+";
+
+                    b = $@"<table>
+<row>
+<autoid>{txtautoid7.Text.Trim()}</autoid>
+<cinvcode>{txtcinvcode7.Text.Trim()}</cinvcode>
+<editprop>{txteditprop7.Text.Trim()}</editprop>
+<iavquantity>{txtiavquantity7.Text.Trim()}</iavquantity>
+<bavtype>{txtbavtype7.Text.Trim()}</bavtype>
+<cinvm_unit>{txtcinvm_unit7.Text.Trim()}</cinvm_unit>
+<cavbatch>{txtcavbatch7.Text.Trim()}</cavbatch>
+<cwhcode>{txtcwhcode7.Text.Trim()}</cwhcode>
+</row></table> ";
+
+                    sVouchType = "15";
+                    domPosition = "";
+                    errMsg = "";
+                    cnnFromO = null;
+                    VouchId = "aw";//
+                    bIsRedVouch = false;
+                    sAddedState = "";
+                    bReMote = false; ;
+                    OutputLog("=======================开始上传========================", mode, ToolTipIcon.None);
+                    OutputLog("DomHead =" + h, mode, ToolTipIcon.None);
+                    OutputLog("DomBody =" + b, mode, ToolTipIcon.None);
+                    t = new Task(() =>
+                    {
+                        s = ir.ShapeChangVouchAdd(sVouchType,
+                                  h, b,
+                                    domPosition,
+                                    out errMsg,
+                                    cnnFromO,
+                                    ref VouchId,
+                                    out o,
+                                    bCheck,
+                                    bBeforCheckStock,
+                                    bIsRedVouch,
+                                    sAddedState,
+                                    bReMote);
+                    });
+                    t.ContinueWith(c =>
+                    {
+                        try
+                        {
+                            if ((bool)s)
+                            {
+                                UpdateLog("提交成功", mode, ToolTipIcon.Info);
+                            }
+                            else
+                            {
+                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
+                            }
+                            if (domMsg != null)
+                                UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
+                        }
+                        catch
+                        {
+                            if (s == null)
+                            {
+                                UpdateLog("发生异常: s is null", mode, ToolTipIcon.None);
+                            }
+                            if (errMsg == null)
+                            {
+                                UpdateLog("发生异常:errMsg is null", mode, ToolTipIcon.None);
+                            }
+                            if (domMsg == null)
+                                UpdateLog("发生异常:0 is null", mode, ToolTipIcon.None);
+                        }
+                        UpdateBtn(true);
+                        UpdateLog("=======================结束===========================", "", ToolTipIcon.None);
+                    });
+                    t.Start();
+                    break;
+                    #endregion 形态转换单
+
             }
         }
 
