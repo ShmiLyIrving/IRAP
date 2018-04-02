@@ -14,9 +14,11 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.Data;
 
 using IRAP.Global;
 using IRAP.Client.Global;
+using IRAP.Client.Global.Enums;
 using IRAP.Client.User;
 using IRAP.Entities.MDM;
 using IRAP.Entities.MES;
@@ -74,13 +76,24 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 {
                     DataColumn dc = dtInspection.Columns.Add("AttachedFile", typeof(string));
                     dc.Caption = "附件";
-
+                    GridColumn column = grdvInspectItems.Columns.Add();
+                    //column.Caption = dc.Caption;
+                    //column.FieldName = dc.ColumnName;
+                    //column.ColumnEdit = ribeUpload;
+                    //column.Visible = false;
+                    //column.ShowButtonMode = ShowButtonModeEnum.ShowAlways;
+                }
+                {
+                    DataColumn dc = dtInspection.Columns.Add("HasIQCReport", typeof(int));
+                    dc.Caption = "附件";
                     GridColumn column = grdvInspectItems.Columns.Add();
                     column.Caption = dc.Caption;
                     column.FieldName = dc.ColumnName;
                     column.ColumnEdit = ribeUpload;
+                    ribeUpload.TextEditStyle = TextEditStyles.DisableTextEditor;
                     column.Visible = true;
                     column.ShowButtonMode = ShowButtonModeEnum.ShowAlways;
+                    //column.OptionsColumn.AllowEdit = false;
                 }
                 #endregion
 
@@ -90,16 +103,23 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                     DataColumn dc = dtInspection.Columns.Add("RecordStatus", typeof(int));
                     dc.Caption = "记录状态";
                     GridColumn column = grdvInspectItems.Columns.Add();
+                    column.Name = string.Format("grdclmn{0}", dc.ColumnName);
                     column.Caption = dc.Caption;
                     column.Visible = true;
                     column.FieldName = dc.ColumnName;
+                    column.OptionsColumn.AllowEdit = false;
 
                     // 每行记录的事实编号
                     dc = dtInspection.Columns.Add("FactID", typeof(long));
                     dc.Caption = "事实编号";
                     column = grdvInspectItems.Columns.Add();
+                    column.Name = string.Format("grdclmn{0}", dc.ColumnName);
                     column.Caption = dc.Caption;
+#if DEBUG
                     column.Visible = true;
+#else
+                    column.Visible = false;
+#endif
                     column.FieldName = dc.ColumnName;
                     column.OptionsColumn.AllowEdit = false;
                 }
@@ -116,7 +136,17 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 #endregion
 
                 #region 过滤已删除行
-                //grdvInspectItems.ActiveFilterString = "[RecordStatus] <> 3";
+#if DEBUG
+#else
+                grdvInspectItems.ActiveFilterString = "[RecordStatus] <> 3";
+#endif
+                #endregion
+
+                #region 设置第一个列进行排序
+                if (grdvInspectItems.Columns.Count > 0)
+                {
+                    grdvInspectItems.Columns[0].SortOrder = ColumnSortOrder.Ascending;
+                }
                 #endregion
 
                 #region 向 DataTable 中填充数据
@@ -131,7 +161,9 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                             if (dtInspection.Rows.Count < j + 1)
                             {
                                 dr = dtInspection.NewRow();
+                                dr["AttachedFile"] = "";
                                 dr["RecordStatus"] = 0;
+                                dr["HasIQCReport"] = 0;
                                 dr["FactID"] = 0;
                                 dtInspection.Rows.Add(dr);
                             }
@@ -143,6 +175,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                             dr[i] = items[i].ItemValues[j].Metric01;
                             if ((long)dr["FactID"] == 0)
                                 dr["FactID"] = items[i].ItemValues[j].FactID;
+                            if (i == 0)
+                                dr["HasIQCReport"] = items[i].ItemValues[j].HasIQCReport;
                         }
                     }
                 }
@@ -201,10 +235,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             int rowIdx = 1;
             foreach (DataRow dr in dtInspection.Rows)
             {
-                switch ((int)dr["RecordStatus"])
+                EditStatus recordStatus = (EditStatus)dr["RecordStatus"];
+                switch (recordStatus)
                 {
-                    case 1:
-                    case 2:
+                    case EditStatus.New:
+                    case EditStatus.Edit:
                         #region 生成新增的 XML 节点
                         XmlNode rsfactNode = xmlRSFact.CreateElement("RF6_2");
                         root.AppendChild(rsfactNode);
@@ -244,7 +279,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                                 XMLHelper.CreateAttribute(
                                     xmlRSFact,
                                     "Criterion",
-                                    inspectionItems[i].T20Name));
+                                    ""));
                             node.Attributes.Append(
                                 XMLHelper.CreateAttribute(
                                     xmlRSFact,
@@ -260,7 +295,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                                     xmlRSFact,
                                     "Metric01",
                                     dr[string.Format(
-                                        "Column{0}", 
+                                        "Column{0}",
                                         inspectionItems[i].Ordinal)].ToString()));
                         }
 
@@ -345,6 +380,128 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             RefreshControls();
         }
 
+        private bool RemoveInspectItems(OrderInfo pwoInfo)
+        {
+            int errCode = 0;
+            string errText = "";
+            int countDeal = 0;
+
+            foreach (DataRow dr in dtInspection.Rows)
+            {
+                EditStatus recordStatus = (EditStatus)dr["RecordStatus"];
+                switch (recordStatus)
+                {
+                    case EditStatus.Edit:
+                    case EditStatus.Delete:
+                        if (dr["AttachedFile"].ToString() == "" &&
+                            (int)dr["HasIQCReport"] == 1)
+                        {
+                            DataRow dr1 = dr;
+                            GetIQCReportFromDB(ref dr1);
+                        }
+
+                        countDeal++;
+                        try
+                        {
+                            IRAPMESBatchClient.Instance.usp_SaveFact_SmeltBatchMethodCancel(
+                                IRAPUser.Instance.CommunityID,
+                                pwoInfo.T216LeafID,
+                                pwoInfo.T107LeafID,
+                                pwoInfo.BatchNumber,
+                                "D",
+                                (long)dr["FactID"],
+                                IRAPUser.Instance.SysLogID,
+                                out errCode,
+                                out errText);
+                            if (errCode != 0)
+                            {
+                                XtraMessageBox.Show(
+                                    string.Format(
+                                        "已经成功删除了[{0}]条记录。\n"+
+                                        "但是有错误发生：[{1}]\n"+
+                                        "终止继续处理",
+                                        countDeal,
+                                        errText),
+                                    "提示信息",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                return false;
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            XtraMessageBox.Show(
+                                string.Format(
+                                    "已经成功删除了[{0}]条记录。\n" +
+                                    "但是有错误发生：[{1}]\n" +
+                                    "终止继续处理",
+                                    countDeal,
+                                    error.Message),
+                                "提示信息",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            return false;
+                        }
+                        break;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 通过调用函数，获取指定事实编号的检验报告文件 
+        /// </summary>
+        /// <param name="dr"></param>
+        private void GetIQCReportFromDB(ref DataRow dr)
+        {
+            if (dr == null || 
+                dr["FactID"] == null ||
+                (long)dr["FactID"] <= 0)
+                return;
+
+            string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+
+            int errCode = 0;
+            string errText = "";
+            List<BatchIQCReport> datas = new List<BatchIQCReport>();
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            TWaitting.Instance.ShowWaitForm("正在获取检验报告内容");
+            try
+            {
+                IRAPMDMClient.Instance.ufn_GetList_BatchIDC_IQCReport(
+                    IRAPUser.Instance.CommunityID,
+                    (long)dr["FactID"],
+                    IRAPUser.Instance.SysLogID,
+                    ref datas,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode == 0)
+                {
+                    if (datas.Count > 0)
+                    {
+                        if (dr["AttachedFile"] != null)
+                        {
+                            string contentAttachedFile = Encoding.ASCII.GetString(datas[0].IQCReport);
+                            dr["AttachedFile"] = contentAttachedFile.Replace("\0", "");
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                TWaitting.Instance.CloseWaitForm();
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         private void ribeButtonClick(object sender, ButtonPressedEventArgs e)
         {
             DataRow dr = grdvInspectItems.GetFocusedDataRow();
@@ -366,6 +523,8 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                             try
                             {
                                 dr["AttachedFile"] = Tools.FileToBase64(openFileDialog.FileName);
+                                dr["HasIQCReport"] = 1;
+                                dr["RecordStatus"] = 2;
                             }
                             finally
                             {
@@ -376,7 +535,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         }
                         break;
                     case "DeleteRow":
-                        if (XtraMessageBox.Show(                            
+                        if (XtraMessageBox.Show(
                             "请确认是否要删除当前行？",
                             "提示",
                             MessageBoxButtons.YesNo,
@@ -410,7 +569,27 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                             }
                         }
                         break;
-                    case "查看":
+                    case "Preview":
+                        if ((dr["AttachedFile"] == DBNull.Value ||
+                            dr["AttachedFile"].ToString() == "") &&
+                            (int)dr["HasIQCReport"] == 1)
+                            GetIQCReportFromDB(ref dr);
+
+                        if (dr["AttachedFile"].ToString() != "")
+                            using (Dialogs.frmShowPDFFileContent frmShowPDF =
+                                new Dialogs.frmShowPDFFileContent())
+                            {
+                                frmShowPDF.Base64String = (string)dr["AttachedFile"];
+                                frmShowPDF.ShowDialog();
+                            }
+                        else
+                        {
+                            XtraMessageBox.Show(
+                                "还没有上传检验报告",
+                                "提示信息",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
                         break;
                 }
             }
@@ -421,14 +600,106 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             DataRow dr = grdvInspectItems.GetDataRow(e.RowHandle);
             if (dr != null)
             {
+                dr["AttachedFile"] = "";
+                dr["HasIQCReport"] = 0;
                 dr["RecordStatus"] = 1;
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            GenerateNewRSFactXML();
-            WriteLog.Instance.Write(xmlRSFact.OuterXml);
+            string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+
+            int needDealCount = 0;
+            foreach (DataRow dr in dtInspection.Rows)
+            {
+                switch ((EditStatus)((int)dr["RecordStatus"]))
+                {
+                    case EditStatus.Delete:
+                    case EditStatus.New:
+                    case EditStatus.Edit:
+                        needDealCount++;
+                        break;
+                }
+            }
+            if (needDealCount == 0)
+            {
+                XtraMessageBox.Show(
+                    "当前内容没有更改，不需要保存",
+                    "提示信息",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                if (RemoveInspectItems(pwoInfo))
+                {
+                    GenerateNewRSFactXML();
+                    if (xmlRSFact.FirstChild.HasChildNodes)
+                    {
+                        int errCode = 0;
+                        string errText = "";
+
+                        IRAPMESSmeltClient.Instance.usp_SaveFact_SmeltBatchInspecting(
+                            IRAPUser.Instance.CommunityID,
+                            pwoInfo.FactID,
+                            "MPLH",
+                            pwoInfo.T102LeafID,
+                            pwoInfo.T107LeafID,
+                            pwoInfo.BatchNumber,
+                            pwoInfo.LotNumber,
+                            pwoInfo.PWONo,
+                            xmlRSFact.OuterXml,
+                            IRAPUser.Instance.SysLogID,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            string.Format("({0}){1}", errCode, errText),
+                            strProcedureName);
+                        if (errCode == 0)
+                            XtraMessageBox.Show(
+                                "毛坯理化检验数据已经保存完毕",
+                                "提示信息",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        else
+                            XtraMessageBox.Show(
+                                errText,
+                                "提示信息",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(
+                            "毛坯理化检验数据已经保存完毕",
+                            "提示信息",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                XtraMessageBox.Show(
+                    error.Message,
+                    "提示信息",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+
+            RefreshUC(pwoInfo);
         }
 
         private void grdvInspectItems_CustomColumnDisplayText(
@@ -437,23 +708,36 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         {
             if (e.Column != null && e.Value != null)
             {
-                if (e.Column.FieldName == "RecordStatus")
+                switch (e.Column.FieldName)
                 {
-                    switch ((int)e.Value)
-                    {
-                        case 0:
-                            e.DisplayText = "正常";
-                            break;
-                        case 1:
-                            e.DisplayText = "新增";
-                            break;
-                        case 2:
-                            e.DisplayText = "修改";
-                            break;
-                        case 3:
-                            e.DisplayText = "删除";
-                            break;
-                    }
+                    case "RecordStatus":
+                        switch ((int)e.Value)
+                        {
+                            case 0:
+                                e.DisplayText = "正常";
+                                break;
+                            case 1:
+                                e.DisplayText = "新增";
+                                break;
+                            case 2:
+                                e.DisplayText = "修改";
+                                break;
+                            case 3:
+                                e.DisplayText = "删除";
+                                break;
+                        }
+                        break;
+                    case "HasIQCReport":
+                        switch ((int)e.Value)
+                        {
+                            case 1:
+                                e.DisplayText = "有";
+                                break;
+                            default:
+                                e.DisplayText = "无";
+                                break;
+                        }
+                        break;
                 }
             }
         }
@@ -464,12 +748,12 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             DataRow dr = grdvInspectItems.GetDataRow(e.RowHandle);
             if (dr != null)
             {
-                int recordStatus = (int)dr["RecordStatus"];
+                EditStatus recordStatus = (EditStatus)(int)dr["RecordStatus"];
                 switch (recordStatus)
                 {
-                    case 0:
-                    case 2:
-                        dr["RecordStatus"] = 2;
+                    case EditStatus.Browse:
+                        GetIQCReportFromDB(ref dr);
+                        dr["RecordStatus"] = (int)EditStatus.Edit;
                         break;
                 }
             }

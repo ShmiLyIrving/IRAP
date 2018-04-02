@@ -115,16 +115,24 @@ namespace IRAP.Entities.MDM
                 if (node.Name == "Row")
                 {
                     SmeltInspectionItemValue itemValue =
-                        new SmeltInspectionItemValue();
+                        new SmeltInspectionItemValue()
+                        {
+                            FactID = 0,
+                            Metric01 = "",
+                            HasIQCReport = 0,
+                        };
 
                     if (node.Attributes["FactID"] != null)
                         itemValue.FactID = Tools.ConvertToInt64(node.Attributes["FactID"].Value);
                     if (node.Attributes["Metric01"] != null)
                         itemValue.Metric01 = node.Attributes["Metric01"].Value;
+                    if (node.Attributes["HasIQCReport"] != null)
+                        itemValue.HasIQCReport = Tools.ConvertToInt32(node.Attributes["HasIQCReport"].Value);
                     itemValue.Scale = Scale;
                     itemValue.UnitOfMeasure = UnitOfMeasure;
 
-                    values.Add(itemValue);
+                    if (itemValue.FactID != 0)
+                        values.Add(itemValue);
                 }
             }
             //values.Sort(0, values.Count, new SmeltInspectionItemValue_CompareByFactID());
@@ -141,6 +149,10 @@ namespace IRAP.Entities.MDM
             get;// { return quantity.IntValue; }
             set;// { quantity.IntValue = value; }
         }
+        /// <summary>
+        /// 是否已经上传了检验报告文件
+        /// </summary>
+        public int HasIQCReport { get; set; }
         public int Scale
         {
             get { return quantity.Scale; }

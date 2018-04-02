@@ -125,6 +125,12 @@
     <Compile Include="Dialogs\frmRSFactListTestData.Designer.cs">
       <DependentUpon>frmRSFactListTestData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmShowPDFFileContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmShowPDFFileContent.Designer.cs">
+      <DependentUpon>frmShowPDFFileContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\EntityEquipmentInfo.cs" />
     <Compile Include="Entities\EntityMethodStarndardParams.cs" />
     <Compile Include="Entities\EntitySmeltBatchProduction.cs" />
@@ -390,6 +396,9 @@
     <EmbeddedResource Include="Dialogs\frmRSFactListTestData.resx">
       <DependentUpon>frmRSFactListTestData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmShowPDFFileContent.resx">
+      <DependentUpon>frmShowPDFFileContent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAppearanceInspection.resx">
       <DependentUpon>frmAppearanceInspection.cs</DependentUpon>
     </EmbeddedResource>
@@ -500,6 +509,25 @@
   <ItemGroup>
     <None Include="Diagrams\IRAP.Client.GUI.MESPDC.cd" />
     <None Include="Resources\双环-铸造产品标识卡.frx" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

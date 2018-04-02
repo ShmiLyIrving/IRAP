@@ -66,6 +66,33 @@ namespace IRAP.Client.Global
             set { SaveParams("MultiInstance", value.ToString()); }
         }
 
+        /// <summary>
+        /// 系统临时文件存放路径
+        /// </summary>
+        public string SystemTemplateDirectory
+        {
+            get
+            {
+                string tmpPath = 
+                    string.Format(
+                        @"{0}Temp\",                                                            
+                        AppDomain.CurrentDomain.BaseDirectory);
+
+                if (!System.IO.Directory.Exists(tmpPath))
+                {
+                    try
+                    {
+                        System.IO.Directory.CreateDirectory(tmpPath);
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                return tmpPath;
+            }
+        }
+
         private string GetString(string key)
         {
             string rlt = "";

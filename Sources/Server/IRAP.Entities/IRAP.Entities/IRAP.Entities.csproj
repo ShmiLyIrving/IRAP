@@ -59,6 +59,7 @@
     <Compile Include="FVS\PeriodStopEvent.cs" />
     <Compile Include="FVS\PWOSurveillance.cs" />
     <Compile Include="IRAP\STB009.cs" />
+    <Compile Include="MDM\BatchIQCReport.cs" />
     <Compile Include="MDM\BatchRingCategory.cs" />
     <Compile Include="MDM\BWI_SKUIDInfo.cs" />
     <Compile Include="MDM\CurrentLoadingSheetItem.cs" />
