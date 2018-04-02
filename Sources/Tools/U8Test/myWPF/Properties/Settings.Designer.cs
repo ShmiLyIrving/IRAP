@@ -32,5 +32,45 @@ namespace myWPF.Properties {
                 return ((string)(this["U8Test_Web_IRAP_WebService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.101.252:8019/IRAP_WebService.asmx")]
+        public string U8Test_Web2_IRAP_WebService {
+            get {
+                return ((string)(this["U8Test_Web2_IRAP_WebService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.3:8019/IRAP_WebService.asmx")]
+        public string U8Test_Web3_IRAP_WebService {
+            get {
+                return ((string)(this["U8Test_Web3_IRAP_WebService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.3:8011/IRAP_WebService.asmx")]
+        public string U8Test_Web4_IRAP_WebService {
+            get {
+                return ((string)(this["U8Test_Web4_IRAP_WebService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:8018/IRAP_WebService.asmx")]
+        public string U8Test_Web5_IRAP_WebService {
+            get {
+                return ((string)(this["U8Test_Web5_IRAP_WebService"]));
+            }
+        }
     }
 }

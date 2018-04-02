@@ -200,6 +200,26 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SysParams.cs" />
+    <Compile Include="Web References\Web2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\Web3\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\Web4\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\Web5\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\Web\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -247,6 +267,26 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Web References\Web2\IRAP_WebService.wsdl" />
+    <None Include="Web References\Web2\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Web3\IRAP_WebService.wsdl" />
+    <None Include="Web References\Web3\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Web4\IRAP_WebService.wsdl" />
+    <None Include="Web References\Web4\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Web5\IRAP_WebService.wsdl" />
+    <None Include="Web References\Web5\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Web References\Web\IRAP_WebService.wsdl" />
     <None Include="Web References\Web\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -348,6 +388,50 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://127.0.0.1:8018/IRAP_WebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Web5\</RelPath>
+      <UpdateFromURL>http://127.0.0.1:8018/IRAP_WebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>U8Test_Web5_IRAP_WebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://192.168.0.3:8011/IRAP_WebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Web4\</RelPath>
+      <UpdateFromURL>http://192.168.0.3:8011/IRAP_WebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>U8Test_Web4_IRAP_WebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://192.168.0.3:8019/IRAP_WebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Web3\</RelPath>
+      <UpdateFromURL>http://192.168.0.3:8019/IRAP_WebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>U8Test_Web3_IRAP_WebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://192.168.101.252:8019/IRAP_WebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Web2\</RelPath>
+      <UpdateFromURL>http://192.168.101.252:8019/IRAP_WebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>U8Test_Web2_IRAP_WebService</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://localhost:50702/IRAP_WebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\Web\</RelPath>
@@ -362,6 +446,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\Web\IRAP_WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\Web2\IRAP_WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\Web3\IRAP_WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\Web4\IRAP_WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\Web5\IRAP_WebService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
