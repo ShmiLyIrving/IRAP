@@ -107,6 +107,8 @@ namespace IndexDefrag
             {
                 tabDetail.SelectedTabPageIndex = 1;
                 lbhead.Text = "正在清理：";
+                btnScan.Enabled = false;
+                btnDefrag.Enabled = false;
                 lbAccumTask.Text = "0";
                 lbMsgState.Text = "正在清理索引碎片";
                 picloading.StartAnimation();
@@ -125,6 +127,7 @@ namespace IndexDefrag
             else
             {
                 btnCancel.Enabled = false;
+                btnDefrag.Enabled = true;
                 btnScan.Enabled = true;
                 SetlbHead("");
                 btnDefrag.Text = "重新清理";
@@ -197,6 +200,38 @@ namespace IndexDefrag
                 }          
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void ReFreshgcIndex()
         {
             gcIndex.DataSource = (cmbTable.SelectedItem as DBTable).indexstates;
