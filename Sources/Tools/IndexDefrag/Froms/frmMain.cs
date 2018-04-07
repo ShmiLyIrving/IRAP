@@ -114,7 +114,9 @@ namespace IndexDefrag
                 picloading.StartAnimation();
                 ctsScan = new CancellationTokenSource();
                 ScanningTask.Instance.Defrag(ctsScan.Token);
+                btnScan.Enabled = false;
                 btnCancel.Enabled = true;
+                btnDefrag.Enabled = false;
             }
         }
         private void AfterDefrag()
@@ -131,6 +133,7 @@ namespace IndexDefrag
                 btnScan.Enabled = true;
                 SetlbHead("");
                 btnDefrag.Text = "重新清理";
+                btnDefrag.Enabled = true;
                 picloading.StopAnimation();
             }
         }
@@ -175,9 +178,9 @@ namespace IndexDefrag
             // 设置　每天的１０：３０：００开始执行程序  
             if (intHour == iHour && intMinute == iMinute && intSecond == iSecond)
             {
-                if(btnDefrag.Enabled ==true)
+                if(btnScan.Enabled ==true)
                 {
-                    BeginDefrag();
+                    btnScan.PerformClick();
                 }
             }
         }
@@ -369,6 +372,10 @@ namespace IndexDefrag
             ShowInTaskbar = true;
             Activate();
             SetForegroundWindow(Process.GetCurrentProcess().MainWindowHandle);
+            if (btnCancel.Enabled == false)
+            {
+                picloading.StopAnimation();
+            }
         }
         private void HideForm()
         {

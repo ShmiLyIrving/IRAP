@@ -128,7 +128,7 @@ namespace IndexDefrag
             NeedDefrag =false;
             if (Server.Instance.GetAccumChecked(this)< int.Parse(SysParams.Instance.MaxIgnoreSacningTimes))
             {
-                ScanningTask.Instance.SetAccumTask(Tablename);
+                
                 try
                 {
                     string sql = "SELECT index_id IndexID,partition_number PartitionID,avg_fragmentation_in_percent,fragment_count " +
@@ -138,6 +138,7 @@ namespace IndexDefrag
                 $"AND fragment_count>{SysParams.Instance.MaxFragmentCount} " +
                 "ORDER BY avg_fragmentation_in_percent DESC";
                     DataTable dtindexstates = dbhelp.Query(sql).Tables["ds"];
+                    ScanningTask.Instance.SetAccumTask(Tablename);
                     if (dtindexstates.Rows.Count > 0)
                     {
                         NeedDefrag = true;                        
