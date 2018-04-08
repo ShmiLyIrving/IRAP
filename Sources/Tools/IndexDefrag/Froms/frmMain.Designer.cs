@@ -80,6 +80,8 @@
             this.edtMaxDefragThreadCount = new DevExpress.XtraEditors.TextEdit();
             this.edtMaxScanningThreadCount = new DevExpress.XtraEditors.TextEdit();
             this.MaxIgnoreSacningTimes = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.lbTip = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.edtMaxFragmentCount = new DevExpress.XtraEditors.TextEdit();
             this.edtMaxAFP = new DevExpress.XtraEditors.TextEdit();
@@ -99,8 +101,6 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.pgabout = new DevExpress.XtraTab.XtraTabPage();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
-            this.lbTip = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -336,7 +336,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.BackColor = System.Drawing.Color.Gray;
+            this.labelControl2.Appearance.BackColor = System.Drawing.Color.SlateGray;
             this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Snow;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -446,12 +446,12 @@
             // 
             // lbAccumTask
             // 
-            this.lbAccumTask.Appearance.BackColor = System.Drawing.Color.Gray;
+            this.lbAccumTask.Appearance.BackColor = System.Drawing.Color.SlateGray;
             this.lbAccumTask.Appearance.Font = new System.Drawing.Font("微软雅黑", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbAccumTask.Appearance.ForeColor = System.Drawing.Color.White;
             this.lbAccumTask.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.lbAccumTask.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lbAccumTask.Location = new System.Drawing.Point(-1, 68);
+            this.lbAccumTask.Location = new System.Drawing.Point(0, 68);
             this.lbAccumTask.Name = "lbAccumTask";
             this.lbAccumTask.Size = new System.Drawing.Size(357, 224);
             this.lbAccumTask.TabIndex = 0;
@@ -821,6 +821,30 @@
             this.MaxIgnoreSacningTimes.Size = new System.Drawing.Size(172, 24);
             this.MaxIgnoreSacningTimes.TabIndex = 5;
             // 
+            // labelControl15
+            // 
+            this.labelControl15.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelControl15.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl15.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl15.Location = new System.Drawing.Point(32, 214);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(97, 21);
+            this.labelControl15.TabIndex = 5;
+            this.labelControl15.Text = "距离开始还剩：";
+            // 
+            // lbTip
+            // 
+            this.lbTip.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTip.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lbTip.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lbTip.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lbTip.Location = new System.Drawing.Point(135, 216);
+            this.lbTip.Name = "lbTip";
+            this.lbTip.Size = new System.Drawing.Size(0, 17);
+            this.lbTip.TabIndex = 5;
+            // 
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -1039,30 +1063,6 @@
             this.memoEdit1.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.memoEdit1.Size = new System.Drawing.Size(357, 488);
             this.memoEdit1.TabIndex = 0;
-            // 
-            // lbTip
-            // 
-            this.lbTip.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbTip.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lbTip.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lbTip.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lbTip.Location = new System.Drawing.Point(135, 216);
-            this.lbTip.Name = "lbTip";
-            this.lbTip.Size = new System.Drawing.Size(0, 17);
-            this.lbTip.TabIndex = 5;
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelControl15.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl15.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl15.Location = new System.Drawing.Point(32, 214);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(97, 21);
-            this.labelControl15.TabIndex = 5;
-            this.labelControl15.Text = "距离开始还剩：";
             // 
             // frmMain
             // 
