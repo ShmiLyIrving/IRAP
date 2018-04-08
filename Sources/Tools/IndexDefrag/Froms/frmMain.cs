@@ -30,7 +30,7 @@ namespace IndexDefrag
             ScanningTask.Instance.SetPicAnimate += SetPicAnimate;
             ScanningTask.Instance.AfterDefrag += AfterDefrag;
             ScanningTask.Instance.SetBtnEnable += SetBtnEnable;
-            timer.Interval = 999;
+            timer.Interval = 1000;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(TimeCheck);
         }
         ~frmMain()
@@ -96,6 +96,48 @@ namespace IndexDefrag
                 }
             }
         }
+        private void BeginScan()
+        {
+            if (this.InvokeRequired)
+            {
+                ActionCallBack ac = new ActionCallBack(BeginScan);
+                this.Invoke(ac, new object[] { });
+            }
+            else
+            {
+                if (chkDB.CheckedItems.Count <= 0)
+                {
+                    lbMsgState.Text = "您尚未选择数据库!";
+                }
+                else
+                {
+                    if (!isFirstScan)
+                    {
+                        Server.Instance.InitServer();
+                    }
+                    foreach (CheckedListBoxItem item in chkDB.Items)
+                    {
+                        if (item.CheckState == CheckState.Unchecked)
+                        {
+                            Server.Instance.databases.Remove((DB)(item.Value));
+                        }
+                    }
+                }
+                isFirstScan = false;
+                tabDetail.SelectedTabPageIndex = 1;
+                btnScan.Enabled = false;
+                btnCancel.Enabled = true;
+                btnDefrag.Enabled = false;
+                cmbDB.Properties.Items.Clear();
+                cmbDB.Text = "";
+                cmbTable.Properties.Items.Clear();
+                cmbTable.Text = "";
+                gcIndex.DataSource = null;
+                picloading.StartAnimation();
+                ctsScan = new CancellationTokenSource();
+                ScanningTask.Instance.GetTableStruct(ctsScan.Token);
+            }
+        }
         private void BeginDefrag()
         {
             if (this.InvokeRequired)
@@ -154,34 +196,134 @@ namespace IndexDefrag
 
             chkAutoDefag.Checked = SysParams.Instance.AutoDefrag;
             chkLogScan.Checked = SysParams.Instance.ScanningLog;
+            chkTimerDefrag.Checked = SysParams.Instance.TimerDefrag;
+            cmbHour.Text = SysParams.Instance.iHour;
+            cmbMin.Text = SysParams.Instance.iMinute;            
         }
         private void TimeCheck(object sender, System.Timers.ElapsedEventArgs e)
         {
-            // 得到 hour minute second  如果等于某个值就开始执行某个程序。  
-            int intHour = e.SignalTime.Hour;
-            int intMinute = e.SignalTime.Minute;
-            int intSecond = e.SignalTime.Second;
-            // 定制时间； 比如 在10：30 ：00 的时候执行某个函数  
-            int iHour = int.Parse(cmbHour.Text);
-            int iMinute = int.Parse(cmbMin.Text);
-            int iSecond = 00;
-            // 设置　 每秒钟的开始执行一次  
-            //if (intSecond == iSecond)
-            //{
-            //    Console.WriteLine("每秒钟的开始执行一次！");
-            //}
-            //// 设置　每个小时的３０分钟开始执行  
-            //if (intMinute == iMinute && intSecond == iSecond)
-            //{
-            //    Console.WriteLine("每个小时的３０分钟开始执行一次！");
-            //}
-            // 设置　每天的１０：３０：００开始执行程序  
-            if (intHour == iHour && intMinute == iMinute && intSecond == iSecond)
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    MethodBase.GetCurrentMethod().Name);
+            try
             {
-                if(btnScan.Enabled ==true)
+                // 得到 hour minute second  如果等于某个值就开始执行某个程序。  
+                int intHour = e.SignalTime.Hour;
+                int intMinute = e.SignalTime.Minute;
+                int intSecond = e.SignalTime.Second;
+                // 定制时间； 比如 在10：30 ：00 的时候执行某个函数  
+                int iHour = int.Parse(SysParams.Instance.iHour);
+                int iMinute = int.Parse(SysParams.Instance.iMinute);
+                int iSecond = 00;
+                int tHour = 0, tMinute = 0, tSecond = 0;
+                if (iMinute > e.SignalTime.Minute)
                 {
-                    btnScan.PerformClick();
+                    if (iHour >= e.SignalTime.Hour)
+                    {
+                        if (iMinute > e.SignalTime.Minute)
+                        {
+                            tHour = iHour - e.SignalTime.Hour;
+                            tMinute = iMinute - e.SignalTime.Minute - 1;
+                            tSecond = 60 - e.SignalTime.Second;
+                        }
+                    }
+                    else
+                    {
+                        tHour = iHour + 24 - e.SignalTime.Hour;
+                        tMinute = iMinute - e.SignalTime.Minute - 1;
+                        tSecond = 60 - e.SignalTime.Second;
+                    }
                 }
+                else
+                {
+                    if (iHour <= e.SignalTime.Hour)
+                    {
+                        tHour = iHour + 24 - e.SignalTime.Hour - 1;
+                        tMinute = iMinute + 60 - e.SignalTime.Minute - 1;
+                        tSecond = 60 - e.SignalTime.Second;
+                    }
+                    else
+                    {
+                        tHour = iHour - e.SignalTime.Hour - 1;
+                        tMinute = iMinute + 60 - e.SignalTime.Minute - 1;
+                        tSecond = 60 - e.SignalTime.Second;
+                    }
+                }
+
+                //if (iHour > e.SignalTime.Hour)
+                //{
+                //    if (iMinute > e.SignalTime.Minute)
+                //    {
+                //        tHour = iHour - e.SignalTime.Hour;
+                //        tMinute = iMinute - e.SignalTime.Minute-1;
+                //        tSecond = 60 - e.SignalTime.Second;                   
+                //    }
+                //    else
+                //    {
+                //        tHour = iHour - e.SignalTime.Hour-1;
+                //        tMinute = iMinute + 60 - e.SignalTime.Minute - 1;
+                //        tSecond = 60 - e.SignalTime.Second;
+                //    }
+                //}
+                //else if(iHour == e.SignalTime.Hour)
+                //{
+                //    if (iMinute > e.SignalTime.Minute)
+                //    {
+                //        tHour = iHour - e.SignalTime.Hour;
+                //        tMinute = iMinute - e.SignalTime.Minute - 1;
+                //        tSecond = 60 - e.SignalTime.Second;
+                //    }
+                //    else
+                //    {
+                //        tHour = iHour +24 - e.SignalTime.Hour - 1;
+                //        tMinute = iMinute + 60 - e.SignalTime.Minute - 1;
+                //        tSecond = 60 - e.SignalTime.Second;
+                //    }
+                //}
+                //else if(iHour <e.SignalTime.Hour)
+                //{
+                //    if (iMinute > e.SignalTime.Minute)
+                //    {
+                //        tHour = iHour +24 - e.SignalTime.Hour;
+                //        tMinute = iMinute - e.SignalTime.Minute - 1;
+                //        tSecond = 60 - e.SignalTime.Second;
+                //    }
+                //    else
+                //    {
+                //        tHour = iHour + 24 - e.SignalTime.Hour - 1;
+                //        tMinute = iMinute + 60 - e.SignalTime.Minute - 1;
+                //        tSecond = 60 - e.SignalTime.Second;
+                //    }
+                //}
+                SetTip($"{tHour.ToString()}小时{tMinute}分钟{tSecond}秒");
+                // 设置　 每秒钟的开始执行一次  
+                //if (intSecond == iSecond)
+                //{
+                //    Console.WriteLine("每秒钟的开始执行一次！");
+                //}
+                //// 设置　每个小时的３０分钟开始执行  
+                //if (intMinute == iMinute && intSecond == iSecond)
+                //{
+                //    Console.WriteLine("每个小时的３０分钟开始执行一次！");
+                //}
+                // 设置　每天的１０：３０：００开始执行程序  
+                if (intHour == iHour && intMinute == iMinute && intSecond == iSecond)
+                {
+                    if (btnScan.Enabled == true)
+                    {
+                        BeginScan();
+                    }
+                }
+            }
+            catch(Exception error)
+            {
+                WriteLog.Instance.Write(
+                    string.Format("错误信息:{0}。跟踪堆栈:{1}。",
+                              error.Message,
+                              error.StackTrace),
+                           strProcedureName);
             }
         }
         private void SetPicAnimate(bool enable)
@@ -203,37 +345,6 @@ namespace IndexDefrag
                 }          
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void ReFreshgcIndex()
         {
@@ -286,10 +397,22 @@ namespace IndexDefrag
             else
             {
                 ShowResult();
-                if(chkAutoDefag.Checked)
+                if(chkAutoDefag.Checked&&btnDefrag.Enabled == true)
                 {
                     BeginDefrag();
                 }
+            }
+        }
+        private void SetTip(string tip)
+        {
+            if(lbTip.InvokeRequired)
+            {
+                SetTextCallBack sb = new SetTextCallBack(SetTip);
+                this.Invoke(sb, new object[] { tip });
+            }
+            else
+            {
+                lbTip.Text = tip;
             }
         }
         private void SetlbHead(string head)
@@ -481,9 +604,7 @@ namespace IndexDefrag
             SysParams.Instance.MaxAFP = edtMaxAFP.Text.Trim();
             SysParams.Instance.MaxFragmentCount = edtMaxFragmentCount.Text.Trim(); 
             SysParams.Instance.MaxScanningThreadCount = edtMaxScanningThreadCount.Text.Trim();
-            SysParams.Instance.MaxDefragThreadCount = edtMaxDefragThreadCount.Text.Trim();
-
-            SysParams.Instance.TimerDefrag = chkTimerDefrag.Checked;
+            SysParams.Instance.MaxDefragThreadCount = edtMaxDefragThreadCount.Text.Trim();   
 
             if (serverchanged)
             {
@@ -510,13 +631,13 @@ namespace IndexDefrag
                     XtraMessageBox.Show(ex.Message);
                 }
             }
-            if (SysParams.Instance.TimerDefrag)
+            if (chkTimerDefrag.Checked)
             {
                 if(string.IsNullOrEmpty(cmbHour.Text)||string.IsNullOrEmpty(cmbMin.Text))
                 {
                     lbMsgState.Text = "保存失败，请选择定时时间！";
                     return;
-                }
+                }           
                 timer.Enabled = true;
                 timer.Start();           
             }
@@ -525,41 +646,14 @@ namespace IndexDefrag
                 timer.Stop();
                 timer.Enabled = false;
             }
+            SysParams.Instance.TimerDefrag = chkTimerDefrag.Checked;
+            SysParams.Instance.iHour = cmbHour.Text;
+            SysParams.Instance.iMinute = cmbMin.Text;
             lbMsgState.Text = "保存成功";
         }
         private void btnScan_Click(object sender, EventArgs e)
         {
-            if (chkDB.CheckedItems.Count <= 0)
-            {
-                lbMsgState.Text = "您尚未选择数据库!";
-            }
-            else
-            {
-                if(!isFirstScan)
-                {
-                    Server.Instance.InitServer();
-                }
-                foreach (CheckedListBoxItem item in chkDB.Items)
-                {
-                    if (item.CheckState == CheckState.Unchecked)
-                    {
-                        Server.Instance.databases.Remove((DB)(item.Value));
-                    }
-                }
-            }
-            isFirstScan = false;
-            tabDetail.SelectedTabPageIndex = 1;
-            btnScan.Enabled = false;
-            btnCancel.Enabled = true;
-            btnDefrag.Enabled = false;
-            cmbDB.Properties.Items.Clear();
-            cmbDB.Text = "";
-            cmbTable.Properties.Items.Clear();
-            cmbTable.Text = "";
-            gcIndex.DataSource = null;
-            picloading.StartAnimation();
-            ctsScan = new CancellationTokenSource();
-            ScanningTask.Instance.GetTableStruct(ctsScan.Token);
+            BeginScan();
         }
         private void labelControl4_MouseDown(object sender, MouseEventArgs e)
         {
@@ -653,10 +747,16 @@ namespace IndexDefrag
                 {
                     System.Diagnostics.Process.Start(logPath); //打开此文件。
                 }
-                catch
+                catch(Exception error)
                 {
+                    XtraMessageBox.Show(error.Message);
                 }
             }
+            else
+            {
+                lbMsgState.Text = "今天尚未生成日志";
+            }
+            
         }
     }
 }

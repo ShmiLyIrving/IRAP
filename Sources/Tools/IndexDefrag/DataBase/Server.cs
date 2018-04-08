@@ -27,7 +27,6 @@ namespace IndexDefrag
             dtAccumChecked.Columns.Add("Databaseid");
             dtAccumChecked.Columns.Add("Tableid");
             dtAccumChecked.Columns.Add("AccumChecked");
-            
             dbserver = DBAddress;
         }
         [IRAPXMLNodeAttrORMap(IsORMap =false)]

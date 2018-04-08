@@ -99,6 +99,8 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.pgabout = new DevExpress.XtraTab.XtraTabPage();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.lbTip = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -698,6 +700,8 @@
             this.groupControl6.Controls.Add(this.edtMaxDefragThreadCount);
             this.groupControl6.Controls.Add(this.edtMaxScanningThreadCount);
             this.groupControl6.Controls.Add(this.MaxIgnoreSacningTimes);
+            this.groupControl6.Controls.Add(this.labelControl15);
+            this.groupControl6.Controls.Add(this.lbTip);
             this.groupControl6.Controls.Add(this.labelControl9);
             this.groupControl6.Controls.Add(this.edtMaxFragmentCount);
             this.groupControl6.Controls.Add(this.edtMaxAFP);
@@ -754,9 +758,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbHour.Properties.Items.AddRange(new object[] {
             "00",
-            "01",
-            "01",
-            "01",
             "01",
             "02",
             "03",
@@ -1039,6 +1040,30 @@
             this.memoEdit1.Size = new System.Drawing.Size(357, 488);
             this.memoEdit1.TabIndex = 0;
             // 
+            // lbTip
+            // 
+            this.lbTip.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTip.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lbTip.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lbTip.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lbTip.Location = new System.Drawing.Point(135, 216);
+            this.lbTip.Name = "lbTip";
+            this.lbTip.Size = new System.Drawing.Size(0, 17);
+            this.lbTip.TabIndex = 5;
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelControl15.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl15.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl15.Location = new System.Drawing.Point(32, 214);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(97, 21);
+            this.labelControl15.TabIndex = 5;
+            this.labelControl15.Text = "距离开始还剩：";
+            // 
             // frmMain
             // 
             this.ActiveGlowColor = System.Drawing.Color.White;
@@ -1194,5 +1219,7 @@
         private DevExpress.XtraEditors.CheckEdit chkLogScan;
         private DevExpress.XtraTab.XtraTabPage pgabout;
         private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.LabelControl lbTip;
+        private DevExpress.XtraEditors.LabelControl labelControl15;
     }
 }

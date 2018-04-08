@@ -153,6 +153,11 @@ namespace IndexDefrag
                             {
                                 indexstates.Add(new IndexState(dbhelp,(int)(r["IndexID"]), (int)(r["PartitionID"]), (double)(r["avg_fragmentation_in_percent"]), (long)(r["fragment_count"])));
                                 Debug.WriteLine((r["IndexID"]).ToString());
+                                lock (objectlock)
+                                {
+                                    accumchecked = 0;
+                                    Server.Instance.SaveAccumChecked(this);
+                                }
                             }
                         }
                     }

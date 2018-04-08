@@ -50,6 +50,7 @@ namespace IndexDefrag
             get { return GetBoolean("AutoDefrag"); }
             set { SaveParams("AutoDefrag", value.ToString()); }
         }
+
         /// <summary>
         /// 是否开启定时清理
         /// </summary>
@@ -96,6 +97,16 @@ namespace IndexDefrag
         {
             get { return GetString("MaxAFP"); }
             set { SaveParams("MaxAFP", value); }
+        }
+        public string iHour
+        {
+            get { return GetString("iHour"); }
+            set { SaveParams("iHour", value); }
+        }
+        public string iMinute
+        {
+            get { return GetString("iMinute"); }
+            set { SaveParams("iMinute", value); }
         }
         public string MaxFragmentCount
         {

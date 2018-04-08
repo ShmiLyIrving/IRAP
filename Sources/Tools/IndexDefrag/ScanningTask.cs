@@ -14,7 +14,6 @@ namespace IndexDefrag
     public class ScanningTask
     {
         private static ScanningTask _instance = null;
-
         public static ScanningTask Instance
         {
             get
