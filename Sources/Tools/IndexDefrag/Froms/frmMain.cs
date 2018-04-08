@@ -639,7 +639,8 @@ namespace IndexDefrag
                     return;
                 }           
                 timer.Enabled = true;
-                timer.Start();           
+                timer.Start();
+                chkAutoDefag.Checked = true;          
             }
             else
             {
