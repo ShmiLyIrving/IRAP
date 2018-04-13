@@ -272,10 +272,19 @@ namespace IRAP.Client.GUI.SCES
                     }
                     report.Load(ms);
 
-                    if (printWIPProductInfoTrack && IRAPUser.Instance.CommunityID == 60010)
+                    if (printWIPProductInfoTrack)
                     {
-                        ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
-                        report1.Load(ms);
+                        switch (IRAPUser.Instance.CommunityID)
+                        {
+                            case 60010:
+                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
+                                report1.Load(ms);
+                                break;
+                            case 60030:
+                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack_60030);
+                                report1.Load(ms);
+                                break;
+                        }
                     }
 
                     try
@@ -394,7 +403,9 @@ namespace IRAP.Client.GUI.SCES
                                 break;
                         }
 
-                        if (printWIPProductInfoTrack && IRAPUser.Instance.CommunityID == 60010)
+                        if (printWIPProductInfoTrack &&
+                            (IRAPUser.Instance.CommunityID == 60010 ||
+                            IRAPUser.Instance.CommunityID == 60030))
                         {
                             report1.Parameters.FindByName("BarCode").Value = order.PWONo;
                             report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
@@ -457,7 +468,9 @@ namespace IRAP.Client.GUI.SCES
                         } while (rePrinter);
                     }
 
-                    if (IRAPUser.Instance.CommunityID == 60010 && printWIPProductInfoTrack)
+                    if ((IRAPUser.Instance.CommunityID == 60010 ||
+                        IRAPUser.Instance.CommunityID==60030) && 
+                        printWIPProductInfoTrack)
                     {
                         IRAPMessageBox.Instance.ShowInformation(
                             "请将打印机中的打印纸更换为【产品信息跟踪卡】，更换完毕后点击确认开始打印");

@@ -89,6 +89,7 @@
             this.grdvInspectItems.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grdvInspectItems_InitNewRow);
             this.grdvInspectItems.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdvInspectItems_CellValueChanged);
             this.grdvInspectItems.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.grdvInspectItems_CustomColumnDisplayText);
+            this.grdvInspectItems.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdvInspectItems_KeyDown);
             // 
             // gridColumn1
             // 

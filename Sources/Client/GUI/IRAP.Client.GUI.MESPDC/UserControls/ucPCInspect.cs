@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Xml;
+using System.Collections;
 
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -502,6 +503,77 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             }
         }
 
+        /// <summary>
+        /// 将 DataRow 转换成 JSon 格式的字符串
+        /// </summary>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        private string SerializeDataRow(DataRow dr)
+        {
+            XmlDocument xml = new XmlDocument();
+            XmlNode root = xml.CreateElement("Clipboard");
+            xml.AppendChild(root);
+
+            XmlNode rowNode = xml.CreateElement("Row");
+            root.AppendChild(rowNode);
+            for (int i = 0; i < dr.Table.Columns.Count; i++)
+            {
+                XmlAttribute attr = xml.CreateAttribute(dr.Table.Columns[i].ColumnName);
+                attr.Value = dr[i].ToString();
+                rowNode.Attributes.Append(attr);
+            }
+
+            return xml.OuterXml;
+        }
+
+        private void DeserializeDataRow(string content, ref DataRow dr)
+        {
+            XmlDocument xml = new XmlDocument();
+
+            try { xml.LoadXml(content); }
+            catch { return; }
+
+            if (dr == null)
+            {
+                dr = dtInspection.NewRow();
+                dr["RecordStatus"] = (int)EditStatus.New;
+                dr["AttachedFile"] = "";
+                dr["HasIQCReport"] = 0;
+            }
+            else
+            {
+                dr["AttachedFile"] = "";
+                dr["HasIQCReport"] = 0;
+                if ((EditStatus)dr["RecordStatus"] != EditStatus.New)
+                    dr["RecordStatus"] = (int)EditStatus.Edit;
+            }
+
+            XmlNode rowNode = xml.SelectSingleNode("Clipboard/Row");
+            if (rowNode != null)
+            {
+                for (int i = 0; i < dr.Table.Columns.Count; i++)
+                {
+                    string columnName = dr.Table.Columns[i].ColumnName;
+                    switch (columnName)
+                    {
+                        case "FactID":
+                        case "AttachedFile":
+                        case "HasIQCReport":
+                        case "RecordStatus":
+                            break;
+                        default:
+                            if (dr.Table.Columns[i].DataType == typeof(string))
+                                dr[i] = rowNode.Attributes[columnName].Value;
+                            else if (dr.Table.Columns[i].DataType == typeof(int))
+                                dr[i] = Tools.ConvertToInt32(rowNode.Attributes[columnName].Value);
+                            else if (dr.Table.Columns[i].DataType == typeof(long))
+                                dr[i] = Tools.ConvertToInt64(rowNode.Attributes[columnName].Value);
+                            break;
+                    }
+                }
+            }
+        }
+
         private void ribeButtonClick(object sender, ButtonPressedEventArgs e)
         {
             DataRow dr = grdvInspectItems.GetFocusedDataRow();
@@ -706,40 +778,44 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             object sender, 
             CustomColumnDisplayTextEventArgs e)
         {
-            if (e.Column != null && e.Value != null)
+            try
             {
-                switch (e.Column.FieldName)
+                if (e.Column != null && e.Value != null)
                 {
-                    case "RecordStatus":
-                        switch ((int)e.Value)
-                        {
-                            case 0:
-                                e.DisplayText = "正常";
-                                break;
-                            case 1:
-                                e.DisplayText = "新增";
-                                break;
-                            case 2:
-                                e.DisplayText = "修改";
-                                break;
-                            case 3:
-                                e.DisplayText = "删除";
-                                break;
-                        }
-                        break;
-                    case "HasIQCReport":
-                        switch ((int)e.Value)
-                        {
-                            case 1:
-                                e.DisplayText = "有";
-                                break;
-                            default:
-                                e.DisplayText = "无";
-                                break;
-                        }
-                        break;
+                    switch (e.Column.FieldName)
+                    {
+                        case "RecordStatus":
+                            switch ((int)e.Value)
+                            {
+                                case 0:
+                                    e.DisplayText = "正常";
+                                    break;
+                                case 1:
+                                    e.DisplayText = "新增";
+                                    break;
+                                case 2:
+                                    e.DisplayText = "修改";
+                                    break;
+                                case 3:
+                                    e.DisplayText = "删除";
+                                    break;
+                            }
+                            break;
+                        case "HasIQCReport":
+                            switch ((int)e.Value)
+                            {
+                                case 1:
+                                    e.DisplayText = "有";
+                                    break;
+                                default:
+                                    e.DisplayText = "无";
+                                    break;
+                            }
+                            break;
+                    }
                 }
             }
+            catch { }
         }
 
         private void grdvInspectItems_CellValueChanged(object sender, CellValueChangedEventArgs e)
@@ -756,6 +832,36 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                         dr["RecordStatus"] = (int)EditStatus.Edit;
                         break;
                 }
+            }
+        }
+
+        private void grdvInspectItems_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C && e.Control)
+            {
+                DataRow currentRow = grdvInspectItems.GetFocusedDataRow();
+                if (currentRow != null)
+                {
+                    string rowString = SerializeDataRow(currentRow);
+                    Clipboard.SetData(DataFormats.UnicodeText, rowString);
+                }
+
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.V && e.Control)
+            {
+                IDataObject dataObject = Clipboard.GetDataObject();
+                if (dataObject.GetDataPresent(DataFormats.UnicodeText))
+                {
+                    grdvInspectItems.BeginDataUpdate();
+                    DataRow currentRow = grdvInspectItems.GetFocusedDataRow();
+                    string content = dataObject.GetData(DataFormats.UnicodeText) as string;
+                    DeserializeDataRow(content, ref currentRow);
+                    grdvInspectItems.EndDataUpdate();
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = false;
             }
         }
     }
