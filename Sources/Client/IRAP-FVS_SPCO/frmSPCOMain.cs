@@ -697,5 +697,11 @@ namespace IRAP_FVS_SPCO
                 }
             }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            frmUpdate update = new frmUpdate(stationUser);
+            update.ShowDialog();
+        }
     }
 }
