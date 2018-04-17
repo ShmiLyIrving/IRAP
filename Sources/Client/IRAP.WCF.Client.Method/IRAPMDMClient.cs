@@ -5011,7 +5011,7 @@ namespace IRAP.WCF.Client.Method
         public void ufn_GetList_NotOnStationEquipment(
             int communityID,
             long sysLogID,
-            ref List<NotOnStationEquipment> datas,
+            ref List<StationEquipment> datas,
             out int errCode,
             out string errText)
         {
@@ -5059,7 +5059,7 @@ namespace IRAP.WCF.Client.Method
 
                     if (errCode == 0)
                     {
-                        datas = rlt as List<NotOnStationEquipment>;
+                        datas = rlt as List<StationEquipment>;
                     }
                 }
                 #endregion
@@ -5069,6 +5069,147 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.Write(error.Message, strProcedureName);
                 errCode = -1001;
                 errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取已呈现设备清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_OnStationT133(
+            int communityID,
+            long sysLogID,
+            ref List<StationEquipment> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_OnStationT133 函数， " +
+                        "参数：CommunityID={0}|SysLogID={1}",
+                        communityID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
+                            "ufn_GetList_OnStationT133",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<StationEquipment>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 将信息站点组切换到指定生产线
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="T133XML"></param>
+        /// <param name="SysLogID">系统登录标识</param>
+        public void usp_SaveFact_MDVCSetting(
+            int communityID,
+            string T133XML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("T133XML", T133XML);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveFact_MDVCSetting，输入参数：" +
+                        "CommunityID={0}|T133XML={1}|" +
+                        "SysLogID={2}",
+                        communityID,
+                        T133XML,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "usp_SaveFact_MDVCSetting",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
             }
             finally
             {
@@ -5134,7 +5275,7 @@ namespace IRAP.WCF.Client.Method
         //                    errText),
         //                strProcedureName);
 
-        //            if (errCode == 0)
+        //            if (errCode == 0)  
         //                datas = rlt as List<BatchIQCReport>;
         //        }
         //        #endregion

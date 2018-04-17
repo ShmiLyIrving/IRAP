@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IRAP.Entity.MDM
 {
-    public class NotOnStationEquipment
+    public class StationEquipment
     {
 
         /// <summary>
@@ -13,19 +13,19 @@ namespace IRAP.Entity.MDM
         /// </summary>
         public int Ordinal { get; set; }
         /// <summary>
-        /// 失效模式叶标识
+        /// 设备叶标识
         /// </summary>
         public int T133LeafID { get; set; }
         /// <summary>
-        /// 失效模式实体标识
+        /// 设备实体标识
         /// </summary>
         public int T133EntityID { get; set; }
         /// <summary>
-        /// 失效代码
+        /// 设备代码
         /// </summary>
         public string T133Code { get; set; }
         /// <summary>
-        /// 失效模式名称
+        /// 设备名称
         /// </summary>
         public string T133Name { get; set; }
     }
