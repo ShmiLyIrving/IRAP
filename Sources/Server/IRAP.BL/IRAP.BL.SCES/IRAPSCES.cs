@@ -885,5 +885,89 @@ namespace IRAP.BL.SCES
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取指定期间指定库房工单物料配送历史记录
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t173LeafID">仓储地点叶标识</param>
+        /// <param name="beginDT">开始日期时间</param>
+        /// <param name="endDT">结束日期时间</param>
+        public IRAPJsonResult ufn_GetFactList_RMTransferForPWO(
+            int communityID,
+            int t173LeafID,
+            DateTime beginDT,
+            DateTime endDT,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<RMTransferForPWO> datas = new List<RMTransferForPWO>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T173LeafID", DbType.Int32, t173LeafID));
+                paramList.Add(new IRAPProcParameter("@BeginDT", DbType.DateTime2, beginDT));
+                paramList.Add(new IRAPProcParameter("@EndDT", DbType.DateTime2, endDT));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPSCES..ufn_GetFactList_RMTransferForPWO，参数：" +
+                        "CommunityID={0}|T173LeafID={1}|BeginDT={2}|" +
+                        "EndDT={3}|SysLogID={4}",
+                        communityID,
+                        t173LeafID,
+                        beginDT.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        endDT.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAPSCES..ufn_GetFactList_RMTransferForPWO(" +
+                                "@CommunityID, @T173LeafID, @BeginDT, @EndDT, @SysLogID)";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<RMTransferForPWO> lstDatas =
+                            conn.CallTableFunc<RMTransferForPWO>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPSCES..ufn_GetFactList_RMTransferForPWO 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
