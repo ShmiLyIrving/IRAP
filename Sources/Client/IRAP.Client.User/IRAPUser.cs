@@ -7,6 +7,7 @@ using System.Threading;
 using System.Globalization;
 
 using IRAP.Global;
+using IRAP.Client.Global;
 using IRAP.Entity.SSO;
 using IRAP.WCF.Client.Method;
 
@@ -481,6 +482,8 @@ namespace IRAP.Client.User
                             Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
                             break;
                     }
+
+                    IRAPConst.Instance.CommunityID = communityID;
 
                     #region 登录成功后，获取当前站点的系统配置参数
                     List<StrParamInfo> strParams = new List<StrParamInfo>();

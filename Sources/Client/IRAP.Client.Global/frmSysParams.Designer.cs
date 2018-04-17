@@ -38,13 +38,15 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cboControlBoxType = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.tpSysParams = new DevExpress.XtraTab.XtraTabPage();
+            this.chkMultInstance = new DevExpress.XtraEditors.CheckEdit();
+            this.tpAsimcoParams = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.tpSysParams = new DevExpress.XtraTab.XtraTabPage();
-            this.chkMultInstance = new DevExpress.XtraEditors.CheckEdit();
+            this.chkPrintWIPProductInfoTrack = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tcParams)).BeginInit();
             this.tcParams.SuspendLayout();
             this.tpAndonParams.SuspendLayout();
@@ -55,12 +57,14 @@
             this.tpZLan6042.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtZLan6042IPAddr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboControlBoxType.Properties)).BeginInit();
+            this.tpSysParams.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMultInstance.Properties)).BeginInit();
+            this.tpAsimcoParams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.tpSysParams.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkMultInstance.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPrintWIPProductInfoTrack.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTipController
@@ -82,7 +86,8 @@
             this.tcParams.TabIndex = 0;
             this.tcParams.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpSysParams,
-            this.tpAndonParams});
+            this.tpAndonParams,
+            this.tpAsimcoParams});
             // 
             // tpAndonParams
             // 
@@ -134,7 +139,7 @@
             this.tpZLan6042.Controls.Add(this.edtZLan6042IPAddr);
             this.tpZLan6042.Controls.Add(this.labelControl2);
             this.tpZLan6042.Name = "tpZLan6042";
-            this.tpZLan6042.Size = new System.Drawing.Size(658, 36);
+            this.tpZLan6042.Size = new System.Drawing.Size(657, 36);
             this.tpZLan6042.Text = "ZLan 6042";
             // 
             // edtZLan6042IPAddr
@@ -188,6 +193,34 @@
             this.labelControl1.Size = new System.Drawing.Size(132, 20);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "控制盒类型：";
+            // 
+            // tpSysParams
+            // 
+            this.tpSysParams.Controls.Add(this.chkMultInstance);
+            this.tpSysParams.Name = "tpSysParams";
+            this.tpSysParams.Padding = new System.Windows.Forms.Padding(5);
+            this.tpSysParams.Size = new System.Drawing.Size(683, 424);
+            this.tpSysParams.Text = "客户端运行参数";
+            // 
+            // chkMultInstance
+            // 
+            this.chkMultInstance.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkMultInstance.Location = new System.Drawing.Point(5, 5);
+            this.chkMultInstance.Name = "chkMultInstance";
+            this.chkMultInstance.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.chkMultInstance.Properties.Appearance.Options.UseFont = true;
+            this.chkMultInstance.Properties.Caption = "允许运行多个实例";
+            this.chkMultInstance.Size = new System.Drawing.Size(673, 24);
+            this.chkMultInstance.TabIndex = 0;
+            // 
+            // tpAsimcoParams
+            // 
+            this.tpAsimcoParams.Controls.Add(this.chkPrintWIPProductInfoTrack);
+            this.tpAsimcoParams.Name = "tpAsimcoParams";
+            this.tpAsimcoParams.Padding = new System.Windows.Forms.Padding(10);
+            this.tpAsimcoParams.PageVisible = false;
+            this.tpAsimcoParams.Size = new System.Drawing.Size(683, 424);
+            this.tpAsimcoParams.Text = "双环系统参数";
             // 
             // panelControl1
             // 
@@ -244,24 +277,16 @@
             this.panelControl3.Size = new System.Drawing.Size(689, 5);
             this.panelControl3.TabIndex = 2;
             // 
-            // tpSysParams
+            // chkPrintWIPProductInfoTrack
             // 
-            this.tpSysParams.Controls.Add(this.chkMultInstance);
-            this.tpSysParams.Name = "tpSysParams";
-            this.tpSysParams.Padding = new System.Windows.Forms.Padding(5);
-            this.tpSysParams.Size = new System.Drawing.Size(683, 424);
-            this.tpSysParams.Text = "客户端运行参数";
-            // 
-            // chkMultInstance
-            // 
-            this.chkMultInstance.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkMultInstance.Location = new System.Drawing.Point(5, 5);
-            this.chkMultInstance.Name = "chkMultInstance";
-            this.chkMultInstance.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.chkMultInstance.Properties.Appearance.Options.UseFont = true;
-            this.chkMultInstance.Properties.Caption = "允许运行多个实例";
-            this.chkMultInstance.Size = new System.Drawing.Size(673, 24);
-            this.chkMultInstance.TabIndex = 0;
+            this.chkPrintWIPProductInfoTrack.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkPrintWIPProductInfoTrack.Location = new System.Drawing.Point(10, 10);
+            this.chkPrintWIPProductInfoTrack.Name = "chkPrintWIPProductInfoTrack";
+            this.chkPrintWIPProductInfoTrack.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPrintWIPProductInfoTrack.Properties.Appearance.Options.UseFont = true;
+            this.chkPrintWIPProductInfoTrack.Properties.Caption = "打印产品信息跟踪卡";
+            this.chkPrintWIPProductInfoTrack.Size = new System.Drawing.Size(663, 24);
+            this.chkPrintWIPProductInfoTrack.TabIndex = 0;
             // 
             // frmSysParams
             // 
@@ -285,12 +310,14 @@
             this.tpZLan6042.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtZLan6042IPAddr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboControlBoxType.Properties)).EndInit();
+            this.tpSysParams.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkMultInstance.Properties)).EndInit();
+            this.tpAsimcoParams.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            this.tpSysParams.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chkMultInstance.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPrintWIPProductInfoTrack.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,5 +341,7 @@
         private DevExpress.XtraTab.XtraTabPage tpNone;
         private DevExpress.XtraTab.XtraTabPage tpSysParams;
         private DevExpress.XtraEditors.CheckEdit chkMultInstance;
+        private DevExpress.XtraTab.XtraTabPage tpAsimcoParams;
+        private DevExpress.XtraEditors.CheckEdit chkPrintWIPProductInfoTrack;
     }
 }

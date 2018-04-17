@@ -670,5 +670,90 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取指定期间指定库房工单物料配送历史记录
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t173LeafID">仓储地点叶标识</param>
+        /// <param name="beginDT">开始日期时间</param>
+        /// <param name="endDT">结束日期时间</param>
+        public void ufn_GetFactList_RMTransferForPWO(
+            int communityID,
+            int t173LeafID,
+            DateTime beginDT,
+            DateTime endDT,
+            long sysLogID,
+            ref List<RMTransferForPWO> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t173LeafID", t173LeafID);
+                hashParams.Add("beginDT", beginDT);
+                hashParams.Add("endDT", endDT);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetFactList_RMTransferForPWO 函数，参数：" +
+                        "CommunityID={0}|T173LeafID={1}|BeginDT={2}|"+
+                        "EndDT={3}|SysLogID={4}",
+                        communityID,
+                        t173LeafID,
+                        beginDT.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        endDT.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.SCES.dll",
+                            "IRAP.BL.SCES.IRAPSCES",
+                            "ufn_GetFactList_RMTransferForPWO",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<RMTransferForPWO>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 
 using DevExpress.XtraEditors.Controls;
 
@@ -28,8 +29,22 @@ namespace IRAP.Client.Global
                 }
             }
             edtZLan6042IPAddr.Text = IRAPConst.Instance.Zlan6042IPAddress;
-
             chkMultInstance.Checked = IRAPConst.Instance.MultiInstance;
+
+            switch (IRAPConst.Instance.CommunityID)
+            {
+                case 60010:
+                case 60030:
+                    tpAsimcoParams.PageVisible = true;
+
+                    if (ConfigurationManager.AppSettings["PrintProductInfoTrack"] != null)
+                        chkPrintWIPProductInfoTrack.Checked =
+                            ConfigurationManager.AppSettings["PrintProductInfoTrack"].ToUpper() == "TRUE";
+                    else
+                        chkPrintWIPProductInfoTrack.Checked = false;
+
+                    break;
+            }
         }
 
         private void SaveParams()
@@ -45,8 +60,18 @@ namespace IRAP.Client.Global
                 IRAPConst.Instance.WarningLightCtrlBoxType = "";
             }
             IRAPConst.Instance.Zlan6042IPAddress = edtZLan6042IPAddr.Text.Trim();
-
             IRAPConst.Instance.MultiInstance = chkMultInstance.Checked;
+
+            switch (IRAPConst.Instance.CommunityID)
+            {
+                case 60010:
+                case 60030:
+                    IRAPConst.Instance.SaveParams(
+                        "PrintProductInfoTrack",
+                        chkPrintWIPProductInfoTrack.Checked.ToString());
+
+                    break;
+            }
         }
 
         private void cboControlBoxType_SelectedIndexChanged(object sender, EventArgs e)

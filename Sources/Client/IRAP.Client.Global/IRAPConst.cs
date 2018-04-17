@@ -93,6 +93,11 @@ namespace IRAP.Client.Global
             }
         }
 
+        /// <summary>
+        /// 当前系统登录用户所在的社区标识
+        /// </summary>
+        public int CommunityID { get; set; }
+
         private string GetString(string key)
         {
             string rlt = "";
@@ -114,7 +119,7 @@ namespace IRAP.Client.Global
             return rlt;
         }
 
-        private void SaveParams(string key, string value)
+        public void SaveParams(string key, string value)
         {
             Configuration config =
                 ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

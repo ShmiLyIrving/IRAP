@@ -45,9 +45,9 @@ namespace IRAP.Client.GUI.SCES
         }
 
         public frmMaterialsToDeliver(
-            long orderFactID, 
+            long orderFactID,
             long af482PK,
-            DstDeliveryStoreSite storeSite, 
+            DstDeliveryStoreSite storeSite,
             string opNode)
             : this()
         {
@@ -80,7 +80,7 @@ namespace IRAP.Client.GUI.SCES
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
                     XtraMessageBox.Show(
                         string.Format(
-                            "获取订单信息时发生错误：{0}", 
+                            "获取订单信息时发生错误：{0}",
                             error.Message),
                         "系统信息",
                         MessageBoxButtons.OK,
@@ -98,11 +98,15 @@ namespace IRAP.Client.GUI.SCES
                 grdvOrders.Columns[i].BestFit();
             }
 
-            if (IRAPUser.Instance.CommunityID == 60010)
+            switch (IRAPUser.Instance.CommunityID)
             {
-                if (ConfigurationManager.AppSettings["PrintProductInfoTrack"] != null)
-                    printWIPProductInfoTrack =
-                        ConfigurationManager.AppSettings["PrintProductInfoTrack"].ToUpper() == "TRUE";
+                case 60010:
+                case 60030:
+                    if (ConfigurationManager.AppSettings["PrintProductInfoTrack"] != null)
+                        printWIPProductInfoTrack =
+                            ConfigurationManager.AppSettings["PrintProductInfoTrack"].ToUpper() == "TRUE";
+
+                    break;
             }
         }
 
