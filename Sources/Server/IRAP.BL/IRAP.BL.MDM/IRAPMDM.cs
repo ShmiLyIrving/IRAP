@@ -6320,7 +6320,7 @@ namespace IRAP.BL.MDM
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                //List<BatchIQCReport> datas = new List<BatchIQCReport>();
+                List<BatchIQCReport> datas = new List<BatchIQCReport>();
 
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
@@ -6344,11 +6344,11 @@ namespace IRAP.BL.MDM
                             "FROM IRAPMDM..ufn_GetList_BatchIDC_IQCReport(" +
                             "@CommunityID, @FactID, @SysLogID)";
 
-                        //IList<BatchIQCReport> lstDatas =
-                           // conn.CallTableFunc<BatchIQCReport>(strSQL, paramList);
-                        //datas = lstDatas.ToList();
+                        IList<BatchIQCReport> lstDatas =
+                            conn.CallTableFunc<BatchIQCReport>(strSQL, paramList);
+                        datas = lstDatas.ToList();
                         errCode = 0;
-                        errText = "";// = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
                         WriteLog.Instance.Write(errText, strProcedureName);
                     }
                 }
@@ -6364,7 +6364,7 @@ namespace IRAP.BL.MDM
                 }
                 #endregion
 
-                return Json("");//(datas);
+                return Json(datas);
             }
             finally
             {
