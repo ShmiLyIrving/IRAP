@@ -215,49 +215,70 @@ namespace IRAP_FVS_SPCO
                         int t133LeafID = 0;
                         int t20LeafID = 0;
                         DateTime sendTime = DateTime.Now;
-
-                        if (node.Attributes["T107Code"] != null)
-                            t107Code = node.Attributes["T107Code"].Value;
-                        else
-                            return;
-                        //if (node.Attributes["PWONo"] != null)
-                        //    pwoNo = node.Attributes["PWONo"].Value;
-                        //else
-                        //    return;
-                        //if (node.Attributes["T47LeafID"] != null)
-                        //    t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
-                        //else
-                        //    return;
-                        //if (node.Attributes["T216LeafID"] != null)
-                        //    t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
-                        //else
-                        //    return;
-                        //if (node.Attributes["T133LeafID"] != null)
-                        //    t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
-                        //else
-                        //    return;
-                        //if (node.Attributes["T20LeafID"] != null)
-                        //    t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
-                        //else
-                        //    return;
-                        if (node.Attributes["SendDateTime"] != null)
-                            sendTime = DateTime.Parse(node.Attributes["SendDateTime"].Value);
-                        else
-                            sendTime = DateTime.Now;
-
-                        if ((DateTime.Now - sendTime).TotalSeconds <= 180)
+                        if (node.Attributes["ExCode"] != null && node.Attributes["ExCode"].Value == "RefreshSPCShow")
                         {
-                            // 切换到消息中指定工位的显示面板
-                            object[] parameters = new object[7];
-                            parameters[0] = tcMain;
-                            parameters[1] = t107Code;
-                            parameters[2] = pwoNo;
-                            parameters[3] = t47LeafID;
-                            parameters[4] = t216LeafID;
-                            parameters[5] = t133LeafID;
-                            parameters[6] = t20LeafID;
+                            if (node.Attributes["Optype"] != null && node.Attributes["Optype"].Value == "D")
+                            {
+                                if (node.Attributes["SysLogID"] != null && node.Attributes["SysLogID"].Value == stationUser.SysLogID.ToString())
+                                    if (node.Attributes["StationID"] != null && node.Attributes["StationID"].Value == stationUser.StationGroupID.ToString())
+                                        if (node.Attributes["T107Code"] != null)
+                                        {
+                                            foreach (XtraTabPage page in tcMain.TabPages)
+                                            {
+                                                if(node.Attributes["T107Code"].Value==(page.Tag as WIPStationProductionStatus).T107Code)
+                                                {
+                                                    tcMain.TabPages.Remove(page);
+                                                }
+                                            }
+                                        }
+                            }
+                        }
+                        else
+                        {
 
-                            BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
+                            if (node.Attributes["T107Code"] != null)
+                                t107Code = node.Attributes["T107Code"].Value;
+                            else
+                                return;
+                            //if (node.Attributes["PWONo"] != null)
+                            //    pwoNo = node.Attributes["PWONo"].Value;
+                            //else
+                            //    return;
+                            //if (node.Attributes["T47LeafID"] != null)
+                            //    t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
+                            //else
+                            //    return;
+                            //if (node.Attributes["T216LeafID"] != null)
+                            //    t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
+                            //else
+                            //    return;
+                            //if (node.Attributes["T133LeafID"] != null)
+                            //    t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
+                            //else
+                            //    return;
+                            //if (node.Attributes["T20LeafID"] != null)
+                            //    t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
+                            //else
+                            //    return;
+                            if (node.Attributes["SendDateTime"] != null)
+                                sendTime = DateTime.Parse(node.Attributes["SendDateTime"].Value);
+                            else
+                                sendTime = DateTime.Now;
+
+                            if ((DateTime.Now - sendTime).TotalSeconds <= 180)
+                            {
+                                // 切换到消息中指定工位的显示面板
+                                object[] parameters = new object[7];
+                                parameters[0] = tcMain;
+                                parameters[1] = t107Code;
+                                parameters[2] = pwoNo;
+                                parameters[3] = t47LeafID;
+                                parameters[4] = t216LeafID;
+                                parameters[5] = t133LeafID;
+                                parameters[6] = t20LeafID;
+
+                                BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
+                            }
                         }
                     }
                 }
@@ -698,10 +719,66 @@ namespace IRAP_FVS_SPCO
             }
         }
 
+        //切换终端
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             frmUpdate update = new frmUpdate(stationUser);
-            update.ShowDialog();
+            if(update.ShowDialog()==DialogResult.OK)
+            {
+                int errCode = 0;
+                string errText = "";
+                List<WIPStationProductionStatus> tempunits = new List<WIPStationProductionStatus>();
+                tempunits = GetWorkUnits(ref errCode,ref errText);
+                if (errCode == 0)
+                {
+                    HideErrorMessage();
+                    if (tempunits != null)
+                    {
+                        foreach (WIPStationProductionStatus u in tempunits)
+                        {
+                            if (workUnits.Contains(u))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                workUnits.Add(u);
+                                XtraTabPage page = tcMain.TabPages.Add();
+                                page.Text = u.T107Name;
+                                page.Tag = u;
+
+                                ucUncontrolChart chartNone = new ucUncontrolChart();
+                                chartNone.Dock = DockStyle.Fill;
+                                chartNone.Parent = page;
+
+                                InitConsumer(u.T107Code);
+
+                                ucCharts.Add(chartNone);
+                            }
+                        }
+                        if (tcMain.TabPages.Count > 0)
+                        {
+                            tcMain_SelectedPageChanged(
+                                tcMain,
+                                new TabPageChangedEventArgs(
+                                    null,
+                                    tcMain.TabPages[0]));
+                        }
+                    }
+                }
+                else
+                {
+                    ShowErrorMessage(errText);
+                }
+
+            }
         }
     }
 }

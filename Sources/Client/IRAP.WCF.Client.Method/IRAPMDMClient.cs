@@ -5150,7 +5150,7 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
-        /// 将信息站点组切换到指定生产线
+        /// 更新设备
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="T133XML"></param>

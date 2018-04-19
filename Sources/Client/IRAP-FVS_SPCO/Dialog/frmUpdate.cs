@@ -193,11 +193,11 @@ namespace IRAP_FVS_SPCO
                 WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
                 if (errCode == 0)
                 {
-
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
-                    XtraMessageBox.Show(errText, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show(errText+",ErrCode ="+errCode, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception error)
