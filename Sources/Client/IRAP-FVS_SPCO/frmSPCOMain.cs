@@ -55,6 +55,8 @@ namespace IRAP_FVS_SPCO
         private StationLogin stationUser = null;
         private List<WIPStationProductionStatus> workUnits = new List<WIPStationProductionStatus>();
         private List<XtraUserControl> ucCharts = new List<XtraUserControl>();
+        private Dictionary<string,IMessageConsumer> consumers = new Dictionary<string ,IMessageConsumer>();
+        private delegate void RemoveTabCallBack(XtraTabPage page);
         /// <summary>
         /// 应用服务器的当前时间
         /// </summary>
@@ -149,7 +151,19 @@ namespace IRAP_FVS_SPCO
                 SetForegroundWindow(current.MainWindowHandle);
             }
         }
+        private void RemoveTab(XtraTabPage page)
+        {
+            if(this.tcMain.InvokeRequired)
+            {
+                RemoveTabCallBack cb = new RemoveTabCallBack(RemoveTab);
+                this.Invoke(cb, new object[] {page });
+            }
+            else
+            {
+                tcMain.TabPages.Remove(page);
+            }
 
+        }
         private void InitConsumer(string filterString)
         {
             string strProcedureName =
@@ -171,6 +185,7 @@ namespace IRAP_FVS_SPCO
                         new ActiveMQQueue(queueName),
                         string.Format("filter='{0}'", filterString));
                 consumer.Listener += new MessageListener(consumer_Listener);
+                consumers.Add(filterString, consumer);
             }
             catch (Exception error)
             {
@@ -214,72 +229,76 @@ namespace IRAP_FVS_SPCO
                         int t216LeafID = 0;
                         int t133LeafID = 0;
                         int t20LeafID = 0;
+                        List<XtraTabPage> removepages = new List<XtraTabPage>();
                         DateTime sendTime = DateTime.Now;
                         if (node.Attributes["ExCode"] != null && node.Attributes["ExCode"].Value == "RefreshSPCShow")
-                        {
                             if (node.Attributes["Optype"] != null && node.Attributes["Optype"].Value == "D")
-                            {
-                                if (node.Attributes["SysLogID"] != null && node.Attributes["SysLogID"].Value == stationUser.SysLogID.ToString())
-                                    if (node.Attributes["StationID"] != null && node.Attributes["StationID"].Value == stationUser.StationGroupID.ToString())
+                                if (node.Attributes["StationID"] != null && node.Attributes["StationID"].Value == macAddress)
+                                    if (node.Attributes["SysLogID"] != null && node.Attributes["SysLogID"].Value == stationUser.SysLogID.ToString())
                                         if (node.Attributes["T107Code"] != null)
                                         {
+                                            t107Code = node.Attributes["T107Code"].Value;
                                             foreach (XtraTabPage page in tcMain.TabPages)
                                             {
-                                                if(node.Attributes["T107Code"].Value==(page.Tag as WIPStationProductionStatus).T107Code)
+                                                if (t107Code == (page.Tag as WIPStationProductionStatus).T107Code)
                                                 {
-                                                    tcMain.TabPages.Remove(page);
+                                                    removepages.Add(page);
                                                 }
                                             }
+                                            foreach (XtraTabPage page in removepages)
+                                            {
+                                                RemoveTab(page);
+                                            }
+                                            consumers[t107Code].Close();
+                                            consumers.Remove(t107Code);
                                         }
-                            }
-                        }
-                        else
-                        {
+                                        else
+                                        {
 
-                            if (node.Attributes["T107Code"] != null)
-                                t107Code = node.Attributes["T107Code"].Value;
-                            else
-                                return;
-                            //if (node.Attributes["PWONo"] != null)
-                            //    pwoNo = node.Attributes["PWONo"].Value;
-                            //else
-                            //    return;
-                            //if (node.Attributes["T47LeafID"] != null)
-                            //    t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
-                            //else
-                            //    return;
-                            //if (node.Attributes["T216LeafID"] != null)
-                            //    t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
-                            //else
-                            //    return;
-                            //if (node.Attributes["T133LeafID"] != null)
-                            //    t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
-                            //else
-                            //    return;
-                            //if (node.Attributes["T20LeafID"] != null)
-                            //    t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
-                            //else
-                            //    return;
-                            if (node.Attributes["SendDateTime"] != null)
-                                sendTime = DateTime.Parse(node.Attributes["SendDateTime"].Value);
-                            else
-                                sendTime = DateTime.Now;
+                                            if (node.Attributes["T107Code"] != null)
+                                                t107Code = node.Attributes["T107Code"].Value;
+                                            else
+                                                return;
+                                            //if (node.Attributes["PWONo"] != null)
+                                            //    pwoNo = node.Attributes["PWONo"].Value;
+                                            //else
+                                            //    return;
+                                            //if (node.Attributes["T47LeafID"] != null)
+                                            //    t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
+                                            //else
+                                            //    return;
+                                            //if (node.Attributes["T216LeafID"] != null)
+                                            //    t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
+                                            //else
+                                            //    return;
+                                            //if (node.Attributes["T133LeafID"] != null)
+                                            //    t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
+                                            //else
+                                            //    return;
+                                            //if (node.Attributes["T20LeafID"] != null)
+                                            //    t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
+                                            //else
+                                            //    return;
+                                            if (node.Attributes["SendDateTime"] != null)
+                                                sendTime = DateTime.Parse(node.Attributes["SendDateTime"].Value);
+                                            else
+                                                sendTime = DateTime.Now;
 
-                            if ((DateTime.Now - sendTime).TotalSeconds <= 180)
-                            {
-                                // 切换到消息中指定工位的显示面板
-                                object[] parameters = new object[7];
-                                parameters[0] = tcMain;
-                                parameters[1] = t107Code;
-                                parameters[2] = pwoNo;
-                                parameters[3] = t47LeafID;
-                                parameters[4] = t216LeafID;
-                                parameters[5] = t133LeafID;
-                                parameters[6] = t20LeafID;
+                                            if ((DateTime.Now - sendTime).TotalSeconds <= 180)
+                                            {
+                                                // 切换到消息中指定工位的显示面板
+                                                object[] parameters = new object[7];
+                                                parameters[0] = tcMain;
+                                                parameters[1] = t107Code;
+                                                parameters[2] = pwoNo;
+                                                parameters[3] = t47LeafID;
+                                                parameters[4] = t216LeafID;
+                                                parameters[5] = t133LeafID;
+                                                parameters[6] = t20LeafID;
 
-                                BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
-                            }
-                        }
+                                                BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
+                                            }
+                                        }
                     }
                 }
                 catch (Exception error)
@@ -524,7 +543,7 @@ namespace IRAP_FVS_SPCO
                             if (errCode == 0)
                             {
                                 HideErrorMessage();
-
+                                List<string> filters = new List<string>();
                                 foreach (WIPStationProductionStatus workUnit in workUnits)
                                 {
 #if DEBUG
@@ -538,8 +557,7 @@ namespace IRAP_FVS_SPCO
                                     ucUncontrolChart chartNone = new ucUncontrolChart();
                                     chartNone.Dock = DockStyle.Fill;
                                     chartNone.Parent = page;
-
-                                    InitConsumer(workUnit.T107Code);
+                                    filters.Add(workUnit.T107Code);
 
                                     ucCharts.Add(chartNone);
                                 }
@@ -551,6 +569,10 @@ namespace IRAP_FVS_SPCO
                                         new TabPageChangedEventArgs(
                                             null,
                                             tcMain.TabPages[0]));
+                                }
+                                foreach(string filter in filters)
+                                {
+                                    InitConsumer(filter);
                                 }
                             }
                             else
