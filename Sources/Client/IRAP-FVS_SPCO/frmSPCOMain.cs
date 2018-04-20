@@ -232,6 +232,7 @@ namespace IRAP_FVS_SPCO
                         List<XtraTabPage> removepages = new List<XtraTabPage>();
                         DateTime sendTime = DateTime.Now;
                         if (node.Attributes["ExCode"] != null && node.Attributes["ExCode"].Value == "RefreshSPCShow")
+                        {
                             if (node.Attributes["Optype"] != null && node.Attributes["Optype"].Value == "D")
                                 if (node.Attributes["StationID"] != null && node.Attributes["StationID"].Value == macAddress)
                                     if (node.Attributes["SysLogID"] != null && node.Attributes["SysLogID"].Value == stationUser.SysLogID.ToString())
@@ -252,53 +253,54 @@ namespace IRAP_FVS_SPCO
                                             consumers[t107Code].Close();
                                             consumers.Remove(t107Code);
                                         }
-                                        else
-                                        {
+                        }
+                        else
+                        {
 
-                                            if (node.Attributes["T107Code"] != null)
-                                                t107Code = node.Attributes["T107Code"].Value;
-                                            else
-                                                return;
-                                            //if (node.Attributes["PWONo"] != null)
-                                            //    pwoNo = node.Attributes["PWONo"].Value;
-                                            //else
-                                            //    return;
-                                            //if (node.Attributes["T47LeafID"] != null)
-                                            //    t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
-                                            //else
-                                            //    return;
-                                            //if (node.Attributes["T216LeafID"] != null)
-                                            //    t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
-                                            //else
-                                            //    return;
-                                            //if (node.Attributes["T133LeafID"] != null)
-                                            //    t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
-                                            //else
-                                            //    return;
-                                            //if (node.Attributes["T20LeafID"] != null)
-                                            //    t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
-                                            //else
-                                            //    return;
-                                            if (node.Attributes["SendDateTime"] != null)
-                                                sendTime = DateTime.Parse(node.Attributes["SendDateTime"].Value);
-                                            else
-                                                sendTime = DateTime.Now;
+                            if (node.Attributes["T107Code"] != null)
+                                t107Code = node.Attributes["T107Code"].Value;
+                            else
+                                return;
+                            //if (node.Attributes["PWONo"] != null)
+                            //    pwoNo = node.Attributes["PWONo"].Value;
+                            //else
+                            //    return;
+                            //if (node.Attributes["T47LeafID"] != null)
+                            //    t47LeafID = int.Parse(node.Attributes["T47LeafID"].Value);
+                            //else
+                            //    return;
+                            //if (node.Attributes["T216LeafID"] != null)
+                            //    t216LeafID = int.Parse(node.Attributes["T216LeafID"].Value);
+                            //else
+                            //    return;
+                            //if (node.Attributes["T133LeafID"] != null)
+                            //    t133LeafID = int.Parse(node.Attributes["T133LeafID"].Value);
+                            //else
+                            //    return;
+                            //if (node.Attributes["T20LeafID"] != null)
+                            //    t20LeafID = int.Parse(node.Attributes["T20LeafID"].Value);
+                            //else
+                            //    return;
+                            if (node.Attributes["SendDateTime"] != null)
+                                sendTime = DateTime.Parse(node.Attributes["SendDateTime"].Value);
+                            else
+                                sendTime = DateTime.Now;
 
-                                            if ((DateTime.Now - sendTime).TotalSeconds <= 180)
-                                            {
-                                                // 切换到消息中指定工位的显示面板
-                                                object[] parameters = new object[7];
-                                                parameters[0] = tcMain;
-                                                parameters[1] = t107Code;
-                                                parameters[2] = pwoNo;
-                                                parameters[3] = t47LeafID;
-                                                parameters[4] = t216LeafID;
-                                                parameters[5] = t133LeafID;
-                                                parameters[6] = t20LeafID;
+                            if ((DateTime.Now - sendTime).TotalSeconds <= 180)
+                            {
+                                // 切换到消息中指定工位的显示面板
+                                object[] parameters = new object[7];
+                                parameters[0] = tcMain;
+                                parameters[1] = t107Code;
+                                parameters[2] = pwoNo;
+                                parameters[3] = t47LeafID;
+                                parameters[4] = t216LeafID;
+                                parameters[5] = t133LeafID;
+                                parameters[6] = t20LeafID;
 
-                                                BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
-                                            }
-                                        }
+                                BeginInvoke(new RedrawingSPCChartMethod(RedrawingSPCChart), parameters);
+                            }
+                        }
                     }
                 }
                 catch (Exception error)
@@ -574,6 +576,7 @@ namespace IRAP_FVS_SPCO
                                 {
                                     InitConsumer(filter);
                                 }
+                                InitConsumer(stationUser.SysLogID.ToString());
                             }
                             else
                             {

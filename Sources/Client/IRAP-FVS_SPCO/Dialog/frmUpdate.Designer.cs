@@ -73,7 +73,7 @@
             this.groupControl1.Location = new System.Drawing.Point(5, 5);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Padding = new System.Windows.Forms.Padding(3);
-            this.groupControl1.Size = new System.Drawing.Size(851, 447);
+            this.groupControl1.Size = new System.Drawing.Size(863, 524);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "当前用户清单";
             // 
@@ -88,7 +88,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.groupControl3);
             this.splitContainerControl1.Panel2.Controls.Add(this.btnRight);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(841, 412);
+            this.splitContainerControl1.Size = new System.Drawing.Size(853, 489);
             this.splitContainerControl1.SplitterPosition = 386;
             this.splitContainerControl1.TabIndex = 2;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -100,7 +100,7 @@
             this.groupControl2.Location = new System.Drawing.Point(0, 0);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl2.Size = new System.Drawing.Size(386, 412);
+            this.groupControl2.Size = new System.Drawing.Size(386, 489);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "已呈现设备清单";
             // 
@@ -111,7 +111,7 @@
             this.grdLeft.Location = new System.Drawing.Point(7, 26);
             this.grdLeft.MainView = this.grvLeft;
             this.grdLeft.Name = "grdLeft";
-            this.grdLeft.Size = new System.Drawing.Size(372, 379);
+            this.grdLeft.Size = new System.Drawing.Size(372, 456);
             this.grdLeft.TabIndex = 0;
             this.grdLeft.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvLeft});
@@ -179,7 +179,7 @@
             this.groupControl3.Location = new System.Drawing.Point(87, 0);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl3.Size = new System.Drawing.Size(363, 412);
+            this.groupControl3.Size = new System.Drawing.Size(375, 489);
             this.groupControl3.TabIndex = 0;
             this.groupControl3.Text = "其他未呈现量仪设备清单";
             // 
@@ -190,7 +190,7 @@
             this.grdRight.Location = new System.Drawing.Point(7, 26);
             this.grdRight.MainView = this.grvRight;
             this.grdRight.Name = "grdRight";
-            this.grdRight.Size = new System.Drawing.Size(349, 379);
+            this.grdRight.Size = new System.Drawing.Size(361, 456);
             this.grdRight.TabIndex = 1;
             this.grdRight.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvRight});
@@ -255,9 +255,9 @@
             this.panelControl1.Controls.Add(this.btnCancel);
             this.panelControl1.Controls.Add(this.btnSave);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(5, 452);
+            this.panelControl1.Location = new System.Drawing.Point(5, 529);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(851, 43);
+            this.panelControl1.Size = new System.Drawing.Size(863, 43);
             this.panelControl1.TabIndex = 1;
             // 
             // btnCancel
@@ -266,7 +266,7 @@
             this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(749, 8);
+            this.btnCancel.Location = new System.Drawing.Point(761, 8);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 32);
             this.btnCancel.TabIndex = 0;
@@ -277,7 +277,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(623, 8);
+            this.btnSave.Location = new System.Drawing.Point(635, 8);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 32);
             this.btnSave.TabIndex = 0;
@@ -289,11 +289,11 @@
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(861, 500);
+            this.ClientSize = new System.Drawing.Size(873, 577);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmUpdate";
