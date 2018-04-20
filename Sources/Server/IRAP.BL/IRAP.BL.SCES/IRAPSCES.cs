@@ -101,6 +101,81 @@ namespace IRAP.BL.SCES
             }
         }
 
+        /// <param name="communityID">社区标识</param>
+        /// <param name="dstT173LeafID">目标仓储地点叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[ProductionWorkOrder]</returns>
+        public IRAPJsonResult ufn_GetList_ProductionWorkOrdersToDeliverMaterial_N(
+            int communityID,
+            int dstT173LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<ProductionWorkOrderEx> datas = new List<ProductionWorkOrderEx>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@DstT173LeafID", DbType.Int32, dstT173LeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPSCES..ufn_GetList_ProductionWorkOrdersToDeliverMaterial_N，" +
+                        "参数：CommunityID={0}|DstT173LeafID={1}|SysLogID={2}",
+                        communityID,
+                        dstT173LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAPSCES..ufn_GetList_ProductionWorkOrdersToDeliverMaterial_N(" +
+                                "@CommunityID, @DstT173LeafID, @SysLogID) " +
+                                "ORDER BY ScheduledStartTime";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<ProductionWorkOrderEx> lstDatas =
+                            conn.CallTableFunc<ProductionWorkOrderEx>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPSCES..ufn_GetList_ProductionWorkOrdersToDeliverMaterial_N 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         /// <summary>
         /// 获取工单物料配送指令单
         /// </summary>

@@ -10,7 +10,7 @@
   <Class Name="IRAP.Entities.SCES.ProductionWorkOrder" Collapsed="true">
     <Position X="4" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAoAAAAAAIkAABAAIAAAAwAIQAIAAAAgBAEAAAAFw=</HashCode>
+      <HashCode>AACAoAAQAAAIkAABAAIAAAAwAIQAIAAAAgBAEAAAAFw=</HashCode>
       <FileName>SCES\ProductionWorkOrder.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -43,7 +43,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.MDM.TemplateContent" Collapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Position X="4" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAIBAAAgAAAAIAAIAAAAAAEAAAABA=</HashCode>
       <FileName>MDM\TemplateContent.cs</FileName>
@@ -57,7 +57,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.SSO.UserInfo" Collapsed="true">
-    <Position X="2.25" Y="3.5" Width="1.5" />
+    <Position X="5.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAACAAAAAAAAAAAAAAAAAAAAAQAAEAAAABA=</HashCode>
       <FileName>SSO\UserInfo.cs</FileName>
@@ -67,14 +67,14 @@
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAIAAAAAEAACAAABEAAAAAAAAQAAAgIAAABA=</HashCode>
-      <FileName>AndonRspedEventInfo.cs</FileName>
+      <FileName>FVS\AndonRspedEventInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.MDM.AndonCallPerson" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAACAAAAAAEAAgBAAEAAAAAAACAAAAQAAAAAAABA=</HashCode>
-      <FileName>AndonCallPerson.cs</FileName>
+      <FileName>MDM\AndonCallPerson.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.FVS.ProductionSurveillance" Collapsed="true">
@@ -92,17 +92,24 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IRAP.Entities.MES.QCOperationsForNG" Collapsed="true">
-    <Position X="5.75" Y="2.5" Width="1.5" />
+    <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAAAAABAAAAAAAAAAAAAAAAIAAAAEABA=</HashCode>
+      <HashCode>AAAAAAABAAAAAAAEABAAAAAAAAAAAAAAAAIAAAAEABA=</HashCode>
       <FileName>MES\QCOperationsForNG.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IRAP.Entities.MDM.SymbolInspecting">
-    <Position X="9" Y="2.5" Width="1.5" />
+  <Class Name="IRAP.Entities.MDM.SymbolInspecting" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQQAAAACAAABAAEAARIAgAAAAAACQAAAAAEABAAAABA=</HashCode>
-      <FileName>SymbolInspecting.cs</FileName>
+      <FileName>MDM\SymbolInspecting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.Entities.SCES.ProductionWorkOrderEx" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACAoAAQAAAIkAABAAMAAAAwAIQAIAAAQgBAEAAAAFw=</HashCode>
+      <FileName>SCES\ProductionWorkOrder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />
