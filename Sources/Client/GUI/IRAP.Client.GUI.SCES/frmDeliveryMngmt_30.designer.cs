@@ -35,6 +35,7 @@
             this.tsmiSeprater = new System.Windows.Forms.ToolStripSeparator();
             this.mitmRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlBody = new DevExpress.XtraEditors.PanelControl();
+            this.btnReprint = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.cboDstStoreSites = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -54,7 +55,7 @@
             this.grdclmnPlannedCloseDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnScheduleStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.report = new FastReport.Report();
-            this.btnReprint = new DevExpress.XtraEditors.SimpleButton();
+            this.grdclmnSubMaterialCode = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -131,6 +132,18 @@
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Size = new System.Drawing.Size(660, 386);
             this.pnlBody.TabIndex = 5;
+            // 
+            // btnReprint
+            // 
+            this.btnReprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReprint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnReprint.Appearance.Options.UseFont = true;
+            this.btnReprint.Location = new System.Drawing.Point(573, 169);
+            this.btnReprint.Name = "btnReprint";
+            this.btnReprint.Size = new System.Drawing.Size(75, 28);
+            this.btnReprint.TabIndex = 4;
+            this.btnReprint.Text = "补打";
+            this.btnReprint.Click += new System.EventHandler(this.btnReprint_Click);
             // 
             // btnRefresh
             // 
@@ -231,6 +244,7 @@
             this.grdclmnMOLineNo,
             this.grdclmnProductNo,
             this.grdclmnProductDescription,
+            this.grdclmnSubMaterialCode,
             this.grdclmnT134Code,
             this.grdclmnT134Name,
             this.grdclmnPlannedQuantityString,
@@ -350,7 +364,7 @@
             this.grdclmnProductDescription.Name = "grdclmnProductDescription";
             this.grdclmnProductDescription.OptionsColumn.ReadOnly = true;
             this.grdclmnProductDescription.Visible = true;
-            this.grdclmnProductDescription.VisibleIndex = 5;
+            this.grdclmnProductDescription.VisibleIndex = 6;
             // 
             // grdclmnT134Code
             // 
@@ -370,7 +384,7 @@
             this.grdclmnT134Code.Name = "grdclmnT134Code";
             this.grdclmnT134Code.OptionsColumn.ReadOnly = true;
             this.grdclmnT134Code.Visible = true;
-            this.grdclmnT134Code.VisibleIndex = 9;
+            this.grdclmnT134Code.VisibleIndex = 10;
             // 
             // grdclmnT134Name
             // 
@@ -389,7 +403,7 @@
             this.grdclmnT134Name.Name = "grdclmnT134Name";
             this.grdclmnT134Name.OptionsColumn.ReadOnly = true;
             this.grdclmnT134Name.Visible = true;
-            this.grdclmnT134Name.VisibleIndex = 10;
+            this.grdclmnT134Name.VisibleIndex = 11;
             // 
             // grdclmnPlannedQuantityString
             // 
@@ -409,7 +423,7 @@
             this.grdclmnPlannedQuantityString.Name = "grdclmnPlannedQuantityString";
             this.grdclmnPlannedQuantityString.OptionsColumn.ReadOnly = true;
             this.grdclmnPlannedQuantityString.Visible = true;
-            this.grdclmnPlannedQuantityString.VisibleIndex = 6;
+            this.grdclmnPlannedQuantityString.VisibleIndex = 7;
             // 
             // grdclmnPlannedStartDate
             // 
@@ -429,7 +443,7 @@
             this.grdclmnPlannedStartDate.FieldName = "PlannedStartDate";
             this.grdclmnPlannedStartDate.Name = "grdclmnPlannedStartDate";
             this.grdclmnPlannedStartDate.Visible = true;
-            this.grdclmnPlannedStartDate.VisibleIndex = 7;
+            this.grdclmnPlannedStartDate.VisibleIndex = 8;
             this.grdclmnPlannedStartDate.Width = 82;
             // 
             // grdclmnPlannedCloseDate
@@ -450,7 +464,7 @@
             this.grdclmnPlannedCloseDate.Name = "grdclmnPlannedCloseDate";
             this.grdclmnPlannedCloseDate.OptionsColumn.ReadOnly = true;
             this.grdclmnPlannedCloseDate.Visible = true;
-            this.grdclmnPlannedCloseDate.VisibleIndex = 8;
+            this.grdclmnPlannedCloseDate.VisibleIndex = 9;
             this.grdclmnPlannedCloseDate.Width = 82;
             // 
             // grdclmnScheduleStartTime
@@ -478,17 +492,13 @@
             // 
             this.report.ReportResourceString = resources.GetString("report.ReportResourceString");
             // 
-            // btnReprint
+            // grdclmnSubMaterialCode
             // 
-            this.btnReprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReprint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.btnReprint.Appearance.Options.UseFont = true;
-            this.btnReprint.Location = new System.Drawing.Point(573, 169);
-            this.btnReprint.Name = "btnReprint";
-            this.btnReprint.Size = new System.Drawing.Size(75, 28);
-            this.btnReprint.TabIndex = 4;
-            this.btnReprint.Text = "补打";
-            this.btnReprint.Click += new System.EventHandler(this.btnReprint_Click);
+            this.grdclmnSubMaterialCode.Caption = "子项物料号";
+            this.grdclmnSubMaterialCode.FieldName = "SubMaterialCode";
+            this.grdclmnSubMaterialCode.Name = "grdclmnSubMaterialCode";
+            this.grdclmnSubMaterialCode.Visible = true;
+            this.grdclmnSubMaterialCode.VisibleIndex = 5;
             // 
             // frmDeliveryMngmt_30
             // 
@@ -544,5 +554,6 @@
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private FastReport.Report report;
         private DevExpress.XtraEditors.SimpleButton btnReprint;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnSubMaterialCode;
     }
 }

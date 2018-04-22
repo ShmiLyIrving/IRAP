@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="04/13/2018 14:02:26" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="04/22/2018 13:59:04" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,26 +28,26 @@ namespace FastReport
 </ScriptText>
   <Dictionary>
     <Parameter Name="DeliveryWorkshop" DataType="System.String"/>
-    <Parameter Name="StartingDate" DataType="System.String" Expression="&quot;4-10&quot;"/>
+    <Parameter Name="StartingDate" DataType="System.String"/>
     <Parameter Name="StorehouseCode" DataType="System.String"/>
     <Parameter Name="WorkshopName" DataType="System.String"/>
     <Parameter Name="AdvicedPickedQty" DataType="System.String"/>
-    <Parameter Name="CompletingDate" DataType="System.String" Expression="&quot;4-11&quot;"/>
+    <Parameter Name="CompletingDate" DataType="System.String"/>
     <Parameter Name="PrintingDate" DataType="System.String"/>
     <Parameter Name="Unit" DataType="System.String"/>
-    <Parameter Name="MONo" DataType="System.String" Expression="&quot;M-27-180409-05&quot;"/>
-    <Parameter Name="LineNo" DataType="System.String" Expression="&quot;3&quot;"/>
-    <Parameter Name="LotNumber" DataType="System.String" Expression="&quot;Z6118040900150&quot;"/>
+    <Parameter Name="MONo" DataType="System.String"/>
+    <Parameter Name="LineNo" DataType="System.String"/>
+    <Parameter Name="LotNumber" DataType="System.String"/>
     <Parameter Name="MaterialTexture" DataType="System.String"/>
     <Parameter Name="ActualPickedBars" DataType="System.String"/>
-    <Parameter Name="OrderQty" DataType="System.String" Expression="&quot;3117&quot;"/>
-    <Parameter Name="InQuantity" DataType="System.String" Expression="&quot;3117&quot;"/>
+    <Parameter Name="OrderQty" DataType="System.String"/>
+    <Parameter Name="InQuantity" DataType="System.String"/>
     <Parameter Name="BarCode" DataType="System.String"/>
     <Parameter Name="MaterialDescription" DataType="System.String"/>
-    <Parameter Name="MaterialCode" DataType="System.String" Expression="&quot;M-MP065-038&quot;"/>
+    <Parameter Name="MaterialCode" DataType="System.String"/>
     <Parameter Name="TransferringInDate" DataType="System.String"/>
-    <Parameter Name="FatherMaterialCode" DataType="System.String" Expression="&quot;M-GPQ065-138&quot;"/>
-    <Parameter Name="FatherMaterialName" DataType="System.String" Expression="&quot;割片前隆鑫165F-B锥面&quot;"/>
+    <Parameter Name="FatherMaterialCode" DataType="System.String"/>
+    <Parameter Name="FatherMaterialName" DataType="System.String"/>
     <Parameter Name="T106Code" DataType="System.String"/>
     <Parameter Name="ProductLine" DataType="System.String"/>
     <Parameter Name="DstT106Code" DataType="System.String"/>

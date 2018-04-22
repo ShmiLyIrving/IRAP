@@ -11,6 +11,7 @@ using System.Reflection;
 using DevExpress.XtraEditors;
 
 using IRAP.Global;
+using IRAP.Client.Global;
 using IRAP.Client.User;
 using IRAP.Entities.MDM;
 using IRAP.Entities.SCES;
@@ -24,7 +25,7 @@ namespace IRAP.Client.GUI.SCES
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        List<ProductionWorkOrder> orders = new List<ProductionWorkOrder>();
+        List<ProductionWorkOrderEx> orders = new List<ProductionWorkOrderEx>();
     
         public frmDeliveryMngmt_30()
         {
@@ -41,7 +42,9 @@ namespace IRAP.Client.GUI.SCES
                     "{0}.{1}",
                     className,
                     MethodBase.GetCurrentMethod().Name);
+
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            TWaitting.Instance.ShowWaitForm("正在获取目标仓储地点列表");
             try
             {
                 int errCode = 0;
@@ -89,6 +92,7 @@ namespace IRAP.Client.GUI.SCES
             }
             finally
             {
+                TWaitting.Instance.CloseWaitForm();
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
@@ -100,6 +104,7 @@ namespace IRAP.Client.GUI.SCES
             switch (IRAPUser.Instance.CommunityID)
             {
                 case 60010:
+                case 60030:
                     btnReprint.Visible = true;
                     break;
                 default:
@@ -117,6 +122,7 @@ namespace IRAP.Client.GUI.SCES
                     MethodBase.GetCurrentMethod().Name);
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            TWaitting.Instance.ShowWaitForm("正在获取待配送的制造订单列表");
             try
             {
                 int errCode = 0;
@@ -124,7 +130,7 @@ namespace IRAP.Client.GUI.SCES
 
                 try
                 {
-                    IRAPSCESClient.Instance.ufn_GetList_ProductionWorkOrdersToDeliverMaterial(
+                    IRAPSCESClient.Instance.ufn_GetList_ProductionWorkOrdersToDeliverMaterial_N(
                         IRAPUser.Instance.CommunityID,
                         dstSite.T173LeafID,
                         IRAPUser.Instance.SysLogID,
@@ -166,6 +172,7 @@ namespace IRAP.Client.GUI.SCES
             }
             finally
             {
+                TWaitting.Instance.CloseWaitForm();
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
@@ -196,7 +203,7 @@ namespace IRAP.Client.GUI.SCES
             int index = grdvOrders.GetFocusedDataSourceRowIndex();
             if (index >= 0)
             {
-                ProductionWorkOrder order = orders[index];
+                ProductionWorkOrderEx order = orders[index];
                 for (int i = 0; i < index; i++)
                 {
                     if (orders[i].ProductNo == order.ProductNo)

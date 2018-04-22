@@ -106,10 +106,23 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                     }
                     report.Load(ms);
 
-                    if (printWIPProductInfoTrack && IRAPUser.Instance.CommunityID == 60010)
+                    if (printWIPProductInfoTrack)
                     {
-                        ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
-                        report1.Load(ms);
+                        switch (IRAPUser.Instance.CommunityID)
+                        {
+                            case 60010:
+                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
+                                break;
+                            case 60030:
+                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack_60030);
+                                break;
+                            default:
+                                ms = null;
+                                break;
+                        }
+
+                        if (ms != null)
+                            report1.Load(ms);
                     }
 
                     try
@@ -117,6 +130,7 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                         switch (IRAPUser.Instance.CommunityID)
                         {
                             case 60010:    // 仪征打印的生产流转卡
+                            case 60030:
                                 report.Parameters.FindByName("BarCode").Value = pwoInfo.PWONo;
                                 report.Parameters.FindByName("DeliveryWorkshop").Value = "";
                                 report.Parameters.FindByName("StorehouseCode").Value =
@@ -149,39 +163,40 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                                 report.Parameters.FindByName("FatherMaterialCode").Value = pwoInfo.ProductNo;
                                 report.Parameters.FindByName("FatherMaterialName").Value = pwoInfo.ProductDesc;
                                 report.Parameters.FindByName("DstT106Code").Value = pwoInfo.DstT106Code;
-                                break;
-                        }
 
-                        if (printWIPProductInfoTrack && IRAPUser.Instance.CommunityID == 60010)
-                        {
-                            report1.Parameters.FindByName("BarCode").Value = pwoInfo.PWONo;
-                            report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
-                            report1.Parameters.FindByName("StorehouseCode").Value =
-                                string.Format(
-                                    "{0}({1})",
-                                    pwoInfo.T173Name,
-                                    pwoInfo.T173Code);
-                            report1.Parameters.FindByName("T106Code").Value = pwoInfo.AtStoreLocCode;
-                            report1.Parameters.FindByName("WorkshopName").Value = pwoInfo.DstWorkShopCode;
-                            report1.Parameters.FindByName("ProductLine").Value = pwoInfo.T134Name;
-                            report1.Parameters.FindByName("AdvicedPickedQty").Value = pwoInfo.SuggestedQuantityToPick;
-                            report1.Parameters.FindByName("StartingDate").Value = pwoInfo.PlannedStartDate.Substring(5, 5);
-                            report1.Parameters.FindByName("CompletingDate").Value = pwoInfo.PlannedCloseDate.Substring(5, 5);
-                            report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
-                            report1.Parameters.FindByName("Unit").Value = pwoInfo.UnitOfMeasure;
-                            report1.Parameters.FindByName("MONo").Value = pwoInfo.MONumber;
-                            report1.Parameters.FindByName("LineNo").Value = pwoInfo.MOLineNo;
-                            report1.Parameters.FindByName("LotNumber").Value = pwoInfo.LotNumber;
-                            report1.Parameters.FindByName("MaterialTexture").Value = pwoInfo.T131Code;
-                            report1.Parameters.FindByName("ActualPickedBars").Value = pwoInfo.ActualQtyDecompose;
-                            report1.Parameters.FindByName("OrderQty").Value = pwoInfo.PlannedQuantity;
-                            report1.Parameters.FindByName("MaterialCode").Value = pwoInfo.MaterialCode;
-                            report1.Parameters.FindByName("MaterialDescription").Value = pwoInfo.MaterialDesc;
-                            report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
-                            report1.Parameters.FindByName("InQuantity").Value = pwoInfo.ActualQuantityToDeliver.ToString();
-                            report1.Parameters.FindByName("FatherMaterialCode").Value = pwoInfo.ProductNo;
-                            report1.Parameters.FindByName("FatherMaterialName").Value = pwoInfo.ProductDesc;
-                            report1.Parameters.FindByName("DstT106Code").Value = pwoInfo.DstT106Code;
+                                if (printWIPProductInfoTrack)
+                                {
+                                    report1.Parameters.FindByName("BarCode").Value = pwoInfo.PWONo;
+                                    report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
+                                    report1.Parameters.FindByName("StorehouseCode").Value =
+                                        string.Format(
+                                            "{0}({1})",
+                                            pwoInfo.T173Name,
+                                            pwoInfo.T173Code);
+                                    report1.Parameters.FindByName("T106Code").Value = pwoInfo.AtStoreLocCode;
+                                    report1.Parameters.FindByName("WorkshopName").Value = pwoInfo.DstWorkShopCode;
+                                    report1.Parameters.FindByName("ProductLine").Value = pwoInfo.T134Name;
+                                    report1.Parameters.FindByName("AdvicedPickedQty").Value = pwoInfo.SuggestedQuantityToPick;
+                                    report1.Parameters.FindByName("StartingDate").Value = pwoInfo.PlannedStartDate.Substring(5, 5);
+                                    report1.Parameters.FindByName("CompletingDate").Value = pwoInfo.PlannedCloseDate.Substring(5, 5);
+                                    report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
+                                    report1.Parameters.FindByName("Unit").Value = pwoInfo.UnitOfMeasure;
+                                    report1.Parameters.FindByName("MONo").Value = pwoInfo.MONumber;
+                                    report1.Parameters.FindByName("LineNo").Value = pwoInfo.MOLineNo;
+                                    report1.Parameters.FindByName("LotNumber").Value = pwoInfo.LotNumber;
+                                    report1.Parameters.FindByName("MaterialTexture").Value = pwoInfo.T131Code;
+                                    report1.Parameters.FindByName("ActualPickedBars").Value = pwoInfo.ActualQtyDecompose;
+                                    report1.Parameters.FindByName("OrderQty").Value = pwoInfo.PlannedQuantity;
+                                    report1.Parameters.FindByName("MaterialCode").Value = pwoInfo.MaterialCode;
+                                    report1.Parameters.FindByName("MaterialDescription").Value = pwoInfo.MaterialDesc;
+                                    report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
+                                    report1.Parameters.FindByName("InQuantity").Value = pwoInfo.ActualQuantityToDeliver.ToString();
+                                    report1.Parameters.FindByName("FatherMaterialCode").Value = pwoInfo.ProductNo;
+                                    report1.Parameters.FindByName("FatherMaterialName").Value = pwoInfo.ProductDesc;
+                                    report1.Parameters.FindByName("DstT106Code").Value = pwoInfo.DstT106Code;
+                                }
+
+                                break;
                         }
                     }
                     catch (Exception error)
@@ -216,7 +231,9 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                         } while (rePrinter);
                     }
 
-                    if (IRAPUser.Instance.CommunityID == 60010 && printWIPProductInfoTrack)
+                    if (printWIPProductInfoTrack &&
+                        (IRAPUser.Instance.CommunityID == 60010 ||
+                        IRAPUser.Instance.CommunityID == 60030))
                     {
                         IRAPMessageBox.Instance.ShowInformation(
                             "请将打印机中的打印纸更换为【产品信息跟踪卡】，更换完毕后点击确认开始打印");

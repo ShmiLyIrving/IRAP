@@ -12,6 +12,7 @@ using System.Configuration;
 using DevExpress.XtraEditors;
 
 using IRAP.Global;
+using IRAP.Client.Global;
 using IRAP.Client.User;
 using IRAP.Entities.SCES;
 using IRAP.Entities.MDM;
@@ -23,8 +24,8 @@ namespace IRAP.Client.GUI.SCES
     public partial class frmMaterialsToDeliver : IRAP.Client.Global.frmCustomBase
     {
         private string className = MethodBase.GetCurrentMethod().DeclaringType.FullName;
-        private List<ProductionWorkOrder> orders = new List<ProductionWorkOrder>();
-        private ProductionWorkOrder order = null;
+        private List<ProductionWorkOrderEx> orders = new List<ProductionWorkOrderEx>();
+        private ProductionWorkOrderEx order = null;
         private List<MaterialToDeliver> materials = new List<MaterialToDeliver>();
         private DstDeliveryStoreSite dstStoreSite = null;
         private string opNode = "";
@@ -51,7 +52,11 @@ namespace IRAP.Client.GUI.SCES
             string opNode)
             : this()
         {
-            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}", 
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
 
             this.orderFactID = orderFactID;
             this.af482PK = af482PK;
@@ -59,13 +64,14 @@ namespace IRAP.Client.GUI.SCES
             this.opNode = opNode;
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            TWaitting.Instance.ShowWaitForm("正在获取指定的待配送制造订单");
             try
             {
                 int errCode = 0;
                 string errText = "";
                 try
                 {
-                    IRAPSCESClient.Instance.ufn_GetList_ProductionWorkOrdersToDeliverMaterial(
+                    IRAPSCESClient.Instance.ufn_GetList_ProductionWorkOrdersToDeliverMaterial_N(
                         IRAPUser.Instance.CommunityID,
                         storeSite.T173LeafID,
                         IRAPUser.Instance.SysLogID,
@@ -89,6 +95,7 @@ namespace IRAP.Client.GUI.SCES
             }
             finally
             {
+                TWaitting.Instance.CloseWaitForm();
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
 
@@ -122,8 +129,14 @@ namespace IRAP.Client.GUI.SCES
                 order = orders[0];
             }
 
-            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            TWaitting.Instance.ShowWaitForm("获取工单物料配送指令单");
             try
             {
                 int errCode = 0;
@@ -206,6 +219,7 @@ namespace IRAP.Client.GUI.SCES
             }
             finally
             {
+                TWaitting.Instance.CloseWaitForm();
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
@@ -407,41 +421,46 @@ namespace IRAP.Client.GUI.SCES
                                 break;
                         }
 
-                        if (printWIPProductInfoTrack &&
-                            (IRAPUser.Instance.CommunityID == 60010 ||
-                            IRAPUser.Instance.CommunityID == 60030))
+                        if (printWIPProductInfoTrack)
                         {
-                            report1.Parameters.FindByName("BarCode").Value = order.PWONo;
-                            report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
-                            report1.Parameters.FindByName("StorehouseCode").Value =
-                                string.Format(
-                                    "{0}({1})",
-                                    materials[0].T173Name,
-                                    materials[0].T173Code);
-                            report1.Parameters.FindByName("T106Code").Value = materials[0].AtStoreLocCode;
-                            report1.Parameters.FindByName("WorkshopName").Value = materials[0].DstWorkShopCode;
-                            report1.Parameters.FindByName("ProductLine").Value = order.T134Name;
-                            report1.Parameters.FindByName("AdvicedPickedQty").Value = materials[0].SuggestedQuantityToPick;
-                            report1.Parameters.FindByName("StartingDate").Value = order.PlannedStartDate.Substring(5, 5);
-                            report1.Parameters.FindByName("CompletingDate").Value = order.PlannedCloseDate.Substring(5, 5);
-                            report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
-                            report1.Parameters.FindByName("Unit").Value = materials[0].UnitOfMeasure;
-                            report1.Parameters.FindByName("MONo").Value = order.MONumber;
-                            report1.Parameters.FindByName("LineNo").Value = order.MOLineNo;
-                            report1.Parameters.FindByName("LotNumber").Value = lotNumber;
-                            report1.Parameters.FindByName("MaterialTexture").Value = materials[0].T131Code;
-                            report1.Parameters.FindByName("ActualPickedBars").Value = materials[0].ActualQtyDecompose;
-                            report1.Parameters.FindByName("OrderQty").Value = order.PlannedQuantity.IntValue.ToString();
-                            report1.Parameters.FindByName("MaterialCode").Value = materials[0].MaterialCode;
-                            report1.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
-                            report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
-                            if (materials[0].ActualQuantityToDeliver.IntValue != 0)
-                                report1.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
-                            else
-                                report1.Parameters.FindByName("InQuantity").Value = "";
-                            report1.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;
-                            report1.Parameters.FindByName("FatherMaterialName").Value = order.ProductDesc;
-                            report1.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
+                            switch (IRAPUser.Instance.CommunityID)
+                            {
+                                case 60010:
+                                case 60030:
+                                    report1.Parameters.FindByName("BarCode").Value = order.PWONo;
+                                    report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
+                                    report1.Parameters.FindByName("StorehouseCode").Value =
+                                        string.Format(
+                                            "{0}({1})",
+                                            materials[0].T173Name,
+                                            materials[0].T173Code);
+                                    report1.Parameters.FindByName("T106Code").Value = materials[0].AtStoreLocCode;
+                                    report1.Parameters.FindByName("WorkshopName").Value = materials[0].DstWorkShopCode;
+                                    report1.Parameters.FindByName("ProductLine").Value = order.T134Name;
+                                    report1.Parameters.FindByName("AdvicedPickedQty").Value = materials[0].SuggestedQuantityToPick;
+                                    report1.Parameters.FindByName("StartingDate").Value = order.PlannedStartDate.Substring(5, 5);
+                                    report1.Parameters.FindByName("CompletingDate").Value = order.PlannedCloseDate.Substring(5, 5);
+                                    report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
+                                    report1.Parameters.FindByName("Unit").Value = materials[0].UnitOfMeasure;
+                                    report1.Parameters.FindByName("MONo").Value = order.MONumber;
+                                    report1.Parameters.FindByName("LineNo").Value = order.MOLineNo;
+                                    report1.Parameters.FindByName("LotNumber").Value = lotNumber;
+                                    report1.Parameters.FindByName("MaterialTexture").Value = materials[0].T131Code;
+                                    report1.Parameters.FindByName("ActualPickedBars").Value = materials[0].ActualQtyDecompose;
+                                    report1.Parameters.FindByName("OrderQty").Value = order.PlannedQuantity.IntValue.ToString();
+                                    report1.Parameters.FindByName("MaterialCode").Value = materials[0].MaterialCode;
+                                    report1.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
+                                    report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
+                                    if (materials[0].ActualQuantityToDeliver.IntValue != 0)
+                                        report1.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
+                                    else
+                                        report1.Parameters.FindByName("InQuantity").Value = "";
+                                    report1.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;
+                                    report1.Parameters.FindByName("FatherMaterialName").Value = order.ProductDesc;
+                                    report1.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
+
+                                    break;
+                            }
                         }
                     }
                     catch (Exception error)
@@ -472,34 +491,40 @@ namespace IRAP.Client.GUI.SCES
                         } while (rePrinter);
                     }
 
-                    if ((IRAPUser.Instance.CommunityID == 60010 ||
-                        IRAPUser.Instance.CommunityID==60030) && 
-                        printWIPProductInfoTrack)
+                    if (printWIPProductInfoTrack)
                     {
-                        IRAPMessageBox.Instance.ShowInformation(
-                            "请将打印机中的打印纸更换为【产品信息跟踪卡】，更换完毕后点击确认开始打印");
-
-                        if (report1.Prepare())
+                        switch (IRAPUser.Instance.CommunityID)
                         {
-                            bool rePrint = false;
-                            do
-                            {
-                                if (report1.ShowPrintDialog(out prnSetting))
+                            case 60010:
+                            case 60030:
+                                IRAPMessageBox.Instance.ShowInformation(
+                                    "请将打印机中的打印纸更换为【产品信息跟踪卡】，更换完毕后点击确认开始打印");
+
+                                if (report1.Prepare())
                                 {
-                                    report1.PrintPrepared(prnSetting);
-                                    rePrint =
-                                        (
-                                            ShowMessageBox.Show(
-                                                "【产品信息跟踪卡】已经打印完成，是否需要重新打印？",
-                                                "系统信息",
-                                                MessageBoxButtons.YesNo,
-                                                MessageBoxIcon.Question,
-                                                MessageBoxDefaultButton.Button2) == DialogResult.Yes
-                                        );
+                                    bool rePrint = false;
+                                    do
+                                    {
+                                        if (report1.ShowPrintDialog(out prnSetting))
+                                        {
+                                            report1.PrintPrepared(prnSetting);
+                                            rePrint =
+                                                (
+                                                    ShowMessageBox.Show(
+                                                        "【产品信息跟踪卡】已经打印完成，是否需要重新打印？",
+                                                        "系统信息",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Question,
+                                                        MessageBoxDefaultButton.Button2) == DialogResult.Yes
+                                                );
+                                        }
+                                    } while (rePrint);
                                 }
-                            } while (rePrint);
+
+                                break;
                         }
-                    } 
+                    }
+
                     btnClose.PerformClick();
                     #endregion
                 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="12/06/2016 09:32:42" ReportInfo.Modified="03/27/2018 16:12:55" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/06/2016 09:32:42" ReportInfo.Modified="04/19/2018 21:38:22" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,6 +34,7 @@ namespace FastReport
     <Parameter Name="MachineModeling" DataType="System.String"/>
     <Parameter Name="Texture" DataType="System.String"/>
     <Parameter Name="BatchNumber" DataType="System.String"/>
+    <Parameter Name="Quantity" DataType="System.String"/>
   </Dictionary>
   <ReportPage Name="Page1" PaperWidth="148.1" PaperHeight="210.1" RawPaperSize="11" TopMargin="12" BottomMargin="8" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
     <DataBand Name="Data1" Width="484.22" Height="680.4">
@@ -49,7 +50,7 @@ namespace FastReport
       <TextObject Name="Text10" Left="3.78" Top="436.59" Width="236.25" Height="60.48" Border.Lines="Top, Bottom" Text="材质&#13;&#10;Material：" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text11" Left="3.78" Top="497.07" Width="236.25" Height="60.48" Border.Lines="Top, Bottom" Text="数量&#13;&#10;Quantity：" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text12" Left="3.78" Top="557.55" Width="236.25" Height="60.48" Border.Lines="Top, Bottom" Text="炉次&#13;&#10;Order：" VertAlign="Center" Font="新宋体, 16pt"/>
-      <TextObject Name="Text13" Left="3.78" Top="618.03" Width="236.25" Height="60.48" Border.Lines="Top" Text="备注&#13;&#10;Remark：" VertAlign="Center" Font="新宋体, 16pt"/>
+      <TextObject Name="Text13" Left="3.78" Top="618.03" Width="102.06" Height="60.48" Border.Lines="Top" Text="备注&#13;&#10;Remark：" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text14" Left="238.14" Top="194.67" Width="241.92" Height="60.48" Border.Lines="Top, Bottom" Text="[PlatNo]" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text15" Left="236.25" Top="255.15" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="[T102Code]" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text16" Left="236.25" Top="315.63" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="[LotNumber]" VertAlign="Center" Font="新宋体, 16pt"/>
@@ -57,7 +58,7 @@ namespace FastReport
       <TextObject Name="Text18" Left="236.25" Top="436.59" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="[Texture]" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text19" Left="236.25" Top="497.07" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text20" Left="236.25" Top="557.55" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="[BatchNumber]" VertAlign="Center" Font="新宋体, 16pt"/>
-      <TextObject Name="Text21" Left="236.25" Top="618.03" Width="243.81" Height="60.48" Border.Lines="Top" VertAlign="Center" Font="新宋体, 16pt"/>
+      <TextObject Name="Text21" Left="105.84" Top="618.03" Width="374.22" Height="60.48" Border.Lines="Top" Text="订单数量：[Quantity]" HorzAlign="Right" VertAlign="Center" Font="新宋体, 16pt"/>
       <BarcodeObject Name="PWONo" Left="35.91" Top="88.83" Width="413.75" Height="94.5" AutoSize="false" Text="379AV38SQD80323104" Barcode="Code128" Barcode.AutoEncode="true"/>
     </DataBand>
   </ReportPage>

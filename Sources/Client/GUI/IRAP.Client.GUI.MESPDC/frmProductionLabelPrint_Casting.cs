@@ -182,6 +182,7 @@ namespace IRAP.Client.GUI.MESPDC
             _report.Parameters.FindByName("MachineModeling").Value = info.MachineModelling;
             _report.Parameters.FindByName("Texture").Value = info.Texture;
             _report.Parameters.FindByName("BatchNumber").Value = info.BatchNumber;
+            _report.Parameters.FindByName("Quantity").Value = info.Qty.ToString();
             System.Drawing.Printing.PrinterSettings prnSetting =
                      new System.Drawing.Printing.PrinterSettings();
             if (_report.Prepare())
