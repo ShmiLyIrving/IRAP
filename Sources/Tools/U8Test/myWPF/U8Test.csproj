@@ -98,6 +98,9 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Interop.EDITLib">
       <HintPath>..\packages\Interop.EDITLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -196,6 +199,9 @@
     </ApplicationDefinition>
     <Compile Include="Encrypt.cs" />
     <Compile Include="IniFile.cs" />
+    <Compile Include="IRAP_WebService.asmx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="IRAP_WS.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -216,6 +222,16 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\Web5\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\Web6\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\Web7\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -254,7 +270,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -284,6 +299,16 @@
     </None>
     <None Include="Web References\Web5\IRAP_WebService.wsdl" />
     <None Include="Web References\Web5\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Web6\IRAP_WebService.wsdl" />
+    <None Include="Web References\Web6\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Web7\IRAP_WebService.wsdl" />
+    <None Include="Web References\Web7\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -432,6 +457,17 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>U8Test_Web2_IRAP_WebService</CachedSettingsPropName>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="http://192.168.57.100:5000/IRAP_WebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Web6\</RelPath>
+      <UpdateFromURL>http://192.168.57.100:5000/IRAP_WebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>U8Test_Web6_IRAP_WebService</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://localhost:50702/IRAP_WebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\Web\</RelPath>
@@ -442,6 +478,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>U8Test_Web_IRAP_WebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8019/IRAP_WebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Web7\</RelPath>
+      <UpdateFromURL>http://localhost:8019/IRAP_WebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>U8Test_Web7_IRAP_WebService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
@@ -461,6 +508,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\Web5\IRAP_WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\Web6\IRAP_WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\Web7\IRAP_WebService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,7 +12,7 @@
     </Window.Effect>
     <Grid Background="#FFE8E8E8" Margin="0">
         <Image x:Name="BG" Source="Photos/12.jpg" Stretch="UniformToFill" Opacity="0.95" />
-        <TabControl x:Name="tabMain" Margin="16,10,4,10" Background="#FFF9FBFB" Opacity="0.9" KeyDown="tabMain_KeyDown">
+        <TabControl x:Name="tabMain" Margin="10,20,10,0" Background="#FFF9FBFB" Opacity="0.9" KeyDown="tabMain_KeyDown">
             <TabItem x:Name="tiBo" Header="表单" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80" IsSelected="True" FontWeight="Bold" FontSize="14" Background="#FF979797">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
@@ -759,6 +759,26 @@
                                 </GroupBox>
                             </Grid>
                         </TabItem>
+                        <TabItem Header="审计" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="71">
+                            <Grid Background="#FFE5E5E5">
+                                <GroupBox x:Name="groupBox2_Copy16" Header="表体参数" Margin="0" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2">
+                                    <StackPanel Margin="10,0,-2,2.697" Orientation="Horizontal">
+                                        <StackPanel Margin="0,10,0,0" Width="151.166">
+                                            <Label x:Name="label29" Content="单据模式：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy127" Content="单据类型编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy129" Content="单据ID：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </StackPanel>
+                                        <ToolBarOverflowPanel Width="222" Height="183.317" VerticalAlignment="Top">
+                                            <TextBox x:Name="txtVouchType" TextWrapping="Wrap" Margin="-97,38,-122,-39" Height="25" VerticalAlignment="Top"/>
+                                            <TextBox x:Name="txtVouchId" TextWrapping="Wrap" Margin="-97,0,-122,-69" Height="25" VerticalAlignment="Bottom"/>
+                                            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="212" Margin="-97,9,-87,-9" FontSize="16"/>
+                                        </ToolBarOverflowPanel>
+                                        <StackPanel Margin="0,10,0,0" Width="137.166"/>
+                                        <ToolBarOverflowPanel Width="222" Height="183.317" VerticalAlignment="Top"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </TabItem>
                     </TabControl>
                     <Button x:Name="btn_Confirm" Content="提交" HorizontalAlignment="Right" Height="32" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="111" Background="#FF534B4B" Foreground="White" RenderTransformOrigin="1.252,0.625" Click="btn_Confirm_Click" Grid.Row="1">
                         <Button.Effect>
@@ -776,8 +796,8 @@
                 <Grid Background="#FFEAC8C8">
                     <GroupBox x:Name="gbPro" Header="程序参数" Margin="10,10,10,0" ToolTip="程序参数" BorderThickness="2" Background="#FFFFC2C2" FontWeight="Bold" FontSize="14" Height="92.323" VerticalAlignment="Top" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
                         <ToolBarOverflowPanel Margin="10,0,5.166,0" Height="61.179" VerticalAlignment="Top" d:LayoutOverrides="TopMargin, BottomMargin">
-                            <Label x:Name="label1" Content="程序更新地址：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-267,23.52,0,-51.3" d:LayoutOverrides="HorizontalAlignment" Width="104.414" FontSize="14" FontWeight="Bold" RenderTransformOrigin="0.482,0.151"/>
-                            <TextBox x:Name="txtUpgrade" TextWrapping="Wrap" Margin="-144.753,0,-106.833,-51.179" Height="24.48" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
+                            <Label x:Name="label1" Content="程序更新地址：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-288,26,0,-54" Width="104" FontSize="14" FontWeight="Bold" RenderTransformOrigin="0.482,0.151"/>
+                            <TextBox x:Name="txtUpgrade" TextWrapping="Wrap" Margin="-165,0,-87,-51" Height="25" VerticalAlignment="Bottom"/>
                         </ToolBarOverflowPanel>
                     </GroupBox>
                     <GroupBox x:Name="gbftp" Header="U8参数" Margin="10,107.323,10,0" ToolTip="程序参数" BorderThickness="2" Background="#FFFFC2C2" FontWeight="Bold" FontSize="14" Height="248.941" VerticalAlignment="Top">

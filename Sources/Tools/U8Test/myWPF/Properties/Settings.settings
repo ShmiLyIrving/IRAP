@@ -17,5 +17,11 @@
     <Setting Name="U8Test_Web5_IRAP_WebService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://127.0.0.1:8018/IRAP_WebService.asmx</Value>
     </Setting>
+    <Setting Name="U8Test_Web6_IRAP_WebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.57.100:5000/IRAP_WebService.asmx</Value>
+    </Setting>
+    <Setting Name="U8Test_Web7_IRAP_WebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:8019/IRAP_WebService.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

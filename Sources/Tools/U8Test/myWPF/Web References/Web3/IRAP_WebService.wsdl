@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="IRAPUES">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IRAPUESResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IRAPUESResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IRAPUESSoapIn">
+    <wsdl:part name="parameters" element="tns:IRAPUES" />
+  </wsdl:message>
+  <wsdl:message name="IRAPUESSoapOut">
+    <wsdl:part name="parameters" element="tns:IRAPUESResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRAPUESHttpGetIn">
+    <wsdl:part name="ExCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IRAPUESHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="IRAPUESHttpPostIn">
+    <wsdl:part name="ExCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IRAPUESHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="IRAP_WebServiceSoap">
+    <wsdl:operation name="IRAPUES">
+      <wsdl:input message="tns:IRAPUESSoapIn" />
+      <wsdl:output message="tns:IRAPUESSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IRAP_WebServiceHttpGet">
+    <wsdl:operation name="IRAPUES">
+      <wsdl:input message="tns:IRAPUESHttpGetIn" />
+      <wsdl:output message="tns:IRAPUESHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IRAP_WebServiceHttpPost">
+    <wsdl:operation name="IRAPUES">
+      <wsdl:input message="tns:IRAPUESHttpPostIn" />
+      <wsdl:output message="tns:IRAPUESHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IRAP_WebServiceSoap" type="tns:IRAP_WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IRAPUES">
+      <soap:operation soapAction="http://tempuri.org/IRAPUES" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IRAP_WebServiceSoap12" type="tns:IRAP_WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IRAPUES">
+      <soap12:operation soapAction="http://tempuri.org/IRAPUES" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IRAP_WebServiceHttpGet" type="tns:IRAP_WebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="IRAPUES">
+      <http:operation location="/IRAPUES" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IRAP_WebServiceHttpPost" type="tns:IRAP_WebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="IRAPUES">
+      <http:operation location="/IRAPUES" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IRAP_WebService">
+    <wsdl:port name="IRAP_WebServiceSoap" binding="tns:IRAP_WebServiceSoap">
+      <soap:address location="http://192.168.0.3:8019/IRAP_WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IRAP_WebServiceSoap12" binding="tns:IRAP_WebServiceSoap12">
+      <soap12:address location="http://192.168.0.3:8019/IRAP_WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IRAP_WebServiceHttpGet" binding="tns:IRAP_WebServiceHttpGet">
+      <http:address location="http://192.168.0.3:8019/IRAP_WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IRAP_WebServiceHttpPost" binding="tns:IRAP_WebServiceHttpPost">
+      <http:address location="http://192.168.0.3:8019/IRAP_WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -15,6 +15,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Xml;
 
 namespace myWPF
 {
@@ -744,8 +745,7 @@ namespace myWPF
                     OutputLog("=======================开始上传========================", mode, ToolTipIcon.None);
                     OutputLog("DomHead =" + h, mode, ToolTipIcon.None);
                     OutputLog("DomBody =" + b, mode, ToolTipIcon.None);
-                    t = new Task(() =>
-                    {
+
                         s = ir.TransVouchAdd(sVouchType,
                                   h, b,
                                     domPosition,
@@ -758,39 +758,37 @@ namespace myWPF
                                     bIsRedVouch,
                                     sAddedState,
                                     bReMote);
-                    });
-                    t.ContinueWith(c =>
+
+                    try
                     {
-                        try
+                        if ((bool)s)
                         {
-                            if ((bool)s)
-                            {
-                                UpdateLog("提交成功", mode, ToolTipIcon.Info);
-                            }
-                            else
-                            {
-                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
-                            }
-                            if (domMsg != null)
-                                UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
+                            UpdateLog("提交成功", mode, ToolTipIcon.Info);
                         }
-                        catch
+                        else
                         {
-                            if (s == null)
-                            {
-                                UpdateLog("发生异常: s is null", mode, ToolTipIcon.None);
-                            }
-                            if (errMsg == null)
-                            {
-                                UpdateLog("发生异常:errMsg is null", mode, ToolTipIcon.None);
-                            }
-                            if (domMsg == null)
-                                UpdateLog("发生异常:0 is null", mode, ToolTipIcon.None);
+                            UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
                         }
+                        if (domMsg != null)
+                            UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
+                    }
+                    catch
+                    {
+                        if (s == null)
+                        {
+                            UpdateLog("发生异常: s is null", mode, ToolTipIcon.None);
+                        }
+                        if (errMsg == null)
+                        {
+                            UpdateLog("发生异常:errMsg is null", mode, ToolTipIcon.None);
+                        }
+                        if (domMsg == null)
+                            UpdateLog("发生异常:0 is null", mode, ToolTipIcon.None);
+                    }
                         UpdateBtn(true);
                         UpdateLog("=======================结束===========================", "", ToolTipIcon.None);
-                    });
-                    t.Start();
+                    
+                 
                     break;
                 #endregion 调拨单
                 #region 销售出库单
@@ -1213,7 +1211,61 @@ namespace myWPF
                     });
                     t.Start();
                     break;
-                    #endregion 形态转换单
+                #endregion 形态转换单
+                #region 审计
+                case 8:
+                    mode = "审计";                    
+                    sVouchType = "11";
+                    errMsg = "";
+                    cnnFromO = null;
+                    VouchId = "1000009997";//
+
+                    OutputLog("=======================开始上传========================", mode, ToolTipIcon.None);
+                    t = new Task(() =>
+                    {
+                        s = ir.MaterialOutAudit("333",
+                                    sVouchType,
+                                    out errMsg,
+                                    cnnFromO,
+                                    VouchId,
+                                    out o,
+                                    bCheck,
+                                    bBeforCheckStock);
+                    });
+                    t.ContinueWith(c =>
+                    {
+                        try
+                        {
+                            if ((bool)s)
+                            {
+                                UpdateLog("提交成功", mode, ToolTipIcon.Info);
+                            }
+                            else
+                            {
+                                UpdateLog("提交失败：" + errMsg, mode, ToolTipIcon.Info);
+                            }
+                            if (domMsg != null)
+                                UpdateLog((o as MSXML2.IXMLDOMDocument2).xml.ToString(), mode, ToolTipIcon.None);
+                        }
+                        catch
+                        {
+                            if (s == null)
+                            {
+                                UpdateLog("发生异常: s is null", mode, ToolTipIcon.None);
+                            }
+                            if (errMsg == null)
+                            {
+                                UpdateLog("发生异常:errMsg is null", mode, ToolTipIcon.None);
+                            }
+                            if (domMsg == null)
+                                UpdateLog("发生异常:0 is null", mode, ToolTipIcon.None);
+                        }
+                        UpdateBtn(true);
+                        UpdateLog("=======================结束===========================", "", ToolTipIcon.None);
+                    });
+                    t.Start();
+                    break;
+#endregion
 
             }
         }
@@ -1221,7 +1273,8 @@ namespace myWPF
         private void btn_WebConfirm_Click(object sender, RoutedEventArgs e)
         {
             btn_WebConfirm.IsEnabled = false;
-            Web3.IRAP_WebService client = new Web3.IRAP_WebService();
+            Web.IRAP_WebService client = new Web.IRAP_WebService();
+            //IRAP_WebService s = new IRAP_WebService();
             string Excode = "";
             string h, b,mode="";
             switch (tabBo.SelectedIndex)
@@ -1264,7 +1317,7 @@ $"<Param Mode=\"MaterialOutAdd\" sAccID =\"333\" sVouchType=\"11\" VouchId=\"11\
                         "</Parameters>";
 
                     break;
-                #endregion
+                #endregion                
                 #region 产品入库
                 case 1:
                     mode = "产品入库";
@@ -1300,6 +1353,65 @@ $"<Param Mode=\"MaterialOutAdd\" sAccID =\"333\" sVouchType=\"11\" VouchId=\"11\
 &lt;/row&gt;&lt;/table&gt;";
                     Excode = "<Parameters>" +
 $"<Param Mode=\"MaterialOutAdd\" sAccID =\"333\" sVouchType=\"11\" VouchId=\"11\" bCheck=\"{SysParams.Instance.bCheck}\" bBeforCheckStock=\"{SysParams.Instance.bBeforCheckStock}\" bIsRedVouch=\"false\" sAddedState=\"\" bReMote=\"true\" body=\"{b}\" head=\"{h}\"/>" +
+                        "</Parameters>";
+
+                    break;
+                #endregion
+                #region 调拨
+                case 3:
+                    mode = "调拨";
+                    h = $@"                
+                &lt;table&gt;
+                &lt;row&gt;
+                &lt;id&gt;&lt;/id&gt;
+                &lt;ctvcode&gt;1&lt;/ctvcode&gt;
+                &lt;dtvdate&gt;2018-04-17&lt;/dtvdate&gt;               
+                &lt;codepcode&gt;0907&lt;/codepcode&gt;
+                &lt;cidepcode&gt;0907&lt;/cidepcode&gt;
+                &lt;cordcode&gt;205&lt;/cordcode&gt;
+                &lt;cirdcode&gt;106&lt;/cirdcode&gt;
+                &lt;csource&gt;&lt;/csource&gt;
+                &lt;cmaker&gt;测试&lt;/cmaker&gt;
+                &lt;dnmaketime&gt;2018-04-17&lt;/dnmaketime&gt;
+                &lt;vt_id&gt;89&lt;/vt_id&gt;
+                &lt;iproorderid&gt;&lt;/iproorderid&gt;
+                &lt;ciwhcode&gt;M011&lt;/ciwhcode&gt;
+                &lt;cowhcode&gt;M012&lt;/cowhcode&gt;
+                &lt;ctranrequestcode&gt;&lt;/ctranrequestcode&gt;
+                &lt;itransflag&gt;&lt;/itransflag&gt;
+                &lt;/row&gt;
+                &lt;/table&gt;";
+
+                    b = $@"
+                &lt;table&gt;
+                &lt;row&gt;
+                &lt;autoid&gt;&lt;/autoid&gt;
+                &lt;cinvcode&gt;1111021005&lt;/cinvcode&gt;
+                &lt;editprop&gt;A&lt;/editprop&gt;
+                &lt;itvquantity&gt;0.1&lt;/itvquantity&gt;
+                &lt;cinvm_unit&gt;&lt;/cinvm_unit&gt;
+                &lt;cmocode&gt;&lt;/cmocode&gt;
+                &lt;imoseq&gt;&lt;/imoseq&gt;
+                &lt;impoids&gt;&lt;/impoids&gt;
+                &lt;coutposcode&gt;&lt;/coutposcode&gt;
+                &lt;cinposcode&gt;&lt;/cinposcode&gt;
+                &lt;ctvbatch&gt;20180417004&lt;/ctvbatch&gt;
+                &lt;itrids&gt;&lt;/itrids&gt;
+                &lt;/row&gt;&lt;/table&gt;";
+
+                    Excode = "<Parameters>" +
+$"<Param Mode=\"TransVouchAdd\" sAccID =\"900\" sVouchType=\"12\" VouchId=\"aw\" bCheck=\"true\" bBeforCheckStock=\"false\" bIsRedVouch=\"false\" sAddedState=\" \" bReMote=\"false\" body=\"{b}\" head=\"{h}\"/>" +
+                        "</Parameters>";
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(Excode);
+                    Excode = doc.OuterXml;
+                    break;
+                #endregion
+                #region 材料出库审计
+                case 8:
+                    mode = "审计";                  
+                    Excode = "<Parameters>" +
+$"<Param Mode=\"otheroutAudit\" sAccID =\"333\" sVouchType=\"09\" VouchId=\"1000010105\" bCheck=\"{SysParams.Instance.bCheck}\" bBeforCheckStock=\"{SysParams.Instance.bBeforCheckStock}\"/>" +
                         "</Parameters>";
 
                     break;
