@@ -34,14 +34,12 @@
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.grdLeft = new DevExpress.XtraGrid.GridControl();
             this.grvLeft = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnLeft = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.grdRight = new DevExpress.XtraGrid.GridControl();
             this.grvRight = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnRight = new DevExpress.XtraEditors.SimpleButton();
@@ -73,7 +71,7 @@
             this.groupControl1.Location = new System.Drawing.Point(5, 5);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Padding = new System.Windows.Forms.Padding(3);
-            this.groupControl1.Size = new System.Drawing.Size(863, 524);
+            this.groupControl1.Size = new System.Drawing.Size(959, 524);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "当前用户清单";
             // 
@@ -88,8 +86,8 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.groupControl3);
             this.splitContainerControl1.Panel2.Controls.Add(this.btnRight);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(853, 489);
-            this.splitContainerControl1.SplitterPosition = 386;
+            this.splitContainerControl1.Size = new System.Drawing.Size(949, 489);
+            this.splitContainerControl1.SplitterPosition = 438;
             this.splitContainerControl1.TabIndex = 2;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -100,7 +98,7 @@
             this.groupControl2.Location = new System.Drawing.Point(0, 0);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl2.Size = new System.Drawing.Size(386, 489);
+            this.groupControl2.Size = new System.Drawing.Size(438, 489);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "已呈现设备清单";
             // 
@@ -111,7 +109,7 @@
             this.grdLeft.Location = new System.Drawing.Point(7, 26);
             this.grdLeft.MainView = this.grvLeft;
             this.grdLeft.Name = "grdLeft";
-            this.grdLeft.Size = new System.Drawing.Size(372, 456);
+            this.grdLeft.Size = new System.Drawing.Size(424, 456);
             this.grdLeft.TabIndex = 0;
             this.grdLeft.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvLeft});
@@ -125,23 +123,14 @@
             this.grvLeft.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grvLeft.Appearance.Row.Options.UseFont = true;
             this.grvLeft.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3});
             this.grvLeft.GridControl = this.grdLeft;
             this.grvLeft.Name = "grvLeft";
+            this.grvLeft.OptionsCustomization.AllowSort = false;
             this.grvLeft.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.grvLeft.OptionsView.ShowGroupPanel = false;
             this.grvLeft.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grvLeft_RowStyle);
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "序号";
-            this.gridColumn1.FieldName = "Ordinal";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
             // 
             // gridColumn2
             // 
@@ -150,7 +139,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.VisibleIndex = 0;
             // 
             // gridColumn3
             // 
@@ -159,12 +148,12 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 1;
             // 
             // btnLeft
             // 
             this.btnLeft.Image = ((System.Drawing.Image)(resources.GetObject("btnLeft.Image")));
-            this.btnLeft.Location = new System.Drawing.Point(7, 126);
+            this.btnLeft.Location = new System.Drawing.Point(9, 166);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(58, 42);
             this.btnLeft.TabIndex = 1;
@@ -179,7 +168,7 @@
             this.groupControl3.Location = new System.Drawing.Point(87, 0);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl3.Size = new System.Drawing.Size(375, 489);
+            this.groupControl3.Size = new System.Drawing.Size(419, 489);
             this.groupControl3.TabIndex = 0;
             this.groupControl3.Text = "其他未呈现量仪设备清单";
             // 
@@ -190,7 +179,7 @@
             this.grdRight.Location = new System.Drawing.Point(7, 26);
             this.grdRight.MainView = this.grvRight;
             this.grdRight.Name = "grdRight";
-            this.grdRight.Size = new System.Drawing.Size(361, 456);
+            this.grdRight.Size = new System.Drawing.Size(405, 456);
             this.grdRight.TabIndex = 1;
             this.grdRight.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvRight});
@@ -204,7 +193,6 @@
             this.grvRight.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grvRight.Appearance.Row.Options.UseFont = true;
             this.grvRight.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6});
             this.grvRight.GridControl = this.grdRight;
@@ -212,16 +200,7 @@
             this.grvRight.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.grvRight.OptionsView.ShowGroupPanel = false;
             this.grvRight.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn4, DevExpress.Data.ColumnSortOrder.Ascending)});
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "序号";
-            this.gridColumn4.FieldName = "Ordinal";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.OptionsColumn.AllowEdit = false;
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 0;
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn5, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
             // gridColumn5
             // 
@@ -230,7 +209,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 1;
+            this.gridColumn5.VisibleIndex = 0;
             // 
             // gridColumn6
             // 
@@ -239,12 +218,12 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 2;
+            this.gridColumn6.VisibleIndex = 1;
             // 
             // btnRight
             // 
             this.btnRight.Image = ((System.Drawing.Image)(resources.GetObject("btnRight.Image")));
-            this.btnRight.Location = new System.Drawing.Point(7, 204);
+            this.btnRight.Location = new System.Drawing.Point(9, 269);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(56, 42);
             this.btnRight.TabIndex = 1;
@@ -257,7 +236,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(5, 529);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(863, 43);
+            this.panelControl1.Size = new System.Drawing.Size(959, 43);
             this.panelControl1.TabIndex = 1;
             // 
             // btnCancel
@@ -266,7 +245,7 @@
             this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(761, 8);
+            this.btnCancel.Location = new System.Drawing.Point(857, 8);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 32);
             this.btnCancel.TabIndex = 0;
@@ -277,7 +256,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(635, 8);
+            this.btnSave.Location = new System.Drawing.Point(731, 8);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 32);
             this.btnSave.TabIndex = 0;
@@ -289,7 +268,7 @@
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 577);
+            this.ClientSize = new System.Drawing.Size(969, 577);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -330,12 +309,10 @@
         private DevExpress.XtraEditors.SimpleButton btnRight;
         private DevExpress.XtraGrid.GridControl grdLeft;
         private DevExpress.XtraGrid.Views.Grid.GridView grvLeft;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.GridControl grdRight;
         private DevExpress.XtraGrid.Views.Grid.GridView grvRight;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;

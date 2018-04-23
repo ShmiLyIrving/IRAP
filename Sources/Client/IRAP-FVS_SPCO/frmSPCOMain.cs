@@ -763,16 +763,21 @@ namespace IRAP_FVS_SPCO
                 tempunits = GetWorkUnits(ref errCode,ref errText);
                 if (errCode == 0)
                 {
+                    bool flag = false;
                     HideErrorMessage();
                     if (tempunits != null)
                     {
                         foreach (WIPStationProductionStatus u in tempunits)
                         {
-                            if (workUnits.Contains(u))
+                            foreach (WIPStationProductionStatus w in workUnits)
                             {
-                                continue;
+                                if (u.T107Code == w.T107Code && u.Ordinal == w.Ordinal)
+                                {
+                                    flag = true;
+                                    break;
+                                }
                             }
-                            else
+                            if (!flag)
                             {
                                 workUnits.Add(u);
                                 XtraTabPage page = tcMain.TabPages.Add();
@@ -787,6 +792,7 @@ namespace IRAP_FVS_SPCO
 
                                 ucCharts.Add(chartNone);
                             }
+                            flag = false;
                         }
                         if (tcMain.TabPages.Count > 0)
                         {
