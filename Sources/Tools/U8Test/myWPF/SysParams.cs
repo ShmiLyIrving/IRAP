@@ -40,7 +40,11 @@ namespace myWPF
             get { return GetBoolean("bBeforCheckStock"); }
             set { SaveParams("bBeforCheckStock", value.ToString()); }
         }
-
+        public bool bIsRedVouch
+        {
+            get { return GetBoolean("bIsRedVouch"); }
+            set { SaveParams("bIsRedVouch", value.ToString()); }
+        }
 
         /// <summary>
         /// 程序自动更新配置文件来源

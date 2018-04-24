@@ -693,7 +693,7 @@
                                 </GroupBox>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="形态转换" Width="80" Height="26" Margin="0" FontSize="16" BorderBrush="#FFACACAC" Background="#FFB89A68" Foreground="#FF2F363A" OpacityMask="#FF2F363A">
+                        <TabItem Header="形态转换" Height="26" Margin="0,0,-1,0" FontSize="16" BorderBrush="#FFACACAC" Background="#FFB89A68" Foreground="#FF2F363A" OpacityMask="#FF2F363A">
                             <Grid Background="#FFE5E5E5">
                                 <GroupBox x:Name="groupBox2_Copy14" Header="表头参数" Margin="5,0,10,295" FontSize="14" FontWeight="Bold" Background="#FFB5DAE2" Foreground="Black">
                                     <StackPanel Margin="10,0,-2,-5.303" Orientation="Horizontal">
@@ -729,7 +729,7 @@
                                         </ToolBarOverflowPanel>
                                     </StackPanel>
                                 </GroupBox>
-                                <GroupBox x:Name="groupBox2_Copy15" Header="表体参数" Margin="5,0,10,0" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2" Height="290" VerticalAlignment="Bottom">
+                                <GroupBox x:Name="groupBox2_Copy15" Header="表体参数" Margin="5,0,10,0" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2" Height="214" VerticalAlignment="Bottom">
                                     <StackPanel Margin="10,0,-2,2.697" Orientation="Horizontal">
                                         <StackPanel Margin="0,10,0,0" Width="151.166">
                                             <Label x:Name="label28" Content="主键（autoid）：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
@@ -757,35 +757,39 @@
                                         </ToolBarOverflowPanel>
                                     </StackPanel>
                                 </GroupBox>
+                                <Label x:Name="label30" Content="接口尚未开发" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" Width="826" Height="71" FontSize="48" Foreground="#FFFD4141" HorizontalContentAlignment="Center"/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="审计" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="71">
+                        <TabItem Header="审计" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="64" Margin="0,0,0,0">
                             <Grid Background="#FFE5E5E5">
-                                <GroupBox x:Name="groupBox2_Copy16" Header="表体参数" Margin="0" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2">
+                                <GroupBox x:Name="groupBox2_Copy16" Header="参数" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2" Height="248" VerticalAlignment="Top">
                                     <StackPanel Margin="10,0,-2,2.697" Orientation="Horizontal">
                                         <StackPanel Margin="0,10,0,0" Width="151.166">
-                                            <Label x:Name="label29" Content="单据模式：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label29" Content="审计单据模式：" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                                             <Label x:Name="label_Copy127" Content="单据类型编码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
-                                            <Label x:Name="label_Copy129" Content="单据ID：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label x:Name="label_Copy129" Content="单据主表ID：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                                         </StackPanel>
                                         <ToolBarOverflowPanel Width="222" Height="183.317" VerticalAlignment="Top">
                                             <TextBox x:Name="txtVouchType" TextWrapping="Wrap" Margin="-97,38,-122,-39" Height="25" VerticalAlignment="Top"/>
                                             <TextBox x:Name="txtVouchId" TextWrapping="Wrap" Margin="-97,0,-122,-69" Height="25" VerticalAlignment="Bottom"/>
-                                            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="212" Margin="-97,9,-87,-9" FontSize="16"/>
+                                            <ComboBox x:Name="cboMode" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="219" Margin="-97,9,-94,-9" FontSize="14" SelectionChanged="cboMode_SelectionChanged"/>
                                         </ToolBarOverflowPanel>
                                         <StackPanel Margin="0,10,0,0" Width="137.166"/>
                                         <ToolBarOverflowPanel Width="222" Height="183.317" VerticalAlignment="Top"/>
                                     </StackPanel>
                                 </GroupBox>
+                                <GroupBox x:Name="groupBox2_Copy17" Header="说明" Margin="0,253,0,10" FontSize="14" FontWeight="Bold" Foreground="Black" Background="#FFB5DAE2">
+                                    <Label x:Name="label31" Content="返回的ErrCode =单据ID即审核成功&#xA;ErrCode = 9999 即审核失败" Margin="10,10,0,0" Width="725" Height="106" FontSize="24" Foreground="#FFBF4141" HorizontalContentAlignment="Center"/>
+                                </GroupBox>
                             </Grid>
                         </TabItem>
                     </TabControl>
-                    <Button x:Name="btn_Confirm" Content="提交" HorizontalAlignment="Right" Height="32" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="111" Background="#FF534B4B" Foreground="White" RenderTransformOrigin="1.252,0.625" Click="btn_Confirm_Click" Grid.Row="1">
+                    <Button x:Name="btn_Confirm" Content="提交（本机）" HorizontalAlignment="Right" Height="32" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="111" Background="#FF534B4B" Foreground="White" RenderTransformOrigin="1.252,0.625" Click="btn_Confirm_Click" Grid.Row="1">
                         <Button.Effect>
                             <DropShadowEffect Color="White" ShadowDepth="3" BlurRadius="3" Opacity="0.8"/>
                         </Button.Effect>
                     </Button>
-                    <Button x:Name="btn_WebConfirm" Content="提交（Web）" HorizontalAlignment="Right" Height="32" Margin="0,0,10,47" VerticalAlignment="Bottom" Width="111" Background="#FF534B4B" Foreground="White" RenderTransformOrigin="1.252,0.625" Click="btn_WebConfirm_Click" Grid.Row="1">
+                    <Button x:Name="btn_WebConfirm" Content="提交（新康达）" HorizontalAlignment="Right" Height="32" Margin="0,0,10,47" VerticalAlignment="Bottom" Width="111" Background="#FF534B4B" Foreground="White" RenderTransformOrigin="1.252,0.625" Click="btn_WebConfirm_Click" Grid.Row="1">
                         <Button.Effect>
                             <DropShadowEffect Color="White" ShadowDepth="3" BlurRadius="3" Opacity="0.8"/>
                         </Button.Effect>
@@ -808,13 +812,15 @@
                                 <Label x:Name="label_Copy1" Content="密码：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                                 <Label x:Name="label_Copy82" Content="是否控制可用量：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                                 <Label x:Name="label_Copy83" Content="是否检查可用量：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                <Label x:Name="label_Copy130" Content="是否红字单据：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
                             </StackPanel>
                             <ToolBarOverflowPanel Width="426">
                                 <TextBox x:Name="txtServerIP" TextWrapping="Wrap" Margin="-203,-108.77,-52.573,0" Height="24.78" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
                                 <TextBox x:Name="txtuid" TextWrapping="Wrap" Margin="-203,-78.99,-52.573,0" Height="24.78" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
                                 <PasswordBox x:Name="txtpwd" Margin="-203,-50.78,-52.573,27" d:LayoutOverrides="HorizontalAlignment" Height="23.78" VerticalAlignment="Bottom"/>
                                 <CheckBox x:Name="chkbCheck" Content="bCheck" HorizontalAlignment="Left" Margin="-203,-17.26,0,0" VerticalAlignment="Top"/>
-                                <CheckBox x:Name="chkbBeforeCheckStocks" Content="bBeforCheckStock" HorizontalAlignment="Left" Margin="-203,0,0,-21.3" VerticalAlignment="Bottom"/>
+                                <CheckBox x:Name="chkbBeforeCheckStocks" Content="bBeforCheckStock" HorizontalAlignment="Left" Margin="-203,0,0,-22" VerticalAlignment="Bottom"/>
+                                <CheckBox x:Name="chkbIsRedVouch" Content="bIsRedVouch" HorizontalAlignment="Left" Margin="-203,0,0,-53" VerticalAlignment="Bottom"/>
                             </ToolBarOverflowPanel>
                         </StackPanel>
                     </GroupBox>

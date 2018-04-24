@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -206,6 +206,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SysParams.cs" />
+    <Compile Include="VouchMode.cs" />
     <Compile Include="Web References\Web2\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

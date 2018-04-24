@@ -386,7 +386,7 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
                 domMsgO = domMsgRet;
@@ -762,10 +762,10 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
-
+                domMsgO = domMsgRet;
                 //结束本次调用，释放API资源
                 broker.Release();
                 return result;
@@ -1137,10 +1137,10 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
-
+                domMsgO = domMsgRet;
                 //结束本次调用，释放API资源
                 broker.Release();
                 return result;
@@ -1513,10 +1513,10 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
-
+                domMsgO = domMsgRet;
                 //结束本次调用，释放API资源
                 broker.Release();
                 return result;
@@ -1888,10 +1888,10 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
-
+                domMsgO = domMsgRet;
                 //结束本次调用，释放API资源
                 broker.Release();
                 return result;
@@ -2263,10 +2263,10 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
-
+                domMsgO = domMsgRet;
                 //结束本次调用，释放API资源
                 broker.Release();
                 return result;
@@ -2638,10 +2638,10 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
-
+                domMsgO = domMsgRet;
                 //结束本次调用，释放API资源
                 broker.Release();
                 return result;
@@ -3014,10 +3014,10 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
-
+                domMsgO = domMsgRet;
                 //结束本次调用，释放API资源
                 broker.Release();
                 return result;
@@ -3180,7 +3180,7 @@ namespace myWPF
                 errMsg = errMsgRet;
                 //获取普通INOUT参数VouchId。此返回值数据类型为System.String，在使用该参数之前，请判断是否为空
                 System.String VouchIdRet = broker.GetResult("VouchId") as System.String;
-
+                VouchId = VouchIdRet;
                 //获取普通OUT参数domMsg。此返回值数据类型为MSXML2.IXMLDOMDocument2，在使用该参数之前，请判断是否为空
                 MSXML2.IXMLDOMDocument2 domMsgRet = (MSXML2.IXMLDOMDocument2)broker.GetResult("domMsg");
                 domMsgO = domMsgRet;
