@@ -242,7 +242,7 @@
                                                         <TextBox x:Name="txtcptcode2" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-285" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtcvenpuomprotocol2" TextWrapping="Wrap" Margin="-118.5,0,-113.564,-315" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtcordercode2" TextWrapping="Wrap" Margin="-119,0,-114,-340" Height="25" VerticalAlignment="Bottom"/>
-                                                        <TextBox x:Name="txtcvenpuomprotocol2_Copy1" TextWrapping="Wrap" Margin="-119,0,-114,-365" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtcarvcode2" TextWrapping="Wrap" Margin="-119,0,-114,-365" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtipurarriveid2" TextWrapping="Wrap" Margin="-119,0,-114,-390" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtiarriveid2" TextWrapping="Wrap" Margin="-119,0,-114,-420" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="233"/>
                                                     </ToolBarOverflowPanel>
@@ -262,8 +262,8 @@
                                                         <Label x:Name="label_Copy18" Content="数量：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy19" Content="编辑属性：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy20" Content="iMatSettleState：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
-                                                        <Label x:Name="label_Copy96" Content="采购单子表ID：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
-                                                        <Label x:Name="label_Copy97" Content="行号：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy96" Content="生产订单子表ID：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
+                                                        <Label x:Name="label_Copy97" Content="采购到货单子表ID：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy98" Content="单价标准：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy102" Content="原币含税单价：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
                                                         <Label x:Name="label_Copy103" Content="原币单价：" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" RenderTransformOrigin="0.473,2.243"/>
@@ -280,7 +280,7 @@
                                                         <TextBox x:Name="txteditprop2" TextWrapping="Wrap" Margin="-111,0,-105.573,-169.76" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="A"/>
                                                         <TextBox x:Name="txtiMatSettleState" TextWrapping="Wrap" Margin="-111,0,-105.573,-199.54" Height="24.78" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Text="0"/>
                                                         <TextBox x:Name="txtiposid2" TextWrapping="Wrap" Margin="-111,0,-106,-225" Height="25" VerticalAlignment="Bottom"/>
-                                                        <TextBox x:Name="txtivouchrowno2" TextWrapping="Wrap" Margin="-111,0,-106,-250" Height="25" VerticalAlignment="Bottom"/>
+                                                        <TextBox x:Name="txtiarrsid2" TextWrapping="Wrap" Margin="-111,0,-106,-250" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtbtaxcost2" TextWrapping="Wrap" Margin="-111,0,-106,-280" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtioritaxcost2" TextWrapping="Wrap" Margin="-111,0,-106,-305" Height="25" VerticalAlignment="Bottom"/>
                                                         <TextBox x:Name="txtioricost2" TextWrapping="Wrap" Margin="-111,0,-106,-335" Height="25" VerticalAlignment="Bottom"/>
@@ -413,7 +413,7 @@
                                 </GroupBox>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="销售出库" Margin="0" Height="26" Opacity="0.95" FontSize="16" FontWeight="Bold" FontFamily="Microsoft YaHei" Width="80" OpacityMask="Black" Background="#FFB89A68" Foreground="#FF2F363A">
+                        <TabItem Header="销售出库" Margin="0" Height="26" Opacity="0.95" FontSize="16" FontWeight="Bold" FontFamily="Microsoft YaHei" OpacityMask="Black" Background="#FFB89A68" Foreground="#FF2F363A">
                             <Grid Background="#FFE5E5E5">
                                 <TabControl x:Name="tabControl2_Copy3" Margin="0,10,10,20">
                                     <TabItem Header="表头参数" FontSize="14">

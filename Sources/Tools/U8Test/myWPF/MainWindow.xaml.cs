@@ -1251,7 +1251,6 @@ namespace myWPF
 &lt;id&gt;{txtid0.Text.Trim()}&lt;/id&gt;
 &lt;cwhcode&gt;{txtcwhname0.Text.Trim()}&lt;/cwhcode&gt;
 &lt;cmpocode&gt;{txtcmpocode0.Text.Trim()}&lt;/cmpocode&gt;
-&lt;iproorderid&gt;{txtimpoids0.Text.Trim()}&lt;/iproorderid&gt;
 &lt;cmaker&gt;{txtcmaker0.Text.Trim()}&lt;/cmaker&gt;
 &lt;dnmaketime&gt;{dpdnmaketime0.Text.Trim()}&lt;/dnmaketime&gt;
 &lt;cbustype&gt;{txtcbustype0.Text.Trim()}&lt;/cbustype&gt;
@@ -1358,6 +1357,9 @@ $"<Param Mode=\"ProductInAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVou
 &lt;csource&gt;{txtcsource2.Text.Trim()}&lt;/csource&gt;
 &lt;ipurorderid&gt;{txtipurorderid2.Text.Trim()}&lt;/ipurorderid&gt;
 &lt;bcredit&gt;{txtbcredit2.Text.Trim()}&lt;/bcredit&gt;
+&lt;carvcode&gt;{txtcarvcode2.Text.Trim()}&lt;/carvcode&gt;
+&lt;iarriveid&gt;{txtiarriveid2.Text.Trim()}&lt;/iarriveid&gt;
+&lt;ipurarriveid&gt;{txtipurarriveid2.Text.Trim()}&lt;/ipurarriveid&gt;
 &lt;/row&gt;&lt;/table&gt;";
 
                     b = $@"&lt;table&gt;
@@ -1390,6 +1392,8 @@ $"<Param Mode=\"ProductInAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVou
 &lt;isum&gt;{txtisum2.Text.Trim()}&lt;/isum&gt;
 &lt;facost&gt;{txtfacost2.Text.Trim()}&lt;/facost&gt;
 &lt;iaprice&gt;{txtiaprice2.Text.Trim()}&lt;/iaprice&gt;
+&lt;cbarvcode&gt;{txtcarvcode2.Text.Trim()}&lt;/cbarvcode&gt;
+&lt;iarrsid&gt;{txtiarrsid2.Text.Trim()}&lt;/iarrsid&gt;
 &lt;/row&gt;&lt;/table&gt;";
 
                     Excode = "<Parameters>" +
