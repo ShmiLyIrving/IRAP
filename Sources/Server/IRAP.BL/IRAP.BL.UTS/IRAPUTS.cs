@@ -312,7 +312,7 @@ namespace IRAP.BL.UTS
                         "@StrParameter1",
                         DbType.String,
                         ParameterDirection.InputOutput,
-                        50)
+                        128)
                     {
                         Value = strParameter1,
                     });
@@ -321,7 +321,7 @@ namespace IRAP.BL.UTS
                         "@StrParameter2",
                         DbType.String,
                         ParameterDirection.InputOutput,
-                        50)
+                        128)
                     {
                         Value = strParameter2,
                     });
@@ -330,7 +330,7 @@ namespace IRAP.BL.UTS
                         "@StrParameter3",
                         DbType.String,
                         ParameterDirection.InputOutput,
-                        50)
+                        128)
                     {
                         Value = strParameter3,
                     });
@@ -339,7 +339,7 @@ namespace IRAP.BL.UTS
                         "@StrParameter4",
                         DbType.String,
                         ParameterDirection.InputOutput,
-                        50)
+                        128)
                     {
                         Value = strParameter4,
                     });
@@ -348,7 +348,7 @@ namespace IRAP.BL.UTS
                         "@StrParameter5",
                         DbType.String,
                         ParameterDirection.InputOutput,
-                        50)
+                        128)
                     {
                         Value = strParameter5,
                     });
@@ -357,7 +357,7 @@ namespace IRAP.BL.UTS
                         "@StrParameter6",
                         DbType.String,
                         ParameterDirection.InputOutput,
-                        50)
+                        128)
                     {
                         Value = strParameter6,
                     });
@@ -366,7 +366,7 @@ namespace IRAP.BL.UTS
                         "@StrParameter7",
                         DbType.String,
                         ParameterDirection.InputOutput,
-                        50)
+                        128)
                     {
                         Value = strParameter7,
                     });
@@ -375,7 +375,7 @@ namespace IRAP.BL.UTS
                         "@StrParameter8",
                         DbType.String,
                         ParameterDirection.InputOutput,
-                        50)
+                        128)
                     {
                         Value = strParameter8,
                     });
