@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="12/06/2016 09:32:42" ReportInfo.Modified="04/19/2018 21:38:22" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/06/2016 09:32:42" ReportInfo.Modified="04/26/2018 09:26:03" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +35,7 @@ namespace FastReport
     <Parameter Name="Texture" DataType="System.String"/>
     <Parameter Name="BatchNumber" DataType="System.String"/>
     <Parameter Name="Quantity" DataType="System.String"/>
+    <Parameter Name="BatchQty" DataType="System.String"/>
   </Dictionary>
   <ReportPage Name="Page1" PaperWidth="148.1" PaperHeight="210.1" RawPaperSize="11" TopMargin="12" BottomMargin="8" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
     <DataBand Name="Data1" Width="484.22" Height="680.4">
@@ -56,7 +57,7 @@ namespace FastReport
       <TextObject Name="Text16" Left="236.25" Top="315.63" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="[LotNumber]" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text17" Left="275.94" Top="376.11" Width="204.12" Height="60.48" Border.Lines="Top, Bottom" Text="[MachineModeling]" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text18" Left="236.25" Top="436.59" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="[Texture]" VertAlign="Center" Font="新宋体, 16pt"/>
-      <TextObject Name="Text19" Left="236.25" Top="497.07" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" VertAlign="Center" Font="新宋体, 16pt"/>
+      <TextObject Name="Text19" Left="236.25" Top="497.07" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="×[BatchQty]" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text20" Left="236.25" Top="557.55" Width="243.81" Height="60.48" Border.Lines="Top, Bottom" Text="[BatchNumber]" VertAlign="Center" Font="新宋体, 16pt"/>
       <TextObject Name="Text21" Left="105.84" Top="618.03" Width="374.22" Height="60.48" Border.Lines="Top" Text="订单数量：[Quantity]" HorzAlign="Right" VertAlign="Center" Font="新宋体, 16pt"/>
       <BarcodeObject Name="PWONo" Left="35.91" Top="88.83" Width="413.75" Height="94.5" AutoSize="false" Text="379AV38SQD80323104" Barcode="Code128" Barcode.AutoEncode="true"/>

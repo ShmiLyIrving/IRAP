@@ -14,6 +14,7 @@ using FastReport;
 
 using IRAP.Global;
 using IRAP.Client.User;
+using IRAP.Client.Global;
 using IRAP.Entities.SCES;
 using IRAP.WCF.Client.Method;
 
@@ -217,8 +218,10 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                         bool rePrinter = false;
                         do
                         {
+                            prnSetting.PrinterName = IRAPConst.Instance.CurrentPrinterName;
                             if (report.ShowPrintDialog(out prnSetting))
                             {
+                                IRAPConst.Instance.CurrentPrinterName = prnSetting.PrinterName;
                                 report.PrintPrepared(prnSetting);
                                 rePrinter = (
                                     XtraMessageBox.Show(
@@ -243,8 +246,10 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                             bool rePrint = false;
                             do
                             {
+                                prnSetting.PrinterName = IRAPConst.Instance.CurrentPrinterName;
                                 if (report1.ShowPrintDialog(out prnSetting))
                                 {
+                                    IRAPConst.Instance.CurrentPrinterName = prnSetting.PrinterName;
                                     report1.PrintPrepared(prnSetting);
                                     rePrint =
                                         (

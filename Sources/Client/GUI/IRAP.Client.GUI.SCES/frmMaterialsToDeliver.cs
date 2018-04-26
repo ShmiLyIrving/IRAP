@@ -477,8 +477,10 @@ namespace IRAP.Client.GUI.SCES
                         bool rePrinter = false;
                         do
                         {
+                            prnSetting.PrinterName = IRAPConst.Instance.CurrentPrinterName;
                             if (report.ShowPrintDialog(out prnSetting))
                             {
+                                IRAPConst.Instance.CurrentPrinterName = prnSetting.PrinterName;
                                 report.PrintPrepared(prnSetting);
                                 rePrinter = (
                                     ShowMessageBox.Show(
@@ -505,8 +507,10 @@ namespace IRAP.Client.GUI.SCES
                                     bool rePrint = false;
                                     do
                                     {
+                                        prnSetting.PrinterName = IRAPConst.Instance.CurrentPrinterName;
                                         if (report1.ShowPrintDialog(out prnSetting))
                                         {
+                                            IRAPConst.Instance.CurrentPrinterName = prnSetting.PrinterName;
                                             report1.PrintPrepared(prnSetting);
                                             rePrint =
                                                 (

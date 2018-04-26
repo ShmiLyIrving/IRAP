@@ -236,6 +236,10 @@ namespace IRAP.Entities.MES {
         /// 熔炼状态
         /// </summary>
         public int PWOStatus { get; set; }
+        /// <summary>
+        /// 毛坯每杆数量
+        /// </summary>
+        public long BatchQty { get; set; }
 
         /// <summary>
         /// 是否需要打印

@@ -94,6 +94,15 @@ namespace IRAP.Client.Global
         }
 
         /// <summary>
+        /// 上次被选择打印的打印机
+        /// </summary>
+        public string CurrentPrinterName
+        {
+            get { return GetString("CurrentPrinter"); }
+            set { SaveParams("CurrentPrinter", value); }
+        }
+
+        /// <summary>
         /// 当前系统登录用户所在的社区标识
         /// </summary>
         public int CommunityID { get; set; }

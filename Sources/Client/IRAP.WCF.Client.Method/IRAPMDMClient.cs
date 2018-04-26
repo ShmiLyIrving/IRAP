@@ -5225,72 +5225,72 @@ namespace IRAP.WCF.Client.Method
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
         /// <returns></returns>
-        //public void ufn_GetList_BatchIDC_IQCReport(
-        //    int communityID,
-        //    long factID,
-        //    long sysLogID,
-        //    ref List<BatchIQCReport> datas,
-        //    out int errCode,
-        //    out string errText)
-        //{
-        //    string strProcedureName =
-        //        string.Format(
-        //            "{0}.{1}",
-        //            className,
-        //            MethodBase.GetCurrentMethod().Name);
+        public void ufn_GetList_BatchIDC_IQCReport(
+            int communityID,
+            long factID,
+            long sysLogID,
+            ref List<BatchIQCReport> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
 
-        //    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
-        //    try
-        //    {
-        //        datas.Clear();
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
 
-        //        #region 将函数调用参数加入 HashTable 中
-        //        Hashtable hashParams = new Hashtable();
-        //        hashParams.Add("communityID", communityID);
-        //        hashParams.Add("factID", factID);
-        //        hashParams.Add("sysLogID", sysLogID);
-        //        WriteLog.Instance.Write(
-        //            string.Format(
-        //                "调用 ufn_GetList_BatchIDC_IQCReport，输入参数：" +
-        //                "CommunityID={0}|FactID={1}|SysLogID={2}",
-        //                communityID,
-        //                factID,
-        //                sysLogID),
-        //            strProcedureName);
-        //        #endregion
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("factID", factID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_BatchIDC_IQCReport，输入参数：" +
+                        "CommunityID={0}|FactID={1}|SysLogID={2}",
+                        communityID,
+                        factID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
 
-        //        #region 执行存储过程或者函数
-        //        using (WCFClient client = new WCFClient())
-        //        {
-        //            object rlt = client.WCFRESTFul(
-        //                "IRAP.BL.MDM.dll",
-        //                "IRAP.BL.MDM.IRAPMDM",
-        //                "ufn_GetList_BatchIDC_IQCReport",
-        //                hashParams,
-        //                out errCode,
-        //                out errText);
-        //            WriteLog.Instance.Write(
-        //                string.Format("({0}){1}",
-        //                    errCode,
-        //                    errText),
-        //                strProcedureName);
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "ufn_GetList_BatchIDC_IQCReport",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
 
-        //            if (errCode == 0)  
-        //                datas = rlt as List<BatchIQCReport>;
-        //        }
-        //        #endregion
-        //    }
-        //    catch (Exception error)
-        //    {
-        //        errCode = -1001;
-        //        errText = error.Message;
-        //        WriteLog.Instance.Write(errText, strProcedureName);
-        //        WriteLog.Instance.Write(error.StackTrace, strProcedureName);
-        //    }
-        //    finally
-        //    {
-        //        WriteLog.Instance.WriteEndSplitter(strProcedureName);
-        //    }
-        //}
+                    if (errCode == 0)
+                        datas = rlt as List<BatchIQCReport>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
