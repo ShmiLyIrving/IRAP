@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="04/25/2018 19:18:05" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="04/27/2018 14:50:37" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -82,31 +82,31 @@ namespace FastReport
     </PageHeaderBand>
     <DataBand Name="Data1" Top="140.08" Width="1122.66"/>
     <PageFooterBand Name="PageFooter1" Top="144.08" Width="1122.66" Height="162.54">
-      <TextObject Name="Text89" Left="32.13" Top="77.49" Width="270.27" Height="18.9" Text="打印时间：[PrintingDate]" HorzAlign="Right" VertAlign="Center" Angle="180" Font="新宋体, 10pt"/>
-      <TextObject Name="Text79" Left="32.13" Top="102.06" Width="113.4" Height="20.79" Border.Lines="Top" Text="[ActualPickedBars]" VertAlign="Center" Angle="180" Font="新宋体, 12pt"/>
-      <TextObject Name="Text81" Left="888.3" Top="102.06" Width="151.2" Height="20.79" Border.Lines="Top" Text="[MONo]" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
-      <TextObject Name="Text82" Left="795.69" Top="102.06" Width="43.47" Height="20.79" Border.Lines="Top" Text="[LineNo]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
-      <TextObject Name="Text83" Left="527.31" Top="102.06" Width="198.45" Height="20.79" Border.Lines="Top" Text="[LotNumber]" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
-      <TextObject Name="Text84" Left="359.1" Top="102.06" Width="88.83" Height="20.79" Border.Lines="Top" Text="[OrderQty]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
-      <TextObject Name="Text87" Left="481.95" Top="130.41" Width="217.35" Height="20.79" Border.Lines="Top" Text="[FatherMaterialName]" VertAlign="Center" Angle="180" Font="新宋体, 11pt"/>
-      <TextObject Name="Text90" Left="226.8" Top="102.06" Width="52.92" Height="20.79" Border.Lines="Top" Text="[InQuantity]" HorzAlign="Center" Angle="180" Font="宋体, 12pt, style=Bold"/>
-      <TextObject Name="Text98" Left="1039.5" Top="102.06" Width="75.6" Height="20.79" Text="订单号" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text99" Left="839.16" Top="102.06" Width="43.47" Height="20.79" Text="行号" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text100" Left="725.76" Top="102.06" Width="66.15" Height="20.79" Text="批次号" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text101" Left="447.93" Top="102.06" Width="75.6" Height="20.79" Text="总提料量" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text102" Left="279.72" Top="102.06" Width="75.6" Height="20.79" Text="批次批量" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text103" Left="145.53" Top="102.06" Width="75.6" Height="20.79" Text="数量折算" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text80" Left="357.21" Top="130.41" Width="45.36" Height="20.79" Border.Lines="Top" Text="[StartingDate]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
-      <TextObject Name="Text85" Left="32.13" Top="130.41" Width="113.4" Height="20.79" Border.Lines="Top" Text="[MaterialCode]" VertAlign="Center" Angle="180" Font="新宋体, 12pt"/>
-      <TextObject Name="Text86" Left="784.35" Top="130.41" Width="119.07" Height="20.79" Border.Lines="Top" Text="[FatherMaterialCode]" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
-      <TextObject Name="Text88" Left="224.91" Top="130.41" Width="52.92" Height="20.79" Border.Lines="Top" Text="[CompletingDate]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
-      <TextObject Name="Text91" Left="1033.83" Top="130.41" Width="81.27" Height="20.79" Text="割片厂家" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text92" Left="988.47" Top="130.41" Width="45.36" Height="20.79" Border.Lines="Top" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text93" Left="903.42" Top="130.41" Width="81.27" Height="20.79" Text="物料编码" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text94" Left="699.3" Top="130.41" Width="81.27" Height="20.79" Text="产品名称" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text95" Left="402.57" Top="130.41" Width="75.6" Height="20.79" Text="开工日期" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text96" Left="277.83" Top="130.41" Width="75.6" Height="20.79" Text="完工日期" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text97" Left="145.53" Top="130.41" Width="75.6" Height="20.79" Text="子项编码" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text89" Left="32.13" Top="64.26" Width="270.27" Height="18.9" Text="打印时间：[PrintingDate]" HorzAlign="Right" VertAlign="Center" Angle="180" Font="新宋体, 10pt"/>
+      <TextObject Name="Text79" Left="32.13" Top="88.83" Width="113.4" Height="20.79" Border.Lines="Top" Text="[ActualPickedBars]" VertAlign="Center" Angle="180" Font="新宋体, 12pt"/>
+      <TextObject Name="Text81" Left="888.3" Top="88.83" Width="151.2" Height="20.79" Border.Lines="Top" Text="[MONo]" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text82" Left="795.69" Top="88.83" Width="43.47" Height="20.79" Border.Lines="Top" Text="[LineNo]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text83" Left="527.31" Top="88.83" Width="198.45" Height="20.79" Border.Lines="Top" Text="[LotNumber]" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text84" Left="359.1" Top="88.83" Width="88.83" Height="20.79" Border.Lines="Top" Text="[OrderQty]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text87" Left="481.95" Top="117.18" Width="217.35" Height="20.79" Border.Lines="Top" Text="[FatherMaterialName]" VertAlign="Center" Angle="180" Font="新宋体, 11pt"/>
+      <TextObject Name="Text90" Left="226.8" Top="88.83" Width="52.92" Height="20.79" Border.Lines="Top" Text="[InQuantity]" HorzAlign="Center" Angle="180" Font="宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text98" Left="1039.5" Top="88.83" Width="75.6" Height="20.79" Text="订单号" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text99" Left="839.16" Top="88.83" Width="43.47" Height="20.79" Text="行号" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text100" Left="725.76" Top="88.83" Width="66.15" Height="20.79" Text="批次号" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text101" Left="447.93" Top="88.83" Width="75.6" Height="20.79" Text="总提料量" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text102" Left="279.72" Top="88.83" Width="75.6" Height="20.79" Text="批次批量" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text103" Left="145.53" Top="88.83" Width="75.6" Height="20.79" Text="数量折算" HorzAlign="Right" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text80" Left="357.21" Top="117.18" Width="45.36" Height="20.79" Border.Lines="Top" Text="[StartingDate]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text85" Left="32.13" Top="117.18" Width="113.4" Height="20.79" Border.Lines="Top" Text="[MaterialCode]" VertAlign="Center" Angle="180" Font="新宋体, 12pt"/>
+      <TextObject Name="Text86" Left="784.35" Top="117.18" Width="119.07" Height="20.79" Border.Lines="Top" Text="[FatherMaterialCode]" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text88" Left="224.91" Top="117.18" Width="52.92" Height="20.79" Border.Lines="Top" Text="[CompletingDate]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text91" Left="1033.83" Top="117.18" Width="81.27" Height="20.79" Text="割片厂家" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text92" Left="988.47" Top="117.18" Width="45.36" Height="20.79" Border.Lines="Top" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text93" Left="903.42" Top="117.18" Width="81.27" Height="20.79" Text="物料编码" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text94" Left="699.3" Top="117.18" Width="81.27" Height="20.79" Text="产品名称" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text95" Left="402.57" Top="117.18" Width="75.6" Height="20.79" Text="开工日期" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text96" Left="277.83" Top="117.18" Width="75.6" Height="20.79" Text="完工日期" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text97" Left="145.53" Top="117.18" Width="75.6" Height="20.79" Text="子项编码" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
     </PageFooterBand>
   </ReportPage>
 </Report>
