@@ -32,7 +32,7 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 //[assembly: AssemblyVersion("6.0.*")]
-[assembly: AssemblyVersion("6.0.52.348")]
+[assembly: AssemblyVersion("6.0.53.350")]
 //[assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: AssemblyInformationalVersion("6.0.52.348")]
-[assembly: AssemblyFileVersion("2018.4.27.348")]
+[assembly: AssemblyInformationalVersion("6.0.53.350")]
+[assembly: AssemblyFileVersion("2018.5.2.350")]
