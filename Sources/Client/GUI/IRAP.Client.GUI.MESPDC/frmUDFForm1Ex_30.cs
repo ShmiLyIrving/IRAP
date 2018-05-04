@@ -37,6 +37,7 @@ namespace IRAP.Client.GUI.MESPDC
         private List<SimpleButton> _buttons = new List<SimpleButton>();
         private SimpleButton mustAllInputButton = null;
         private SimpleButton reprintLabelButton = null;
+        private bool formActivated = true;
 
         public frmUDFForm1Ex_30()
         {
@@ -533,50 +534,74 @@ namespace IRAP.Client.GUI.MESPDC
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                int errCode = 0;
-                string errText = "";
-                List<FormCtrlInfo> ctrls = new List<FormCtrlInfo>();
-
-                IRAPMDMClient.Instance.sfn_FunctionFormCtrls(
-                    IRAPUser.Instance.CommunityID,
-                    menuInfo.ItemID,
-                    IRAPConst.Instance.IRAP_PROGLANGUAGEID,
-                    IRAPUser.Instance.SysLogID,
-                    ref ctrls,
-                    out errCode,
-                    out errText);
-                WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText),
-                    strProcedureName);
-                if (errCode == 0)
+                for (int i = 0; i < _labels.Count; i++)
                 {
-                    foreach (FormCtrlInfo ctrl in ctrls)
-                    {
-                        switch (ctrl.CtrlType)
-                        {
-                            case "Label":
-                                LabelControl label = FindLabelWithTagOrdinal(ctrl.Ordinal);
-                                if (label != null)
-                                {
-                                    RefreshLabel(label, ctrl);
-                                }
-                                break;
-                            case "EditBox":
-                                TextEdit edit = FindTextEditWithTagOrdinal(ctrl.Ordinal);
-                                if (edit != null)
-                                {
-                                    RefreshTextEdit(edit, ctrl);
-                                }
-                                break;
-                            case "Button":
-                                SimpleButton button = FindButtonWithTagOrdinal(ctrl.Ordinal);
-                                if (button != null)
-                                {
-                                    RefreshButton(button, ctrl);
-                                }
-                                break;
-                        }
-                    }
+                    _labels[i].Dispose();
+                    _labels[i] = null;
                 }
+                for (int i = 0; i < _edits.Count; i++)
+                {
+                    _edits[i].Dispose();
+                    _edits[i] = null;
+                }
+                for (int i = 0; i < _buttons.Count; i++)
+                {
+                    _buttons[i].Dispose();
+                    _buttons[i] = null;
+                }
+
+                _labels.Clear();
+                _edits.Clear();
+                _buttons.Clear();
+
+                firstFocusedObject = null;
+                mustAllInputButton = null;
+
+                CreateDynamicControls();
+                //int errCode = 0;
+                //string errText = "";
+                //List<FormCtrlInfo> ctrls = new List<FormCtrlInfo>();
+
+                //IRAPMDMClient.Instance.sfn_FunctionFormCtrls(
+                //    IRAPUser.Instance.CommunityID,
+                //    menuInfo.ItemID,
+                //    IRAPConst.Instance.IRAP_PROGLANGUAGEID,
+                //    IRAPUser.Instance.SysLogID,
+                //    ref ctrls,
+                //    out errCode,
+                //    out errText);
+                //WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText),
+                //    strProcedureName);
+                //if (errCode == 0)
+                //{
+                //    foreach (FormCtrlInfo ctrl in ctrls)
+                //    {
+                //        switch (ctrl.CtrlType)
+                //        {
+                //            case "Label":
+                //                LabelControl label = FindLabelWithTagOrdinal(ctrl.Ordinal);
+                //                if (label != null)
+                //                {
+                //                    RefreshLabel(label, ctrl);
+                //                }
+                //                break;
+                //            case "EditBox":
+                //                TextEdit edit = FindTextEditWithTagOrdinal(ctrl.Ordinal);
+                //                if (edit != null)
+                //                {
+                //                    RefreshTextEdit(edit, ctrl);
+                //                }
+                //                break;
+                //            case "Button":
+                //                SimpleButton button = FindButtonWithTagOrdinal(ctrl.Ordinal);
+                //                if (button != null)
+                //                {
+                //                    RefreshButton(button, ctrl);
+                //                }
+                //                break;
+                //        }
+                //    }
+                //}
             }
             catch (Exception error)
             {
@@ -964,17 +989,25 @@ namespace IRAP.Client.GUI.MESPDC
             {
                 Options.Visible = true;
 
+                if (!formActivated)
+                    RefreshForm();
+
                 if (firstFocusedObject != null)
                 {
                     firstFocusedObject.Focus();
                 }
 
-                RefreshForm();
+                formActivated = true;
             }
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        private void frmUDFForm1Ex_30_Deactivate(object sender, EventArgs e)
+        {
+            formActivated = false;
         }
     }
 }
