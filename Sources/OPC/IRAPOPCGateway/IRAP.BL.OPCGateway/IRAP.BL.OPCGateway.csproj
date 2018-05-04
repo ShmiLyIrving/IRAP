@@ -60,6 +60,13 @@
     <Compile Include="Actions\TGetKepServList.cs" />
     <Compile Include="Actions\TUpdateDeviceTags.cs" />
     <Compile Include="Actions\TUpdateKepServ.cs" />
+    <Compile Include="Entities\TOPCDevice.cs" />
+    <Compile Include="Entities\TOPCDeviceCollection.cs" />
+    <Compile Include="Entities\TOPCDevices.cs" />
+    <Compile Include="Entities\TOPCTag.cs" />
+    <Compile Include="Entities\TOPCTagCollection.cs" />
+    <Compile Include="Entities\TTagT20Object.cs" />
+    <Compile Include="Entities\TTagT20ObjectCollection.cs" />
     <Compile Include="Interfaces\IWebAPIAction.cs" />
     <Compile Include="KepServer\TKepServerWriter.cs" />
     <Compile Include="OPCGatewayService.cs" />
