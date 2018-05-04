@@ -84,6 +84,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Quantity.cs" />
+    <Compile Include="RawPrinterHelper.cs" />
     <Compile Include="RDPClient.cs" />
     <Compile Include="SetSystemDateTime.cs" />
     <Compile Include="SocketPrint.cs" />
