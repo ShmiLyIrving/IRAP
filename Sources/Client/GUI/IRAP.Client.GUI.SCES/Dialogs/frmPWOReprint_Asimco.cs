@@ -195,6 +195,9 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                                     report1.Parameters.FindByName("FatherMaterialCode").Value = pwoInfo.ProductNo;
                                     report1.Parameters.FindByName("FatherMaterialName").Value = pwoInfo.ProductDesc;
                                     report1.Parameters.FindByName("DstT106Code").Value = pwoInfo.DstT106Code;
+
+                                    if (IRAPUser.Instance.CommunityID == 60030)
+                                        report1.Parameters.FindByName("GateWayWC").Value = pwoInfo.GateWayWC;
                                 }
 
                                 break;

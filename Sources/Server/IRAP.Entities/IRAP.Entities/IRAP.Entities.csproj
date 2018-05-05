@@ -124,6 +124,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MDM\TemplateContent.cs" />
     <Compile Include="SCES\ReprintPWO.cs" />
+    <Compile Include="SCES\Tables\ITEM_INFO.cs" />
     <Compile Include="SCES\UnclosedDeliveryOrdersForPWO.cs" />
     <Compile Include="SSO\UserDetailInfo.cs" />
     <Compile Include="SSO\UserInfo.cs" />

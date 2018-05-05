@@ -12,6 +12,7 @@ using IRAPORM;
 using IRAP.Entities.SCES;
 using IRAP.Entities.MES.Tables;
 using IRAP.Entities.MDM.Tables;
+using IRAP.Entities.SCES.Tables;
 
 namespace IRAP.BL.SCES
 {
@@ -937,6 +938,26 @@ namespace IRAP.BL.SCES
                         if (lst058.Count > 0)
                         {
                             rlt.ProductDesc = lst058[0].NodeName;
+                        }
+                    }
+                    #endregion
+
+                    #region 如果社区标识是 60030，则需要获取 GateWayWC
+                    if (communityID == 60030)
+                    {
+                        strSQL =
+                            string.Format(
+                                "SELECT * " +
+                                "FROM IRAPSCES..ITEM_INFO " +
+                                "WHERE T102LeafID={0}",
+                                lstMaterials[0].LeafID);
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<ITEM_INFO> lstItems =
+                            conn.CallTableFunc<ITEM_INFO>(strSQL, paramList);
+                        if (lstItems.Count > 0)
+                        {
+                            rlt.GateWayWC = lstItems[0].GATEWAY_WC;
                         }
                     }
                     #endregion

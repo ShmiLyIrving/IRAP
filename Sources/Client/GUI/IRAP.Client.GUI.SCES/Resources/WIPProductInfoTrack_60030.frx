@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="04/27/2018 14:50:37" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="05/05/2018 10:56:30" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,6 +51,7 @@ namespace FastReport
     <Parameter Name="T106Code" DataType="System.String"/>
     <Parameter Name="ProductLine" DataType="System.String"/>
     <Parameter Name="DstT106Code" DataType="System.String"/>
+    <Parameter Name="GateWayWC" DataType="System.String"/>
   </Dictionary>
   <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
     <PageHeaderBand Name="PageHeader1" Width="1122.66" Height="136.08">
@@ -67,7 +68,7 @@ namespace FastReport
       <TextObject Name="Text54" Left="818.37" Top="64.26" Width="270.27" Height="18.9" Visible="false" Text="打印时间：[PrintingDate]" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text1" Left="842.94" Top="39.69" Width="52.92" Height="20.79" Visible="false" Border.Lines="Bottom" Text="[InQuantity]" HorzAlign="Center" Font="宋体, 12pt, style=Bold"/>
       <TextObject Name="Text2" Left="3.78" Top="11.34" Width="81.27" Height="20.79" Visible="false" Text="割片厂家" VertAlign="Center" Font="宋体, 12pt"/>
-      <TextObject Name="Text67" Left="85.05" Top="11.34" Width="45.36" Height="20.79" Visible="false" Border.Lines="Bottom" VertAlign="Center" Font="宋体, 12pt"/>
+      <TextObject Name="Text67" Left="85.05" Top="11.34" Width="45.36" Height="20.79" Visible="false" Border.Lines="Bottom" Text="[GateWayWC]" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
       <TextObject Name="Text68" Left="136.08" Top="11.34" Width="81.27" Height="20.79" Visible="false" Text="物料编码" VertAlign="Center" Font="宋体, 12pt"/>
       <TextObject Name="Text69" Left="340.2" Top="11.34" Width="81.27" Height="20.79" Visible="false" Text="产品名称" VertAlign="Center" Font="宋体, 12pt"/>
       <TextObject Name="Text70" Left="642.6" Top="11.34" Width="75.6" Height="20.79" Visible="false" Text="开工日期" VertAlign="Center" Font="宋体, 12pt"/>
@@ -101,7 +102,7 @@ namespace FastReport
       <TextObject Name="Text86" Left="784.35" Top="117.18" Width="119.07" Height="20.79" Border.Lines="Top" Text="[FatherMaterialCode]" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
       <TextObject Name="Text88" Left="224.91" Top="117.18" Width="52.92" Height="20.79" Border.Lines="Top" Text="[CompletingDate]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="新宋体, 12pt, style=Bold"/>
       <TextObject Name="Text91" Left="1033.83" Top="117.18" Width="81.27" Height="20.79" Text="割片厂家" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
-      <TextObject Name="Text92" Left="988.47" Top="117.18" Width="45.36" Height="20.79" Border.Lines="Top" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
+      <TextObject Name="Text92" Left="988.47" Top="117.18" Width="45.36" Height="20.79" Border.Lines="Top" Text="[GateWayWC]" HorzAlign="Center" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
       <TextObject Name="Text93" Left="903.42" Top="117.18" Width="81.27" Height="20.79" Text="物料编码" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
       <TextObject Name="Text94" Left="699.3" Top="117.18" Width="81.27" Height="20.79" Text="产品名称" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>
       <TextObject Name="Text95" Left="402.57" Top="117.18" Width="75.6" Height="20.79" Text="开工日期" VertAlign="Center" Angle="180" Font="宋体, 12pt"/>

@@ -32,5 +32,9 @@ namespace IRAP.Entities.SCES
         public string MaterialDesc { get; set; }
         public string ActualQuantityToDeliver { get; set; }
         public string DstT106Code { get; set; }
+        /// <summary>
+        /// 成品中心/厂家信息
+        /// </summary>
+        public string GateWayWC { get; set; }
     }
 }

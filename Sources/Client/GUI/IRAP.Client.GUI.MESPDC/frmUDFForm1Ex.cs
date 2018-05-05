@@ -708,6 +708,11 @@ namespace IRAP.Client.GUI.MESPDC
                 //        }
                 //    }
                 //}
+
+                if (firstFocusedObject != null)
+                {
+                    firstFocusedObject.Focus();
+                }
             }
             catch (Exception error)
             {
