@@ -207,6 +207,10 @@ namespace IRAP.Entities.SCES
         /// 辅助事实分区键
         /// </summary>
         public long AF482PK { get; set; }
+        /// <summary>
+        /// 行集事实分区键
+        /// </summary>
+        public long FP482PK { get; set; }
 
         [IRAPORMMap(ORMMap = false)]
         public Quantity PlannedQuantity
@@ -228,21 +232,22 @@ namespace IRAP.Entities.SCES
                 }
             }
         }
-
         /// <summary>
         /// 子项物料叶标识
         /// </summary>
         public int SubLeafID { get; set; }
-
         /// <summary>
         /// 子项物料号
         /// </summary>
         public string SubMaterialCode { get; set; }
-
         /// <summary>
         /// 子项物料名称
         /// </summary>
         public string SubMaterialDesc { get; set; }
+        /// <summary>
+        /// 产品中心/厂家信息
+        /// </summary>
+        public string GateWayWC { get; set; }
 
         public ProductionWorkOrderEx Clone()
         {
