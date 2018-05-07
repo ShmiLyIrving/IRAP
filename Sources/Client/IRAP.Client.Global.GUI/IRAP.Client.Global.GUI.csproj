@@ -104,6 +104,12 @@
     <Compile Include="frmShowErrorLogs.Designer.cs">
       <DependentUpon>frmShowErrorLogs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmSubTreeLeafEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmSubTreeLeafEditor.Designer.cs">
+      <DependentUpon>frmSubTreeLeafEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -167,6 +173,9 @@
     <EmbeddedResource Include="Dialogs\frmReadUserIDCard.resx">
       <DependentUpon>frmReadUserIDCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmSubTreeLeafEditor.resx">
+      <DependentUpon>frmSubTreeLeafEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCustomFuncBase.resx">
       <DependentUpon>frmCustomFuncBase.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +191,7 @@
     <EmbeddedResource Include="frmShowErrorLogs.resx">
       <DependentUpon>frmShowErrorLogs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
