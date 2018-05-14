@@ -62,6 +62,7 @@
     <Compile Include="MDM\BatchIQCReport.cs" />
     <Compile Include="MDM\BatchRingCategory.cs" />
     <Compile Include="MDM\BWI_SKUIDInfo.cs" />
+    <Compile Include="MDM\CapacityForT101OrT102.cs" />
     <Compile Include="MDM\CurrentLoadingSheetItem.cs" />
     <Compile Include="MDM\DefectRootCause.cs" />
     <Compile Include="MDM\FailureModeByWorkUnit.cs" />

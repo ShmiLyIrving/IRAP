@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.grdQualityParams = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNew = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -222,7 +223,7 @@
             this.splitContainerControl1.Panel1.Controls.Add(this.grdQualityParams);
             this.splitContainerControl1.Panel1.Padding = new System.Windows.Forms.Padding(10);
             this.splitContainerControl1.Panel1.ShowCaption = true;
-            this.splitContainerControl1.Panel1.Text = "质量参数";
+            this.splitContainerControl1.Panel1.Text = "参数";
             this.splitContainerControl1.Panel2.Controls.Add(this.btnNew);
             this.splitContainerControl1.Panel2.Controls.Add(this.btnEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.btnRefresh);

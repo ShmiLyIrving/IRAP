@@ -6602,5 +6602,179 @@ namespace IRAP.BL.MDM
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 获取产品单杆数量
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="productCode">产品代码</param>
+        /// <param name="shotTime">关注的时间点（当前版本传空串）</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public IRAPJsonResult ufn_GetList_CapacityForT101OrT102(
+            int communityID,
+            string productCode,
+            string shotTime, 
+            long sysLogID,
+            out int errCode, 
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<CapacityForT101OrT102> datas = new List<CapacityForT101OrT102>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@ProductCode", DbType.String, productCode));
+                paramList.Add(new IRAPProcParameter("@ShotTime", DbType.String, shotTime));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMDM..ufn_GetList_CapacityForT101OrT102，" +
+                        "参数：CommunityID={0}|ProductCode={1}|ShotTime={2}|SysLogID={3}",
+                        communityID,
+                        productCode,
+                        shotTime,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL =
+                                "SELECT * " +
+                                "FROM IRAPMDM..ufn_GetList_CapacityForT101OrT102(" +
+                                "@CommunityID, @ProductCode, @ShotTime, @SysLogID) "+
+                                "ORDER BY Ordinal";
+
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<CapacityForT101OrT102> lstDatas =
+                            conn.CallTableFunc<CapacityForT101OrT102>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText = string.Format(
+                        "调用 IRAPMDM..ufn_GetList_CapacityForT101OrT102 函数发生异常：{0}",
+                        error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 保存指定产品的单杆数量
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="attrChangeXML">属性变更 XML ，格式：
+        /// [ROOT][MDM T157LeafID="" TreeID="101/102" LeafID="" StdQty="" /][/ROOT]
+        /// </param>
+        public IRAPJsonResult usp_SaveRSAttr_T157RX(
+            int communityID,
+            string attrChangeXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@AttrChangeXML", DbType.String, attrChangeXML));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrCode",
+                        DbType.Int32,
+                        ParameterDirection.Output,
+                        4));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrText",
+                        DbType.String,
+                        ParameterDirection.Output,
+                        400));
+                WriteLog.Instance.Write(
+                    string.Format("执行存储过程 IRAP..usp_SaveRSAttr_T157RX，参数：" +
+                        "CommunityID={0}|AttrChangeXML={1}|SysLogID={2}",
+                        communityID, attrChangeXML, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error = conn.CallProc("IRAPMDM..usp_SaveRSAttr_T157RX", ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    Hashtable rtnParams = new Hashtable();
+                    if (errCode == 0)
+                    {
+                        foreach (IRAPProcParameter param in paramList)
+                        {
+                            if (param.Direction == ParameterDirection.InputOutput || 
+                                param.Direction == ParameterDirection.Output)
+                            {
+                                if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), 0);
+                                else
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
+                            }
+                        }
+                    }
+
+                    return Json(rtnParams);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText = string.Format("调用 IRAPMDM..usp_SaveRSAttr_T157RX 时发生异常：{0}", error.Message);
+                return Json(new Hashtable());
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

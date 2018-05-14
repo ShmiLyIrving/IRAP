@@ -61,6 +61,22 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Server\IRAP.Entities\IRAP.Entity.MES\bin\Debug\IRAP.Entity.MES.dll</HintPath>
     </Reference>
+    <Reference Include="NPOI, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\NPOI.2.2.1\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\NPOI.2.2.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -163,6 +179,12 @@
     </Compile>
     <Compile Include="frmLabelTemplateManager.Designer.cs">
       <DependentUpon>frmLabelTemplateManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOperationManager_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOperationManager_30.Designer.cs">
+      <DependentUpon>frmOperationManager_30.cs</DependentUpon>
     </Compile>
     <Compile Include="frmProductProcessManager_30.cs">
       <SubType>Form</SubType>
@@ -350,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLabelTemplateManager.resx">
       <DependentUpon>frmLabelTemplateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOperationManager_30.resx">
+      <DependentUpon>frmOperationManager_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductProcessManager_30.en-US.resx">
       <DependentUpon>frmProductProcessManager_30.cs</DependentUpon>

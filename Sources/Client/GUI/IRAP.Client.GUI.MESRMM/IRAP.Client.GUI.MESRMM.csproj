@@ -59,6 +59,12 @@
     <Compile Include="frmMDMInspection_30.Designer.cs">
       <DependentUpon>frmMDMInspection_30.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMDMMethod_30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMDMMethod_30.Designer.cs">
+      <DependentUpon>frmMDMMethod_30.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWIShow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmMDMInspection_30.resx">
       <DependentUpon>frmMDMInspection_30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMDMMethod_30.resx">
+      <DependentUpon>frmMDMMethod_30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWIShow.resx">
       <DependentUpon>frmWIShow.cs</DependentUpon>
