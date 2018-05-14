@@ -404,6 +404,7 @@ namespace myWPF
 <cdefine22>{txtcdefine220.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine230.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine240.Text.Trim()}</cdefine24>
+<cdefine26>{txtcdefine260.Text.Trim()}</cdefine26>
 <editprop>A</editprop>
 </row></table> ";
 
@@ -515,6 +516,7 @@ namespace myWPF
 <cdefine22>{txtcdefine221.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine231.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine241.Text.Trim()}</cdefine24>
+<cdefine26>{txtcdefine261.Text.Trim()}</cdefine26>
 </row></table> ";
 
                     sVouchType = "10";
@@ -628,7 +630,7 @@ namespace myWPF
 <cposition>{txtcposname2.Text.Trim()}</cposition>
 <cdefine22>{txtcdefine222.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine232.Text.Trim()}</cdefine23>
-<cdefine24>{txtcdefine242.Text.Trim()}</cdefine24>
+<cdefine26>{txtcdefine262.Text.Trim()}</cdefine26>
 <isotype>{txtisotype2.Text.Trim()}</isotype>
 <btaxcost>{txtbtaxcost2.Text.Trim()}</btaxcost>
 <iunitcost>{txtiunitcost2.Text.Trim()}</iunitcost>
@@ -751,6 +753,7 @@ namespace myWPF
 <cinposcode>{txtcinposcode3.Text.Trim()}</cinposcode>
 <ctvbatch>{txtctvbatch3.Text.Trim()}</ctvbatch>
 <itrids>{txtitrids3.Text.Trim()}</itrids>
+<cdefine26>{txtcdefine263.Text.Trim()}</cdefine26>
 </row></table> ";
 
                     sVouchType = "12";
@@ -870,6 +873,7 @@ namespace myWPF
 <isodid>{txtisodid4.Text.Trim()}</isodid>
 <iordertype>{txtiordertype4.Text.Trim()}</iordertype>
 <iorderdid>{txtiorderdid4.Text.Trim()}</iorderdid>
+<cdefine26>{txtcdefine264.Text.Trim()}</cdefine26>
  </row></table> ";
 
                     sVouchType = "32";
@@ -972,6 +976,7 @@ namespace myWPF
 <cdefine22>{txtcdefine225.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine235.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine245.Text.Trim()}</cdefine24>
+<cdefine26>{txtcdefine265.Text.Trim()}</cdefine26>
  </row></table> ";
 
                     sVouchType = "08";
@@ -1073,6 +1078,7 @@ namespace myWPF
 <cdefine22>{txtcdefine226.Text.Trim()}</cdefine22>
 <cdefine23>{txtcdefine236.Text.Trim()}</cdefine23>
 <cdefine24>{txtcdefine246.Text.Trim()}</cdefine24>
+<cdefine26>{txtcdefine266.Text.Trim()}</cdefine26>
  </row></table> ";
 
                     sVouchType = "09";
@@ -1162,14 +1168,29 @@ namespace myWPF
                     b = $@"<table>
 <row>
 <autoid>{txtautoid7.Text.Trim()}</autoid>
-<cinvcode>{txtcinvcode7.Text.Trim()}</cinvcode>
+<cinvcode>{txtbcinvcode7.Text.Trim()}</cinvcode>
 <editprop>{txteditprop7.Text.Trim()}</editprop>
 <iavquantity>{txtiavquantity7.Text.Trim()}</iavquantity>
-<bavtype>{txtbavtype7.Text.Trim()}</bavtype>
+<bavtype>转换前</bavtype>
 <cinvm_unit>{txtcinvm_unit7.Text.Trim()}</cinvm_unit>
-<cavbatch>{txtcavbatch7.Text.Trim()}</cavbatch>
-<cwhcode>{txtcwhcode7.Text.Trim()}</cwhcode>
-</row></table> ";
+<cavbatch>{txtbcavbatch7.Text.Trim()}</cavbatch>
+<cwhcode>{txtbcwhcode7.Text.Trim()}</cwhcode>
+<cdefine26>{txtcdefine267.Text.Trim()}</cdefine26>
+<cposition>{txtbcposition7.Text.Trim()}</cposition>
+</row>
+<row>
+<autoid>{txtautoid7.Text.Trim()}</autoid>
+<cinvcode>{txtbcinvcode7.Text.Trim()}</cinvcode>
+<editprop>{txteditprop7.Text.Trim()}</editprop>
+<iavquantity>{txtiavquantity7.Text.Trim()}</iavquantity>
+<bavtype>转换后</bavtype>
+<cinvm_unit>{txtcinvm_unit7.Text.Trim()}</cinvm_unit>
+<cavbatch>{txtacavbatch7.Text.Trim()}</cavbatch>
+<cwhcode>{txtacwhcode7.Text.Trim()}</cwhcode>
+<cdefine26>{txtcdefine267.Text.Trim()}</cdefine26>
+<cposition>{txtacposition7.Text.Trim()}</cposition>
+</row>
+</table> ";
 
                     sVouchType = "15";
                     domPosition = "";
@@ -1237,7 +1258,7 @@ namespace myWPF
         private void btn_WebConfirm_Click(object sender, RoutedEventArgs e)
         {
             btn_WebConfirm.IsEnabled = false;
-            Web3.IRAP_WebService client = new Web3.IRAP_WebService();
+            Web.IRAP_WebService client = new Web.IRAP_WebService();
             //IRAP_WebService s = new IRAP_WebService();
             string Excode = "";
             string h, b,mode="";
@@ -1246,38 +1267,44 @@ namespace myWPF
                 #region 材料出库
                 case 0:
                     mode = "材料出库";
-                    h = $@"&lt;table&gt;
-&lt;row&gt;
-&lt;id&gt;{txtid0.Text.Trim()}&lt;/id&gt;
-&lt;cwhcode&gt;{txtcwhname0.Text.Trim()}&lt;/cwhcode&gt;
-&lt;cmpocode&gt;{txtcmpocode0.Text.Trim()}&lt;/cmpocode&gt;
-&lt;cmaker&gt;{txtcmaker0.Text.Trim()}&lt;/cmaker&gt;
-&lt;dnmaketime&gt;{dpdnmaketime0.Text.Trim()}&lt;/dnmaketime&gt;
-&lt;cbustype&gt;{txtcbustype0.Text.Trim()}&lt;/cbustype&gt;
-&lt;crdcode&gt;{txtcrdname0.Text.Trim()}&lt;/crdcode&gt;
-&lt;vt_id&gt;{txtvt_id0.Text.Trim()}&lt;/vt_id&gt;
-&lt;cdepcode&gt;0907&lt;/cdepcode&gt;
-&lt;ccode&gt;{txtccode0.Text.Trim()}&lt;/ccode&gt;
-&lt;ddate&gt;{dpddate0.Text.Trim()}&lt;/ddate&gt;
-&lt;/row&gt;&lt;/table&gt;";
+                    h = $@"<head><table>
+<row>
+<id>{txtid0.Text.Trim()}</id>
+<cwhcode>{txtcwhname0.Text.Trim()}</cwhcode>
+<cmpocode>{txtcmpocode0.Text.Trim()}</cmpocode>
+<cmaker>{txtcmaker0.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime0.Text.Trim()}</dnmaketime>
+<cbustype>{txtcbustype0.Text.Trim()}</cbustype>
+<crdcode>{txtcrdname0.Text.Trim()}</crdcode>
+<vt_id>{txtvt_id0.Text.Trim()}</vt_id>
+<cdepcode>{txtcdepcode0.Text.Trim()}</cdepcode>
+<ccode>{txtccode0.Text.Trim()}</ccode>
+<ddate>{dpddate0.Text.Trim()}</ddate>
+<cvencode>{txtcvencode0.Text.Trim()}</cvencode>
+</row></table></head>";
 
-                    b = $@"&lt;table&gt;
-&lt;row&gt;
-&lt;autoid&gt;1&lt;/autoid&gt;
-&lt;cinvcode&gt;{txtcinvcode0.Text.Trim()}&lt;/cinvcode&gt;
-&lt;cbatch&gt;{txtcbatch0.Text.Trim()}&lt;/cbatch&gt;
-&lt;iquantity&gt;{txtiquantity0.Text.Trim()}&lt;/iquantity&gt;
-&lt;cmocode&gt;{txtcmpocode0.Text.Trim()}&lt;/cmocode&gt;
-&lt;imoseq&gt;{txtimoseq0.Text.Trim()}&lt;/imoseq&gt;
-&lt;impoids&gt;{txtimpoids0.Text.Trim()}&lt;/impoids&gt;
-&lt;cposition&gt;{txtcposname0.Text.Trim()}&lt;/cposition&gt;
-&lt;cdefine22&gt;{txtcdefine220.Text.Trim()}&lt;/cdefine22&gt;
-&lt;cdefine23&gt;{txtcdefine230.Text.Trim()}&lt;/cdefine23&gt;
-&lt;cdefine24&gt;{txtcdefine240.Text.Trim()}&lt;/cdefine24&gt;
-&lt;/row&gt;&lt;/table&gt;";
+                    b = $@"<body><table>
+<row>
+<autoid>1</autoid>
+<cinvcode>{txtcinvcode0.Text.Trim()}</cinvcode>
+<cbatch>{txtcbatch0.Text.Trim()}</cbatch>
+<iquantity>{txtiquantity0.Text.Trim()}</iquantity>
+<cmocode>{txtcmocode0.Text.Trim()}</cmocode>
+<imoseq>{txtimoseq0.Text.Trim()}</imoseq>
+<impoids>{txtimpoids0.Text.Trim()}</impoids>
+<cposition>{txtcposname0.Text.Trim()}</cposition>
+<cdefine22>{txtcdefine220.Text.Trim()}</cdefine22>
+<cdefine23>{txtcdefine230.Text.Trim()}</cdefine23>
+<cdefine24>{txtcdefine240.Text.Trim()}</cdefine24>
+<cdefine26>{txtcdefine260.Text.Trim()}</cdefine26>
+<comcode>{txtcomcode0.Text.Trim()}</comcode>
+<iomodid>{txtiomodid0.Text.Trim()}</iomodid>
+<iomomid>{txtiomomid0.Text.Trim()}</iomomid>
+<editprop>{txteditprop0.Text.Trim()}</editprop>
+</row></table></body>";
                     Excode = "<Parameters>"+
-$"<Param Mode=\"MaterialOutAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVouchType=\"11\" VouchId=\"11\" bCheck=\"{SysParams.Instance.bCheck}\" bBeforCheckStock=\"{SysParams.Instance.bBeforCheckStock}\" bIsRedVouch=\"{SysParams.Instance.bIsRedVouch}\" sAddedState=\"\" bReMote=\"false\" body=\"{b}\" head=\"{h}\"/>" +
-                        "</Parameters>";
+$"<Param Mode=\"MaterialOutAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVouchType=\"11\" VouchId=\"11\" bCheck=\"{SysParams.Instance.bCheck}\" bBeforCheckStock=\"{SysParams.Instance.bBeforCheckStock}\" bIsRedVouch=\"{SysParams.Instance.bIsRedVouch}\" sAddedState=\"\" bReMote=\"false\">";
+                    Excode += @"<body>      <table>        <row>          <autoid>1</autoid>          <cinvcode>XXXXXX</cinvcode>          <cbatch>20180510</cbatch>          <iquantity>1000</iquantity>          <cmocode />          <imoseq />          <impoids />          <cposition>N061</cposition>          <cdefine22 />          <cdefine23 />          <cdefine24 />          <cdefine26 />          <comcode />          <iomodid />          <iomomid />          <editprop>A</editprop>        </row>      </table>    </body>    <head>      <table>        <row>          <id>1</id>          <cwhcode />          <cmpocode>18010547</cmpocode>          <cmaker>000094</cmaker>          <dnmaketime>2018-05-10</dnmaketime>          <cbustype>领料</cbustype>          <crdcode />          <vt_id>65</vt_id>          <cdepcode>N060</cdepcode>          <ccode>65</ccode>          <ddate>2018-05-10</ddate>          <cvencode />        </row>      </table>    </head>  </Param></Parameters>";
 
                     break;
                 #endregion                
@@ -1317,6 +1344,8 @@ $"<Param Mode=\"MaterialOutAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sV
 &lt;cdefine22&gt;{txtcdefine221.Text.Trim()}&lt;/cdefine22&gt;
 &lt;cdefine23&gt;{txtcdefine231.Text.Trim()}&lt;/cdefine23&gt;
 &lt;cdefine24&gt;{txtcdefine241.Text.Trim()}&lt;/cdefine24&gt;
+&lt;cdefine26&gt;{txtcdefine261.Text.Trim()}&lt;/cdefine26&gt;
+&lt;editprop&gt;{txteditprop1.Text.Trim()}&lt;/editprop&gt;
 &lt;/row&gt;&lt;/table&gt; ";
                     Excode = "<Parameters>" +
 $"<Param Mode=\"ProductInAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVouchType=\"10\" VouchId=\"10\" bCheck=\"{SysParams.Instance.bCheck}\" bBeforCheckStock=\"{SysParams.Instance.bBeforCheckStock}\" bIsRedVouch=\"{SysParams.Instance.bIsRedVouch}\" sAddedState=\"\" bReMote=\"false\" body=\"{b}\" head=\"{h}\"/>" +
@@ -1377,7 +1406,7 @@ $"<Param Mode=\"ProductInAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVou
 &lt;cposition&gt;{txtcposname2.Text.Trim()}&lt;/cposition&gt;
 &lt;cdefine22&gt;{txtcdefine222.Text.Trim()}&lt;/cdefine22&gt;
 &lt;cdefine23&gt;{txtcdefine232.Text.Trim()}&lt;/cdefine23&gt;
-&lt;cdefine24&gt;{txtcdefine242.Text.Trim()}&lt;/cdefine24&gt;
+&lt;cdefine26&gt;{txtcdefine262.Text.Trim()}&lt;/cdefine26&gt;
 &lt;isotype&gt;{txtisotype2.Text.Trim()}&lt;/isotype&gt;
 &lt;btaxcost&gt;{txtbtaxcost2.Text.Trim()}&lt;/btaxcost&gt;
 &lt;iunitcost&gt;{txtiunitcost2.Text.Trim()}&lt;/iunitcost&gt;
@@ -1439,6 +1468,7 @@ $"<Param Mode=\"PuStoreInAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVou
 &lt;cinposcode&gt;{txtcinposcode3.Text.Trim()}&lt;/cinposcode&gt;
 &lt;ctvbatch&gt;{txtctvbatch3.Text.Trim()}&lt;/ctvbatch&gt;
 &lt;itrids&gt;{txtitrids3.Text.Trim()}&lt;/itrids&gt;
+&lt;cdefine26&gt;{txtcdefine263.Text.Trim()}&lt;/cdefine26&gt;
 &lt;/row&gt;&lt;/table&gt; ";
 
                     Excode = "<Parameters>" +
@@ -1520,7 +1550,7 @@ $"<Param Mode=\"saleoutAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVouch
 &lt;cwhname&gt;{txtcwhname5.Text.Trim()}&lt;/cwhname&gt;
 &lt;cwhcode&gt;{txtcwhname5.Text.Trim()}&lt;/cwhcode&gt;
 &lt;cbustype&gt;{txtcbustype5.Text.Trim()}&lt;/cbustype&gt;
-&lt;cdepcode&gt;0907&lt;/cdepcode&gt;
+&lt;cdepcode&gt;{txtcdepcode5.Text.Trim()}&lt;/cdepcode&gt;
 &lt;cpersoncode&gt;000381&lt;/cpersoncode&gt;
 &lt;crdcode&gt;{txtcrdcode5.Text.Trim()}&lt;/crdcode&gt;
 &lt;csource&gt;{txtcsource5.Text.Trim()}&lt;/csource&gt;
@@ -1545,6 +1575,7 @@ $"<Param Mode=\"saleoutAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVouch
 &lt;cdefine22&gt;{txtcdefine225.Text.Trim()}&lt;/cdefine22&gt;
 &lt;cdefine23&gt;{txtcdefine235.Text.Trim()}&lt;/cdefine23&gt;
 &lt;cdefine24&gt;{txtcdefine245.Text.Trim()}&lt;/cdefine24&gt;
+&lt;cdefine26&gt;{txtcdefine265.Text.Trim()}&lt;/cdefine26&gt;
  &lt;/row&gt;&lt;/table&gt; ";
 
                     Excode = "<Parameters>" +
@@ -1557,42 +1588,97 @@ $"<Param Mode=\"otherinAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVouch
                     mode = "其他出库单";
                     h = $@"&lt;table&gt;
      &lt;row&gt;
-&lt;id&gt;{txtid5.Text.Trim()}&lt;/id&gt;
-&lt;ccode&gt;{txtccode5.Text.Trim()}&lt;/ccode&gt;
-&lt;ddate&gt;{dpddate5.Text.Trim()}&lt;/ddate&gt;
-&lt;cwhname&gt;{txtcwhname5.Text.Trim()}&lt;/cwhname&gt;
-&lt;cwhcode&gt;{txtcwhname5.Text.Trim()}&lt;/cwhcode&gt;
-&lt;cbustype&gt;{txtcbustype5.Text.Trim()}&lt;/cbustype&gt;
-&lt;cdepcode&gt;0907&lt;/cdepcode&gt;
+&lt;id&gt;{txtid6.Text.Trim()}&lt;/id&gt;
+&lt;ccode&gt;{txtccode6.Text.Trim()}&lt;/ccode&gt;
+&lt;ddate&gt;{dpddate6.Text.Trim()}&lt;/ddate&gt;
+&lt;cwhname&gt;{txtcwhname6.Text.Trim()}&lt;/cwhname&gt;
+&lt;cwhcode&gt;{txtcwhname6.Text.Trim()}&lt;/cwhcode&gt;
+&lt;cbustype&gt;{txtcbustype6.Text.Trim()}&lt;/cbustype&gt;
+&lt;cdepcode&gt;{txtcdepcode6.Text.Trim()}&lt;/cdepcode&gt;
 &lt;cpersoncode&gt;000381&lt;/cpersoncode&gt;
-&lt;crdcode&gt;{txtcrdcode5.Text.Trim()}&lt;/crdcode&gt;
-&lt;csource&gt;{txtcsource5.Text.Trim()}&lt;/csource&gt;
-&lt;cbuscode&gt;{txtcbuscode5.Text.Trim()}&lt;/cbuscode&gt;
-&lt;cmaker&gt;{txtcmaker5.Text.Trim()}&lt;/cmaker&gt;
-&lt;dnmaketime&gt;{dpdnmaketime5.Text.Trim()}&lt;/dnmaketime&gt;
-&lt;vt_id&gt;{txtvt_id5.Text.Trim()}&lt;/vt_id&gt;
-&lt;brdflag&gt;{txtbrdflag5.Text.Trim()}&lt;/brdflag&gt;
+&lt;crdcode&gt;{txtcrdcode6.Text.Trim()}&lt;/crdcode&gt;
+&lt;csource&gt;{txtcsource6.Text.Trim()}&lt;/csource&gt;
+&lt;cbuscode&gt;{txtcbuscode6.Text.Trim()}&lt;/cbuscode&gt;
+&lt;cmaker&gt;{txtcmaker6.Text.Trim()}&lt;/cmaker&gt;
+&lt;dnmaketime&gt;{dpdnmaketime6.Text.Trim()}&lt;/dnmaketime&gt;
+&lt;vt_id&gt;{txtvt_id6.Text.Trim()}&lt;/vt_id&gt;
+&lt;brdflag&gt;{txtbrdflag6.Text.Trim()}&lt;/brdflag&gt;
 &lt;/row&gt;
 &lt;/table&gt;
 ";
 
                     b = $@"&lt;table&gt;
      &lt;row&gt;
-   &lt;autoid&gt;{txtautoid5.Text.Trim()}&lt;/autoid&gt;
-&lt;cinvcode&gt;{txtcinvcode5.Text.Trim()}&lt;/cinvcode&gt;
-&lt;editprop&gt;{txteditprop5.Text.Trim()}&lt;/editprop&gt;
-&lt;iquantity&gt;{txtiquantity5.Text.Trim()}&lt;/iquantity&gt;
-&lt;cbatch&gt;{txtcbatch5.Text.Trim()}&lt;/cbatch&gt;
-&lt;cbaccounter&gt;{txtcbaccounter5.Text.Trim()}&lt;/cbaccounter&gt;
-&lt;cposition&gt;{txtcposname5.Text.Trim()}&lt;/cposition&gt;
-&lt;cdefine22&gt;{txtcdefine225.Text.Trim()}&lt;/cdefine22&gt;
-&lt;cdefine23&gt;{txtcdefine235.Text.Trim()}&lt;/cdefine23&gt;
-&lt;cdefine24&gt;{txtcdefine245.Text.Trim()}&lt;/cdefine24&gt;
+   &lt;autoid&gt;{txtautoid6.Text.Trim()}&lt;/autoid&gt;
+&lt;cinvcode&gt;{txtcinvcode6.Text.Trim()}&lt;/cinvcode&gt;
+&lt;editprop&gt;{txteditprop6.Text.Trim()}&lt;/editprop&gt;
+&lt;iquantity&gt;{txtiquantity6.Text.Trim()}&lt;/iquantity&gt;
+&lt;cbatch&gt;{txtcbatch6.Text.Trim()}&lt;/cbatch&gt;
+&lt;cbaccounter&gt;{txtcbaccounter6.Text.Trim()}&lt;/cbaccounter&gt;
+&lt;cposition&gt;{txtcposname6.Text.Trim()}&lt;/cposition&gt;
+&lt;cdefine22&gt;{txtcdefine226.Text.Trim()}&lt;/cdefine22&gt;
+&lt;cdefine23&gt;{txtcdefine236.Text.Trim()}&lt;/cdefine23&gt;
+&lt;cdefine24&gt;{txtcdefine246.Text.Trim()}&lt;/cdefine24&gt;
+&lt;cdefine26&gt;{txtcdefine266.Text.Trim()}&lt;/cdefine26&gt;
  &lt;/row&gt;&lt;/table&gt; ";
 
                     Excode = "<Parameters>" +
 $"<Param Mode=\"otheroutAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVouchType=\"09\" VouchId=\"09\" bCheck=\"true\" bBeforCheckStock=\"false\" bIsRedVouch=\"{SysParams.Instance.bIsRedVouch}\" sAddedState=\" \" bReMote=\"false\" body=\"{b}\" head=\"{h}\"/>" +
                         "</Parameters>";
+                    break;
+                #endregion
+                #region 形态转换
+                case 7:
+                    mode = "形态转换";
+                    h = $@"<head><table>
+<row>
+<id>{txtid7.Text.Trim()}</id>
+<cavcode>{txtcavcode7.Text.Trim()}</cavcode>
+<davdate>{dpdavdate7.Text.Trim()}</davdate>
+<cdepcode>{txtcdepcode7.Text.Trim()}</cdepcode>
+<cvouchtype>{txtcvouchtype7.Text.Trim()}</cvouchtype>
+<cpersonname>{txtcpersonname7.Text.Trim()}</cpersonname>
+<cirdcode>{txtcirdcode7.Text.Trim()}</cirdcode>
+<cordcode>{txtcordcode7.Text.Trim()}</cordcode>
+<btransflag>0</btransflag>
+<cmaker>{txtcmaker7.Text.Trim()}</cmaker>
+<dnmaketime>{dpdnmaketime7.Text.Trim()}</dnmaketime>
+<vt_id>{txtvt_id7.Text.Trim()}</vt_id>
+</row></table></head>
+";
+
+                    b = $@"<body><table>
+                    <row>
+                    <autoid>{txtautoid7.Text.Trim()}</autoid>
+                    <cinvcode>{txtbcinvcode7.Text.Trim()}</cinvcode>
+                    <editprop>{txteditprop7.Text.Trim()}</editprop>
+                    <iavquantity>{txtiavquantity7.Text.Trim()}</iavquantity>
+                    <bavtype>转换前</bavtype>
+                    <cinvm_unit>{txtcinvm_unit7.Text.Trim()}</cinvm_unit>
+                    <cavbatch>{txtbcavbatch7.Text.Trim()}</cavbatch>
+                    <cwhcode>{txtbcwhcode7.Text.Trim()}</cwhcode>
+                    <cdefine26>{txtcdefine267.Text.Trim()}</cdefine26>
+<cavcode>0</cavcode>
+                    </row>
+                    
+<row>
+<autoid>{txtautoid7.Text.Trim()}</autoid>
+<cinvcode>{txtacinvcode7.Text.Trim()}</cinvcode>
+<editprop>{txteditprop7.Text.Trim()}</editprop>
+<iavquantity>{txtiavquantity7.Text.Trim()}</iavquantity>
+<bavtype>转换后</bavtype>
+<cinvm_unit>{txtcinvm_unit7.Text.Trim()}</cinvm_unit>
+<cavbatch>{txtacavbatch7.Text.Trim()}</cavbatch>
+<cwhcode>{txtacwhcode7.Text.Trim()}</cwhcode>
+<cdefine26>{txtcdefine267.Text.Trim()}</cdefine26>
+<cavcode>0</cavcode>
+</row>
+</table></body>";
+
+                    Excode = "<Parameters>" +
+$"<Param Mode=\"ShapeChangVouchAdd\" sAccID =\"{SysParams.Instance.U8VouchCode}\" sVouchType=\"15\" VouchId=\"15\" bCheck=\"true\" bBeforCheckStock=\"false\" bIsRedVouch=\"{SysParams.Instance.bIsRedVouch}\" sAddedState=\" \" bReMote=\"false\">"+
+    b+h +
+                        "</Param></Parameters>";
                     break;
                 #endregion
                 #region 审计
