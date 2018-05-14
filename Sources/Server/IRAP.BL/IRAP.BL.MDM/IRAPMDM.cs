@@ -2209,7 +2209,10 @@ namespace IRAP.BL.MDM
                 #region 执行数据库函数或存储过程
                 using (IRAPSQLConnection conn = new IRAPSQLConnection())
                 {
-                    IRAPError error = conn.CallProc("IRAPMDM..usp_SaveAttr_ProcessOperation", ref paramList);
+                    IRAPError error = 
+                        conn.CallProc(
+                            "IRAPMDM..usp_SaveAttr_ProcessOperation", 
+                            ref paramList);
                     errCode = error.ErrCode;
                     errText = error.ErrText;
                     WriteLog.Instance.Write(
@@ -2224,7 +2227,8 @@ namespace IRAP.BL.MDM
                     {
                         foreach (IRAPProcParameter param in paramList)
                         {
-                            if (param.Direction == ParameterDirection.InputOutput || param.Direction == ParameterDirection.Output)
+                            if (param.Direction == ParameterDirection.InputOutput || 
+                                param.Direction == ParameterDirection.Output)
                             {
                                 if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
                                     rtnParams.Add(param.ParameterName.Replace("@", ""), 0);
@@ -2241,7 +2245,10 @@ namespace IRAP.BL.MDM
             catch (Exception error)
             {
                 errCode = 99000;
-                errText = string.Format("调用 IRAPMDM..usp_SaveAttr_ProcessOperation 时发生异常：{0}", error.Message);
+                errText = 
+                    string.Format(
+                        "调用 IRAPMDM..usp_SaveAttr_ProcessOperation 时发生异常：{0}",
+                        error.Message);
                 return Json(new Hashtable());
             }
             finally

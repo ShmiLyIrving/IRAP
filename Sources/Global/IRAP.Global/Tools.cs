@@ -490,5 +490,16 @@ namespace IRAP.Global
 
             return rlt;
         }
+
+        /// <summary>
+        /// 判断输入的字符串是否是数字
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static bool IsNumberic(string text)
+        {
+            int tmp = 0;
+            return int.TryParse(text, out tmp);
+        }
     }
 }

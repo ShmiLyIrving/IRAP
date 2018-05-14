@@ -189,6 +189,21 @@ namespace IRAP.Client.GUI.SCES
                     {
                         case 1:
                             btnPrint.Visible = true;
+
+                            #region 当用户社区是 60010、60030 时，允许用户可以调整每杆数量
+                            switch (IRAPUser.Instance.CommunityID)
+                            {
+                                case 60010:
+                                case 60030:
+                                    btnCapacityModify.Visible = true;
+                                    btnCapacityModify.Text = "每杆数量调整";
+                                    break;
+                                default:
+                                    btnCapacityModify.Visible = false;
+                                    break;
+                            }
+                            #endregion
+
                             break;
                         case 2:
                             btnSpiliteOrderNotify.Visible = true;
@@ -664,7 +679,12 @@ namespace IRAP.Client.GUI.SCES
 
         private void btnSpiliteOrderNotify_Click(object sender, EventArgs e)
         {
-            string strProcedureName = string.Format("{0}.{1}", className, MethodBase.GetCurrentMethod().Name);
+            string strProcedureName = 
+                string.Format(
+                    "{0}.{1}", 
+                    className, 
+                    MethodBase.GetCurrentMethod().Name);
+
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
@@ -735,6 +755,18 @@ namespace IRAP.Client.GUI.SCES
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void btnCapacityModify_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.frmContainerPapacityEditor formEditor =
+                new Dialogs.frmContainerPapacityEditor(materials[0].MaterialCode))
+            {
+                if (formEditor.ShowDialog() == DialogResult.OK)
+                {
+                    frmMaterialToDeliverPreview_Shown(this, null);
+                }
             }
         }
     }

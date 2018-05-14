@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\frmContainerPapacityEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmContainerPapacityEditor.Designer.cs">
+      <DependentUpon>frmContainerPapacityEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmPWOReprint_Asimco.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frmContainerPapacityEditor.resx">
+      <DependentUpon>frmContainerPapacityEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPWOReprint_Asimco.resx">
       <DependentUpon>frmPWOReprint_Asimco.cs</DependentUpon>
     </EmbeddedResource>

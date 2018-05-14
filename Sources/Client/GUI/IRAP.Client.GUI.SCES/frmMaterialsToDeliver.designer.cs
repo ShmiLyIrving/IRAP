@@ -63,6 +63,7 @@
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.lblNoneMaterialInStore = new DevExpress.XtraEditors.LabelControl();
             this.report1 = new FastReport.Report();
+            this.btnCapacityModify = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.grdMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.report)).BeginInit();
@@ -96,6 +97,14 @@
             // 
             // grdvMaterials
             // 
+            this.grdvMaterials.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvMaterials.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grdvMaterials.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.grdvMaterials.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdvMaterials.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdvMaterials.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.grdvMaterials.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvMaterials.Appearance.Row.Options.UseFont = true;
             this.grdvMaterials.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
@@ -657,11 +666,26 @@
             // 
             this.report1.ReportResourceString = resources.GetString("report1.ReportResourceString");
             // 
+            // btnCapacityModify
+            // 
+            this.btnCapacityModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCapacityModify.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapacityModify.Appearance.Options.UseFont = true;
+            this.btnCapacityModify.Location = new System.Drawing.Point(14, 517);
+            this.btnCapacityModify.Name = "btnCapacityModify";
+            this.btnCapacityModify.Size = new System.Drawing.Size(119, 33);
+            this.btnCapacityModify.TabIndex = 7;
+            this.btnCapacityModify.TabStop = false;
+            this.btnCapacityModify.Text = "容器容量修改";
+            this.btnCapacityModify.Visible = false;
+            this.btnCapacityModify.Click += new System.EventHandler(this.btnCapacityModify_Click);
+            // 
             // frmMaterialsToDeliver
             // 
             this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1000, 562);
+            this.Controls.Add(this.btnCapacityModify);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.btnSpilitePKGNotify);
@@ -724,5 +748,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.LabelControl lblNoneMaterialInStore;
         private FastReport.Report report1;
+        private DevExpress.XtraEditors.SimpleButton btnCapacityModify;
     }
 }

@@ -5292,5 +5292,264 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 保存工序属性的变更内容
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t216Leaf">工序叶标识</param>
+        /// <param name="t216Code">工序编码</param>
+        /// <param name="t216Name">工序名称</param>
+        /// <param name="t116Leaf">工序类型</param>
+        /// <param name="t124Leaf">工段</param>
+        /// <param name="t123Leaf">生产在制品部位</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_SaveAttr_ProcessOperation(
+            int communityID,
+            ref int t216Leaf,
+            string t216Code,
+            string t216Name,
+            int t116Leaf,
+            int t124Leaf,
+            int t123Leaf,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t216Leaf", t216Leaf);
+                hashParams.Add("t216Code", t216Code);
+                hashParams.Add("t216Name", t216Name);
+                hashParams.Add("t116Leaf", t116Leaf);
+                hashParams.Add("t124Leaf", t124Leaf);
+                hashParams.Add("t123Leaf", t123Leaf);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveAttr_ProcessOperation，输入参数：" +
+                        "CommunityID={0}|T216Leaf={1}|T216Code={2}|"+
+                        "T216Name={3}|T116Leaf={4}|T124Leaf={5}|"+
+                        "T123Leaf={6}|SysLogID={7}",
+                        communityID,
+                        t216Leaf,
+                        t216Code,
+                        t216Name,
+                        t116Leaf,
+                        t124Leaf,
+                        t123Leaf,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "usp_SaveAttr_ProcessOperation",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (rlt is Hashtable)
+                    {
+                        Hashtable rltHash = (Hashtable)rlt;
+                        try
+                        {
+                            HashtableTools.Instance.GetValue(rltHash, "T216Leaf", out t216Leaf);
+                        }
+                        catch (Exception error)
+                        {
+                            errCode = -1003;
+                            errText = error.Message;
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        errCode = -1002;
+                        errText = "应用服务 usp_SaveAttr_ProcessOperation 返回的不是 Hashtable！";
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取产品单杆数量
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="productCode">产品代码</param>
+        /// <param name="shotTime">关注的时间点（当前版本传空串）</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_CapacityForT101OrT102(
+            int communityID,
+            string productCode,
+            string shotTime,
+            long sysLogID,
+            ref List<CapacityForT101OrT102> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("productCode", productCode);
+                hashParams.Add("shotTime", shotTime);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_CapacityForT101OrT102，输入参数：" +
+                        "CommunityID={0}|ProductCode={1}|ShotTime={2}|"+
+                        "SysLogID={3}",
+                        communityID,
+                        productCode,
+                        shotTime,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "ufn_GetList_CapacityForT101OrT102",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                        datas = rlt as List<CapacityForT101OrT102>;
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 保存指定产品的单杆数量
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="attrChangeXML">属性变更 XML ，格式：
+        /// [ROOT][MDM T157LeafID="" TreeID="101/102" LeafID="" StdQty="" /][/ROOT]
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_SaveRSAttr_T157RX(
+            int communityID,
+            string attrChangeXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("attrChangeXML", attrChangeXML);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveRSAttr_T157RX，输入参数：" +
+                        "CommunityID={0}|AttrChangeXML={1}|SysLogID={2}",
+                        communityID,
+                        attrChangeXML,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "usp_SaveRSAttr_T157RX",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

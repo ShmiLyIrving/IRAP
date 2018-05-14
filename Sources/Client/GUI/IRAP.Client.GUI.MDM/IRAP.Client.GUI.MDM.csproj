@@ -102,6 +102,12 @@
     <Compile Include="Dialogs\frmMethodStandardProperties.Designer.cs">
       <DependentUpon>frmMethodStandardProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmProcessOperationEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmProcessOperationEdit.Designer.cs">
+      <DependentUpon>frmProcessOperationEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmProcessProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -342,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmMethodStandardProperties.resx">
       <DependentUpon>frmMethodStandardProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmProcessOperationEdit.resx">
+      <DependentUpon>frmProcessOperationEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmProcessProperties.resx">
       <DependentUpon>frmProcessProperties.cs</DependentUpon>
