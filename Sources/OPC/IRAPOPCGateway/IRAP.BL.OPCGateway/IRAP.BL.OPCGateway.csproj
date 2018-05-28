@@ -79,6 +79,10 @@
     <Compile Include="WriteLog.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Client\ServerClient\IRAP.WebAPI.Client\IRAP.WebAPI.Client.csproj">
+      <Project>{fb9027c7-057a-4fa8-8698-4e288ea2c0a9}</Project>
+      <Name>IRAP.WebAPI.Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRAP.BL.OPCGateway.Global\IRAP.BL.OPCGateway.Global.csproj">
       <Project>{ec877c0f-adc2-4882-9a04-7a969842338f}</Project>
       <Name>IRAP.BL.OPCGateway.Global</Name>
@@ -103,7 +107,9 @@
   <ItemGroup>
     <Content Include="IRAP.BL.OPCGateway.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="OPCEntities.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

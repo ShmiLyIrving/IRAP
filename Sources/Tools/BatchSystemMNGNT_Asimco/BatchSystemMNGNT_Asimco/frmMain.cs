@@ -198,6 +198,8 @@ namespace BatchSystemMNGNT_Asimco
             edtMONo.Text = "";
             edtMOLineNo.Text = "";
             chkWaitForRetry.Checked = true;
+
+            btnGetLogs.PerformClick();
         }
 
         private void tsmiDelete_Click(object sender, EventArgs e)

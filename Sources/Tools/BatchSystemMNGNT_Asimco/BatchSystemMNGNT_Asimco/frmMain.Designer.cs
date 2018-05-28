@@ -91,7 +91,8 @@
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::BatchSystemMNGNT_Asimco.frmWaitting), true, true);
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.tpWebServiceLogs = new DevExpress.XtraTab.XtraTabPage();
+            this.tpUnclosedDelivery = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -116,7 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtItemNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
             this.tcMain.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
+            this.tpWebServiceLogs.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdclmnErrCode
@@ -792,21 +793,28 @@
             this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcMain.Location = new System.Drawing.Point(0, 156);
             this.tcMain.Name = "tcMain";
-            this.tcMain.SelectedTabPage = this.xtraTabPage1;
+            this.tcMain.SelectedTabPage = this.tpUnclosedDelivery;
             this.tcMain.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
             this.tcMain.Size = new System.Drawing.Size(1158, 681);
             this.tcMain.TabIndex = 5;
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1});
+            this.tpWebServiceLogs,
+            this.tpUnclosedDelivery});
             // 
-            // xtraTabPage1
+            // tpWebServiceLogs
             // 
-            this.xtraTabPage1.Controls.Add(this.splitContainerControl1);
-            this.xtraTabPage1.Controls.Add(this.panelControl1);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.xtraTabPage1.Size = new System.Drawing.Size(1156, 679);
-            this.xtraTabPage1.Text = "xtraTabPage1";
+            this.tpWebServiceLogs.Controls.Add(this.splitContainerControl1);
+            this.tpWebServiceLogs.Controls.Add(this.panelControl1);
+            this.tpWebServiceLogs.Name = "tpWebServiceLogs";
+            this.tpWebServiceLogs.Padding = new System.Windows.Forms.Padding(5);
+            this.tpWebServiceLogs.Size = new System.Drawing.Size(1156, 679);
+            this.tpWebServiceLogs.Text = "xtraTabPage1";
+            // 
+            // tpUnclosedDelivery
+            // 
+            this.tpUnclosedDelivery.Name = "tpUnclosedDelivery";
+            this.tpUnclosedDelivery.Size = new System.Drawing.Size(1156, 679);
+            this.tpUnclosedDelivery.Text = "xtraTabPage1";
             // 
             // frmMain
             // 
@@ -850,7 +858,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtItemNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
             this.tcMain.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
+            this.tpWebServiceLogs.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -900,7 +908,7 @@
         private DevExpress.XtraGrid.GridControl grdMaterialStore;
         private DevExpress.XtraGrid.Views.Card.CardView grdvMaterialStore;
         private DevExpress.XtraTab.XtraTabControl tcMain;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private DevExpress.XtraTab.XtraTabPage tpWebServiceLogs;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
@@ -916,5 +924,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnErrCode;
         private DevExpress.XtraEditors.SimpleButton btnClearCondition;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnTimeWritten;
+        private DevExpress.XtraTab.XtraTabPage tpUnclosedDelivery;
     }
 }

@@ -208,8 +208,16 @@ namespace IRAP.Client.GUI.SCES
                 {
                     if (orders[i].ProductNo == order.ProductNo)
                     {
-                        mitmDeliver.Enabled = false;
-                        btnDeliver.Enabled = false;
+                        if (orders[i].ScheduledStartTime == order.ScheduledStartTime)
+                        {
+                            mitmDeliver.Enabled = true;
+                            btnDeliver.Enabled = true;
+                        }
+                        else
+                        {
+                            mitmDeliver.Enabled = false;
+                            btnDeliver.Enabled = false;
+                        }
                         return;
                     }
                 }

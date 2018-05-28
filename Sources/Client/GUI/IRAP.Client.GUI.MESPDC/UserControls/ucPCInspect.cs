@@ -62,7 +62,11 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 foreach (SmeltInspectionItem item in items)
                 {
                     string colName = string.Format("Column{0}", item.Ordinal);
-                    DataColumn dc = dtInspection.Columns.Add(colName, typeof(string));
+                    DataColumn dc;
+                    if (item.T20LeafID == 373298) // "包次"时，设置字段属性为 int
+                        dc = dtInspection.Columns.Add(colName, typeof(int));
+                    else
+                        dc = dtInspection.Columns.Add(colName, typeof(string));
                     dc.Caption = item.T20Name;
 
                     GridColumn column = grdvInspectItems.Columns.Add();
@@ -672,6 +676,15 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             DataRow dr = grdvInspectItems.GetDataRow(e.RowHandle);
             if (dr != null)
             {
+                if (grdvInspectItems.RowCount > 0)
+                {
+                    DataRow lastDR = grdvInspectItems.GetDataRow(grdvInspectItems.RowCount - 2);
+                    if (lastDR != null)
+                    {
+                        dr.ItemArray = lastDR.ItemArray;
+                    }
+                }
+
                 dr["AttachedFile"] = "";
                 dr["HasIQCReport"] = 0;
                 dr["RecordStatus"] = 1;
