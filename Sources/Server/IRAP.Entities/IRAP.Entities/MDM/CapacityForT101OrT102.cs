@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IRAP.Entities.MDM
 {
-public    class CapacityForT101OrT102
+    public class CapacityForT101OrT102
     {
         /// <summary>
         /// 序号
@@ -38,7 +38,7 @@ public    class CapacityForT101OrT102
         /// <summary>
         /// 容器类型名称
         /// </summary>
-        public  string T157Name { get; set; }
+        public string T157Name { get; set; }
         /// <summary>
         /// 每杆数量
         /// </summary>
