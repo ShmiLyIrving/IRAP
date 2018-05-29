@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IRAP.BL.OPCGateway.Entities.TOPCDevice" Collapsed="true">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQBAAAEAAAAAAAAAAAAAAAAAAIAEAAAABAAAIAAAA=</HashCode>
+      <FileName>Entities\TOPCDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.OPCGateway.Entities.TOPCDevices" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAFAAAAAAAAAAAQAAAAAAAAQABAAFAAQAAAAgAAAAA=</HashCode>
+      <FileName>Entities\TOPCDevices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.OPCGateway.Entities.TOPCTag" Collapsed="true">
+    <Position X="1" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIABBBAQAAAAEgAAAIgAAABAAAAAAACASAAAAABACAA=</HashCode>
+      <FileName>Entities\TOPCTag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.OPCGateway.Entities.TOPCTagCollection" Collapsed="true">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQAAAAEAAAAAAACAAABAQAAAAAAAAAAABAAABAAAA=</HashCode>
+      <FileName>Entities\TOPCTagCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.OPCGateway.Entities.TTagT20Object" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAJACQEAAAAAAAABIAACAAAAgACBDBAAABAAAAAAA=</HashCode>
+      <FileName>Entities\TTagT20Object.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.OPCGateway.Entities.TTagT20ObjectCollection" Collapsed="true">
+    <Position X="1" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAACAgABAQAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Entities\TTagT20ObjectCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IRAP.BL.OPCGateway.Entities.TOPCDeviceCollection" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAIACAgABAQAIAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Entities\TOPCDeviceCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
