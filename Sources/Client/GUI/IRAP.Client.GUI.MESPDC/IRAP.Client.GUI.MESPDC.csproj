@@ -83,6 +83,7 @@
     <Compile Include="Actions\CustomAction.cs" />
     <Compile Include="Actions\CustomActionFactory.cs" />
     <Compile Include="Actions\PrintToLPT.cs" />
+    <Compile Include="Actions\PWOOutPutDetail.cs" />
     <Compile Include="Actions\RefreshForm.cs" />
     <Compile Include="Actions\RefreshSPortMapping.cs" />
     <Compile Include="Actions\SelectChoice.cs" />
