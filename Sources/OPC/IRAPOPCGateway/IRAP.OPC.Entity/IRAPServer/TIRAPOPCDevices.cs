@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Xml;
+using System.Threading;
 
 using IRAP.Global;
 using IRAP.WebAPI.Enums;
@@ -405,6 +406,8 @@ namespace IRAP.OPC.Entity.IRAPServer
                     case 2:             // 发送 ESB 消息
                         if (Tools.ConvertToBoolean(tagValue))
                         {
+                            Thread.Sleep(1000);
+
                             DateTime start1 = DateTime.Now;
                             Device.SendBatchTags(this);
                             TimeSpan sendTimeSpan = DateTime.Now - start1;
