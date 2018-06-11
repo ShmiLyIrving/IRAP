@@ -34,7 +34,7 @@ namespace IRAP.BL.OPCGateway
 
         private int transactionID = 1;
 
-        private TKepServerWriter writter = new TKepServerWriter();
+        //private TKepServerWriter writter = new TKepServerWriter();
 
         public TKepServerListener()
         {

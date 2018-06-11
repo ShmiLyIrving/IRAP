@@ -57,17 +57,17 @@ namespace IRAP.BL.OPCGateway
             //TIRAPOPCDevices.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
 
             // 加载数据库中已注册的设备列表
-            Entities.TOPCDevices.Instance.SetWebAPIParams(
+            TIRAPOPCDevices.Instance.SetWebAPIParams(
                 TOPCGatewayGlobal.Instance.WebAPIParam.BrokeUri,
                 TOPCGatewayGlobal.Instance.WebAPIParam.ContentType,
                 TOPCGatewayGlobal.Instance.WebAPIParam.ClientID);
-            Entities.TOPCDevices.Instance.GetDevices(
+            TIRAPOPCDevices.Instance.GetDevices(
                 TOPCGatewayGlobal.Instance.SysParams.CommunityID,
                 TOPCGatewayGlobal.Instance.SysParams.SysLogID);
 
             Debug.WriteLine(
-                "当前在 IRAP 系统中注册的 OPCDevice 数量[{0}]",
-                Entities.TOPCDevices.Instance.Devices.Count);
+                "当前在 IRAP 系统中注册的 OPCDevice 数量[{0}]", 
+                TIRAPOPCDevices.Instance.Devices.Count);
 
             // 创建 OPCTag 出队处理线程池
             //TIRAPOPCTagValueQueueOut.Instance.Start();
