@@ -69,6 +69,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                                 "系统信息", 
                                 MessageBoxButtons.OK, 
                                 MessageBoxIcon.Error);
+                            throw error;
                         }
                     }
                     else
@@ -76,6 +77,7 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                         WriteLog.Instance.Write(
                             string.Format("无法创建工厂对象[{0}]", factoryName),
                             strProcedureName);
+                        throw new Exception($"无法创建工厂对象[{factoryName}]");
                     }
                 }
             }

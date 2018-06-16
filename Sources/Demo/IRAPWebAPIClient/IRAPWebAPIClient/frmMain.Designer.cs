@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExTest = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
             this.edtExCode = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,10 +43,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.edtRequest = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.edtResponse = new System.Windows.Forms.TextBox();
-            this.btnExTest = new System.Windows.Forms.Button();
+            this.edtResponse = new DevExpress.XtraEditors.MemoEdit();
+            this.edtRequest = new DevExpress.XtraEditors.MemoEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -53,6 +53,8 @@
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtResponse.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtRequest.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,6 +76,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(808, 117);
             this.panel1.TabIndex = 0;
+            // 
+            // btnExTest
+            // 
+            this.btnExTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExTest.Location = new System.Drawing.Point(693, 12);
+            this.btnExTest.Name = "btnExTest";
+            this.btnExTest.Size = new System.Drawing.Size(94, 38);
+            this.btnExTest.TabIndex = 11;
+            this.btnExTest.Text = "交易测试";
+            this.btnExTest.UseVisualStyleBackColor = true;
+            this.btnExTest.Click += new System.EventHandler(this.btnExTest_Click);
             // 
             // btnSend
             // 
@@ -124,8 +137,8 @@
             // 
             this.cboContextType.FormattingEnabled = true;
             this.cboContextType.Items.AddRange(new object[] {
-            "JSON",
-            "XML"});
+            "json",
+            "xml"});
             this.cboContextType.Location = new System.Drawing.Point(341, 39);
             this.cboContextType.Name = "cboContextType";
             this.cboContextType.Size = new System.Drawing.Size(87, 25);
@@ -210,15 +223,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "请求报文";
             // 
-            // edtRequest
-            // 
-            this.edtRequest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.edtRequest.Location = new System.Drawing.Point(10, 26);
-            this.edtRequest.Multiline = true;
-            this.edtRequest.Name = "edtRequest";
-            this.edtRequest.Size = new System.Drawing.Size(778, 122);
-            this.edtRequest.TabIndex = 0;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.edtResponse);
@@ -235,21 +239,21 @@
             // 
             this.edtResponse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.edtResponse.Location = new System.Drawing.Point(10, 26);
-            this.edtResponse.Multiline = true;
             this.edtResponse.Name = "edtResponse";
+            this.edtResponse.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 10.5F);
+            this.edtResponse.Properties.Appearance.Options.UseFont = true;
             this.edtResponse.Size = new System.Drawing.Size(778, 280);
-            this.edtResponse.TabIndex = 1;
+            this.edtResponse.TabIndex = 0;
             // 
-            // btnExTest
+            // edtRequest
             // 
-            this.btnExTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExTest.Location = new System.Drawing.Point(693, 12);
-            this.btnExTest.Name = "btnExTest";
-            this.btnExTest.Size = new System.Drawing.Size(94, 38);
-            this.btnExTest.TabIndex = 11;
-            this.btnExTest.Text = "交易测试";
-            this.btnExTest.UseVisualStyleBackColor = true;
-            this.btnExTest.Click += new System.EventHandler(this.btnExTest_Click);
+            this.edtRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.edtRequest.Location = new System.Drawing.Point(10, 26);
+            this.edtRequest.Name = "edtRequest";
+            this.edtRequest.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 10.5F);
+            this.edtRequest.Properties.Appearance.Options.UseFont = true;
+            this.edtRequest.Size = new System.Drawing.Size(778, 122);
+            this.edtRequest.TabIndex = 0;
             // 
             // frmMain
             // 
@@ -261,6 +265,7 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IRAP-GeneralGateway Client Demo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Shown += new System.EventHandler(this.frmMain_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -269,9 +274,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtResponse.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtRequest.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -292,10 +297,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox edtRequest;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox edtResponse;
         private System.Windows.Forms.Button btnExTest;
+        private DevExpress.XtraEditors.MemoEdit edtResponse;
+        private DevExpress.XtraEditors.MemoEdit edtRequest;
     }
 }
 

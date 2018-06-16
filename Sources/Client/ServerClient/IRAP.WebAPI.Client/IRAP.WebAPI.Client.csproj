@@ -48,9 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\IRAP\TREQGetInfoStationLogin.cs" />
+    <Compile Include="Entities\SCES\TREQDeliveryOrdersOnRoad.cs" />
+    <Compile Include="Entities\SCES\TRESPDeliveryOrdersOnRoad.cs" />
+    <Compile Include="Entities\TIRAPCustomRequestContent.cs" />
     <Compile Include="Exchange\IRAP\TGetInfoStationLogin.cs" />
     <Compile Include="Exchange\MES\ABC.cs" />
     <Compile Include="Exchange\MES\TGetOPCServerTagList.cs" />
+    <Compile Include="Exchange\SCES\TGetDeliveryOrdersOnRoad.cs" />
     <Compile Include="TCustomWebAPICall.cs" />
     <Compile Include="Enums\TContentType.cs" />
     <Compile Include="Enums\TModuleType.cs" />

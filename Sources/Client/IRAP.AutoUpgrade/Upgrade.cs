@@ -355,6 +355,15 @@ namespace IRAP.AutoUpgrade
                                     "自动升级",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
+
+                            using (Command cmd = new Command())
+                            {
+                                try
+                                {
+                                    cmd.RunProgram("ewfmgr c: -commit");
+                                }
+                                catch { }
+
                             return -1;
                         }
 
