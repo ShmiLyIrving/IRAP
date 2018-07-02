@@ -45,7 +45,6 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
         #region 字段
         private string className = MethodBase.GetCurrentMethod().DeclaringType.FullName;
-
         private ImportParam _importPara = new ImportParam();
         private List<ImportMetaData> _importMetaData = new List<ImportMetaData>();
         private List<OrderInfo> _orderInfo = new List<OrderInfo>();
@@ -57,6 +56,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         private FastReport.Report _report = new FastReport.Report();
         private Dictionary<string, Dictionary<string, long>> _lotNumberDictionary = new Dictionary<string, Dictionary<string, long>>();
         #endregion
+
 
         #region 属性
         /// <summary>
