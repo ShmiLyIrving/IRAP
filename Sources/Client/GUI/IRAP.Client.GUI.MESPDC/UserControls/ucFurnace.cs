@@ -1547,6 +1547,10 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
 
         private void ucGrdBaked_SaveClick(object sender, System.EventArgs e)
         {
+            if (!SaveSmeltParas(Optype.Baked))
+            {
+                return;
+            }
             StopProduction();
             RefreshFurnace();
         }
