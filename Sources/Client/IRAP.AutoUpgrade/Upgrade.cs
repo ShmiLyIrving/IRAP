@@ -363,6 +363,7 @@ namespace IRAP.AutoUpgrade
                                     cmd.RunProgram("ewfmgr c: -commit");
                                 }
                                 catch { }
+                            }
 
                             return -1;
                         }

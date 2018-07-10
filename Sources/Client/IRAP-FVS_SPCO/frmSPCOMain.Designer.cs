@@ -43,6 +43,7 @@
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.lblErrorMessage = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.lblStationID = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.xtraScrollableControl.SuspendLayout();
@@ -216,6 +217,19 @@
             this.simpleButton1.TabIndex = 2;
             this.simpleButton1.Text = "simpleButton1";
             // 
+            // lblStationID
+            // 
+            this.lblStationID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStationID.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.lblStationID.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.lblStationID.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblStationID.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblStationID.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblStationID.Location = new System.Drawing.Point(680, 510);
+            this.lblStationID.Name = "lblStationID";
+            this.lblStationID.Size = new System.Drawing.Size(197, 29);
+            this.lblStationID.TabIndex = 7;
+            // 
             // frmSPCOMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -223,6 +237,7 @@
             this.BackgroundImageStore = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImageStore")));
             this.ClientSize = new System.Drawing.Size(895, 551);
             this.ControlBox = false;
+            this.Controls.Add(this.lblStationID);
             this.Controls.Add(this.xtraScrollableControl);
             this.Controls.Add(this.lblCopyright);
             this.Controls.Add(this.panelControl1);
@@ -258,5 +273,6 @@
         private DevExpress.XtraEditors.LabelControl lblErrorMessage;
         private System.Windows.Forms.Button btnUpdate;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.LabelControl lblStationID;
     }
 }
