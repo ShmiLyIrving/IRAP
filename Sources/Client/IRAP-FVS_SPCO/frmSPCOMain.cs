@@ -499,8 +499,6 @@ namespace IRAP_FVS_SPCO
             int errCode = 0;
             string errText = "";
 
-            lblStationID.Text = macAddress;
-
             #region 获取服务器的当前时间，并设置当前的系统时间
             IRAPSystemClient.Instance.sfn_GetServerDateTime(
                 ref serverTime,
@@ -530,6 +528,8 @@ namespace IRAP_FVS_SPCO
 
             if (stationUser != null)
             {
+                lblStationID.Text = stationUser.HostName;
+
                 #region 获取当前站点监管的工位列表，并根据工位列表生成控制图
                 if (stationUser.SysLogID > 0)
                 {
