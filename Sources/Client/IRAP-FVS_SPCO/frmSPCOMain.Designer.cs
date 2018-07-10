@@ -44,6 +44,7 @@
             this.lblErrorMessage = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.lblStationID = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.xtraScrollableControl.SuspendLayout();
@@ -230,6 +231,22 @@
             this.lblStationID.Size = new System.Drawing.Size(197, 29);
             this.lblStationID.TabIndex = 7;
             // 
+            // labelControl2
+            // 
+            this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelControl2.Location = new System.Drawing.Point(20, 509);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(197, 29);
+            this.labelControl2.TabIndex = 8;
+            this.labelControl2.Text = "X-BarR 判异准则";
+            this.labelControl2.Click += new System.EventHandler(this.labelControl2_Click);
+            // 
             // frmSPCOMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -237,6 +254,7 @@
             this.BackgroundImageStore = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImageStore")));
             this.ClientSize = new System.Drawing.Size(895, 551);
             this.ControlBox = false;
+            this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.lblStationID);
             this.Controls.Add(this.xtraScrollableControl);
             this.Controls.Add(this.lblCopyright);
@@ -274,5 +292,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.LabelControl lblStationID;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
     }
 }

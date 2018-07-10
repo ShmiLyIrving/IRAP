@@ -70,12 +70,12 @@
             // grdXBarCriteriaResult
             // 
             this.grdXBarCriteriaResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdXBarCriteriaResult.Location = new System.Drawing.Point(2, 23);
+            this.grdXBarCriteriaResult.Location = new System.Drawing.Point(2, 22);
             this.grdXBarCriteriaResult.MainView = this.grdvXBarCriteriaResult;
             this.grdXBarCriteriaResult.Name = "grdXBarCriteriaResult";
             this.grdXBarCriteriaResult.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-            this.grdXBarCriteriaResult.Size = new System.Drawing.Size(579, 212);
+            this.grdXBarCriteriaResult.Size = new System.Drawing.Size(579, 213);
             this.grdXBarCriteriaResult.TabIndex = 0;
             this.grdXBarCriteriaResult.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvXBarCriteriaResult});
@@ -154,12 +154,12 @@
             // grdRCriterialResult
             // 
             this.grdRCriterialResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdRCriterialResult.Location = new System.Drawing.Point(2, 23);
+            this.grdRCriterialResult.Location = new System.Drawing.Point(2, 22);
             this.grdRCriterialResult.MainView = this.grdvRCriteriaResult;
             this.grdRCriterialResult.Name = "grdRCriterialResult";
             this.grdRCriterialResult.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit2});
-            this.grdRCriterialResult.Size = new System.Drawing.Size(579, 212);
+            this.grdRCriterialResult.Size = new System.Drawing.Size(579, 213);
             this.grdRCriterialResult.TabIndex = 0;
             this.grdRCriterialResult.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvRCriteriaResult});
@@ -267,19 +267,19 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraGrid.GridControl grdXBarCriteriaResult;
-        private DevExpress.XtraGrid.Views.Grid.GridView grdvXBarCriteriaResult;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraGrid.GridControl grdRCriterialResult;
-        private DevExpress.XtraGrid.Views.Grid.GridView grdvRCriteriaResult;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
         private DevExpress.XtraEditors.SimpleButton btnOK;
+        private DevExpress.XtraGrid.GridControl grdXBarCriteriaResult;
+        public DevExpress.XtraGrid.Views.Grid.GridView grdvXBarCriteriaResult;
+        private DevExpress.XtraGrid.GridControl grdRCriterialResult;
+        public DevExpress.XtraGrid.Views.Grid.GridView grdvRCriteriaResult;
     }
 }

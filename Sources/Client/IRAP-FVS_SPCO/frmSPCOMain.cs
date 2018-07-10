@@ -813,5 +813,18 @@ namespace IRAP_FVS_SPCO
 
             }
         }
+
+        private void labelControl2_Click(object sender, EventArgs e)
+        {
+            using (XBarR.frmXBarRCriteriaMessage formMessage =
+                new XBarR.frmXBarRCriteriaMessage())
+            {
+                formMessage.Text = "X-BarR 图的判异准则";
+                formMessage.grdvRCriteriaResult.Columns[2].Visible = false;
+                formMessage.grdvXBarCriteriaResult.Columns[2].Visible = false;
+
+                formMessage.ShowDialog();
+            }
+        }
     }
 }
