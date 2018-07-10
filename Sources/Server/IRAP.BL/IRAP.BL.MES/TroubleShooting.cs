@@ -233,12 +233,16 @@ namespace IRAP.BL.MES
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="t102LeafID">产品叶标识</param>
-        /// <param name="srcT107LeafID">来源工位叶标识</param>
+        /// <param name="t107LeafID_TS">维修站位叶标识</param>
+        /// <param name="t107LeafID_Src">来源工位叶标识</param>
+        /// <param name="t119LeafList">维修模式叶标识列表</param>
         /// <param name="sysLogID">系统登录标识</param>
         public IRAPJsonResult ufn_GetList_QCOperationsForNG(
             int communityID, 
             int t102LeafID, 
-            int srcT107LeafID, 
+            int t107LeafID_TS,
+            int t107LeafID_Src,
+            string t119LeafList, 
             long sysLogID, 
             out int errCode, 
             out string errText)
@@ -258,14 +262,17 @@ namespace IRAP.BL.MES
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
-                paramList.Add(new IRAPProcParameter("@SrcT107LeafID", DbType.Int32, srcT107LeafID));
+                paramList.Add(new IRAPProcParameter("@T107LeafID_TS", DbType.Int32, t107LeafID_TS));
+                paramList.Add(new IRAPProcParameter("@T102LeafID_Src", DbType.Int32, t107LeafID_Src));
+                paramList.Add(new IRAPProcParameter("@T119LeafList", DbType.String, t119LeafList));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用函数 IRAPMES..ufn_GetList_QCOperationsForNG，" +
-                        "参数：CommunityID={0}|T102LeafID={1}|SrcT107LeafID={2}|" +
-                        "SysLogID={3}",
-                        communityID, t102LeafID, srcT107LeafID, sysLogID),
+                        "参数：CommunityID={0}|T102LeafID={1}|T107LeafID_TS={2}|"+
+                        "T107LeafID_Src={3}|T119LeafList={4}|SysLogID={5}",
+                        communityID, t102LeafID, t107LeafID_TS, t107LeafID_Src, 
+                        t119LeafList, sysLogID),
                     strProcedureName);
                 #endregion
 
@@ -276,8 +283,8 @@ namespace IRAP.BL.MES
                     {
                         string strSQL = "SELECT * " +
                             "FROM IRAPMES..ufn_GetList_QCOperationsForNG(" +
-                            "@CommunityID, @T102LeafID, @SrcT107LeafID, " +
-                            "@SysLogID) " +
+                            "@CommunityID, @T102LeafID, @T107LeafID_TS, @T107LeafID_Src, " +
+                            "@T119LeafList, @SysLogID) " +
                             "ORDER BY Ordinal";
 
                         IList<QCOperationsForNG> lstDatas =
