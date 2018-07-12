@@ -44,7 +44,13 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             }
         }
 
-        public int DestT216LeafID(int communityID, int t102LeafID, int srcT107LeafID, long sysLogID)
+        public int DestT216LeafID(
+            int communityID, 
+            int t102LeafID, 
+            int t107LeafID_TS,
+            int t107LeafID_Src,
+            string t119LeafList, 
+            long sysLogID)
         {
             string strProcedureName = 
                 string.Format(
@@ -64,7 +70,9 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 IRAPMESTSClient.Instance.ufn_GetList_QCOperationsForNG(
                     communityID,
                     t102LeafID,
-                    srcT107LeafID,
+                    t107LeafID_TS,
+                    t107LeafID_Src,
+                    t119LeafList,
                     sysLogID,
                     ref datas,
                     out errCode,

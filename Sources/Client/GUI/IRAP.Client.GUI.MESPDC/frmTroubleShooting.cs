@@ -928,6 +928,37 @@ namespace IRAP.Client.GUI.MESPDC
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 根据维修项目列表生成维修模式叶标识列表字符串
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        private string GenerateT119LeafListInRepairItems(List<SubWIPIDCode_TroubleShooting> items)
+        {
+            string sb = "";
+            foreach (SubWIPIDCode_TroubleShooting item in items)
+            {
+                item.GetListFromDataTable();
+                foreach (SubWIPIDCode_TSItem tsItem in item.TSItems)
+                {
+                    if (sb.IndexOf(tsItem.T119LeafID.ToString()) >= 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (sb != "")
+                        {
+                            sb += ",";
+                        }
+                        sb += tsItem.T119LeafID.ToString();
+                    }
+                }
+            }
+
+            return sb;
+        }
         #endregion
 
         private void frmTroubleShooting_Load(object sender, EventArgs e)
@@ -1241,7 +1272,9 @@ namespace IRAP.Client.GUI.MESPDC
                         Dialogs.frmSelectDestT216LeafID.Instance.DestT216LeafID(
                             IRAPUser.Instance.CommunityID,
                             Options.SelectProduct.T102LeafID,
+                            Options.SelectStation.T107LeafID,
                             srcT107LeafID,
+                            GenerateT119LeafListInRepairItems(repairWIPIDs),
                             IRAPUser.Instance.SysLogID);
                     if (destT216LeafID < 0)
                         return;

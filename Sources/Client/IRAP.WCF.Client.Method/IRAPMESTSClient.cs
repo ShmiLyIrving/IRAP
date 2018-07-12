@@ -416,12 +416,16 @@ namespace IRAP.WCF.Client.Method
         /// </summary>
         /// <param name="communityID">社区标识</param>
         /// <param name="t102LeafID">产品叶标识</param>
-        /// <param name="srcT107LeafID">来源工位</param>
+        /// <param name="t107LeafID_TS">维修站位叶标识</param>
+        /// <param name="t107LeafID_Src">来源工位</param>
+        /// <param name="t119LeafList">维修模式叶标识列表</param>
         /// <param name="sysLogID">系统登录标识</param>
         public void ufn_GetList_QCOperationsForNG(
             int communityID,
             int t102LeafID,
-            int srcT107LeafID,
+            int t107LeafID_TS,
+            int t107LeafID_Src,
+            string t119LeafList,
             long sysLogID,
             ref List<QCOperationsForNG> datas,
             out int errCode,
@@ -441,15 +445,20 @@ namespace IRAP.WCF.Client.Method
                 Hashtable hashParams = new Hashtable();
                 hashParams.Add("communityID", communityID);
                 hashParams.Add("t102LeafID", t102LeafID);
-                hashParams.Add("srcT107LeafID", srcT107LeafID);
+                hashParams.Add("t107LeafID_TS", t107LeafID_TS);
+                hashParams.Add("t107LeafID_Src", t107LeafID_Src);
+                hashParams.Add("t119LeafList", t119LeafList);
                 hashParams.Add("sysLogID", sysLogID);
                 WriteLog.Instance.Write(
                     string.Format(
                         "调用 ufn_GetList_QCOperationsForNG，输入参数：" +
-                        "CommunityID={0}|T102LeafID={1}|SrcT107LeafID={2}|SysLogID={3}",
+                        "CommunityID={0}|T102LeafID={1}|T107LeafID_TS={2}|"+
+                        "T107LeafID_Src={3}|T119LeafList={4}|SysLogID={5}",
                         communityID,
                         t102LeafID,
-                        srcT107LeafID,
+                        t107LeafID_TS,
+                        t107LeafID_Src,
+                        t119LeafList,
                         sysLogID),
                     strProcedureName);
                 #endregion

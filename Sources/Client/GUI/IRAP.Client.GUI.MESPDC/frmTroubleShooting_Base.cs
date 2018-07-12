@@ -1107,7 +1107,9 @@ namespace IRAP.Client.GUI.MESPDC
                         Dialogs.frmSelectDestT216LeafID.Instance.DestT216LeafID(
                             IRAPUser.Instance.CommunityID,
                             currentProductLeaf,
+                            currentWorkUnitLeaf,
                             srcT107LeafID,
+                            GenerateT119LeafListInRepairItems(repairWIPIDs),
                             IRAPUser.Instance.SysLogID);
                     if (destT216LeafID < 0)
                         return;
@@ -1404,6 +1406,37 @@ namespace IRAP.Client.GUI.MESPDC
         private void grdvRepairItems_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
+        }
+        /// <summary>
+        /// 根据维修项目列表生成维修模式叶标识列表字符串
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+
+        private string GenerateT119LeafListInRepairItems(List<SubWIPIDCode_TroubleShooting> items)
+        {
+            string sb = "";
+            foreach (SubWIPIDCode_TroubleShooting item in items)
+            {
+                item.GetListFromDataTable();
+                foreach (SubWIPIDCode_TSItem tsItem in item.TSItems)
+                {
+                    if (sb.IndexOf(tsItem.T119LeafID.ToString()) >= 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (sb != "")
+                        {
+                            sb += ",";
+                        }
+                        sb += tsItem.T119LeafID.ToString();
+                    }
+                }
+            }
+
+            return sb;
         }
     }
 }
