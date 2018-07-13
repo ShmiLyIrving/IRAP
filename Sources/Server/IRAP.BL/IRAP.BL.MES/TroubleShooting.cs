@@ -263,7 +263,7 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@T102LeafID", DbType.Int32, t102LeafID));
                 paramList.Add(new IRAPProcParameter("@T107LeafID_TS", DbType.Int32, t107LeafID_TS));
-                paramList.Add(new IRAPProcParameter("@T102LeafID_Src", DbType.Int32, t107LeafID_Src));
+                paramList.Add(new IRAPProcParameter("@T107LeafID_Src", DbType.Int32, t107LeafID_Src));
                 paramList.Add(new IRAPProcParameter("@T119LeafList", DbType.String, t119LeafList));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
@@ -1000,7 +1000,24 @@ namespace IRAP.BL.MES
                         tempFact.LinkedFactID = wipIDCode.LinkedFactID;
                         tempFact.Remark = "故障维修";
                         WriteLog.Instance.Write("开始保存主事实", strProcedureName);
-                        conn.Insert(tempFact);
+                        try
+                        {
+                            conn.Insert(tempFact);
+                        }
+                        catch (Exception error)
+                        {
+                            errCode = 9999;
+                            errText =
+                                string.Format(
+                                    "保存主事实失败：{0}",
+                                    error.Message);
+
+                            WriteLog.Instance.Write(errText, strProcedureName);
+
+                            conn.RollBack();
+
+                            return Json(errCode);
+                        }
                         WriteLog.Instance.Write("保存主事实完成", strProcedureName);
                         #endregion
 

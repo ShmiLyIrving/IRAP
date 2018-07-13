@@ -60,7 +60,57 @@ namespace IRAP.Entities.MES.Tables
         public string Remark { get; set; }
         public long LinkedFactID { get; set; }
 
-        public FixedFact_MES Clone()
+        public FixedFact_MES()
+        {
+            FactID = 0;
+            PartitioningKey = 0;
+            TransactNo = 0;
+            IsFixed = 0;
+            OpID = 0;
+            OpType = 0;
+            BusinessDate = DateTime.Now;
+            Code01 = "";
+            Code02 = "";
+            Code03 = "";
+            Code04 = "";
+            Code05 = "";
+            Code06 = "";
+            Code07 = "";
+            Code08 = "";
+            Code09 = "";
+            Code10 = "";
+            Leaf01 = 0;
+            Leaf02 = 0;
+            Leaf03 = 0;
+            Leaf04 = 0;
+            Leaf05 = 0;
+            Leaf06 = 0;
+            Leaf07 = 0;
+            Leaf08 = 0;
+            Leaf09 = 0;
+            Leaf10 = 0;
+            AChecksum = 0;
+            CorrelationID = 0;
+            Metric01 = 0;
+            Metric02 = 0;
+            Metric03 = 0;
+            Metric04 = 0;
+            Metric05 = 0;
+            Metric06 = 0;
+            Metric07 = 0;
+            Metric08 = 0;
+            Metric09 = 0;
+            Metric10 = 0;
+            Metric11 = 0;
+            Metric12 = 0;
+            BChecksum = 0;
+            MeasurementID = 0;
+            WFInstanceID = "";
+            Remark = "";
+            LinkedFactID = 0;
+        }
+
+    public FixedFact_MES Clone()
         {
             return MemberwiseClone() as FixedFact_MES;
         }
