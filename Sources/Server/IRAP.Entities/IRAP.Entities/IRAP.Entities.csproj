@@ -110,6 +110,7 @@
     <Compile Include="MES\SubWIPIDCodes_TS.cs" />
     <Compile Include="MES\SubWIPIDCode_TroubleShooting.cs" />
     <Compile Include="MES\SubWIPIDCode_TSItem.cs" />
+    <Compile Include="MES\Tables\TempFact_OLTP_MES.cs" />
     <Compile Include="MES\TBL_RSFact_TSDataCollecting.cs" />
     <Compile Include="MES\TBL_RSFact_WIPScrapping.cs" />
     <Compile Include="MES\ToDoPWOFromWorkUnit.cs" />

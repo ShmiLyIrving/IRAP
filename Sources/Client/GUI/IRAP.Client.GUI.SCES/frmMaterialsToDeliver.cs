@@ -314,7 +314,18 @@ namespace IRAP.Client.GUI.SCES
                                 report1.Load(ms);
                                 break;
                             case 60030:
-                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack_60030);
+                                if (IRAPUser.Instance.HostName == "RMS115301")
+                                {
+                                    ms =
+                                        new MemoryStream(
+                                            Properties.Resources.WIPProductInfoTrack_60030_RMS115301);
+                                }
+                                else
+                                {
+                                    ms =
+                                        new MemoryStream(
+                                            Properties.Resources.WIPProductInfoTrack_60030);
+                                }
                                 report1.Load(ms);
                                 break;
                         }

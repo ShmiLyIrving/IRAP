@@ -124,6 +124,9 @@
   <data name="WIPProductInfoTrack_60030" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WIPProductInfoTrack_60030.frx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="WIPProductInfoTrack_60030_RMS115301" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WIPProductInfoTrack_60030_RMS115301.frx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="WIPTransferTrackSheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WIPTransferTrackSheet.frx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

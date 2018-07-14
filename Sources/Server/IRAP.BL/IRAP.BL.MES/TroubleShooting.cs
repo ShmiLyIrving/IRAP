@@ -957,22 +957,21 @@ namespace IRAP.BL.MES
                     foreach (SubWIPIDCode_TroubleShooting wipIDCode in subWIPIDCodes)
                     {
                         long factID = IRAPDAL.UTS.Instance.msp_GetSequenceNo("NextFactNo", 1);
-                        long factPartitionPolicy =
-                            PartitioningKey.Instance.GetFactPartitionPolicy(
-                                communityID,
-                                DateTime.Now.Year,
-                                11);
+                        long partitioningKey = communityID * 10000;
                         long auxPartitioning =
                             PartitioningKey.Instance.GetAuxPartitionPolicy(
                                 communityID,
                                 DateTime.Now.Year,
                                 wipIDCode.PWOCategoryLeaf);
+                        long factPartitioningKey =
+                            DateTime.Now.Year * 1000000000000 +
+                            communityID * 10000;
 
                         #region 保存主事实
-                        FixedFact_MES tempFact = new FixedFact_MES();
+                        TempFact_OLTP_MES tempFact = new TempFact_OLTP_MES();
                         tempFact.FactID = factID;
                         tempFact.TransactNo = transactNo;
-                        tempFact.PartitioningKey = factPartitionPolicy;
+                        tempFact.PartitioningKey = partitioningKey + 11;
                         tempFact.OpID = 11;
                         tempFact.OpType = wipIDCode.RepairStatus;
                         tempFact.BusinessDate = DateTime.Now;
@@ -994,7 +993,7 @@ namespace IRAP.BL.MES
                         tempFact.Code07 = dimesion.T181Code;
                         tempFact.Code08 = dimesion.T1002Code;
                         tempFact.Code09 = t216Code;
-                        tempFact.IsFixed = 1;
+                        tempFact.IsFixed = 0;
                         tempFact.Metric01 = 1;
                         tempFact.WFInstanceID = wipIDCode.SubWIPIDCode;
                         tempFact.LinkedFactID = wipIDCode.LinkedFactID;
@@ -1025,7 +1024,7 @@ namespace IRAP.BL.MES
                         AuxFact_PDC auxFact = new AuxFact_PDC();
                         auxFact.FactID = factID;
                         auxFact.PartitioningKey = auxPartitioning;
-                        auxFact.FactPartitioningKey = factPartitionPolicy;
+                        auxFact.FactPartitioningKey = factPartitioningKey + 11;
                         auxFact.WFInstanceID = wipIDCode.PWONo;
                         auxFact.WIPCode = wipIDCode.SubWIPIDCode;
                         auxFact.AltWIPCode = "";
@@ -1033,7 +1032,24 @@ namespace IRAP.BL.MES
                         auxFact.LotNumber = "";
                         auxFact.ContainerNo = "";
                         WriteLog.Instance.Write("开始保存辅助事实", strProcedureName);
-                        conn.Insert(auxFact);
+                        try
+                        {
+                            conn.Insert(auxFact);
+                        }
+                        catch (Exception error)
+                        {
+                            errCode = 9999;
+                            errText =
+                                string.Format(
+                                    "保存辅助事实失败：{0}",
+                                    error.Message);
+
+                            WriteLog.Instance.Write(errText, strProcedureName);
+
+                            conn.RollBack();
+
+                            return Json(errCode);
+                        }
                         WriteLog.Instance.Write("保存辅助事实完成", strProcedureName);
                         #endregion
 
@@ -1083,7 +1099,7 @@ namespace IRAP.BL.MES
 
                             ordinal++;
                             TBL_RSFact_TSDataCollecting rsfact = new TBL_RSFact_TSDataCollecting();
-                            rsfact.PartitioningKey = factPartitionPolicy;
+                            rsfact.PartitioningKey = factPartitioningKey + 11;
                             rsfact.FactID = factID;
                             rsfact.WFInstanceID = wipIDCode.SubWIPIDCode;
                             rsfact.Ordinal = ordinal;
@@ -1125,10 +1141,10 @@ namespace IRAP.BL.MES
                             #endregion
 
                             #region 保存报废主事实
-                            FixedFact_MES scrappingOLTP = new FixedFact_MES();
+                            TempFact_OLTP_MES scrappingOLTP = new TempFact_OLTP_MES();
                             scrappingOLTP.FactID = factID;
                             scrappingOLTP.TransactNo = transactNo;
-                            scrappingOLTP.PartitioningKey = factPartitionPolicy;
+                            scrappingOLTP.PartitioningKey = partitioningKey + 17;
                             scrappingOLTP.OpID = 17;
                             scrappingOLTP.OpType = 1;
                             scrappingOLTP.BusinessDate = DateTime.Now;
@@ -1150,7 +1166,7 @@ namespace IRAP.BL.MES
                             scrappingOLTP.Code07 = dimesion.T181Code;
                             scrappingOLTP.Code08 = dimesion.T1002Code;
                             scrappingOLTP.Code09 = t216Code;
-                            scrappingOLTP.IsFixed = 1;
+                            scrappingOLTP.IsFixed = 0;
                             scrappingOLTP.Metric01 = 1;
                             scrappingOLTP.WFInstanceID = wipIDCode.SubWIPIDCode;
                             scrappingOLTP.LinkedFactID = wipIDCode.LinkedFactID;
@@ -1162,7 +1178,7 @@ namespace IRAP.BL.MES
                             AuxFact_PDC scrappingAuxFact = new AuxFact_PDC();
                             scrappingAuxFact.FactID = factID;
                             scrappingAuxFact.PartitioningKey = auxPartitioning;
-                            scrappingAuxFact.FactPartitioningKey = factPartitionPolicy;
+                            scrappingAuxFact.FactPartitioningKey = partitioningKey;
                             scrappingAuxFact.WFInstanceID = wipIDCode.PWONo;
                             scrappingAuxFact.WIPCode = wipIDCode.SubWIPIDCode;
                             scrappingAuxFact.AltWIPCode = "";
@@ -1187,7 +1203,7 @@ namespace IRAP.BL.MES
 
                                 ordinal++;
                                 TBL_RSFact_WIPScrapping rsfact = new TBL_RSFact_WIPScrapping();
-                                rsfact.PartitioningKey = factPartitionPolicy;
+                                rsfact.PartitioningKey = partitioningKey;
                                 rsfact.FactID = factID;
                                 rsfact.WFInstanceID = wipIDCode.SubWIPIDCode;
                                 rsfact.Ordinal = ordinal;
