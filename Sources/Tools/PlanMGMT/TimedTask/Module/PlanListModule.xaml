@@ -1,0 +1,366 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+             xmlns:tb="http://www.hardcodet.net/taskbar"
+             xmlns:ts="clr-namespace:PlanMGMT"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="PlanMGMT.Module.PlanListModule"  
+             mc:Ignorable="d"
+             FontSize="12" Margin="0,0,0,0"
+             Background="Transparent"
+             d:DesignWidth="949.125" d:DesignHeight="527.049">
+    <UserControl.Resources>
+        <!--以概要列表显示-->
+        <DataTemplate x:Key="PlanListSummaryTemplate">
+            <Border x:Name="bd" BorderBrush="#FFC8C0C0" BorderThickness="1" Margin="0.5,0.5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="3">
+                <Grid Height="90" Background="Azure">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35" />
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.8*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.RowSpan="3" Background="{Binding Status, Converter={StaticResource myStatusColorBG}}"/>
+                    <Border Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="{Binding PlanID,Converter={StaticResource myPassedTaskColor}}"/>
+                    <Label   Grid.Column="1" HorizontalAlignment="Left" MaxWidth="350">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="任务名称"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                        <TextBlock TextWrapping="Wrap" Foreground="Olive" FontSize="16" Text="{Binding JobName}"/>
+                    </Label>
+                    <Label HorizontalAlignment="Left" Style="{StaticResource NormalLabelStyle}" MaxWidth="350" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left" 
+                           Content="{Binding ProjectID, Converter={StaticResource myProjectIDToNameConverter}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="所属项目"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label HorizontalAlignment="Left" Grid.Column="4" VerticalAlignment="Top"
+                           Content="{Binding InCharge, Converter={StaticResource myCodetoName}}" Foreground="White" Background="#FF5294D6">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="负责人"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label HorizontalAlignment="Left" Grid.Row="1" Grid.Column="4"
+                           Content="{Binding CoCharge, Converter={StaticResource myCodetoName}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="协助人"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2"
+                           Content="{Binding Priority, Converter={StaticResource myPriority}}"
+                           Foreground="{Binding Priority, Converter={StaticResource myPriorityColor}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="优先级"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Grid.Row ="0" Grid.Column="2" Content="{Binding PlanStart, Converter={StaticResource myDateFormat}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="计划开始时间"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Grid.Row ="0" Grid.Column="3" Content="{Binding PlanEnd, Converter={StaticResource myDateFormat}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="计划结束时间"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Grid.Row ="1" Grid.Column="2" Content="{Binding ActualStart, Converter={StaticResource myDateFormat}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="实际开始时间"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Grid.Row ="1" Grid.Column="3" Content="{Binding ActualEnd, Converter={StaticResource myDateFormat}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="实际结束时间"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Content="{Binding Status, Converter={StaticResource myStatus}}" 
+                           Foreground="{Binding Status, Converter={StaticResource myStatusColorBG}}" HorizontalAlignment="Left"
+                           VerticalAlignment="Center" Width="50" Grid.Column="3" Grid.Row="2">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="任务状态"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Content="{Binding CostMinutes}" 
+                           Foreground="DarkBlue" 
+                           VerticalAlignment="Center" Width="50" Grid.Column="4" Grid.Row="2" FontWeight="Bold" FontSize="14">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="花费时间(分钟)"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Height="50" Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center" HorizontalAlignment="Left" MaxWidth="350">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="{Binding Remark}"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                        <TextBlock TextWrapping="Wrap" FontSize="11" Text="{Binding Remark}"/>
+                    </Label>
+                    <Button Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" Width="50" Height="25" Cursor="Hand"
+                            Click="ShowMenuItem_Click" CommandParameter="1">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border BorderBrush="#FFC8C0C0" BorderThickness="1" CornerRadius="2">
+                                    <StackPanel Orientation="Horizontal" Background="White">
+                                        <Image x:Name="btnImg" Source="/Theme/Images/Button/edit.gif" Margin="1.5,0,0,0" Width="16" Height="16"/>
+                                        <Label Content="编辑" FontSize="11" VerticalContentAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Grid.Column="5" Grid.Row="1"  HorizontalAlignment="Center" Width="50" Height="25" Cursor="Hand"
+                            Click="DeleteMenuItem_Click" CommandParameter="2">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border BorderBrush="#FFC8C0C0" BorderThickness="1" CornerRadius="2">
+                                    <StackPanel Orientation="Horizontal" Background="White">
+                                        <Image x:Name="btnImg" Source="/Theme/Images/Button/delete.gif" Margin="1.5,0,0,0" Width="16" Height="16"/>
+                                        <Label Content="删除" FontSize="11" VerticalContentAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Grid.Column="5" Grid.Row="2"  HorizontalAlignment="Center" Width="50" Height="25" FontSize="10" Cursor="Hand"
+                                Click="LockMenuItem_Click" CommandParameter="3">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border BorderBrush="#FFC8C0C0" BorderThickness="1" CornerRadius="2">
+                                    <StackPanel Orientation="Horizontal" Background="White">
+                                        <Image x:Name="btnImg" Source="{Binding Status, Converter={StaticResource myTimerToImage}}" Margin="1.5,0,0,0" Width="16" Height="16"/>
+                                        <Label x:Name="lbTimer" Content="{Binding Status, Converter={StaticResource myTimerToBtnContent}}" FontSize="11" VerticalContentAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <!--以标题列表显示-->
+        <DataTemplate x:Key="PlanListTitleTemplate">
+            <Border x:Name="bd" BorderBrush="#FFC8C0C0" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="2">
+                <Grid Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="18" />
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="{Binding Status, Converter={StaticResource myStatusColorBG}}"/>
+                    <Border Grid.Column="2" Grid.ColumnSpan="2" Background="{Binding PlanID,Converter={StaticResource myPassedTaskColor}}"/>
+                    <Label Content="{Binding JobName}" Style="{StaticResource BoldLabelStyle}" Grid.Column="1" HorizontalAlignment="Left" MaxWidth="370">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="任务名称"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Grid.Row ="0" Grid.Column="2" Content="{Binding PlanStart, Converter={StaticResource myDateFormat}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="计划开始时间"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label Grid.Column="3" Content="{Binding PlanEnd, Converter={StaticResource myDateFormat}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="计划结束时间"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Label HorizontalAlignment="Left" Grid.Column="4"
+                           Content="{Binding InCharge, Converter={StaticResource myCodetoName}}">
+                        <Label.ToolTip >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="负责人"/>
+                            </StackPanel>
+                        </Label.ToolTip>
+                    </Label>
+                    <Button Grid.Column="5"  HorizontalAlignment="Left" Style="{StaticResource LEditBtnStyle}" 
+                            Click="ShowMenuItem_Click" CommandParameter="1"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <!--负责人模板标题-->
+        <DataTemplate x:Key="InChargeTitleTemplate">
+            <Border x:Name="bd" BorderBrush="#FFC8C0C0" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="2">
+                <Grid>
+                    <Expander Header="{Binding UserName}" IsExpanded="{Binding IsExpanded, Mode=TwoWay}" FontSize="16" Background="{Binding UserCode,Converter={StaticResource myUserCodeColor1}}" Foreground="#FFFBFBFB" BorderBrush="#FF4B68A8" BorderThickness="1.5" TextOptions.TextFormattingMode="Display" FontWeight="Bold" FlowDirection="LeftToRight" ExpandDirection="Down" HorizontalContentAlignment="Stretch">
+                        <ListBox x:Name="lstMain"  BorderThickness="1" FocusVisualStyle="{x:Null}" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+ScrollViewer.VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ListBox_Answers_PreviewMouseWheel"
+                             ItemsSource="{Binding UserCode, Converter={StaticResource myCodeToPlan}}"
+                             ItemTemplate="{StaticResource PlanListTitleTemplate}" Margin="1,0,0,0" VerticalAlignment="Top">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction 
+                                      Command="{Binding PlanViewModel.PlanSelectedChangedCommand, Source={StaticResource Locator}}"
+                                      CommandParameter="{Binding SelectedItem, ElementName=lstMain}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListBox>
+                    </Expander>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <!--负责人模板列表-->
+        <DataTemplate x:Key="InChargeSummaryTemplate">
+            <Border x:Name="bd" BorderBrush="#FFC8C0C0" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="2">
+                <Grid>
+                    <Expander Header="{Binding UserName}" IsExpanded="{Binding IsExpanded, Mode=TwoWay}" FontSize="16" Background="{Binding UserCode,Converter={StaticResource myUserCodeColor2}}" Foreground="#FFFBFBFB" BorderBrush="#FF4B68A8" BorderThickness="2" TextOptions.TextFormattingMode="Display" FontWeight="Bold" ExpandDirection="Down">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction 
+                                      Command="{Binding PlanViewModel.PlanSelectedChangedCommand, Source={StaticResource Locator}}"
+                                      CommandParameter="{Binding SelectedItem, ElementName=lstMain}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListBox x:Name="lstMain"  BorderThickness="1" FocusVisualStyle="{x:Null}" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+ScrollViewer.VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ListBox_Answers_PreviewMouseWheel"
+                             ItemsSource="{Binding UserCode, Converter={StaticResource myCodeToPlan}}"
+                             ItemTemplate="{StaticResource PlanListSummaryTemplate}" Margin="1,0,0,0" VerticalAlignment="Top"/>
+                    </Expander>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="ListBoxControlTemplate1" TargetType="{x:Type ListBox}">
+            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="1" SnapsToDevicePixels="True">
+                <ScrollViewer Focusable="False" Padding="{TemplateBinding Padding}">
+                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <i:Interaction.Behaviors>
+                            <ei:FluidMoveBehavior Duration="0:0:0.2" FloatAbove="False">
+                                <ei:FluidMoveBehavior.EaseY>
+                                    <BackEase EasingMode="EaseOut" Amplitude="1"/>
+                                </ei:FluidMoveBehavior.EaseY>
+                                <ei:FluidMoveBehavior.EaseX>
+                                    <BackEase EasingMode="EaseOut" Amplitude="1"/>
+                                </ei:FluidMoveBehavior.EaseX>
+                            </ei:FluidMoveBehavior>
+                        </i:Interaction.Behaviors>
+                    </ItemsPresenter>
+                </ScrollViewer>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="Bd" Value="White"/>
+                    <Setter Property="BorderBrush" TargetName="Bd" Value="#FFD9D9D9"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsGrouping" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                </MultiTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <StackPanel IsItemsHost="True">
+                <i:Interaction.Behaviors>
+                    <ei:FluidMoveBehavior Duration="0:0:0.6" AppliesTo="Children">
+                        <ei:FluidMoveBehavior.EaseY>
+                            <QuinticEase EasingMode="EaseInOut"/>
+                        </ei:FluidMoveBehavior.EaseY>
+                        <ei:FluidMoveBehavior.EaseX>
+                            <QuarticEase EasingMode="EaseInOut"/>
+                        </ei:FluidMoveBehavior.EaseX>
+                    </ei:FluidMoveBehavior>
+                </i:Interaction.Behaviors>
+            </StackPanel>
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <Binding Path="PlanViewModel" Source="{StaticResource Locator}"/>
+    </UserControl.DataContext>
+
+    <Border  x:Name="mainBoder" Background="#FFF9F9F9" BorderThickness="0 1 0 1" Opacity="0.9" >
+        <DockPanel>
+            <Border x:Name="bdTop" DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="0" Margin="0,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="btnImgDispMode" Height="20" Margin="5,0,10,0" ToolTip="点击可改变显示模式"
+                           Source="/Theme/Images/Button/frm_left_hide.png"/>
+                    <Label Content="{Binding PlanMsg}" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Border>
+            <Grid Margin="0,0,0,0" DockPanel.Dock="Top">
+                <DockPanel x:Name="dpMain" LastChildFill="True">
+                    <Border x:Name="bdLeft" DockPanel.Dock="Left"
+                        BorderThickness="0 1 0 0" 
+                        BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" 
+                        Width="205" Background="#FFB5DAE2">
+                        <StackPanel Orientation="Vertical" Margin="3,1,3,0">
+                            <Label Content="查询条件" Style="{StaticResource BoldLabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                            <Label Content="计划开始日期：" HorizontalAlignment="Left"/>
+                            <DatePicker x:Name="dp_StartDate" Height="27" Margin="0" />
+                            <Label Content="计划结束日期：" HorizontalAlignment="Left"/>
+                            <DatePicker x:Name="dp_EndDate" Height="27" Margin="0" />
+                            <Label Content="负责人：" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="cboInCharge" IsEditable="True"/>
+                            <Label Content="任务状态：" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="cboStatus" IsEditable="True"/>
+                            <Label Content="部门：" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="cboDept" IsEditable="True"/>
+                            <Label Content="所属项目：" HorizontalAlignment="Left"/>
+                            <ComboBox  x:Name="cboProject" IsEditable="True" />
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="33,40,33,0">
+                                <Button x:Name="btnSerch" Content="查  询" Width="50" Margin="0 0 30 0" Click="btnSerch_Click"
+                                    />
+                                <Button Content="新  建" Width="50"
+                            Command="{Binding PlanViewModel.AddCommand, Source={StaticResource Locator}}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <DockPanel LastChildFill="True" DockPanel.Dock="Right">
+                        <DockPanel DockPanel.Dock="Top">
+                            <Expander DockPanel.Dock="Left" Margin="8,0,0,0" HorizontalAlignment="Left" Header="{Binding IsExpandAll, Converter={StaticResource myIsExpendAllContent}}" IsExpanded="{Binding IsExpandAll, Mode=TwoWay}" FontSize="16" Background="#FF222F6C" Foreground="#FFFBFBFB" BorderBrush="#FF4B68A8" BorderThickness="1" TextOptions.TextFormattingMode="Display" FontWeight="Bold" Width="123"/>
+                        </DockPanel>
+                        <Border x:Name="bdRight" DockPanel.Dock="Top" 
+                        BorderThickness="0 1 1 0" 
+                        BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" 
+                        Background="#FFB5DAE2">
+                            <ListBox x:Name="lstMain" ScrollViewer.CanContentScroll="False" BorderThickness="1" FocusVisualStyle="{x:Null}" HorizontalContentAlignment="Stretch"
+                             ItemsSource="{Binding InChargeList}"
+                             ItemTemplate="{StaticResource InChargeTitleTemplate}" Margin="1,0,0,0" VerticalAlignment="Top" Template="{DynamicResource ListBoxControlTemplate1}" ItemsPanel="{DynamicResource ItemsPanelTemplate1}"/>
+                        </Border>
+                    </DockPanel>
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+    </Border>
+</UserControl>

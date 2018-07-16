@@ -1,0 +1,30 @@
+﻿<Window x:Class="PlanMGMT.Control.Loading"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="60" Width="145"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        WindowStyle="None" 
+        AllowsTransparency="True" 
+        OpacityMask="White"
+        Background="Transparent">
+    <Window.Resources>
+        <Storyboard x:Key="waiting" Name="waiting">
+            <DoubleAnimation Storyboard.TargetName="SpinnerRotate" Storyboard.TargetProperty="(RotateTransform.Angle)" From="0" To="359" Duration="0:0:02" RepeatBehavior="Forever" />
+        </Storyboard>
+    </Window.Resources>
+    <Border x:Name="mainBoder" Width="140"  Height="55"
+            BorderBrush="#c2b70a" Background="#fefcdc"
+            CornerRadius="4" BorderThickness="1" >
+        <StackPanel Orientation="Horizontal" >
+            <Image Name="image" Source="/Theme/Images/loading.gif" RenderTransformOrigin="0.5,0.5" Margin="5" Stretch="None" Loaded="Image_Loaded">
+                <Image.RenderTransform>
+                    <RotateTransform x:Name="SpinnerRotate" Angle="0" />
+                </Image.RenderTransform>
+            </Image>
+            <Label Name="lblMsg" FontSize="16" Foreground="#646464" 
+               Content="正在加载..." 
+               HorizontalAlignment="Left"/>
+        </StackPanel>
+    </Border>
+</Window>

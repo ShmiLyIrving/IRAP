@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{247B9B90-EFD6-44FE-B67A-B824C5C67735}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlanMGMT</RootNamespace>
+    <AssemblyName>PlanMGMT</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>D:\publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <Optimize>false</Optimize>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>App1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>91A2752A4F6BAA0D9449D71C11510EE34D13D399</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TimedTask_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Apache.NMS, Version=1.6.0.3061, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\Apache.NMS.1.6.0\net-4.0\release\Apache.NMS.dll</HintPath>
+    </Reference>
+    <Reference Include="Apache.NMS.ActiveMQ, Version=1.6.5.3684, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\Apache.NMS.ActiveMQ-1.6.5\build\net-4.0\release\Apache.NMS.ActiveMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net40\CommonServiceLocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="MSL.Tool, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MSL.Tool.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\TaskScheduler\packages\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFVisifire.Charts, Version=5.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BackgroundWindow.xaml.cs">
+      <DependentUpon>BackgroundWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\AutoTaskBLL.cs" />
+    <Compile Include="BLL\BllBase.cs" />
+    <Compile Include="BLL\CommonMessageBLL.cs" />
+    <Compile Include="BLL\PlanBaseBLL.cs" />
+    <Compile Include="BLL\ProjectBLL.cs" />
+    <Compile Include="BLL\ReportBLL.cs" />
+    <Compile Include="BLL\SysLogBLL.cs" />
+    <Compile Include="BLL\PlanBLL.cs" />
+    <Compile Include="BLL\TypeListBLL.cs" />
+    <Compile Include="BLL\LoginBLL.cs" />
+    <Compile Include="Control\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Pager.xaml.cs">
+      <DependentUpon>Pager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ShowTip.xaml.cs">
+      <DependentUpon>ShowTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\CodeToPlanConverter.cs" />
+    <Compile Include="Converter\ConvBlueConverter.cs" />
+    <Compile Include="Converter\IsExpendAllContentConverter.cs" />
+    <Compile Include="Converter\PlanIDToPassedColorConverter.cs" />
+    <Compile Include="Converter\StatusToColorBGConverter.cs" />
+    <Compile Include="Converter\TimerToBtnContentConverter.cs" />
+    <Compile Include="Converter\PriorityToColorConverter.cs" />
+    <Compile Include="Converter\PriorityToNameConverter.cs" />
+    <Compile Include="Converter\ProjectIDToNameConverter.cs" />
+    <Compile Include="Converter\StatusToBtnContentConverter.cs" />
+    <Compile Include="Converter\StatusToColorConverter.cs" />
+    <Compile Include="Converter\StatusToNameConverter.cs" />
+    <Compile Include="Converter\TimerToImageConverter.cs" />
+    <Compile Include="Converter\UserCodeColor2Converter.cs" />
+    <Compile Include="Converter\UserCodeColor1Converter.cs" />
+    <Compile Include="Converter\UserCodeToUserNameConverter.cs" />
+    <Compile Include="Entity\BackGround.cs" />
+    <Compile Include="Entity\Department.cs" />
+    <Compile Include="Entity\Priority.cs" />
+    <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\PlanFilter.cs" />
+    <Compile Include="Entity\PlanStatus.cs" />
+    <Compile Include="Entity\WorkLog.cs" />
+    <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Entity\PSPUser.cs" />
+    <Compile Include="Model\Plan.cs" />
+    <Compile Include="Model\PlanByName.cs" />
+    <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\WebBrowserOverlay.xaml.cs">
+      <DependentUpon>WebBrowserOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\DateToFormatConverter.cs" />
+    <Compile Include="Converter\TaskTypeToNameConverter.cs" />
+    <Compile Include="Converter\RunTypeToColorConverter.cs" />
+    <Compile Include="Converter\RunToStateConverter.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\EnableToColorConverter.cs" />
+    <Compile Include="Converter\RunTypeToNameConverter.cs" />
+    <Compile Include="Converter\EnableToBtnContentConverter.cs" />
+    <Compile Include="Converter\TypeIdToNameConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\MessageType.cs" />
+    <Compile Include="Enums\TaskListDisplay.cs" />
+    <Compile Include="Model\CommonMessage.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Entity\Error.cs" />
+    <Compile Include="Module\ReportModule.xaml.cs">
+      <DependentUpon>ReportModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\PlanListModule.xaml.cs">
+      <DependentUpon>PlanListModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\DTUtilis.cs" />
+    <Compile Include="Utility\Encrypt.cs" />
+    <Compile Include="Utility\EsbHelper.cs" />
+    <Compile Include="Utility\Mysql.cs" />
+    <Compile Include="Utility\NotifyIconHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility\DownFile.cs" />
+    <Compile Include="Utility\Helper.cs" />
+    <Compile Include="Utility\HookHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility\HtmlHelper.cs" />
+    <Resource Include="Theme\Images\Button\messages.png" />
+    <Resource Include="Theme\Images\Home.png" />
+    <Resource Include="Theme\Images\loading.gif" />
+    <Resource Include="Theme\Images\Tip\error.png" />
+    <Resource Include="Theme\Images\Tip\ok.png" />
+    <Resource Include="Theme\Images\Tip\warn.png" />
+    <Resource Include="Theme\Images\Dialog\Question.png" />
+    <Resource Include="Theme\Images\Button\menu.png" />
+    <Resource Include="Theme\Images\Window\Close.png" />
+    <Resource Include="Theme\Images\Window\Close_Hover.png" />
+    <Resource Include="Theme\Images\Window\Close_Press.png" />
+    <Resource Include="Theme\Images\Window\Min.png" />
+    <Resource Include="Theme\Images\Window\Min_Hover.png" />
+    <Resource Include="Theme\Images\Window\Min_Press.png" />
+    <Resource Include="Theme\Images\Tip_Top.png" />
+    <Resource Include="Theme\Images\Button\frm_left_hide.png" />
+    <Resource Include="Theme\Images\Button\frm_left_show.png" />
+    <Resource Include="Theme\Images\Login\lock-blue.png" />
+    <Resource Include="Theme\Images\Login\lock.png" />
+    <Resource Include="Theme\Images\Login\password.png" />
+    <Resource Include="Theme\Images\Login\user-male.png" />
+    <Resource Include="Theme\Images\Login\user.png" />
+    <Resource Include="Theme\Images\Button\scheduled-tasks.png" />
+    <Resource Include="Theme\Images\Button\super-mono-3d-part2-68.png" />
+    <Resource Include="Theme\Images\Button\task-manager-alt-2.png" />
+    <Resource Include="Theme\Images\Button\start.png" />
+    <Resource Include="Theme\Images\Button\stop.png" />
+    <Resource Include="Theme\Images\Window\Max.png" />
+    <Resource Include="Theme\Images\Button\font-460.png" />
+    <Resource Include="Theme\Images\Button\ExpandAll.png" />
+    <Resource Include="Theme\Images\Button\RetractAll.png" />
+    <Resource Include="Theme\Images\Button\today.png" />
+    <Resource Include="Theme\Images\WindowBackground.jpg" />
+    <Resource Include="Theme\Images\WindowBackground1.jpg" />
+    <Resource Include="App.ico" />
+    <Resource Include="Theme\Images\App.ico" />
+    <Resource Include="App1.ico" />
+    <Resource Include="Theme\Images\Button\if_calendar-clock_299096.png" />
+    <Compile Include="Converter\EnableToStateConverter.cs" />
+    <Compile Include="Model\Zone.cs" />
+    <Compile Include="Model\PM.cs" />
+    <Compile Include="Model\SysLog.cs" />
+    <Compile Include="Model\TypeList.cs" />
+    <Compile Include="Enums\TaskType.cs" />
+    <Compile Include="Module\MainModule.xaml.cs">
+      <DependentUpon>MainModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\ProU.cs" />
+    <Compile Include="Utility\XMLUtilis.cs" />
+    <Compile Include="ViewModel\ConfigViewModel.cs" />
+    <Compile Include="Converter\DateToEnableConverter.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MessageViewModel.cs" />
+    <Compile Include="ViewModel\ReportViewModel.cs" />
+    <Compile Include="ViewModel\PageImageDownViewModel.cs" />
+    <Compile Include="ViewModel\PlanListViewModel.cs" />
+    <Compile Include="ViewModel\SysLogViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelCommand.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Config.xaml.cs">
+      <DependentUpon>Config.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageImageDown.xaml.cs">
+      <DependentUpon>PageImageDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenLock.xaml.cs">
+      <DependentUpon>ScreenLock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PlanEdit.xaml.cs">
+      <DependentUpon>PlanEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\ConfigHelper.cs" />
+    <Compile Include="Utility\XamlHelper.cs" />
+    <Compile Include="Enums\RunType.cs" />
+    <Compile Include="Utility\SysHelper.cs" />
+    <Compile Include="Control\PopUP.xaml.cs">
+      <DependentUpon>PopUP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskRunLog.xaml.cs">
+      <DependentUpon>TaskRunLog.xaml</DependentUpon>
+    </Compile>
+    <Page Include="BackgroundWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\Pager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ShowTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Model\WebBrowserOverlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\MainModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\ReportModule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\PlanListModule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Properties\DesignTimeResources1.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Theme\Style\LabelStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\Style\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\Style\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Theme\Style\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Config.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageImageDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ScreenLock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PlanEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\PopUP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskRunLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="TimedTask_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Images\CheckBox\Check.png" />
+    <Resource Include="Theme\Images\CheckBox\Normal.png" />
+    <Resource Include="Theme\Images\Button\close.bmp" />
+    <Resource Include="Theme\Images\Logo.png" />
+    <Resource Include="Theme\Images\Button\openFolder.png" />
+    <Resource Include="Theme\Images\RadioButton\Checked.png" />
+    <Resource Include="Theme\Images\RadioButton\Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Images\Page\pagination_first.ico" />
+    <Resource Include="Theme\Images\Page\pagination_last.ico" />
+    <Resource Include="Theme\Images\Page\pagination_next.ico" />
+    <Resource Include="Theme\Images\Page\pagination_prev.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Images\Button\delete.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Images\Button\edit.gif" />
+    <Resource Include="Theme\Images\Button\key.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Images\Button\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Images\Button\Set.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Images\Button\Note.png" />
+    <Resource Include="Theme\Images\Button\Task.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

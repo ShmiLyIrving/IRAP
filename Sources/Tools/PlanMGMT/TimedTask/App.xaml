@@ -1,0 +1,49 @@
+<Application x:Class="PlanMGMT.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:PlanMGMT.ViewModel" StartupUri="BackgroundWindow.xaml" xmlns:convert="clr-namespace:PlanMGMT.Converter" mc:Ignorable="d">
+  <!--StartupUri="MainWindow.xaml" 
+    如果不去除Locator就会找不到
+    我们知道StaticResource对该资源的查找行为类似于加载时查找，它会查找以前从当前 XAML 页的标记中加载的资源以及其他应用程序源，并且将该资源值生成为运行时对象中的属性值。App.cs文件中的MainWindow是重写时动态生成的，而StaticResource在这之前已经进行了数据绑定
+    -->
+  <Application.Resources>
+    <ResourceDictionary>
+      <!--引入外部样式 start-->
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Theme/Style/ButtonStyle.xaml" />
+        <ResourceDictionary Source="/Theme/Style/WindowStyle.xaml" />
+        <ResourceDictionary Source="/Theme/Style/Style.xaml" />
+        <ResourceDictionary Source="/Theme/Style/LabelStyle.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <!--引入外部样式 end-->
+      <!--转换器 start-->
+      <convert:EnableToStateConverter x:Key="myEnable"/>
+      <convert:DateToFormatConverter x:Key="myDateFormat"/>
+      <convert:RunTypeToNameConverter x:Key="myRunType"/>
+      <convert:EnableToBtnContentConverter x:Key="myBtnContent"/>
+      <convert:EnableToColorConverter x:Key="myEnableColor"/>
+      <convert:RunTypeToColorConverter x:Key="myRunTypeColor"/>
+      <convert:BooleanToVisibilityConverter x:Key="myVisible"/>
+      <convert:TypeIdToNameConverter x:Key="myNoteTypeById"/>
+      <convert:TaskTypeToNameConverter x:Key="myTaskTypeByType"/>
+      <convert:PriorityToNameConverter x:Key="myPriority"/>
+      <convert:PriorityToColorConverter x:Key="myPriorityColor"/>
+            <convert:StatusToNameConverter x:Key="myStatus"/>
+            <convert:StatusToColorConverter x:Key="myStatusColor"/>
+            <convert:UserCodeToUserNameConverter x:Key="myCodetoName"/>
+            <convert:StatusToBtnContentConverter x:Key="myStatusBtnContent"/>
+            <convert:ProjectIDToNameConverter x:Key="myProjectIDToNameConverter"/>
+            <convert:TimerToBtnContentConverter x:Key="myTimerToBtnContent"/>
+            <convert:TimerToImageConverter x:Key="myTimerToImage"/>
+            <convert:StatusToColorBGConverter x:Key="myStatusColorBG"/>
+            <convert:CodeToPlanConverter x:Key="myCodeToPlan"/>
+            <convert:IsExpendAllContentConverter x:Key="myIsExpendAllContent"/>
+            <convert:PlanIDToPassedColorConverter x:Key="myPassedTaskColor"/>
+            <convert:UserCodeColor1Converter x:Key="myUserCodeColor1"/>
+            <convert:UserCodeColor2Converter x:Key="myUserCodeColor2"/>
+            <convert:ConvBlueConverter x:Key="convBlue"/>
+            <convert:DateToEnableConverter x:Key="myDateToEnable"/>
+            
+            <!--转换器 end-->
+      <!--ViewModel 管理类-->
+      <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

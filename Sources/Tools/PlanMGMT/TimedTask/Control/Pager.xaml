@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="PlanMGMT.Control.Pager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             Height="28" Width="Auto" mc:Ignorable="d">
+    <Grid Background="#7AE3DBFF" AllowDrop="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="12"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="txbInfo" FontSize="12" HorizontalAlignment="Left" Text="1-6条 共500条 | 第1 / 60页" Height="15" Margin="5,0,0,0"></TextBlock>
+        <Image x:Name="iFirst" ToolTip="首页" IsEnabled="False"  Height="12" HorizontalAlignment="Left" Source="/Theme/Images/Page/pagination_first.ico" PreviewMouseLeftButtonDown="iFirst_PreviewMouseLeftButtonDown" Grid.Column="2"/>
+        <Image x:Name="iPrev" ToolTip="上一页" IsEnabled="False" Height="12" HorizontalAlignment="Left" Source="/Theme/Images/Page/pagination_prev.ico" PreviewMouseLeftButtonDown="iPrev_PreviewMouseLeftButtonDown" Grid.Column="3"/>
+
+        <TextBlock Text="|" Grid.Column="4" VerticalAlignment="Center"/>
+        <WrapPanel Name="wPanel" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80"  Margin="5 0 5 0">
+            <TextBox Name="txtPageNum" FontSize="12" Width="20" Height="20" VerticalAlignment="Center" Margin="5 0 0 0" Text="1" TextChanged="txtNum_TextChanged" KeyDown="txtPageNum_KeyDown"></TextBox>
+            <TextBlock x:Name="txbTotalPageCount" FontSize="12" Text="/ 60" VerticalAlignment="Center"/>
+            <TextBlock x:Name="txbGO" ToolTip="跳转" FontSize="12" VerticalAlignment="Center" FontWeight="Bold" Text=" GO" PreviewMouseLeftButtonDown="txbGO_PreviewMouseLeftButtonDown" Background="{x:Null}" Foreground="#FF007EAA" MouseMove="txbGO_MouseMove" MouseLeave="txbGO_MouseLeave" />
+        </WrapPanel>
+        <TextBlock Text="|" Grid.Column="6" VerticalAlignment="Center"/>
+
+        <Image x:Name="iNext" ToolTip="下一页" IsEnabled="False" Height="12" HorizontalAlignment="Left" Source="/Theme/Images/Page/pagination_next.ico" PreviewMouseLeftButtonDown="iNext_PreviewMouseLeftButtonDown" Grid.Column="7"/>
+        <Image x:Name="iLast" ToolTip="末页" IsEnabled="False" Height="12" HorizontalAlignment="Left" Source="/Theme/Images/Page/pagination_last.ico" PreviewMouseLeftButtonDown="iLast_PreviewMouseLeftButtonDown" Grid.Column="8"/>
+    </Grid>
+</UserControl>

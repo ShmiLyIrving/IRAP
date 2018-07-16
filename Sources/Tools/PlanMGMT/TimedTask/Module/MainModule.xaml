@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="PlanMGMT.Module.MainModule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Opacity="0.9"
+             Background="Transparent" d:DesignWidth="794.125" d:DesignHeight="438.312">
+    <Grid x:Name="mainBoder"  Background="#FFF9F9F9" >
+        <DockPanel LastChildFill="True">
+            <Border x:Name="bdTop" BorderBrush="Black" BorderThickness="0" DockPanel.Dock="Top">
+                <Label Content="统计归档..." HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Border>
+            <DockPanel x:Name="spMain" DockPanel.Dock="Top" LastChildFill="True">
+                <Border x:Name="bdRight" DockPanel.Dock="Right"
+                        BorderThickness="0 1 0 0" 
+                        BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" 
+                        Width="180">
+                    <StackPanel Orientation="Vertical">
+                        <Label HorizontalAlignment="Left">
+                            <TextBlock x:Name="txtStatistical" xml:space="preserve"/>
+                        </Label>
+                    </StackPanel>
+                </Border>
+                <Grid x:Name="bdLeft" VerticalAlignment="Top" DockPanel.Dock="Right"
+                        Margin="0"
+                        >
+                    <Grid Name="Simon"/>
+                </Grid>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

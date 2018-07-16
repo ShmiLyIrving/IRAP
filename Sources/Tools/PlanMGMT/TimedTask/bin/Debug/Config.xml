@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <LockBgImg title="锁屏背景图">
+  </LockBgImg>
+  <AppBgImg title="程序背景图">D:\123\irap\Sources\Tools\TaskScheduler\TimedTask\bin\x86\Debug\Bg\bg.jpg</AppBgImg>
+  <MinToTray title="最小化到系统托盘">1</MinToTray>
+  <LockMinute title="锁屏分钟">5</LockMinute>
+  <SaveLog title="是否记录运行日志">1</SaveLog>
+  <ShowNews title="是否启动后自动弹出资讯">0</ShowNews>
+  <ExCode>WBS</ExCode>
+  <isSavePass>1</isSavePass>
+  <isAutoLogin>0</isAutoLogin>
+  <UserCode>Test</UserCode>
+  <UserPass>6BHwWPLYPa8=</UserPass>
+  <Conn>Data Source={0}\Task.db;failifmissing=false;Pooling=True</Conn>
+  <NewsUrl title="资讯首页链接">http://www.news.baidu.com</NewsUrl>
+  <NewsTag title="资讯版块标签 ：开始标签⊙结束标签" eg="开始标签必须是唯一的">
+    <Tag title="焦点"><![CDATA[<ul class="ulist focuslistnews">⊙</div>]]></Tag>
+    <Tag title="资讯"><![CDATA[<div class="bd" id="localnews-zixun">⊙</div>]]></Tag>
+    <Tag title="国际"><![CDATA[<div class="l-left-col col-mod" alog-group=log-internal-left>⊙</div>]]></Tag>
+    <Tag title="国内"><![CDATA[<div class="l-left-col col-mod" alog-group=log-civil-left>⊙</div>]]></Tag>
+    <Tag title="娱乐"><![CDATA[<div class="l-left-col col-mod" alog-group=entertainment-left>⊙</div>]]></Tag>
+    <Tag title="健康"><![CDATA[<div class="l-left-col col-mod" alog-group=log-lady-left>⊙</div>]]></Tag>
+    <Tag title="军事"><![CDATA[<div class="l-left-col col-mod" alog-group=log-mil-left>⊙</div>]]></Tag>
+    <Tag title="体育"><![CDATA[<div class="l-left-col col-mod" alog-group=log-sports-left>⊙</div>]]></Tag>
+  </NewsTag>
+</Configuration>
