@@ -21,15 +21,6 @@ namespace PlanMGMT.Model
         private static bool _mintoTray = false;
         private static string _appbgImg = String.Empty;
         private static char _spiderChar = '⊙';//字符串特殊分割符
-        private static string _HomePageUrl = "http://home.cnblogs.com/u/shanlin/";
-        /// <summary>
-        /// 个人主页
-        /// </summary>
-        public static string HomePageUrl
-        {
-            get { return PM._HomePageUrl; }
-            set { PM._HomePageUrl = value; }
-        }
 
         /// <summary>
         /// 字符串特殊分割符
