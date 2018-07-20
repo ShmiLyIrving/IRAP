@@ -86,24 +86,21 @@ namespace IncBuildNum
                             break;
                         }
                     }
+
+                    string[] spVersion = version.Split('.');
+                    string versionString =
+                        string.Format(
+                            "[assembly: AssemblyFileVersion(\"{0}.{1}.{2}.{3}\")]",
+                            spVersion[0],
+                            spVersion[1],
+                            DateTime.Now.ToString("MMdd"),
+                            intBuildNo);
                     if (idx >= 0)
                     {
-                        fileContent[idx] =
-                            string.Format(
-                                "[assembly: AssemblyFileVersion(\"{0}.{1}.{2}.{3}\")]",
-                                DateTime.Now.Year,
-                                DateTime.Now.Month,
-                                DateTime.Now.Day,
-                                intBuildNo - 1);
+                        fileContent[idx] = versionString;
                     }
                     else
-                        fileContent.Add(
-                            string.Format(
-                                "[assembly: AssemblyFileVersion(\"{0}.{1}.{2}.{3}\")]",
-                                DateTime.Now.Year,
-                                DateTime.Now.Month,
-                                DateTime.Now.Day,
-                                intBuildNo - 1));
+                        fileContent.Add(versionString);
                 }
                 else
                 {
@@ -172,7 +169,7 @@ namespace IncBuildNum
                                 "[assembly: AssemblyFileVersion(\"{0}.{1}.{2}.{3}\")]",
                                 spVersion[0],
                                 spVersion[1],
-                                DateTime.Now.ToString("yyyyMMdd"),
+                                DateTime.Now.ToString("MMdd"),
                                 intBuildNo);
                         if (idx >= 0)
                         {
