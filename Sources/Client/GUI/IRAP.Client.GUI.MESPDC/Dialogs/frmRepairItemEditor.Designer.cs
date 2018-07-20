@@ -28,8 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblSymbol = new DevExpress.XtraEditors.LabelControl();
             this.sccMain = new DevExpress.XtraEditors.SplitContainerControl();
+            this.cboT119LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboT184LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboT183LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboT216LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboT118LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboSymbol = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblT119Name = new DevExpress.XtraEditors.LabelControl();
             this.lblT184Name = new DevExpress.XtraEditors.LabelControl();
             this.lblT183Name = new DevExpress.XtraEditors.LabelControl();
@@ -47,22 +53,16 @@
             this.lblSymbolText = new DevExpress.XtraEditors.LabelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.cboSymbol = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cboT118LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cboT216LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cboT183LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cboT184LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cboT119LeafID = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.sccMain)).BeginInit();
             this.sccMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT119LeafID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT184LeafID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT183LeafID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT216LeafID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT118LeafID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboSymbol.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTrackReferenceValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtFailurePointCount.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboSymbol.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT118LeafID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT216LeafID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT183LeafID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT184LeafID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT119LeafID.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTipController
@@ -72,17 +72,17 @@
             this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
             // 
-            // labelControl1
+            // lblSymbol
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(13, 11);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(116, 20);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "器件位号/物料编号";
+            this.lblSymbol.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSymbol.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblSymbol.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblSymbol.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblSymbol.Location = new System.Drawing.Point(13, 11);
+            this.lblSymbol.Name = "lblSymbol";
+            this.lblSymbol.Size = new System.Drawing.Size(116, 20);
+            this.lblSymbol.TabIndex = 0;
+            this.lblSymbol.Text = "器件位号/物料编号";
             // 
             // sccMain
             // 
@@ -115,7 +115,7 @@
             this.sccMain.Panel1.Controls.Add(this.edtFailurePointCount);
             this.sccMain.Panel1.Controls.Add(this.lblT118LeafID);
             this.sccMain.Panel1.Controls.Add(this.lblSymbolText);
-            this.sccMain.Panel1.Controls.Add(this.labelControl1);
+            this.sccMain.Panel1.Controls.Add(this.lblSymbol);
             this.sccMain.Panel1.ShowCaption = true;
             this.sccMain.Panel1.Text = "{0}维修项";
             this.sccMain.Panel2.Controls.Add(this.btnCancel);
@@ -126,11 +126,120 @@
             this.sccMain.TabIndex = 3;
             this.sccMain.Text = "splitContainerControl1";
             // 
+            // cboT119LeafID
+            // 
+            this.cboT119LeafID.EnterMoveNextControl = true;
+            this.cboT119LeafID.Location = new System.Drawing.Point(151, 223);
+            this.cboT119LeafID.Name = "cboT119LeafID";
+            this.cboT119LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboT119LeafID.Properties.Appearance.Options.UseFont = true;
+            this.cboT119LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.cboT119LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.cboT119LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.cboT119LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.cboT119LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboT119LeafID.Size = new System.Drawing.Size(163, 26);
+            this.cboT119LeafID.TabIndex = 14;
+            this.cboT119LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
+            this.cboT119LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT119LeafID_Validating);
+            // 
+            // cboT184LeafID
+            // 
+            this.cboT184LeafID.EnterMoveNextControl = true;
+            this.cboT184LeafID.Location = new System.Drawing.Point(151, 191);
+            this.cboT184LeafID.Name = "cboT184LeafID";
+            this.cboT184LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboT184LeafID.Properties.Appearance.Options.UseFont = true;
+            this.cboT184LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.cboT184LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.cboT184LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.cboT184LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.cboT184LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboT184LeafID.Size = new System.Drawing.Size(163, 26);
+            this.cboT184LeafID.TabIndex = 12;
+            this.cboT184LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
+            this.cboT184LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT184LeafID_Validating);
+            // 
+            // cboT183LeafID
+            // 
+            this.cboT183LeafID.EnterMoveNextControl = true;
+            this.cboT183LeafID.Location = new System.Drawing.Point(151, 159);
+            this.cboT183LeafID.Name = "cboT183LeafID";
+            this.cboT183LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboT183LeafID.Properties.Appearance.Options.UseFont = true;
+            this.cboT183LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.cboT183LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.cboT183LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.cboT183LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.cboT183LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboT183LeafID.Size = new System.Drawing.Size(163, 26);
+            this.cboT183LeafID.TabIndex = 10;
+            this.cboT183LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
+            this.cboT183LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT183LeafID_Validating);
+            // 
+            // cboT216LeafID
+            // 
+            this.cboT216LeafID.EnterMoveNextControl = true;
+            this.cboT216LeafID.Location = new System.Drawing.Point(151, 127);
+            this.cboT216LeafID.Name = "cboT216LeafID";
+            this.cboT216LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboT216LeafID.Properties.Appearance.Options.UseFont = true;
+            this.cboT216LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.cboT216LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.cboT216LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.cboT216LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.cboT216LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboT216LeafID.Size = new System.Drawing.Size(163, 26);
+            this.cboT216LeafID.TabIndex = 8;
+            this.cboT216LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
+            this.cboT216LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT216LeafID_Validating);
+            // 
+            // cboT118LeafID
+            // 
+            this.cboT118LeafID.EnterMoveNextControl = true;
+            this.cboT118LeafID.Location = new System.Drawing.Point(151, 63);
+            this.cboT118LeafID.Name = "cboT118LeafID";
+            this.cboT118LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboT118LeafID.Properties.Appearance.Options.UseFont = true;
+            this.cboT118LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.cboT118LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.cboT118LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.cboT118LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.cboT118LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboT118LeafID.Size = new System.Drawing.Size(163, 26);
+            this.cboT118LeafID.TabIndex = 4;
+            this.cboT118LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
+            this.cboT118LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT118LeafID_Validating);
+            // 
+            // cboSymbol
+            // 
+            this.cboSymbol.EnterMoveNextControl = true;
+            this.cboSymbol.Location = new System.Drawing.Point(151, 8);
+            this.cboSymbol.Name = "cboSymbol";
+            this.cboSymbol.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSymbol.Properties.Appearance.Options.UseFont = true;
+            this.cboSymbol.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.cboSymbol.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.cboSymbol.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.cboSymbol.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.cboSymbol.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboSymbol.Size = new System.Drawing.Size(226, 26);
+            this.cboSymbol.TabIndex = 1;
+            this.cboSymbol.Enter += new System.EventHandler(this.edtSymbol_Enter);
+            this.cboSymbol.Validating += new System.ComponentModel.CancelEventHandler(this.edtSymbol_Validating);
+            // 
             // lblT119Name
             // 
             this.lblT119Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblT119Name.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblT119Name.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.lblT119Name.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblT119Name.Location = new System.Drawing.Point(320, 226);
             this.lblT119Name.Name = "lblT119Name";
@@ -142,6 +251,7 @@
             this.lblT184Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblT184Name.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblT184Name.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.lblT184Name.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblT184Name.Location = new System.Drawing.Point(320, 194);
             this.lblT184Name.Name = "lblT184Name";
@@ -153,6 +263,7 @@
             this.lblT183Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblT183Name.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblT183Name.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.lblT183Name.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblT183Name.Location = new System.Drawing.Point(320, 162);
             this.lblT183Name.Name = "lblT183Name";
@@ -164,6 +275,7 @@
             this.lblT216Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblT216Name.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblT216Name.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.lblT216Name.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblT216Name.Location = new System.Drawing.Point(320, 130);
             this.lblT216Name.Name = "lblT216Name";
@@ -175,6 +287,7 @@
             this.lblT118Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblT118Name.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblT118Name.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.lblT118Name.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblT118Name.Location = new System.Drawing.Point(320, 66);
             this.lblT118Name.Name = "lblT118Name";
@@ -218,7 +331,7 @@
             this.lblT119LeafID.Name = "lblT119LeafID";
             this.lblT119LeafID.Size = new System.Drawing.Size(116, 20);
             this.lblT119LeafID.TabIndex = 13;
-            this.lblT119LeafID.Text = "维修代码";
+            this.lblT119LeafID.Text = "维修模式";
             // 
             // lblT184LeafID
             // 
@@ -300,6 +413,7 @@
             this.lblSymbolText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSymbolText.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSymbolText.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.lblSymbolText.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblSymbolText.Location = new System.Drawing.Point(13, 37);
             this.lblSymbolText.Name = "lblSymbolText";
@@ -328,114 +442,6 @@
             this.btnSave.Text = "确定";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // cboSymbol
-            // 
-            this.cboSymbol.EnterMoveNextControl = true;
-            this.cboSymbol.Location = new System.Drawing.Point(151, 8);
-            this.cboSymbol.Name = "cboSymbol";
-            this.cboSymbol.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSymbol.Properties.Appearance.Options.UseFont = true;
-            this.cboSymbol.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
-            this.cboSymbol.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.cboSymbol.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.cboSymbol.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.cboSymbol.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboSymbol.Size = new System.Drawing.Size(226, 26);
-            this.cboSymbol.TabIndex = 1;
-            this.cboSymbol.Enter += new System.EventHandler(this.edtSymbol_Enter);
-            this.cboSymbol.Validating += new System.ComponentModel.CancelEventHandler(this.edtSymbol_Validating);
-            // 
-            // cboT118LeafID
-            // 
-            this.cboT118LeafID.EnterMoveNextControl = true;
-            this.cboT118LeafID.Location = new System.Drawing.Point(151, 63);
-            this.cboT118LeafID.Name = "cboT118LeafID";
-            this.cboT118LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboT118LeafID.Properties.Appearance.Options.UseFont = true;
-            this.cboT118LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
-            this.cboT118LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.cboT118LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.cboT118LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.cboT118LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboT118LeafID.Size = new System.Drawing.Size(163, 26);
-            this.cboT118LeafID.TabIndex = 4;
-            this.cboT118LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
-            this.cboT118LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT118LeafID_Validating);
-            // 
-            // cboT216LeafID
-            // 
-            this.cboT216LeafID.EnterMoveNextControl = true;
-            this.cboT216LeafID.Location = new System.Drawing.Point(151, 127);
-            this.cboT216LeafID.Name = "cboT216LeafID";
-            this.cboT216LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboT216LeafID.Properties.Appearance.Options.UseFont = true;
-            this.cboT216LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
-            this.cboT216LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.cboT216LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.cboT216LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.cboT216LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboT216LeafID.Size = new System.Drawing.Size(163, 26);
-            this.cboT216LeafID.TabIndex = 8;
-            this.cboT216LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
-            this.cboT216LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT216LeafID_Validating);
-            // 
-            // cboT183LeafID
-            // 
-            this.cboT183LeafID.EnterMoveNextControl = true;
-            this.cboT183LeafID.Location = new System.Drawing.Point(151, 159);
-            this.cboT183LeafID.Name = "cboT183LeafID";
-            this.cboT183LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboT183LeafID.Properties.Appearance.Options.UseFont = true;
-            this.cboT183LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
-            this.cboT183LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.cboT183LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.cboT183LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.cboT183LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboT183LeafID.Size = new System.Drawing.Size(163, 26);
-            this.cboT183LeafID.TabIndex = 10;
-            this.cboT183LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
-            this.cboT183LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT183LeafID_Validating);
-            // 
-            // cboT184LeafID
-            // 
-            this.cboT184LeafID.EnterMoveNextControl = true;
-            this.cboT184LeafID.Location = new System.Drawing.Point(151, 191);
-            this.cboT184LeafID.Name = "cboT184LeafID";
-            this.cboT184LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboT184LeafID.Properties.Appearance.Options.UseFont = true;
-            this.cboT184LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
-            this.cboT184LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.cboT184LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.cboT184LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.cboT184LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboT184LeafID.Size = new System.Drawing.Size(163, 26);
-            this.cboT184LeafID.TabIndex = 12;
-            this.cboT184LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
-            this.cboT184LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT184LeafID_Validating);
-            // 
-            // cboT119LeafID
-            // 
-            this.cboT119LeafID.EnterMoveNextControl = true;
-            this.cboT119LeafID.Location = new System.Drawing.Point(151, 223);
-            this.cboT119LeafID.Name = "cboT119LeafID";
-            this.cboT119LeafID.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboT119LeafID.Properties.Appearance.Options.UseFont = true;
-            this.cboT119LeafID.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
-            this.cboT119LeafID.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.cboT119LeafID.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.cboT119LeafID.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.cboT119LeafID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboT119LeafID.Size = new System.Drawing.Size(163, 26);
-            this.cboT119LeafID.TabIndex = 14;
-            this.cboT119LeafID.Enter += new System.EventHandler(this.edtSymbol_Enter);
-            this.cboT119LeafID.Validating += new System.ComponentModel.CancelEventHandler(this.edtT119LeafID_Validating);
-            // 
             // frmRepairItemEditor
             // 
             this.Appearance.Options.UseFont = true;
@@ -448,21 +454,21 @@
             this.Load += new System.EventHandler(this.frmRepairItemEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sccMain)).EndInit();
             this.sccMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboT119LeafID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT184LeafID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT183LeafID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT216LeafID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboT118LeafID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboSymbol.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTrackReferenceValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtFailurePointCount.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboSymbol.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT118LeafID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT216LeafID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT183LeafID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT184LeafID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboT119LeafID.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblSymbol;
         private DevExpress.XtraEditors.SplitContainerControl sccMain;
         private DevExpress.XtraEditors.LabelControl lblSymbolText;
         private DevExpress.XtraEditors.LabelControl lblT118LeafID;

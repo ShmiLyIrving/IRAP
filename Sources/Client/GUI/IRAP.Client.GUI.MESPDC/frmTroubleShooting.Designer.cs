@@ -29,11 +29,18 @@
         private void InitializeComponent()
         {
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.lblStatus = new DevExpress.XtraEditors.LabelControl();
+            this.splitContainerControl6 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.lblT134Info = new DevExpress.XtraEditors.LabelControl();
+            this.lblT107Info = new DevExpress.XtraEditors.LabelControl();
+            this.lblRoutingCheckInfo = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.lblT102Code = new DevExpress.XtraEditors.LabelControl();
             this.edtBarCode = new DevExpress.XtraEditors.TextEdit();
-            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.splitContainerControl7 = new DevExpress.XtraEditors.SplitContainerControl();
             this.grdProducts = new DevExpress.XtraGrid.GridControl();
             this.grdvProducts = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdclmnPartNumber = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,9 +49,10 @@
             this.riluInspectStatus = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.grdclmnRepairStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.riluRepairAction = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btnBarCodeConf = new DevExpress.XtraEditors.SimpleButton();
             this.tcMainControl = new DevExpress.XtraTab.XtraTabControl();
             this.tpRepairItems = new DevExpress.XtraTab.XtraTabPage();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl4 = new DevExpress.XtraEditors.SplitContainerControl();
             this.grdRepairItems = new DevExpress.XtraGrid.GridControl();
             this.grdvRepairItems = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -76,7 +84,6 @@
             this.riteFailureMode = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.tpShowTestData = new DevExpress.XtraTab.XtraTabPage();
             this.splitContainerControl5 = new DevExpress.XtraEditors.SplitContainerControl();
             this.chkFailOnly = new DevExpress.XtraEditors.CheckEdit();
             this.grdTestDatas = new DevExpress.XtraGrid.GridControl();
@@ -120,23 +127,37 @@
             this.grdclmnMetric31 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnMetric32 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.btnBarCodeConf = new DevExpress.XtraEditors.SimpleButton();
+            this.grdTSHistory = new DevExpress.XtraGrid.GridControl();
+            this.grdvTSHistory = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl6)).BeginInit();
+            this.splitContainerControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtBarCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
-            this.splitContainerControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl7)).BeginInit();
+            this.splitContainerControl7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluInspectStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluRepairAction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).BeginInit();
-            this.splitContainerControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcMainControl)).BeginInit();
             this.tcMainControl.SuspendLayout();
             this.tpRepairItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
+            this.splitContainerControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl4)).BeginInit();
             this.splitContainerControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRepairItems)).BeginInit();
@@ -153,13 +174,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.riteFailureMode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            this.tpShowTestData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl5)).BeginInit();
             this.splitContainerControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkFailOnly.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTestDatas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvTestDatas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riicboConclusion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdTSHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvTSHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -192,90 +215,174 @@
             this.splitContainerControl1.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl1.Panel1.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.splitContainerControl1.Panel1.Controls.Add(this.lblStatus);
-            this.splitContainerControl1.Panel1.Controls.Add(this.labelControl1);
-            this.splitContainerControl1.Panel1.Controls.Add(this.labelControl5);
-            this.splitContainerControl1.Panel1.Controls.Add(this.edtBarCode);
-            this.splitContainerControl1.Panel1.ShowCaption = true;
+            this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl6);
             this.splitContainerControl1.Panel1.Text = "条码信息 (<F5>)";
-            this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
+            this.splitContainerControl1.Panel2.Controls.Add(this.tcMainControl);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1008, 673);
-            this.splitContainerControl1.SplitterPosition = 65;
+            this.splitContainerControl1.SplitterPosition = 172;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // lblStatus
+            // splitContainerControl6
             // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainerControl6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl6.IsSplitterFixed = true;
+            this.splitContainerControl6.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl6.Name = "splitContainerControl6";
+            this.splitContainerControl6.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl6.Panel1.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl6.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl6.Panel1.Controls.Add(this.lblT134Info);
+            this.splitContainerControl6.Panel1.Controls.Add(this.lblT107Info);
+            this.splitContainerControl6.Panel1.Controls.Add(this.lblRoutingCheckInfo);
+            this.splitContainerControl6.Panel1.Controls.Add(this.labelControl6);
+            this.splitContainerControl6.Panel1.Controls.Add(this.labelControl4);
+            this.splitContainerControl6.Panel1.Controls.Add(this.labelControl3);
+            this.splitContainerControl6.Panel1.Controls.Add(this.labelControl1);
+            this.splitContainerControl6.Panel1.Controls.Add(this.lblT102Code);
+            this.splitContainerControl6.Panel1.Controls.Add(this.edtBarCode);
+            this.splitContainerControl6.Panel1.Controls.Add(this.labelControl5);
+            this.splitContainerControl6.Panel1.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl6.Panel1.ShowCaption = true;
+            this.splitContainerControl6.Panel1.Text = "不良在制品信息<F5>";
+            this.splitContainerControl6.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl6.Panel2.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl6.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl6.Panel2.Controls.Add(this.splitContainerControl7);
+            this.splitContainerControl6.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl6.Panel2.ShowCaption = true;
+            this.splitContainerControl6.Panel2.Text = "子在制品(<F6>)";
+            this.splitContainerControl6.Size = new System.Drawing.Size(1004, 168);
+            this.splitContainerControl6.SplitterPosition = 336;
+            this.splitContainerControl6.TabIndex = 12;
+            this.splitContainerControl6.Text = "splitContainerControl6";
+            // 
+            // lblT134Info
+            // 
+            this.lblT134Info.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStatus.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.lblStatus.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblStatus.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.lblStatus.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblStatus.Location = new System.Drawing.Point(410, 0);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(584, 37);
-            this.lblStatus.TabIndex = 11;
+            this.lblT134Info.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblT134Info.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblT134Info.Location = new System.Drawing.Point(82, 114);
+            this.lblT134Info.Name = "lblT134Info";
+            this.lblT134Info.Size = new System.Drawing.Size(244, 20);
+            this.lblT134Info.TabIndex = 17;
+            // 
+            // lblT107Info
+            // 
+            this.lblT107Info.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblT107Info.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblT107Info.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblT107Info.Location = new System.Drawing.Point(83, 88);
+            this.lblT107Info.Name = "lblT107Info";
+            this.lblT107Info.Size = new System.Drawing.Size(244, 20);
+            this.lblT107Info.TabIndex = 16;
+            // 
+            // lblRoutingCheckInfo
+            // 
+            this.lblRoutingCheckInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRoutingCheckInfo.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblRoutingCheckInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblRoutingCheckInfo.Location = new System.Drawing.Point(82, 62);
+            this.lblRoutingCheckInfo.Name = "lblRoutingCheckInfo";
+            this.lblRoutingCheckInfo.Size = new System.Drawing.Size(244, 20);
+            this.lblRoutingCheckInfo.TabIndex = 15;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.labelControl6.Location = new System.Drawing.Point(6, 114);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(70, 20);
+            this.labelControl6.TabIndex = 14;
+            this.labelControl6.Text = "送修产线：";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.labelControl4.Location = new System.Drawing.Point(6, 88);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(70, 20);
+            this.labelControl4.TabIndex = 13;
+            this.labelControl4.Text = "来源站位：";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.labelControl3.Location = new System.Drawing.Point(6, 62);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(70, 20);
+            this.labelControl3.TabIndex = 12;
+            this.labelControl3.Text = "路由信息：";
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl1.Location = new System.Drawing.Point(300, 8);
+            this.labelControl1.Location = new System.Drawing.Point(6, 36);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(104, 20);
+            this.labelControl1.Size = new System.Drawing.Size(70, 20);
             this.labelControl1.TabIndex = 10;
-            this.labelControl1.Text = "条码/路由信息：";
+            this.labelControl1.Text = "产品编号：";
             // 
-            // labelControl5
+            // lblT102Code
             // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl5.Location = new System.Drawing.Point(10, 8);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(70, 20);
-            this.labelControl5.TabIndex = 9;
-            this.labelControl5.Text = "条码扫描：";
+            this.lblT102Code.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblT102Code.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblT102Code.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblT102Code.Location = new System.Drawing.Point(83, 36);
+            this.lblT102Code.Name = "lblT102Code";
+            this.lblT102Code.Size = new System.Drawing.Size(244, 20);
+            this.lblT102Code.TabIndex = 11;
             // 
             // edtBarCode
             // 
-            this.edtBarCode.Location = new System.Drawing.Point(86, 5);
+            this.edtBarCode.Location = new System.Drawing.Point(83, 4);
             this.edtBarCode.Name = "edtBarCode";
             this.edtBarCode.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edtBarCode.Properties.Appearance.Options.UseFont = true;
             this.edtBarCode.Size = new System.Drawing.Size(208, 26);
             this.edtBarCode.TabIndex = 8;
+            this.edtBarCode.Enter += new System.EventHandler(this.edtBarCode_Enter);
             this.edtBarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtBarCode_KeyDown);
             // 
-            // splitContainerControl2
+            // labelControl5
             // 
-            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl2.Horizontal = false;
-            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl2.Name = "splitContainerControl2";
-            this.splitContainerControl2.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainerControl2.Panel1.AppearanceCaption.Options.UseFont = true;
-            this.splitContainerControl2.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.splitContainerControl2.Panel1.Controls.Add(this.grdProducts);
-            this.splitContainerControl2.Panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainerControl2.Panel1.ShowCaption = true;
-            this.splitContainerControl2.Panel1.Text = "子在制品(<F6>)";
-            this.splitContainerControl2.Panel2.Controls.Add(this.splitContainerControl3);
-            this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1008, 603);
-            this.splitContainerControl2.SplitterPosition = 183;
-            this.splitContainerControl2.TabIndex = 0;
-            this.splitContainerControl2.Text = "splitContainerControl2";
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.labelControl5.Location = new System.Drawing.Point(7, 7);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(70, 20);
+            this.labelControl5.TabIndex = 9;
+            this.labelControl5.Text = "标签扫描：";
+            // 
+            // splitContainerControl7
+            // 
+            this.splitContainerControl7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl7.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
+            this.splitContainerControl7.Location = new System.Drawing.Point(5, 5);
+            this.splitContainerControl7.Name = "splitContainerControl7";
+            this.splitContainerControl7.Panel1.Controls.Add(this.grdProducts);
+            this.splitContainerControl7.Panel1.Text = "Panel1";
+            this.splitContainerControl7.Panel2.Controls.Add(this.btnBarCodeConf);
+            this.splitContainerControl7.Panel2.Text = "Panel2";
+            this.splitContainerControl7.Size = new System.Drawing.Size(649, 129);
+            this.splitContainerControl7.SplitterPosition = 106;
+            this.splitContainerControl7.TabIndex = 7;
+            this.splitContainerControl7.Text = "splitContainerControl7";
             // 
             // grdProducts
             // 
             this.grdProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdProducts.Location = new System.Drawing.Point(10, 10);
+            this.grdProducts.Location = new System.Drawing.Point(0, 0);
             this.grdProducts.MainView = this.grdvProducts;
             this.grdProducts.Name = "grdProducts";
             this.grdProducts.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.riluRepairAction,
             this.riluInspectStatus});
-            this.grdProducts.Size = new System.Drawing.Size(984, 134);
+            this.grdProducts.Size = new System.Drawing.Size(538, 129);
             this.grdProducts.TabIndex = 6;
             this.grdProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvProducts});
@@ -342,7 +449,7 @@
             this.grdclmnInspectStatus.OptionsColumn.ReadOnly = true;
             this.grdclmnInspectStatus.Visible = true;
             this.grdclmnInspectStatus.VisibleIndex = 2;
-            this.grdclmnInspectStatus.Width = 52;
+            this.grdclmnInspectStatus.Width = 71;
             // 
             // riluInspectStatus
             // 
@@ -367,7 +474,7 @@
             this.grdclmnRepairStatus.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.grdclmnRepairStatus.Visible = true;
             this.grdclmnRepairStatus.VisibleIndex = 3;
-            this.grdclmnRepairStatus.Width = 117;
+            this.grdclmnRepairStatus.Width = 172;
             // 
             // riluRepairAction
             // 
@@ -381,21 +488,19 @@
             this.riluRepairAction.ShowFooter = false;
             this.riluRepairAction.ShowHeader = false;
             // 
-            // splitContainerControl3
+            // btnBarCodeConf
             // 
-            this.splitContainerControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl3.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-            this.splitContainerControl3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl3.Name = "splitContainerControl3";
-            this.splitContainerControl3.Panel1.Controls.Add(this.tcMainControl);
-            this.splitContainerControl3.Panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainerControl3.Panel1.Text = "Panel1";
-            this.splitContainerControl3.Panel2.Controls.Add(this.btnBarCodeConf);
-            this.splitContainerControl3.Panel2.Text = "Panel2";
-            this.splitContainerControl3.Size = new System.Drawing.Size(1008, 415);
-            this.splitContainerControl3.SplitterPosition = 127;
-            this.splitContainerControl3.TabIndex = 0;
-            this.splitContainerControl3.Text = "splitContainerControl3";
+            this.btnBarCodeConf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBarCodeConf.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnBarCodeConf.Appearance.Options.UseFont = true;
+            this.btnBarCodeConf.Enabled = false;
+            this.btnBarCodeConf.Location = new System.Drawing.Point(2, 89);
+            this.btnBarCodeConf.Name = "btnBarCodeConf";
+            this.btnBarCodeConf.Size = new System.Drawing.Size(104, 37);
+            this.btnBarCodeConf.TabIndex = 4;
+            this.btnBarCodeConf.Text = "确认维修完成";
+            this.btnBarCodeConf.Click += new System.EventHandler(this.btnBarCodeConf_Click);
+            this.btnBarCodeConf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmTroubleShooting_KeyDown);
             // 
             // tcMainControl
             // 
@@ -411,31 +516,50 @@
             this.tcMainControl.AppearancePage.HeaderDisabled.Options.UseFont = true;
             this.tcMainControl.AppearancePage.HeaderDisabled.Options.UseForeColor = true;
             this.tcMainControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcMainControl.Location = new System.Drawing.Point(10, 10);
+            this.tcMainControl.Location = new System.Drawing.Point(0, 0);
             this.tcMainControl.Name = "tcMainControl";
             this.tcMainControl.SelectedTabPage = this.tpRepairItems;
-            this.tcMainControl.Size = new System.Drawing.Size(856, 395);
+            this.tcMainControl.Size = new System.Drawing.Size(1008, 496);
             this.tcMainControl.TabIndex = 0;
             this.tcMainControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpRepairItems,
-            this.tpShowTestData,
             this.xtraTabPage3});
             this.tcMainControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tcMainControl_SelectedPageChanged);
             this.tcMainControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmTroubleShooting_KeyDown);
             // 
             // tpRepairItems
             // 
-            this.tpRepairItems.Controls.Add(this.splitContainerControl4);
+            this.tpRepairItems.Controls.Add(this.splitContainerControl2);
             this.tpRepairItems.Name = "tpRepairItems";
-            this.tpRepairItems.Padding = new System.Windows.Forms.Padding(10);
-            this.tpRepairItems.Size = new System.Drawing.Size(850, 360);
+            this.tpRepairItems.Padding = new System.Windows.Forms.Padding(5);
+            this.tpRepairItems.Size = new System.Drawing.Size(1002, 461);
             this.tpRepairItems.Text = "维修情况(<F7>)";
+            // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
+            this.splitContainerControl2.Horizontal = false;
+            this.splitContainerControl2.IsSplitterFixed = true;
+            this.splitContainerControl2.Location = new System.Drawing.Point(5, 5);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            this.splitContainerControl2.Panel1.Controls.Add(this.splitContainerControl4);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
+            this.splitContainerControl2.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl2.Panel2.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl2.Panel2.Controls.Add(this.splitContainerControl5);
+            this.splitContainerControl2.Panel2.ShowCaption = true;
+            this.splitContainerControl2.Panel2.Text = "测试数据";
+            this.splitContainerControl2.Size = new System.Drawing.Size(992, 451);
+            this.splitContainerControl2.SplitterPosition = 156;
+            this.splitContainerControl2.TabIndex = 1;
+            this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // splitContainerControl4
             // 
             this.splitContainerControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl4.Horizontal = false;
-            this.splitContainerControl4.Location = new System.Drawing.Point(10, 10);
+            this.splitContainerControl4.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl4.Name = "splitContainerControl4";
             this.splitContainerControl4.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.splitContainerControl4.Panel1.AppearanceCaption.Options.UseFont = true;
@@ -447,10 +571,11 @@
             this.splitContainerControl4.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.splitContainerControl4.Panel2.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl4.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl4.Panel2.Controls.Add(this.grdTSHistory);
             this.splitContainerControl4.Panel2.ShowCaption = true;
             this.splitContainerControl4.Panel2.Text = "历史维修情况";
-            this.splitContainerControl4.Size = new System.Drawing.Size(830, 340);
-            this.splitContainerControl4.SplitterPosition = 244;
+            this.splitContainerControl4.Size = new System.Drawing.Size(992, 290);
+            this.splitContainerControl4.SplitterPosition = 332;
             this.splitContainerControl4.TabIndex = 0;
             this.splitContainerControl4.Text = "splitContainerControl4";
             // 
@@ -469,7 +594,7 @@
             this.riluRepairMode,
             this.risluFailureMode,
             this.riteFailureMode});
-            this.grdRepairItems.Size = new System.Drawing.Size(826, 190);
+            this.grdRepairItems.Size = new System.Drawing.Size(328, 236);
             this.grdRepairItems.TabIndex = 3;
             this.grdRepairItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvRepairItems});
@@ -513,7 +638,7 @@
             this.grdclmnItemLeafID.Name = "grdclmnItemLeafID";
             this.grdclmnItemLeafID.Visible = true;
             this.grdclmnItemLeafID.VisibleIndex = 0;
-            this.grdclmnItemLeafID.Width = 130;
+            this.grdclmnItemLeafID.Width = 141;
             // 
             // risluSymbol
             // 
@@ -668,7 +793,7 @@
             // 
             // grdclmnT119LeafID
             // 
-            this.grdclmnT119LeafID.Caption = "维修代码";
+            this.grdclmnT119LeafID.Caption = "维修模式";
             this.grdclmnT119LeafID.ColumnEdit = this.riluRepairMode;
             this.grdclmnT119LeafID.FieldName = "T119LeafID";
             this.grdclmnT119LeafID.Name = "grdclmnT119LeafID";
@@ -741,9 +866,9 @@
             // 
             this.panelControl2.Controls.Add(this.labelControl2);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl2.Location = new System.Drawing.Point(0, 190);
+            this.panelControl2.Location = new System.Drawing.Point(0, 236);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(826, 25);
+            this.panelControl2.Size = new System.Drawing.Size(328, 25);
             this.panelControl2.TabIndex = 4;
             // 
             // labelControl2
@@ -755,34 +880,23 @@
             this.labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelControl2.Location = new System.Drawing.Point(2, 2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(822, 21);
+            this.labelControl2.Size = new System.Drawing.Size(324, 21);
             this.labelControl2.TabIndex = 10;
-            this.labelControl2.Text = "<F2> - 新增一条维修内容；<F3> - 修改当前行的维修内容；<F4> - 删除当前行的维修内容";
-            // 
-            // tpShowTestData
-            // 
-            this.tpShowTestData.Controls.Add(this.splitContainerControl5);
-            this.tpShowTestData.Name = "tpShowTestData";
-            this.tpShowTestData.Padding = new System.Windows.Forms.Padding(10);
-            this.tpShowTestData.PageEnabled = false;
-            this.tpShowTestData.Size = new System.Drawing.Size(850, 360);
-            this.tpShowTestData.Text = "查看测试数据(<F8>)";
+            this.labelControl2.Text = "<F2> - 新增；<F3> - 修改；<F4> - 删除";
             // 
             // splitContainerControl5
             // 
             this.splitContainerControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl5.Horizontal = false;
-            this.splitContainerControl5.IsSplitterFixed = true;
-            this.splitContainerControl5.Location = new System.Drawing.Point(10, 10);
+            this.splitContainerControl5.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl5.Name = "splitContainerControl5";
             this.splitContainerControl5.Panel1.Controls.Add(this.chkFailOnly);
-            this.splitContainerControl5.Panel1.Padding = new System.Windows.Forms.Padding(10);
             this.splitContainerControl5.Panel1.Text = "Panel1";
             this.splitContainerControl5.Panel2.Controls.Add(this.grdTestDatas);
-            this.splitContainerControl5.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainerControl5.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl5.Panel2.Text = "Panel2";
-            this.splitContainerControl5.Size = new System.Drawing.Size(830, 340);
-            this.splitContainerControl5.SplitterPosition = 39;
+            this.splitContainerControl5.Size = new System.Drawing.Size(988, 127);
+            this.splitContainerControl5.SplitterPosition = 19;
             this.splitContainerControl5.TabIndex = 2;
             this.splitContainerControl5.Text = "splitContainerControl5";
             // 
@@ -790,12 +904,12 @@
             // 
             this.chkFailOnly.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkFailOnly.EditValue = true;
-            this.chkFailOnly.Location = new System.Drawing.Point(10, 10);
+            this.chkFailOnly.Location = new System.Drawing.Point(0, 0);
             this.chkFailOnly.Name = "chkFailOnly";
             this.chkFailOnly.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkFailOnly.Properties.Appearance.Options.UseFont = true;
             this.chkFailOnly.Properties.Caption = "仅查看失败的测试项";
-            this.chkFailOnly.Size = new System.Drawing.Size(810, 19);
+            this.chkFailOnly.Size = new System.Drawing.Size(988, 19);
             this.chkFailOnly.TabIndex = 0;
             this.chkFailOnly.CheckedChanged += new System.EventHandler(this.chkFailOnly_CheckedChanged);
             this.chkFailOnly.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmTroubleShooting_KeyDown);
@@ -803,12 +917,12 @@
             // grdTestDatas
             // 
             this.grdTestDatas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdTestDatas.Location = new System.Drawing.Point(10, 10);
+            this.grdTestDatas.Location = new System.Drawing.Point(5, 5);
             this.grdTestDatas.MainView = this.grdvTestDatas;
             this.grdTestDatas.Name = "grdTestDatas";
             this.grdTestDatas.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.riicboConclusion});
-            this.grdTestDatas.Size = new System.Drawing.Size(810, 276);
+            this.grdTestDatas.Size = new System.Drawing.Size(978, 93);
             this.grdTestDatas.TabIndex = 0;
             this.grdTestDatas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvTestDatas});
@@ -887,7 +1001,7 @@
             // 
             // grdclmnStandardString
             // 
-            this.grdclmnStandardString.Caption = "测试标准";
+            this.grdclmnStandardString.Caption = "测试通过标准";
             this.grdclmnStandardString.FieldName = "StandardString";
             this.grdclmnStandardString.Name = "grdclmnStandardString";
             this.grdclmnStandardString.Visible = true;
@@ -1216,21 +1330,157 @@
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Padding = new System.Windows.Forms.Padding(10);
             this.xtraTabPage3.PageVisible = false;
-            this.xtraTabPage3.Size = new System.Drawing.Size(850, 360);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1002, 461);
             this.xtraTabPage3.Text = "追溯生产过程(<F9>)";
             // 
-            // btnBarCodeConf
+            // grdTSHistory
             // 
-            this.btnBarCodeConf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBarCodeConf.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.btnBarCodeConf.Appearance.Options.UseFont = true;
-            this.btnBarCodeConf.Enabled = false;
-            this.btnBarCodeConf.Location = new System.Drawing.Point(11, 366);
-            this.btnBarCodeConf.Name = "btnBarCodeConf";
-            this.btnBarCodeConf.Size = new System.Drawing.Size(104, 37);
-            this.btnBarCodeConf.TabIndex = 4;
-            this.btnBarCodeConf.Text = "确认维修完成";
-            this.btnBarCodeConf.Click += new System.EventHandler(this.btnBarCodeConf_Click);
+            this.grdTSHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdTSHistory.Location = new System.Drawing.Point(0, 0);
+            this.grdTSHistory.MainView = this.grdvTSHistory;
+            this.grdTSHistory.Name = "grdTSHistory";
+            this.grdTSHistory.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemImageComboBox1});
+            this.grdTSHistory.Size = new System.Drawing.Size(651, 261);
+            this.grdTSHistory.TabIndex = 1;
+            this.grdTSHistory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdvTSHistory});
+            // 
+            // grdvTSHistory
+            // 
+            this.grdvTSHistory.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvTSHistory.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grdvTSHistory.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.grdvTSHistory.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdvTSHistory.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdvTSHistory.Appearance.Row.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdvTSHistory.Appearance.Row.Options.UseFont = true;
+            this.grdvTSHistory.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn11,
+            this.gridColumn12,
+            this.gridColumn13,
+            this.gridColumn14,
+            this.gridColumn15});
+            this.grdvTSHistory.GridControl = this.grdTSHistory;
+            this.grdvTSHistory.Name = "grdvTSHistory";
+            this.grdvTSHistory.OptionsView.ColumnAutoWidth = false;
+            this.grdvTSHistory.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn5.Caption = "维修时间";
+            this.gridColumn5.FieldName = "BizDateTime";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 0;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "产品编号";
+            this.gridColumn6.FieldName = "ProductNo";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 1;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "产品标识";
+            this.gridColumn7.FieldName = "MainWIPCode";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 2;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn8.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn8.Caption = "产品序列号";
+            this.gridColumn8.FieldName = "SerialNumber";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 3;
+            // 
+            // repositoryItemImageComboBox1
+            // 
+            this.repositoryItemImageComboBox1.AutoHeight = false;
+            this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageComboBox1.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("通过", "P", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("失败", "F", -1)});
+            this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "位置编号";
+            this.gridColumn9.FieldName = "CompLocCode";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 4;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn11.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn11.Caption = "物料代码";
+            this.gridColumn11.FieldName = "MaterialCode";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 5;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn12.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn12.Caption = "失效模式";
+            this.gridColumn12.FieldName = "FailureMode";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 6;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn13.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn13.Caption = "维修模式";
+            this.gridColumn13.FieldName = "RepairMode";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 7;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn14.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn14.Caption = "维修工人";
+            this.gridColumn14.FieldName = "TSOperator";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 8;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn15.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn15.Caption = "更换料追溯标识";
+            this.gridColumn15.FieldName = "MaterialLabelSN1";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 9;
             // 
             // frmTroubleShooting
             // 
@@ -1248,18 +1498,20 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl6)).EndInit();
+            this.splitContainerControl6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtBarCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
-            this.splitContainerControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl7)).EndInit();
+            this.splitContainerControl7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluInspectStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riluRepairAction)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
-            this.splitContainerControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tcMainControl)).EndInit();
             this.tcMainControl.ResumeLayout(false);
             this.tpRepairItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
+            this.splitContainerControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl4)).EndInit();
             this.splitContainerControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdRepairItems)).EndInit();
@@ -1276,13 +1528,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.riteFailureMode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            this.tpShowTestData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl5)).EndInit();
             this.splitContainerControl5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkFailOnly.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTestDatas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvTestDatas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riicboConclusion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdTSHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvTSHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1293,12 +1547,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit edtBarCode;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl lblStatus;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl3;
+        private DevExpress.XtraEditors.LabelControl lblT102Code;
         private DevExpress.XtraTab.XtraTabControl tcMainControl;
         private DevExpress.XtraTab.XtraTabPage tpRepairItems;
-        private DevExpress.XtraTab.XtraTabPage tpShowTestData;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraEditors.SimpleButton btnBarCodeConf;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl4;
@@ -1382,5 +1633,27 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnMetric30;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnMetric31;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnMetric32;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl6;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private DevExpress.XtraEditors.LabelControl lblT134Info;
+        private DevExpress.XtraEditors.LabelControl lblT107Info;
+        private DevExpress.XtraEditors.LabelControl lblRoutingCheckInfo;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl7;
+        private DevExpress.XtraGrid.GridControl grdTSHistory;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdvTSHistory;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
     }
 }

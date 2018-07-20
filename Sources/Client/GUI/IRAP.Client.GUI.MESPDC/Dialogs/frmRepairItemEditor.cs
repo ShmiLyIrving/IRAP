@@ -36,7 +36,8 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
         private List<DefectRootCause> defectRootCauses = null;
         private List<LeafSetEx> failureNatures = null;
         private List<LeafSetEx> failureDuties = null;
-        private List<LeafSetEx> repairModes = null;
+        private List<ProductRepairMode> repairModes = null;
+        private List<TSFormCtrl> colRepairItems = null;
 
         private SubWIPIDCode_TSItem item = new SubWIPIDCode_TSItem() { SKUID1 = "", SKUID2 = "", };
         private string wipCode = "";
@@ -61,6 +62,62 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 string.Format(
                     sccMain.Panel1.Text,
                     EnumHelper.GetDescription(editStatus));
+        }
+
+        public List<TSFormCtrl> RepairItemColumns
+        {
+            get { return colRepairItems; }
+            set
+            {
+                colRepairItems = value;
+
+                foreach (TSFormCtrl column in colRepairItems)
+                {
+                    switch (column.Ordinal)
+                    {
+                        case 0:
+                            lblSymbol.Text = column.CtrlName;
+                            lblSymbol.Visible = column.IsValid;
+                            cboSymbol.Visible = column.IsValid;
+                            break;
+                        case 1:
+                            lblT118LeafID.Text = column.CtrlName;
+                            lblT118LeafID.Visible = column.IsValid;
+                            cboT118LeafID.Visible = column.IsValid;
+                            break;
+                        case 2:
+                            lblFailurePointCount.Text = column.CtrlName;
+                            lblFailurePointCount.Visible = column.IsValid;
+                            edtFailurePointCount.Visible = column.IsValid;
+                            break;
+                        case 3:
+                            lblT216LeafID.Text = column.CtrlName;
+                            lblT216LeafID.Visible = column.IsValid;
+                            cboT216LeafID.Visible = column.IsValid;
+                            break;
+                        case 4:
+                            lblT183LeafID.Text = column.CtrlName;
+                            lblT183LeafID.Visible = column.IsValid;
+                            cboT183LeafID.Visible = column.IsValid;
+                            break;
+                        case 5:
+                            lblT184LeafID.Text = column.CtrlName;
+                            lblT184LeafID.Visible = column.IsValid;
+                            cboT184LeafID.Visible = column.IsValid;
+                            break;
+                        case 6:
+                            lblT119LeafID.Text = column.CtrlName;
+                            lblT119LeafID.Visible = column.IsValid;
+                            cboT119LeafID.Visible = column.IsValid;
+                            break;
+                        case 7:
+                            lblTrackReferenceValue.Text = column.CtrlName;
+                            lblTrackReferenceValue.Visible = column.IsValid;
+                            edtTrackReferenceValue.Visible = column.IsValid;
+                            break;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -103,12 +160,16 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
 
                 foreach (FailureMode mode in failureModes)
                 {
-                    cboT118LeafID.Properties.Items.Add(mode.FailureCode);
+                    cboT118LeafID.Properties.Items.Add(
+                        string.Format(
+                            "[{0}]{1}",
+                            mode.FailureCode,
+                            mode.FailureName));
                 }
 
                 if (failureModes.Count == 1)
                 {
-                    cboT118LeafID.Text = failureModes[0].FailureCode;
+                    cboT118LeafID.SelectedIndex = 0;
                     lblT118Name.Text = failureModes[0].FailureName;
                     item.T118LeafID = failureModes[0].FailureLeaf;
 
@@ -127,6 +188,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             {
                 defectRootCauses = value;
 
+                /* 下拉选择框中只显示代码，不显示名称
                 foreach (DefectRootCause cause in defectRootCauses)
                 {
                     cboT216LeafID.Properties.Items.Add(cause.OperationCode);
@@ -139,6 +201,19 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
 
                     item.T216LeafID = defectRootCauses[0].OperationLeaf;
 
+                    cboT216LeafID.Enabled = false;
+                }
+                */
+                foreach (DefectRootCause cause in defectRootCauses)
+                {
+                    cboT216LeafID.Properties.Items.Add(cause);
+                }
+
+                if (defectRootCauses.Count == 1)
+                {
+                    cboT216LeafID.SelectedIndex = 0;
+                    lblT216Name.Text = defectRootCauses[0].OperationName;
+                    item.T216LeafID = defectRootCauses[0].OperationLeaf;
                     cboT216LeafID.Enabled = false;
                 }
             }
@@ -156,12 +231,16 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
 
                 foreach (LeafSetEx item in value)
                 {
-                    cboT183LeafID.Properties.Items.Add(item.Code);
+                    cboT183LeafID.Properties.Items.Add(
+                        string.Format(
+                            "[{0}]{1}",
+                            item.Code,
+                            item.LeafName));
                 }
 
                 if (failureNatures.Count == 1)
                 {
-                    cboT183LeafID.Text = failureNatures[0].Code;
+                    cboT183LeafID.SelectedIndex = 0;
                     lblT183Name.Text = failureNatures[0].LeafName;
 
                     item.T183LeafID = failureNatures[0].LeafID;
@@ -183,12 +262,16 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
 
                 foreach (LeafSetEx item in value)
                 {
-                    cboT184LeafID.Properties.Items.Add(item.Code);
+                    cboT184LeafID.Properties.Items.Add(
+                        string.Format(
+                            "[{0}]{1}",
+                            item.Code,
+                            item.LeafName));
                 }
 
                 if (failureDuties.Count == 1)
                 {
-                    cboT184LeafID.Text = failureDuties[0].Code;
+                    cboT184LeafID.SelectedIndex = 0;
                     lblT184Name.Text = failureDuties[0].LeafName;
 
                     item.T184LeafID = failureDuties[0].LeafID;
@@ -201,15 +284,21 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
         /// <summary>
         /// 维修代码
         /// </summary>
-        public List<LeafSetEx> RepairModes
+        public List<ProductRepairMode> RepairModes
         {
             get { return repairModes; }
             set
             {
                 repairModes = value;
 
-                foreach (LeafSetEx item in value)
-                    cboT119LeafID.Properties.Items.Add(item.Code);
+                foreach (ProductRepairMode item in value)
+                {
+                    cboT119LeafID.Properties.Items.Add(
+                        string.Format(
+                            "[{0}]{1}",
+                            item.Code,
+                            item.LeafName));
+                }
             }
         }
 
@@ -224,9 +313,30 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
             }
         }
 
+        private string GetCode(string text)
+        {
+            string rlt = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                char tempChar = text[i];
+                if (tempChar != '[')
+                {
+                    if (tempChar == ']')
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        rlt += tempChar;
+                    }
+                }
+            }
+            return rlt;
+        }
+
         private void InitValue(SubWIPIDCode_TSItem item)
         {
-            #region 设置“器件位号/物料编号”
+#region 设置“器件位号/物料编号”
             if (item.T110LeafID != 0)
             {
                 foreach (DataRow dr in dtSymbols.Rows)
@@ -253,81 +363,112 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                         }
                 }
             }
-            #endregion
+#endregion
 
-            #region 设置“失效模式”
+#region 设置“失效模式”
             foreach (FailureMode mode in failureModes)
             {
                 if (mode.FailureLeaf == item.T118LeafID)
                 {
-                    cboT118LeafID.Text = mode.FailureCode;
+                    cboT118LeafID.Text = 
+                        string.Format(
+                            "[{0}]{1}",
+                            mode.FailureCode,
+                            mode.FailureName);
                     lblT118Name.Text = mode.FailureName;
                     break;
                 }
             }
-            #endregion
+#endregion
 
-            #region 设置“失效点数”
+#region 设置“失效点数”
             edtFailurePointCount.Text = item.FailurePointCount.ToString();
-            #endregion
+#endregion
 
-            #region 设置“根源工序”
+#region 设置“根源工序”
             foreach (DefectRootCause cause in defectRootCauses)
             {
                 if (cause.OperationLeaf == item.T216LeafID)
                 {
+                    /*
                     cboT216LeafID.Text = cause.OperationCode;
+                    */
+                    cboT216LeafID.SelectedItem = cause;
                     lblT216Name.Text = cause.OperationName;
                     break;
                 }
             }
-            #endregion
+#endregion
 
-            #region 设置“失效性质”
+#region 设置“失效性质”
             foreach (LeafSetEx leaf in failureNatures)
             {
                 if (leaf.LeafID == item.T183LeafID)
                 {
-                    cboT183LeafID.Text = leaf.Code;
+                    cboT183LeafID.Text =
+                        string.Format(
+                            "[{0}]{1}",
+                            leaf.Code,
+                            leaf.LeafName);
                     lblT183Name.Text = leaf.LeafName;
                     break;
                 }
             }
-            #endregion
+#endregion
 
-            #region 设置“失效责任”
+#region 设置“失效责任”
             foreach (LeafSetEx leaf in failureDuties)
             {
                 if (leaf.LeafID == item.T184LeafID)
                 {
-                    cboT184LeafID.Text = leaf.Code;
+                    cboT184LeafID.Text =
+                        string.Format(
+                            "[{0}]{1}",
+                            leaf.Code,
+                            leaf.LeafName);
                     lblT184Name.Text = leaf.LeafName;
                     break;
                 }
             }
-            #endregion
+#endregion
 
-            #region 设置“维修代码”
-            foreach (LeafSetEx leaf in repairModes)
+#region 设置“维修代码”
+            foreach (ProductRepairMode leaf in repairModes)
             {
                 if (leaf.LeafID == item.T119LeafID)
                 {
-                    cboT119LeafID.Text = leaf.Code;
+                    cboT119LeafID.Text =
+                        string.Format(
+                            "[{0}]{1}",
+                            leaf.Code,
+                            leaf.LeafName);
                     lblT119Name.Text = leaf.LeafName;
                     break;
                 }
             }
-            #endregion
+#endregion
 
-            #region 设置“追溯参考值”
+#region 设置“追溯参考值”
             edtTrackReferenceValue.Text = item.TrackReferenceValue;
-            #endregion
+#endregion
         }
 
         private void frmRepairItemEditor_Load(object sender, EventArgs e)
         {
             switch (IRAPUser.Instance.CommunityID)
             {
+                case 60006:
+                    lblFailurePointCount.Visible = false;
+                    edtFailurePointCount.Visible = false;
+                    lblT216LeafID.Visible = false;
+                    cboT216LeafID.Visible = false;
+                    lblT183LeafID.Visible = false;
+                    cboT183LeafID.Visible = false;
+                    lblT184LeafID.Visible = false;
+                    cboT184LeafID.Visible = false;
+                    lblTrackReferenceValue.Visible = false;
+                    edtTrackReferenceValue.Visible = false;
+                    break;
                 case 60013:
                     lblT118LeafID.Text = "不良现象";
                     lblT216LeafID.Visible = false;
@@ -421,10 +562,17 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 return;
             }
 
+            string t118Code = GetCode(cboT118LeafID.Text);
             foreach (FailureMode failure in failureModes)
             {
-                if (failure.FailureCode == cboT118LeafID.Text)
+                if (failure.FailureCode == t118Code)
                 {
+                    cboT118LeafID.Text =
+                        string.Format(
+                            "[{0}]{1}",
+                            failure.FailureCode,
+                            failure.FailureName);
+
                     item.T118LeafID = failure.FailureLeaf;
 
                     lblT118Name.Text = failure.FailureName;
@@ -483,7 +631,10 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
 
             if (DefectRootCauses.Count == 0)
             {
+                /*
                 cboT216LeafID.Text = "";
+                */
+                cboT216LeafID.SelectedItem = null;
 
                 lblT216Name.Text = string.Format("未配置{0}！", lblT216LeafID.Text);
                 lblT216Name.ForeColor = Color.Red;
@@ -494,10 +645,13 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 return;
             }
 
+            string t216Code = GetCode(cboT216LeafID.Text);
             foreach (DefectRootCause rootCause in defectRootCauses)
             {
-                if (rootCause.OperationCode == cboT216LeafID.Text)
+                if (rootCause.OperationCode == t216Code)
                 {
+                    cboT216LeafID.SelectedItem = rootCause;
+
                     item.T216LeafID = rootCause.OperationLeaf;
 
                     lblT216Name.Text = rootCause.OperationName;
@@ -542,10 +696,16 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 return;
             }
 
+            string t183Code = GetCode(cboT183LeafID.Text);
             foreach (LeafSetEx nature in failureNatures)
             {
-                if (nature.Code == cboT183LeafID.Text)
+                if (nature.Code == t183Code)
                 {
+                    cboT183LeafID.Text =
+                        string.Format(
+                            "[{0}]{1}",
+                            nature.Code,
+                            nature.LeafName);
                     item.T183LeafID = nature.LeafID;
 
                     lblT183Name.Text = nature.LeafName;
@@ -590,10 +750,16 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 return;
             }
 
+            string t184Code = GetCode(cboT184LeafID.Text);
             foreach (LeafSetEx duty in failureDuties)
             {
-                if (duty.Code == cboT184LeafID.Text)
+                if (duty.Code == t184Code)
                 {
+                    cboT184LeafID.Text =
+                        string.Format(
+                            "[{0}]{1}",
+                            duty.Code,
+                            duty.LeafName);
                     item.T184LeafID = duty.LeafID;
 
                     lblT184Name.Text = duty.LeafName;
@@ -644,16 +810,22 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 return;
             }
 
-            foreach (LeafSetEx repairMode in repairModes)
+            string t119Code = GetCode(cboT119LeafID.Text);
+            foreach (ProductRepairMode repairMode in repairModes)
             {
-                if (repairMode.Code == cboT119LeafID.Text)
+                if (repairMode.Code == t119Code)
                 {
+                    cboT119LeafID.Text =
+                        string.Format(
+                            "[{0}]{1}",
+                            repairMode.Code,
+                            repairMode.LeafName);
                     item.T119LeafID = repairMode.LeafID;
 
                     lblT119Name.Text = repairMode.LeafName;
                     lblT119Name.ForeColor = Color.Blue;
 
-                    #region 
+#region 
                     if (item.T119LeafID == 10700)
                     {
                         WriteLog.Instance.WriteBeginSplitter(strProcedureName);
@@ -663,7 +835,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                             string errText = "";
                             string skuID = "";
 
-                            #region 获取更换后的 SKUID
+#region 获取更换后的 SKUID
                             IRAPMESTSClient.Instance.ufn_GetFIFOSKUIDinTSSite(
                                 IRAPUser.Instance.CommunityID,
                                 CurrentOptions.Instance.OptionOne.T107LeafID,
@@ -704,9 +876,9 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                                     item.SKUID2 = skuID;
                                 }
                             }
-                            #endregion
+#endregion
 
-                            #region 获取原物料的 SKUID
+#region 获取原物料的 SKUID
                             IRAPMESTSClient.Instance.ufn_GetMaterialSKUIDBySymbol(
                                 IRAPUser.Instance.CommunityID,
                                 wipCode,
@@ -734,14 +906,14 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                             {
                                 item.SKUID1 = skuID;
                             }
-                            #endregion
+#endregion
                         }
                         finally
                         {
                             WriteLog.Instance.WriteEndSplitter(strProcedureName);
                         }
                     }
-                    #endregion
+#endregion
 
                     e.Cancel = false;
                     return;
@@ -776,7 +948,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 cboSymbol.Focus();
                 return;
             }
-            if (item.T118LeafID == 0)
+            if (item.T118LeafID == 0 && cboT118LeafID.Visible)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
                     string.Format(
@@ -785,7 +957,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 cboT118LeafID.Focus();
                 return;
             }
-            if (item.T216LeafID == 0)
+            if (item.T216LeafID == 0 && cboT216LeafID.Visible)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
                     string.Format(
@@ -794,7 +966,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 cboT216LeafID.Focus();
                 return;
             }
-            if (item.T183LeafID == 0)
+            if (item.T183LeafID == 0 && cboT183LeafID.Visible)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
                     string.Format(
@@ -803,7 +975,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 cboT183LeafID.Focus();
                 return;
             }
-            if (item.T184LeafID == 0)
+            if (item.T184LeafID == 0 && cboT184LeafID.Visible)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
                     string.Format(
@@ -812,7 +984,7 @@ namespace IRAP.Client.GUI.MESPDC.Dialogs
                 cboT184LeafID.Focus();
                 return;
             }
-            if (item.T119LeafID == 0)
+            if (item.T119LeafID == 0 && cboT119LeafID.Visible)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
                     string.Format(
