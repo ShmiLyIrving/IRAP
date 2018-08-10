@@ -1065,5 +1065,122 @@ namespace IRAP.BL.SCES
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 修改生产工单配送数量
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="factID">生产工单事实编号</param>
+        /// <param name="actualQtyToDeliver">配送数量</param>
+        /// <param name="subTreeID">子项物料树标识</param>
+        /// <param name="subLeafID">子项物料叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult usp_SaveFact_PWODeliveryQty(
+            int communityID,
+            long factID,
+            long actualQtyToDeliver,
+            int subTreeID,
+            int subLeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@ActualQtyToDeliver", DbType.Int64, actualQtyToDeliver));
+                paramList.Add(new IRAPProcParameter("@SubTreeID", DbType.Int32, subTreeID));
+                paramList.Add(new IRAPProcParameter("@SubLeafID", DbType.Int32, subLeafID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrCode",
+                        DbType.Int32,
+                        ParameterDirection.Output,
+                        4));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@ErrText",
+                        DbType.String,
+                        ParameterDirection.Output,
+                        400));
+                WriteLog.Instance.Write(
+                    string.Format("执行存储过程 IRAPSCES..usp_SaveFact_PWODeliveryQty，参数：" +
+                        "CommunityID={0}|FactID={1}|ActualQtyToDelivery={2}|SubTreeID={3}|"+
+                        "SubLeafID={4}|SysLogID={5}",
+                        communityID, factID, actualQtyToDeliver, subTreeID, subLeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error =
+                        conn.CallProc(
+                            "IRAPSCES..usp_SaveFact_PWODeliveryQty",
+                            ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+
+                    Hashtable rtnParams = new Hashtable();
+                    if (errCode == 0)
+                    {
+                        foreach (IRAPProcParameter param in paramList)
+                        {
+                            if (param.Direction == ParameterDirection.InputOutput ||
+                                param.Direction == ParameterDirection.Output)
+                            {
+                                if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), 0);
+                                else
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
+                            }
+                        }
+                    }
+
+                    foreach (DictionaryEntry entry in rtnParams)
+                    {
+                        WriteLog.Instance.Write(
+                            string.Format(
+                                "[{0}]=[{1}]",
+                                entry.Key,
+                                entry.Value),
+                            strProcedureName);
+                    }
+
+                    return Json(rtnParams);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText = string.Format("调用 IRAPSCES..usp_SaveFact_PWODeliveryQty 时发生异常：{0}", error.Message);
+                return Json(new Hashtable());
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
