@@ -190,15 +190,30 @@ namespace IRAP.Client.GUI.SCES
                         case 1:
                             btnPrint.Visible = true;
 
-                            #region 当用户社区是 60010、60030 时，允许用户可以调整每杆数量
+                            #region 当用户社区是 60010、60030 时，允许用户可以调整每杆数量，且若物料库房是粗检库(2155630)时，允许用户修改配送数量
                             switch (IRAPUser.Instance.CommunityID)
                             {
                                 case 60010:
+                                    if (materials.Count > 0 && 
+                                        materials[0].T173LeafID == 2155630)
+                                    {
+                                        btnActualQtyToDeliverModify.Visible = true;
+                                    } else
+                                    {
+                                        btnActualQtyToDeliverModify.Visible = false;
+                                    }
+
+                                    btnCapacityModify.Visible = true;
+                                    btnCapacityModify.Text = "每杆数量调整";
+
+                                    break;
                                 case 60030:
+                                    btnActualQtyToDeliverModify.Visible = false;
                                     btnCapacityModify.Visible = true;
                                     btnCapacityModify.Text = "每杆数量调整";
                                     break;
                                 default:
+                                    btnActualQtyToDeliverModify.Visible = false;
                                     btnCapacityModify.Visible = false;
                                     break;
                             }
@@ -522,7 +537,7 @@ namespace IRAP.Client.GUI.SCES
                         } while (rePrinter);
                     }
 
-                    if (printWIPProductInfoTrack)
+                    if (printWIPProductInfoTrack && dstStoreSite.T173LeafID != 2155631)
                     {
                         switch (IRAPUser.Instance.CommunityID)
                         {
@@ -774,6 +789,24 @@ namespace IRAP.Client.GUI.SCES
             using (Dialogs.frmContainerPapacityEditor formEditor =
                 new Dialogs.frmContainerPapacityEditor(materials[0].MaterialCode))
             {
+                if (formEditor.ShowDialog() == DialogResult.OK)
+                {
+                    frmMaterialToDeliverPreview_Shown(this, null);
+                }
+            }
+        }
+
+        private void btnActualQtyToDeliverModify_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.frmActualQtyToDeliverEditor formEditor =
+                new Dialogs.frmActualQtyToDeliverEditor())
+            {
+                formEditor.OrderFactID = orders[0].FactID;
+                formEditor.SubTreeID = materials[0].TreeID;
+                formEditor.SubLeafID = materials[0].LeafID;
+                formEditor.ActualQtyInStore = materials[0].QtyInStore;
+                formEditor.ActualQtyToDeliver = materials[0].ActualQtyToDeliver;
+
                 if (formEditor.ShowDialog() == DialogResult.OK)
                 {
                     frmMaterialToDeliverPreview_Shown(this, null);

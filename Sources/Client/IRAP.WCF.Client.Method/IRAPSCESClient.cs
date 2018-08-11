@@ -851,5 +851,84 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 修改指定生产工单的配送数量
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="factID">生产工单事实编号</param>
+        /// <param name="actualQtyToDeliver">配送数量</param>
+        /// <param name="subTreeID">子项树标识</param>
+        /// <param name="subLeafID">子项叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public void usp_SaveFact_PWODeliveryQty(
+            int communityID,
+            long factID,
+            long actualQtyToDeliver,
+            int subTreeID,
+            int subLeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("factID", factID);
+                hashParams.Add("actualQtyToDeliver", actualQtyToDeliver);
+                hashParams.Add("subTreeID", subTreeID);
+                hashParams.Add("subLeafID", subLeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveFact_PWODeliveryQty，输入参数：" +
+                        "CommunityID={0}|FactID={1}|ActualQtyToDeliver={2}|"+
+                        "SubTreeID={3}|SubLeafID={4}|SysLogID={5}",
+                        communityID, factID, actualQtyToDeliver, subTreeID,
+                        subLeafID, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.SCES.dll",
+                        "IRAP.BL.SCES.IRAPSCES",
+                        "usp_SaveFact_PWODeliveryQty",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

@@ -259,7 +259,7 @@ namespace IRAP.Client.SubSystem
                             lblOptionTwo.Text = "PRODUCT";
                             break;
                         default:
-                            lblOptionOne.Text = "工位";
+                            lblOptionOne.Text = "在制品站位";
                             lblOptionTwo.Text = "产品";
                             break;
                     }

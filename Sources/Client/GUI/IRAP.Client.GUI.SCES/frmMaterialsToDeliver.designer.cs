@@ -64,6 +64,7 @@
             this.lblNoneMaterialInStore = new DevExpress.XtraEditors.LabelControl();
             this.report1 = new FastReport.Report();
             this.btnCapacityModify = new DevExpress.XtraEditors.SimpleButton();
+            this.btnActualQtyToDeliverModify = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.grdMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.report)).BeginInit();
@@ -668,7 +669,7 @@
             // 
             // btnCapacityModify
             // 
-            this.btnCapacityModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCapacityModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCapacityModify.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCapacityModify.Appearance.Options.UseFont = true;
             this.btnCapacityModify.Location = new System.Drawing.Point(14, 517);
@@ -680,11 +681,26 @@
             this.btnCapacityModify.Visible = false;
             this.btnCapacityModify.Click += new System.EventHandler(this.btnCapacityModify_Click);
             // 
+            // btnActualQtyToDeliverModify
+            // 
+            this.btnActualQtyToDeliverModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnActualQtyToDeliverModify.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualQtyToDeliverModify.Appearance.Options.UseFont = true;
+            this.btnActualQtyToDeliverModify.Location = new System.Drawing.Point(139, 517);
+            this.btnActualQtyToDeliverModify.Name = "btnActualQtyToDeliverModify";
+            this.btnActualQtyToDeliverModify.Size = new System.Drawing.Size(119, 33);
+            this.btnActualQtyToDeliverModify.TabIndex = 8;
+            this.btnActualQtyToDeliverModify.TabStop = false;
+            this.btnActualQtyToDeliverModify.Text = "配送数量修改";
+            this.btnActualQtyToDeliverModify.Visible = false;
+            this.btnActualQtyToDeliverModify.Click += new System.EventHandler(this.btnActualQtyToDeliverModify_Click);
+            // 
             // frmMaterialsToDeliver
             // 
             this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1000, 562);
+            this.Controls.Add(this.btnActualQtyToDeliverModify);
             this.Controls.Add(this.btnCapacityModify);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
@@ -749,5 +765,6 @@
         private DevExpress.XtraEditors.LabelControl lblNoneMaterialInStore;
         private FastReport.Report report1;
         private DevExpress.XtraEditors.SimpleButton btnCapacityModify;
+        private DevExpress.XtraEditors.SimpleButton btnActualQtyToDeliverModify;
     }
 }

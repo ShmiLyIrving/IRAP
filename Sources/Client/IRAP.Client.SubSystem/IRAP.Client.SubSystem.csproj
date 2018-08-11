@@ -124,6 +124,7 @@
     <EmbeddedResource Include="frmSelectSubSystem.resx">
       <DependentUpon>frmSelectSubSystem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ucOptions.en-US.resx">
       <DependentUpon>ucOptions.cs</DependentUpon>
     </EmbeddedResource>
