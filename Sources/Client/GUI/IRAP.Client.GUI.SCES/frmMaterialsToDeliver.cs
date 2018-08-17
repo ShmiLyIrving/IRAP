@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Configuration;
 
 using DevExpress.XtraEditors;
+using FastReport;
 
 using IRAP.Global;
 using IRAP.Client.Global;
@@ -194,13 +195,15 @@ namespace IRAP.Client.GUI.SCES
                             switch (IRAPUser.Instance.CommunityID)
                             {
                                 case 60010:
-                                    if (materials.Count > 0 && 
-                                        materials[0].T173LeafID == 2155630)
+                                    switch (dstStoreSite.T173LeafID)
                                     {
-                                        btnActualQtyToDeliverModify.Visible = true;
-                                    } else
-                                    {
-                                        btnActualQtyToDeliverModify.Visible = false;
+                                        case 2155631:
+                                        case 5259040:
+                                            btnActualQtyToDeliverModify.Visible = false;
+                                            break;
+                                        default:
+                                            btnActualQtyToDeliverModify.Visible = true;
+                                            break;
                                     }
 
                                     btnCapacityModify.Visible = true;
@@ -208,7 +211,17 @@ namespace IRAP.Client.GUI.SCES
 
                                     break;
                                 case 60030:
-                                    btnActualQtyToDeliverModify.Visible = false;
+                                    switch (dstStoreSite.T173LeafID)
+                                    {
+                                        case 5453745:
+                                        case 5453792:
+                                            btnActualQtyToDeliverModify.Visible = true;
+                                            break;
+                                        default:
+                                            btnActualQtyToDeliverModify.Visible = false;
+                                            break;
+                                    }
+
                                     btnCapacityModify.Visible = true;
                                     btnCapacityModify.Text = "每杆数量调整";
                                     break;
@@ -224,10 +237,17 @@ namespace IRAP.Client.GUI.SCES
                             btnSpiliteOrderNotify.Visible = true;
                             break;
                         case 3:
-                            if (materials[0].ATPQty <= materials[0].ContainerCapacity)
-                                btnSpiliteOrderNotify.Visible = true;
-                            else
-                                btnSpilitePKGNotify.Visible = true;
+                            if (materials.Count > 0)
+                            {
+                                if (materials[0].ATPQty > materials[0].ContainerCapacity)
+                                {
+                                    btnSpilitePKGNotify.Visible = true;
+                                }
+                                else
+                                {
+                                    btnSpiliteOrderNotify.Visible = true;
+                                }
+                            }
                             break;
                         case 9:
                             ShowMessageBox.Show(
@@ -240,6 +260,8 @@ namespace IRAP.Client.GUI.SCES
                             btnPrint.Visible = false;
                             btnSpiliteOrderNotify.Visible = false;
                             btnSpilitePKGNotify.Visible = false;
+                            btnCapacityModify.Visible = false;
+                            btnActualQtyToDeliverModify.Visible = false;
                             break;
                         default:
                             break;
@@ -308,6 +330,8 @@ namespace IRAP.Client.GUI.SCES
                     #endregion
 
                     #region 打印
+                    Report report = new Report();
+                    Report report1 = new Report();
                     MemoryStream ms;
                     switch (IRAPUser.Instance.CommunityID)
                     {
@@ -325,7 +349,15 @@ namespace IRAP.Client.GUI.SCES
                         switch (IRAPUser.Instance.CommunityID)
                         {
                             case 60010:
-                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
+                                switch (materials[0].T173LeafID)
+                                {
+                                    case 2155630:
+                                        ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack_60010_2155630);
+                                        break;
+                                    default:
+                                        ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
+                                        break;
+                                }
                                 report1.Load(ms);
                                 break;
                             case 60030:
@@ -453,7 +485,7 @@ namespace IRAP.Client.GUI.SCES
                                 report.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
                                 report.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
                                 if (materials[0].ActualQuantityToDeliver.IntValue != 0)
-                                    report.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
+                                    report.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToStringWithoutUnitOfMeasure();
                                 else
                                     report.Parameters.FindByName("InQuantity").Value = "";
                                 report.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;
@@ -493,7 +525,7 @@ namespace IRAP.Client.GUI.SCES
                                     report1.Parameters.FindByName("MaterialDescription").Value = materials[0].MaterialDesc;
                                     report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
                                     if (materials[0].ActualQuantityToDeliver.IntValue != 0)
-                                        report1.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToString();
+                                        report1.Parameters.FindByName("InQuantity").Value = materials[0].ActualQuantityToDeliver.ToStringWithoutUnitOfMeasure();
                                     else
                                         report1.Parameters.FindByName("InQuantity").Value = "";
                                     report1.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;

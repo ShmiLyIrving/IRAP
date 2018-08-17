@@ -282,5 +282,67 @@ namespace IRAP.Client.GUI.SCES
                 Form.ShowDialog();
             }
         }
+
+        private void btnSyncMO_Click(object sender, EventArgs e)
+        {
+            if (cboDstStoreSites.SelectedItem != null)
+            {
+                string strProcedureName =
+                    string.Format(
+                        "{0}.{1}",
+                        className,
+                        MethodBase.GetCurrentMethod().Name);
+
+                WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                TWaitting.Instance.ShowWaitForm("正在同步四班的订单");
+                try
+                {
+                    int errCode = 0;
+                    string errText = "";
+                    DstDeliveryStoreSite dstSite = cboDstStoreSites.SelectedItem as DstDeliveryStoreSite;
+
+                    try
+                    {
+                        IRAPAPSClient.Instance.usp_ManualMODispatch(
+                            IRAPUser.Instance.CommunityID,
+                            dstSite.T173LeafID,
+                            IRAPUser.Instance.SysLogID,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(string.Format("({0}){1}", errCode, errText), strProcedureName);
+                        if (errCode == 0)
+                        {
+                            GetProductionWorkOrders(dstSite);
+                        }
+                        else
+                        {
+                            TWaitting.Instance.CloseWaitForm();
+                            XtraMessageBox.Show(
+                                errText, "系统信息",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    catch (Exception error)
+                    {
+                        TWaitting.Instance.CloseWaitForm();
+                        WriteLog.Instance.Write(error.Message, strProcedureName);
+                        WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                        XtraMessageBox.Show(
+                            error.Message,
+                            "系统信息",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                finally
+                {
+                    TWaitting.Instance.CloseWaitForm();
+                    WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
+            }
+        }
     }
 }

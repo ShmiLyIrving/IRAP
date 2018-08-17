@@ -284,11 +284,11 @@ namespace IRAP.WCF.Client.Method
             out string errText)
         {
             string strProcedureName =
-        string.Format(
-            "{0}.{1}",
-            className,
-            MethodBase.GetCurrentMethod().Name);
-            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
                 #region 将函数调用参数加入 HashTable 中
@@ -323,6 +323,75 @@ namespace IRAP.WCF.Client.Method
                         "IRAP.BL.APS.dll",
                         "IRAP.BL.APS.IRAPAPS",
                         "usp_RequestForMOQtyModification",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 手动同步指定目标产线的四班订单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="dstT173LeafID">目标产线叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void usp_ManualMODispatch(
+            int communityID,
+            int dstT173LeafID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("dstT173LeafID", dstT173LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_ManualMODispatch，输入参数：" +
+                        "CommunityID={0}|DstT173LeafI={1}|SysLogID={2}",
+                        communityID,
+                        dstT173LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.APS.dll",
+                        "IRAP.BL.APS.IRAPAPS",
+                        "usp_ManualMODispatch",
                         hashParams,
                         out errCode,
                         out errText);

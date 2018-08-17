@@ -73,6 +73,16 @@ namespace IRAP.Client.GUI.SCES.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
+        internal static byte[] WIPProductInfoTrack_60010_2155630 {
+            get {
+                object obj = ResourceManager.GetObject("WIPProductInfoTrack_60010_2155630", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
         internal static byte[] WIPProductInfoTrack_60030 {
             get {
                 object obj = ResourceManager.GetObject("WIPProductInfoTrack_60030", resourceCulture);

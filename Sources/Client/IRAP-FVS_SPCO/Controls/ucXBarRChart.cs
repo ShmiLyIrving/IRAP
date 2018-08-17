@@ -132,7 +132,16 @@ namespace IRAP_FVS_SPCO
             else
                 chartType = XBarR.XBarRChartType.Control;
 
-            lblChartType.Visible = chartType == 0;
+            switch (chartType)
+            {
+                case XBarR.XBarRChartType.Study:
+                    lblChartType.Text = "研究用控制图";
+                    break;
+                case XBarR.XBarRChartType.Control:
+                    lblChartType.Text = "控制用控制图";
+                    break;
+            }
+            lblChartType.Visible = true;
             #endregion
 
             Font font = new Font("微软雅黑", 9.0f);

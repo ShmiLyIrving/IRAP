@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMaterialsToDeliver));
             this.grdMaterials = new DevExpress.XtraGrid.GridControl();
             this.grdvMaterials = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,7 +41,6 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.report = new FastReport.Report();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnSpiliteOrderNotify = new DevExpress.XtraEditors.SimpleButton();
             this.btnSpilitePKGNotify = new DevExpress.XtraEditors.SimpleButton();
@@ -62,19 +60,16 @@
             this.grdclmnScheduleStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.lblNoneMaterialInStore = new DevExpress.XtraEditors.LabelControl();
-            this.report1 = new FastReport.Report();
             this.btnCapacityModify = new DevExpress.XtraEditors.SimpleButton();
             this.btnActualQtyToDeliverModify = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.grdMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMaterials)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.report)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.report1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTipController
@@ -316,10 +311,6 @@
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "关闭";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // report
-            // 
-            this.report.ReportResourceString = resources.GetString("report.ReportResourceString");
             // 
             // btnPrint
             // 
@@ -663,10 +654,6 @@
             this.lblNoneMaterialInStore.Text = "当前工单所需的物料无库存！";
             this.lblNoneMaterialInStore.Visible = false;
             // 
-            // report1
-            // 
-            this.report1.ReportResourceString = resources.GetString("report1.ReportResourceString");
-            // 
             // btnCapacityModify
             // 
             this.btnCapacityModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -715,7 +702,6 @@
             this.Shown += new System.EventHandler(this.frmMaterialToDeliverPreview_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.grdMaterials)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMaterials)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.report)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).EndInit();
@@ -723,7 +709,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.report1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -743,7 +728,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraEditors.SimpleButton btnClose;
-        private FastReport.Report report;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.SimpleButton btnSpiliteOrderNotify;
         private DevExpress.XtraEditors.SimpleButton btnSpilitePKGNotify;
@@ -763,7 +747,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnScheduleStartTime;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.LabelControl lblNoneMaterialInStore;
-        private FastReport.Report report1;
         private DevExpress.XtraEditors.SimpleButton btnCapacityModify;
         private DevExpress.XtraEditors.SimpleButton btnActualQtyToDeliverModify;
     }

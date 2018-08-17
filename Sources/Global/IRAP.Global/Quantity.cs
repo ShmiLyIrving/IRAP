@@ -49,6 +49,17 @@ namespace IRAP.Global
             return string.Format("{0} {1}", valueSring, unitOfMeasure);
         }
 
+        public string ToStringWithoutUnitOfMeasure()
+        {
+            string valueSring = "";
+            if (scale > 0)
+                valueSring = DoubleValue.ToString("0.".PadRight(scale + 2, '0'));
+            else
+                valueSring = DoubleValue.ToString("0");
+
+            return valueSring;
+        }
+
         public Quantity Clone()
         {
             return this.MemberwiseClone() as Quantity;

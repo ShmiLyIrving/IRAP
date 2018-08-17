@@ -35,6 +35,7 @@
             this.tsmiSeprater = new System.Windows.Forms.ToolStripSeparator();
             this.mitmRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlBody = new DevExpress.XtraEditors.PanelControl();
+            this.btnSyncMO = new DevExpress.XtraEditors.SimpleButton();
             this.btnReprint = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -48,6 +49,7 @@
             this.grdclmnMOLineNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnProductNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnProductDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnSubMaterialCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnT134Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnT134Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnPlannedQuantityString = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,7 +57,6 @@
             this.grdclmnPlannedCloseDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnScheduleStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.report = new FastReport.Report();
-            this.grdclmnSubMaterialCode = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -77,12 +78,12 @@
             this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblFuncName.Size = new System.Drawing.Size(660, 56);
+            this.lblFuncName.Size = new System.Drawing.Size(827, 56);
             this.lblFuncName.Text = "物料配送管理";
             // 
             // panelControl1
             // 
-            this.panelControl1.Size = new System.Drawing.Size(660, 56);
+            this.panelControl1.Size = new System.Drawing.Size(827, 56);
             // 
             // toolTipController
             // 
@@ -122,6 +123,7 @@
             // 
             // pnlBody
             // 
+            this.pnlBody.Controls.Add(this.btnSyncMO);
             this.pnlBody.Controls.Add(this.btnReprint);
             this.pnlBody.Controls.Add(this.btnRefresh);
             this.pnlBody.Controls.Add(this.groupControl1);
@@ -130,18 +132,30 @@
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBody.Location = new System.Drawing.Point(0, 56);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(660, 386);
+            this.pnlBody.Size = new System.Drawing.Size(827, 386);
             this.pnlBody.TabIndex = 5;
+            // 
+            // btnSyncMO
+            // 
+            this.btnSyncMO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSyncMO.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.btnSyncMO.Appearance.Options.UseFont = true;
+            this.btnSyncMO.Location = new System.Drawing.Point(707, 136);
+            this.btnSyncMO.Name = "btnSyncMO";
+            this.btnSyncMO.Size = new System.Drawing.Size(108, 28);
+            this.btnSyncMO.TabIndex = 4;
+            this.btnSyncMO.Text = "同步四班订单";
+            this.btnSyncMO.Click += new System.EventHandler(this.btnSyncMO_Click);
             // 
             // btnReprint
             // 
-            this.btnReprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReprint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnReprint.Appearance.Options.UseFont = true;
-            this.btnReprint.Location = new System.Drawing.Point(573, 169);
+            this.btnReprint.Location = new System.Drawing.Point(707, 346);
             this.btnReprint.Name = "btnReprint";
-            this.btnReprint.Size = new System.Drawing.Size(75, 28);
-            this.btnReprint.TabIndex = 4;
+            this.btnReprint.Size = new System.Drawing.Size(108, 28);
+            this.btnReprint.TabIndex = 5;
             this.btnReprint.Text = "补打";
             this.btnReprint.Click += new System.EventHandler(this.btnReprint_Click);
             // 
@@ -150,9 +164,9 @@
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnRefresh.Appearance.Options.UseFont = true;
-            this.btnRefresh.Location = new System.Drawing.Point(573, 102);
+            this.btnRefresh.Location = new System.Drawing.Point(707, 102);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(75, 28);
+            this.btnRefresh.Size = new System.Drawing.Size(108, 28);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -168,7 +182,7 @@
             this.groupControl1.Controls.Add(this.cboDstStoreSites);
             this.groupControl1.Location = new System.Drawing.Point(10, 10);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(552, 52);
+            this.groupControl1.Size = new System.Drawing.Size(691, 52);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "目标仓储地点";
             // 
@@ -183,7 +197,7 @@
             this.cboDstStoreSites.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboDstStoreSites.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboDstStoreSites.Size = new System.Drawing.Size(542, 20);
+            this.cboDstStoreSites.Size = new System.Drawing.Size(681, 26);
             this.cboDstStoreSites.TabIndex = 0;
             this.cboDstStoreSites.SelectedIndexChanged += new System.EventHandler(this.cboDstStoreSites_SelectedIndexChanged);
             // 
@@ -192,9 +206,9 @@
             this.btnDeliver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeliver.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnDeliver.Appearance.Options.UseFont = true;
-            this.btnDeliver.Location = new System.Drawing.Point(573, 68);
+            this.btnDeliver.Location = new System.Drawing.Point(707, 68);
             this.btnDeliver.Name = "btnDeliver";
-            this.btnDeliver.Size = new System.Drawing.Size(75, 28);
+            this.btnDeliver.Size = new System.Drawing.Size(108, 28);
             this.btnDeliver.TabIndex = 2;
             this.btnDeliver.Text = "配送";
             this.btnDeliver.Click += new System.EventHandler(this.btnDeliver_Click);
@@ -211,7 +225,7 @@
             this.gpcAndonEvents.Controls.Add(this.grdOrders);
             this.gpcAndonEvents.Location = new System.Drawing.Point(10, 68);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
-            this.gpcAndonEvents.Size = new System.Drawing.Size(554, 306);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(691, 306);
             this.gpcAndonEvents.TabIndex = 1;
             this.gpcAndonEvents.Text = "待处理的配料单列表";
             // 
@@ -223,7 +237,7 @@
             this.grdOrders.Location = new System.Drawing.Point(2, 27);
             this.grdOrders.MainView = this.grdvOrders;
             this.grdOrders.Name = "grdOrders";
-            this.grdOrders.Size = new System.Drawing.Size(550, 277);
+            this.grdOrders.Size = new System.Drawing.Size(687, 277);
             this.grdOrders.TabIndex = 1;
             this.grdOrders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvOrders});
@@ -366,6 +380,14 @@
             this.grdclmnProductDescription.Visible = true;
             this.grdclmnProductDescription.VisibleIndex = 6;
             // 
+            // grdclmnSubMaterialCode
+            // 
+            this.grdclmnSubMaterialCode.Caption = "子项物料号";
+            this.grdclmnSubMaterialCode.FieldName = "SubMaterialCode";
+            this.grdclmnSubMaterialCode.Name = "grdclmnSubMaterialCode";
+            this.grdclmnSubMaterialCode.Visible = true;
+            this.grdclmnSubMaterialCode.VisibleIndex = 5;
+            // 
             // grdclmnT134Code
             // 
             this.grdclmnT134Code.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -492,18 +514,10 @@
             // 
             this.report.ReportResourceString = resources.GetString("report.ReportResourceString");
             // 
-            // grdclmnSubMaterialCode
-            // 
-            this.grdclmnSubMaterialCode.Caption = "子项物料号";
-            this.grdclmnSubMaterialCode.FieldName = "SubMaterialCode";
-            this.grdclmnSubMaterialCode.Name = "grdclmnSubMaterialCode";
-            this.grdclmnSubMaterialCode.Visible = true;
-            this.grdclmnSubMaterialCode.VisibleIndex = 5;
-            // 
             // frmDeliveryMngmt_30
             // 
             this.Appearance.Options.UseFont = true;
-            this.ClientSize = new System.Drawing.Size(660, 442);
+            this.ClientSize = new System.Drawing.Size(827, 442);
             this.Controls.Add(this.pnlBody);
             this.Name = "frmDeliveryMngmt_30";
             this.Text = "物料配送管理";
@@ -555,5 +569,6 @@
         private FastReport.Report report;
         private DevExpress.XtraEditors.SimpleButton btnReprint;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnSubMaterialCode;
+        private DevExpress.XtraEditors.SimpleButton btnSyncMO;
     }
 }
