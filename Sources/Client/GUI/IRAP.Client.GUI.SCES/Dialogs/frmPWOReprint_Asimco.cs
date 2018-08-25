@@ -121,7 +121,6 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                                         ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
                                         break;
                                 }
-                                report1.Load(ms);
                                 break;
                             case 60030:
                                 if (IRAPUser.Instance.HostName == "RMS115301")
@@ -136,10 +135,9 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                                         new MemoryStream(
                                             Properties.Resources.WIPProductInfoTrack_60030);
                                 }
-                                report1.Load(ms);
                                 break;
                             default:
-                                ms = null;
+                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
                                 break;
                         }
 

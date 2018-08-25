@@ -184,6 +184,8 @@ namespace IRAP.Client.GUI.MESPDC
             _report.Parameters.FindByName("BatchNumber").Value = info.BatchNumber;
             _report.Parameters.FindByName("Quantity").Value = info.Qty.ToString();
             _report.Parameters.FindByName("BatchQty").Value = info.BatchQty.ToString();
+            _report.Parameters.FindByName("MONumber").Value = info.MONumber;
+            _report.Parameters.FindByName("MOLineNo").Value = info.MOLineNo;
             System.Drawing.Printing.PrinterSettings prnSetting =
                      new System.Drawing.Printing.PrinterSettings();
             if (_report.Prepare())

@@ -203,26 +203,50 @@ namespace IRAP.Client.GUI.SCES
             int index = grdvOrders.GetFocusedDataSourceRowIndex();
             if (index >= 0)
             {
-                ProductionWorkOrderEx order = orders[index];
-                for (int i = 0; i < index; i++)
+                if (cboDstStoreSites.SelectedItem == null)
                 {
-                    if (orders[i].ProductNo == order.ProductNo)
-                    {
-                        if (orders[i].ScheduledStartTime == order.ScheduledStartTime)
-                        {
-                            mitmDeliver.Enabled = true;
-                            btnDeliver.Enabled = true;
-                        }
-                        else
-                        {
-                            mitmDeliver.Enabled = false;
-                            btnDeliver.Enabled = false;
-                        }
-                        return;
-                    }
+                    mitmDeliver.Enabled = false;
+                    btnDeliver.Enabled = false;
+                    return;
                 }
-                mitmDeliver.Enabled = true;
-                btnDeliver.Enabled = true;
+
+                int dstStoreSiteLeafID = (cboDstStoreSites.SelectedItem as DstDeliveryStoreSite).T173LeafID;
+                if ((IRAPUser.Instance.CommunityID == 60010 &&
+                     (dstStoreSiteLeafID != 5259040 &&
+                      dstStoreSiteLeafID != 2155631)) ||
+                    IRAPUser.Instance.CommunityID == 60030)
+                {
+                    mitmDeliver.Enabled = true;
+                    btnDeliver.Enabled = true;
+                }
+                else
+                {
+                    ProductionWorkOrderEx order = orders[index];
+                    for (int i = 0; i < index; i++)
+                    {
+                        if (orders[i].ProductNo == order.ProductNo)
+                        {
+                            if (orders[i].ScheduledStartTime == order.ScheduledStartTime)
+                            {
+                                mitmDeliver.Enabled = true;
+                                btnDeliver.Enabled = true;
+                            }
+                            else
+                            {
+                                mitmDeliver.Enabled = false;
+                                btnDeliver.Enabled = false;
+                            }
+                            return;
+                        }
+                    }
+                    mitmDeliver.Enabled = true;
+                    btnDeliver.Enabled = true;
+                }
+            }
+            else
+            {
+                mitmDeliver.Enabled = false;
+                btnDeliver.Enabled = false;
             }
         }
 
