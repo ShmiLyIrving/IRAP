@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP-FVS_SPCO.exe" version="2018.7.10.4" md5="553f051dac223e2916cf54d08b1abf4a" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP-FVS_SPCO.exe" version="6.1.817.6" md5="3538c30478c2a8757041c035c57b28fc" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\Apache.NMS.ActiveMQ.dll" version="1.6.5.3684" md5="4d8b3f19abfa36ed4440fdb6f1379319" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\Apache.NMS.dll" version="1.6.0.3061" md5="ac4e00cb9455ef555199b68f6b0085f5" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\DevExpress.BonusSkins.v15.2.dll" version="15.2.4.0" md5="05bc509ab00e39fd947a3d9283d09ed6" selected="True"/>
@@ -26,15 +26,15 @@
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\DevExpress.XtraRichEdit.v15.2.dll" version="15.2.4.0" md5="b21f77e1aa88f863304ada846439eac5" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\DevExpress.XtraTreeList.v15.2.dll" version="15.2.4.0" md5="961efb13ce48f9043d0d830f74e95456" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\DevExpress.XtraVerticalGrid.v15.2.dll" version="15.2.4.0" md5="10ead62346cb080fb15c2cd8b71a19d1" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.AutoUpgrade.dll" version="2018.7.10.82" md5="bff36d9f4a94899d88bd1896825192ab" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Entity.Kanban.dll" version="2018.7.10.408" md5="10c8c3c71ec4a2bbd4ce390539c53db7" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Entity.MDM.dll" version="2018.7.10.385" md5="e9b15b7ed9a5f257ade6950c84375c9e" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Entity.MES.dll" version="2018.7.10.419" md5="5d0391d87bb4aa1c5c0b03f6c12442cf" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Entity.SSO.dll" version="2018.7.10.408" md5="39f86e380bb7d1d4c397b6f11bfce7f0" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Global.dll" version="2018.7.10.437" md5="c67ecaa167f247eda3dcba50ade54cab" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.WCF.Client.dll" version="2018.7.10.361" md5="c7ec8a646f444cb2f3b707f5eb5e48b4" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.WCF.Client.Method.dll" version="2018.7.10.361" md5="9b5f7a6b12b588da56b3c0eddbda83c8" selected="True"/>
-<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAPShared.dll" version="2018.7.10.433" md5="887c164b2613016a9a27d834b0273b86" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.AutoUpgrade.dll" version="6.1.817.86" md5="1961a7792e2f09b4558014fe0238712a" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Entity.Kanban.dll" version="6.1.817.474" md5="a5d6db43318c35b15fdf2457657a5756" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Entity.MDM.dll" version="6.1.817.461" md5="f26593de874285930146145121d724fe" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Entity.MES.dll" version="6.1.817.494" md5="2cee9f2f4d768a5f97fc034ddeabc965" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Entity.SSO.dll" version="6.1.817.474" md5="71cb4bb55eea6e591ba5717edaa409cf" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.Global.dll" version="6.1.817.517" md5="d2fc57025ea5e5caf3fd8935e63ba8bf" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.WCF.Client.dll" version="6.1.817.427" md5="12018a3043c9c8c6e7a8602cde1d2e01" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP.WCF.Client.Method.dll" version="6.1.817.427" md5="33f542c3ef96e5aa2792fb97e52e717b" selected="True"/>
+<UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAPShared.dll" version="6.0.817.513" md5="4eaec890f1906baa7eec8f55c92dd023" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\Newtonsoft.Json.dll" version="4.5.11.15520" md5="8611795b70cd1f321cb5cb5aad95ff7b" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\Oracle.DataAccess.dll" version="4.112.3.0" md5="3bf768bc471e2effa78594703d12be89" selected="True"/>
 <UpgradeFile name="D:\Working\IRAP\Bin\Client\IRAP-FVS_SPCO\Release\IRAP-FVS_SPCO.exe.config" version="0.0.0.0" md5="47904163780c222af704a34a3bef1792" selected="False"/>
