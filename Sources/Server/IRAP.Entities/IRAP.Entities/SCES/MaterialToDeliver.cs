@@ -177,6 +177,14 @@ namespace IRAP.Entities.SCES
         /// 0--无  1--打印配料单  2--通知分单  3--通知包装拆分
         /// </summary>
         public int ActionCode { get; set; }
+        /// <summary>
+        /// 每车棒数（仅双环镀铬库）
+        /// </summary>
+        public int StickQty { get; set; }
+        /// <summary>
+        /// 每棒数量（仅双环镀铬库）
+        /// </summary>
+        public long PerStickQty { get; set; }
 
         /// <summary>
         /// 建议发料量

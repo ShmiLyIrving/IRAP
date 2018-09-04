@@ -40,6 +40,8 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnStickQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnPerStickQty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnSpiliteOrderNotify = new DevExpress.XtraEditors.SimpleButton();
@@ -62,6 +64,7 @@
             this.lblNoneMaterialInStore = new DevExpress.XtraEditors.LabelControl();
             this.btnCapacityModify = new DevExpress.XtraEditors.SimpleButton();
             this.btnActualQtyToDeliverModify = new DevExpress.XtraEditors.SimpleButton();
+            this.btnT157R3 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.grdMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvMaterials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -86,7 +89,7 @@
             this.grdMaterials.Location = new System.Drawing.Point(2, 27);
             this.grdMaterials.MainView = this.grdvMaterials;
             this.grdMaterials.Name = "grdMaterials";
-            this.grdMaterials.Size = new System.Drawing.Size(972, 349);
+            this.grdMaterials.Size = new System.Drawing.Size(1088, 349);
             this.grdMaterials.TabIndex = 0;
             this.grdMaterials.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvMaterials});
@@ -111,7 +114,9 @@
             this.gridColumn7,
             this.gridColumn8,
             this.gridColumn9,
-            this.gridColumn10});
+            this.gridColumn10,
+            this.grdclmnStickQty,
+            this.grdclmnPerStickQty});
             this.grdvMaterials.GridControl = this.grdMaterials;
             this.grdvMaterials.Name = "grdvMaterials";
             this.grdvMaterials.OptionsBehavior.Editable = false;
@@ -299,13 +304,31 @@
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 9;
             // 
+            // grdclmnStickQty
+            // 
+            this.grdclmnStickQty.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnStickQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmnStickQty.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnStickQty.Caption = "每车棒数";
+            this.grdclmnStickQty.FieldName = "StickQty";
+            this.grdclmnStickQty.Name = "grdclmnStickQty";
+            // 
+            // grdclmnPerStickQty
+            // 
+            this.grdclmnPerStickQty.AppearanceCell.Options.UseTextOptions = true;
+            this.grdclmnPerStickQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.grdclmnPerStickQty.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.grdclmnPerStickQty.Caption = "每棒数量";
+            this.grdclmnPerStickQty.FieldName = "PerStickQty";
+            this.grdclmnPerStickQty.Name = "grdclmnPerStickQty";
+            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(897, 517);
+            this.btnClose.Location = new System.Drawing.Point(1013, 517);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(91, 33);
             this.btnClose.TabIndex = 1;
@@ -317,7 +340,7 @@
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Appearance.Options.UseFont = true;
-            this.btnPrint.Location = new System.Drawing.Point(577, 517);
+            this.btnPrint.Location = new System.Drawing.Point(693, 517);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(91, 33);
             this.btnPrint.TabIndex = 2;
@@ -330,7 +353,7 @@
             this.btnSpiliteOrderNotify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSpiliteOrderNotify.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSpiliteOrderNotify.Appearance.Options.UseFont = true;
-            this.btnSpiliteOrderNotify.Location = new System.Drawing.Point(674, 517);
+            this.btnSpiliteOrderNotify.Location = new System.Drawing.Point(790, 517);
             this.btnSpiliteOrderNotify.Name = "btnSpiliteOrderNotify";
             this.btnSpiliteOrderNotify.Size = new System.Drawing.Size(91, 33);
             this.btnSpiliteOrderNotify.TabIndex = 3;
@@ -343,7 +366,7 @@
             this.btnSpilitePKGNotify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSpilitePKGNotify.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSpilitePKGNotify.Appearance.Options.UseFont = true;
-            this.btnSpilitePKGNotify.Location = new System.Drawing.Point(771, 517);
+            this.btnSpilitePKGNotify.Location = new System.Drawing.Point(887, 517);
             this.btnSpilitePKGNotify.Name = "btnSpilitePKGNotify";
             this.btnSpilitePKGNotify.Size = new System.Drawing.Size(91, 33);
             this.btnSpilitePKGNotify.TabIndex = 4;
@@ -362,7 +385,7 @@
             this.groupControl1.Controls.Add(this.grdOrders);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(976, 105);
+            this.groupControl1.Size = new System.Drawing.Size(1092, 105);
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "生产工单信息";
             // 
@@ -373,7 +396,7 @@
             this.grdOrders.Location = new System.Drawing.Point(2, 27);
             this.grdOrders.MainView = this.grdvOrders;
             this.grdOrders.Name = "grdOrders";
-            this.grdOrders.Size = new System.Drawing.Size(972, 76);
+            this.grdOrders.Size = new System.Drawing.Size(1088, 76);
             this.grdOrders.TabIndex = 2;
             this.grdOrders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvOrders});
@@ -638,7 +661,7 @@
             this.groupControl2.Controls.Add(this.grdMaterials);
             this.groupControl2.Location = new System.Drawing.Point(12, 123);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(976, 378);
+            this.groupControl2.Size = new System.Drawing.Size(1092, 378);
             this.groupControl2.TabIndex = 6;
             this.groupControl2.Text = "所需物料配送清单";
             // 
@@ -682,11 +705,26 @@
             this.btnActualQtyToDeliverModify.Visible = false;
             this.btnActualQtyToDeliverModify.Click += new System.EventHandler(this.btnActualQtyToDeliverModify_Click);
             // 
+            // btnT157R3
+            // 
+            this.btnT157R3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnT157R3.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnT157R3.Appearance.Options.UseFont = true;
+            this.btnT157R3.Location = new System.Drawing.Point(264, 517);
+            this.btnT157R3.Name = "btnT157R3";
+            this.btnT157R3.Size = new System.Drawing.Size(119, 33);
+            this.btnT157R3.TabIndex = 9;
+            this.btnT157R3.TabStop = false;
+            this.btnT157R3.Text = "棒数修改";
+            this.btnT157R3.Visible = false;
+            this.btnT157R3.Click += new System.EventHandler(this.btnT157R3_Click);
+            // 
             // frmMaterialsToDeliver
             // 
             this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(1000, 562);
+            this.ClientSize = new System.Drawing.Size(1116, 562);
+            this.Controls.Add(this.btnT157R3);
             this.Controls.Add(this.btnActualQtyToDeliverModify);
             this.Controls.Add(this.btnCapacityModify);
             this.Controls.Add(this.groupControl2);
@@ -749,5 +787,8 @@
         private DevExpress.XtraEditors.LabelControl lblNoneMaterialInStore;
         private DevExpress.XtraEditors.SimpleButton btnCapacityModify;
         private DevExpress.XtraEditors.SimpleButton btnActualQtyToDeliverModify;
+        private DevExpress.XtraEditors.SimpleButton btnT157R3;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnStickQty;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnPerStickQty;
     }
 }

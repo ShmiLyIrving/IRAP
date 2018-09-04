@@ -140,7 +140,7 @@
             this.btnSyncMO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSyncMO.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnSyncMO.Appearance.Options.UseFont = true;
-            this.btnSyncMO.Location = new System.Drawing.Point(707, 136);
+            this.btnSyncMO.Location = new System.Drawing.Point(707, 152);
             this.btnSyncMO.Name = "btnSyncMO";
             this.btnSyncMO.Size = new System.Drawing.Size(108, 28);
             this.btnSyncMO.TabIndex = 4;
@@ -164,7 +164,7 @@
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnRefresh.Appearance.Options.UseFont = true;
-            this.btnRefresh.Location = new System.Drawing.Point(707, 102);
+            this.btnRefresh.Location = new System.Drawing.Point(707, 118);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(108, 28);
             this.btnRefresh.TabIndex = 3;
@@ -182,22 +182,22 @@
             this.groupControl1.Controls.Add(this.cboDstStoreSites);
             this.groupControl1.Location = new System.Drawing.Point(10, 10);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(691, 52);
+            this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
+            this.groupControl1.Size = new System.Drawing.Size(691, 65);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "目标仓储地点";
             // 
             // cboDstStoreSites
             // 
-            this.cboDstStoreSites.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboDstStoreSites.Location = new System.Drawing.Point(5, 25);
+            this.cboDstStoreSites.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cboDstStoreSites.Location = new System.Drawing.Point(7, 32);
             this.cboDstStoreSites.Name = "cboDstStoreSites";
             this.cboDstStoreSites.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cboDstStoreSites.Properties.Appearance.Options.UseFont = true;
             this.cboDstStoreSites.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboDstStoreSites.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboDstStoreSites.Size = new System.Drawing.Size(681, 26);
+            this.cboDstStoreSites.Size = new System.Drawing.Size(677, 26);
             this.cboDstStoreSites.TabIndex = 0;
             this.cboDstStoreSites.SelectedIndexChanged += new System.EventHandler(this.cboDstStoreSites_SelectedIndexChanged);
             // 
@@ -206,7 +206,7 @@
             this.btnDeliver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeliver.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnDeliver.Appearance.Options.UseFont = true;
-            this.btnDeliver.Location = new System.Drawing.Point(707, 68);
+            this.btnDeliver.Location = new System.Drawing.Point(707, 84);
             this.btnDeliver.Name = "btnDeliver";
             this.btnDeliver.Size = new System.Drawing.Size(108, 28);
             this.btnDeliver.TabIndex = 2;
@@ -223,9 +223,10 @@
             this.gpcAndonEvents.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.gpcAndonEvents.AppearanceCaption.Options.UseFont = true;
             this.gpcAndonEvents.Controls.Add(this.grdOrders);
-            this.gpcAndonEvents.Location = new System.Drawing.Point(10, 68);
+            this.gpcAndonEvents.Location = new System.Drawing.Point(10, 84);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
-            this.gpcAndonEvents.Size = new System.Drawing.Size(691, 306);
+            this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(691, 290);
             this.gpcAndonEvents.TabIndex = 1;
             this.gpcAndonEvents.Text = "待处理的配料单列表";
             // 
@@ -234,10 +235,10 @@
             this.grdOrders.ContextMenuStrip = this.contextMenuStrip;
             this.grdOrders.Cursor = System.Windows.Forms.Cursors.Default;
             this.grdOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdOrders.Location = new System.Drawing.Point(2, 27);
+            this.grdOrders.Location = new System.Drawing.Point(7, 32);
             this.grdOrders.MainView = this.grdvOrders;
             this.grdOrders.Name = "grdOrders";
-            this.grdOrders.Size = new System.Drawing.Size(687, 277);
+            this.grdOrders.Size = new System.Drawing.Size(677, 251);
             this.grdOrders.TabIndex = 1;
             this.grdOrders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvOrders});

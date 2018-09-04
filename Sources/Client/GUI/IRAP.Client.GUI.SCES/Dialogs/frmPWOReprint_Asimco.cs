@@ -8,8 +8,10 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
 using System.Configuration;
+using System.Drawing.Printing;
 
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using FastReport;
 
 using IRAP.Global;
@@ -26,9 +28,65 @@ namespace IRAP.Client.GUI.SCES.Dialogs
 
         private int t173LeafID = 0;
 
+        /// <summary>
+        /// 流转卡保存文件名
+        /// </summary>
+        private string fileNameTransferTrack = "";
+        /// <summary>
+        /// 跟踪卡保存文件名
+        /// </summary>
+        private string fileNameProductTrack = "";
+
         public frmPWOReprint_Asimco()
         {
             InitializeComponent();
+
+            for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+            {
+                cboTransferPrinter.Properties.Items.Add(PrinterSettings.InstalledPrinters[i]);
+                cboProductionTrack.Properties.Items.Add(PrinterSettings.InstalledPrinters[i]);
+            }
+
+            PrintDocument prtDoc = new PrintDocument();
+            string defaultPrinter = prtDoc.PrinterSettings.PrinterName;
+            string printerTransfer = "";
+            string printerTrack = "";
+
+            if (ConfigurationManager.AppSettings["TransferPrinter"] != null)
+            {
+                printerTransfer = ConfigurationManager.AppSettings["TransferPrinter"];
+            }
+            else
+            {
+                printerTransfer = defaultPrinter;
+            }
+            if (ConfigurationManager.AppSettings["TrackPrinter"]!=null)
+            {
+                printerTrack = ConfigurationManager.AppSettings["TrackPrinter"];
+            }
+            else
+            {
+                printerTrack = defaultPrinter;
+            }
+
+            if (cboTransferPrinter.Properties.Items.Count > 0)
+            {
+                if (cboTransferPrinter.Properties.Items.IndexOf(printerTransfer) >= 0)
+                {
+                    cboTransferPrinter.SelectedIndex =
+                        cboTransferPrinter.Properties.Items.IndexOf(printerTransfer);
+
+                }
+            }
+
+            if (cboProductionTrack.Properties.Items.Count > 0)
+            {
+                if (cboProductionTrack.Properties.Items.IndexOf(printerTrack) >= 0)
+                {
+                    cboProductionTrack.SelectedIndex =
+                        cboTransferPrinter.Properties.Items.IndexOf(printerTrack);
+                }
+            }
         }
 
         public frmPWOReprint_Asimco(int t173LeafID) : this()
@@ -303,6 +361,55 @@ namespace IRAP.Client.GUI.SCES.Dialogs
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        private void cboTransferPrinter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IRAPConst.Instance.SaveParams("TransferPrinter", (string)cboTransferPrinter.SelectedItem);
+        }
+
+        private void cboProductionTrack_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IRAPConst.Instance.SaveParams("TrackPrinter", (string)cboProductionTrack.SelectedItem);
+        }
+
+        private void EditValueChanging(object sender, ChangingEventArgs e)
+        {
+            fileNameTransferTrack =
+                string.Format(
+                    "{0}FPX\\{1}.{2}_Transfer.fpx",
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    edtMONumber.Text,
+                    edtMOLineNo.Text);
+            btnTransferPrint.Enabled = File.Exists(fileNameTransferTrack);
+
+            fileNameProductTrack =
+                string.Format(
+                    "{0}FPX\\{1}.{2}_ProductTrack.fpx",
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    edtMONumber.Text,
+                    edtMOLineNo.Text);
+            btnProductionTrackPrint.Enabled = File.Exists(fileNameProductTrack);
+        }
+
+        private void btnTransferPrint_Click(object sender, EventArgs e)
+        {
+            Report report = new Report();
+            report.LoadPrepared(fileNameTransferTrack);
+
+            PrinterSettings prntSettings = new PrinterSettings();
+            prntSettings.PrinterName = (string)cboTransferPrinter.SelectedItem;
+            report.PrintPrepared(prntSettings);
+        }
+
+        private void btnProductionTrackPrint_Click(object sender, EventArgs e)
+        {
+            Report report = new Report();
+            report.LoadPrepared(fileNameProductTrack);
+
+            PrinterSettings prntSettings = new PrinterSettings();
+            prntSettings.PrinterName = (string)cboProductionTrack.SelectedItem;
+            report.PrintPrepared(prntSettings);
         }
     }
 }

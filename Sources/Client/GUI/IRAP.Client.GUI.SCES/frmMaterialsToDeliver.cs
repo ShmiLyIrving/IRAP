@@ -39,6 +39,11 @@ namespace IRAP.Client.GUI.SCES
         /// </summary>
         private long af482PK = 0;
 
+        /// <summary>
+        /// 打印暂存文件夹
+        /// </summary>
+        private string fpxBackupFolder = "";
+
         private bool printWIPProductInfoTrack = false;
 
         public frmMaterialsToDeliver()
@@ -63,6 +68,12 @@ namespace IRAP.Client.GUI.SCES
             this.af482PK = af482PK;
             dstStoreSite = storeSite;
             this.opNode = opNode;
+
+            fpxBackupFolder = string.Format("{0}FPX\\", AppDomain.CurrentDomain.BaseDirectory);
+            if (!Directory.Exists(fpxBackupFolder))
+            {
+                Directory.CreateDirectory(fpxBackupFolder);
+            }
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             TWaitting.Instance.ShowWaitForm("正在获取指定的待配送制造订单");
@@ -201,10 +212,18 @@ namespace IRAP.Client.GUI.SCES
                                         case 5259040:
                                             btnActualQtyToDeliverModify.Visible = false;
                                             break;
+                                        case 5360016:
+                                        case 5460148:
+                                            grdclmnStickQty.Visible = true;
+                                            grdclmnPerStickQty.Visible = true;
+
+                                            btnT157R3.Visible = true;
+                                            break;
                                         default:
                                             btnActualQtyToDeliverModify.Visible = true;
                                             break;
                                     }
+
 
                                     btnCapacityModify.Visible = true;
                                     btnCapacityModify.Text = "每杆数量调整";
@@ -306,12 +325,21 @@ namespace IRAP.Client.GUI.SCES
 
                 #region 调用存储过程，在系统中登记当前生产工单的物料配送信息已经被打印
                 bool saveSucccessed = false;
+#if DEBUG
+                XtraMessageBox.Show(
+                    "程序调试模式下，不调用 usp_PrintVoucher_PWOMaterialDelivery 。",
+                    "系统提示",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                saveSucccessed = true;
+#else
                 saveSucccessed = SavePWOMaterialDeliver();
+#endif
                 #endregion
 
                 if (saveSucccessed)
                 {
-                    #region 获取当前工单的生产批次号
+#region 获取当前工单的生产批次号
                     {
                         int errCode = 0;
                         string errText = "";
@@ -327,9 +355,9 @@ namespace IRAP.Client.GUI.SCES
                             string.Format("({0}){1}", errCode, errText),
                             strProcedureName);
                     }
-                    #endregion
+#endregion
 
-                    #region 打印
+#region 打印
                     Report report = new Report();
                     Report report1 = new Report();
                     MemoryStream ms;
@@ -383,7 +411,7 @@ namespace IRAP.Client.GUI.SCES
                         switch (IRAPUser.Instance.CommunityID)
                         {
                             case 60023:  // 新康达打印的生产流转卡
-                                #region 获取生产流传卡打印的要素
+#region 获取生产流传卡打印的要素
                                 int errCode = 0;
                                 string errText = "";
                                 List<ProductionFlowCard> datas = new List<ProductionFlowCard>();
@@ -406,9 +434,9 @@ namespace IRAP.Client.GUI.SCES
                                         MessageBoxIcon.Error);
                                     return;
                                 }
-                                #endregion
+#endregion
 
-                                #region 向内存表中插入记录，以便生成打印内容
+#region 向内存表中插入记录，以便生成打印内容
                                 DataSet ds = new DataSet();
                                 DataTable dt = new DataTable();
                                 dt.TableName = "ProductionFlowCard";
@@ -449,7 +477,7 @@ namespace IRAP.Client.GUI.SCES
                                 }
 
                                 ds.Tables.Add(dt);
-                                #endregion
+#endregion
 
                                 report.RegisterData(ds);
                                 report.GetDataSource("ProductionFlowCard").Enabled = true;
@@ -499,6 +527,139 @@ namespace IRAP.Client.GUI.SCES
                             switch (IRAPUser.Instance.CommunityID)
                             {
                                 case 60010:
+                                    DataSet ds = new DataSet();
+                                    DataTable dt = new DataTable();
+                                    dt.TableName = "WIPProductInfoTrack";
+                                    dt.Columns.Add("BarCode", typeof(string));
+                                    dt.Columns.Add("DeliveryWorkShop", typeof(string));
+                                    dt.Columns.Add("StorehouseCode", typeof(string));
+                                    dt.Columns.Add("T106Code", typeof(string));
+                                    dt.Columns.Add("WorkshopName", typeof(string));
+                                    dt.Columns.Add("ProductLine", typeof(string));
+                                    dt.Columns.Add("AdvicedPickedQty", typeof(string));
+                                    dt.Columns.Add("StartingDate", typeof(string));
+                                    dt.Columns.Add("CompletingDate", typeof(string));
+                                    dt.Columns.Add("PrintingDate", typeof(string));
+                                    dt.Columns.Add("Unit", typeof(string));
+                                    dt.Columns.Add("MONo", typeof(string));
+                                    dt.Columns.Add("MOLineNo", typeof(string));
+                                    dt.Columns.Add("LotNumber", typeof(string));
+                                    dt.Columns.Add("MaterialTexture", typeof(string));
+                                    dt.Columns.Add("ActualPickedBars", typeof(string));
+                                    dt.Columns.Add("OrderQty", typeof(int));
+                                    dt.Columns.Add("MaterialCode", typeof(string));
+                                    dt.Columns.Add("MaterialDescription", typeof(string));
+                                    dt.Columns.Add("TransferringInDate", typeof(string));
+                                    dt.Columns.Add("InQuantity", typeof(string));
+                                    dt.Columns.Add("FatherMaterialCode", typeof(string));
+                                    dt.Columns.Add("FatherMaterialName", typeof(string));
+                                    dt.Columns.Add("DstT106Code", typeof(string));
+                                    dt.Columns.Add("GateWayWC", typeof(string));
+                                    dt.Columns.Add("PageNo", typeof(int));
+                                    dt.Columns.Add("PageCount", typeof(int));
+
+                                    long perContainerQty = materials[0].PerStickQty * materials[0].StickQty;
+                                    if (perContainerQty == 0)
+                                    {
+                                        #region 未设置镀铬车间的容器容量
+                                        dt.Rows.Add(
+                                            order.PWONo,
+                                            "",
+                                            string.Format("{0}({1})", materials[0].T173Name, materials[0].T173Code),
+                                            materials[0].AtStoreLocCode,
+                                            materials[0].DstWorkShopCode,
+                                            order.T134Name,
+                                            materials[0].SuggestedQuantityToPick.ToString(),
+                                            order.PlannedStartDate.Substring(5, 5),
+                                            order.PlannedCloseDate.Substring(5, 5),
+                                            DateTime.Now.ToString("MM-dd HH:mm:ss"),
+                                            materials[0].UnitOfMeasure,
+                                            order.MONumber,
+                                            order.MOLineNo,
+                                            lotNumber,
+                                            materials[0].T131Code,
+                                            materials[0].ActualQtyDecompose,
+                                            order.PlannedQuantity.IntValue.ToString(),
+                                            materials[0].MaterialCode,
+                                            materials[0].MaterialDesc,
+                                            DateTime.Now.ToString("yyyy-MM-dd"),
+                                            materials[0].ActualQuantityToDeliver.IntValue != 0 ?
+                                                materials[0].ActualQuantityToDeliver.ToStringWithoutUnitOfMeasure() :
+                                                "",
+                                            order.ProductNo,
+                                            order.ProductDesc,
+                                            materials[0].DstT106Code,
+                                            order.GateWayWC,
+                                            1,
+                                            1);
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                        long count = materials[0].ActualQuantityToDeliver.IntValue / perContainerQty + 1;
+                                        long sum = materials[0].ActualQuantityToDeliver.IntValue;
+                                        for (int i = 1; i <= count; i++)
+                                        {
+                                            long qty = 0;
+                                            string actualQtyDecompose = "";
+                                            if (sum >= perContainerQty)
+                                            {
+                                                qty = perContainerQty;
+                                                actualQtyDecompose =
+                                                    string.Format(
+                                                        "{0}*{1}",
+                                                        materials[0].StickQty,
+                                                        materials[0].PerStickQty);
+                                            }
+                                            else
+                                            {
+                                                qty = sum;
+                                                actualQtyDecompose =
+                                                    string.Format(
+                                                        "{0}*{1}+{2}",
+                                                        qty / materials[0].PerStickQty,
+                                                        materials[0].PerStickQty,
+                                                        qty % materials[0].PerStickQty);
+                                            }
+                                            sum = sum - qty;
+
+                                            dt.Rows.Add(
+                                                order.PWONo,
+                                                "",
+                                                string.Format("{0}({1})", materials[0].T173Name, materials[0].T173Code),
+                                                materials[0].AtStoreLocCode,
+                                                materials[0].DstWorkShopCode,
+                                                order.T134Name,
+                                                materials[0].SuggestedQuantityToPick.ToString(),
+                                                order.PlannedStartDate.Substring(5, 5),
+                                                order.PlannedCloseDate.Substring(5, 5),
+                                                DateTime.Now.ToString("MM-dd HH:mm:ss"),
+                                                materials[0].UnitOfMeasure,
+                                                order.MONumber,
+                                                order.MOLineNo,
+                                                lotNumber,
+                                                materials[0].T131Code,
+                                                actualQtyDecompose,
+                                                order.PlannedQuantity.IntValue.ToString(),
+                                                materials[0].MaterialCode,
+                                                materials[0].MaterialDesc,
+                                                DateTime.Now.ToString("yyyy-MM-dd"),
+                                                qty,
+                                                order.ProductNo,
+                                                order.ProductDesc,
+                                                materials[0].DstT106Code,
+                                                order.GateWayWC,
+                                                i,
+                                                count);
+                                        }
+                                    }
+
+                                    ds.Tables.Add(dt);
+
+                                    report1.RegisterData(ds);
+                                    report1.GetDataSource("WIPProductInfoTrack").Enabled = true;
+
+                                    break;
                                 case 60030:
                                     report1.Parameters.FindByName("BarCode").Value = order.PWONo;
                                     report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
@@ -546,10 +707,32 @@ namespace IRAP.Client.GUI.SCES
                         return;
                     }
 
+                    // 流转卡保存文件名
+                    string fileNameTransferTrack =
+                        string.Format(
+                            @"{0}FPX\{1}.{2}_Transfer.fpx",
+                            AppDomain.CurrentDomain.BaseDirectory,
+                            order.MONumber,
+                            order.MOLineNo);
+                    // 跟踪卡保存文件名
+                    string fileNameProductTrack =
+                        string.Format(
+                            @"{0}FPX\{1}.{2}_ProductTrack.fpx",
+                            AppDomain.CurrentDomain.BaseDirectory,
+                            order.MONumber,
+                            order.MOLineNo);
+
                     System.Drawing.Printing.PrinterSettings prnSetting =
                         new System.Drawing.Printing.PrinterSettings();
                     if (report.Prepare())
                     {
+                        // 保留物料配送流转卡的副本
+                        if (IRAPUser.Instance.CommunityID == 60010 ||
+                            IRAPUser.Instance.CommunityID == 60030)
+                        {
+                            report.SavePrepared(fileNameTransferTrack);
+                        }
+
                         bool rePrinter = false;
                         do
                         {
@@ -558,6 +741,7 @@ namespace IRAP.Client.GUI.SCES
                             {
                                 IRAPConst.Instance.CurrentPrinterName = prnSetting.PrinterName;
                                 report.PrintPrepared(prnSetting);
+
                                 rePrinter = (
                                     ShowMessageBox.Show(
                                         "物料配送流转卡已经打印完成，是否需要重新打印？",
@@ -580,6 +764,9 @@ namespace IRAP.Client.GUI.SCES
 
                                 if (report1.Prepare())
                                 {
+                                    // 保留产品信息跟踪卡的副本
+                                    report1.SavePrepared(fileNameProductTrack);
+
                                     bool rePrint = false;
                                     do
                                     {
@@ -606,7 +793,7 @@ namespace IRAP.Client.GUI.SCES
                     }
 
                     btnClose.PerformClick();
-                    #endregion
+#endregion
                 }
             }
             finally
@@ -662,7 +849,7 @@ namespace IRAP.Client.GUI.SCES
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                #region 保存物料配送事实
+#region 保存物料配送事实
                 try
                 {
                     int errCode = 0;
@@ -727,7 +914,7 @@ namespace IRAP.Client.GUI.SCES
                 finally
                 {
                 }
-                #endregion
+#endregion
             }
             finally
             {
@@ -838,6 +1025,23 @@ namespace IRAP.Client.GUI.SCES
                 formEditor.SubLeafID = materials[0].LeafID;
                 formEditor.ActualQtyInStore = materials[0].QtyInStore;
                 formEditor.ActualQtyToDeliver = materials[0].ActualQtyToDeliver;
+
+                if (formEditor.ShowDialog() == DialogResult.OK)
+                {
+                    frmMaterialToDeliverPreview_Shown(this, null);
+                }
+            }
+        }
+
+        private void btnT157R3_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.frmT157R3Editor formEditor =
+                new Dialogs.frmT157R3Editor())
+            {
+                formEditor.TreeID = materials[0].TreeID;
+                formEditor.LeafID = materials[0].LeafID;
+                formEditor.StickQty = materials[0].StickQty;
+                formEditor.PerStickQty = materials[0].PerStickQty;
 
                 if (formEditor.ShowDialog() == DialogResult.OK)
                 {

@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -75,11 +76,23 @@
     <Compile Include="Dialogs\frmContainerPapacityEditor.Designer.cs">
       <DependentUpon>frmContainerPapacityEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmNewVersionMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmNewVersionMessage.Designer.cs">
+      <DependentUpon>frmNewVersionMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmPWOReprint_Asimco.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\frmPWOReprint_Asimco.Designer.cs">
       <DependentUpon>frmPWOReprint_Asimco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmT157R3Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmT157R3Editor.Designer.cs">
+      <DependentUpon>frmT157R3Editor.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDeliveryMngmt_30.cs">
       <SubType>Form</SubType>
@@ -161,8 +174,14 @@
     <EmbeddedResource Include="Dialogs\frmContainerPapacityEditor.resx">
       <DependentUpon>frmContainerPapacityEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmNewVersionMessage.resx">
+      <DependentUpon>frmNewVersionMessage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPWOReprint_Asimco.resx">
       <DependentUpon>frmPWOReprint_Asimco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmT157R3Editor.resx">
+      <DependentUpon>frmT157R3Editor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDeliveryMngmt_30.resx">
       <DependentUpon>frmDeliveryMngmt_30.cs</DependentUpon>

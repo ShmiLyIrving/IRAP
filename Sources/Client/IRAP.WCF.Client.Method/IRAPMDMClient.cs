@@ -5629,5 +5629,75 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 保存指定产品的单车棒数以及单棒数量
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="attrChangeXML">
+        /// 属性变更 XML ，格式：
+        /// [ROOT][MDM T157LeafID="" TreeID="101/102" LeafID="" StickStdQty="" StickQty="" /][/ROOT]
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void usp_SaveRSAttr_T157R3(
+            int communityID,
+            string attrChangeXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("attrChangeXML", attrChangeXML);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveRSAttr_T157R3，输入参数：" +
+                        "CommunityID={0}|AttrChangeXML={1}|SysLogID={2}",
+                        communityID,
+                        attrChangeXML,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MDM.dll",
+                        "IRAP.BL.MDM.IRAPMDM",
+                        "usp_SaveRSAttr_T157R3",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }

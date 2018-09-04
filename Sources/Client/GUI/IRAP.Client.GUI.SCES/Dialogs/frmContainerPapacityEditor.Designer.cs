@@ -123,6 +123,7 @@
             this.Controls.Add(this.edtCurrentCapacity);
             this.Controls.Add(this.lblCurrentCapacity);
             this.Name = "frmContainerPapacityEditor";
+            this.Text = "";
             ((System.ComponentModel.ISupportInitialize)(this.edtCurrentCapacity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNewCapacity.Properties)).EndInit();
             this.ResumeLayout(false);

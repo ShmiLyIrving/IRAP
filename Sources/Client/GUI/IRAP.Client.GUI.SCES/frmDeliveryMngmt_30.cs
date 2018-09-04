@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using System.Configuration;
 
 using DevExpress.XtraEditors;
 
@@ -110,6 +111,22 @@ namespace IRAP.Client.GUI.SCES
                 default:
                     btnReprint.Visible = false;
                     break;
+            }
+
+            string versionDeliveryMngmt = "";
+            if (ConfigurationManager.AppSettings["DeliveryMngmtVersion"] != null)
+            {
+                versionDeliveryMngmt = ConfigurationManager.AppSettings["DeliveryMngmtVersion"];
+            }
+
+            if (versionDeliveryMngmt != "1.0")
+            {
+                using (Dialogs.frmNewVersionMessage formNewTips = new Dialogs.frmNewVersionMessage())
+                {
+                    formNewTips.WindowState = FormWindowState.Maximized;
+                    formNewTips.ShowDialog();
+                    IRAPConst.Instance.SaveParams("DeliveryMngmtVersion", "1.0"); 
+                }
             }
         }
 
@@ -288,20 +305,7 @@ namespace IRAP.Client.GUI.SCES
 
         private void btnReprint_Click(object sender, EventArgs e)
         {
-            if (cboDstStoreSites.SelectedItem == null)
-            {
-                XtraMessageBox.Show(
-                    "请先选择\"目标仓储地点\"",
-                    "系统提示",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                cboDstStoreSites.Focus();
-                return;
-            }
-
-            using (Dialogs.frmPWOReprint_Asimco Form =
-                new Dialogs.frmPWOReprint_Asimco(
-                    (cboDstStoreSites.SelectedItem as DstDeliveryStoreSite).T173LeafID))
+            using (Dialogs.frmPWOReprint_Asimco Form = new Dialogs.frmPWOReprint_Asimco())
             {
                 Form.ShowDialog();
             }
