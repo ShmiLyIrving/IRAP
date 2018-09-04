@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="08/16/2018 11:08:38" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="09/04/2018 10:05:56" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,6 +27,37 @@ namespace FastReport
 }
 </ScriptText>
   <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8ZXatoTOPV/vQdiBMsyUstMQ/HNifsWbuWuzkTXmKRH2o1w15QKMnHGgEldtKEA730OqosVbqhBdcYGLTsIKn8r8+Y0xvx++djKtnqgV/DXt2gr09j4HTHlzvTlRLG+mofqnnIUZZ3TI9VVdiKhxA2xbhjKTGou1kVVqO4POZunk5ZtBWucBQJ7DZOWp5taJMg==">
+      <TableDataSource Name="Temp_WIPProductInfoTrack" Alias="WIPProductInfoTrack" DataType="System.Int32" Enabled="true" TableName="Temp_WIPProductInfoTrack">
+        <Column Name="BarCode" DataType="System.String"/>
+        <Column Name="DeliveryWorkShop" DataType="System.String"/>
+        <Column Name="StorehouseCode" DataType="System.String"/>
+        <Column Name="T106Code" DataType="System.String"/>
+        <Column Name="WorkshopName" DataType="System.String"/>
+        <Column Name="ProductLine" DataType="System.String"/>
+        <Column Name="AdvicedPickedQty" DataType="System.String"/>
+        <Column Name="StartingDate" DataType="System.String"/>
+        <Column Name="CompletingDate" DataType="System.String"/>
+        <Column Name="PrintingDate" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.String"/>
+        <Column Name="MONo" DataType="System.String"/>
+        <Column Name="MOLineNo" DataType="System.String"/>
+        <Column Name="LotNumber" DataType="System.String"/>
+        <Column Name="MaterialTexture" DataType="System.String"/>
+        <Column Name="ActualPickedBars" DataType="System.String"/>
+        <Column Name="OrderQty" DataType="System.Int32"/>
+        <Column Name="MaterialCode" DataType="System.String"/>
+        <Column Name="MaterialDescription" DataType="System.String"/>
+        <Column Name="TransferringInDate" DataType="System.String"/>
+        <Column Name="InQuantity" DataType="System.String"/>
+        <Column Name="FatherMaterialCode" DataType="System.String"/>
+        <Column Name="FatherMaterialName" DataType="System.String"/>
+        <Column Name="DstT106Code" DataType="System.String"/>
+        <Column Name="GateWayWC" DataType="System.String"/>
+        <Column Name="PageNo" DataType="System.Int32"/>
+        <Column Name="PageCount" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
     <Parameter Name="DeliveryWorkshop" DataType="System.String"/>
     <Parameter Name="StartingDate" DataType="System.String"/>
     <Parameter Name="StorehouseCode" DataType="System.String"/>
@@ -53,40 +84,41 @@ namespace FastReport
     <Parameter Name="DstT106Code" DataType="System.String"/>
   </Dictionary>
   <ReportPage Name="Page1" RawPaperSize="9" TopMargin="5" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
-    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="196.56">
-      <TextObject Name="Text9" Left="41.58" Top="100.17" Width="39.69" Height="18.9" Border.Lines="Bottom" Text="[WorkshopName]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text11" Left="523.53" Top="102.06" Width="45.36" Height="18.9" Border.Lines="Bottom" Text="[StartingDate]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text17" Left="52.92" Top="124.74" Width="120.96" Height="26.46" Border.Lines="Bottom" Text="[MONo]" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text19" Left="209.79" Top="132.3" Width="39.69" Height="18.9" Border.Lines="Bottom" Text="[LineNo]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text22" Left="300.51" Top="132.3" Width="154.98" Height="18.9" Border.Lines="Bottom" Text="[LotNumber]" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text27" Left="519.75" Top="132.3" Width="66.15" Height="18.9" Border.Lines="Bottom" Text="[OrderQty]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text33" Left="71.82" Top="173.88" Width="113.4" Height="18.9" Border.Lines="Bottom" Text="[MaterialCode]" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text43" Left="145.53" Top="100.17" Width="92.61" Height="18.9" Border.Lines="Bottom" Text="[FatherMaterialCode]" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text44" Left="304.29" Top="90.72" Width="154.98" Height="30.24" Border.Lines="Bottom" Text="[FatherMaterialName]" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text53" Left="650.16" Top="102.06" Width="52.92" Height="18.9" Border.Lines="Bottom" Text="[CompletingDate]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text54" Left="498.96" Top="45.36" Width="181.44" Height="18.9" Text="[PrintingDate]" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text58" Left="326.97" Top="170.1" Width="26.46" Height="18.9" Text="1" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text1" Left="650.16" Top="132.3" Width="52.92" Height="18.9" Border.Lines="Bottom" Text="[InQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
-      <TextObject Name="Text64" Left="446.04" Top="170.1" Width="26.46" Height="18.9" Text="1" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text65" Left="650.16" Top="173.88" Width="52.92" Height="18.9" Text="[InQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
-      <TextObject Name="Text66" Top="173.88" Width="71.82" Height="18.9" Text="子项编码" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text67" Left="1.89" Top="100.17" Width="39.69" Height="18.9" Text="车间" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text68" Left="81.27" Top="100.17" Width="64.26" Height="18.9" Text="物料编码" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text69" Left="238.14" Top="100.17" Width="64.26" Height="18.9" Text="产品名称" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text70" Left="459.27" Top="102.06" Width="64.26" Height="18.9" Text="开工日期" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text71" Left="580.23" Top="102.06" Width="64.26" Height="18.9" Text="完工日期" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text72" Left="1.89" Top="132.3" Width="51.03" Height="18.9" Text="订单号" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text73" Left="173.88" Top="132.3" Width="35.91" Height="18.9" Text="行号" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text74" Left="249.48" Top="132.3" Width="51.03" Height="18.9" Text="批次号" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text75" Left="455.49" Top="132.3" Width="64.26" Height="18.9" Text="订单批量" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text76" Left="585.9" Top="132.3" Width="64.26" Height="18.9" Text="批次批量" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text77" Left="292.95" Top="170.1" Width="34.02" Height="18.9" Text="第" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text78" Left="353.43" Top="170.1" Width="41.58" Height="18.9" Text="车" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text79" Left="472.5" Top="170.1" Width="41.58" Height="18.9" Text="车" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text80" Left="412.02" Top="170.1" Width="34.02" Height="18.9" Text="共" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text81" Left="585.9" Top="173.88" Width="64.26" Height="18.9" Text="备注" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
-    </PageHeaderBand>
-    <DataBand Name="Data1" Top="200.56" Width="718.2"/>
-    <PageFooterBand Name="PageFooter1" Top="204.56" Width="718.2" Height="11.34"/>
+    <PageHeaderBand Name="PageHeader1" Width="718.2"/>
+    <DataBand Name="Data1" Top="4" Width="718.2" Height="196.56" DataSource="Temp_WIPProductInfoTrack">
+      <TextObject Name="Text65" Left="653.94" Top="171.99" Width="52.92" Height="18.9" Text="[WIPProductInfoTrack.InQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
+      <TextObject Name="Text33" Left="75.6" Top="171.99" Width="113.4" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.MaterialCode]" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text66" Left="3.78" Top="171.99" Width="71.82" Height="18.9" Text="子项编码" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text81" Left="589.68" Top="171.99" Width="64.26" Height="18.9" Text="备注" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text58" Left="330.75" Top="168.21" Width="26.46" Height="18.9" Text="[WIPProductInfoTrack.PageNo]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text64" Left="449.82" Top="168.21" Width="26.46" Height="18.9" Text="[WIPProductInfoTrack.PageCount]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text77" Left="296.73" Top="168.21" Width="34.02" Height="18.9" Text="第" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text78" Left="357.21" Top="168.21" Width="41.58" Height="18.9" Text="车" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text79" Left="476.28" Top="168.21" Width="41.58" Height="18.9" Text="车" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text80" Left="415.8" Top="168.21" Width="34.02" Height="18.9" Text="共" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text19" Left="213.57" Top="130.41" Width="39.69" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.MOLineNo]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text22" Left="304.29" Top="130.41" Width="154.98" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.LotNumber]" VertAlign="Bottom" Font="新宋体, 10pt"/>
+      <TextObject Name="Text27" Left="523.53" Top="130.41" Width="66.15" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.OrderQty]" HorzAlign="Center" VertAlign="Bottom" Font="新宋体, 10pt"/>
+      <TextObject Name="Text1" Left="653.94" Top="130.41" Width="52.92" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.InQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
+      <TextObject Name="Text72" Left="5.67" Top="130.41" Width="51.03" Height="18.9" Text="订单号" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text73" Left="177.66" Top="130.41" Width="35.91" Height="18.9" Text="行号" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text74" Left="253.26" Top="130.41" Width="51.03" Height="18.9" Text="批次号" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text75" Left="459.27" Top="130.41" Width="64.26" Height="18.9" Text="订单批量" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text76" Left="589.68" Top="130.41" Width="64.26" Height="18.9" Text="批次批量" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text17" Left="56.7" Top="120.96" Width="120.96" Height="26.46" Border.Lines="Bottom" Text="[WIPProductInfoTrack.MONo]" VertAlign="Bottom" Font="新宋体, 10pt"/>
+      <TextObject Name="Text11" Left="527.31" Top="100.17" Width="45.36" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.StartingDate]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text53" Left="653.94" Top="100.17" Width="52.92" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.CompletingDate]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text70" Left="463.05" Top="100.17" Width="64.26" Height="18.9" Text="开工日期" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text71" Left="584.01" Top="100.17" Width="64.26" Height="18.9" Text="完工日期" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text9" Left="45.36" Top="98.28" Width="39.69" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.WorkshopName]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text43" Left="149.31" Top="98.28" Width="92.61" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.FatherMaterialCode]" VertAlign="Bottom" Font="新宋体, 10pt"/>
+      <TextObject Name="Text67" Left="5.67" Top="98.28" Width="39.69" Height="18.9" Text="车间" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text68" Left="85.05" Top="98.28" Width="64.26" Height="18.9" Text="物料编码" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text69" Left="241.92" Top="98.28" Width="64.26" Height="18.9" Text="产品名称" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text44" Left="308.07" Top="88.83" Width="154.98" Height="30.24" Border.Lines="Bottom" Text="[WIPProductInfoTrack.FatherMaterialName]" VertAlign="Bottom" Font="新宋体, 10pt"/>
+      <TextObject Name="Text54" Left="502.74" Top="43.47" Width="181.44" Height="18.9" Text="[WIPProductInfoTrack.PrintingDate]" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
+      <TextObject Name="Text82" Left="589.68" Top="149.31" Width="117.18" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.ActualPickedBars]" VertAlign="Center" Font="宋体, 10pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="204.56" Width="718.2"/>
   </ReportPage>
 </Report>
