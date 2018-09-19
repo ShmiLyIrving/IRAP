@@ -35,8 +35,8 @@ namespace MaterialLabelPrint_Asimco
                     "Server={0};initial catalog=IRAP;UID={1};Password={2};" +
                     "Min Pool Size=2;Max Pool Size=60;",
                     "192.168.1.2",
-                    "sa",
-                    "CyprMes571");
+                    "cyprmes",
+                    "Mes@Cypr571");
             return rlt;
         }
 

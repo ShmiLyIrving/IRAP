@@ -76,6 +76,12 @@
       <DependentUpon>frmSelectExcelSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="ExcelHelper.cs" />
+    <Compile Include="frmPrdtParamsCollection_HotGrinding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrdtParamsCollection_HotGrinding.Designer.cs">
+      <DependentUpon>frmPrdtParamsCollection_HotGrinding.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRunningSPPModify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\frmSelectExcelSheet.resx">
       <DependentUpon>frmSelectExcelSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrdtParamsCollection_HotGrinding.resx">
+      <DependentUpon>frmPrdtParamsCollection_HotGrinding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRunningSPPModify.resx">
       <DependentUpon>frmRunningSPPModify.cs</DependentUpon>

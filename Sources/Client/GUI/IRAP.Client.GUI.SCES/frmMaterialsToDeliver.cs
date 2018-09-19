@@ -383,7 +383,16 @@ namespace IRAP.Client.GUI.SCES
                                         ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack_60010_2155630);
                                         break;
                                     default:
-                                        ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
+                                        switch (IRAPUser.Instance.Agency.AgencyLeaf)
+                                        {
+                                            case 353081:
+                                            case 354089:
+                                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack_60010_2155630);
+                                                break;
+                                            default:
+                                                ms = new MemoryStream(Properties.Resources.WIPProductInfoTrack);
+                                                break;
+                                        }
                                         break;
                                 }
                                 report1.Load(ms);
@@ -501,7 +510,7 @@ namespace IRAP.Client.GUI.SCES
                                 report.Parameters.FindByName("AdvicedPickedQty").Value = materials[0].SuggestedQuantityToPick;
                                 report.Parameters.FindByName("StartingDate").Value = order.PlannedStartDate;
                                 report.Parameters.FindByName("CompletingDate").Value = order.PlannedCloseDate;
-                                report.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
+                                report.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm");
                                 report.Parameters.FindByName("Unit").Value = materials[0].UnitOfMeasure;
                                 report.Parameters.FindByName("MONo").Value = order.MONumber;
                                 report.Parameters.FindByName("LineNo").Value = order.MOLineNo;
@@ -519,6 +528,7 @@ namespace IRAP.Client.GUI.SCES
                                 report.Parameters.FindByName("FatherMaterialCode").Value = order.ProductNo;
                                 report.Parameters.FindByName("FatherMaterialName").Value = order.ProductDesc;
                                 report.Parameters.FindByName("DstT106Code").Value = materials[0].DstT106Code;
+                                report.Parameters.FindByName("OperatorName").Value = IRAPUser.Instance.UserName;
                                 break;
                         }
 

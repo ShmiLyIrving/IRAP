@@ -12,5 +12,6 @@ namespace IRAP.Entities.MES
         public string SubWIPIDCode { get; set; }
         public long LinkedFactID { get; set; }
         public int PWOCategoryLeaf { get; set; }
+        public int T132Leaf { get; set; }
     }
 }

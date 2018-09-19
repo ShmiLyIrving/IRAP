@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="09/04/2018 10:05:56" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="09/08/2018 10:05:31" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace FastReport
 }
 </ScriptText>
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8ZXatoTOPV/vQdiBMsyUstMQ/HNifsWbuWuzkTXmKRH2o1w15QKMnHGgEldtKEA730OqosVbqhBdcYGLTsIKn8r8+Y0xvx++djKtnqgV/DXt2gr09j4HTHlzvTlRLG+mofqnnIUZZ3TI9VVdiKhxA2xbhjKTGou1kVVqO4POZunk5ZtBWucBQJ7DZOWp5taJMg==">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8ZXatoTOPV/vQdiBMsyUstMQ/HNifsWbuWuzkTXmKRH2o1w15QKMnHGgEldtKEA730OqosVbqhBdcYGLTsIKn8r8+Y0xvx++djKtnqgV/DXt2gr09j4HTHlzvTlRLG+mofqnnIUZZ3TI9VVdiKhxA2xbhjKTGou1kVVqO4POZunkeKXsGgDbP4twxfT8eTwiTA==">
       <TableDataSource Name="Temp_WIPProductInfoTrack" Alias="WIPProductInfoTrack" DataType="System.Int32" Enabled="true" TableName="Temp_WIPProductInfoTrack">
         <Column Name="BarCode" DataType="System.String"/>
         <Column Name="DeliveryWorkShop" DataType="System.String"/>
@@ -85,9 +85,9 @@ namespace FastReport
   </Dictionary>
   <ReportPage Name="Page1" RawPaperSize="9" TopMargin="5" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
     <PageHeaderBand Name="PageHeader1" Width="718.2"/>
-    <DataBand Name="Data1" Top="4" Width="718.2" Height="196.56" DataSource="Temp_WIPProductInfoTrack">
-      <TextObject Name="Text65" Left="653.94" Top="171.99" Width="52.92" Height="18.9" Text="[WIPProductInfoTrack.InQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
-      <TextObject Name="Text33" Left="75.6" Top="171.99" Width="113.4" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.MaterialCode]" VertAlign="Center" Font="新宋体, 10pt"/>
+    <DataBand Name="Data1" Top="4" Width="718.2" Height="196.56" StartNewPage="true" DataSource="Temp_WIPProductInfoTrack">
+      <TextObject Name="Text65" Left="653.94" Top="171.99" Width="52.92" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.InQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
+      <TextObject Name="Text33" Left="75.6" Top="171.99" Width="149.31" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.MaterialCode]" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text66" Left="3.78" Top="171.99" Width="71.82" Height="18.9" Text="子项编码" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text81" Left="589.68" Top="171.99" Width="64.26" Height="18.9" Text="备注" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text58" Left="330.75" Top="168.21" Width="26.46" Height="18.9" Text="[WIPProductInfoTrack.PageNo]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
@@ -97,7 +97,7 @@ namespace FastReport
       <TextObject Name="Text79" Left="476.28" Top="168.21" Width="41.58" Height="18.9" Text="车" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text80" Left="415.8" Top="168.21" Width="34.02" Height="18.9" Text="共" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text19" Left="213.57" Top="130.41" Width="39.69" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.MOLineNo]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text22" Left="304.29" Top="130.41" Width="154.98" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.LotNumber]" VertAlign="Bottom" Font="新宋体, 10pt"/>
+      <TextObject Name="Text22" Left="304.29" Top="130.41" Width="154.98" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.LotNumber]" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text27" Left="523.53" Top="130.41" Width="66.15" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.OrderQty]" HorzAlign="Center" VertAlign="Bottom" Font="新宋体, 10pt"/>
       <TextObject Name="Text1" Left="653.94" Top="130.41" Width="52.92" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.InQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
       <TextObject Name="Text72" Left="5.67" Top="130.41" Width="51.03" Height="18.9" Text="订单号" VertAlign="Center" Font="新宋体, 10pt"/>
@@ -117,7 +117,7 @@ namespace FastReport
       <TextObject Name="Text69" Left="241.92" Top="98.28" Width="64.26" Height="18.9" Text="产品名称" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text44" Left="308.07" Top="88.83" Width="154.98" Height="30.24" Border.Lines="Bottom" Text="[WIPProductInfoTrack.FatherMaterialName]" VertAlign="Bottom" Font="新宋体, 10pt"/>
       <TextObject Name="Text54" Left="502.74" Top="43.47" Width="181.44" Height="18.9" Text="[WIPProductInfoTrack.PrintingDate]" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
-      <TextObject Name="Text82" Left="589.68" Top="149.31" Width="117.18" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.ActualPickedBars]" VertAlign="Center" Font="宋体, 10pt"/>
+      <TextObject Name="Text82" Left="589.68" Top="149.31" Width="117.18" Height="18.9" Text="[WIPProductInfoTrack.ActualPickedBars]" VertAlign="Center" Font="宋体, 10pt"/>
     </DataBand>
     <PageFooterBand Name="PageFooter1" Top="204.56" Width="718.2"/>
   </ReportPage>

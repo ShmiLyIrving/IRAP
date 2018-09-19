@@ -193,6 +193,7 @@ namespace IRAP.Entities.MES
             SubWIPIDCode = origin.SubWIPIDCode;
             LinkedFactID = origin.LinkedFactID;
             PWOCategoryLeaf = origin.PWOCategoryLeaf;
+            T132Leaf = origin.T132Leaf;
         }
     }
 }

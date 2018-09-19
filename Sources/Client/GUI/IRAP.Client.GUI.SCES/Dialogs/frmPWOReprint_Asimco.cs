@@ -41,51 +41,63 @@ namespace IRAP.Client.GUI.SCES.Dialogs
         {
             InitializeComponent();
 
-            for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+            switch (IRAPUser.Instance.Agency.AgencyLeaf)
             {
-                cboTransferPrinter.Properties.Items.Add(PrinterSettings.InstalledPrinters[i]);
-                cboProductionTrack.Properties.Items.Add(PrinterSettings.InstalledPrinters[i]);
-            }
+                case 373181:
+                    grpTranferReprint.Visible = false;
+                    grpPrdtTrackReprint.Visible = false;
 
-            PrintDocument prtDoc = new PrintDocument();
-            string defaultPrinter = prtDoc.PrinterSettings.PrinterName;
-            string printerTransfer = "";
-            string printerTrack = "";
+                    btnPrint.Visible = true;
 
-            if (ConfigurationManager.AppSettings["TransferPrinter"] != null)
-            {
-                printerTransfer = ConfigurationManager.AppSettings["TransferPrinter"];
-            }
-            else
-            {
-                printerTransfer = defaultPrinter;
-            }
-            if (ConfigurationManager.AppSettings["TrackPrinter"]!=null)
-            {
-                printerTrack = ConfigurationManager.AppSettings["TrackPrinter"];
-            }
-            else
-            {
-                printerTrack = defaultPrinter;
-            }
+                    break;
+                default:
+                    for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+                    {
+                        cboTransferPrinter.Properties.Items.Add(PrinterSettings.InstalledPrinters[i]);
+                        cboProductionTrack.Properties.Items.Add(PrinterSettings.InstalledPrinters[i]);
+                    }
 
-            if (cboTransferPrinter.Properties.Items.Count > 0)
-            {
-                if (cboTransferPrinter.Properties.Items.IndexOf(printerTransfer) >= 0)
-                {
-                    cboTransferPrinter.SelectedIndex =
-                        cboTransferPrinter.Properties.Items.IndexOf(printerTransfer);
+                    PrintDocument prtDoc = new PrintDocument();
+                    string defaultPrinter = prtDoc.PrinterSettings.PrinterName;
+                    string printerTransfer = "";
+                    string printerTrack = "";
 
-                }
-            }
+                    if (ConfigurationManager.AppSettings["TransferPrinter"] != null)
+                    {
+                        printerTransfer = ConfigurationManager.AppSettings["TransferPrinter"];
+                    }
+                    else
+                    {
+                        printerTransfer = defaultPrinter;
+                    }
+                    if (ConfigurationManager.AppSettings["TrackPrinter"] != null)
+                    {
+                        printerTrack = ConfigurationManager.AppSettings["TrackPrinter"];
+                    }
+                    else
+                    {
+                        printerTrack = defaultPrinter;
+                    }
 
-            if (cboProductionTrack.Properties.Items.Count > 0)
-            {
-                if (cboProductionTrack.Properties.Items.IndexOf(printerTrack) >= 0)
-                {
-                    cboProductionTrack.SelectedIndex =
-                        cboTransferPrinter.Properties.Items.IndexOf(printerTrack);
-                }
+                    if (cboTransferPrinter.Properties.Items.Count > 0)
+                    {
+                        if (cboTransferPrinter.Properties.Items.IndexOf(printerTransfer) >= 0)
+                        {
+                            cboTransferPrinter.SelectedIndex =
+                                cboTransferPrinter.Properties.Items.IndexOf(printerTransfer);
+
+                        }
+                    }
+
+                    if (cboProductionTrack.Properties.Items.Count > 0)
+                    {
+                        if (cboProductionTrack.Properties.Items.IndexOf(printerTrack) >= 0)
+                        {
+                            cboProductionTrack.SelectedIndex =
+                                cboTransferPrinter.Properties.Items.IndexOf(printerTrack);
+                        }
+                    }
+                    break;
             }
         }
 

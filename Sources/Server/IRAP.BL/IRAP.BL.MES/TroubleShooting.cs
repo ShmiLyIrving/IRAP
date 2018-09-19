@@ -962,7 +962,7 @@ namespace IRAP.BL.MES
                             PartitioningKey.Instance.GetAuxPartitionPolicy(
                                 communityID,
                                 DateTime.Now.Year,
-                                wipIDCode.PWOCategoryLeaf);
+                                wipIDCode.T132Leaf);
                         long factPartitioningKey =
                             DateTime.Now.Year * 1000000000000 +
                             communityID * 10000;

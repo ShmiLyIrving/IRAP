@@ -635,7 +635,7 @@ namespace IRAP_FVS_SPCO
                         chartXBar,
                         chartData.LCLData.DoubleValue,
                         chartData.UCLData.DoubleValue,
-                        2);
+                        10);
                     DrawAsisYStrip(
                         chartXBar,
                         chartData.LCLData.DoubleValue,
@@ -662,12 +662,14 @@ namespace IRAP_FVS_SPCO
                     #region 绘制 R 图的中线
                     DrawAxisYConstantLine(
                         chartR,
-                        chartData.RBarData.DoubleValue,
+                        //chartData.RBarData.DoubleValue,
+                        chartData.RUCLData.DoubleValue / XBarR.XBarRConstant.Instance.D4(perQtyOfGroup),
                         string.Format(
                             "CL: {0}",
-                            chartData.RBarData.DoubleValue),
+                            //chartData.RBarData.DoubleValue),
+                            (chartData.RUCLData.DoubleValue / XBarR.XBarRConstant.Instance.D4(perQtyOfGroup)).ToString("###")),
                         Color.Black,
-                        Color.White);
+                        Color.Blue);
                     #endregion
 
                     #region 绘制 R 图的上下控制线

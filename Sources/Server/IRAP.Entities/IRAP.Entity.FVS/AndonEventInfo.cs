@@ -36,6 +36,11 @@ namespace IRAP.Entity.FVS
         /// </summary>
         public int OpID { get; set; }
 
+        public override string ToString()
+        {
+            return string.Format("{0}:{1}", CallingTime, EventDescription);
+        }
+
         public AndonEventInfo Clone()
         {
             AndonEventInfo rlt = MemberwiseClone() as AndonEventInfo;

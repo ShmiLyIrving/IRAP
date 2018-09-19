@@ -7,7 +7,7 @@
 		CID = "1"/>
 	<OpenFiles
 		CID = "2"
-		LastActive = "5">
+		LastActive = "9">
 		<File
 			RootPath = "$Container"
 			RelativePathname = ".\批次管理-检验员确认.gui"
@@ -26,10 +26,6 @@
 			ViewSettings = ""/>
 		<File
 			RootPath = "$Container"
-			RelativePathname = ".\铸环车间-熔炼与造型排程.gui"
-			ViewSettings = ""/>
-		<File
-			RootPath = "$Container"
 			RelativePathname = ".\铸环车间-理化检验.gui"
 			ViewSettings = ""/>
 		<File
@@ -39,6 +35,14 @@
 		<File
 			RootPath = "$Absolute"
 			RelativePathname = "\\vmware-host\Shared Folders\文稿\工作\客户\亚新科双环\批次系统\铸环车间-理化检验.gui"
+			ViewSettings = ""/>
+		<File
+			RootPath = "$Container"
+			RelativePathname = ".\铸环车间-熔炼与造型排程.gui"
+			ViewSettings = ""/>
+		<File
+			RootPath = "$Absolute"
+			RelativePathname = "\\vmware-host\Shared Folders\文稿\工作\客户\亚新科双环\批次系统\批次管理-气体碳氮共渗热处理.gui"
 			ViewSettings = ""/>
 	</OpenFiles>
 </Project>

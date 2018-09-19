@@ -35,11 +35,11 @@
             this.edtMONumber = new DevExpress.XtraEditors.TextEdit();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.grpTranferReprint = new DevExpress.XtraEditors.GroupControl();
             this.cboTransferPrinter = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnTransferPrint = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.grpPrdtTrackReprint = new DevExpress.XtraEditors.GroupControl();
             this.cboProductionTrack = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnProductionTrackPrint = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -47,11 +47,11 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtMOLineNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMONumber.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grpTranferReprint)).BeginInit();
+            this.grpTranferReprint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTransferPrinter.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grpPrdtTrackReprint)).BeginInit();
+            this.grpPrdtTrackReprint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboProductionTrack.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,7 +127,7 @@
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.btnPrint.Appearance.Options.UseFont = true;
-            this.btnPrint.Location = new System.Drawing.Point(477, 12);
+            this.btnPrint.Location = new System.Drawing.Point(365, 260);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(95, 28);
             this.btnPrint.TabIndex = 3;
@@ -147,22 +147,22 @@
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "关闭";
             // 
-            // groupControl2
+            // grpTranferReprint
             // 
-            this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpTranferReprint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.groupControl2.Appearance.Options.UseFont = true;
-            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupControl2.AppearanceCaption.Options.UseFont = true;
-            this.groupControl2.Controls.Add(this.cboTransferPrinter);
-            this.groupControl2.Controls.Add(this.btnTransferPrint);
-            this.groupControl2.Controls.Add(this.labelControl3);
-            this.groupControl2.Location = new System.Drawing.Point(12, 92);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(560, 74);
-            this.groupControl2.TabIndex = 1;
-            this.groupControl2.Text = "打印产品进出车间流转卡";
+            this.grpTranferReprint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grpTranferReprint.Appearance.Options.UseFont = true;
+            this.grpTranferReprint.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grpTranferReprint.AppearanceCaption.Options.UseFont = true;
+            this.grpTranferReprint.Controls.Add(this.cboTransferPrinter);
+            this.grpTranferReprint.Controls.Add(this.btnTransferPrint);
+            this.grpTranferReprint.Controls.Add(this.labelControl3);
+            this.grpTranferReprint.Location = new System.Drawing.Point(12, 92);
+            this.grpTranferReprint.Name = "grpTranferReprint";
+            this.grpTranferReprint.Size = new System.Drawing.Size(560, 74);
+            this.grpTranferReprint.TabIndex = 1;
+            this.grpTranferReprint.Text = "打印产品进出车间流转卡";
             // 
             // cboTransferPrinter
             // 
@@ -201,22 +201,22 @@
             this.labelControl3.TabIndex = 0;
             this.labelControl3.Text = "打印机：";
             // 
-            // groupControl3
+            // grpPrdtTrackReprint
             // 
-            this.groupControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpPrdtTrackReprint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl3.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.groupControl3.Appearance.Options.UseFont = true;
-            this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupControl3.AppearanceCaption.Options.UseFont = true;
-            this.groupControl3.Controls.Add(this.cboProductionTrack);
-            this.groupControl3.Controls.Add(this.btnProductionTrackPrint);
-            this.groupControl3.Controls.Add(this.labelControl4);
-            this.groupControl3.Location = new System.Drawing.Point(12, 172);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(560, 74);
-            this.groupControl3.TabIndex = 2;
-            this.groupControl3.Text = "打印产品信息跟踪卡";
+            this.grpPrdtTrackReprint.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.grpPrdtTrackReprint.Appearance.Options.UseFont = true;
+            this.grpPrdtTrackReprint.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grpPrdtTrackReprint.AppearanceCaption.Options.UseFont = true;
+            this.grpPrdtTrackReprint.Controls.Add(this.cboProductionTrack);
+            this.grpPrdtTrackReprint.Controls.Add(this.btnProductionTrackPrint);
+            this.grpPrdtTrackReprint.Controls.Add(this.labelControl4);
+            this.grpPrdtTrackReprint.Location = new System.Drawing.Point(12, 172);
+            this.grpPrdtTrackReprint.Name = "grpPrdtTrackReprint";
+            this.grpPrdtTrackReprint.Size = new System.Drawing.Size(560, 74);
+            this.grpPrdtTrackReprint.TabIndex = 2;
+            this.grpPrdtTrackReprint.Text = "打印产品信息跟踪卡";
             // 
             // cboProductionTrack
             // 
@@ -260,8 +260,8 @@
             this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(584, 300);
-            this.Controls.Add(this.groupControl3);
-            this.Controls.Add(this.groupControl2);
+            this.Controls.Add(this.grpPrdtTrackReprint);
+            this.Controls.Add(this.grpTranferReprint);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.groupControl1);
@@ -273,13 +273,13 @@
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtMOLineNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMONumber.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
-            this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grpTranferReprint)).EndInit();
+            this.grpTranferReprint.ResumeLayout(false);
+            this.grpTranferReprint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTransferPrinter.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
-            this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grpPrdtTrackReprint)).EndInit();
+            this.grpPrdtTrackReprint.ResumeLayout(false);
+            this.grpPrdtTrackReprint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboProductionTrack.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -294,11 +294,11 @@
         private DevExpress.XtraEditors.TextEdit edtMONumber;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.SimpleButton btnClose;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.GroupControl grpTranferReprint;
         private DevExpress.XtraEditors.ComboBoxEdit cboTransferPrinter;
         private DevExpress.XtraEditors.SimpleButton btnTransferPrint;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private DevExpress.XtraEditors.GroupControl grpPrdtTrackReprint;
         private DevExpress.XtraEditors.ComboBoxEdit cboProductionTrack;
         private DevExpress.XtraEditors.SimpleButton btnProductionTrackPrint;
         private DevExpress.XtraEditors.LabelControl labelControl4;
