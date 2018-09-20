@@ -168,6 +168,22 @@ namespace IRAP.Client.GUI.MESPDC
             //有未完成箱包装
             if (uncompletedPackage != null)
             {
+                // 判断未完成包装信息中的包装数量是否小于实际的包装数量，如不是则报错
+                if (allBoxNum < uncompletedPackage.NumQtyInCarton)
+                {
+                    IRAPMessageBox.Instance.ShowErrorMessage(
+                        string.Format(
+                            "箱内已包装数量大于当前包装规格的包装量，请立即通知" +
+                            "相关维护人员予以解决！\n" +
+                            "附：\n内部交易号：[{0}]\n箱内已包装数量：[{1}]",
+                            uncompletedPackage.TransactNo,
+                            uncompletedPackage.NumQtyInCarton));
+
+                    InitPackageStart(true);
+
+                    return;
+                }
+
                 transactNo = uncompletedPackage.TransactNo;
                 if (transactNo == 0 &&
                     string.IsNullOrEmpty(uncompletedPackage.PalletSerialNumber))
@@ -1347,6 +1363,7 @@ namespace IRAP.Client.GUI.MESPDC
                     MethodBase.GetCurrentMethod().Name);
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
 
+            ShowWaitForm("正在获取未完成包装信息");
             UncompletedPackage rlt = null;
             try
             {
@@ -1374,6 +1391,15 @@ namespace IRAP.Client.GUI.MESPDC
                 WriteLog.Instance.Write(
                     string.Format("({0}){1}", errCode, errText),
                     strProcedureName);
+                
+                if (errCode == 0)
+                {
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "包装箱内已包装产品数量：[{0}]",
+                            rlt.NumQtyInCarton),
+                        strProcedureName);
+                }
 
                 if (errCode != 0)
                     IRAPMessageBox.Instance.ShowErrorMessage(
@@ -1384,6 +1410,7 @@ namespace IRAP.Client.GUI.MESPDC
             }
             finally
             {
+                CloseWaitForm();
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
 
@@ -2654,6 +2681,8 @@ namespace IRAP.Client.GUI.MESPDC
                         factPackage.PalletSerialNumber = PalletSerialNumber;
 
                         Boolean saveResult = usp_SaveFact_Packaging(factPackage, out OutputStr);
+                        WriteLog.Instance.Write(string.Format("OutputStr={0}", OutputStr));
+
                         if (!string.IsNullOrEmpty(OutputStr))
                         {
                             //IniFile.WriteString("OutputStr", transactNo.ToString(), OutputStr, attributeFileName);
@@ -2794,10 +2823,13 @@ namespace IRAP.Client.GUI.MESPDC
         {
             if (transactNo == 0)
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "尚未进行包装！", caption);
+                IRAPMessageBox.Instance.ShowErrorMessage("尚未进行包装！", caption);
+
+                InitPackageStart(true);
+
                 return;
             }
+
             if (!chkStorePackage.Checked)
             {
                 if (!ssp_CheckTransaction(transactNo))
@@ -2812,55 +2844,68 @@ namespace IRAP.Client.GUI.MESPDC
                 if (string.IsNullOrEmpty(OutputStr))
                 {
                     //OutputStr = IniFile.ReadString("OutputStr", transactNo.ToString(), "", attributeFileName);
-                    OutputStr = XmlFile.GetValue(transactNo.ToString(), attributeFileName);
-                }
-                for (int i = allNumCartonsInPallet - 1; i >= 0; i--)
-                {
-                    Boolean bk = false;
-                    for (int j = allBoxNum - 1; j >= 0; j--)
+                    try
                     {
-                        if (palletUnitTables[i].Rows[j]["ProductSN"].ToString().Trim() != "")
+                        OutputStr = XmlFile.GetValue(transactNo.ToString(), attributeFileName);
+                    }
+                    catch (Exception error)
+                    {
+                        WriteLog.Instance.Write(
+                            string.Format("无法读取暂存的 OutputStr：[{0}]", error.Message));
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(OutputStr))
+                {
+                    for (int i = allNumCartonsInPallet - 1; i >= 0; i--)
+                    {
+                        Boolean bk = false;
+                        for (int j = allBoxNum - 1; j >= 0; j--)
                         {
-                            cartonSerialNumber = palletUnitTables[i].Rows[j]["CartonPackageSN"].ToString().Trim();
-                            boxSerialNumber = palletUnitTables[i].Rows[j]["BoxPackageSN"].ToString().Trim();
-                            ordinal = j + 1;
-                            SetBoxOrdinal(
-                                ordinal,
-                                out cartonLayer,
-                                out cartonRow,
-                                out cartonCol,
-                                out boxLayer,
-                                out boxRow,
-                                out boxCol);
-                            bk = true;
-                            break;
+                            if (palletUnitTables[i].Rows[j]["ProductSN"].ToString().Trim() != "")
+                            {
+                                cartonSerialNumber = palletUnitTables[i].Rows[j]["CartonPackageSN"].ToString().Trim();
+                                boxSerialNumber = palletUnitTables[i].Rows[j]["BoxPackageSN"].ToString().Trim();
+                                ordinal = j + 1;
+                                SetBoxOrdinal(
+                                    ordinal,
+                                    out cartonLayer,
+                                    out cartonRow,
+                                    out cartonCol,
+                                    out boxLayer,
+                                    out boxRow,
+                                    out boxCol);
+                                bk = true;
+                                break;
+                            }
+                        }
+                        if (bk) break;
+                    }
+                    if (boxRow != objPackageType.QtyPerColOfBox || boxCol != objPackageType.QtyPerRowOfBox || boxLayer != objPackageType.NumLayersOfBox)
+                    {
+                        if (objPackageType.T117LabelID_Box > 0)
+                            if (!string.IsNullOrEmpty(OutputStr))
+                                PrintLabel(objPackageType.T117LabelID_Box, boxSerialNumber, OutputStr);
+                    }
+                    if (ordinal != allBoxNum)
+                    {
+                        if (objPackageType.T117LabelID_Carton > 0)
+                        {
+                            //if (!string.IsNullOrEmpty(OutputStr))
+                            //PrintLabel(objPackageType.T117LabelID_Carton, cartonSerialNumber, OutputStr);
                         }
                     }
-                    if (bk) break;
-                }
-                if (boxRow != objPackageType.QtyPerColOfBox || boxCol != objPackageType.QtyPerRowOfBox || boxLayer != objPackageType.NumLayersOfBox)
-                {
-                    if (objPackageType.T117LabelID_Box > 0)
-                        if (!string.IsNullOrEmpty(OutputStr))
-                            PrintLabel(objPackageType.T117LabelID_Box, boxSerialNumber, OutputStr);
-                }
-                if (ordinal != allBoxNum)
-                {
-                    if (objPackageType.T117LabelID_Carton > 0)
+                    if (objPackageType.T117LabelID_Pallet > 0)
                     {
+                        string palletSerialNumber = palletUnitTables[0].Rows[0]["PalletPackageSN"].ToString();
                         //if (!string.IsNullOrEmpty(OutputStr))
-                        //PrintLabel(objPackageType.T117LabelID_Carton, cartonSerialNumber, OutputStr);
+                        //PrintLabel(objPackageType.T117LabelID_Pallet, palletSerialNumber, OutputStr);
                     }
+                    //IniFile.INIDeleteKey("OutputStr", transactNo.ToString(), attributeFileName);
+                    XmlFile.SavaConfig(transactNo.ToString(), null, attributeFileName);
                 }
-                if (objPackageType.T117LabelID_Pallet > 0)
-                {
-                    string palletSerialNumber = palletUnitTables[0].Rows[0]["PalletPackageSN"].ToString();
-                    //if (!string.IsNullOrEmpty(OutputStr))
-                    //PrintLabel(objPackageType.T117LabelID_Pallet, palletSerialNumber, OutputStr);
-                }
-                //IniFile.INIDeleteKey("OutputStr", transactNo.ToString(), attributeFileName);
-                XmlFile.SavaConfig(transactNo.ToString(), null, attributeFileName);
             }
+
             InitPackageStart(true);
         }
 
@@ -2933,6 +2978,34 @@ namespace IRAP.Client.GUI.MESPDC
         {
             Options.OptionChanged -= Options_OptionChanged;
             Options.btnSwitch.Enabled = true;
+        }
+
+        private void frmProductPackage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((!e.Alt) && !e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.F4:
+                        if (btnPackageStart.Enabled)
+                        {
+                            btnPackageStart.PerformClick();
+                        }
+                        break;
+                    case Keys.F5:
+                        if (btnPackageFinish.Enabled)
+                        {
+                            btnPackageFinish.PerformClick();
+                        }
+                        break;
+                    case Keys.F6:
+                        if (btnRePrint.Enabled)
+                        {
+                            btnRePrint.PerformClick();
+                        }
+                        break;
+                }
+            }
         }
     }
 }
