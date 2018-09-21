@@ -170,9 +170,9 @@ namespace IRAPGeneralGateway.Entities
                 return null;
         }
 
-        public Dictionary<string, Entities.TEntityInputParam> GetInputParam(TEntityExCode exCode)
+        public Dictionary<string, TEntityInputParam> GetInputParam(TEntityExCode exCode)
         {
-            Dictionary<string, Entities.TEntityInputParam> spParams =
+            Dictionary<string, TEntityInputParam> spParams =
                 new Dictionary<string, TEntityInputParam>();
 
             DBHelperSQLServer db = new DBHelperSQLServer();

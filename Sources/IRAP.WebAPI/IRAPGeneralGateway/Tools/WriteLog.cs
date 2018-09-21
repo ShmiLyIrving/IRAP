@@ -14,6 +14,7 @@ namespace IRAP.Global
     {
         private static WriteLog instance;
         private static object LockStatus = new object();
+        private static object _lockObj = new object();
 
         public static WriteLog Instance
         {
@@ -160,10 +161,19 @@ namespace IRAP.Global
                         }
                         else
                         {
-                            sw.WriteLine(string.Format("{0} : [{1}][{2}]",
-                                                       DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"),
-                                                       modeName,
-                                                       msg));
+                            if (modeName.Trim() == "")
+                            {
+                                sw.WriteLine(string.Format("{0} : [{1}]",
+                                                           DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                                                           msg));
+                            }
+                            else
+                            {
+                                sw.WriteLine(string.Format("{0} : [{1}][{2}]",
+                                                           DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                                                           modeName,
+                                                           msg));
+                            }
                         }
                     }
                     catch
@@ -182,8 +192,13 @@ namespace IRAP.Global
 
         public void Write(string logFileName, string msg, string modeName = "COMM")
         {
-            WriteLogFileName = logFileName;
-            Write(msg, modeName);
+            lock (_lockObj)
+            {
+                string logFileName_BK = WriteLogFileName;
+                WriteLogFileName = logFileName;
+                Write(msg, modeName);
+                writeLogFileName = logFileName_BK;
+            }
         }
 
         public void WriteBeginSplitter(string modeName)
@@ -214,6 +229,17 @@ namespace IRAP.Global
         {
             WriteLogFileName = logFileName;
             WriteEndSplitter(modeName);
+        }
+
+        public void WriteLocalMsg(int threadID, string ErrText)
+        {
+            Write(
+                string.Format(
+                    "Log_{0}_{1}.log",
+                    DateTime.Now.ToString("yyyyMMdd"),
+                    threadID),
+                ErrText,
+                "");
         }
 
         private void DeleteObsoleteFiles()

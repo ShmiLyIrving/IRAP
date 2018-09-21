@@ -38,11 +38,39 @@ namespace IRAPGeneralGateway
         /// </summary>
         private TDBServerType _dbType = TDBServerType.SQLServer;
 
+        private static Dictionary<string, DateTime> _accessList =
+            new Dictionary<string, DateTime>();
+
+        /// <summary>
+        /// 服务中的令牌清单
+        /// </summary>
+        public static Dictionary<string, DateTime> AccessList
+        {
+            get { return _accessList; }
+        }
+
         /// <summary>
         /// 构造方法
         /// </summary>
         public TIRAPGeneralWebAPIService()
         {
+        }
+
+        /// <summary>
+        /// 验证消息报文格式是否被支持
+        /// </summary>
+        /// <param name="msgFormat"></param>
+        /// <returns></returns>
+        private bool MsgFormatValidate(string msgFormat)
+        {
+            switch (msgFormat.ToUpper())
+            {
+                case "JSON":
+                case "XML":
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         /// <summary>
@@ -90,7 +118,7 @@ namespace IRAPGeneralGateway
                 {
                     TEntityClient clientEntity = TRegistClients.Instance.Clients[clientID];
                     thisSL = (TSecurityLevel)clientEntity.SecurityLevel;
-                    desPWD = clientEntity.Encrypt_Key;
+                    desPWD = clientEntity.SecurityPassword;
                 }
 
                 switch (thisSL)
@@ -171,6 +199,214 @@ namespace IRAPGeneralGateway
         }
 
         /// <summary>
+        /// 调用 SQL Server 的存储过程
+        /// </summary>
+        /// <param name="exCode">交易代码</param>
+        /// <param name="clientID">客户端标识</param>
+        /// <param name="msgFormat">消息报文格式</param>
+        /// <param name="requestContent">请求报文内容</param>
+        /// <param name="exCodeObj">交易定义对象</param>
+        private Stream CallSP_SQLServer(
+            string exCode,
+            string clientID,
+            string msgFormat,
+            string requestContent,
+            TEntityExCode exCodeObj)
+        {
+            DBHelperSQLServer db2 =
+                new DBHelperSQLServer()
+                {
+                    ConnectionString = TDBConnections.Instance.GetFirstConnection().ConnectionString,
+                };
+
+            Dictionary<string, TEntityInputParam> paramList =
+                TExCodes.Instance.GetInputParam(exCodeObj);
+
+            #region 遍历字典对输入参数赋值
+            List<IDataParameter> inputParamList = new List<IDataParameter>();
+            dynamic dn = requestContent.GetSimpleObjectFromJson();
+            IDictionary<string, object> dict = (IDictionary<string, object>)dn;
+            string resultStr = "";
+            foreach (KeyValuePair<string, TEntityInputParam> p in paramList)
+            {
+                SqlParameter sqlp = new SqlParameter();
+                sqlp.ParameterName = p.Value.ParamName;
+
+                #region 参数类型判断
+                switch (p.Value.ParamType.ToLower())
+                {
+                    case "varchar":
+                        sqlp.SqlDbType = SqlDbType.VarChar;
+                        break;
+                    case "nvarchar":
+                        sqlp.SqlDbType = SqlDbType.NVarChar;
+                        break;
+                    case "int":
+                        sqlp.SqlDbType = SqlDbType.Int;
+                        break;
+                    case "bigint":
+                        sqlp.SqlDbType = SqlDbType.BigInt;
+                        break;
+                    case "tinyint":
+                        sqlp.SqlDbType = SqlDbType.TinyInt;
+                        break;
+                    case "smallint":
+                        sqlp.SqlDbType = SqlDbType.SmallInt;
+                        break;
+                    case "datetime":
+                        sqlp.SqlDbType = SqlDbType.VarChar;
+                        sqlp.Size = 23;
+                        break;
+                    case "xml":
+                        sqlp.SqlDbType = SqlDbType.Xml;
+                        sqlp.Size = -1;
+                        break;
+                    case "decimal":
+                        sqlp.SqlDbType = SqlDbType.Decimal;
+                        sqlp.Precision = byte.Parse(p.Value.Precision.ToString());
+                        sqlp.Scale = byte.Parse(p.Value.Scale.ToString());
+                        break;
+                    default:
+                        sqlp.SqlDbType = SqlDbType.VarChar;
+                        sqlp.Size = -1;
+                        break;
+                }
+                #endregion
+
+                if (p.Value.IsOutput == 1)
+                {
+                    sqlp.Direction = ParameterDirection.Output;
+                    sqlp.Size = p.Value.Length == 0 ? 8 : p.Value.Length;
+                    inputParamList.Add(sqlp);
+                    continue;
+                }
+
+                #region 赋值判断
+                if (!dict.ContainsKey(p.Key))
+                {
+                    if (p.Key != "client_id" && p.Key != "ClientID")
+                    {
+                        return ErrorStream(
+                            exCode,
+                            clientID,
+                            msgFormat,
+                            999999,
+                            string.Format(
+                                "未提供参数：{0}，请检查请求报文是否符合规范定义。",
+                                p.Key));
+                    }
+                }
+
+                if (p.Value.ParamType.ToLower() == "xml")
+                {
+                    XmlDocument xml = new XmlDocument();
+                    XmlNode rootNode = xml.CreateElement("Parameters");
+                    XmlElement param = xml.CreateElement("Param");
+                    rootNode.AppendChild(param);
+
+                    foreach (KeyValuePair<string, object> item in dict)
+                    {
+                        if (item.Value.GetType() == typeof(Object[]))
+                        {
+                            Object[] subArray = (Object[])item.Value;
+                            int i = 0;
+
+                            XmlNode rows = xml.CreateElement("ParamXML");
+
+                            foreach (Object subItem in subArray)
+                            {
+                                XmlElement row = xml.CreateElement("Row");
+                                IDictionary<string, object> field = (IDictionary<string, object>)subItem;
+                                i++;
+
+                                foreach (KeyValuePair<string, object> fieldKey in field)
+                                {
+                                    row.SetAttribute(fieldKey.Key, fieldKey.Value.ToString());
+                                }
+                                rows.AppendChild(row);
+                            }
+                            rootNode.AppendChild(rows);
+                        }
+                        else
+                            param.SetAttribute(item.Key, item.Value.ToString());
+                    }
+                    sqlp.Value = rootNode.OuterXml;
+                }
+                else
+                {
+                    if (p.Key == "client_id" || p.Key == "ClientID")
+                        sqlp.Value = clientID;
+                    else
+                        sqlp.Value = dict[p.Key];
+                }
+                #endregion
+
+                sqlp.Direction = ParameterDirection.Input;
+                if (sqlp.Size == 0)
+                    sqlp.Size = p.Value.Length == 0 ? p.Value.Precision : p.Value.Length;
+
+                inputParamList.Add(sqlp);
+            }
+            #endregion
+
+            DataSet ds = null;
+            Dictionary<string, object> resDict = new Dictionary<string, object>();
+            if (exCodeObj.HasRowSet == 1)
+            {
+                ds = db2.RunProcedureEx(
+                    exCodeObj.DBName,
+                    exCodeObj.Schema,
+                    exCodeObj.ProcName,
+                    ref inputParamList);
+                List<object> rows = new List<object>();
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    foreach (DataRow r in ds.Tables[0].Rows)
+                    {
+                        dynamic dobj = new ExpandoObject();
+                        var dic = (IDictionary<string, object>)dobj;
+                        foreach (DataColumn c in ds.Tables[0].Columns)
+                        {
+                            if (c.DataType == typeof(long))
+                                dic[c.ColumnName] = r[c.ColumnName].ToString();
+                            else
+                                dic[c.ColumnName] = r[c.ColumnName];
+                        }
+                        rows.Add(dobj);
+                    }
+                }
+                resDict.Add("Rows", rows);
+            }
+            else
+            {
+                db2.RunProcedureEx2(
+                    exCodeObj.DBName,
+                    exCodeObj.Schema,
+                    exCodeObj.ProcName,
+                    ref inputParamList);
+            }
+
+            foreach (SqlParameter parameter in inputParamList)
+            {
+                if (parameter.Direction == ParameterDirection.Output)
+                    resDict.Add(parameter.ParameterName.Replace("@", ""), parameter.Value);
+            }
+
+            if (!resDict.ContainsKey("ExCode"))
+                resDict.Add("ExCode", exCode);
+            switch (msgFormat.ToUpper())
+            {
+                case "XML":
+                    resultStr = resDict.ToXML();
+                    break;
+                default:
+                    resultStr = resDict.ToJSON();
+                    break;
+            }
+            return EncryptContent(clientID, resultStr);
+        }
+
+        /// <summary>
         /// 通用 WebAPI 服务调用入口（非加密）
         /// </summary>
         /// <param name="reqContent">请求报文的流</param>
@@ -186,8 +422,7 @@ namespace IRAPGeneralGateway
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
-            msgFormat = msgFormat.ToUpper();
-            if (msgFormat != "JSON" && msgFormat != "XML")
+            if (!MsgFormatValidate(msgFormat))
             {
                 return ErrorStream(
                     exCode, 
@@ -371,212 +606,29 @@ namespace IRAPGeneralGateway
             }
         }
 
-        /// <summary>
-        /// 调用 SQL Server 的存储过程
-        /// </summary>
-        /// <param name="exCode">交易代码</param>
-        /// <param name="clientID">客户端标识</param>
-        /// <param name="msgFormat">消息报文格式</param>
-        /// <param name="requestContent">请求报文内容</param>
-        /// <param name="exCodeObj">交易定义对象</param>
-        private Stream CallSP_SQLServer(
-            string exCode, 
-            string clientID, 
-            string msgFormat, 
-            string requestContent, 
-            TEntityExCode exCodeObj)
+        public Stream ChannelValidate(Stream reqContent, string clientID, string msgFormat)
         {
-            DBHelperSQLServer db2 =
-                new DBHelperSQLServer()
-                {
-                    ConnectionString = TDBConnections.Instance.GetFirstConnection().ConnectionString,
-                };
+            throw new NotImplementedException();
+        }
 
-            Dictionary<string, TEntityInputParam> paramList =
-                TExCodes.Instance.GetInputParam(exCodeObj);
+        public Stream OpenAuth(Stream reqContent, string clientID, string msgFormat)
+        {
+            throw new NotImplementedException();
+        }
 
-            #region 遍历字典对输入参数赋值
-            List<IDataParameter> inputParamList = new List<IDataParameter>();
-            dynamic dn = requestContent.GetSimpleObjectFromJson();
-            IDictionary<string, object> dict=(IDictionary<string, object>)dn;
-            string resultStr = "";
-            foreach (KeyValuePair<string, TEntityInputParam> p in paramList)
-            {
-                SqlParameter sqlp = new SqlParameter();
-                sqlp.ParameterName = p.Value.ParamName;
+        public Stream SafeRecord(Stream reqContent, string clientID, string msgFormat)
+        {
+            throw new NotImplementedException();
+        }
 
-                #region 参数类型判断
-                switch (p.Value.ParamType.ToLower())
-                {
-                    case "varchar":
-                        sqlp.SqlDbType = SqlDbType.VarChar;
-                        break;
-                    case "nvarchar":
-                        sqlp.SqlDbType = SqlDbType.NVarChar;
-                        break;
-                    case "int":
-                        sqlp.SqlDbType = SqlDbType.Int;
-                        break;
-                    case "bigint":
-                        sqlp.SqlDbType = SqlDbType.BigInt;
-                        break;
-                    case "tinyint":
-                        sqlp.SqlDbType = SqlDbType.TinyInt;
-                        break;
-                    case "smallint":
-                        sqlp.SqlDbType = SqlDbType.SmallInt;
-                        break;
-                    case "datetime":
-                        sqlp.SqlDbType = SqlDbType.VarChar;
-                        sqlp.Size = 23;
-                        break;
-                    case "xml":
-                        sqlp.SqlDbType = SqlDbType.Xml;
-                        sqlp.Size = -1;
-                        break;
-                    case "decimal":
-                        sqlp.SqlDbType = SqlDbType.Decimal;
-                        sqlp.Precision = byte.Parse(p.Value.Precision.ToString());
-                        sqlp.Scale = byte.Parse(p.Value.Scale.ToString());
-                        break;
-                    default:
-                        sqlp.SqlDbType = SqlDbType.VarChar;
-                        sqlp.Size = -1;
-                        break;
-                }
-                #endregion
+        public Stream Upload(Stream fileStream, string clientID, string exCode, string parameters)
+        {
+            throw new NotImplementedException();
+        }
 
-                if (p.Value.IsOutput == 1)
-                {
-                    sqlp.Direction = ParameterDirection.Output;
-                    sqlp.Size = p.Value.Length == 0 ? 8 : p.Value.Length;
-                    inputParamList.Add(sqlp);
-                    continue;
-                }
-
-                #region 赋值判断
-                if (!dict.ContainsKey(p.Key))
-                {
-                    if (p.Key != "client_id" && p.Key != "ClientID")
-                    {
-                        return ErrorStream(
-                            exCode,
-                            clientID,
-                            msgFormat,
-                            999999,
-                            string.Format(
-                                "未提供参数：{0}，请检查请求报文是否符合规范定义。",
-                                p.Key));
-                    }
-                }
-
-                if (p.Value.ParamType.ToLower() == "xml")
-                {
-                    XmlDocument xml = new XmlDocument();
-                    XmlNode rootNode = xml.CreateElement("Parameters");
-                    XmlElement param = xml.CreateElement("Param");
-                    rootNode.AppendChild(param);
-
-                    foreach (KeyValuePair<string, object> item in dict)
-                    {
-                        if (item.Value.GetType() == typeof(Object[]))
-                        {
-                            Object[] subArray = (Object[])item.Value;
-                            int i = 0;
-
-                            XmlNode rows = xml.CreateElement("ParamXML");
-
-                            foreach (Object subItem in subArray)
-                            {
-                                XmlElement row = xml.CreateElement("Row");
-                                IDictionary<string, object> field = (IDictionary<string, object>)subItem;
-                                i++;
-
-                                foreach (KeyValuePair<string, object> fieldKey in field)
-                                {
-                                    row.SetAttribute(fieldKey.Key, fieldKey.Value.ToString());
-                                }
-                                rows.AppendChild(row);
-                            }
-                            rootNode.AppendChild(rows);
-                        }
-                        else
-                            param.SetAttribute(item.Key, item.Value.ToString());
-                    }
-                    sqlp.Value = rootNode.OuterXml;
-                }
-                else
-                {
-                    if (p.Key == "client_id" || p.Key == "ClientID")
-                        sqlp.Value = clientID;
-                    else
-                        sqlp.Value = dict[p.Key];
-                }
-                #endregion
-
-                sqlp.Direction = ParameterDirection.Input;
-                if (sqlp.Size == 0)
-                    sqlp.Size = p.Value.Length == 0 ? p.Value.Precision : p.Value.Length;
-
-                inputParamList.Add(sqlp);
-            }
-            #endregion
-
-            DataSet ds = null;
-            Dictionary<string, object> resDict = new Dictionary<string, object>();
-            if (exCodeObj.HasRowSet == 1)
-            {
-                ds = db2.RunProcedureEx(
-                    exCodeObj.DBName, 
-                    exCodeObj.Schema, 
-                    exCodeObj.ProcName, 
-                    ref inputParamList);
-                List<object> rows = new List<object>();
-                if (ds!=null && ds.Tables.Count > 0)
-                {
-                    foreach (DataRow r in ds.Tables[0].Rows)
-                    {
-                        dynamic dobj = new ExpandoObject();
-                        var dic = (IDictionary<string, object>)dobj;
-                        foreach (DataColumn c in ds.Tables[0].Columns)
-                        {
-                            if (c.DataType == typeof(long))
-                                dic[c.ColumnName] = r[c.ColumnName].ToString();
-                            else
-                                dic[c.ColumnName] = r[c.ColumnName];
-                        }
-                        rows.Add(dobj);
-                    }
-                }
-                resDict.Add("Rows", rows);
-            }
-            else
-            {
-                db2.RunProcedureEx2(
-                    exCodeObj.DBName,
-                    exCodeObj.Schema,
-                    exCodeObj.ProcName, 
-                    ref inputParamList);
-            }
-
-            foreach (SqlParameter parameter in inputParamList)
-            {
-                if (parameter.Direction == ParameterDirection.Output)
-                    resDict.Add(parameter.ParameterName.Replace("@", ""), parameter.Value);
-            }
-
-            if (!resDict.ContainsKey("ExCode"))
-                resDict.Add("ExCode", exCode);
-            switch (msgFormat.ToUpper())
-            {
-                case "XML":
-                    resultStr = resDict.ToXML();
-                    break;
-                default:
-                    resultStr = resDict.ToJSON();
-                    break;
-            }
-            return EncryptContent(clientID, resultStr);
+        public Stream Download(string clientID, string exCode, string parameters)
+        {
+            throw new NotImplementedException();
         }
     }
 }   

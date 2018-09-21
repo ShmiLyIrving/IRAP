@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <Configuration>
+    <ExCodes>
+      <!-- Prefix="前缀" ExCode="交易代码" InvokeType="0-DEMO；1-直连数据库；2-调用接口" ResponseText="响应报文样本" LibraryName="类库" ClassName="类名" MethodName="方法名" Remark="功能描述" DBName="数据库名" Schema="所有者" ProcName="存储过程名" HasRowSet="是否返回结果集" VerifyToken="是否验证令牌"-->
+      <ExCode Prefix="IRAP_MES" ExCode="GetOPCServerTagList" InvokeType="1" ResponseText="" LibraryName="" ClassName="" MethodName="" Remark="获取系统中注册的 OPC 服务器设备标签列表" DBName="IRAPMES" Schema="" ProcName="usp_GetList_OPCServerTagList" HasRowSet="1" VerifyToken="0" />
+      <ExCode Prefix="IRAP_Core" ExCode="UserPWDVerify" InvokeType="1" ResponseText="" LibraryName="" ClassName="" MethodName="" Remark="获取用户名及密码验证的结果" DBName="IRAP" Schema="" ProcName="ssp_UserPWDVerify" HasRowSet="0" VerifyToken="0" />
+      <ExCode Prefix="IRAP_Core" ExCode="OLTPUDFForm" InvokeType="1" ResponseText="" LibraryName="" ClassName="" MethodName="" Remark="万能表单保存" DBName="IRAP" Schema="" ProcName="ssp_OLTP_UDFForm" HasRowSet="0" VerifyToken="0" />
+      <ExCode Prefix="XM_FYS" ExCode="SaveDeviceDistance" InvokeType="1" ResponseText="{&quot;ErrCode&quot;:0,&quot;ErrText&quot;:&quot;保存成功&quot;}" LibraryName="" ClassName="" MethodName="" Remark="保存设备的测距距离" DBName="XMFYS" Schema="" ProcName="usp_SaveFact_FYSBlueTooth" HasRowSet="0" VerifyToken="0" />
+      <ExCode Prefix="XM_FYS" 
+              ExCode="GetDeviceDistance" 
+              InvokeType="1" 
+              ResponseText="{&quot;Rows&quot;:[{&quot;StationID&quot;:&quot;ABCDEFG&quot;,&quot;CollectionTime&quot;:&quot;2018-01-28T17:05:00&quot;,&quot;Metric01&quot;:&quot;2m&quot;}],&quot;ExCode&quot;:&quot;XM_FYS_GetDeviceDistance&quot;}" 
+              LibraryName="" 
+              ClassName="" 
+              MethodName="" 
+              Remark="获取指定设备在一段时间内的测距信息" 
+              DBName="XMFYS" Schema="" 
+              ProcName="usp_GetList_FYSBlueTooth" 
+              HasRowSet="1" 
+              VerifyToken="0" />
+    </ExCodes>
+    <Clients>
+      <!-- ClientID="客户端标识" ApplicationName="应用程序名" Encrypt_Key="加密秘钥" AuthLibrary="" SecurityLevel="安全级别：1:-明文；2-压缩；3-DES加密及GZip压缩；4-AES加密" -->
+      <Client ClientID="MESDeveloper" ApplicationName="" Encrypt_Key="" AuthLibrary="" SecurityLevel="1" /> 
+      <Client ClientID="XMDeveloper" ApplicationName="" Encrypt_Key="" AuthLibrary="" SecurityLevel="1" /> 
+    </Clients>
+    <DBConnections>
+      <!-- DBType="数据库类别：SQLServer, Oracle" ConnectionString="数据库连接字符串" Security="是否加密" -->
+      <Connection DBType="SQLServer" ConnectionString="Server=192.168.57.221;initial catalog=IRAP;UID=sa;Password=irap!209420;Min Pool Size=2;Max Pool Size=60;" Encrypt="false" />
+      <!--<Connection DBType="SQLServer" ConnectionString="Server=192.168.51.129;initial catalog=XMFYS;UID=sa;Password=irap!209420;Min Pool Size=2;Max Pool Size=60;" Encrypt="false" />-->
+    </DBConnections>
+  </Configuration>
+</root>
