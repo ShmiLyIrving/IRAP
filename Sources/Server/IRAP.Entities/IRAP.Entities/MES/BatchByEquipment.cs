@@ -52,6 +52,11 @@ namespace IRAP.Entities.MES
         /// </summary>
         public string T216Name { get; set; }
 
+        public override string ToString()
+        {
+            return BatchNumber;
+        }
+
         public BatchByEquipment Clone()
         {
             return MemberwiseClone() as BatchByEquipment;
