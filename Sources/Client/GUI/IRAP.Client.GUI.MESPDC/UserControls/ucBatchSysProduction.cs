@@ -801,19 +801,22 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
         private void btnPWORemove_Click(object sender, EventArgs e)
         {
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
-            if (
-                XtraMessageBox.Show(
-                    string.Format(
-                        "是否要删除工单[{0}]的信息？",
-                        pwos[idx].PWONo),
-                    "系统信息",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (idx >= 0 && idx < pwos.Count)
             {
-                pwos.Remove(pwos[idx]);
-                grdvPWOs.UpdateCurrentRow();
-                grdvPWOs.BestFitColumns();
+                if (
+                    XtraMessageBox.Show(
+                        string.Format(
+                            "是否要删除工单[{0}]的信息？",
+                            pwos[idx].PWONo),
+                        "系统信息",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    pwos.Remove(pwos[idx]);
+                    grdvPWOs.UpdateCurrentRow();
+                    grdvPWOs.BestFitColumns();
+                }
             }
         }
 

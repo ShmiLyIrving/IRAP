@@ -436,6 +436,92 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 获取指定产线未结工单清单
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="resourceTreeID">菜单参数(134)</param>
+        /// <param name="leafID">产线的叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="pwoNo">待查找的工单号</param>
+        public void mfn_GetList_OpenPWOsOfALine(
+            int communityID,
+            int resourceTreeID,
+            int leafID,
+            long sysLogID,
+            string pwoNo,
+            ref List<OpenPWO> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("resourceTreeID", resourceTreeID);
+                hashParams.Add("leafID", leafID);
+                hashParams.Add("sysLogID", sysLogID);
+                hashParams.Add("pwoNo", pwoNo);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 mfn_GetList_OpenPWOsOfALine 函数， " +
+                        "参数：CommunityID={0}|ResourceTreeID={1}|" +
+                        "LeafID={2}|SysLogID={3}|PWONo={4}",
+                        communityID,
+                        resourceTreeID,
+                        leafID,
+                        sysLogID,
+                        pwoNo),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WorkOrder",
+                            "mfn_GetList_OpenPWOsOfALine",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<OpenPWO>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取指定社区未结工单清单
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -1877,6 +1963,107 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 批次生产开始
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="operatorCode">操作工代码</param>
+        /// <param name="batchNumber">炉次号</param>
+        /// <param name="t131LeafID">产品类别叶标识</param>
+        /// <param name="rsFactXML">
+        /// 工单信息列表
+        /// [RSFact]
+        ///     [RF25
+        ///         Ordinal=""
+        ///         T102LeafID=""
+        ///         T216LeafID=""
+        ///         WIPCode=""
+        ///         LotNumber=""
+        ///         Texture=""
+        ///         PWONo=""
+        ///         BatchLot=""
+        ///         Qty=""
+        ///         Scale="" /]
+        /// [/RSFact]
+        /// </param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void usp_SaveFact_BatchProductionStart_N(
+            int communityID,
+            int t216LeafID,
+            int t107LeafID,
+            string operatorCode,
+            string batchNumber,
+            int t131LeafID,
+            string rsFactXML,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t216LeafID", t216LeafID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("t131LeafID", t131LeafID);
+                hashParams.Add("operatorCode", operatorCode);
+                hashParams.Add("batchNumber", batchNumber);
+                hashParams.Add("rsFactXML", rsFactXML);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 usp_SaveFact_BatchProductionStart_N，输入参数：" +
+                        "CommunityID={0}|T216LeafID={1}|T107LeafID={2}|" +
+                        "T131LeafID={3}|OperatorCode={4}|BatchNumber={5}"+
+                        "|RSFactXML={6}|SysLogID={7}",
+                        communityID, t216LeafID, t107LeafID, t131LeafID, operatorCode,
+                        batchNumber, rsFactXML, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.WorkOrder",
+                        "usp_SaveFact_BatchProductionStart_N",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 批次生产结束
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -1927,6 +2114,81 @@ namespace IRAP.WCF.Client.Method
                         "IRAP.BL.MES.dll",
                         "IRAP.BL.MES.WorkOrder",
                         "usp_SaveFact_BatchProductionEnd",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 批次生产结束
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="batchNumber">容器批次号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void usp_SaveFact_BatchProductionEnd_N(
+            int communityID,
+            int t216LeafID,
+            int t107LeafID,
+            string batchNumber,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t216LeafID", t216LeafID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("batchNumber", batchNumber);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "执行存储过程 usp_SaveFact_BatchProductionEnd_N，输入参数：" +
+                        "CommunityID={0}|T216LeafID={1}|T107LeafID={2}|" +
+                        "BatchNumber={3}|SysLogID={4}",
+                        communityID, t216LeafID, t107LeafID, batchNumber, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.WorkOrder",
+                        "usp_SaveFact_BatchProductionEnd_N",
                         hashParams,
                         out errCode,
                         out errText);
@@ -2119,6 +2381,95 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 获取指定设备、指定工位的待生产炉次号
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t133LeafID">设备叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="opType">无用</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns>List[BatchByEquipment]</returns>
+        public void ufn_GetList_BatchByEquipment_N(
+            int communityID,
+            int t133LeafID,
+            int t107LeafID,
+            string opType,
+            long sysLogID,
+            ref List<BatchByEquipment> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t133LeafID", t133LeafID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("opType", opType);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_BatchByEquipment_N 函数， " +
+                        "参数：CommunityID={0}|T133LeafID={1}"+
+                        "|T107LeafID={2}|OpType={3}|SysLogID={4}",
+                        communityID,
+                        t133LeafID,
+                        t107LeafID,
+                        opType,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WorkOrder",
+                            "ufn_GetList_BatchByEquipment_N",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<BatchByEquipment>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 根据容次号获取生产工单信息列表
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -2170,6 +2521,90 @@ namespace IRAP.WCF.Client.Method
                             "IRAP.BL.MES.dll",
                             "IRAP.BL.MES.WorkOrder",
                             "ufn_GetList_BatchPWONo",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<BatchPWOInfo>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据工序叶标识和炉次号获取生产工单信息列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="batchNumber">生产容次号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void ufn_GetList_WorkUnitBatchPWONo(
+            int communityID,
+            int t107LeafID,
+            string batchNumber,
+            long sysLogID,
+            ref List<BatchPWOInfo> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("batchNumber", batchNumber);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_WorkUnitBatchPWONo 函数， " +
+                        "参数：CommunityID={0}|T107LeafID={1}|"+
+                        "BatchNumber={2}|SysLogID={3}",
+                        communityID,
+                        t107LeafID,
+                        batchNumber,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WorkOrder",
+                            "ufn_GetList_WorkUnitBatchPWONo",
                         hashParams,
                         out errCode,
                         out errText);

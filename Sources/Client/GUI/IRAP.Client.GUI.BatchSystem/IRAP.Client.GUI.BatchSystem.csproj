@@ -37,11 +37,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\..\..\Packages\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -69,6 +72,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\frmItemsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmItemsEditor.designer.cs">
+      <DependentUpon>frmItemsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frmPWOInProductionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmPWOInProductionEditor.designer.cs">
+      <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmSelectExcelSheet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,11 +91,29 @@
       <DependentUpon>frmSelectExcelSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="ExcelHelper.cs" />
-    <Compile Include="frmPrdtParamsCollection_HotGrinding.cs">
+    <Compile Include="frmPrdtParamsCollection_Furnace.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPrdtParamsCollection_HotGrinding.Designer.cs">
-      <DependentUpon>frmPrdtParamsCollection_HotGrinding.cs</DependentUpon>
+    <Compile Include="frmPrdtParamsCollection_Furnace.Designer.cs">
+      <DependentUpon>frmPrdtParamsCollection_Furnace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrdtParamsCollection_CleanTemper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrdtParamsCollection_CleanTemper.Designer.cs">
+      <DependentUpon>frmPrdtParamsCollection_CleanTemper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQualityInspectConfirm_Furnace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQualityInspectConfirm_Furnace.Designer.cs">
+      <DependentUpon>frmQualityInspectConfirm_Furnace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQualityInspecting_Furnace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQualityInspecting_Furnace.Designer.cs">
+      <DependentUpon>frmQualityInspecting_Furnace.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRunningSPPModify.cs">
       <SubType>Form</SubType>
@@ -101,6 +134,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucCleanTemperPrdtParams.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucCleanTemperPrdtParams.Designer.cs">
+      <DependentUpon>ucCleanTemperPrdtParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucFurnacePrdtParams.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucFurnacePrdtParams.Designer.cs">
+      <DependentUpon>ucFurnacePrdtParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucQualityInspecting_Furnace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucQualityInspecting_Furnace.Designer.cs">
+      <DependentUpon>ucQualityInspecting_Furnace.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Global\IRAP.Global\IRAP.Global.csproj">
@@ -118,6 +169,10 @@
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.MDM\IRAP.Entity.MDM.csproj">
       <Project>{5feb6cb3-68c9-4e06-814b-c071743bf5a2}</Project>
       <Name>IRAP.Entity.MDM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.MES\IRAP.Entity.MES.csproj">
+      <Project>{c78cdb3f-f78a-4c17-b5c8-e2e88a0a5947}</Project>
+      <Name>IRAP.Entity.MES</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj">
       <Project>{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}</Project>
@@ -149,11 +204,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frmItemsEditor.resx">
+      <DependentUpon>frmItemsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor.resx">
+      <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmSelectExcelSheet.resx">
       <DependentUpon>frmSelectExcelSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPrdtParamsCollection_HotGrinding.resx">
-      <DependentUpon>frmPrdtParamsCollection_HotGrinding.cs</DependentUpon>
+    <EmbeddedResource Include="frmPrdtParamsCollection_Furnace.resx">
+      <DependentUpon>frmPrdtParamsCollection_Furnace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrdtParamsCollection_CleanTemper.resx">
+      <DependentUpon>frmPrdtParamsCollection_CleanTemper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQualityInspectConfirm_Furnace.resx">
+      <DependentUpon>frmQualityInspectConfirm_Furnace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQualityInspecting_Furnace.resx">
+      <DependentUpon>frmQualityInspecting_Furnace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRunningSPPModify.resx">
       <DependentUpon>frmRunningSPPModify.cs</DependentUpon>
@@ -165,6 +235,15 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucCleanTemperPrdtParams.resx">
+      <DependentUpon>ucCleanTemperPrdtParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucFurnacePrdtParams.resx">
+      <DependentUpon>ucFurnacePrdtParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucQualityInspecting_Furnace.resx">
+      <DependentUpon>ucQualityInspecting_Furnace.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

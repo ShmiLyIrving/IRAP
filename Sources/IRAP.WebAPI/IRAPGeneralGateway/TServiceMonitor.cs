@@ -232,5 +232,52 @@ namespace IRAPGeneralGateway
                 historyThread.Start();
             }
         }
+
+        /// <summary>
+        /// 缓存数据
+        /// </summary>
+        /// <param name="clientID"></param>
+        /// <param name="exCode"></param>
+        /// <param name="result"></param>
+        public static void Add(string clientID, string exCode, TServiceCallResult result)
+        {
+            if (string.IsNullOrEmpty(clientID) || string.IsNullOrEmpty(exCode))
+            {
+                return;
+            }
+
+            // 实时数据
+            lock (_realServiceCollection)
+            {
+                if (!_realServiceCollection.Keys.Contains(clientID))
+                {
+                    _realServiceCollection.Add(clientID, new Dictionary<string, TEntityService>());
+                }
+                
+                if (!_realServiceCollection[clientID].Keys.Contains(exCode))
+                {
+                    TEntityService entity = new TEntityService();
+                    _realServiceCollection[clientID].Add(exCode, entity);
+                }
+
+                _realServiceCollection[clientID][exCode].SetServiceCallStatus(result);
+            }
+
+            // 历史数据
+            lock (_historyServiceCollection)
+            {
+                if (!_historyServiceCollection.Keys.Contains(clientID))
+                {
+                    _historyServiceCollection.Add(clientID, new Dictionary<string, TEntityService>());
+                }
+
+                if (!_historyServiceCollection[clientID].Keys.Contains(exCode))
+                {
+                    _historyServiceCollection[clientID].Add(exCode, new TEntityService());
+                }
+
+                _historyServiceCollection[clientID][exCode].SetServiceCallStatus(result);
+            }
+        }
     }
 }

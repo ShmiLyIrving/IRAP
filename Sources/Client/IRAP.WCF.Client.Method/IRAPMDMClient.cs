@@ -3858,6 +3858,83 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 获取信息站点上下文(工位或工作流结点功能信息)
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t3LeafID">功能树叶标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_WIPStationsOfAHostByFunction(
+            int communityID,
+            int t3LeafID,
+            long sysLogID,
+            ref List<WIPStation> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t3LeafID", t3LeafID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_WIPStationsOfAHostByFunction 函数， " +
+                        "参数：CommunityID={0}|T3LeafID={1}|SysLogID={2}",
+                        communityID,
+                        t3LeafID,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MDM.dll",
+                            "IRAP.BL.MDM.IRAPMDM",
+                            "ufn_GetList_WIPStationsOfAHostByFunction",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<WIPStation>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取经由指定工位产品清单或经由指定工作流结点的流程清单
         /// </summary>
         /// <param name="communityID">社区标识</param>

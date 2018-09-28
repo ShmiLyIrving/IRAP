@@ -40,6 +40,8 @@ namespace IRAPGeneralGateway
 
         private static Dictionary<string, DateTime> _accessList =
             new Dictionary<string, DateTime>();
+        private static Dictionary<string, TEntityClient> _clientList =
+            new Dictionary<string, TEntityClient>();
 
         /// <summary>
         /// 服务中的令牌清单
@@ -47,6 +49,13 @@ namespace IRAPGeneralGateway
         public static Dictionary<string, DateTime> AccessList
         {
             get { return _accessList; }
+        }
+        /// <summary>
+        /// 服务中的
+        /// </summary>
+        public static Dictionary<string, TEntityClient> ClientList
+        {
+            get { return _clientList; }
         }
 
         /// <summary>
@@ -406,6 +415,12 @@ namespace IRAPGeneralGateway
             return EncryptContent(clientID, resultStr);
         }
 
+        public static void RegisterService(TServiceStatus status, string baseURL, string msg)
+        {
+            InitService.ReadConfig();
+
+        }
+
         /// <summary>
         /// 通用 WebAPI 服务调用入口（非加密）
         /// </summary>
@@ -422,8 +437,10 @@ namespace IRAPGeneralGateway
                     className,
                     MethodBase.GetCurrentMethod().Name);
 
+            // 报文格式参数检查
             if (!MsgFormatValidate(msgFormat))
             {
+                TServiceMonitor.Add(clientID, exCode, TServiceCallResult.Except);
                 return ErrorStream(
                     exCode, 
                     clientID, 
@@ -432,6 +449,7 @@ namespace IRAPGeneralGateway
                     string.Format("不支持[{0}]报文格式，仅支持 JSON 或 XML", msgFormat));
             }
 
+            // 客户标识参数检查
             if (!TRegistClients.Instance.Clients.ContainsKey(clientID))
             {
                 return ErrorStream(

@@ -89,4 +89,26 @@ namespace IRAPGeneralGateway
         [Description("出错")]
         Except,
     }
+
+    /// <summary>
+    /// 服务状态
+    /// </summary>
+    public enum TServiceStatus
+    {
+        /// <summary>
+        /// 停止
+        /// </summary>
+        [Description("停止")]
+        Stop = 0,
+        /// <summary>
+        /// 正常
+        /// </summary>
+        [Description("正常")]
+        Normal,
+        /// <summary>
+        /// 异常
+        /// </summary>
+        [Description("异常")]
+        Unusual,
+    }
 }

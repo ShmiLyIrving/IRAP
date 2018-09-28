@@ -82,8 +82,8 @@ namespace IRAPGeneralGateway
                     conn.Open();
                     SqlCommand command = 
                         new SqlCommand(
-                            "SELECT ClientID,ChannelName,UserID,Password,IsValid,ExpireDate," +
-                            "SecurityLevel,SecurityPassword FROM dbo.stb_Channels ORDER BY ClientID", 
+                            "SELECT ClientID, ChannelName, UserID, Password, IsValid, ExpireDate," +
+                            "SecurityLevel, SecurityPassword FROM dbo.stb_Channels ORDER BY ClientID", 
                             conn);
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -93,7 +93,7 @@ namespace IRAPGeneralGateway
                         f.ChannelName = reader["ChannelName"].ToString();
                         f.UserID = reader["UserID"].ToString();
                         f.Password = reader["Password"].ToString();
-                        f.IsValid = int.Parse(reader["Isvalid"].ToString());
+                        f.IsValid = int.Parse(reader["IsValid"].ToString());
                         f.ExpireDate = (DateTime)reader["ExpireDate"];
                         f.SecurityLevel = int.Parse(reader["SecurityLevel"].ToString());
                         f.SecurityPassword = reader["SecurityPassword"].ToString();
