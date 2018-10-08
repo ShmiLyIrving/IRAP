@@ -63,7 +63,7 @@ namespace FastReport
       <TextObject Name="Text88" Left="599.13" Top="120.96" Width="113.4" Height="24.57" Border.Lines="All" Border.TopLine.Width="1.5" Text="[DataSource.TotalQty]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 9pt"/>
       <TextObject Name="Text89" Left="264.6" Top="170.1" Width="109.62" Height="24.57" Border.Lines="All" Border.LeftLine.Width="1.5" Border.TopLine.Width="1.5" Text="收料批次号" HorzAlign="Center" VertAlign="Center" Font="新宋体, 9pt"/>
     </PageHeaderBand>
-    <DataBand Name="Data1" Top="197.17" Width="718.58" Height="52.92" RowCount="7" MaxRows="7">
+    <DataBand Name="Data1" Top="197.17" Width="718.58" Height="52.92">
       <TextObject Name="Text74" Left="3.78" Top="-1.89" Width="260.82" Height="54.81" Border.Lines="Left, Right, Bottom" Border.LeftLine.Width="1.5" Border.TopLine.Width="1.5" HorzAlign="Center" VertAlign="Center" Font="新宋体, 9pt"/>
       <TextObject Name="Text73" Left="26.46" Top="35.91" Width="213.57" Height="17.01" Text="[DataSource.LotNumber]" HorzAlign="Center" VertAlign="Center" Font="新宋体, 9pt"/>
       <BarcodeObject Name="Barcode1" Left="26.46" Top="5.67" Width="214.04" Height="30.24" AutoSize="false" DataColumn="DataSource.LotNumber" ShowText="false" Barcode="Code128" Barcode.AutoEncode="true"/>
