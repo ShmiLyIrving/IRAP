@@ -17,6 +17,10 @@ namespace UpdateBuilder
         private string projectFileName = "新建项目";
         private List<FileInfo> files = new List<FileInfo>();
         private bool isModified = false;
+        /// <summary>
+        /// 项目文件格式版本号
+        /// </summary>
+        private string verion;
 
         /// <summary>
         /// 项目文件名，如果扩展名不是 .upb，则自动加上
@@ -176,11 +180,11 @@ namespace UpdateBuilder
                     IgnoreWhitespace = true,
                 };
 
-                using (XmlReader xr=XmlReader.Create(fs, xmlSettings))
+                using (XmlReader xr = XmlReader.Create(fs, xmlSettings))
                 {
                     while (xr.Read())
                     {
-                        if (xr.NodeType== XmlNodeType.Element && xr.HasAttributes)
+                        if (xr.NodeType == XmlNodeType.Element && xr.HasAttributes)
                         {
                             if (xr.Name.ToLower() == "upgradefile")
                             {
@@ -265,6 +269,36 @@ namespace UpdateBuilder
                     count++;
             }
             return count > 0;
+        }
+
+        /// <summary>
+        /// 加载项目文件格式版本号 0 的项目
+        /// </summary>
+        private bool LoadVersion0(string xmlString)
+        {
+            bool rlt = false;
+
+            XmlDocument xml = new XmlDocument();
+            try
+            {
+                xml.LoadXml
+            }
+            catch (Exception error)
+            {
+                XtraMessageBox.Show(
+                    string.Format(
+                        "加载项目文件时出错：[{0}]",
+                        error.Message),
+                    "出错啦",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                xml = null;
+            }
+
+            return rlt;
         }
     }
 }

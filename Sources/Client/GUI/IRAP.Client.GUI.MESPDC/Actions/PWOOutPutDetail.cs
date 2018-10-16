@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.ComponentModel;
+using System.Reflection;
 
 using IRAP.Global;
 
@@ -106,6 +107,12 @@ namespace IRAP.Client.GUI.MESPDC.Actions
 
         private string Post(string input)
         {
+            string strProcedure =
+                string.Format(
+                    "{0}.{1}",
+                    MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    MethodBase.GetCurrentMethod().Name);
+
             irapCacheAddr = $"{irapCacheAddr}/MES".Replace("//MES", "/MES");
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(irapCacheAddr);
@@ -120,7 +127,11 @@ namespace IRAP.Client.GUI.MESPDC.Actions
             request.Timeout = 30000; //1分钟
             try
             {
-                WriteLog.Instance.Write("发送请求报文");
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "发送请求报文：[{0}]",
+                        input),
+                    strProcedure);
                 string resXml = string.Empty;
                 var stream = request.GetRequestStream();
                 byte[] bodyBytes = Encoding.UTF8.GetBytes(input);
@@ -135,7 +146,9 @@ namespace IRAP.Client.GUI.MESPDC.Actions
                 {
                     resXml = reader.ReadToEnd();
                 }
-                WriteLog.Instance.Write("接收到响应报文");
+                WriteLog.Instance.Write(
+                    string.Format("接收到响应报文：[{0}]", resXml),
+                    strProcedure);
                 return resXml;
             }
             catch (Exception e)

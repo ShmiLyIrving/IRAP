@@ -43,7 +43,7 @@ namespace IRAP.Client.GUI.SCES.Dialogs
 
             switch (IRAPUser.Instance.Agency.AgencyLeaf)
             {
-                case 373181:
+                case -373181:
                     grpTranferReprint.Visible = false;
                     grpPrdtTrackReprint.Visible = false;
 
@@ -256,37 +256,111 @@ namespace IRAP.Client.GUI.SCES.Dialogs
 
                                 if (printWIPProductInfoTrack)
                                 {
-                                    report1.Parameters.FindByName("BarCode").Value = pwoInfo.PWONo;
-                                    report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
-                                    report1.Parameters.FindByName("StorehouseCode").Value =
-                                        string.Format(
-                                            "{0}({1})",
-                                            pwoInfo.T173Name,
-                                            pwoInfo.T173Code);
-                                    report1.Parameters.FindByName("T106Code").Value = pwoInfo.AtStoreLocCode;
-                                    report1.Parameters.FindByName("WorkshopName").Value = pwoInfo.DstWorkShopCode;
-                                    report1.Parameters.FindByName("ProductLine").Value = pwoInfo.T134Name;
-                                    report1.Parameters.FindByName("AdvicedPickedQty").Value = pwoInfo.SuggestedQuantityToPick;
-                                    report1.Parameters.FindByName("StartingDate").Value = pwoInfo.PlannedStartDate.Substring(5, 5);
-                                    report1.Parameters.FindByName("CompletingDate").Value = pwoInfo.PlannedCloseDate.Substring(5, 5);
-                                    report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
-                                    report1.Parameters.FindByName("Unit").Value = pwoInfo.UnitOfMeasure;
-                                    report1.Parameters.FindByName("MONo").Value = pwoInfo.MONumber;
-                                    report1.Parameters.FindByName("LineNo").Value = pwoInfo.MOLineNo;
-                                    report1.Parameters.FindByName("LotNumber").Value = pwoInfo.LotNumber;
-                                    report1.Parameters.FindByName("MaterialTexture").Value = pwoInfo.T131Code;
-                                    report1.Parameters.FindByName("ActualPickedBars").Value = pwoInfo.ActualQtyDecompose;
-                                    report1.Parameters.FindByName("OrderQty").Value = pwoInfo.PlannedQuantity;
-                                    report1.Parameters.FindByName("MaterialCode").Value = pwoInfo.MaterialCode;
-                                    report1.Parameters.FindByName("MaterialDescription").Value = pwoInfo.MaterialDesc;
-                                    report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
-                                    report1.Parameters.FindByName("InQuantity").Value = pwoInfo.ActualQuantityToDeliver.ToString();
-                                    report1.Parameters.FindByName("FatherMaterialCode").Value = pwoInfo.ProductNo;
-                                    report1.Parameters.FindByName("FatherMaterialName").Value = pwoInfo.ProductDesc;
-                                    report1.Parameters.FindByName("DstT106Code").Value = pwoInfo.DstT106Code;
+                                    switch (IRAPUser.Instance.CommunityID)
+                                    {
+                                        case 60010:
+                                            DataSet ds = new DataSet();
+                                            DataTable dt = new DataTable();
+                                            dt.TableName = "WIPProductInfoTrack";
+                                            dt.Columns.Add("BarCode", typeof(string));
+                                            dt.Columns.Add("DeliveryWorkShop", typeof(string));
+                                            dt.Columns.Add("StorehouseCode", typeof(string));
+                                            dt.Columns.Add("T106Code", typeof(string));
+                                            dt.Columns.Add("WorkshopName", typeof(string));
+                                            dt.Columns.Add("ProductLine", typeof(string));
+                                            dt.Columns.Add("AdvicedPickedQty", typeof(string));
+                                            dt.Columns.Add("StartingDate", typeof(string));
+                                            dt.Columns.Add("CompletingDate", typeof(string));
+                                            dt.Columns.Add("PrintingDate", typeof(string));
+                                            dt.Columns.Add("Unit", typeof(string));
+                                            dt.Columns.Add("MONo", typeof(string));
+                                            dt.Columns.Add("MOLineNo", typeof(string));
+                                            dt.Columns.Add("LotNumber", typeof(string));
+                                            dt.Columns.Add("MaterialTexture", typeof(string));
+                                            dt.Columns.Add("ActualPickedBars", typeof(string));
+                                            dt.Columns.Add("OrderQty", typeof(int));
+                                            dt.Columns.Add("MaterialCode", typeof(string));
+                                            dt.Columns.Add("MaterialDescription", typeof(string));
+                                            dt.Columns.Add("TransferringInDate", typeof(string));
+                                            dt.Columns.Add("InQuantity", typeof(string));
+                                            dt.Columns.Add("FatherMaterialCode", typeof(string));
+                                            dt.Columns.Add("FatherMaterialName", typeof(string));
+                                            dt.Columns.Add("DstT106Code", typeof(string));
+                                            dt.Columns.Add("GateWayWC", typeof(string));
+                                            dt.Columns.Add("PageNo", typeof(int));
+                                            dt.Columns.Add("PageCount", typeof(int));
 
-                                    if (IRAPUser.Instance.CommunityID == 60030)
-                                        report1.Parameters.FindByName("GateWayWC").Value = pwoInfo.GateWayWC;
+                                            #region 未设置镀铬车间的容器容量
+                                            dt.Rows.Add(
+                                                pwoInfo.PWONo,
+                                                "",
+                                                string.Format("{0}({1})", pwoInfo.T173Name, pwoInfo.T173Code),
+                                                pwoInfo.AtStoreLocCode,
+                                                pwoInfo.DstWorkShopCode,
+                                                pwoInfo.T134Name,
+                                                pwoInfo.SuggestedQuantityToPick.ToString(),
+                                                pwoInfo.PlannedStartDate.Substring(5, 5),
+                                                pwoInfo.PlannedCloseDate.Substring(5, 5),
+                                                DateTime.Now.ToString("MM-dd HH:mm:ss"),
+                                                pwoInfo.UnitOfMeasure,
+                                                pwoInfo.MONumber,
+                                                pwoInfo.MOLineNo,
+                                                pwoInfo.LotNumber,
+                                                pwoInfo.T131Code,
+                                                pwoInfo.ActualQtyDecompose,
+                                                pwoInfo.PlannedQuantity.ToString(),
+                                                pwoInfo.MaterialCode,
+                                                pwoInfo.MaterialDesc,
+                                                DateTime.Now.ToString("yyyy-MM-dd"),
+                                                pwoInfo.ActualQuantityToDeliver,
+                                                pwoInfo.ProductNo,
+                                                pwoInfo.ProductDesc,
+                                                pwoInfo.DstT106Code,
+                                                pwoInfo.GateWayWC,
+                                                1,
+                                                1);
+                                            #endregion
+
+                                            ds.Tables.Add(dt);
+
+                                            report1.RegisterData(ds);
+                                            report1.GetDataSource("WIPProductInfoTrack").Enabled = true;
+
+                                            break;
+                                        case 60030:
+                                            report1.Parameters.FindByName("BarCode").Value = pwoInfo.PWONo;
+                                            report1.Parameters.FindByName("DeliveryWorkshop").Value = "";
+                                            report1.Parameters.FindByName("StorehouseCode").Value =
+                                                string.Format(
+                                                    "{0}({1})",
+                                                    pwoInfo.T173Name,
+                                                    pwoInfo.T173Code);
+                                            report1.Parameters.FindByName("T106Code").Value = pwoInfo.AtStoreLocCode;
+                                            report1.Parameters.FindByName("WorkshopName").Value = pwoInfo.DstWorkShopCode;
+                                            report1.Parameters.FindByName("ProductLine").Value = pwoInfo.T134Name;
+                                            report1.Parameters.FindByName("AdvicedPickedQty").Value = pwoInfo.SuggestedQuantityToPick;
+                                            report1.Parameters.FindByName("StartingDate").Value = pwoInfo.PlannedStartDate.Substring(5, 5);
+                                            report1.Parameters.FindByName("CompletingDate").Value = pwoInfo.PlannedCloseDate.Substring(5, 5);
+                                            report1.Parameters.FindByName("PrintingDate").Value = DateTime.Now.ToString("MM-dd HH:mm:ss");
+                                            report1.Parameters.FindByName("Unit").Value = pwoInfo.UnitOfMeasure;
+                                            report1.Parameters.FindByName("MONo").Value = pwoInfo.MONumber;
+                                            report1.Parameters.FindByName("LineNo").Value = pwoInfo.MOLineNo;
+                                            report1.Parameters.FindByName("LotNumber").Value = pwoInfo.LotNumber;
+                                            report1.Parameters.FindByName("MaterialTexture").Value = pwoInfo.T131Code;
+                                            report1.Parameters.FindByName("ActualPickedBars").Value = pwoInfo.ActualQtyDecompose;
+                                            report1.Parameters.FindByName("OrderQty").Value = pwoInfo.PlannedQuantity;
+                                            report1.Parameters.FindByName("MaterialCode").Value = pwoInfo.MaterialCode;
+                                            report1.Parameters.FindByName("MaterialDescription").Value = pwoInfo.MaterialDesc;
+                                            report1.Parameters.FindByName("TransferringInDate").Value = DateTime.Now.ToString("yyyy-MM-dd");
+                                            report1.Parameters.FindByName("InQuantity").Value = pwoInfo.ActualQuantityToDeliver.ToString();
+                                            report1.Parameters.FindByName("FatherMaterialCode").Value = pwoInfo.ProductNo;
+                                            report1.Parameters.FindByName("FatherMaterialName").Value = pwoInfo.ProductDesc;
+                                            report1.Parameters.FindByName("DstT106Code").Value = pwoInfo.DstT106Code;
+
+                                            if (IRAPUser.Instance.CommunityID == 60030)
+                                                report1.Parameters.FindByName("GateWayWC").Value = pwoInfo.GateWayWC;
+                                            break;
+                                    }
                                 }
 
                                 break;
@@ -338,10 +412,8 @@ namespace IRAP.Client.GUI.SCES.Dialogs
                             bool rePrint = false;
                             do
                             {
-                                prnSetting.PrinterName = IRAPConst.Instance.CurrentPrinterName;
                                 if (report1.ShowPrintDialog(out prnSetting))
                                 {
-                                    IRAPConst.Instance.CurrentPrinterName = prnSetting.PrinterName;
                                     report1.PrintPrepared(prnSetting);
                                     rePrint =
                                         (

@@ -182,7 +182,6 @@
             this.btnProperties.Id = 7;
             this.btnProperties.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnProperties.LargeGlyph")));
             this.btnProperties.Name = "btnProperties";
-            this.btnProperties.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // ribbonPage1
             // 

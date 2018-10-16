@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="09/08/2018 10:05:31" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="09/29/2018 10:07:38" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace FastReport
 }
 </ScriptText>
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8ZXatoTOPV/vQdiBMsyUstMQ/HNifsWbuWuzkTXmKRH2o1w15QKMnHGgEldtKEA730OqosVbqhBdcYGLTsIKn8r8+Y0xvx++djKtnqgV/DXt2gr09j4HTHlzvTlRLG+mofqnnIUZZ3TI9VVdiKhxA2xbhjKTGou1kVVqO4POZunkeKXsGgDbP4twxfT8eTwiTA==">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8ZXatoTOPV/vQdiBMsyUstMQ/HNifsWbuWuzkTXmKRH2o1w15QKMnHGgEldtKEA730OqosVbqhBdcYGLTsIKn8r8+Y0xvx++djKtnqgV/DXt2gr09j4HTHlzvTlRLG+moYPEFzDYRx2Nf/NBtnrwnU3wJSRYLMGk5XUC9cV2tFYKxXSp+zHzzeZlibPQG/Lc8Q==">
       <TableDataSource Name="Temp_WIPProductInfoTrack" Alias="WIPProductInfoTrack" DataType="System.Int32" Enabled="true" TableName="Temp_WIPProductInfoTrack">
         <Column Name="BarCode" DataType="System.String"/>
         <Column Name="DeliveryWorkShop" DataType="System.String"/>
