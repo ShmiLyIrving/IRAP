@@ -1,0 +1,86 @@
+
+Product:    NPort CE Driver Manager
+Version:    1.6 Build 12080711
+Date:       08/07/2012
+Company:    Moxa Inc.
+
+
+Support Platform:
+-----------------
+Windows CE 5.0
+Windows CE 6.0
+Windows CE 6.0(R2)
+Windows CE 6.0(R3)
+
+Supported Moxa Product:
+------------------------
+CN2500 Series: CN2510-8, CN2510-16, CN2510-8-48V, CN2510-16-48V
+CN2600 Series: CN2610-8, CN2610-16, CN2650-8, CN2650-16, CN2650I-8, CN2650I-16,
+               CN2610-8-2AC, CN2610-16-2AC, CN2650-8-2AC, CN2650-16-2AC,
+               CN2650I-8-2AC, CN2650I-16-2AC
+NPort: DE-211, DE-311, DE-311M, DE-301, DE-302, DE-304, DE-334
+NPort 5100 Series: 5110, 5130, 5150, 5110A, 5130A, 5150A, P5150A
+NPort 5200 Series: 5210, 5230, 5232, 5232I, 5210A, 5230A, 5250A
+NPort 5400 Series: 5410, 5410 V3, 5430, 5430 V3, 5430I, 5430I V3, 5450, 5450I
+NPort 5600 Rackmount Serise: 5610-8, 5610-16, 5610-8-48V, 5610-16-48V, 
+                             5630-8, 5630-16, 5650-8, 5650-16, 5650-8-M-SC, 
+                             5650-16-M-SC, 5650-8-S-SC, 5650-16-S-SC
+NPort 5600 Desktop Series: 5610-8-DT, 5610-8-DTL, 5610-8-DT-J, 5650-8-DT,
+                           5650-8-DTL, 5650I-8-DT, 5650-8-DT-J, 5660I-8-DTL
+NPort IA Series: IA-5150, IA-5150I, IA-5150-S-SC, IA-5150I-S-SC, IA-5150-M-SC, 
+                 IA-5150I-M-SC, IA-5250, IA-5250I, IA5450A, IA5450AI, IA5150A,
+                 IA5150AI, IA5250A, IA5250AI
+NPort 5x50AI-M12 Series: 5150AI-M12, 5250AI-M12, 5450AI-M12
+NPort 6000 Series: 6150, 6250, 6250-M-SC, 6250-S-SC, 6450, 6650-8, 6650-16
+                   6610-8, 6610-16, 6610-32, 6650-32
+NPort S8000 Series: NPort S8455I-MM-SC, NPort S8455I-SS-SC, NPort S8458-4S-SC-T
+NPort Wireless Series: W2004, W2150, W2250, W2150 Plus, W2250 Plus, WE-2100T
+                       W2150A, W2250A
+NE Series: 4100T, 4100T-CMD, 4110A, 4110A-CMD, 4110S, 4110S-CMD, 4120A,
+           4120A-CMD, 4120S, 4120S-CMD
+MiiNePort Series: E1, E1-H, E2, E2-H, E3, E3-H, E1 SDK, E1-H SDK, E2 SDK,
+                  E2-H SDK, W1
+
+Release Note:
+--------------
+Ver1.6 Build 12080711 (08/07/2012)
+1. new: Support NPort W2150A and W2250A.
+2. new: Support NPort 5150AI-M12, 5250AI-M12, 5450AI-M12.
+3. Bugfix: Can not assign device port number which is not removed normally.
+
+Ver1.5 Build 12020611 (02/06/2012)
+1. new: Support MiiNePort E1/E1-H/E2/E2-H SDK
+2. new: Support MiiNePort W1
+
+Ver1.4 Build 11081917 (08/19/2011)
+1. new: Support NPort P5150A.
+2. new: Support MiiNePort E3, E3-H.
+
+Ver1.3 Build 11041516 (04/15/2011)
+1. new: Support NPort 5600 DTL series.
+2. new: Support NPort S8458-4S-SC-T.
+3. bugfix: Continually open and close ports might cause the ports cannot be 
+           opened again.
+4. bugfix: The received data might be lost when the receive buffer is close to 
+           boundary.
+
+Ver1.2 Build 10060715 (06/07/2010)
+1. bugfix: User can specify the installation path.
+2. new: Support Windows CE6.0(R3).
+3. new: Support NPort 5110A, 5130A, 5150A.
+4. new: Support NPort 5210A, 5230A, 5250A.
+5. new: Support NPort IA5150A, IA5150AI, IA5250A, IA5250AI, IA5450A, IA5450AI.
+6. new: Support NPort S8455I-MM-SC, S8455I-SS-SC.
+7. new: Support MiiNePort E1, E1-H, E2, E2-H.
+
+Ver1.1 Build 08100914 (10/09/2008)
+1. new: Support up to 256 COM ports.
+
+Ver1.0.1 Build 08091112 (09/11/2008)
+1. new: Support Windows CE6.0.
+2. new: Support Windows CE6.0(R2).
+
+Ver1.0 Build 08081914 (08/19/2008)
+1. new: First release.
+
+-END-

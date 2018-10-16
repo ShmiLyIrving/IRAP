@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="12.7.2" version="12.7.2" Modules="architect" RootPath="." Language="zh" Id="{0CEA9BFA-280B-401F-91AD-79910272BC43}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="ActSyncAppComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_PRODUCTNAME_ARP" Value="IRAP应用服务"/>
+    <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="此 Installer 数据库包含了安装 [|ProductName] 所需的逻辑和数据。" ValueLocId="*"/>
+    <ROW Property="ARPNOREPAIR" Value="1"/>
+    <ROW Property="ARPPRODUCTICON" Value="mainicon.exe" Type="8"/>
+    <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
+    <ROW Property="Manufacturer" Value="江苏芍园科技有限责任公司"/>
+    <ROW Property="ProductCode" Value="2052:{BF646401-A511-40AD-B515-C960E9D62BC6} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="IRAP应用服务"/>
+    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{7B41E5C0-84E4-418E-BF08-CEED7351E65C}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_CustomARPName" ComponentId="{FD2FF5BC-61A4-46FB-B90C-D35388E01D68}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="DevExpress.Data.v15.2.dll" ComponentId="{A4697406-1FDF-4740-BA9E-42681DB26FF9}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Data.v15.2.dll"/>
+    <ROW Component="DevExpress.Data.v15.2.xml" ComponentId="{C220B3E8-831C-441E-927D-D91D5C48C8E2}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Data.v15.2.xml" Type="0"/>
+    <ROW Component="DevExpress.Printing.v15.2.Core.dll" ComponentId="{A9DAE3F1-6151-433F-8294-5B7339F21D12}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Printing.v15.2.Core.dll"/>
+    <ROW Component="DevExpress.Sparkline.v15.2.Core.dll" ComponentId="{F4DE1C68-B745-4440-9CA1-60D427E9BA45}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Sparkline.v15.2.Core.dll"/>
+    <ROW Component="DevExpress.Utils.v15.2.dll" ComponentId="{8EFB6C19-A16B-4407-8F1E-D61E4593BFCD}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.Utils.v15.2.dll"/>
+    <ROW Component="DevExpress.XtraEditors.v15.2.dll" ComponentId="{83F1AEA9-C28E-41A9-9DB8-0CF9A6E50549}" Directory_="APPDIR" Attributes="0" KeyPath="DevExpress.XtraEditors.v15.2.dll"/>
+    <ROW Component="IRAP.DynamicLoad.dll" ComponentId="{F14A7728-7AE1-435C-8FC5-46F230E6B07C}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.DynamicLoad.dll"/>
+    <ROW Component="IRAP.General.Server.Library.dll" ComponentId="{CEA339FC-419E-4BAB-8E51-B7577B743A52}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.General.Server.Library.dll"/>
+    <ROW Component="IRAP.Global.dll" ComponentId="{76A16C11-4353-49F5-86F4-3B0CA6CAC988}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Global.dll"/>
+    <ROW Component="IRAP.Interface.Global.dll" ComponentId="{1BD0C93A-3E0C-4639-B437-6C18A3CFC2DF}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Interface.Global.dll"/>
+    <ROW Component="IRAP.Server.Global.dll" ComponentId="{F072BAB5-0D83-4034-9D16-1C215FD7A186}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Server.Global.dll"/>
+    <ROW Component="IRAP.Server.Service.exe" ComponentId="{4D84E0DE-B30A-40F5-BFF3-FBDC8F4AD65B}" Directory_="APPDIR" Attributes="0" KeyPath="IRAP.Server.Service.exe"/>
+    <ROW Component="IRAPShared.dll" ComponentId="{F3DC964A-9A11-4250-B278-FC7F82D6F80A}" Directory_="APPDIR" Attributes="0" KeyPath="IRAPShared.dll"/>
+    <ROW Component="Oracle.DataAccess.dll" ComponentId="{3ACFA19B-B87B-480A-A838-15B4652BE953}" Directory_="APPDIR" Attributes="256" KeyPath="Oracle.DataAccess.dll"/>
+    <ROW Component="ProductInformation" ComponentId="{452AD9E4-7A85-4AE2-B11C-032A81C2AC8B}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName DevExpress.Data.v15.2.dll DevExpress.Data.v15.2.xml DevExpress.Printing.v15.2.Core.dll DevExpress.Sparkline.v15.2.Core.dll DevExpress.Utils.v15.2.dll DevExpress.XtraEditors.v15.2.dll IRAP.DynamicLoad.dll IRAP.General.Server.Library.dll IRAP.Global.dll IRAP.Interface.Global.dll IRAP.Server.Global.dll IRAP.Server.Service.exe IRAPShared.dll Oracle.DataAccess.dll ProductInformation"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="DevExpress.Data.v15.2.dll" Component_="DevExpress.Data.v15.2.dll" FileName="DEVEXP~1.DLL|DevExpress.Data.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.Data.v15.2.dll" SelfReg="false" NextFile="DevExpress.Printing.v15.2.Core.dll"/>
+    <ROW File="DevExpress.Data.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~1.XML|DevExpress.Data.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.Data.v15.2.xml" SelfReg="false" NextFile="DevExpress.Printing.v15.2.Core.xml"/>
+    <ROW File="DevExpress.Printing.v15.2.Core.dll" Component_="DevExpress.Printing.v15.2.Core.dll" FileName="DEVEXP~2.DLL|DevExpress.Printing.v15.2.Core.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.Printing.v15.2.Core.dll" SelfReg="false" NextFile="DevExpress.Sparkline.v15.2.Core.dll"/>
+    <ROW File="DevExpress.Printing.v15.2.Core.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~2.XML|DevExpress.Printing.v15.2.Core.xml" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.Printing.v15.2.Core.xml" SelfReg="false" NextFile="DevExpress.Sparkline.v15.2.Core.xml"/>
+    <ROW File="DevExpress.Sparkline.v15.2.Core.dll" Component_="DevExpress.Sparkline.v15.2.Core.dll" FileName="DEVEXP~3.DLL|DevExpress.Sparkline.v15.2.Core.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.Sparkline.v15.2.Core.dll" SelfReg="false" NextFile="DevExpress.Utils.v15.2.dll"/>
+    <ROW File="DevExpress.Sparkline.v15.2.Core.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~3.XML|DevExpress.Sparkline.v15.2.Core.xml" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.Sparkline.v15.2.Core.xml" SelfReg="false" NextFile="DevExpress.Utils.v15.2.xml"/>
+    <ROW File="DevExpress.Utils.v15.2.dll" Component_="DevExpress.Utils.v15.2.dll" FileName="DEVEXP~4.DLL|DevExpress.Utils.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.Utils.v15.2.dll" SelfReg="false" NextFile="DevExpress.XtraEditors.v15.2.dll"/>
+    <ROW File="DevExpress.Utils.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~4.XML|DevExpress.Utils.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.Utils.v15.2.xml" SelfReg="false" NextFile="DevExpress.XtraEditors.v15.2.xml"/>
+    <ROW File="DevExpress.XtraEditors.v15.2.dll" Component_="DevExpress.XtraEditors.v15.2.dll" FileName="DEVEXP~5.DLL|DevExpress.XtraEditors.v15.2.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.XtraEditors.v15.2.dll" SelfReg="false" NextFile="IRAP.DynamicLoad.dll"/>
+    <ROW File="DevExpress.XtraEditors.v15.2.xml" Component_="DevExpress.Data.v15.2.xml" FileName="DEVEXP~5.XML|DevExpress.XtraEditors.v15.2.xml" Attributes="0" SourcePath="..\..\Bin\Server\Release\DevExpress.XtraEditors.v15.2.xml" SelfReg="false"/>
+    <ROW File="IRAP.DynamicLoad.dll" Component_="IRAP.DynamicLoad.dll" FileName="IRAPDY~1.DLL|IRAP.DynamicLoad.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.DynamicLoad.dll" SelfReg="false" NextFile="IRAP.General.Server.Library.dll"/>
+    <ROW File="IRAP.General.Server.Library.dll" Component_="IRAP.General.Server.Library.dll" FileName="IRAPGE~1.DLL|IRAP.General.Server.Library.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.General.Server.Library.dll" SelfReg="false" NextFile="IRAP.Global.dll"/>
+    <ROW File="IRAP.Global.dll" Component_="IRAP.Global.dll" FileName="IRAPGL~1.DLL|IRAP.Global.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.Global.dll" SelfReg="false" NextFile="IRAP.Interface.Global.dll"/>
+    <ROW File="IRAP.Interface.Global.dll" Component_="IRAP.Interface.Global.dll" FileName="IRAPIN~1.DLL|IRAP.Interface.Global.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.Interface.Global.dll" SelfReg="false" NextFile="IRAP.Server.Global.dll"/>
+    <ROW File="IRAP.Server.Global.dll" Component_="IRAP.Server.Global.dll" FileName="IRAPSE~1.DLL|IRAP.Server.Global.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.Server.Global.dll" SelfReg="false" NextFile="IRAP.Server.Service.exe"/>
+    <ROW File="IRAP.Server.Service.exe" Component_="IRAP.Server.Service.exe" FileName="IRAPSE~1.EXE|IRAP.Server.Service.exe" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAP.Server.Service.exe" SelfReg="false" NextFile="IRAPShared.dll" DigSign="true"/>
+    <ROW File="IRAPShared.dll" Component_="IRAPShared.dll" FileName="IRAPSH~1.DLL|IRAPShared.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\IRAPShared.dll" SelfReg="false" NextFile="Oracle.DataAccess.dll"/>
+    <ROW File="Oracle.DataAccess.dll" Component_="Oracle.DataAccess.dll" FileName="ORACLE~1.DLL|Oracle.DataAccess.dll" Attributes="0" SourcePath="..\..\Bin\Server\Release\Oracle.DataAccess.dll" SelfReg="false" NextFile="DevExpress.Data.v15.2.xml"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="zh" InstallationType="4" UseLargeSchema="true"/>
+    <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_zh.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="mainicon.exe" SourcePath="..\..\Res\mainicon.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="51"/>
+    <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_DpiContentScale" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] 无法安装在 [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] 无法安装在 [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] 无法安装在 [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
+    <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName"/>
+    <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
+    <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
+    <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
+    <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
+    <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+    <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#1" Component_="AI_CustomARPName"/>
+    <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>

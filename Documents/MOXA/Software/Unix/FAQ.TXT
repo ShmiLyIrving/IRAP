@@ -1,0 +1,68 @@
+
+
+                          Frequently Asked Questions
+
+
+Product: NPort/Async Server Fixed tty driver
+Company: Moxa Inc.
+Revision date: 5/3/2005
+
+Q. Open ports might fail under SCO UnixWare and SCO OpenServer if the
+   maximum number of file descriptors is reached. How can I increase the
+   maximum number of file descriptors to solve this problem?
+
+A. When opening more than around 50 ports, the system resources might not be
+   enough in SCO Open Server and SCO UnixWare.
+
+   The problem can be solved by increasing the maximum number of the system's
+   file descriptors. Follow the below steps to rebuild the kernel
+   of the Operating System in order to increase the maximum number of
+   file descriptors.
+
+   Step 1: Locate the stune file in /etc/conf/cf.d.
+        # cd /etc/conf/cf.d
+        # ls stune
+
+   Step 2: The stune file contains local system settings for tunable
+           parameters. (The parameter settings in the stune file are used
+           to override the default values specified in the mtune file.)
+
+           Modify NOFILES parameter of the stune file in SCO Open Server,
+           or SFNOLIM parameter of the same file in SCO UnixWare, as shown
+           below. This will change the maximum number of file
+           descriptors. (Add the parameter by yourself if it is not in
+           the stune file.)
+
+           In SCO Open Server:
+                NOFILES     xxx
+
+           or, in SCO UnixWare,
+                SFNOLIM     xxx
+
+           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+           Note:
+           'xxx' represents the maximum number of file descriptors allowed
+           by the Operating Systems. The value of the parameter to be used
+           depends on your applications. You should increase the value
+           by twice the number of mapping tty ports you intend to
+           use, since each mapping tty port consumes two pseudo tty ports:
+           master port and slave port. Besides, if your application also
+           consumes file descriptors, you should count that number as well.
+
+           For instance, if you want to use 200 mapping ports, NOFILES must
+           be set to more than 400 (200 * 2 = 400).
+
+           Furthermore, if you use getty, you must set the value to more
+           than 600 (200 * 3 = 600).
+           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    Step 3: Rebuild the kernel.
+        # /etc/conf/bin/idbuild
+
+    Step 4: Reboot the system.
+        # reboot
+        or
+        # shutdown
+
+============================================================================
+

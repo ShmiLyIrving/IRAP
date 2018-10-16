@@ -1,0 +1,53 @@
+End User License Agreement
+
+Before installing the PComm Lite, you must agree to 
+Moxa's End User Product License Agreement. Please 
+read through this license agreement carefully. 
+If you do not agree to them, please DO NOT install 
+the software.
+
+Subject to the following terms and conditions, Moxa 
+Technologies Co., Ltd. (Moxa) grants to you (User) 
+a non-exclusive license to use the enclosed software 
+Product(s) and related manuals(Documentations).
+
+End User License Agreement
+
+1. Scope of License
+
+1.1 This license is granted exclusively under the 
+condition that the Product must be operated with 
+Moxa's hardware products.
+
+1.2 This license allows User to install and use the 
+Product solely on a single computer (i.e. with a 
+single central processing unit).
+
+1.3 The Product may not be transferred, sold, assigned, 
+or otherwise conveyed by User to another party without 
+Moxa's prior written consent. Transfer of the Product 
+to another computer may be made on a permanent basis.
+
+1.4 User may obtain rights to acquire Product Updates 
+and other technical services under Moxa's terms.
+
+1.5 This agreement automatically terminates if User 
+transfers possession of any copy of the Product or 
+Product Update to another party.
+
+
+2. Limited Warranty: Moxa warrants that the material of 
+both the Product media and Documentation are not 
+defective and that the software is properly recorded 
+on the media. If either the media or the Documentation 
+is physically defective, Moxa will replace it free of 
+charge during the 60-day warranty period. This Limited 
+Warranty is in effect for claims made within 60 days 
+from Users purchase of the Product.
+
+3. User agrees not to cause or permit the reverse 
+engineering, disassembly, copying, or decompilation of 
+the Product, except the reproduction for backup 
+purposes and installation of New releases, under 
+penalty of license termination but not exclusive of 
+any other remedies.

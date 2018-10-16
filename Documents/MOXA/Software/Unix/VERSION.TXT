@@ -1,0 +1,57 @@
+Product:	NPort/Async Server Fixed TTY driver 
+Version:	3.5 Build 11032510
+Date:		03/25/2011
+Company:	Moxa Inc.
+
+
+Release Note:
+Ver3.5 Build 11032510
+1. Bugfix: Fixed the zombie process problem in Freebsd 8.
+
+Ver3.4 Buile 09120111
+1. New: Support Mac OS X v10.3 later.
+2. New: Support MAC.
+3. Bugfix: Fixed pseudo tty write with resource temporarily unavailable.
+4. Bugfix: Fixed the zombie process problem in HP-Unix.
+
+Ver3.3 Build 08090315
+1.  New: Support Solaris 10 in Sparc Machine, IBM AIX 5.3. 
+2.  New: support Alpha Server.
+3.  Bugfix: Fixed driver connection problem in QNX4.
+4.  Bugfix: when NPort restart, the driver reset connection fail in big-endian
+    machine.
+5.  Bugfix: fixed moxattyd closed when user uses terminal to open port.
+6.  Bugfix: fixed -t parameter can not work in 64-bits machine.
+7.  Bugfix: Fixed NPort polling mechnism bug in QNX6.
+8.  Bugfix: fixed "Invalid Argument" message for using stty command in Solaris.
+9.  Bugfix: The driver buffer size is changed to 8192 bytes for AIX.
+10. Bugfix: moxattyd disappeared in big-endian machine.
+11. Bugfix: zombie processes being generated on QNX4 when device server is 
+  	        disconnected. 
+
+ver3.2 (11/27/2006)
+1. New: Support FreeBSD.
+2. New: Support QNX4.25.
+3. New: Support QNX6.
+4. New: Support SCO OpenServer 6.
+5. New: Add -u parameter and user_defined.cf for user self-defined pseudo-tty. 
+6. New: Add -x parameter to disable log function.
+7. Improve: Update README.TXT.
+8. Bugfix: Fix pts can not create problem for other users.
+9. Bugfix: When user open port, it would cause "permission denied" error. 
+
+
+
+Ver3.1 (8/18/2005)
+1. New: Support NPort IA model. 
+2. New: Support HP-UX.
+3. New: Add -f parameter to specify configuration file.
+4. Bugfix: Can not bind UDP Port when moxattyd daemon install over 9 target
+           machine.
+
+
+Ver3.0 (5/3/2005)
+1. New: Further verified Moxa products.
+2. New: Add an FAQ.TXT into the driver package.
+3. Bugfix: Re-initialize tty table when moxattyd daemon is informed of
+           moxattyd.cf's changes.
