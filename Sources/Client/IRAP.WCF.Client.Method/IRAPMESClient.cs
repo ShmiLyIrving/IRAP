@@ -3530,5 +3530,81 @@ namespace IRAP.WCF.Client.Method
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 终止指定产品、工位和生产批次号的生产活动
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="t216LeafID">产品叶标识</param>
+        /// <param name="t107LeafID">工位叶标识</param>
+        /// <param name="batchNumber">批次号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public void usp_SaveFact_BatchBreakProduction(
+            int communityID,
+            int t216LeafID,
+            int t107LeafID,
+            string batchNumber,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("t216LeafID", t216LeafID);
+                hashParams.Add("t107LeafID", t107LeafID);
+                hashParams.Add("batchNumber", batchNumber);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 usp_SaveFact_BatchMethodCancel，输入参数：" +
+                        "CommunityID={0}|T216LeafID={1}|T107LeafID={2}|BatchNumber={3}|" +
+                        "SysLogID={4}",
+                        communityID, t216LeafID, t107LeafID, batchNumber, sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.BatchSystem_Asimco",
+                        "usp_SaveFact_BatchBreakProduction",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format("({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = -1001;
+                errText = error.Message;
+                WriteLog.Instance.Write(errText, strProcedureName);
+                WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
