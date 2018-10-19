@@ -215,13 +215,13 @@
     <value>0, 0</value>
   </data>
   <data name="ribbonControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>728, 54</value>
+    <value>1177, 54</value>
   </data>
   <data name="ribbonStatusBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 474</value>
+    <value>0, 698</value>
   </data>
   <data name="ribbonStatusBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>728, 33</value>
+    <value>1177, 33</value>
   </data>
   <data name="&gt;&gt;ribbonStatusBar1.Name" xml:space="preserve">
     <value>ribbonStatusBar1</value>
@@ -258,7 +258,7 @@
     <value>0, 54</value>
   </data>
   <data name="ucOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>728, 47</value>
+    <value>1177, 47</value>
   </data>
   <data name="ucOptions.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -270,7 +270,7 @@
     <value>ucOptions</value>
   </data>
   <data name="&gt;&gt;ucOptions.Type" xml:space="preserve">
-    <value>IRAP.Client.SubSystem.ucOptions, IRAP.Client.SubSystem, Version=6.2.3.18, Culture=neutral, PublicKeyToken=null</value>
+    <value>IRAP.Client.SubSystem.ucOptions, IRAP.Client.SubSystem, Version=6.2.91.637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucOptions.Parent" xml:space="preserve">
     <value>$this</value>
@@ -285,7 +285,7 @@
     <value>45</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>728, 507</value>
+    <value>1177, 731</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
