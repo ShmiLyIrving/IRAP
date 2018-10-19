@@ -94,8 +94,16 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     btnPWOModify.Enabled = false;
                     btnPWORemove.Enabled = false;
 
-                    btnParamNew.Enabled = true;
-                    btnParamRemove.Enabled = true;
+                    if (pwos.Count > 0)
+                    {
+                        btnParamNew.Enabled = true;
+                        btnParamRemove.Enabled = true;
+                    }
+                    else
+                    {
+                        btnParamNew.Enabled = false;
+                        btnParamRemove.Enabled = false;
+                    }
 
                     btnBegin.Enabled = false;
                     btnTerminate.Enabled = true;
@@ -475,7 +483,11 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 else
                 {
                     prdtStatus = ProductionStatus.Busy;
-                    GetMethodStandards(0, stationInfo.T216LeafID, currentBatchNo);
+
+                    if (pwos.Count > 0)
+                    {
+                        GetMethodStandards(0, stationInfo.T216LeafID, currentBatchNo);
+                    }
                 }
 
                 pwos = data.GetPWOsFromXML();
@@ -592,6 +604,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             }
             #endregion
 
+            #region 记录生产开始
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
@@ -631,12 +644,17 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+            #endregion
 
             startDatetime = DateTime.Now;
             lblBatchNo.Text = currentBatchNo;
             lblStartTime.Text = startDatetime.ToString("yyyy-MM-dd HH:mm:ss");
 
-            GetMethodStandards(0, stationInfo.T216LeafID, currentBatchNo);
+            // 如果当前生产批次号中有工单，则获取生产过程参数
+            if (pwos.Count > 0)
+            {
+                GetMethodStandards(0, stationInfo.T216LeafID, currentBatchNo);
+            }
 
             prdtStatus = ProductionStatus.Busy;
             RefreshForm();

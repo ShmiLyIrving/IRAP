@@ -131,7 +131,6 @@
     <EmbeddedResource Include="frmReworkUnloadingSheetItem_SymbolSelect.resx">
       <DependentUpon>frmReworkUnloadingSheetItem_SymbolSelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

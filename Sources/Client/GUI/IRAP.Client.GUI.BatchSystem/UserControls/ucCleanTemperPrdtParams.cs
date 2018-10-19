@@ -80,6 +80,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     btnParamRemove.Enabled = false;
 
                     btnBegin.Enabled = true;
+                    btnTerminate.Enabled = false;
                     btnEnd.Enabled = false;
 
                     break;
@@ -95,6 +96,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     btnParamRemove.Enabled = true;
 
                     btnBegin.Enabled = false;
+                    btnTerminate.Enabled = true;
                     btnEnd.Enabled = true;
 
                     break;
@@ -808,6 +810,68 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
 
             prdtStatus = ProductionStatus.Busy;
             RefreshForm();
+        }
+
+        private void btnTerminate_Click(object sender, EventArgs e)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPMESClient.Instance.usp_SaveFact_BatchBreakProduction(
+                    IRAPUser.Instance.CommunityID,
+                    stationInfo.T216LeafID,
+                    stationInfo.T107LeafID,
+                    currentBatchNo,
+                    IRAPUser.Instance.SysLogID,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        string.Format("在生产终止时发生错误：[{0}]", errText),
+                        "系统信息",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    currentOperator = null;
+                    currentBatchNo = "";
+                    startDatetime = DateTime.Now;
+                    pwos.Clear();
+                    ppp.Clear();
+                    InitMethodParamsGrid(ppp);
+
+                    edtOperatorCode.Text = "";
+                    lblBatchNo.Text = "";
+                    lblProductTimeSpan.Text = "";
+                    lblStartTime.Text = "";
+
+                    GetDevices();
+                    grdPWOs.RefreshDataSource();
+
+                    GetMethodStandards(0, 0, "");
+
+                    prdtStatus = ProductionStatus.Idle;
+                    RefreshForm();
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
         }
 
         private void btnEnd_Click(object sender, EventArgs e)

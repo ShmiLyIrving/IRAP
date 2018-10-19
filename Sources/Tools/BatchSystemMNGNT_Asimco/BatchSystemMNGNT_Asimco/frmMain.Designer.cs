@@ -91,8 +91,8 @@
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::BatchSystemMNGNT_Asimco.frmWaitting), true, true);
             this.tcMain = new DevExpress.XtraTab.XtraTabControl();
-            this.tpWebServiceLogs = new DevExpress.XtraTab.XtraTabPage();
             this.tpUnclosedDelivery = new DevExpress.XtraTab.XtraTabPage();
+            this.tpWebServiceLogs = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -793,13 +793,19 @@
             this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcMain.Location = new System.Drawing.Point(0, 156);
             this.tcMain.Name = "tcMain";
-            this.tcMain.SelectedTabPage = this.tpUnclosedDelivery;
+            this.tcMain.SelectedTabPage = this.tpWebServiceLogs;
             this.tcMain.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
             this.tcMain.Size = new System.Drawing.Size(1158, 681);
             this.tcMain.TabIndex = 5;
             this.tcMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tpWebServiceLogs,
             this.tpUnclosedDelivery});
+            // 
+            // tpUnclosedDelivery
+            // 
+            this.tpUnclosedDelivery.Name = "tpUnclosedDelivery";
+            this.tpUnclosedDelivery.Size = new System.Drawing.Size(1156, 679);
+            this.tpUnclosedDelivery.Text = "xtraTabPage1";
             // 
             // tpWebServiceLogs
             // 
@@ -809,12 +815,6 @@
             this.tpWebServiceLogs.Padding = new System.Windows.Forms.Padding(5);
             this.tpWebServiceLogs.Size = new System.Drawing.Size(1156, 679);
             this.tpWebServiceLogs.Text = "xtraTabPage1";
-            // 
-            // tpUnclosedDelivery
-            // 
-            this.tpUnclosedDelivery.Name = "tpUnclosedDelivery";
-            this.tpUnclosedDelivery.Size = new System.Drawing.Size(1156, 679);
-            this.tpUnclosedDelivery.Text = "xtraTabPage1";
             // 
             // frmMain
             // 

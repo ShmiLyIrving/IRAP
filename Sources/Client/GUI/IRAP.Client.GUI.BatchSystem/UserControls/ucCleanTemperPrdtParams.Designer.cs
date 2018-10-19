@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.lblCurrentTime = new DevExpress.XtraEditors.LabelControl();
             this.btnEnd = new DevExpress.XtraEditors.SimpleButton();
-            this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
+            this.btnTerminate = new DevExpress.XtraEditors.SimpleButton();
             this.vgrdMethodParams = new DevExpress.XtraVerticalGrid.VGridControl();
             this.btnParamRemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnParamNew = new DevExpress.XtraEditors.SimpleButton();
@@ -59,6 +59,7 @@
             this.lblBatchNos = new DevExpress.XtraEditors.LabelControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.vgrdMethodParams)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPWOs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPWOs)).BeginInit();
@@ -97,17 +98,16 @@
             this.btnEnd.Text = "生产结束";
             this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
-            // btnBegin
+            // btnTerminate
             // 
-            this.btnBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBegin.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBegin.Appearance.Options.UseFont = true;
-            this.btnBegin.Location = new System.Drawing.Point(746, 517);
-            this.btnBegin.Name = "btnBegin";
-            this.btnBegin.Size = new System.Drawing.Size(118, 43);
-            this.btnBegin.TabIndex = 7;
-            this.btnBegin.Text = "生产开始";
-            this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
+            this.btnTerminate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTerminate.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTerminate.Appearance.Options.UseFont = true;
+            this.btnTerminate.Location = new System.Drawing.Point(746, 517);
+            this.btnTerminate.Name = "btnTerminate";
+            this.btnTerminate.Size = new System.Drawing.Size(118, 43);
+            this.btnTerminate.TabIndex = 7;
+            this.btnTerminate.Text = "生产终止";
             // 
             // vgrdMethodParams
             // 
@@ -471,12 +471,25 @@
             this.splitContainerControl1.TabIndex = 6;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
+            // btnBegin
+            // 
+            this.btnBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBegin.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBegin.Appearance.Options.UseFont = true;
+            this.btnBegin.Location = new System.Drawing.Point(575, 517);
+            this.btnBegin.Name = "btnBegin";
+            this.btnBegin.Size = new System.Drawing.Size(118, 43);
+            this.btnBegin.TabIndex = 10;
+            this.btnBegin.Text = "生产开始";
+            this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
+            // 
             // ucCleanTemperPrdtParams
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.btnBegin);
             this.Controls.Add(this.lblCurrentTime);
             this.Controls.Add(this.btnEnd);
-            this.Controls.Add(this.btnBegin);
+            this.Controls.Add(this.btnTerminate);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "ucCleanTemperPrdtParams";
             this.Size = new System.Drawing.Size(1045, 579);
@@ -504,7 +517,7 @@
 
         private DevExpress.XtraEditors.LabelControl lblCurrentTime;
         private DevExpress.XtraEditors.SimpleButton btnEnd;
-        private DevExpress.XtraEditors.SimpleButton btnBegin;
+        private DevExpress.XtraEditors.SimpleButton btnTerminate;
         private DevExpress.XtraVerticalGrid.VGridControl vgrdMethodParams;
         private DevExpress.XtraEditors.SimpleButton btnParamRemove;
         private DevExpress.XtraEditors.SimpleButton btnParamNew;
@@ -532,5 +545,6 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.LabelControl lblDevices;
         private DevExpress.XtraEditors.ComboBoxEdit cboBatchNos;
+        private DevExpress.XtraEditors.SimpleButton btnBegin;
     }
 }
