@@ -451,6 +451,9 @@ namespace IRAP.BL.MES
                         errCode = error.ErrCode;
                         errText = error.ErrText;
                         string  outputStr = paramList[20].Value.ToString();
+                        WriteLog.Instance.Write(
+                            $"OutpuStr={outputStr}",
+                            strProcedureName);
                         return Json(outputStr);
                     }
                 }

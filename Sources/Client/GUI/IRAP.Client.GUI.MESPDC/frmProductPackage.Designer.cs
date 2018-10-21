@@ -81,6 +81,7 @@
             this.il = new System.Windows.Forms.ImageList(this.components);
             this.splitContainerControl4 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl5 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.lblPalletPackageType = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lpPackage.Properties)).BeginInit();
@@ -160,7 +161,7 @@
             this.lpPackage.Properties.NullText = "[请选择包装规格]";
             this.lpPackage.Properties.ShowFooter = false;
             this.lpPackage.Properties.ShowHeader = false;
-            this.lpPackage.Size = new System.Drawing.Size(580, 26);
+            this.lpPackage.Size = new System.Drawing.Size(762, 26);
             this.lpPackage.TabIndex = 2;
             this.lpPackage.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.lpPackage_QueryPopUp);
             this.lpPackage.EditValueChanged += new System.EventHandler(this.lpPackage_EditValueChanged);
@@ -170,7 +171,7 @@
             this.lblSmallPackageType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSmallPackageType.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F);
             this.lblSmallPackageType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblSmallPackageType.Location = new System.Drawing.Point(627, 28);
+            this.lblSmallPackageType.Location = new System.Drawing.Point(250, 44);
             this.lblSmallPackageType.Name = "lblSmallPackageType";
             this.lblSmallPackageType.Size = new System.Drawing.Size(174, 19);
             this.lblSmallPackageType.TabIndex = 3;
@@ -181,7 +182,7 @@
             this.lblLargePackageType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLargePackageType.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLargePackageType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblLargePackageType.Location = new System.Drawing.Point(627, 3);
+            this.lblLargePackageType.Location = new System.Drawing.Point(430, 44);
             this.lblLargePackageType.Name = "lblLargePackageType";
             this.lblLargePackageType.Size = new System.Drawing.Size(174, 19);
             this.lblLargePackageType.TabIndex = 4;
@@ -214,7 +215,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(810, 320);
+            this.layoutControl1.Size = new System.Drawing.Size(810, 304);
             this.layoutControl1.TabIndex = 13;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -232,7 +233,7 @@
             this.grpBox.Controls.Add(this.splitContainerControl3);
             this.grpBox.Location = new System.Drawing.Point(12, 72);
             this.grpBox.Name = "grpBox";
-            this.grpBox.Size = new System.Drawing.Size(287, 236);
+            this.grpBox.Size = new System.Drawing.Size(287, 220);
             this.grpBox.TabIndex = 14;
             this.grpBox.Text = "小包装";
             // 
@@ -246,8 +247,8 @@
             this.splitContainerControl3.Panel1.Text = "Panel1";
             this.splitContainerControl3.Panel2.Controls.Add(this.dgvBoxLayer);
             this.splitContainerControl3.Panel2.Text = "Panel2";
-            this.splitContainerControl3.Size = new System.Drawing.Size(283, 208);
-            this.splitContainerControl3.SplitterPosition = 75;
+            this.splitContainerControl3.Size = new System.Drawing.Size(283, 192);
+            this.splitContainerControl3.SplitterPosition = 120;
             this.splitContainerControl3.TabIndex = 17;
             this.splitContainerControl3.Text = "splitContainerControl3";
             // 
@@ -286,7 +287,7 @@
             this.dgvBox.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBox.RowTemplate.Height = 23;
             this.dgvBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvBox.Size = new System.Drawing.Size(203, 208);
+            this.dgvBox.Size = new System.Drawing.Size(158, 192);
             this.dgvBox.TabIndex = 9;
             this.dgvBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBox_CellClick);
             this.dgvBox.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.dgvBox_CellToolTipTextNeeded);
@@ -330,7 +331,7 @@
             this.dgvBoxLayer.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBoxLayer.RowTemplate.Height = 23;
             this.dgvBoxLayer.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvBoxLayer.Size = new System.Drawing.Size(75, 208);
+            this.dgvBoxLayer.Size = new System.Drawing.Size(120, 192);
             this.dgvBoxLayer.TabIndex = 7;
             this.dgvBoxLayer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoxLayer_CellClick);
             this.dgvBoxLayer.SelectionChanged += new System.EventHandler(this.dgvBoxLayer_SelectionChanged);
@@ -358,7 +359,7 @@
             this.grpCarton.Controls.Add(this.splitContainerControl2);
             this.grpCarton.Location = new System.Drawing.Point(303, 72);
             this.grpCarton.Name = "grpCarton";
-            this.grpCarton.Size = new System.Drawing.Size(272, 236);
+            this.grpCarton.Size = new System.Drawing.Size(272, 220);
             this.grpCarton.TabIndex = 15;
             this.grpCarton.Text = "大包装";
             // 
@@ -372,8 +373,8 @@
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.dgvCartonLayer);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(268, 208);
-            this.splitContainerControl2.SplitterPosition = 75;
+            this.splitContainerControl2.Size = new System.Drawing.Size(268, 192);
+            this.splitContainerControl2.SplitterPosition = 120;
             this.splitContainerControl2.TabIndex = 15;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
@@ -412,7 +413,7 @@
             this.dgvCarton.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvCarton.RowTemplate.Height = 23;
             this.dgvCarton.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvCarton.Size = new System.Drawing.Size(188, 208);
+            this.dgvCarton.Size = new System.Drawing.Size(143, 192);
             this.dgvCarton.TabIndex = 12;
             this.dgvCarton.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarton_CellClick);
             this.dgvCarton.SelectionChanged += new System.EventHandler(this.dgvCarton_SelectionChanged);
@@ -455,7 +456,7 @@
             this.dgvCartonLayer.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvCartonLayer.RowTemplate.Height = 23;
             this.dgvCartonLayer.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvCartonLayer.Size = new System.Drawing.Size(75, 208);
+            this.dgvCartonLayer.Size = new System.Drawing.Size(120, 192);
             this.dgvCartonLayer.TabIndex = 10;
             this.dgvCartonLayer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCartonLayer_CellClick);
             this.dgvCartonLayer.SelectionChanged += new System.EventHandler(this.dgvCartonLayer_SelectionChanged);
@@ -483,7 +484,7 @@
             this.grpPallet.Controls.Add(this.splitContainerControl1);
             this.grpPallet.Location = new System.Drawing.Point(579, 72);
             this.grpPallet.Name = "grpPallet";
-            this.grpPallet.Size = new System.Drawing.Size(219, 236);
+            this.grpPallet.Size = new System.Drawing.Size(219, 220);
             this.grpPallet.TabIndex = 10;
             this.grpPallet.Text = "托";
             // 
@@ -498,8 +499,8 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.dgvPalletLayer);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(215, 208);
-            this.splitContainerControl1.SplitterPosition = 75;
+            this.splitContainerControl1.Size = new System.Drawing.Size(215, 192);
+            this.splitContainerControl1.SplitterPosition = 120;
             this.splitContainerControl1.TabIndex = 14;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -538,7 +539,7 @@
             this.dgvPallet.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvPallet.RowTemplate.Height = 23;
             this.dgvPallet.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvPallet.Size = new System.Drawing.Size(135, 208);
+            this.dgvPallet.Size = new System.Drawing.Size(90, 192);
             this.dgvPallet.TabIndex = 12;
             this.dgvPallet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPallet_CellClick);
             this.dgvPallet.SelectionChanged += new System.EventHandler(this.dgvPallet_SelectionChanged);
@@ -580,7 +581,7 @@
             this.dgvPalletLayer.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvPalletLayer.RowTemplate.Height = 23;
             this.dgvPalletLayer.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvPalletLayer.Size = new System.Drawing.Size(75, 208);
+            this.dgvPalletLayer.Size = new System.Drawing.Size(120, 192);
             this.dgvPalletLayer.TabIndex = 10;
             this.dgvPalletLayer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPalletLayer_CellClick);
             this.dgvPalletLayer.SelectionChanged += new System.EventHandler(this.dgvPalletLayer_SelectionChanged);
@@ -653,7 +654,7 @@
             this.layoutControlItem3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(810, 320);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(810, 304);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItemBox
@@ -661,7 +662,7 @@
             this.layoutControlItemBox.Control = this.grpBox;
             this.layoutControlItemBox.Location = new System.Drawing.Point(0, 60);
             this.layoutControlItemBox.Name = "layoutControlItemBox";
-            this.layoutControlItemBox.Size = new System.Drawing.Size(291, 240);
+            this.layoutControlItemBox.Size = new System.Drawing.Size(291, 224);
             this.layoutControlItemBox.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItemBox.TextVisible = false;
             // 
@@ -670,7 +671,7 @@
             this.layoutControlItemCarton.Control = this.grpCarton;
             this.layoutControlItemCarton.Location = new System.Drawing.Point(291, 60);
             this.layoutControlItemCarton.Name = "layoutControlItemCarton";
-            this.layoutControlItemCarton.Size = new System.Drawing.Size(276, 240);
+            this.layoutControlItemCarton.Size = new System.Drawing.Size(276, 224);
             this.layoutControlItemCarton.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItemCarton.TextVisible = false;
             // 
@@ -679,7 +680,7 @@
             this.layoutControlItemPallet.Control = this.grpPallet;
             this.layoutControlItemPallet.Location = new System.Drawing.Point(567, 60);
             this.layoutControlItemPallet.Name = "layoutControlItemPallet";
-            this.layoutControlItemPallet.Size = new System.Drawing.Size(223, 240);
+            this.layoutControlItemPallet.Size = new System.Drawing.Size(223, 224);
             this.layoutControlItemPallet.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItemPallet.TextVisible = false;
             // 
@@ -817,12 +818,12 @@
             // 
             this.splitContainerControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl5.Horizontal = false;
-            this.splitContainerControl5.IsSplitterFixed = true;
             this.splitContainerControl5.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl5.Name = "splitContainerControl5";
             this.splitContainerControl5.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl5.Panel1.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl5.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl5.Panel1.Controls.Add(this.lblPalletPackageType);
             this.splitContainerControl5.Panel1.Controls.Add(this.lpPackage);
             this.splitContainerControl5.Panel1.Controls.Add(this.lblLargePackageType);
             this.splitContainerControl5.Panel1.Controls.Add(this.lblSmallPackageType);
@@ -831,9 +832,20 @@
             this.splitContainerControl5.Panel2.Controls.Add(this.layoutControl1);
             this.splitContainerControl5.Panel2.Text = "Panel2";
             this.splitContainerControl5.Size = new System.Drawing.Size(810, 407);
-            this.splitContainerControl5.SplitterPosition = 82;
+            this.splitContainerControl5.SplitterPosition = 98;
             this.splitContainerControl5.TabIndex = 0;
             this.splitContainerControl5.Text = "splitContainerControl5";
+            // 
+            // lblPalletPackageType
+            // 
+            this.lblPalletPackageType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPalletPackageType.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPalletPackageType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblPalletPackageType.Location = new System.Drawing.Point(610, 44);
+            this.lblPalletPackageType.Name = "lblPalletPackageType";
+            this.lblPalletPackageType.Size = new System.Drawing.Size(174, 19);
+            this.lblPalletPackageType.TabIndex = 5;
+            this.lblPalletPackageType.Text = "托包装： XX 层 XX 个大包装";
             // 
             // frmProductPackage
             // 
@@ -932,5 +944,6 @@
         private System.Windows.Forms.ImageList il;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl4;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl5;
+        private DevExpress.XtraEditors.LabelControl lblPalletPackageType;
     }
 }
