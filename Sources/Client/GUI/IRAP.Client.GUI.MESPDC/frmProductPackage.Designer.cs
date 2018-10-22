@@ -171,7 +171,7 @@
             this.lblSmallPackageType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSmallPackageType.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F);
             this.lblSmallPackageType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblSmallPackageType.Location = new System.Drawing.Point(250, 44);
+            this.lblSmallPackageType.Location = new System.Drawing.Point(226, 44);
             this.lblSmallPackageType.Name = "lblSmallPackageType";
             this.lblSmallPackageType.Size = new System.Drawing.Size(174, 19);
             this.lblSmallPackageType.TabIndex = 3;
@@ -182,7 +182,7 @@
             this.lblLargePackageType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLargePackageType.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLargePackageType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblLargePackageType.Location = new System.Drawing.Point(430, 44);
+            this.lblLargePackageType.Location = new System.Drawing.Point(406, 44);
             this.lblLargePackageType.Name = "lblLargePackageType";
             this.lblLargePackageType.Size = new System.Drawing.Size(174, 19);
             this.lblLargePackageType.TabIndex = 4;
@@ -841,11 +841,11 @@
             this.lblPalletPackageType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPalletPackageType.Appearance.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPalletPackageType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblPalletPackageType.Location = new System.Drawing.Point(610, 44);
+            this.lblPalletPackageType.Location = new System.Drawing.Point(586, 44);
             this.lblPalletPackageType.Name = "lblPalletPackageType";
-            this.lblPalletPackageType.Size = new System.Drawing.Size(174, 19);
+            this.lblPalletPackageType.Size = new System.Drawing.Size(198, 19);
             this.lblPalletPackageType.TabIndex = 5;
-            this.lblPalletPackageType.Text = "托包装： XX 层 XX 个大包装";
+            this.lblPalletPackageType.Text = "托包装： XX 层 XX 个大包装每层";
             // 
             // frmProductPackage
             // 
