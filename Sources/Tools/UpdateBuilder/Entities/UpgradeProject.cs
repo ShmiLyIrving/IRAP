@@ -281,7 +281,7 @@ namespace UpdateBuilder
             XmlDocument xml = new XmlDocument();
             try
             {
-                xml.LoadXml
+                //xml.LoadXml
             }
             catch (Exception error)
             {
