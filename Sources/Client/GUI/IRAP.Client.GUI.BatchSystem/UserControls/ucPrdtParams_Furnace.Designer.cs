@@ -1,6 +1,6 @@
 ﻿namespace IRAP.Client.GUI.BatchSystem.UserControls
 {
-    partial class ucFurnacePrdtParams
+    partial class ucPrdtParams_Furnace
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.ilstBatchNos = new DevExpress.XtraEditors.ImageListBoxControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
             this.lblProductTimeSpan = new DevExpress.XtraEditors.LabelControl();
             this.lblBatchNo = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.lblCurrentBatchNoName = new DevExpress.XtraEditors.LabelControl();
             this.lblStartTime = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.edtOperatorCode = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblOperator = new DevExpress.XtraEditors.LabelControl();
+            this.btnSelectMaterialPreparation = new DevExpress.XtraEditors.SimpleButton();
             this.btnPWORemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnPWOModify = new DevExpress.XtraEditors.SimpleButton();
             this.btnPWONew = new DevExpress.XtraEditors.SimpleButton();
@@ -53,46 +55,79 @@
             this.vgrdMethodParams = new DevExpress.XtraVerticalGrid.VGridControl();
             this.btnParamRemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnParamNew = new DevExpress.XtraEditors.SimpleButton();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnMaterialPreparation = new DevExpress.XtraEditors.SimpleButton();
+            this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
             this.btnEnd = new DevExpress.XtraEditors.SimpleButton();
             this.btnTerminate = new DevExpress.XtraEditors.SimpleButton();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.lblCurrentTime = new DevExpress.XtraEditors.LabelControl();
-            this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
+            this.timer = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ilstBatchNos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             this.splitContainerControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).BeginInit();
+            this.splitContainerControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtOperatorCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPWOs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPWOs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vgrdMethodParams)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
             // 
-            this.splitContainerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainerControl1.Horizontal = false;
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl1.IsSplitterFixed = true;
             this.splitContainerControl1.Location = new System.Drawing.Point(5, 5);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainerControl1.Panel2.AppearanceCaption.Options.UseFont = true;
-            this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.splitContainerControl1.Panel2.Controls.Add(this.vgrdMethodParams);
-            this.splitContainerControl1.Panel2.Controls.Add(this.btnParamRemove);
-            this.splitContainerControl1.Panel2.Controls.Add(this.btnParamNew);
-            this.splitContainerControl1.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainerControl1.Panel2.ShowCaption = true;
-            this.splitContainerControl1.Panel2.Text = "生产过程参数";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1035, 499);
-            this.splitContainerControl1.SplitterPosition = 308;
-            this.splitContainerControl1.TabIndex = 1;
+            this.splitContainerControl1.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl1.Panel1.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.splitContainerControl1.Panel1.Controls.Add(this.ilstBatchNos);
+            this.splitContainerControl1.Panel1.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl1.Panel1.ShowCaption = true;
+            this.splitContainerControl1.Panel1.Text = "正在生产的炉次号";
+            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
+            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl2);
+            this.splitContainerControl1.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Size = new System.Drawing.Size(1035, 569);
+            this.splitContainerControl1.SplitterPosition = 229;
+            this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // ilstBatchNos
+            // 
+            this.ilstBatchNos.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ilstBatchNos.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.ilstBatchNos.Appearance.Options.UseFont = true;
+            this.ilstBatchNos.Appearance.Options.UseForeColor = true;
+            this.ilstBatchNos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ilstBatchNos.ItemHeight = 35;
+            this.ilstBatchNos.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageListBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageListBoxItem(null, "CA18103001"),
+            new DevExpress.XtraEditors.Controls.ImageListBoxItem(null, "<新炉次>")});
+            this.ilstBatchNos.Location = new System.Drawing.Point(5, 5);
+            this.ilstBatchNos.Name = "ilstBatchNos";
+            this.ilstBatchNos.Size = new System.Drawing.Size(215, 525);
+            this.ilstBatchNos.TabIndex = 0;
+            this.ilstBatchNos.SelectedIndexChanged += new System.EventHandler(this.ilstBatchNos_SelectedIndexChanged);
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.splitContainerControl2);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(5, 5);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(791, 494);
+            this.panelControl1.TabIndex = 0;
             // 
             // splitContainerControl2
             // 
@@ -100,31 +135,53 @@
             this.splitContainerControl2.Horizontal = false;
             this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl2.Name = "splitContainerControl2";
-            this.splitContainerControl2.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainerControl2.Panel1.AppearanceCaption.Options.UseFont = true;
-            this.splitContainerControl2.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.splitContainerControl2.Panel1.Controls.Add(this.lblProductTimeSpan);
-            this.splitContainerControl2.Panel1.Controls.Add(this.lblBatchNo);
-            this.splitContainerControl2.Panel1.Controls.Add(this.labelControl3);
-            this.splitContainerControl2.Panel1.Controls.Add(this.lblStartTime);
-            this.splitContainerControl2.Panel1.Controls.Add(this.labelControl4);
-            this.splitContainerControl2.Panel1.Controls.Add(this.groupControl1);
-            this.splitContainerControl2.Panel1.ShowCaption = true;
-            this.splitContainerControl2.Panel1.Text = "生产信息";
+            this.splitContainerControl2.Panel1.Controls.Add(this.splitContainerControl3);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl2.Panel2.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.splitContainerControl2.Panel2.Controls.Add(this.btnPWORemove);
-            this.splitContainerControl2.Panel2.Controls.Add(this.btnPWOModify);
-            this.splitContainerControl2.Panel2.Controls.Add(this.btnPWONew);
-            this.splitContainerControl2.Panel2.Controls.Add(this.grdPWOs);
+            this.splitContainerControl2.Panel2.Controls.Add(this.vgrdMethodParams);
+            this.splitContainerControl2.Panel2.Controls.Add(this.btnParamRemove);
+            this.splitContainerControl2.Panel2.Controls.Add(this.btnParamNew);
             this.splitContainerControl2.Panel2.Padding = new System.Windows.Forms.Padding(10);
             this.splitContainerControl2.Panel2.ShowCaption = true;
-            this.splitContainerControl2.Panel2.Text = "生产产品信息";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1035, 308);
-            this.splitContainerControl2.SplitterPosition = 120;
-            this.splitContainerControl2.TabIndex = 0;
+            this.splitContainerControl2.Panel2.Text = "生产过程参数";
+            this.splitContainerControl2.Size = new System.Drawing.Size(791, 494);
+            this.splitContainerControl2.SplitterPosition = 308;
+            this.splitContainerControl2.TabIndex = 2;
             this.splitContainerControl2.Text = "splitContainerControl2";
+            // 
+            // splitContainerControl3
+            // 
+            this.splitContainerControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl3.Horizontal = false;
+            this.splitContainerControl3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl3.Name = "splitContainerControl3";
+            this.splitContainerControl3.Panel1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl3.Panel1.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl3.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.splitContainerControl3.Panel1.Controls.Add(this.lblProductTimeSpan);
+            this.splitContainerControl3.Panel1.Controls.Add(this.lblBatchNo);
+            this.splitContainerControl3.Panel1.Controls.Add(this.lblCurrentBatchNoName);
+            this.splitContainerControl3.Panel1.Controls.Add(this.lblStartTime);
+            this.splitContainerControl3.Panel1.Controls.Add(this.groupControl1);
+            this.splitContainerControl3.Panel1.ShowCaption = true;
+            this.splitContainerControl3.Panel1.Text = "生产信息";
+            this.splitContainerControl3.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainerControl3.Panel2.AppearanceCaption.Options.UseFont = true;
+            this.splitContainerControl3.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.splitContainerControl3.Panel2.Controls.Add(this.btnSelectMaterialPreparation);
+            this.splitContainerControl3.Panel2.Controls.Add(this.btnPWORemove);
+            this.splitContainerControl3.Panel2.Controls.Add(this.btnPWOModify);
+            this.splitContainerControl3.Panel2.Controls.Add(this.btnPWONew);
+            this.splitContainerControl3.Panel2.Controls.Add(this.grdPWOs);
+            this.splitContainerControl3.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainerControl3.Panel2.ShowCaption = true;
+            this.splitContainerControl3.Panel2.Text = "生产产品信息";
+            this.splitContainerControl3.Size = new System.Drawing.Size(791, 308);
+            this.splitContainerControl3.SplitterPosition = 120;
+            this.splitContainerControl3.TabIndex = 0;
+            this.splitContainerControl3.Text = "splitContainerControl3";
             // 
             // lblProductTimeSpan
             // 
@@ -134,7 +191,7 @@
             this.lblProductTimeSpan.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lblProductTimeSpan.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblProductTimeSpan.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblProductTimeSpan.Location = new System.Drawing.Point(632, 60);
+            this.lblProductTimeSpan.Location = new System.Drawing.Point(388, 60);
             this.lblProductTimeSpan.Name = "lblProductTimeSpan";
             this.lblProductTimeSpan.Size = new System.Drawing.Size(388, 20);
             this.lblProductTimeSpan.TabIndex = 11;
@@ -147,23 +204,23 @@
             this.lblBatchNo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lblBatchNo.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblBatchNo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblBatchNo.Location = new System.Drawing.Point(808, 8);
+            this.lblBatchNo.Location = new System.Drawing.Point(564, 8);
             this.lblBatchNo.Name = "lblBatchNo";
             this.lblBatchNo.Size = new System.Drawing.Size(212, 46);
             this.lblBatchNo.TabIndex = 10;
             // 
-            // labelControl3
+            // lblCurrentBatchNoName
             // 
-            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("微软雅黑", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl3.Location = new System.Drawing.Point(632, 8);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(170, 46);
-            this.labelControl3.TabIndex = 9;
-            this.labelControl3.Text = "当前炉次：";
+            this.lblCurrentBatchNoName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCurrentBatchNoName.Appearance.Font = new System.Drawing.Font("微软雅黑", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCurrentBatchNoName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblCurrentBatchNoName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblCurrentBatchNoName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblCurrentBatchNoName.Location = new System.Drawing.Point(388, 8);
+            this.lblCurrentBatchNoName.Name = "lblCurrentBatchNoName";
+            this.lblCurrentBatchNoName.Size = new System.Drawing.Size(170, 46);
+            this.lblCurrentBatchNoName.TabIndex = 9;
+            this.lblCurrentBatchNoName.Text = "当前炉次：";
             // 
             // lblStartTime
             // 
@@ -173,25 +230,11 @@
             this.lblStartTime.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lblStartTime.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblStartTime.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblStartTime.Location = new System.Drawing.Point(863, 34);
+            this.lblStartTime.Location = new System.Drawing.Point(619, 34);
             this.lblStartTime.Name = "lblStartTime";
             this.lblStartTime.Size = new System.Drawing.Size(157, 20);
             this.lblStartTime.TabIndex = 7;
             this.lblStartTime.Visible = false;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(759, 34);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(98, 20);
-            this.labelControl4.TabIndex = 4;
-            this.labelControl4.Text = "生产开始时间：";
-            this.labelControl4.Visible = false;
             // 
             // groupControl1
             // 
@@ -201,10 +244,10 @@
             this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.Controls.Add(this.edtOperatorCode);
-            this.groupControl1.Controls.Add(this.labelControl1);
+            this.groupControl1.Controls.Add(this.lblOperator);
             this.groupControl1.Location = new System.Drawing.Point(8, 8);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(604, 77);
+            this.groupControl1.Size = new System.Drawing.Size(360, 77);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "操作信息";
             // 
@@ -223,50 +266,62 @@
             this.edtOperatorCode.TabIndex = 1;
             this.edtOperatorCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtOperatorCode_KeyDown);
             // 
-            // labelControl1
+            // lblOperator
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.labelControl1.Location = new System.Drawing.Point(13, 41);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(56, 20);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "操作工：";
+            this.lblOperator.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.lblOperator.Location = new System.Drawing.Point(13, 41);
+            this.lblOperator.Name = "lblOperator";
+            this.lblOperator.Size = new System.Drawing.Size(56, 20);
+            this.lblOperator.TabIndex = 0;
+            this.lblOperator.Text = "操作工：";
+            // 
+            // btnSelectMaterialPreparation
+            // 
+            this.btnSelectMaterialPreparation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelectMaterialPreparation.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectMaterialPreparation.Appearance.Options.UseFont = true;
+            this.btnSelectMaterialPreparation.Location = new System.Drawing.Point(681, 7);
+            this.btnSelectMaterialPreparation.Name = "btnSelectMaterialPreparation";
+            this.btnSelectMaterialPreparation.Size = new System.Drawing.Size(95, 30);
+            this.btnSelectMaterialPreparation.TabIndex = 6;
+            this.btnSelectMaterialPreparation.Text = "备料选择";
+            this.btnSelectMaterialPreparation.Click += new System.EventHandler(this.btnSelectMaterialPreparation_Click);
             // 
             // btnPWORemove
             // 
             this.btnPWORemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPWORemove.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPWORemove.Appearance.Options.UseFont = true;
-            this.btnPWORemove.Location = new System.Drawing.Point(925, 93);
+            this.btnPWORemove.Location = new System.Drawing.Point(681, 79);
             this.btnPWORemove.Name = "btnPWORemove";
             this.btnPWORemove.Size = new System.Drawing.Size(95, 30);
             this.btnPWORemove.TabIndex = 5;
             this.btnPWORemove.Text = "删除";
-            this.btnPWORemove.Click += new System.EventHandler(this.btnPWORemove_Click);
+            this.btnPWORemove.Visible = false;
             // 
             // btnPWOModify
             // 
             this.btnPWOModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPWOModify.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPWOModify.Appearance.Options.UseFont = true;
-            this.btnPWOModify.Location = new System.Drawing.Point(925, 50);
+            this.btnPWOModify.Location = new System.Drawing.Point(681, 43);
             this.btnPWOModify.Name = "btnPWOModify";
             this.btnPWOModify.Size = new System.Drawing.Size(95, 30);
             this.btnPWOModify.TabIndex = 4;
             this.btnPWOModify.Text = "修改";
-            this.btnPWOModify.Click += new System.EventHandler(this.btnPWOModify_Click);
+            this.btnPWOModify.Visible = false;
             // 
             // btnPWONew
             // 
             this.btnPWONew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPWONew.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPWONew.Appearance.Options.UseFont = true;
-            this.btnPWONew.Location = new System.Drawing.Point(925, 7);
+            this.btnPWONew.Location = new System.Drawing.Point(681, 7);
             this.btnPWONew.Name = "btnPWONew";
             this.btnPWONew.Size = new System.Drawing.Size(95, 30);
             this.btnPWONew.TabIndex = 3;
             this.btnPWONew.Text = "新增";
-            this.btnPWONew.Click += new System.EventHandler(this.btnPWONew_Click);
+            this.btnPWONew.Visible = false;
             // 
             // grdPWOs
             // 
@@ -276,7 +331,7 @@
             this.grdPWOs.Location = new System.Drawing.Point(8, 7);
             this.grdPWOs.MainView = this.grdvPWOs;
             this.grdPWOs.Name = "grdPWOs";
-            this.grdPWOs.Size = new System.Drawing.Size(901, 138);
+            this.grdPWOs.Size = new System.Drawing.Size(657, 138);
             this.grdPWOs.TabIndex = 0;
             this.grdPWOs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvPWOs});
@@ -371,7 +426,7 @@
             this.vgrdMethodParams.Name = "vgrdMethodParams";
             this.vgrdMethodParams.OptionsBehavior.Editable = false;
             this.vgrdMethodParams.RowHeaderWidth = 113;
-            this.vgrdMethodParams.Size = new System.Drawing.Size(895, 138);
+            this.vgrdMethodParams.Size = new System.Drawing.Size(651, 133);
             this.vgrdMethodParams.TabIndex = 7;
             // 
             // btnParamRemove
@@ -379,24 +434,59 @@
             this.btnParamRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnParamRemove.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnParamRemove.Appearance.Options.UseFont = true;
-            this.btnParamRemove.Location = new System.Drawing.Point(925, 44);
+            this.btnParamRemove.Location = new System.Drawing.Point(681, 44);
             this.btnParamRemove.Name = "btnParamRemove";
             this.btnParamRemove.Size = new System.Drawing.Size(95, 30);
             this.btnParamRemove.TabIndex = 8;
             this.btnParamRemove.Text = "删除";
-            this.btnParamRemove.Click += new System.EventHandler(this.btnParamRemove_Click);
             // 
             // btnParamNew
             // 
             this.btnParamNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnParamNew.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnParamNew.Appearance.Options.UseFont = true;
-            this.btnParamNew.Location = new System.Drawing.Point(925, 8);
+            this.btnParamNew.Location = new System.Drawing.Point(681, 8);
             this.btnParamNew.Name = "btnParamNew";
             this.btnParamNew.Size = new System.Drawing.Size(95, 30);
             this.btnParamNew.TabIndex = 6;
             this.btnParamNew.Text = "新增";
-            this.btnParamNew.Click += new System.EventHandler(this.btnParamNew_Click);
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl2.Controls.Add(this.btnMaterialPreparation);
+            this.panelControl2.Controls.Add(this.btnBegin);
+            this.panelControl2.Controls.Add(this.btnEnd);
+            this.panelControl2.Controls.Add(this.btnTerminate);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl2.Location = new System.Drawing.Point(5, 499);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(791, 65);
+            this.panelControl2.TabIndex = 1;
+            // 
+            // btnMaterialPreparation
+            // 
+            this.btnMaterialPreparation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMaterialPreparation.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaterialPreparation.Appearance.Options.UseFont = true;
+            this.btnMaterialPreparation.Location = new System.Drawing.Point(10, 13);
+            this.btnMaterialPreparation.Name = "btnMaterialPreparation";
+            this.btnMaterialPreparation.Size = new System.Drawing.Size(118, 43);
+            this.btnMaterialPreparation.TabIndex = 9;
+            this.btnMaterialPreparation.Text = "生产备料";
+            this.btnMaterialPreparation.Click += new System.EventHandler(this.btnMaterialPreparation_Click);
+            // 
+            // btnBegin
+            // 
+            this.btnBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBegin.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBegin.Appearance.Options.UseFont = true;
+            this.btnBegin.Location = new System.Drawing.Point(321, 13);
+            this.btnBegin.Name = "btnBegin";
+            this.btnBegin.Size = new System.Drawing.Size(118, 43);
+            this.btnBegin.TabIndex = 6;
+            this.btnBegin.Text = "生产开始";
+            this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
             // 
             // btnEnd
             // 
@@ -404,10 +494,10 @@
             this.btnEnd.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnd.Appearance.Options.UseFont = true;
             this.btnEnd.Enabled = false;
-            this.btnEnd.Location = new System.Drawing.Point(914, 517);
+            this.btnEnd.Location = new System.Drawing.Point(660, 13);
             this.btnEnd.Name = "btnEnd";
             this.btnEnd.Size = new System.Drawing.Size(118, 43);
-            this.btnEnd.TabIndex = 5;
+            this.btnEnd.TabIndex = 8;
             this.btnEnd.Text = "生产结束";
             this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
@@ -416,10 +506,10 @@
             this.btnTerminate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTerminate.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTerminate.Appearance.Options.UseFont = true;
-            this.btnTerminate.Location = new System.Drawing.Point(746, 517);
+            this.btnTerminate.Location = new System.Drawing.Point(492, 13);
             this.btnTerminate.Name = "btnTerminate";
             this.btnTerminate.Size = new System.Drawing.Size(118, 43);
-            this.btnTerminate.TabIndex = 4;
+            this.btnTerminate.TabIndex = 7;
             this.btnTerminate.Text = "生产终止";
             this.btnTerminate.Click += new System.EventHandler(this.btnTerminate_Click);
             // 
@@ -429,48 +519,28 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // lblCurrentTime
+            // ucPrdtParams_Furnace
             // 
-            this.lblCurrentTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCurrentTime.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.lblCurrentTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentTime.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.lblCurrentTime.Location = new System.Drawing.Point(13, 535);
-            this.lblCurrentTime.Name = "lblCurrentTime";
-            this.lblCurrentTime.Size = new System.Drawing.Size(0, 19);
-            this.lblCurrentTime.TabIndex = 5;
-            // 
-            // btnBegin
-            // 
-            this.btnBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBegin.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBegin.Appearance.Options.UseFont = true;
-            this.btnBegin.Location = new System.Drawing.Point(575, 517);
-            this.btnBegin.Name = "btnBegin";
-            this.btnBegin.Size = new System.Drawing.Size(118, 43);
-            this.btnBegin.TabIndex = 3;
-            this.btnBegin.Text = "生产开始";
-            this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
-            // 
-            // ucFurnacePrdtParams
-            // 
-            this.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.btnBegin);
-            this.Controls.Add(this.lblCurrentTime);
-            this.Controls.Add(this.btnEnd);
-            this.Controls.Add(this.btnTerminate);
             this.Controls.Add(this.splitContainerControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "ucFurnacePrdtParams";
+            this.Name = "ucPrdtParams_Furnace";
+            this.Padding = new System.Windows.Forms.Padding(5);
             this.Size = new System.Drawing.Size(1045, 579);
-            this.Load += new System.EventHandler(this.ucFurnacePrdtParams_Load);
-            this.Enter += new System.EventHandler(this.ucFurnacePrdtParams_Enter);
+            this.Load += new System.EventHandler(this.ucPrdtParams_Furnace_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ucPrdtParams_Furnace_Paint);
+            this.Enter += new System.EventHandler(this.ucPrdtParams_Furnace_Enter);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ilstBatchNos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
+            this.splitContainerControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
@@ -478,20 +548,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdPWOs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPWOs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vgrdMethodParams)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton btnBegin;
+        private DevExpress.XtraEditors.SimpleButton btnEnd;
+        private DevExpress.XtraEditors.SimpleButton btnTerminate;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl3;
+        private DevExpress.XtraEditors.LabelControl lblProductTimeSpan;
+        private DevExpress.XtraEditors.LabelControl lblBatchNo;
+        private DevExpress.XtraEditors.LabelControl lblCurrentBatchNoName;
         private DevExpress.XtraEditors.LabelControl lblStartTime;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.TextEdit edtOperatorCode;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblOperator;
         private DevExpress.XtraEditors.SimpleButton btnPWORemove;
         private DevExpress.XtraEditors.SimpleButton btnPWOModify;
         private DevExpress.XtraEditors.SimpleButton btnPWONew;
@@ -503,16 +582,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraVerticalGrid.VGridControl vgrdMethodParams;
         private DevExpress.XtraEditors.SimpleButton btnParamRemove;
         private DevExpress.XtraEditors.SimpleButton btnParamNew;
-        private DevExpress.XtraEditors.SimpleButton btnEnd;
-        private DevExpress.XtraEditors.SimpleButton btnTerminate;
-        private DevExpress.XtraVerticalGrid.VGridControl vgrdMethodParams;
+        private DevExpress.XtraEditors.SimpleButton btnMaterialPreparation;
+        private DevExpress.XtraEditors.SimpleButton btnSelectMaterialPreparation;
+        private DevExpress.XtraEditors.ImageListBoxControl ilstBatchNos;
         private System.Windows.Forms.Timer timer;
-        private DevExpress.XtraEditors.LabelControl lblCurrentTime;
-        private DevExpress.XtraEditors.LabelControl lblProductTimeSpan;
-        private DevExpress.XtraEditors.LabelControl lblBatchNo;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.SimpleButton btnBegin;
     }
 }

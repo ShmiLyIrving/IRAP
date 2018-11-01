@@ -48,6 +48,10 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\..\..\Packages\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\..\..\..\Packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
     </Reference>
@@ -64,6 +68,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -78,6 +83,12 @@
     <Compile Include="Dialogs\frmItemsEditor.designer.cs">
       <DependentUpon>frmItemsEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmMaterialPreparation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmMaterialPreparation.Designer.cs">
+      <DependentUpon>frmMaterialPreparation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmPWOInProductionEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +101,13 @@
     <Compile Include="Dialogs\frmSelectExcelSheet.Designer.cs">
       <DependentUpon>frmSelectExcelSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmSelectMaterialPreparation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmSelectMaterialPreparation.Designer.cs">
+      <DependentUpon>frmSelectMaterialPreparation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TMaterialPreparationInfos.cs" />
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="frmPrdtParamsCollection_Furnace.cs">
       <SubType>Form</SubType>
@@ -97,11 +115,17 @@
     <Compile Include="frmPrdtParamsCollection_Furnace.Designer.cs">
       <DependentUpon>frmPrdtParamsCollection_Furnace.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPrdtParamsCollection_CleanTemper.cs">
+    <Compile Include="frmPrdtParamsCollection_Clean.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPrdtParamsCollection_CleanTemper.Designer.cs">
-      <DependentUpon>frmPrdtParamsCollection_CleanTemper.cs</DependentUpon>
+    <Compile Include="frmPrdtParamsCollection_Clean.Designer.cs">
+      <DependentUpon>frmPrdtParamsCollection_Clean.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrdtParamsCollection_Temper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrdtParamsCollection_Temper.Designer.cs">
+      <DependentUpon>frmPrdtParamsCollection_Temper.cs</DependentUpon>
     </Compile>
     <Compile Include="frmQualityInspectConfirm_Furnace.cs">
       <SubType>Form</SubType>
@@ -134,17 +158,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucCleanTemperPrdtParams.cs">
+    <Compile Include="Tools\JSONHelper.cs" />
+    <Compile Include="UserControls\ucPrdtParams_Clean.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucCleanTemperPrdtParams.Designer.cs">
-      <DependentUpon>ucCleanTemperPrdtParams.cs</DependentUpon>
+    <Compile Include="UserControls\ucPrdtParams_Clean.Designer.cs">
+      <DependentUpon>ucPrdtParams_Clean.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucFurnacePrdtParams.cs">
+    <Compile Include="UserControls\ucPrdtParams_Furnace.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucFurnacePrdtParams.Designer.cs">
-      <DependentUpon>ucFurnacePrdtParams.cs</DependentUpon>
+    <Compile Include="UserControls\ucPrdtParams_Furnace.Designer.cs">
+      <DependentUpon>ucPrdtParams_Furnace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPrdtParams_Temper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPrdtParams_Temper.Designer.cs">
+      <DependentUpon>ucPrdtParams_Temper.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ucQualityInspecting_Furnace.cs">
       <SubType>UserControl</SubType>
@@ -207,17 +238,26 @@
     <EmbeddedResource Include="Dialogs\frmItemsEditor.resx">
       <DependentUpon>frmItemsEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmMaterialPreparation.resx">
+      <DependentUpon>frmMaterialPreparation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor.resx">
       <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmSelectExcelSheet.resx">
       <DependentUpon>frmSelectExcelSheet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmSelectMaterialPreparation.resx">
+      <DependentUpon>frmSelectMaterialPreparation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrdtParamsCollection_Furnace.resx">
       <DependentUpon>frmPrdtParamsCollection_Furnace.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPrdtParamsCollection_CleanTemper.resx">
-      <DependentUpon>frmPrdtParamsCollection_CleanTemper.cs</DependentUpon>
+    <EmbeddedResource Include="frmPrdtParamsCollection_Clean.resx">
+      <DependentUpon>frmPrdtParamsCollection_Clean.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrdtParamsCollection_Temper.resx">
+      <DependentUpon>frmPrdtParamsCollection_Temper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmQualityInspectConfirm_Furnace.resx">
       <DependentUpon>frmQualityInspectConfirm_Furnace.cs</DependentUpon>
@@ -231,15 +271,19 @@
     <EmbeddedResource Include="frmSmeltProductionPlanImport.resx">
       <DependentUpon>frmSmeltProductionPlanImport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucCleanTemperPrdtParams.resx">
-      <DependentUpon>ucCleanTemperPrdtParams.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\ucPrdtParams_Clean.resx">
+      <DependentUpon>ucPrdtParams_Clean.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucFurnacePrdtParams.resx">
-      <DependentUpon>ucFurnacePrdtParams.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\ucPrdtParams_Furnace.resx">
+      <DependentUpon>ucPrdtParams_Furnace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucPrdtParams_Temper.resx">
+      <DependentUpon>ucPrdtParams_Temper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucQualityInspecting_Furnace.resx">
       <DependentUpon>ucQualityInspecting_Furnace.cs</DependentUpon>

@@ -12,13 +12,13 @@ using DevExpress.XtraTab;
 
 using IRAP.Global;
 using IRAP.Client.User;
-using IRAP.Entities.MDM;
 using IRAP.Entity.SSO;
+using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.BatchSystem
 {
-    public partial class frmPrdtParamsCollection_Furnace : IRAP.Client.Global.GUI.frmCustomFuncBase
+    public partial class frmPrdtParamsCollection_Clean : IRAP.Client.Global.GUI.frmCustomFuncBase
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -27,7 +27,7 @@ namespace IRAP.Client.GUI.BatchSystem
         private int t3LeafID = 0;
         private List<WIPStation> stations = new List<WIPStation>();
 
-        public frmPrdtParamsCollection_Furnace()
+        public frmPrdtParamsCollection_Clean()
         {
             InitializeComponent();
         }
@@ -75,7 +75,7 @@ namespace IRAP.Client.GUI.BatchSystem
             }
         }
 
-        private void frmPrdtParamsCollection_Furnace_Shown(object sender, EventArgs e)
+        private void frmPrdtParamsCollection_CleanTemper_Shown(object sender, EventArgs e)
         {
             if (Tag is MenuInfo)
             {
@@ -91,7 +91,6 @@ namespace IRAP.Client.GUI.BatchSystem
                 IRAPUser.Instance.CommunityID,
                 t3LeafID,
                 IRAPUser.Instance.SysLogID);
-
             if (stations.Count <= 0)
             {
                 XtraTabPage page = new XtraTabPage();
@@ -117,7 +116,7 @@ namespace IRAP.Client.GUI.BatchSystem
                     XtraTabPage page = new XtraTabPage();
                     page.Text = station.ToString();
 
-                    UserControls.ucPrdtParams_Furnace prdt = new UserControls.ucPrdtParams_Furnace(station);
+                    UserControls.ucPrdtParams_Clean prdt = new UserControls.ucPrdtParams_Clean(station, t3LeafID);
                     prdt.Dock = DockStyle.Fill;
                     page.Controls.Add(prdt);
 
@@ -130,7 +129,7 @@ namespace IRAP.Client.GUI.BatchSystem
         {
             foreach (Control ctrl in e.Page.Controls)
             {
-                if (ctrl is UserControls.ucPrdtParams_Furnace)
+                if (ctrl is UserControls.ucPrdtParams_Clean)
                 {
                     ctrl.Focus();
                 }

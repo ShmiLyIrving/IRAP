@@ -1,6 +1,6 @@
 ﻿namespace IRAP.Client.GUI.BatchSystem
 {
-    partial class frmPrdtParamsCollection_CleanTemper
+    partial class frmPrdtParamsCollection_Clean
     {
         /// <summary>
         /// 必需的设计器变量。

@@ -1,6 +1,6 @@
 ﻿namespace IRAP.Client.GUI.BatchSystem.UserControls
 {
-    partial class ucCleanTemperPrdtParams
+    partial class ucPrdtParams_Clean
     {
         /// <summary> 
         /// Required designer variable.

@@ -22,7 +22,7 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.BatchSystem.UserControls
 {
-    public partial class ucFurnacePrdtParams : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucPrdtParams_Temper : DevExpress.XtraEditors.XtraUserControl
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -53,7 +53,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
         /// </summary>
         private string currentBatchNo = "";
 
-        public ucFurnacePrdtParams()
+        public ucPrdtParams_Temper()
         {
             InitializeComponent();
 
@@ -63,7 +63,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 caption = "系统信息";
         }
 
-        public ucFurnacePrdtParams(WIPStation station) : this()
+        public ucPrdtParams_Temper(WIPStation station) : this()
         {
             stationInfo = station;
         }
@@ -508,7 +508,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
 
         private void ucFurnacePrdtParams_Enter(object sender, EventArgs e)
         {
-            if (prdtStatus== ProductionStatus.Idle)
+            if (prdtStatus == ProductionStatus.Idle)
             {
                 edtOperatorCode.Focus();
             }

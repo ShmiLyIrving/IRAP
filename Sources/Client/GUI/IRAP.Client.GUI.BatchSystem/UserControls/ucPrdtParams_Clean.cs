@@ -21,7 +21,7 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.BatchSystem.UserControls
 {
-    public partial class ucCleanTemperPrdtParams : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucPrdtParams_Clean : DevExpress.XtraEditors.XtraUserControl
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -53,12 +53,12 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
         /// </summary>
         private string currentBatchNo = "";
 
-        public ucCleanTemperPrdtParams()
+        public ucPrdtParams_Clean()
         {
             InitializeComponent();
         }
 
-        public ucCleanTemperPrdtParams(WIPStation station, int t3LeafID) : this()
+        public ucPrdtParams_Clean(WIPStation station, int t3LeafID) : this()
         {
             stationInfo = station;
             this.t3LeafID = t3LeafID;

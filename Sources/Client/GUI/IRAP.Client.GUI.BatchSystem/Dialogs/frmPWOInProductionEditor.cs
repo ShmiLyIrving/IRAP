@@ -283,23 +283,24 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
                     return;
                 }
 
-                //foreach (EntityPWO entityPWO in datas)
-                //{
-                //    if (entityPWO.TextureCode != textureCode)
-                //    {
-                //        XtraMessageBox.Show(
-                //            string.Format(
-                //                "当前工单生产产品的材质是[{0}]，无法和其他工单在同一炉中进行生产！",
-                //                textureCode),
-                //            "系统信息",
-                //            MessageBoxButtons.OK,
-                //            MessageBoxIcon.Error);
+                foreach (EntityBatchPWO entityPWO in datas)
+                {
+                    if (entityPWO.Texture.Substring(0, 3) 
+                        != textureCode.Substring(0,3))
+                    {
+                        XtraMessageBox.Show(
+                            string.Format(
+                                "当前工单生产产品的材质是[{0}]，无法和其他工单在同一炉中进行生产！",
+                                textureCode),
+                            "系统信息",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
 
-                //        edtPWONo.Text = "";
-                //        e.Cancel = true;
-                //        return;
-                //    }
-                //}
+                        edtPWONo.Text = "";
+                        e.Cancel = true;
+                        return;
+                    }
+                }
                 #endregion
 
                 #region 调用存储过程校验当前工单的工艺参数是否和其它工单一致
