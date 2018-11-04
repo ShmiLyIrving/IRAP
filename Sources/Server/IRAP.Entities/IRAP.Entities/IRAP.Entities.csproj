@@ -78,6 +78,7 @@
     <Compile Include="MDM\WIPStation.cs" />
     <Compile Include="MDM\WorkUnit.cs" />
     <Compile Include="MES\BatchByEquipment.cs" />
+    <Compile Include="MES\BatchByWorkday.cs" />
     <Compile Include="MES\BatchProductInfo.cs" />
     <Compile Include="MES\BatchPWOInfo.cs" />
     <Compile Include="MES\EntityBatchPWO.cs" />

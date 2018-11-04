@@ -109,6 +109,12 @@
     </Compile>
     <Compile Include="Entities\TMaterialPreparationInfos.cs" />
     <Compile Include="ExcelHelper.cs" />
+    <Compile Include="frmPrdtBatchNumberTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrdtBatchNumberTrack.Designer.cs">
+      <DependentUpon>frmPrdtBatchNumberTrack.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrdtParamsCollection_Furnace.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmSelectMaterialPreparation.resx">
       <DependentUpon>frmSelectMaterialPreparation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrdtBatchNumberTrack.resx">
+      <DependentUpon>frmPrdtBatchNumberTrack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrdtParamsCollection_Furnace.resx">
       <DependentUpon>frmPrdtParamsCollection_Furnace.cs</DependentUpon>
