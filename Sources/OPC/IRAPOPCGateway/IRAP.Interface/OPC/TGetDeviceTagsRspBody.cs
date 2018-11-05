@@ -28,14 +28,6 @@ namespace IRAP.Interface.OPC
         /// </summary>
         public string ErrText { get; set; }
         /// <summary>
-        /// 设备代码
-        /// </summary>
-        public string DeviceCode { get; set; }
-        /// <summary>
-        /// 设备名称
-        /// </summary>
-        public string DeviceName { get; set; }
-        /// <summary>
         /// KepServer的IP地址
         /// </summary>
         public string KepServAddr { get; set; }

@@ -16,7 +16,7 @@ namespace IRAPOPCGateway
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new serviceIRAPOPCGateway()
             };
             ServiceBase.Run(ServicesToRun);
         }

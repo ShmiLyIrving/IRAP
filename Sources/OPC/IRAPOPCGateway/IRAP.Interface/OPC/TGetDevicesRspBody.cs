@@ -12,16 +12,13 @@ namespace IRAP.Interface.OPC
     {
         private List<TGetDevicesRspDetail> details = new List<TGetDevicesRspDetail>();
         private string excode;
-        public string ExCode {
+        public string ExCode
+        {
             get { return "GetDevices"; }
             set { excode = value; }
         }
         public string ErrCode { get; set; }
         public string ErrText { get; set; }
-        public List<TGetDevicesRspDetail> Details
-        {
-            get { return details; }
-        }
 
         public TGetDevicesRspBody()
         {
@@ -31,11 +28,11 @@ namespace IRAP.Interface.OPC
             TGetDevicesRspBody rlt = new TGetDevicesRspBody();
             rlt = IRAPXMLUtils.LoadValueFromXMLNode(GetEX(node), rlt) as TGetDevicesRspBody;
             XmlNode paramxml = GetRspBodyNode(node);
-            if (paramxml != null&&paramxml.FirstChild!=null&& paramxml.FirstChild.Name =="Row")
+            if (paramxml != null && paramxml.FirstChild != null && paramxml.FirstChild.Name == "Row")
             {
-                foreach(XmlNode child in paramxml.ChildNodes)
+                foreach (XmlNode child in paramxml.ChildNodes)
                 {
-                    rlt.Details.Add(TGetDevicesRspDetail.LoadFromXMLNode(child));
+                    rlt.details.Add(TGetDevicesRspDetail.LoadFromXMLNode(child));
                 }
             }
             return rlt;
@@ -43,6 +40,39 @@ namespace IRAP.Interface.OPC
         public void AddDeviceDetail(TGetDevicesRspDetail item)
         {
             details.Add(item);
+        }
+
+        public TGetDevicesRspDetail GetDeviceDetail(int index)
+        {
+            if (index >= 0 && index < details.Count)
+            {
+                return details[index];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public int GetDeviceDetailCount()
+        {
+            return details.Count;
+        }
+
+        public void RemoveDeviceDetail(TGetDevicesRspDetail item)
+        {
+            if (details.IndexOf(item) >= 0)
+            {
+                details.Remove(item);
+            }
+        }
+
+        public void RemoveDeviceDetailAt(int index)
+        {
+            if (index >= 0 && index < details.Count)
+            {
+                details.RemoveAt(index);
+            }
         }
 
         protected override XmlNode GenerateUserDefineNode()

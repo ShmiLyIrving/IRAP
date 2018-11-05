@@ -5,8 +5,12 @@ using System.Text;
 using System.Xml;
 using System.Collections;
 
+using OPCAutomation;
+
 using IRAP.Interface.OPC;
 using IRAP.BL.OPCGateway.Interfaces;
+using IRAP.BL.OPCGateway.Global;
+using IRAP.BL.OPCGateway.Global.Entities;
 using IRAP.OPC.Entity;
 using IRAP.OPC.Library;
 
@@ -45,19 +49,29 @@ namespace IRAP.BL.OPCGateway.Actions
                 {
                     if (content.Request.ExCode == "GetDevices")
                     {
-                        int ordinal = 1;
-                        foreach (TIRAPOPCLocDevice device in TIRAPLocOPCDevices.Instance.Devices)
+                        TKepwareServer server =
+                            TKepwareServers.Instance.Servers.ByAddress(
+                                content.Request.KepServAddr);
+
+                        if (server == null)
+                        {
+                            server =
+                                new TKepwareServer(
+                                    content.Request.KepServAddr,
+                                    content.Request.KepServName);
+                            TKepwareServers.Instance.Servers.Add(server);
+                        }
+
+                        for (int i = 0; i < server.Devices.Count; i++)
                         {
                             content.Response.AddDeviceDetail(
                                 new TGetDevicesRspDetail()
                                 {
-                                    Ordinal = ordinal++,
-                                    DeviceCode = device.DeviceCode,
-                                    DeviceName = device.DeviceName,
-                                    KepServerAddr = device.KepServerAddr,
-                                    KepServerName = device.KepServerName,
-                                    KepServerChannel = device.KepServerChannel,
-                                    KepServerDevice = device.KepServerDevice,
+                                    Ordinal = i + 1,
+                                    KepServerAddr = server.Devices[i].KepServAddr,
+                                    KepServerName = server.Devices[i].KepServName,
+                                    KepServerChannel = server.Devices[i].KepServChannel,
+                                    KepServerDevice = server.Devices[i].KepServDevice,
                                 });
                         }
 

@@ -34,8 +34,6 @@ namespace IRAP.OPC.Entity
         }
         public TIRAPOPCLocDevice(TGetDevicesRspDetail detail)
         {
-            DeviceCode = detail.DeviceCode;
-            DeviceName = detail.DeviceName;
             KepServerAddr = detail.KepServerAddr;
             KepServerName = detail.KepServerName;
             KepServerChannel = detail.KepServerChannel;

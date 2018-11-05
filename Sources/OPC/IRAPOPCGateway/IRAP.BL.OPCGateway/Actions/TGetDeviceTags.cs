@@ -7,6 +7,8 @@ using System.Collections;
 using IRAP.OPC.Entity;
 using IRAP.Interface.OPC;
 using IRAP.OPC.Library;
+using IRAP.BL.OPCGateway.Global;
+using IRAP.BL.OPCGateway.Global.Entities;
 
 namespace IRAP.BL.OPCGateway.Actions
 {
@@ -34,6 +36,12 @@ namespace IRAP.BL.OPCGateway.Actions
 
         public string DoAction()
         {
+            if (!string.IsNullOrEmpty(content.Response.ErrCode) &&
+                content.Response.ErrCode != "0")
+            {
+                return content.GenerateResponseContent();
+            }
+
             if (content.Request != null)
             {
                 content.Response.ErrCode = "999999";
@@ -43,37 +51,49 @@ namespace IRAP.BL.OPCGateway.Actions
                 {
                     if (content.Request.ExCode == "GetDeviceTags")
                     {
-                        TIRAPOPCLocDevice device =
-                            TIRAPLocOPCDevices.Instance.GetDeviceWithDeviceCode(
-                                content.Request.DeviceCode);
-                        if (device == null)
+                        TKepwareServer server =
+                            TKepwareServers.Instance.Servers.ByAddress(
+                                content.Request.KepServAddr);
+                        if (server != null)
                         {
-                            content.Response.ErrCode = "121026";
-                            content.Response.ErrText = string.Format("无效的设备代码({0})", content.Request.DeviceCode);
+                            TKepwareDevice device =
+                                server.Devices.Get(
+                                    content.Request.KepServChannel,
+                                    content.Request.KepServDevice);
+                            if (device != null)
+                            {
+                                content.Response.KepServAddr = server.Address;
+                                content.Response.KepServName = server.Name;
+                                content.Response.KepServChannel = device.KepServChannel;
+                                content.Response.KepServDevice = device.KepServDevice;
+
+                                for (int i = 0; i < device.Tags.Count; i++)
+                                {
+                                    content.Response.Details.Add(
+                                        new TGetDeviceTagsRspDetail()
+                                        {
+                                            Ordinal = i + 1,
+                                            TagName = device.Tags[i].TagName,
+                                        });
+                                }
+
+                                content.Response.ErrCode = "0";
+                                content.Response.ErrText = "设备标签清单获取完成";
+                            }
+                            else
+                            {
+                                content.Response.ErrCode = "903321";
+                                content.Response.ErrText =
+                                    $"DeviceName[{content.Request.KepServChannel}." +
+                                    $"{content.Request.KepServDevice}]不存在";
+                            }
                         }
                         else
                         {
-                            content.Response.DeviceCode = device.DeviceCode;
-                            content.Response.DeviceName = device.DeviceName;
-                            content.Response.KepServAddr = device.KepServerAddr;
-                            content.Response.KepServName = device.KepServerName;
-                            content.Response.KepServChannel = device.KepServerChannel;
-                            content.Response.KepServDevice = device.KepServerDevice;
-
-                            for (int i = 0; i < device.Tags.Count; i++)
-                            {
-                                content.Response.Details.Add(
-                                    new TGetDeviceTagsRspDetail()
-                                    {
-                                        Ordinal = i + 1,
-                                        TagName = device.Tags[i].TagName,
-                                        DataType = device.Tags[i].DataType,
-                                        Description = device.Tags[i].Description,
-                                    });
-                            }
-
-                            content.Response.ErrCode = "0";
-                            content.Response.ErrText = "设备标签清单获取完成";
+                            content.Response.ErrCode = "900103";
+                            content.Response.ErrText =
+                                $"KepServer[{content.Request.KepServName}" +
+                                $"({content.Request.KepServAddr})]连接失败";
                         }
                     }
                     else

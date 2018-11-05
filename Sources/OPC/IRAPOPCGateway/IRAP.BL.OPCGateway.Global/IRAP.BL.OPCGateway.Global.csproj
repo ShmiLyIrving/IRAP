@@ -33,6 +33,10 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.OPCAutomation">
+      <HintPath>..\..\Lib\Interop.OPCAutomation.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,8 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\TKepwareDevice.cs" />
+    <Compile Include="Entities\TKepwareDeviceCollection.cs" />
+    <Compile Include="Entities\TKepwareServer.cs" />
+    <Compile Include="Entities\TKepwareServerCollection.cs" />
+    <Compile Include="Entities\TKepwareTagCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TIRAPESBGlobalProducer.cs" />
+    <Compile Include="Entities\TKepwareTag.cs" />
+    <Compile Include="TKepwareServers.cs" />
     <Compile Include="TOPCGatewayGlobal.cs" />
   </ItemGroup>
   <ItemGroup>

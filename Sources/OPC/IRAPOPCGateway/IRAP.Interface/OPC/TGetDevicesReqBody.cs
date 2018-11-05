@@ -12,7 +12,8 @@ namespace IRAP.Interface.OPC
     public class TGetDevicesReqBody : TSoftlandBody
     {
         public string ExCode { get; set; }
-        public int CommunityID { get; set; }
+        public string KepServAddr { get; set; }
+        public string KepServName { get; set; }
 
         protected override XmlNode GenerateUserDefineNode()
         {

@@ -28,6 +28,14 @@ namespace IRAP.Interface.OPC
         /// </summary>
         public string Description { get; set; }
 
+        public TGetDeviceTagsRspDetail()
+        {
+            Ordinal = 0;
+            TagName = "";
+            DataType = "";
+            Description = "";
+        }
+
         public TGetDeviceTagsRspDetail Clone()
         {
             return MemberwiseClone() as TGetDeviceTagsRspDetail;

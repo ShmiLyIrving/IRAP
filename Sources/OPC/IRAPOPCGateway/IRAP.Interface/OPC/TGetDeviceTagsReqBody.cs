@@ -15,13 +15,21 @@ namespace IRAP.Interface.OPC
         /// </summary>
         public string ExCode { get; set; }
         /// <summary>
-        /// 社区标识
+        /// KepServ 地址
         /// </summary>
-        public int CommunityID { get; set; }
+        public string KepServAddr { get; set; }
         /// <summary>
-        /// 设备代码
+        /// KepServ 名称
         /// </summary>
-        public string DeviceCode { get; set; }
+        public string KepServName { get; set; }
+        /// <summary>
+        /// KepServ 渠道
+        /// </summary>
+        public string KepServChannel { get; set; }
+        /// <summary>
+        /// KepServ 设备名
+        /// </summary>
+        public string KepServDevice { get; set; }
 
         protected override XmlNode GenerateUserDefineNode()
         {

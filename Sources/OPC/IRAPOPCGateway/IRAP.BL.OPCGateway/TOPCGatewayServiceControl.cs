@@ -10,6 +10,8 @@ using IRAP.OPC.Entity;
 using IRAP.OPC.Entity.IRAPServer;
 using IRAP.OPC.Library;
 using IRAP.OPCGateway.Global;
+using IRAP.BL.OPCGateway.Global;
+using IRAP.BL.OPCGateway.Global.Entities;
 
 namespace IRAP.BL.OPCGateway
 {
@@ -53,9 +55,6 @@ namespace IRAP.BL.OPCGateway
                 Debug.WriteLine("OPC 网关服务启动失败，原因：[{0}]", error.Message);
             }
 
-            // 加载本地保存的已注册的设备列表
-            //TIRAPOPCDevices.Instance.Load(TOPCGatewayGlobal.Instance.ConfigurationFile);
-
             // 加载数据库中已注册的设备列表
             TIRAPOPCDevices.Instance.SetWebAPIParams(
                 TOPCGatewayGlobal.Instance.WebAPIParam.BrokeUri,
@@ -76,6 +75,19 @@ namespace IRAP.BL.OPCGateway
             TIRAPOPCServers.Instance.LoadFromDataFile(TOPCGatewayGlobal.Instance.ConfigurationFile);
             foreach (TIRAPOPCServer server in TIRAPOPCServers.Instance.Servers)
             {
+                try
+                {
+                    TKepwareServers.Instance.Servers.Add(
+                        new TKepwareServer(
+                            server.Address,
+                            server.Name));
+                }
+                catch (Exception error)
+                {
+                    Debug.WriteLine(error.Message);
+                }
+
+
                 TKepServerListener listener = new TKepServerListener();
                 listener.Init(server.Address, server.Name);
                 listeners.Add(listener);
