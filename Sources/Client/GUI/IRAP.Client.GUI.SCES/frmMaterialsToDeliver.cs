@@ -237,7 +237,7 @@ namespace IRAP.Client.GUI.SCES
                                             btnActualQtyToDeliverModify.Visible = true;
                                             break;
                                         default:
-                                            btnActualQtyToDeliverModify.Visible = false;
+                                            btnActualQtyToDeliverModify.Visible = true;
                                             break;
                                     }
 
