@@ -219,6 +219,96 @@ namespace IRAP.BL.MES
         }
 
         /// <summary>
+        /// 解析WIPIDCode在当前工位上生产是否OK：
+        /// ⒈ 路由是否停滞在本工位；
+        /// ⒉ 产品是否当前选中产品；
+        /// ⒊ 是否合法的在制品标识或在制品容器标识。
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="wipIDCode">在制品标识</param>
+        /// <param name="productLeaf">当前选中产品叶标识</param>
+        /// <param name="workUnitLeaf">当前选中工位叶标识</param>
+        /// <param name="isEnhanced">是否增强</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <returns>List[WIPIDCode]</returns>
+        public IRAPJsonResult ufn_GetList_WIPIDCodes(
+            int communityID,
+            string wipIDCode,
+            int productLeaf,
+            int workUnitLeaf,
+            bool isEnhanced,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<WIPIDCode> datas = new List<WIPIDCode>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@WIPIDCode", DbType.String, wipIDCode));
+                paramList.Add(new IRAPProcParameter("@ProductLeaf", DbType.Int32, productLeaf));
+                paramList.Add(new IRAPProcParameter("@WorkUnitLeaf", DbType.Int32, workUnitLeaf));
+                paramList.Add(new IRAPProcParameter("@IsEnhanced", DbType.Boolean, isEnhanced));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用函数 IRAPMES..ufn_GetList_WIPIDCodes，参数：CommunityID={0}|" +
+                        "WIPIDCode={1}|ProductLeaf={2}|WorkUnitLeaf={3}|IsEnhanced={4}|" +
+                        "SysLogID={5}",
+                        communityID, wipIDCode, productLeaf, workUnitLeaf, isEnhanced,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetList_WIPIDCodes(" +
+                            "@CommunityID, @WIPIDCode, @ProductLeaf, " +
+                            "@WorkUnitLeaf, @IsEnhanced, @SysLogID)";
+                        WriteLog.Instance.Write(strSQL, strProcedureName);
+
+                        IList<WIPIDCode> lstDatas =
+                            conn.CallTableFunc<WIPIDCode>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+                        errCode = 0;
+                        errText = "调用成功！";
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetList_WIPIDCodes 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取子在制品标识清单
         /// </summary>
         /// <param name="communityID">社区标识</param>
