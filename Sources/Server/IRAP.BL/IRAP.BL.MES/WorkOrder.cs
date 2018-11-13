@@ -1098,6 +1098,17 @@ namespace IRAP.BL.MES
                                     rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
                             }
                         }
+
+                        string text = "";
+                        foreach (string key in rtnParams.Keys)
+                        {
+                            text += $"{key}={rtnParams[key]}|";
+                        }
+                        WriteLog.Instance.Write($"返回参数：{text}", strProcedureName);
+                    }
+                    else
+                    {
+                        WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
                     }
 
                     return Json(rtnParams);
@@ -1111,6 +1122,7 @@ namespace IRAP.BL.MES
                     string.Format(
                         "调用 IRAPMES..usp_SaveFact_BatchProductionStart 过程发生异常：{0}",
                         error.Message);
+                WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
                 return Json(new Hashtable());
             }
             finally
@@ -1553,7 +1565,7 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用函数 IRAPMES..ufn_GetInfo_BatchProduct，" +
+                        "调用函数 IRAPMES..ufn_GetList_BatchProduct，" +
                         "参数：CommunityID={0}|T107LeafID={1}|T216LeafID={2}|" +
                         "T133LeafID={3}|SysLogID={4}",
                         communityID, t107LeafID, t216LeafID, t133LeafID, sysLogID),
@@ -1565,8 +1577,9 @@ namespace IRAP.BL.MES
                 {
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
-                        string strSQL = "SELECT * FROM IRAPMES..ufn_GetInfo_BatchProduct(" +
-                            "@CommunityID, @T107LeafID, @T216LeafID, @T133LeafID, @SysLogID)";
+                        string strSQL = "SELECT * FROM IRAPMES..ufn_GetList_BatchProduct(" +
+                            "@CommunityID, @T107LeafID, @T216LeafID, @T133LeafID, @SysLogID)"+
+                            "ORDER BY BatchNumber";
 
                         IList<BatchProductInfo> lstDatas =
                             conn.CallTableFunc<BatchProductInfo>(strSQL, paramList);
@@ -1582,7 +1595,7 @@ namespace IRAP.BL.MES
                     errCode = 99000;
                     errText =
                         string.Format(
-                            "调用 IRAPMES..ufn_GetInfo_BatchProduct 函数发生异常：{0}",
+                            "调用 IRAPMES..ufn_GetList_BatchProduct 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);

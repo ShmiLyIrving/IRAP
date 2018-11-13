@@ -86,6 +86,8 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
                     string temp = sr.ReadLine();
                     buffer += temp;
                 }
+
+                sr.Close();
             }
 
             if (buffer != "")

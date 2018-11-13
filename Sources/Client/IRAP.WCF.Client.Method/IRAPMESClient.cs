@@ -992,6 +992,100 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 解析WIPIDCode在当前工位上生产是否OK
+        /// ⒈ 路由是否停滞在本工位；
+        /// ⒉ 产品是否当前选中产品；
+        /// ⒊ 是否合法的在制品标识或在制品容器标识。
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="wipIDCode">在制品标识</param>
+        /// <param name="productLeaf">当前选中产品叶标识</param>
+        /// <param name="workUnitLeaf">当前选中工位叶标识</param>
+        /// <param name="isEnhanced">是否增强</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_WIPIDCodes(
+            int communityID,
+            string wipIDCode,
+            int productLeaf,
+            int workUnitLeaf,
+            bool isEnhanced,
+            long sysLogID,
+            ref List<WIPIDCode> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas = new List<WIPIDCode>();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("wipIDCode", wipIDCode);
+                hashParams.Add("productLeaf", productLeaf);
+                hashParams.Add("workUnitLeaf", workUnitLeaf);
+                hashParams.Add("isEnhanced", isEnhanced);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_WIPIDCodes 函数， " +
+                        "参数：CommunityID={0}|WIPIDCode={1}|" +
+                        "ProductLeaf={2}|WorkUnitLeaf={3}|" +
+                        "IsEnhanced={4}|SysLogID={5}",
+                        communityID,
+                        wipIDCode,
+                        productLeaf,
+                        workUnitLeaf,
+                        isEnhanced,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.MES.dll",
+                            "IRAP.BL.MES.WIP",
+                            "ufn_GetList_WIPIDCodes",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<WIPIDCode>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="communityID">社区标识</param>

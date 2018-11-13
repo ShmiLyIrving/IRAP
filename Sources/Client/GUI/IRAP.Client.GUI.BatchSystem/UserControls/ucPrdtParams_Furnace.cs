@@ -103,11 +103,18 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
 
         private void SaveToFile(string fileName, string fileContent)
         {
+            
             FileStream fs = new FileStream(fileName, FileMode.Create);
-            byte[] data = Encoding.UTF8.GetBytes(fileContent);
-            fs.Write(data, 0, data.Length);
-            fs.Flush();
-            fs.Close();
+            try
+            {
+                byte[] data = Encoding.UTF8.GetBytes(fileContent);
+                fs.Write(data, 0, data.Length);
+            }
+            finally
+            {
+                fs.Flush();
+                fs.Close();
+            }
         }
 
         private void InitFurnaceInfo(FurnaceInfo furnace)
@@ -414,6 +421,64 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             vgrdMethodParams.BestFit();
         }
 
+        /// <summary>
+        /// 生成保存生产过程参数时的 XML
+        /// </summary>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        private string GenerateRSFactXML(DataRow dr)
+        {
+            string rlt = "";
+
+            for (int i = 0; i < dtParams.Columns.Count; i++)
+            {
+                rlt +=
+                    string.Format(
+                        "<RF25_1 Ordinal=\"{0}\" T20LeafID=\"{1}\" " +
+                        "ParameterName=\"{2}\" LowLimit=\"\" " +
+                        "Criterion=\"\" HighLimit=\"\" Scale=\"\" " +
+                        "UnitOfMeasure=\"\" Metric01=\"{3}\" />",
+                        ppp[i].Ordinal,
+                        ppp[i].T20LeafID,
+                        ppp[i].T20Name,
+                        dr[i].ToString());
+            }
+
+            rlt = string.Format("<RSFact>{0}</RSFact>", rlt);
+            return rlt;
+        }
+
+        /// <summary>
+        /// 生成删除生产过程参数的 XML
+        /// </summary>
+        /// <param name="dr"></param>
+        /// <param name="idx"></param>
+        /// <returns></returns>
+        private string GenerateDeleteRSFactXML(DataRow dr, int idx)
+        {
+            string rlt = "";
+
+            for (int i = 0; i < dtParams.Columns.Count; i++)
+            {
+                List<PPParamValue> values = ppp[i].ResolveDataXML();
+
+                rlt +=
+                    string.Format(
+                        "<RF25_1 Ordinal=\"{0}\" FactID=\"{1}\" " +
+                        "T20LeafID=\"{2}\" ParameterName=\"{3}\" " +
+                        "LowLimit=\"\" Criterion=\"\" HighLimit=\"\" " +
+                        "Scale=\"\" UnitOfMeasure=\"\" Metric01=\"{4}\" />",
+                        ppp[i].Ordinal,
+                        values[idx].FactID,
+                        ppp[i].T20LeafID,
+                        ppp[i].T20Name,
+                        dr[i].ToString());
+            }
+
+            rlt = string.Format("<RSFact>{0}</RSFact>", rlt);
+            return rlt;
+        }
+
         private void ucPrdtParams_Furnace_Load(object sender, EventArgs e)
         {
             // 获取当前设备正在生产的炉次信息列表
@@ -625,6 +690,10 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             if (ilstBatchNos.SelectedItem != null)
             {
                 currentFurnace = (ilstBatchNos.SelectedItem as ImageListBoxItem).Value as FurnaceInfo;
+                if (currentFurnace.InProduction != 1)
+                {
+                    currentFurnace.PWOs.Clear();
+                }
                 InitFurnaceInfo(currentFurnace);
             }
         }
@@ -846,6 +915,65 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 finally
                 {
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                }
+            }
+        }
+
+        private void btnParamNew_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.frmItemsEditor formEditor =
+                new Dialogs.frmItemsEditor(
+                    EditStatus.New,
+                    splitContainerControl1.Panel2.Text,
+                    dtParams,
+                    -1))
+            {
+                if (formEditor.ShowDialog() == DialogResult.OK)
+                {
+                    DataRow dr = dtParams.Rows[dtParams.Rows.Count - 1];
+
+                    string strProcedureName =
+                        string.Format(
+                            "{0}.{1}",
+                            className,
+                            MethodBase.GetCurrentMethod().Name);
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                    try
+                    {
+                        int errCode = 0;
+                        string errText = "";
+
+                        IRAPMESClient.Instance.usp_SaveFact_BatchMethodConfirming(
+                            IRAPUser.Instance.CommunityID,
+                            stationInfo.T216LeafID,
+                            stationInfo.T107LeafID,
+                            currentFurnace.BatchNumber,
+                            GenerateRSFactXML(dr),
+                            IRAPUser.Instance.SysLogID,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            string.Format("({0}){1}", errCode, errText),
+                            strProcedureName);
+                        if (errCode != 0)
+                        {
+                            XtraMessageBox.Show(
+                                errText,
+                                "",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+
+                        GetMethodStandards(
+                            0,
+                            stationInfo.T216LeafID,
+                            currentFurnace.BatchNumber);
+                        vgrdMethodParams.RefreshDataSource();
+                    }
+                    finally
+                    {
+                        WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                    }
                 }
             }
         }

@@ -108,6 +108,7 @@
             this.btnTerminate.Size = new System.Drawing.Size(118, 43);
             this.btnTerminate.TabIndex = 7;
             this.btnTerminate.Text = "生产终止";
+            this.btnTerminate.Click += new System.EventHandler(this.btnTerminate_Click);
             // 
             // vgrdMethodParams
             // 
@@ -483,7 +484,7 @@
             this.btnBegin.Text = "生产开始";
             this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
             // 
-            // ucCleanTemperPrdtParams
+            // ucPrdtParams_Clean
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.btnBegin);
@@ -491,7 +492,7 @@
             this.Controls.Add(this.btnEnd);
             this.Controls.Add(this.btnTerminate);
             this.Controls.Add(this.splitContainerControl1);
-            this.Name = "ucCleanTemperPrdtParams";
+            this.Name = "ucPrdtParams_Clean";
             this.Size = new System.Drawing.Size(1045, 579);
             this.Load += new System.EventHandler(this.ucCleanTemperPrdtParams_Load);
             this.Enter += new System.EventHandler(this.ucCleanTemperPrdtParams_Enter);

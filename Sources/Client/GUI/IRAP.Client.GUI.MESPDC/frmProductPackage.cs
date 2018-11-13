@@ -1779,9 +1779,8 @@ namespace IRAP.Client.GUI.MESPDC
                     {
                         WriteLog.Instance.Write(data.BarcodeStatusStr, strProcedureName);
                         IRAPMessageBox.Instance.ShowErrorMessage(
-                            $"扫描到的条码：{serialNumber}\n"+
-                            $"条码状态：{data.BarcodeStatusStr}\n"+
-                            $"路由状态：{data.RoutingStatusStr}",
+                            $"扫描到的条码：{serialNumber}\n" +
+                            $"条码状态：{data.BarcodeStatusStr}",
                             caption);
                     }
                     else if (data.RoutingStatus != 0)
@@ -1789,7 +1788,6 @@ namespace IRAP.Client.GUI.MESPDC
                         WriteLog.Instance.Write(data.RoutingStatusStr, strProcedureName);
                         IRAPMessageBox.Instance.ShowErrorMessage(
                             $"扫描到的条码：{serialNumber}\n" +
-                            $"条码状态：{data.BarcodeStatusStr}\n" +
                             $"路由状态：{data.RoutingStatusStr}",
                             caption);
                     }
@@ -1803,6 +1801,62 @@ namespace IRAP.Client.GUI.MESPDC
                 }
 
                 return rlt;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private List<WIPIDCode> GetWIPPatterns(string serialNumber)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            List<string> patterns = new List<string>();
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                List<WIPIDCode> datas = new List<WIPIDCode>();
+
+                try
+                {
+                    IRAPMESClient.Instance.ufn_GetList_WIPIDCodes(
+                        IRAPUser.Instance.CommunityID,
+                        serialNumber,
+                        Options.SelectProduct.T102LeafID,
+                        Options.SelectStation.T107EntityID,
+                        false,
+                        IRAPUser.Instance.SysLogID,
+                        ref datas,
+                        out errCode,
+                        out errText);
+                }
+                catch (Exception error)
+                {
+                    errCode = -1;
+                    errText = error.Message;
+                }
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        caption,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                return datas;
             }
             finally
             {
@@ -2579,6 +2633,47 @@ namespace IRAP.Client.GUI.MESPDC
                     }
 
                     edtProductSN.Text = "";
+
+                    List<WIPIDCode> wips = GetWIPPatterns(serialNumber);
+                    if (wips.Count <= 0)
+                    {
+                        IRAPMessageBox.Instance.ShowErrorMessage(
+                            $"无法解析{serialNumber}，请重新扫描或输入！",
+                            caption);
+                        edtProductSN.Text = "";
+                        edtProductSN.Focus();
+                        return;
+                    }
+
+                    #region 产品路由检验
+                    string errText = "";
+                    foreach (WIPIDCode wip in wips)
+                    {
+                        if (wip.BarcodeStatus != 0)
+                        {
+                            errText += $"在制品：{wip.WIPPattern}|条码状态：{wip.BarcodeStatusStr}|";
+                            break;
+                        }
+                        if (wip.RoutingStatus != 0)
+                        {
+                            errText += $"在制品{wip.WIPPattern}|路由状态：{wip.RoutingStatusStr}|";
+                        }
+                    }
+                    if (errText != "")
+                    {
+                        IRAPMessageBox.Instance.ShowErrorMessage(
+                            errText.Replace("|", "\n"),
+                            caption);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+
+                        edtProductSN.Text = "";
+                        edtProductSN.Focus();
+                        return;
+                    }
+                    #endregion
+
+                    return;
+
                     int palletUnitIndex = -1;
                     for (int i = 0; i < allNumCartonsInPallet; i++)
                     {
@@ -2598,194 +2693,225 @@ namespace IRAP.Client.GUI.MESPDC
 
                     if (palletUnitIndex == -1)
                         return;
-                    int currentPalletLayer = (palletUnitIndex / objPackageType.NumCartonsPerLayerOfPallet) + 1;
-                    int currentPalletCol = palletUnitIndex + 1 - (currentPalletLayer - 1) * objPackageType.NumCartonsPerLayerOfPallet;
 
-                    for (int i = 0; i < allBoxNum; i++)
+                    #region 计算正在包装的大包装内剩余的包装空位
+                    int emptyCount = 0;
+                    for (int i = 0; i < palletUnitTables[palletUnitIndex].Rows.Count; i++)
                     {
-                        string doStatus = palletUnitTables[palletUnitIndex].Rows[i]["Do"].ToString();
-                        //如果状态为待包装
-                        if (doStatus == "1")
+                        if (palletUnitTables[palletUnitIndex].Rows[i]["Do"].ToString() != "2")
                         {
-                            int ordinal = i + 1;
-                            int cartonLayer, cartonRow, cartonCol, boxLayer, boxRow, boxCol;
+                            emptyCount++;
+                        }
+                    }
+                    #endregion
 
-                            SetBoxOrdinal(
-                                ordinal,
-                                out cartonLayer,
-                                out cartonRow,
-                                out cartonCol,
-                                out boxLayer,
-                                out boxRow,
-                                out boxCol);
+                    if (emptyCount < wips.Count)
+                    {
+                        IRAPMessageBox.Instance.ShowErrorMessage(
+                            $"本次扫描到的待包装产品数为[{wips.Count}]，" +
+                            $"而大包装中的可包装位只有[{emptyCount}]，" +
+                            "无法批量包装，请直接扫描在制品上的条码一个一个包装。\n谢谢！",
+                            caption);
 
-                            #region 保存事实并打印标签 
+                        edtProductSN.Text = "";
+                        edtProductSN.Focus();
 
-                            //每包完一箱都要进行一次数据提交动作
-                            string wipPattern = GetWIPPattern(serialNumber);
-                            if (string.IsNullOrEmpty(wipPattern)) return;
-                            string boxSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["BoxPackageSN"].ToString();
-                            int boxNumOfInCarton = objPackageType.QtyPerColOfBox * objPackageType.QtyPerRowOfBox;
-                            //已包装产品数量是Box容量整倍数时，需要申请Box序列号
-                            if (i % boxNumOfInCarton == 0)
-                            {
-                                boxSerialNumber = GetNextPackageSN("BOX");
-                                //更新内存表
-                                for (int r = i; r < i + boxNumOfInCarton; r++)
-                                {
-                                    palletUnitTables[palletUnitIndex].Rows[r]["BoxPackageSN"] = boxSerialNumber;
-                                }
-                            }
+                        return;
+                    }
 
-                            string cartonSerialNumber =
-                                palletUnitTables[palletUnitIndex].Rows[i]["CartonPackageSN"].ToString();
-                            //每个Carton需要申请一个新的交易号和标签号
-                            if (i == 0)
-                            {
-                                //申请交易号
-                                transactNo = GetTransactNo("-12");
-                                if (transactNo == 0)
-                                {
-                                    XtraMessageBox.Show("交易号申请失败！", "提示", MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error);
-                                    return;
-                                }
-                                //更新内存表
-                                BatchUpdateMemTable(palletUnitIndex, "TransactNo", transactNo.ToString());
-                                cartonSerialNumber = GetNextPackageSN("CRT");
-                                edtCartonSN.Text = cartonSerialNumber;
-                                BatchUpdateMemTable(palletUnitIndex, "CartonPackageSN", cartonSerialNumber);
-                            }
-                            string PalletSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["PalletPackageSN"].ToString();
-                            string layerSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["PalletLayerSN"].ToString();
+                    foreach (WIPIDCode wip in wips)
+                    {
+                        int currentPalletLayer = (palletUnitIndex / objPackageType.NumCartonsPerLayerOfPallet) + 1;
+                        int currentPalletCol = palletUnitIndex + 1 - (currentPalletLayer - 1) * objPackageType.NumCartonsPerLayerOfPallet;
 
-                            long factNo = GetNextSequenceNo("NextFactNo", 1);
-                            FactPackaging factPackage = new FactPackaging();
-                            factPackage.FactID = factNo;
-                            factPackage.PackagingSpecNo = objPackageType.Ordinal;
-                            factPackage.WIPCode = wipPattern;
-                            factPackage.LayerIdxOfPallet = currentPalletLayer;
-                            factPackage.CartonIdxOfLayer = currentPalletCol;
-                            factPackage.LayerIdxOfCarton = cartonLayer;
-                            factPackage.RowIdxOfCarton = cartonRow;
-                            factPackage.ColIdxOfCarton = cartonCol;
-                            factPackage.LayerIdxOfBox = boxLayer;
-                            factPackage.RowIdxOfBox = boxRow;
-                            factPackage.ColIdxOfBox = boxCol;
-                            factPackage.BoxSerialNumber = boxSerialNumber;
-                            factPackage.CartonSerialNumber = cartonSerialNumber;
-                            factPackage.LayerSerialNumber = layerSerialNumber;
-                            factPackage.PalletSerialNumber = PalletSerialNumber;
+                        for (int i = 0; i < allBoxNum; i++)
+                        {
+                            string doStatus = palletUnitTables[palletUnitIndex].Rows[i]["Do"].ToString();
+                            //如果状态为待包装
+                            if (doStatus == "1")
+                            {
+                                int ordinal = i + 1;
+                                int cartonLayer, cartonRow, cartonCol, boxLayer, boxRow, boxCol;
 
-                            bool saveResult = usp_SaveFact_Packaging(factPackage, out OutputStr);
-                            WriteLog.Instance.Write($"OutputStr={OutputStr}", strProcedureName);
-
-                            if (!string.IsNullOrEmpty(OutputStr))
-                            {
-                                //IniFile.WriteString("OutputStr", transactNo.ToString(), OutputStr, attributeFileName);
-                                XmlFile.SavaConfig(transactNo.ToString(), OutputStr, attributeFileName);
-                            }
-
-                            //如果数据提交动作数据库返回成功状态，则再进行 
-                            if (!saveResult) return;
-                            //事实保存成功，打印标签
-                            //判断是否已包满一Box，如果已满，则打印Box标签
-                            if (boxRow == objPackageType.QtyPerRowOfBox &&
-                                boxCol == objPackageType.QtyPerColOfBox &&
-                                boxLayer == objPackageType.NumLayersOfBox)
-                            {
-                                if (!string.IsNullOrEmpty(OutputStr))
-                                {
-                                    PrintLabel(objPackageType.T117LabelID_Box, boxSerialNumber, OutputStr);
-                                }
-                            }
-                            //判断是否已已包满一大包装箱，如果已满，则打印Carton标签 
-                            if (ordinal == allBoxNum)
-                            {
-                                //Carton包满或点包装完成按钮时复核交易
-                                if (ssp_CheckTransaction(transactNo))
-                                {
-                                    //if (!string.IsNullOrEmpty(OutputStr))
-                                    //PrintLabel(objPackageType.T117LabelID_Carton, cartonSerialNumber, OutputStr);
-                                }
-                            }
-                            if (objPackageType.T117LabelID_Layer > 0)
-                            {
-                                //判断是否已包满一托中的层，如果已满，则打印托层的标签
-                                if (ordinal == allBoxNum && currentPalletCol == objPackageType.NumCartonsPerLayerOfPallet)
-                                {
-                                    //if (!string.IsNullOrEmpty(OutputStr))
-                                    //PrintLabel(objPackageType.T117LabelID_Layer, layerSerialNumber, OutputStr);
-                                }
-                                //判断是否已包满一托的标签，如果已满，则打印托标签
-                                if (ordinal == allBoxNum && currentPalletLayer == objPackageType.NumLayersOfPallet)
-                                {
-                                    //if (!string.IsNullOrEmpty(OutputStr))
-                                    //PrintLabel(objPackageType.T117LabelID_Pallet, factPackage.PalletSerialNumber, OutputStr);
-                                }
-                            }
-                            palletUnitTables[palletUnitIndex].Rows[i]["ProductSN"] = serialNumber;
-                            palletUnitTables[palletUnitIndex].Rows[i]["TransactNo"] = transactNo;
-                            palletUnitTables[palletUnitIndex].Rows[i]["FactNo"] = factNo;
-                            #endregion
-                            //改变Box状态，标识其已经包装完成
-                            palletUnitTables[palletUnitIndex].Rows[i]["Do"] = 2;
-                            //同时将下一个包装箱的状态设置为带包装
-                            if (i < allBoxNum - 1)
-                            {
-                                palletUnitTables[palletUnitIndex].Rows[i + 1]["Do"] = 1;
-                            }
-                            //如果小包装箱已满，则需要换箱，即将Box的序列号向前推进1
-                            if (boxRow == objPackageType.QtyPerRowOfBox &&
-                                boxCol == objPackageType.QtyPerColOfBox)
-                            {
                                 SetBoxOrdinal(
-                                    ordinal + 1,
+                                    ordinal,
                                     out cartonLayer,
                                     out cartonRow,
                                     out cartonCol,
                                     out boxLayer,
                                     out boxRow,
                                     out boxCol);
-                            }
 
-                            if (ordinal == allBoxNum)
-                            {
-                                if (objPackageType.T117LabelID_Pallet > 0)
+                                #region 保存事实并打印标签 
+
+                                //每包完一箱都要进行一次数据提交动作
+                                //string wipPattern = GetWIPPattern(serialNumber); // 原来只支持单个在制品的包装
+                                string wipPattern = wip.WIPPattern;
+
+                                if (string.IsNullOrEmpty(wipPattern)) return;
+                                string boxSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["BoxPackageSN"].ToString();
+                                int boxNumOfInCarton = objPackageType.QtyPerColOfBox * objPackageType.QtyPerRowOfBox;
+                                //已包装产品数量是Box容量整倍数时，需要申请Box序列号
+                                if (i % boxNumOfInCarton == 0)
                                 {
-                                    //判断托是否已满
-                                    if (currentPalletLayer == objPackageType.NumLayersOfPallet)
+                                    boxSerialNumber = GetNextPackageSN("BOX");
+                                    //更新内存表
+                                    for (int r = i; r < i + boxNumOfInCarton; r++)
                                     {
-                                        InitPackageStart(true);
+                                        palletUnitTables[palletUnitIndex].Rows[r]["BoxPackageSN"] = boxSerialNumber;
+                                    }
+                                }
+
+                                string cartonSerialNumber =
+                                    palletUnitTables[palletUnitIndex].Rows[i]["CartonPackageSN"].ToString();
+                                //每个Carton需要申请一个新的交易号和标签号
+                                if (i == 0)
+                                {
+                                    //申请交易号
+                                    transactNo = GetTransactNo("-12");
+                                    if (transactNo == 0)
+                                    {
+                                        XtraMessageBox.Show("交易号申请失败！", "提示", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
                                         return;
                                     }
-                                    //如果大包装箱已满，则需要换箱，将此包装箱数据暂存至List中
-                                    if (palletUnitIndex < allNumCartonsInPallet)
+                                    //更新内存表
+                                    BatchUpdateMemTable(palletUnitIndex, "TransactNo", transactNo.ToString());
+                                    cartonSerialNumber = GetNextPackageSN("CRT");
+                                    edtCartonSN.Text = cartonSerialNumber;
+                                    BatchUpdateMemTable(palletUnitIndex, "CartonPackageSN", cartonSerialNumber);
+                                }
+                                string PalletSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["PalletPackageSN"].ToString();
+                                string layerSerialNumber = palletUnitTables[palletUnitIndex].Rows[i]["PalletLayerSN"].ToString();
+
+                                long factNo = GetNextSequenceNo("NextFactNo", 1);
+                                FactPackaging factPackage = new FactPackaging();
+                                factPackage.FactID = factNo;
+                                factPackage.PackagingSpecNo = objPackageType.Ordinal;
+                                factPackage.WIPCode = wipPattern;
+                                factPackage.LayerIdxOfPallet = currentPalletLayer;
+                                factPackage.CartonIdxOfLayer = currentPalletCol;
+                                factPackage.LayerIdxOfCarton = cartonLayer;
+                                factPackage.RowIdxOfCarton = cartonRow;
+                                factPackage.ColIdxOfCarton = cartonCol;
+                                factPackage.LayerIdxOfBox = boxLayer;
+                                factPackage.RowIdxOfBox = boxRow;
+                                factPackage.ColIdxOfBox = boxCol;
+                                factPackage.BoxSerialNumber = boxSerialNumber;
+                                factPackage.CartonSerialNumber = cartonSerialNumber;
+                                factPackage.LayerSerialNumber = layerSerialNumber;
+                                factPackage.PalletSerialNumber = PalletSerialNumber;
+
+                                bool saveResult = usp_SaveFact_Packaging(factPackage, out OutputStr);
+                                WriteLog.Instance.Write($"OutputStr={OutputStr}", strProcedureName);
+
+                                if (!string.IsNullOrEmpty(OutputStr))
+                                {
+                                    //IniFile.WriteString("OutputStr", transactNo.ToString(), OutputStr, attributeFileName);
+                                    XmlFile.SavaConfig(transactNo.ToString(), OutputStr, attributeFileName);
+                                }
+
+                                //如果数据提交动作数据库返回成功状态，则再进行 
+                                if (!saveResult) return;
+                                //事实保存成功，打印标签
+                                //判断是否已包满一Box，如果已满，则打印Box标签
+                                if (boxRow == objPackageType.QtyPerRowOfBox &&
+                                    boxCol == objPackageType.QtyPerColOfBox &&
+                                    boxLayer == objPackageType.NumLayersOfBox)
+                                {
+                                    if (!string.IsNullOrEmpty(OutputStr))
                                     {
-                                        palletUnitIndex += 1;
+                                        PrintLabel(objPackageType.T117LabelID_Box, boxSerialNumber, OutputStr);
+                                    }
+                                }
+                                //判断是否已已包满一大包装箱，如果已满，则打印Carton标签 
+                                if (ordinal == allBoxNum)
+                                {
+                                    //Carton包满或点包装完成按钮时复核交易
+                                    if (ssp_CheckTransaction(transactNo))
+                                    {
+                                        //if (!string.IsNullOrEmpty(OutputStr))
+                                        //PrintLabel(objPackageType.T117LabelID_Carton, cartonSerialNumber, OutputStr);
+                                    }
+                                }
+                                if (objPackageType.T117LabelID_Layer > 0)
+                                {
+                                    //判断是否已包满一托中的层，如果已满，则打印托层的标签
+                                    if (ordinal == allBoxNum && currentPalletCol == objPackageType.NumCartonsPerLayerOfPallet)
+                                    {
+                                        //if (!string.IsNullOrEmpty(OutputStr))
+                                        //PrintLabel(objPackageType.T117LabelID_Layer, layerSerialNumber, OutputStr);
+                                    }
+                                    //判断是否已包满一托的标签，如果已满，则打印托标签
+                                    if (ordinal == allBoxNum && currentPalletLayer == objPackageType.NumLayersOfPallet)
+                                    {
+                                        //if (!string.IsNullOrEmpty(OutputStr))
+                                        //PrintLabel(objPackageType.T117LabelID_Pallet, factPackage.PalletSerialNumber, OutputStr);
+                                    }
+                                }
+                                palletUnitTables[palletUnitIndex].Rows[i]["ProductSN"] = serialNumber;
+                                palletUnitTables[palletUnitIndex].Rows[i]["TransactNo"] = transactNo;
+                                palletUnitTables[palletUnitIndex].Rows[i]["FactNo"] = factNo;
+                                #endregion
+                                //改变Box状态，标识其已经包装完成
+                                palletUnitTables[palletUnitIndex].Rows[i]["Do"] = 2;
+                                //同时将下一个包装箱的状态设置为带包装
+                                if (i < allBoxNum - 1)
+                                {
+                                    palletUnitTables[palletUnitIndex].Rows[i + 1]["Do"] = 1;
+                                }
+                                //如果小包装箱已满，则需要换箱，即将Box的序列号向前推进1
+                                if (boxRow == objPackageType.QtyPerRowOfBox &&
+                                    boxCol == objPackageType.QtyPerColOfBox)
+                                {
+                                    SetBoxOrdinal(
+                                        ordinal + 1,
+                                        out cartonLayer,
+                                        out cartonRow,
+                                        out cartonCol,
+                                        out boxLayer,
+                                        out boxRow,
+                                        out boxCol);
+                                }
+
+                                if (ordinal == allBoxNum)
+                                {
+                                    if (objPackageType.T117LabelID_Pallet > 0)
+                                    {
+                                        //判断托是否已满
+                                        if (currentPalletLayer == objPackageType.NumLayersOfPallet)
+                                        {
+                                            InitPackageStart(true);
+                                            return;
+                                        }
+                                        //如果大包装箱已满，则需要换箱，将此包装箱数据暂存至List中
+                                        if (palletUnitIndex < allNumCartonsInPallet)
+                                        {
+                                            palletUnitIndex += 1;
+                                        }
+                                        else
+                                        {
+                                            palletUnitIndex = 0;
+                                        }
+                                        GeneratePallet(currentPalletLayer);
+                                        GeneratePalletLayer();
                                     }
                                     else
                                     {
-                                        palletUnitIndex = 0;
+                                        //当Carton已包装满，则需要结束交易，进行初始化  
+                                        InitPackageStart(true);
+                                        return;
                                     }
-                                    GeneratePallet(currentPalletLayer);
-                                    GeneratePalletLayer();
                                 }
-                                else
-                                {
-                                    //当Carton已包装满，则需要结束交易，进行初始化  
-                                    InitPackageStart(true);
-                                    return;
-                                }
+
+                                GenerateBox(palletUnitIndex, cartonLayer, cartonRow, cartonCol, boxLayer);
+                                GenerateBoxLayer(palletUnitIndex, cartonLayer, cartonRow, cartonCol, boxLayer);
+
+                                GenerateCarton(palletUnitIndex, cartonLayer, cartonRow, cartonCol);
+                                GenerateCartonLayer(palletUnitIndex);
+
+                                break;
                             }
-
-                            GenerateBox(palletUnitIndex, cartonLayer, cartonRow, cartonCol, boxLayer);
-                            GenerateBoxLayer(palletUnitIndex, cartonLayer, cartonRow, cartonCol, boxLayer);
-
-                            GenerateCarton(palletUnitIndex, cartonLayer, cartonRow, cartonCol);
-                            GenerateCartonLayer(palletUnitIndex);
-
-                            break;
                         }
                     }
                 }

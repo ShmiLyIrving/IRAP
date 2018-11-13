@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.ilstBatchNos = new DevExpress.XtraEditors.ImageListBoxControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -60,7 +61,7 @@
             this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
             this.btnEnd = new DevExpress.XtraEditors.SimpleButton();
             this.btnTerminate = new DevExpress.XtraEditors.SimpleButton();
-            this.timer = new System.Windows.Forms.Timer();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ilstBatchNos)).BeginInit();
@@ -450,6 +451,7 @@
             this.btnParamNew.Size = new System.Drawing.Size(95, 30);
             this.btnParamNew.TabIndex = 6;
             this.btnParamNew.Text = "新增";
+            this.btnParamNew.Click += new System.EventHandler(this.btnParamNew_Click);
             // 
             // panelControl2
             // 

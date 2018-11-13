@@ -257,15 +257,15 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-                else
-                {
-                    for (int i = rlt.Count - 1; i >= 0; i--)
-                    {
-                        if (rlt[i].QCStatus != 0 ||
-                            rlt[i].BatchEndDate.Trim() == "")
-                            rlt.RemoveAt(i);
-                    }
-                }
+                //else
+                //{
+                //    for (int i = rlt.Count - 1; i >= 0; i--)
+                //    {
+                //        if (rlt[i].QCStatus != 0 ||
+                //            rlt[i].BatchEndDate.Trim() == "")
+                //            rlt.RemoveAt(i);
+                //    }
+                //}
             }
             catch (Exception error)
             {
@@ -814,6 +814,17 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
 
         private void btnTerminate_Click(object sender, EventArgs e)
         {
+            if (
+                IRAPMessageBox.Instance.Show(
+                    $"是否要终止当前炉次【{currentBatchNo}】的生产？",
+                    "生产终止",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) == DialogResult.No)
+            {
+                return;
+            }
+
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",
