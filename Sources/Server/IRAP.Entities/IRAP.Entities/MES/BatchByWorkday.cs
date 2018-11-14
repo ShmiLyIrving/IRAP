@@ -20,6 +20,14 @@ namespace IRAP.Entities.MES
         /// 结束时间
         /// </summary>
         public string BatchEndDate { get; set; }
+        /// <summary>
+        /// 操作工工号
+        /// </summary>
+        public string UserCode { get; set; }
+        /// <summary>
+        /// 操作工姓名
+        /// </summary>
+        public string UserName { get; set; }
 
         public override string ToString()
         {

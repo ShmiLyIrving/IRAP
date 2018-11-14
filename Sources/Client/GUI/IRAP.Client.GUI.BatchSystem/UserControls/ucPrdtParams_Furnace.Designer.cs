@@ -53,6 +53,8 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.vgrdMethodParams = new DevExpress.XtraVerticalGrid.VGridControl();
             this.btnParamRemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnParamNew = new DevExpress.XtraEditors.SimpleButton();
@@ -352,7 +354,9 @@
             this.grdclmnProductName,
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5});
+            this.gridColumn5,
+            this.gridColumn1,
+            this.gridColumn6});
             this.grdvPWOs.GridControl = this.grdPWOs;
             this.grdvPWOs.Name = "grdvPWOs";
             this.grdvPWOs.OptionsBehavior.Editable = false;
@@ -404,11 +408,27 @@
             this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn5.Caption = "生产数量";
-            this.gridColumn5.FieldName = "Quantity";
+            this.gridColumn5.Caption = "大头数量";
+            this.gridColumn5.FieldName = "Quantity1";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "小头数量";
+            this.gridColumn1.FieldName = "Quantity2";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 6;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "备注";
+            this.gridColumn6.FieldName = "DisplayRemark";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 7;
             // 
             // vgrdMethodParams
             // 
@@ -440,6 +460,7 @@
             this.btnParamRemove.Size = new System.Drawing.Size(95, 30);
             this.btnParamRemove.TabIndex = 8;
             this.btnParamRemove.Text = "删除";
+            this.btnParamRemove.Click += new System.EventHandler(this.btnParamRemove_Click);
             // 
             // btnParamNew
             // 
@@ -591,5 +612,7 @@
         private DevExpress.XtraEditors.SimpleButton btnSelectMaterialPreparation;
         private DevExpress.XtraEditors.ImageListBoxControl ilstBatchNos;
         private System.Windows.Forms.Timer timer;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

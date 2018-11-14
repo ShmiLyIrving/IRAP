@@ -18,7 +18,7 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.BatchSystem.Dialogs
 {
-    public partial class frmPWOInProductionEditor : IRAP.Client.Global.frmCustomBase
+    public partial class frmPWOInProductionEditor_QuenchAndTemper : IRAP.Client.Global.frmCustomBase
     {
         private static string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -31,12 +31,12 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
         private List<EntityBatchPWO> datas = null;
         private EntityBatchPWO data = null;
 
-        public frmPWOInProductionEditor()
+        public frmPWOInProductionEditor_QuenchAndTemper()
         {
             InitializeComponent();
         }
 
-        public frmPWOInProductionEditor(
+        public frmPWOInProductionEditor_QuenchAndTemper(
             EditStatus status, 
             int t134LeafID,
             int t216LeafID,
@@ -67,7 +67,9 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
                     edtProductName.Text = data.T102Name;
                     edtBatchNo.Text = data.LotNumber;
                     edtTextureCode.Text = data.Texture;
-                    edtQuantity.Value = Convert.ToDecimal(data.Quantity);
+                    edtQuantity1.Value = Convert.ToDecimal(data.Quantity1);
+                    edtQuantity2.Value = Convert.ToDecimal(data.Quantity2);
+                    edtDisplayRemark.Text = data.DisplayRemark;
 
                     edtPWONo.Enabled = false;
 
@@ -209,7 +211,9 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
                 edtProductName.Text = "";
                 edtBatchNo.Text = "";
                 edtTextureCode.Text = "";
-                edtQuantity.Value = 0;
+                edtQuantity1.Value = 0;
+                edtQuantity2.Value = 0;
+                edtDisplayRemark.Text = "";
 
                 e.Cancel = false;
                 return;
@@ -362,18 +366,20 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
                 return;
             }
 
-            if (edtQuantity.Value <= 0)
+            if (edtQuantity1.Value <= 0)
             {
                 XtraMessageBox.Show(
                     "请输入当前工单的生产数量！",
                     "系统信息",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                edtQuantity.Focus();
+                edtQuantity1.Focus();
                 return;
             }
 
-            data.Quantity = Convert.ToInt32(edtQuantity.Value);
+            data.Quantity1 = Convert.ToInt32(edtQuantity1.Value);
+            data.Quantity2 = Convert.ToInt32(edtQuantity2.Value);
+            data.DisplayRemark = edtDisplayRemark.Text.Trim();
 
             DialogResult = DialogResult.OK;
         }

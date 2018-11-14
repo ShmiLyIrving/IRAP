@@ -2672,8 +2672,6 @@ namespace IRAP.Client.GUI.MESPDC
                     }
                     #endregion
 
-                    return;
-
                     int palletUnitIndex = -1;
                     for (int i = 0; i < allNumCartonsInPallet; i++)
                     {

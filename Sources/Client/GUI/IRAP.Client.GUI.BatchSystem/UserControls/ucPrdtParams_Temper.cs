@@ -293,14 +293,15 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         "<RF25 Ordinal=\"{0}\" T102LeafID=\"{1}\" " +
                         "T216LeafID=\"{2}\" WIPCode=\"\" LotNumber=\"{3}\" " +
                         "Texture=\"{4}\" PWONo=\"{5}\" BatchLot=\"\" " +
-                        "Qty=\"{6}\" Scale=\"0\" />\n",
+                        "Qty=\"{6}\" Scale=\"0\" Remark=\"{7}\" />\n",
                         idx++,
                         pwo.T102LeafID,
                         stationInfo.T216LeafID,
                         pwo.LotNumber,
                         pwo.Texture,
                         pwo.PWONo,
-                        pwo.Quantity);
+                        pwo.Quantity,
+                        pwo.Remark);
             }
             rlt = string.Format("<RSFact>\n{0}</RSFact>", rlt);
 
@@ -468,6 +469,10 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             BatchProductInfo data = GetWorkUnitProductionInfo();
             if (data != null)
             {
+                pwos = data.GetPWOsFromXML();
+                grdPWOs.DataSource = pwos;
+                grdvPWOs.BestFitColumns();
+
                 currentOperator = new STB006()
                 {
                     UserCode = data.OperatorCode,
@@ -489,10 +494,6 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         GetMethodStandards(0, stationInfo.T216LeafID, currentBatchNo);
                     }
                 }
-
-                pwos = data.GetPWOsFromXML();
-                grdPWOs.DataSource = pwos;
-                grdvPWOs.BestFitColumns();
 
                 edtOperatorCode.Text =
                     string.Format(
@@ -616,7 +617,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 int errCode = 0;
                 string errText = "";
 
-                IRAPMESClient.Instance.usp_SaveFact_BatchProductionStart(
+                IRAPMESBatchClient.Instance.usp_SaveFact_BatchProductionStart_QuenchAndTemper(
                     IRAPUser.Instance.CommunityID,
                     stationInfo.T216LeafID,
                     stationInfo.T107LeafID,
@@ -786,8 +787,8 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
         {
             EntityBatchPWO newPWO = new EntityBatchPWO();
 
-            using (Dialogs.frmPWOInProductionEditor formEditor =
-                new Dialogs.frmPWOInProductionEditor(
+            using (Dialogs.frmPWOInProductionEditor_QuenchAndTemper formEditor =
+                new Dialogs.frmPWOInProductionEditor_QuenchAndTemper(
                     EditStatus.New,
                     stationInfo.T134LeafID,
                     stationInfo.T216LeafID,
@@ -810,8 +811,8 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             {
                 EntityBatchPWO pwo = pwos[idx];
 
-                using (Dialogs.frmPWOInProductionEditor formEditor =
-                    new Dialogs.frmPWOInProductionEditor(
+                using (Dialogs.frmPWOInProductionEditor_QuenchAndTemper formEditor =
+                    new Dialogs.frmPWOInProductionEditor_QuenchAndTemper(
                         EditStatus.Edit,
                         stationInfo.T134LeafID,
                         stationInfo.T216LeafID,

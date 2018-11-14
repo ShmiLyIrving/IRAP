@@ -299,14 +299,15 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         "<RF25 Ordinal=\"{0}\" T102LeafID=\"{1}\" " +
                         "T216LeafID=\"{2}\" WIPCode=\"\" LotNumber=\"{3}\" " +
                         "Texture=\"{4}\" PWONo=\"{5}\" BatchLot=\"\" " +
-                        "Qty=\"{6}\" Scale=\"0\" />\n",
+                        "Qty=\"{6}\" Scale=\"0\" Remark=\"{7}\" />\n",
                         idx++,
                         pwo.T102LeafID,
                         stationInfo.T216LeafID,
                         pwo.LotNumber,
                         pwo.Texture,
                         pwo.PWONo,
-                        pwo.Quantity);
+                        pwo.Quantity,
+                        pwo.Remark);
             }
             rlt = string.Format("<RSFact>\n{0}</RSFact>", rlt);
 
@@ -752,7 +753,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 string errText = "";
                 string batchNumber = "";
 
-                IRAPMESClient.Instance.usp_SaveFact_BatchProductionStart(
+                IRAPMESBatchClient.Instance.usp_SaveFact_BatchProductionStart_QuenchAndTemper(
                     IRAPUser.Instance.CommunityID,
                     stationInfo.T216LeafID,
                     stationInfo.T107LeafID,
@@ -974,6 +975,73 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     {
                         WriteLog.Instance.WriteEndSplitter(strProcedureName);
                     }
+                }
+            }
+        }
+
+        private void btnParamRemove_Click(object sender, EventArgs e)
+        {
+            int idx = vgrdMethodParams.FocusedRecord;
+            if (idx >= 0)
+            {
+                if (XtraMessageBox.Show(
+                    string.Format(
+                        "是否要删除选择的第[{0}]组参数值？",
+                        idx + 1),
+                    "",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    DataRow dr = dtParams.Rows[idx];
+
+                    string strProcedureName =
+                        string.Format(
+                            "{0}.{1}",
+                            className,
+                            MethodBase.GetCurrentMethod().Name);
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                    try
+                    {
+                        int errCode = 0;
+                        string errText = "";
+                        List<PPParamValue> values = ppp[0].ResolveDataXML();
+
+                        IRAPMESClient.Instance.usp_SaveFact_BatchMethodCancel(
+                            IRAPUser.Instance.CommunityID,
+                            stationInfo.T216LeafID,
+                            stationInfo.T107LeafID,
+                            currentFurnace.BatchNumber,
+                            "D",
+                            values[idx].FactID,
+                            GenerateDeleteRSFactXML(dr, idx),
+                            IRAPUser.Instance.SysLogID,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            string.Format("({0}){1}", errCode, errText),
+                            strProcedureName);
+                        if (errCode != 0)
+                        {
+                            XtraMessageBox.Show(
+                                errText,
+                                "",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                    }
+                    finally
+                    {
+                        WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                    }
+
+                    #region 刷新生产过程参数列表
+                    GetMethodStandards(
+                        0,
+                        stationInfo.T216LeafID,
+                        currentFurnace.BatchNumber);
+                    vgrdMethodParams.RefreshDataSource();
+                    #endregion
                 }
             }
         }

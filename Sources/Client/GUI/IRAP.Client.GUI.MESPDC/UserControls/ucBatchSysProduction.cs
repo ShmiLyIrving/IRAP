@@ -628,7 +628,7 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
                 int errCode = 0;
                 string errText = "";
 
-                IRAPMESClient.Instance.usp_SaveFact_BatchProductionStart(
+                IRAPMESBatchClient.Instance.usp_SaveFact_BatchProductionStart(
                     IRAPUser.Instance.CommunityID,
                     stationInfo.T216LeafID,
                     stationInfo.T107LeafID,

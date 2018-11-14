@@ -211,8 +211,8 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
                 grdPWOs.DataSource as List<EntityBatchPWO>;
             EntityBatchPWO newPWO = new EntityBatchPWO();
 
-            using (frmPWOInProductionEditor formEditor =
-                new frmPWOInProductionEditor(
+            using (frmPWOInProductionEditor_QuenchAndTemper formEditor =
+                new frmPWOInProductionEditor_QuenchAndTemper(
                     EditStatus.New,
                     stationInfo.T134LeafID,
                     stationInfo.T216LeafID,
@@ -242,8 +242,8 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
             {
                 EntityBatchPWO pwo = pwos[idx];
 
-                using (frmPWOInProductionEditor formEditor =
-                    new frmPWOInProductionEditor(
+                using (frmPWOInProductionEditor_QuenchAndTemper formEditor =
+                    new frmPWOInProductionEditor_QuenchAndTemper(
                         EditStatus.Edit,
                         stationInfo.T134LeafID,
                         stationInfo.T216LeafID,

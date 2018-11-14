@@ -58,6 +58,8 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.lblCurrentTime = new DevExpress.XtraEditors.LabelControl();
             this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
@@ -296,7 +298,9 @@
             this.grdclmnProductName,
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5});
+            this.gridColumn5,
+            this.gridColumn1,
+            this.gridColumn6});
             this.grdvPWOs.GridControl = this.grdPWOs;
             this.grdvPWOs.Name = "grdvPWOs";
             this.grdvPWOs.OptionsBehavior.Editable = false;
@@ -348,8 +352,8 @@
             this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn5.Caption = "生产数量";
-            this.gridColumn5.FieldName = "Quantity";
+            this.gridColumn5.Caption = "大头数量";
+            this.gridColumn5.FieldName = "Quantity1";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
@@ -452,7 +456,23 @@
             this.btnBegin.Text = "生产开始";
             this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
             // 
-            // ucFurnacePrdtParams
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "小头数量";
+            this.gridColumn1.FieldName = "Quantity2";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 6;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "备注";
+            this.gridColumn6.FieldName = "DisplayRemark";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 7;
+            // 
+            // ucPrdtParams_Temper
             // 
             this.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Appearance.Options.UseFont = true;
@@ -463,7 +483,7 @@
             this.Controls.Add(this.btnTerminate);
             this.Controls.Add(this.splitContainerControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "ucFurnacePrdtParams";
+            this.Name = "ucPrdtParams_Temper";
             this.Size = new System.Drawing.Size(1045, 579);
             this.Load += new System.EventHandler(this.ucFurnacePrdtParams_Load);
             this.Enter += new System.EventHandler(this.ucFurnacePrdtParams_Enter);
@@ -514,5 +534,7 @@
         private DevExpress.XtraEditors.LabelControl lblBatchNo;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.SimpleButton btnBegin;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

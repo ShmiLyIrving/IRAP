@@ -1,6 +1,6 @@
 ﻿namespace IRAP.Client.GUI.BatchSystem.Dialogs
 {
-    partial class frmPWOInProductionEditor
+    partial class frmPWOInProductionEditor_QuenchAndTemper
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.edtDisplayRemark = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.edtQuantity2 = new DevExpress.XtraEditors.CalcEdit();
             this.edtProductName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.edtQuantity = new DevExpress.XtraEditors.CalcEdit();
+            this.edtQuantity1 = new DevExpress.XtraEditors.CalcEdit();
             this.edtTextureCode = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.edtBatchNo = new DevExpress.XtraEditors.TextEdit();
@@ -45,8 +49,10 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDisplayRemark.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtQuantity2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtProductName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtQuantity.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtQuantity1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTextureCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtBatchNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtProductNo.Properties)).BeginInit();
@@ -68,10 +74,14 @@
             this.groupControl1.Appearance.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.Controls.Add(this.edtDisplayRemark);
+            this.groupControl1.Controls.Add(this.labelControl8);
+            this.groupControl1.Controls.Add(this.labelControl7);
+            this.groupControl1.Controls.Add(this.edtQuantity2);
             this.groupControl1.Controls.Add(this.edtProductName);
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.labelControl5);
-            this.groupControl1.Controls.Add(this.edtQuantity);
+            this.groupControl1.Controls.Add(this.edtQuantity1);
             this.groupControl1.Controls.Add(this.edtTextureCode);
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.edtBatchNo);
@@ -82,9 +92,66 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(490, 234);
+            this.groupControl1.Size = new System.Drawing.Size(490, 301);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "生产工单";
+            // 
+            // edtDisplayRemark
+            // 
+            this.edtDisplayRemark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.edtDisplayRemark.EnterMoveNextControl = true;
+            this.edtDisplayRemark.Location = new System.Drawing.Point(148, 261);
+            this.edtDisplayRemark.Name = "edtDisplayRemark";
+            this.edtDisplayRemark.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtDisplayRemark.Properties.Appearance.Options.UseFont = true;
+            this.edtDisplayRemark.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.edtDisplayRemark.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.edtDisplayRemark.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.edtDisplayRemark.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.edtDisplayRemark.Size = new System.Drawing.Size(325, 26);
+            this.edtDisplayRemark.TabIndex = 15;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl8.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl8.Location = new System.Drawing.Point(16, 264);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(126, 20);
+            this.labelControl8.TabIndex = 14;
+            this.labelControl8.Text = "备注：";
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl7.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl7.Location = new System.Drawing.Point(16, 232);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(126, 20);
+            this.labelControl7.TabIndex = 13;
+            this.labelControl7.Text = "小头数量：";
+            // 
+            // edtQuantity2
+            // 
+            this.edtQuantity2.EnterMoveNextControl = true;
+            this.edtQuantity2.Location = new System.Drawing.Point(148, 229);
+            this.edtQuantity2.Name = "edtQuantity2";
+            this.edtQuantity2.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edtQuantity2.Properties.Appearance.Options.UseFont = true;
+            this.edtQuantity2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.edtQuantity2.Properties.DisplayFormat.FormatString = "#,##0";
+            this.edtQuantity2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.edtQuantity2.Properties.EditFormat.FormatString = "#,##0";
+            this.edtQuantity2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.edtQuantity2.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
+            this.edtQuantity2.Size = new System.Drawing.Size(164, 26);
+            this.edtQuantity2.TabIndex = 12;
             // 
             // edtProductName
             // 
@@ -125,24 +192,24 @@
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(126, 20);
             this.labelControl5.TabIndex = 9;
-            this.labelControl5.Text = "生产数量：";
+            this.labelControl5.Text = "大头数量：";
             // 
-            // edtQuantity
+            // edtQuantity1
             // 
-            this.edtQuantity.EnterMoveNextControl = true;
-            this.edtQuantity.Location = new System.Drawing.Point(148, 197);
-            this.edtQuantity.Name = "edtQuantity";
-            this.edtQuantity.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.edtQuantity.Properties.Appearance.Options.UseFont = true;
-            this.edtQuantity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.edtQuantity1.EnterMoveNextControl = true;
+            this.edtQuantity1.Location = new System.Drawing.Point(148, 197);
+            this.edtQuantity1.Name = "edtQuantity1";
+            this.edtQuantity1.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edtQuantity1.Properties.Appearance.Options.UseFont = true;
+            this.edtQuantity1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.edtQuantity.Properties.DisplayFormat.FormatString = "#,##0";
-            this.edtQuantity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.edtQuantity.Properties.EditFormat.FormatString = "#,##0";
-            this.edtQuantity.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.edtQuantity.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
-            this.edtQuantity.Size = new System.Drawing.Size(164, 26);
-            this.edtQuantity.TabIndex = 8;
+            this.edtQuantity1.Properties.DisplayFormat.FormatString = "#,##0";
+            this.edtQuantity1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.edtQuantity1.Properties.EditFormat.FormatString = "#,##0";
+            this.edtQuantity1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.edtQuantity1.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
+            this.edtQuantity1.Size = new System.Drawing.Size(164, 26);
+            this.edtQuantity1.TabIndex = 8;
             // 
             // edtTextureCode
             // 
@@ -265,7 +332,7 @@
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Appearance.Options.UseFont = true;
-            this.btnOK.Location = new System.Drawing.Point(292, 260);
+            this.btnOK.Location = new System.Drawing.Point(292, 330);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(95, 37);
             this.btnOK.TabIndex = 1;
@@ -278,25 +345,27 @@
             this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(407, 260);
+            this.btnCancel.Location = new System.Drawing.Point(407, 330);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(95, 37);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
             // 
-            // frmPWOInProductionEditor
+            // frmPWOInProductionEditor_QuenchAndTemper
             // 
             this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(514, 309);
+            this.ClientSize = new System.Drawing.Size(514, 379);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupControl1);
-            this.Name = "frmPWOInProductionEditor";
+            this.Name = "frmPWOInProductionEditor_QuenchAndTemper";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.edtDisplayRemark.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtQuantity2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtProductName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtQuantity.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtQuantity1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTextureCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtBatchNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtProductNo.Properties)).EndInit();
@@ -311,7 +380,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit edtPWONo;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.CalcEdit edtQuantity;
+        private DevExpress.XtraEditors.CalcEdit edtQuantity1;
         private DevExpress.XtraEditors.TextEdit edtTextureCode;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.TextEdit edtBatchNo;
@@ -322,5 +391,9 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.TextEdit edtProductName;
         private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.TextEdit edtDisplayRemark;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.CalcEdit edtQuantity2;
     }
 }

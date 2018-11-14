@@ -89,11 +89,11 @@
     <Compile Include="Dialogs\frmMaterialPreparation.Designer.cs">
       <DependentUpon>frmMaterialPreparation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\frmPWOInProductionEditor.cs">
+    <Compile Include="Dialogs\frmPWOInProductionEditor_QuenchAndTemper.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\frmPWOInProductionEditor.designer.cs">
-      <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
+    <Compile Include="Dialogs\frmPWOInProductionEditor_QuenchAndTemper.designer.cs">
+      <DependentUpon>frmPWOInProductionEditor_QuenchAndTemper.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\frmSelectExcelSheet.cs">
       <SubType>Form</SubType>
@@ -247,8 +247,8 @@
     <EmbeddedResource Include="Dialogs\frmMaterialPreparation.resx">
       <DependentUpon>frmMaterialPreparation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor.resx">
-      <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor_QuenchAndTemper.resx">
+      <DependentUpon>frmPWOInProductionEditor_QuenchAndTemper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmSelectExcelSheet.resx">
       <DependentUpon>frmSelectExcelSheet.cs</DependentUpon>

@@ -368,14 +368,15 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         "<RF25 Ordinal=\"{0}\" T102LeafID=\"{1}\" " +
                         "T216LeafID=\"{2}\" WIPCode=\"\" LotNumber=\"{3}\" " +
                         "Texture=\"{4}\" PWONo=\"{5}\" BatchLot=\"\" " +
-                        "Qty=\"{6}\" Scale=\"0\" />\n",
+                        "Qty=\"{6}\" Scale=\"0\" Remark=\"{7}\" />\n",
                         idx++,
                         pwo.T102LeafID,
                         stationInfo.T216LeafID,
                         pwo.LotNumber,
                         pwo.Texture,
                         pwo.PWONo,
-                        pwo.Qty);
+                        pwo.Qty,
+                        pwo.DisplayRemark);
             }
             rlt = string.Format("<RSFact>\n{0}</RSFact>", rlt);
 
@@ -773,7 +774,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 string errText = "";
                 currentBatchNo = ((BatchByEquipment)cboBatchNos.SelectedItem).BatchNumber;
 
-                IRAPMESClient.Instance.usp_SaveFact_BatchProductionStart_N(
+                IRAPMESBatchClient.Instance.usp_SaveFact_BatchProductionStart_N(
                     IRAPUser.Instance.CommunityID,
                     stationInfo.T216LeafID,
                     stationInfo.T107LeafID,

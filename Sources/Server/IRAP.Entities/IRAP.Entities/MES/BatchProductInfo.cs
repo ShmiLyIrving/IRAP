@@ -114,6 +114,8 @@ namespace IRAP.Entities.MES
                         pwo.BatchLot = node.Attributes["BatchLot"].Value;
                     if (node.Attributes["Qty"] != null)
                         pwo.Quantity = Tools.ConvertToInt64(node.Attributes["Qty"].Value);
+                    if (node.Attributes["Remark"] != null)
+                        pwo.Remark = node.Attributes["Remark"].Value;
 
                     rlt.Add(pwo);
                 }

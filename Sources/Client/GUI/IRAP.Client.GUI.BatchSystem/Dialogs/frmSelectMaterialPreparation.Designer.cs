@@ -44,6 +44,8 @@
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSelect = new DevExpress.XtraEditors.SimpleButton();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ilstMaterialPreparation)).BeginInit();
@@ -129,7 +131,9 @@
             this.grdclmnProductName,
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5});
+            this.gridColumn5,
+            this.gridColumn1,
+            this.gridColumn6});
             this.grdvPWOs.GridControl = this.grdPWOs;
             this.grdvPWOs.Name = "grdvPWOs";
             this.grdvPWOs.OptionsBehavior.Editable = false;
@@ -181,8 +185,8 @@
             this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn5.Caption = "生产数量";
-            this.gridColumn5.FieldName = "Quantity";
+            this.gridColumn5.Caption = "大头数量";
+            this.gridColumn5.FieldName = "Quantity1";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
@@ -228,6 +232,22 @@
             this.btnSelect.Text = "选择";
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "小头数量";
+            this.gridColumn1.FieldName = "Quantity2";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 6;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "备注";
+            this.gridColumn6.FieldName = "DisplayRemark";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 7;
+            // 
             // frmSelectMaterialPreparation
             // 
             this.Appearance.Options.UseFont = true;
@@ -266,5 +286,7 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnSelect;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }
