@@ -595,6 +595,8 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                             edtOperatorCode.Text = "";
                             currentFurnace.OperatorCode = "";
                             currentFurnace.OperatorName = "";
+
+                            edtOperatorCode.Focus();
                         }
                     }
                     else
@@ -602,11 +604,15 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         edtOperatorCode.Text = "";
                         currentFurnace.OperatorCode = "";
                         currentFurnace.OperatorName = "";
+
+                        edtOperatorCode.Focus();
                     }
                 }
                 else
                 {
                     edtOperatorCode.Text = "";
+
+                    edtOperatorCode.Focus();
                 }
             }
         }

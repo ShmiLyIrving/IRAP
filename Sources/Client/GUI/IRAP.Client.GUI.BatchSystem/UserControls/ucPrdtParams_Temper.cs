@@ -533,12 +533,14 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     else
                     {
                         edtOperatorCode.Text = "";
+                        edtOperatorCode.Focus();
                     }
                 }
                 else
                 {
                     edtOperatorCode.Text = "";
                     currentOperator = null;
+                    edtOperatorCode.Focus();
                 }
             }
         }

@@ -157,16 +157,8 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
             else
             {
                 btnPWONew.Enabled = true;
-                if (grdvPWOs.GetFocusedDataSourceRowIndex() >= 0)
-                {
-                    btnPWOModify.Enabled = true;
-                    btnPWORemove.Enabled = true;
-                }
-                else
-                {
-                    btnPWOModify.Enabled = false;
-                    btnPWORemove.Enabled = false;
-                }
+                btnPWOModify.Enabled = true;
+                btnPWORemove.Enabled = true;
             }
         }
 

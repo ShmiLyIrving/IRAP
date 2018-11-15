@@ -54,6 +54,7 @@ namespace IRAP.BL.OPCGateway
             {
                 Debug.WriteLine(error.Message);
 
+                softlandContent.Head.ExCode = "";
                 rspContent = string.Format(rspContent, error.Message);
             }
             #endregion
