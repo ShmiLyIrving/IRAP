@@ -55,6 +55,7 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnParamEdit = new DevExpress.XtraEditors.SimpleButton();
             this.vgrdMethodParams = new DevExpress.XtraVerticalGrid.VGridControl();
             this.btnParamRemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnParamNew = new DevExpress.XtraEditors.SimpleButton();
@@ -143,6 +144,7 @@
             this.splitContainerControl2.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl2.Panel2.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.splitContainerControl2.Panel2.Controls.Add(this.btnParamEdit);
             this.splitContainerControl2.Panel2.Controls.Add(this.vgrdMethodParams);
             this.splitContainerControl2.Panel2.Controls.Add(this.btnParamRemove);
             this.splitContainerControl2.Panel2.Controls.Add(this.btnParamNew);
@@ -430,6 +432,18 @@
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 7;
             // 
+            // btnParamEdit
+            // 
+            this.btnParamEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnParamEdit.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnParamEdit.Appearance.Options.UseFont = true;
+            this.btnParamEdit.Location = new System.Drawing.Point(681, 58);
+            this.btnParamEdit.Name = "btnParamEdit";
+            this.btnParamEdit.Size = new System.Drawing.Size(95, 34);
+            this.btnParamEdit.TabIndex = 7;
+            this.btnParamEdit.Text = "修改";
+            this.btnParamEdit.Click += new System.EventHandler(this.btnParamEdit_Click);
+            // 
             // vgrdMethodParams
             // 
             this.vgrdMethodParams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -448,16 +462,16 @@
             this.vgrdMethodParams.OptionsBehavior.Editable = false;
             this.vgrdMethodParams.RowHeaderWidth = 113;
             this.vgrdMethodParams.Size = new System.Drawing.Size(651, 133);
-            this.vgrdMethodParams.TabIndex = 7;
+            this.vgrdMethodParams.TabIndex = 10;
             // 
             // btnParamRemove
             // 
             this.btnParamRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnParamRemove.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnParamRemove.Appearance.Options.UseFont = true;
-            this.btnParamRemove.Location = new System.Drawing.Point(681, 44);
+            this.btnParamRemove.Location = new System.Drawing.Point(681, 107);
             this.btnParamRemove.Name = "btnParamRemove";
-            this.btnParamRemove.Size = new System.Drawing.Size(95, 30);
+            this.btnParamRemove.Size = new System.Drawing.Size(95, 34);
             this.btnParamRemove.TabIndex = 8;
             this.btnParamRemove.Text = "删除";
             this.btnParamRemove.Click += new System.EventHandler(this.btnParamRemove_Click);
@@ -469,7 +483,7 @@
             this.btnParamNew.Appearance.Options.UseFont = true;
             this.btnParamNew.Location = new System.Drawing.Point(681, 8);
             this.btnParamNew.Name = "btnParamNew";
-            this.btnParamNew.Size = new System.Drawing.Size(95, 30);
+            this.btnParamNew.Size = new System.Drawing.Size(95, 34);
             this.btnParamNew.TabIndex = 6;
             this.btnParamNew.Text = "新增";
             this.btnParamNew.Click += new System.EventHandler(this.btnParamNew_Click);
@@ -614,5 +628,6 @@
         private System.Windows.Forms.Timer timer;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.SimpleButton btnParamEdit;
     }
 }

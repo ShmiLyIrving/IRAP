@@ -5,6 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using System.Diagnostics;
 using System.Reflection;
+using System.ServiceModel.Description;
 
 using IRAP.OPC.Entity;
 using IRAP.OPC.Entity.IRAPServer;
@@ -46,6 +47,10 @@ namespace IRAP.BL.OPCGateway
             try
             {
                 _host = new ServiceHost(typeof(OPCGatewayService));
+                foreach (ServiceEndpoint sep in _host.Description.Endpoints)
+                {
+                    sep.Behaviors.Add(new BehaviorAttribute());
+                }
                 _host.Open();
                 statueOPCService = true;
                 Debug.WriteLine("OPC 网关服务启动完成");

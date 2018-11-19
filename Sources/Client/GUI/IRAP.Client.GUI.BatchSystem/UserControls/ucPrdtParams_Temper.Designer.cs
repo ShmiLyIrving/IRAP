@@ -50,6 +50,8 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.vgrdMethodParams = new DevExpress.XtraVerticalGrid.VGridControl();
             this.btnParamRemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnParamNew = new DevExpress.XtraEditors.SimpleButton();
@@ -58,8 +60,7 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.lblCurrentTime = new DevExpress.XtraEditors.LabelControl();
             this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnParamEdit = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
@@ -85,6 +86,7 @@
             this.splitContainerControl1.Panel2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainerControl1.Panel2.AppearanceCaption.Options.UseFont = true;
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.splitContainerControl1.Panel2.Controls.Add(this.btnParamEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.vgrdMethodParams);
             this.splitContainerControl1.Panel2.Controls.Add(this.btnParamRemove);
             this.splitContainerControl1.Panel2.Controls.Add(this.btnParamNew);
@@ -358,6 +360,22 @@
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "小头数量";
+            this.gridColumn1.FieldName = "Quantity2";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 6;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "备注";
+            this.gridColumn6.FieldName = "DisplayRemark";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 7;
+            // 
             // vgrdMethodParams
             // 
             this.vgrdMethodParams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -376,16 +394,16 @@
             this.vgrdMethodParams.OptionsBehavior.Editable = false;
             this.vgrdMethodParams.RowHeaderWidth = 113;
             this.vgrdMethodParams.Size = new System.Drawing.Size(895, 138);
-            this.vgrdMethodParams.TabIndex = 7;
+            this.vgrdMethodParams.TabIndex = 9;
             // 
             // btnParamRemove
             // 
             this.btnParamRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnParamRemove.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnParamRemove.Appearance.Options.UseFont = true;
-            this.btnParamRemove.Location = new System.Drawing.Point(925, 44);
+            this.btnParamRemove.Location = new System.Drawing.Point(925, 112);
             this.btnParamRemove.Name = "btnParamRemove";
-            this.btnParamRemove.Size = new System.Drawing.Size(95, 30);
+            this.btnParamRemove.Size = new System.Drawing.Size(95, 34);
             this.btnParamRemove.TabIndex = 8;
             this.btnParamRemove.Text = "删除";
             this.btnParamRemove.Click += new System.EventHandler(this.btnParamRemove_Click);
@@ -397,7 +415,7 @@
             this.btnParamNew.Appearance.Options.UseFont = true;
             this.btnParamNew.Location = new System.Drawing.Point(925, 8);
             this.btnParamNew.Name = "btnParamNew";
-            this.btnParamNew.Size = new System.Drawing.Size(95, 30);
+            this.btnParamNew.Size = new System.Drawing.Size(95, 34);
             this.btnParamNew.TabIndex = 6;
             this.btnParamNew.Text = "新增";
             this.btnParamNew.Click += new System.EventHandler(this.btnParamNew_Click);
@@ -456,21 +474,17 @@
             this.btnBegin.Text = "生产开始";
             this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
             // 
-            // gridColumn1
+            // btnParamEdit
             // 
-            this.gridColumn1.Caption = "小头数量";
-            this.gridColumn1.FieldName = "Quantity2";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 6;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "备注";
-            this.gridColumn6.FieldName = "DisplayRemark";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 7;
+            this.btnParamEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnParamEdit.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnParamEdit.Appearance.Options.UseFont = true;
+            this.btnParamEdit.Location = new System.Drawing.Point(925, 60);
+            this.btnParamEdit.Name = "btnParamEdit";
+            this.btnParamEdit.Size = new System.Drawing.Size(95, 34);
+            this.btnParamEdit.TabIndex = 7;
+            this.btnParamEdit.Text = "修改";
+            this.btnParamEdit.Click += new System.EventHandler(this.btnParamEdit_Click);
             // 
             // ucPrdtParams_Temper
             // 
@@ -536,5 +550,6 @@
         private DevExpress.XtraEditors.SimpleButton btnBegin;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.SimpleButton btnParamEdit;
     }
 }

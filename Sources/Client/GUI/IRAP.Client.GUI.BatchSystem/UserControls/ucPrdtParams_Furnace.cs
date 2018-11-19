@@ -521,6 +521,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 btnSelectMaterialPreparation.Enabled = false;
 
                 btnParamNew.Enabled = false;
+                btnParamEdit.Enabled = false;
                 btnParamRemove.Enabled = false;
 
                 btnBegin.Enabled = false;
@@ -537,6 +538,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         btnSelectMaterialPreparation.Enabled = true;
 
                         btnParamNew.Enabled = false;
+                        btnParamEdit.Enabled = false;
                         btnParamRemove.Enabled = false;
 
                         btnBegin.Enabled = true;
@@ -553,11 +555,13 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         if (dtParams.Columns.Count > 0)
                         {
                             btnParamNew.Enabled = true;
+                            btnParamEdit.Enabled = true;
                             btnParamRemove.Enabled = true;
                         }
                         else
                         {
                             btnParamNew.Enabled = false;
+                            btnParamEdit.Enabled = false;
                             btnParamRemove.Enabled = false;
                         }
 
@@ -1048,6 +1052,73 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         currentFurnace.BatchNumber);
                     vgrdMethodParams.RefreshDataSource();
                     #endregion
+                }
+            }
+        }
+
+        private void btnParamEdit_Click(object sender, EventArgs e)
+        {
+            int idx = vgrdMethodParams.FocusedRecord;
+            if (idx >= 0)
+            {
+                using (Dialogs.frmItemsEditor formEditor =
+                    new frmItemsEditor(
+                        EditStatus.Edit,
+                        splitContainerControl1.Panel2.Text,
+                        dtParams,
+                        idx))
+                {
+                    if (formEditor.ShowDialog() == DialogResult.OK)
+                    {
+                        DataRow dr = dtParams.Rows[idx];
+
+                        string strProcedureName =
+                            string.Format(
+                                "{0}.{1}",
+                                className,
+                                MethodBase.GetCurrentMethod().Name);
+                        WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                        try
+                        {
+                            int errCode = 0;
+                            string errText = "";
+                            List<PPParamValue> values = ppp[0].ResolveDataXML();
+
+                            IRAPMESBatchClient.Instance.usp_SaveFact_BatchMethodParams_Modify(
+                                IRAPUser.Instance.CommunityID,
+                                values[idx].FactID,
+                                stationInfo.T216LeafID,
+                                stationInfo.T107LeafID,
+                                currentFurnace.BatchNumber,
+                                GenerateRSFactXML(dr),
+                                IRAPUser.Instance.SysLogID,
+                                out errCode,
+                                out errText);
+                            WriteLog.Instance.Write(
+                                string.Format("({0}){1}", errCode, errText),
+                                strProcedureName);
+                            if (errCode != 0)
+                            {
+                                XtraMessageBox.Show(
+                                    errText,
+                                    "",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                        }
+                        finally
+                        {
+                            WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                        }
+
+                        #region 刷新生产过程参数列表
+                        GetMethodStandards(
+                            0,
+                            stationInfo.T216LeafID,
+                            currentFurnace.BatchNumber);
+                        vgrdMethodParams.RefreshDataSource();
+                        #endregion
+                    }
                 }
             }
         }

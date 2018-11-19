@@ -567,6 +567,7 @@ namespace IRAP.Client.GUI.SCES
                                     dt.Columns.Add("GateWayWC", typeof(string));
                                     dt.Columns.Add("PageNo", typeof(int));
                                     dt.Columns.Add("PageCount", typeof(int));
+                                    dt.Columns.Add("ActualQuantity", typeof(string));
 
                                     long perContainerQty = materials[0].PerStickQty * materials[0].StickQty;
                                     if (perContainerQty == 0)
@@ -601,7 +602,10 @@ namespace IRAP.Client.GUI.SCES
                                             materials[0].DstT106Code,
                                             order.GateWayWC,
                                             1,
-                                            1);
+                                            1,
+                                            materials[0].ActualQuantityToDeliver.IntValue != 0 ?
+                                                materials[0].ActualQuantityToDeliver.ToStringWithoutUnitOfMeasure() :
+                                                "");
                                         #endregion
                                     }
                                     else
@@ -654,13 +658,14 @@ namespace IRAP.Client.GUI.SCES
                                                 materials[0].MaterialCode,
                                                 materials[0].MaterialDesc,
                                                 DateTime.Now.ToString("yyyy-MM-dd"),
-                                                qty,
+                                                qty.ToString(),
                                                 order.ProductNo,
                                                 order.ProductDesc,
                                                 materials[0].DstT106Code,
                                                 order.GateWayWC,
                                                 i,
-                                                count);
+                                                count,
+                                                materials[0].ActualQuantityToDeliver.IntValue.ToString());
                                         }
                                     }
 

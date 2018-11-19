@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="09/29/2018 10:07:38" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2014 12:57:33" ReportInfo.Modified="11/19/2018 11:41:49" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace FastReport
 }
 </ScriptText>
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8ZXatoTOPV/vQdiBMsyUstMQ/HNifsWbuWuzkTXmKRH2o1w15QKMnHGgEldtKEA730OqosVbqhBdcYGLTsIKn8r8+Y0xvx++djKtnqgV/DXt2gr09j4HTHlzvTlRLG+moYPEFzDYRx2Nf/NBtnrwnU3wJSRYLMGk5XUC9cV2tFYKxXSp+zHzzeZlibPQG/Lc8Q==">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8ZXatoTOPV/vQdiBMsyUstMQ/HNifsWbuWuzkTXmKRH2o1w15QKMnHGgEldtKEA730OqosVbqhBdcYGLTsIKn8r8+Y0xvx++djKtnqgV/DXt2gr09j4HTHlzvTlRLG+moYPEFzDYRx2Nf/NBtnrwnU3wJSRYLMGk5XUC9cV2tFYKOXMFdxUErNfGbw2QoXgsxw==">
       <TableDataSource Name="Temp_WIPProductInfoTrack" Alias="WIPProductInfoTrack" DataType="System.Int32" Enabled="true" TableName="Temp_WIPProductInfoTrack">
         <Column Name="BarCode" DataType="System.String"/>
         <Column Name="DeliveryWorkShop" DataType="System.String"/>
@@ -86,7 +86,7 @@ namespace FastReport
   <ReportPage Name="Page1" RawPaperSize="9" TopMargin="5" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
     <PageHeaderBand Name="PageHeader1" Width="718.2"/>
     <DataBand Name="Data1" Top="4" Width="718.2" Height="196.56" StartNewPage="true" DataSource="Temp_WIPProductInfoTrack">
-      <TextObject Name="Text65" Left="653.94" Top="171.99" Width="52.92" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.InQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
+      <TextObject Name="Text65" Left="653.94" Top="171.99" Width="52.92" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.ActualQuantity]" HorzAlign="Center" Font="宋体, 10pt"/>
       <TextObject Name="Text33" Left="75.6" Top="171.99" Width="149.31" Height="18.9" Border.Lines="Bottom" Text="[WIPProductInfoTrack.MaterialCode]" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text66" Left="3.78" Top="171.99" Width="71.82" Height="18.9" Text="子项编码" VertAlign="Center" Font="新宋体, 10pt"/>
       <TextObject Name="Text81" Left="589.68" Top="171.99" Width="64.26" Height="18.9" Text="备注" HorzAlign="Right" VertAlign="Center" Font="新宋体, 10pt"/>
