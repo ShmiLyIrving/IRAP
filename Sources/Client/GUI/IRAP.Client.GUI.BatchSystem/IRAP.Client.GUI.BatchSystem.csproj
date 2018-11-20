@@ -127,6 +127,12 @@
     <Compile Include="frmPrdtParamsCollection_Clean.Designer.cs">
       <DependentUpon>frmPrdtParamsCollection_Clean.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPrdtParamsCollection_Ionitriding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrdtParamsCollection_Ionitriding.Designer.cs">
+      <DependentUpon>frmPrdtParamsCollection_Ionitriding.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrdtParamsCollection_Temper.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrdtParamsCollection_Clean.resx">
       <DependentUpon>frmPrdtParamsCollection_Clean.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrdtParamsCollection_Ionitriding.resx">
+      <DependentUpon>frmPrdtParamsCollection_Ionitriding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrdtParamsCollection_Temper.resx">
       <DependentUpon>frmPrdtParamsCollection_Temper.cs</DependentUpon>
