@@ -901,6 +901,17 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
+            if (
+                IRAPMessageBox.Instance.Show(
+                    $"是否要结束当前炉次【{currentBatchNo}】的生产？",
+                    "生产结束",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+            {
+                return;
+            }
+
             string strProcedureName =
                 string.Format(
                     "{0}.{1}",

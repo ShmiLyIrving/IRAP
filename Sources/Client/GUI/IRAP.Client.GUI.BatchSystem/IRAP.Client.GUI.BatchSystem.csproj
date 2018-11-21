@@ -89,6 +89,12 @@
     <Compile Include="Dialogs\frmMaterialPreparation.Designer.cs">
       <DependentUpon>frmMaterialPreparation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmPWOInProductionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmPWOInProductionEditor.designer.cs">
+      <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmPWOInProductionEditor_QuenchAndTemper.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,12 @@
     <Compile Include="frmQualityInspecting_Furnace.Designer.cs">
       <DependentUpon>frmQualityInspecting_Furnace.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmQualityInspecting_Ionitriding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQualityInspecting_Ionitriding.Designer.cs">
+      <DependentUpon>frmQualityInspecting_Ionitriding.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRunningSPPModify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +194,12 @@
     </Compile>
     <Compile Include="UserControls\ucPrdtParams_Furnace.Designer.cs">
       <DependentUpon>ucPrdtParams_Furnace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPrdtParams_Ionitriding.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPrdtParams_Ionitriding.Designer.cs">
+      <DependentUpon>ucPrdtParams_Ionitriding.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ucPrdtParams_Temper.cs">
       <SubType>UserControl</SubType>
@@ -253,6 +271,9 @@
     <EmbeddedResource Include="Dialogs\frmMaterialPreparation.resx">
       <DependentUpon>frmMaterialPreparation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor.resx">
+      <DependentUpon>frmPWOInProductionEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor_QuenchAndTemper.resx">
       <DependentUpon>frmPWOInProductionEditor_QuenchAndTemper.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,6 +304,9 @@
     <EmbeddedResource Include="frmQualityInspecting_Furnace.resx">
       <DependentUpon>frmQualityInspecting_Furnace.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmQualityInspecting_Ionitriding.resx">
+      <DependentUpon>frmQualityInspecting_Ionitriding.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRunningSPPModify.resx">
       <DependentUpon>frmRunningSPPModify.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucPrdtParams_Furnace.resx">
       <DependentUpon>ucPrdtParams_Furnace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucPrdtParams_Ionitriding.resx">
+      <DependentUpon>ucPrdtParams_Ionitriding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucPrdtParams_Temper.resx">
       <DependentUpon>ucPrdtParams_Temper.cs</DependentUpon>

@@ -888,7 +888,19 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
         {
             if (currentFurnace != null)
             {
-                string strProcedureName = $"{className}.{MethodBase.GetCurrentMethod().Name}";
+                if (
+                    IRAPMessageBox.Instance.Show(
+                        $"是否要结束当前炉次【{currentFurnace.BatchNumber}】的生产？",
+                        "生产结束",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                string strProcedureName = 
+                    $"{className}.{MethodBase.GetCurrentMethod().Name}";
                 WriteLog.Instance.WriteBeginSplitter(strProcedureName);
                 try
                 {

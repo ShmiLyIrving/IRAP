@@ -297,6 +297,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 EditorRow row = new EditorRow();
                 row.Properties.Caption = item.T20Name;
                 row.Properties.FieldName = colName;
+                row.Height = 35;
                 vgrdInspectParams.Rows.Add(row);
             }
 

@@ -18,14 +18,14 @@ using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.BatchSystem
 {
-    public partial class frmPrdtParamsCollection_Ionitriding : IRAP.Client.Global.GUI.frmCustomFuncBase
+    public partial class frmQualityInspecting_Ionitriding : IRAP.Client.Global.GUI.frmCustomFuncBase
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
         private List<WIPStatinInfo> stations = new List<WIPStatinInfo>();
 
-        public frmPrdtParamsCollection_Ionitriding()
+        public frmQualityInspecting_Ionitriding()
         {
             InitializeComponent();
         }
@@ -77,7 +77,7 @@ namespace IRAP.Client.GUI.BatchSystem
             }
         }
 
-        private void frmPrdtParamsCollection_Ionitriding_Shown(object sender, EventArgs e)
+        private void frmQualityInspecting_Ionitriding_Shown(object sender, EventArgs e)
         {
             ilstDevices.Items.Clear();
 
@@ -113,8 +113,8 @@ namespace IRAP.Client.GUI.BatchSystem
                     page.Text = station.ToString();
                     page.Name = station.T133Code;
 
-                    UserControls.ucPrdtParams_Ionitriding prdt = 
-                        new UserControls.ucPrdtParams_Ionitriding(station);
+                    UserControls.ucQualityInspecting_Furnace prdt =
+                        new UserControls.ucQualityInspecting_Furnace(station);
                     prdt.Dock = DockStyle.Fill;
                     page.Controls.Add(prdt);
 
@@ -143,7 +143,7 @@ namespace IRAP.Client.GUI.BatchSystem
                     if (tcMain.TabPages[i].Name == station.T133Code)
                     {
                         spccMain.Panel2.Text =
-                            $"设备：[{station.WIPStationName}]\t生产情况";
+                            $"设备：[{station.WIPStationName}]\t质量检查";
 
                         selectedPageIndex = i;
                         break;
@@ -154,43 +154,32 @@ namespace IRAP.Client.GUI.BatchSystem
             tcMain.SelectedTabPageIndex = selectedPageIndex;
             if (selectedPageIndex < 0)
             {
-                spccMain.Panel2.Text = "生产情况";
+                spccMain.Panel2.Text = "质量检查";
             }
         }
-    }
 
-    internal class WIPStatinInfo : WIPStation
-    {
-        public override string ToString()
+        private void tcMain_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
         {
-            return $"[{T133AltCode}]{T133Code}";
-        }
-
-        public static WIPStatinInfo Mapper(WIPStation s)
-        {
-            WIPStatinInfo d = Activator.CreateInstance<WIPStatinInfo>();
-            try
+            foreach (Control ctrl in e.Page.Controls)
             {
-                var Types = s.GetType();//获得类型  
-                var Typed = typeof(WIPStatinInfo);
-                foreach (PropertyInfo sp in Types.GetProperties())//获得类型的属性字段  
+                if (ctrl is UserControls.ucQualityInspecting_Furnace)
                 {
-                    foreach (PropertyInfo dp in Typed.GetProperties())
-                    {
-                        if (dp.Name == sp.Name && dp.CanWrite)//判断属性名是否相同  
-                        {
-                            dp.SetValue(d, sp.GetValue(s, null), null);//获得s对象属性的值复制给d对象的属性 
-                            break; 
-                        }
-                    }
+                    ctrl.Focus();
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        }
 
-            return d;
+        private void frmQualityInspecting_Ionitriding_Activated(object sender, EventArgs e)
+        {
+            if (tcMain.SelectedTabPage != null)
+            {
+                tcMain_SelectedPageChanged(
+                    tcMain,
+                    new TabPageChangedEventArgs(
+                        tcMain.SelectedTabPage,
+                        tcMain.SelectedTabPage));
+
+            }
         }
     }
 }
