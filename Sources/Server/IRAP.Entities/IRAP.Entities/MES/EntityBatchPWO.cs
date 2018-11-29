@@ -140,7 +140,10 @@ namespace IRAP.Entities.MES
 
         private void GenerateRemark()
         {
-            Quantity = quantity1 + quantity2;
+            if (quantity1 + quantity2 > 0)
+            {
+                Quantity = quantity1 + quantity2;
+            }
             remark =
                 $"大头数量：{Quantity1}|小头数量：{Quantity2}|备注：{displayRemark}";
         }

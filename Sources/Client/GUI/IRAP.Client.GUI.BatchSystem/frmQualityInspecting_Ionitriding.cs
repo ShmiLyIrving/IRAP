@@ -23,7 +23,7 @@ namespace IRAP.Client.GUI.BatchSystem
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private List<WIPStatinInfo> stations = new List<WIPStatinInfo>();
+        private List<WIPStationInfo> stations = new List<WIPStationInfo>();
 
         public frmQualityInspecting_Ionitriding()
         {
@@ -65,9 +65,12 @@ namespace IRAP.Client.GUI.BatchSystem
                 }
                 else
                 {
+                    datas.Sort(
+                        new WIPStation_CompareByT133AltCode());
+
                     foreach (WIPStation data in datas)
                     {
-                        stations.Add(WIPStatinInfo.Mapper(data));
+                        stations.Add(WIPStationInfo.Mapper(data));
                     }
                 }
             }
@@ -133,10 +136,10 @@ namespace IRAP.Client.GUI.BatchSystem
             int selectedPageIndex = -1;
 
             if (ilstDevices.SelectedItem != null &&
-                (ilstDevices.SelectedItem as ImageListBoxItem).Value is WIPStatinInfo)
+                (ilstDevices.SelectedItem as ImageListBoxItem).Value is WIPStationInfo)
             {
-                WIPStatinInfo station =
-                    (ilstDevices.SelectedItem as ImageListBoxItem).Value as WIPStatinInfo;
+                WIPStationInfo station =
+                    (ilstDevices.SelectedItem as ImageListBoxItem).Value as WIPStationInfo;
 
                 for (int i = 0; i < tcMain.TabPages.Count; i++)
                 {
