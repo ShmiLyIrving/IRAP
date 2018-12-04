@@ -61,8 +61,8 @@
             this.lblBatchNos = new DevExpress.XtraEditors.LabelControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
             this.btnParamEdit = new DevExpress.XtraEditors.SimpleButton();
+            this.btnBegin = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.vgrdMethodParams)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPWOs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPWOs)).BeginInit();
@@ -244,6 +244,7 @@
             this.grdvPWOs.OptionsBehavior.Editable = false;
             this.grdvPWOs.OptionsView.ColumnAutoWidth = false;
             this.grdvPWOs.OptionsView.ShowGroupPanel = false;
+            this.grdvPWOs.RowHeight = 35;
             // 
             // gridColumn1
             // 
@@ -494,18 +495,6 @@
             this.splitContainerControl1.TabIndex = 6;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // btnBegin
-            // 
-            this.btnBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBegin.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBegin.Appearance.Options.UseFont = true;
-            this.btnBegin.Location = new System.Drawing.Point(575, 517);
-            this.btnBegin.Name = "btnBegin";
-            this.btnBegin.Size = new System.Drawing.Size(118, 43);
-            this.btnBegin.TabIndex = 10;
-            this.btnBegin.Text = "生产开始";
-            this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
-            // 
             // btnParamEdit
             // 
             this.btnParamEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -517,6 +506,18 @@
             this.btnParamEdit.TabIndex = 7;
             this.btnParamEdit.Text = "修改";
             this.btnParamEdit.Click += new System.EventHandler(this.btnParamEdit_Click);
+            // 
+            // btnBegin
+            // 
+            this.btnBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBegin.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBegin.Appearance.Options.UseFont = true;
+            this.btnBegin.Location = new System.Drawing.Point(575, 517);
+            this.btnBegin.Name = "btnBegin";
+            this.btnBegin.Size = new System.Drawing.Size(118, 43);
+            this.btnBegin.TabIndex = 10;
+            this.btnBegin.Text = "生产开始";
+            this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
             // 
             // ucPrdtParams_Clean
             // 

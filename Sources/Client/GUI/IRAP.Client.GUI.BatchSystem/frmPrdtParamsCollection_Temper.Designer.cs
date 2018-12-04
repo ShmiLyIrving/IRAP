@@ -36,11 +36,11 @@
             // 
             // lblFuncName
             // 
-            this.lblFuncName.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.lblFuncName.Appearance.Font = new System.Drawing.Font("黑体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblFuncName.Appearance.ForeColor = System.Drawing.Color.Green;
             this.lblFuncName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblFuncName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblFuncName.Text = "frmCustomBase";
+            this.lblFuncName.Text = "热磨车间调质工序回火炉生产";
             // 
             // toolTipController
             // 
@@ -51,9 +51,9 @@
             // 
             // tcMain
             // 
-            this.tcMain.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcMain.Appearance.Font = new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tcMain.Appearance.Options.UseFont = true;
-            this.tcMain.AppearancePage.Header.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcMain.AppearancePage.Header.Font = new System.Drawing.Font("新宋体", 12F);
             this.tcMain.AppearancePage.Header.Options.UseFont = true;
             this.tcMain.AppearancePage.HeaderActive.ForeColor = System.Drawing.Color.Blue;
             this.tcMain.AppearancePage.HeaderActive.Options.UseForeColor = true;

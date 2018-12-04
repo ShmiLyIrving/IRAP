@@ -1,6 +1,6 @@
 ﻿namespace IRAP.Client.GUI.BatchSystem.Dialogs
 {
-    partial class frmPWOInProductionEditor_QuenchAndTemper
+    partial class frmPWOInProductionEditor_Remark
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.edtDisplayRemark = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -45,8 +47,6 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.edtPWONo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtDisplayRemark.Properties)).BeginInit();
@@ -65,6 +65,30 @@
             this.toolTipController.Appearance.Options.UseFont = true;
             this.toolTipController.AppearanceTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolTipController.AppearanceTitle.Options.UseFont = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
+            this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(407, 330);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(95, 37);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "取消";
+            // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
+            this.btnOK.Appearance.Options.UseFont = true;
+            this.btnOK.Location = new System.Drawing.Point(292, 330);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(95, 37);
+            this.btnOK.TabIndex = 4;
+            this.btnOK.Text = "确定";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // groupControl1
             // 
@@ -93,7 +117,7 @@
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(490, 301);
-            this.groupControl1.TabIndex = 0;
+            this.groupControl1.TabIndex = 3;
             this.groupControl1.Text = "生产工单";
             // 
             // edtDisplayRemark
@@ -138,11 +162,16 @@
             // 
             // edtQuantity2
             // 
+            this.edtQuantity2.Enabled = false;
             this.edtQuantity2.EnterMoveNextControl = true;
             this.edtQuantity2.Location = new System.Drawing.Point(148, 231);
             this.edtQuantity2.Name = "edtQuantity2";
             this.edtQuantity2.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.edtQuantity2.Properties.Appearance.Options.UseFont = true;
+            this.edtQuantity2.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.edtQuantity2.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.edtQuantity2.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.edtQuantity2.Properties.AppearanceDisabled.Options.UseForeColor = true;
             this.edtQuantity2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.edtQuantity2.Properties.DisplayFormat.FormatString = "#,##0";
@@ -196,11 +225,16 @@
             // 
             // edtQuantity1
             // 
+            this.edtQuantity1.Enabled = false;
             this.edtQuantity1.EnterMoveNextControl = true;
             this.edtQuantity1.Location = new System.Drawing.Point(148, 199);
             this.edtQuantity1.Name = "edtQuantity1";
             this.edtQuantity1.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.edtQuantity1.Properties.Appearance.Options.UseFont = true;
+            this.edtQuantity1.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
+            this.edtQuantity1.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+            this.edtQuantity1.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.edtQuantity1.Properties.AppearanceDisabled.Options.UseForeColor = true;
             this.edtQuantity1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.edtQuantity1.Properties.DisplayFormat.FormatString = "#,##0";
@@ -302,6 +336,7 @@
             // 
             this.edtPWONo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.edtPWONo.Enabled = false;
             this.edtPWONo.EnterMoveNextControl = true;
             this.edtPWONo.Location = new System.Drawing.Point(148, 39);
             this.edtPWONo.Name = "edtPWONo";
@@ -313,7 +348,6 @@
             this.edtPWONo.Properties.AppearanceDisabled.Options.UseForeColor = true;
             this.edtPWONo.Size = new System.Drawing.Size(325, 22);
             this.edtPWONo.TabIndex = 1;
-            this.edtPWONo.Validating += new System.ComponentModel.CancelEventHandler(this.edtPWONo_Validating);
             // 
             // labelControl1
             // 
@@ -327,31 +361,7 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "工单号：";
             // 
-            // btnOK
-            // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
-            this.btnOK.Appearance.Options.UseFont = true;
-            this.btnOK.Location = new System.Drawing.Point(292, 330);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(95, 37);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "确定";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
-            this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(407, 330);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(95, 37);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "取消";
-            // 
-            // frmPWOInProductionEditor_QuenchAndTemper
+            // frmPWOInProductionEditor_Remark
             // 
             this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnCancel;
@@ -359,7 +369,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupControl1);
-            this.Name = "frmPWOInProductionEditor_QuenchAndTemper";
+            this.Name = "frmPWOInProductionEditor_Remark";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtDisplayRemark.Properties)).EndInit();
@@ -376,24 +386,24 @@
 
         #endregion
 
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit edtPWONo;
+        private DevExpress.XtraEditors.TextEdit edtDisplayRemark;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.CalcEdit edtQuantity2;
+        private DevExpress.XtraEditors.TextEdit edtProductName;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.CalcEdit edtQuantity1;
         private DevExpress.XtraEditors.TextEdit edtTextureCode;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.TextEdit edtBatchNo;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit edtProductNo;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SimpleButton btnOK;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.TextEdit edtProductName;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.TextEdit edtDisplayRemark;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
-        public DevExpress.XtraEditors.CalcEdit edtQuantity1;
-        public DevExpress.XtraEditors.CalcEdit edtQuantity2;
+        private DevExpress.XtraEditors.TextEdit edtPWONo;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

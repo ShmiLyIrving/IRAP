@@ -101,6 +101,12 @@
     <Compile Include="Dialogs\frmPWOInProductionEditor_QuenchAndTemper.designer.cs">
       <DependentUpon>frmPWOInProductionEditor_QuenchAndTemper.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\frmPWOInProductionEditor_Remark.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frmPWOInProductionEditor_Remark.Designer.cs">
+      <DependentUpon>frmPWOInProductionEditor_Remark.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\frmSelectExcelSheet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor_QuenchAndTemper.resx">
       <DependentUpon>frmPWOInProductionEditor_QuenchAndTemper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frmPWOInProductionEditor_Remark.resx">
+      <DependentUpon>frmPWOInProductionEditor_Remark.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frmSelectExcelSheet.resx">
       <DependentUpon>frmSelectExcelSheet.cs</DependentUpon>

@@ -3583,7 +3583,7 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("sysLogID", sysLogID);
                 WriteLog.Instance.Write(
                     string.Format(
-                        "调用 usp_SaveFact_BatchMethodCancel，输入参数：" +
+                        "调用 usp_SaveFact_BatchBreakProduction，输入参数：" +
                         "CommunityID={0}|T216LeafID={1}|T107LeafID={2}|BatchNumber={3}|" +
                         "SysLogID={4}",
                         communityID, t216LeafID, t107LeafID, batchNumber, sysLogID),

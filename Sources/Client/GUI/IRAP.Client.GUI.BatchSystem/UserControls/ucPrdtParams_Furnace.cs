@@ -771,7 +771,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     0,
                     GenerateBatchProductionStartXML(currentFurnace.PWOs),
                     IRAPUser.Instance.SysLogID,
-                    out batchNumber,
+                    ref batchNumber,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(

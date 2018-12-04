@@ -387,7 +387,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         pwo.Texture,
                         pwo.PWONo,
                         pwo.Qty,
-                        pwo.DisplayRemark);
+                        pwo.Remark);
             }
             rlt = string.Format("<RSFact>\n{0}</RSFact>", rlt);
 
@@ -635,7 +635,16 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     grdPWOs.DataSource = pwos;
                     grdvPWOs.BestFitColumns();
 
-                    GetMethodStandards(0, stationInfo.T216LeafID, currentBatchNo);
+                    if (pwos.Count > 0)
+                    {
+                        DateTime dt;
+                        if (DateTime.TryParse(pwos[0].BatchStartDate, out dt))
+                        {
+                            startDatetime = dt;
+                        }
+
+                        GetMethodStandards(0, stationInfo.T216LeafID, currentBatchNo);
+                    }
                 }
 
                 edtOperatorCode.Text =
@@ -787,15 +796,15 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 string errText = "";
                 currentBatchNo = ((BatchByEquipment)cboBatchNos.SelectedItem).BatchNumber;
 
-                IRAPMESBatchClient.Instance.usp_SaveFact_BatchProductionStart_N(
+                IRAPMESBatchClient.Instance.usp_SaveFact_BatchProductionStart_QuenchAndTemper(
                     IRAPUser.Instance.CommunityID,
                     stationInfo.T216LeafID,
                     stationInfo.T107LeafID,
                     currentOperator.UserCode,
-                    currentBatchNo,
                     0,
                     GenerateBatchProductionStartXML(pwos),
                     IRAPUser.Instance.SysLogID,
+                    ref currentBatchNo,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
@@ -1101,6 +1110,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
         private void btnParamEdit_Click(object sender, EventArgs e)
         {
             int idx = vgrdMethodParams.FocusedRecord;
+            IRAPMessageBox.Instance.ShowInformation(idx.ToString());
             if (idx >= 0)
             {
                 using (Dialogs.frmItemsEditor formEditor =

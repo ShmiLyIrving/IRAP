@@ -211,11 +211,26 @@ namespace IRAP.Entities.MES
         public string DisplayRemark
         {
             get { return displayRemark; }
+            set
+            {
+                displayRemark = value;
+                GenerateRemark();
+            }
         }
 
         public BatchPWOInfo Clone()
         {
             return MemberwiseClone() as BatchPWOInfo;
+        }
+
+        private void GenerateRemark()
+        {
+            if (quantity1 + quantity2 > 0)
+            {
+                Qty = quantity1 + quantity2;
+            }
+            remark =
+                $"大头数量：{Quantity1}|小头数量：{Quantity2}|备注：{displayRemark}";
         }
     }
 }

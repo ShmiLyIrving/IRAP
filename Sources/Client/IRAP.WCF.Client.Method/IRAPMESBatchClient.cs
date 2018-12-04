@@ -545,7 +545,7 @@ namespace IRAP.WCF.Client.Method
             int t131LeafID,
             string rsFactXML,
             long sysLogID,
-            out string batchNo,
+            ref string batchNo,
             out int errCode,
             out string errText)
         {
@@ -554,8 +554,6 @@ namespace IRAP.WCF.Client.Method
                     "{0}.{1}",
                     className,
                     MethodBase.GetCurrentMethod().Name);
-
-            batchNo = "";
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -568,14 +566,14 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("t131LeafID", t131LeafID);
                 hashParams.Add("operatorCode", operatorCode);
                 hashParams.Add("rsFactXML", rsFactXML);
+                hashParams.Add("batchNo", batchNo);
                 hashParams.Add("sysLogID", sysLogID);
                 WriteLog.Instance.Write(
-                    string.Format(
-                        "执行存储过程 usp_SaveFact_BatchProductionStart_QuenchAndTemper，输入参数：" +
-                        "CommunityID={0}|T216LeafID={1}|T107LeafID={2}|" +
-                        "T131LeafID={3}|OperatorCode={4}|RSFactXML={5}|SysLogID={6}",
-                        communityID, t216LeafID, t107LeafID, t131LeafID, operatorCode,
-                        rsFactXML, sysLogID),
+                    "执行存储过程 usp_SaveFact_BatchProductionStart_QuenchAndTemper，输入参数：" +
+                    $"CommunityID={communityID}|T216LeafID={t216LeafID}|" +
+                    $"T107LeafID={t107LeafID}|T131LeafID={t131LeafID}|" +
+                    $"OperatorCode={operatorCode}|RSFactXML={rsFactXML}|" +
+                    $"BatchNumber={batchNo}|SysLogID={sysLogID}",
                     strProcedureName);
                 #endregion
 

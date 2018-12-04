@@ -47,7 +47,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
         /// <summary>
         /// 指定批次中的生产工单集
         /// </summary>
-        private List<EntityBatchPWO> pwos = new List<EntityBatchPWO>();
+        private List<BatchPWOInfo> pwos = new List<BatchPWOInfo>();
         /// <summary>
         /// 当前的生产炉次号
         /// </summary>
@@ -75,9 +75,12 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 case ProductionStatus.Idle:
                     edtOperatorCode.Enabled = true;
 
-                    btnPWONew.Enabled = true;
+                    lblDevices.Visible = true;
+                    lblBatchNos.Visible = true;
+                    cboDevices.Visible = true;
+                    cboBatchNos.Visible = true;
+
                     btnPWOModify.Enabled = true;
-                    btnPWORemove.Enabled = true;
 
                     btnParamNew.Enabled = false;
                     btnParamEdit.Enabled = false;
@@ -91,9 +94,12 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 case ProductionStatus.Busy:
                     edtOperatorCode.Enabled = false;
 
-                    btnPWONew.Enabled = false;
+                    lblDevices.Visible = false;
+                    lblBatchNos.Visible = false;
+                    cboDevices.Visible = false;
+                    cboBatchNos.Visible = false;
+
                     btnPWOModify.Enabled = false;
-                    btnPWORemove.Enabled = false;
 
                     if (pwos.Count > 0)
                     {
@@ -114,6 +120,195 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
 
                     break;
             }
+        }
+
+        /// <summary>
+        /// 获取加热炉设备列表
+        /// </summary>
+        private void GetDevices()
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                List<WIPStation> stations = new List<WIPStation>();
+
+                cboDevices.Properties.Items.Clear();
+                stations.Clear();
+                IRAPMDMClient.Instance.ufn_GetList_WIPStationsOfAHostByFunction(
+                    IRAPUser.Instance.CommunityID,
+                    -373355,
+                    IRAPUser.Instance.SysLogID,
+                    ref stations,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        caption,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    foreach (WIPStation station in stations)
+                    {
+                        cboDevices.Properties.Items.Add(station.Clone());
+                    }
+                }
+                if (cboDevices.Properties.Items.Count > 0)
+                {
+                    cboDevices.SelectedIndex = 0;
+                }
+                else
+                {
+                    cboDevices.SelectedIndex = -1;
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void GetBatchsFromEquipment(int t133LeafID, int t107LeafID)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                List<BatchByEquipment> batchNos = new List<BatchByEquipment>();
+
+                cboBatchNos.Properties.Items.Clear();
+                IRAPMESClient.Instance.ufn_GetList_BatchByEquipment_N(
+                    IRAPUser.Instance.CommunityID,
+                    t133LeafID,
+                    t107LeafID,
+                    "",
+                    IRAPUser.Instance.SysLogID,
+                    ref batchNos,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    foreach (BatchByEquipment batchNo in batchNos)
+                    {
+                        cboBatchNos.Properties.Items.Add(batchNo.Clone());
+                    }
+                }
+                if (cboBatchNos.Properties.Items.Count > 0)
+                {
+                    cboBatchNos.SelectedIndex = 0;
+                }
+                else
+                {
+                    cboBatchNos.SelectedIndex = -1;
+                }
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 根据生产容器批次号获取工单信息列表
+        /// </summary>
+        /// <param name="batchNumber">生产容器批次号</param>
+        /// <returns></returns>
+        private List<BatchPWOInfo> GetPWOWithBatchNo(string batchNumber)
+        {
+            List<BatchPWOInfo> rlt = new List<BatchPWOInfo>();
+
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+
+                IRAPMESClient.Instance.ufn_GetList_WorkUnitBatchPWONo(
+                    IRAPUser.Instance.CommunityID,
+                    stationInfo.T107LeafID,
+                    batchNumber,
+                    IRAPUser.Instance.SysLogID,
+                    ref rlt,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write(
+                    string.Format("({0}){1}", errCode, errText),
+                    strProcedureName);
+                if (errCode != 0)
+                {
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                //else
+                //{
+                //    for (int i = rlt.Count - 1; i >= 0; i--)
+                //    {
+                //        if (rlt[i].QCStatus != 0 ||
+                //            rlt[i].BatchEndDate.Trim() == "")
+                //            rlt.RemoveAt(i);
+                //    }
+                //}
+            }
+            catch (Exception error)
+            {
+                string errMsg =
+                    string.Format(
+                        "获取工单信息列表时发生错误：[{0}]",
+                        error.Message);
+                WriteLog.Instance.Write(errMsg, strProcedureName);
+
+                XtraMessageBox.Show(
+                    errMsg,
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+
+            return rlt;
         }
 
         /// <summary>
@@ -285,11 +480,11 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
         /// </summary>
         /// <param name="pwos"></param>
         /// <returns></returns>
-        private string GenerateBatchProductionStartXML(List<EntityBatchPWO> pwos)
+        private string GenerateBatchProductionStartXML(List<BatchPWOInfo> pwos)
         {
             string rlt = "";
             int idx = 1;
-            foreach (EntityBatchPWO pwo in pwos)
+            foreach (BatchPWOInfo pwo in pwos)
             {
                 rlt +=
                     string.Format(
@@ -303,7 +498,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                         pwo.LotNumber,
                         pwo.Texture,
                         pwo.PWONo,
-                        pwo.Quantity,
+                        pwo.Qty,
                         pwo.Remark);
             }
             rlt = string.Format("<RSFact>\n{0}</RSFact>", rlt);
@@ -472,10 +667,6 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             BatchProductInfo data = GetWorkUnitProductionInfo();
             if (data != null)
             {
-                pwos = data.GetPWOsFromXML();
-                grdPWOs.DataSource = pwos;
-                grdvPWOs.BestFitColumns();
-
                 currentOperator = new STB006()
                 {
                     UserCode = data.OperatorCode,
@@ -492,8 +683,17 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 {
                     prdtStatus = ProductionStatus.Busy;
 
+                    pwos = GetPWOWithBatchNo(currentBatchNo);
+                    grdPWOs.DataSource = pwos;
+                    grdvPWOs.BestFitColumns();
                     if (pwos.Count > 0)
                     {
+                        DateTime dt;
+                        if (DateTime.TryParse(pwos[0].BatchStartDate, out dt))
+                        {
+                            startDatetime = dt;
+                        }
+
                         GetMethodStandards(0, stationInfo.T216LeafID, currentBatchNo);
                     }
                 }
@@ -506,6 +706,10 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 lblBatchNo.Text = currentBatchNo;
                 lblStartTime.Text = startDatetime.ToString("yyyy-MM-dd HH:mm:ss");
             }
+            else
+            {
+                GetDevices();
+            }
 
             RefreshForm();
         }
@@ -515,6 +719,8 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             if (prdtStatus == ProductionStatus.Idle)
             {
                 edtOperatorCode.Focus();
+
+                cboDevices_SelectedIndexChanged(cboDevices, null);
             }
         }
 
@@ -545,6 +751,20 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     currentOperator = null;
                     edtOperatorCode.Focus();
                 }
+            }
+        }
+
+        private void cboDevices_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboBatchNos.Properties.Items.Clear();
+            if (cboDevices.SelectedItem != null)
+            {
+                grdPWOs.DataSource = null;
+                grdvPWOs.BestFitColumns();
+
+                GetBatchsFromEquipment(
+                    ((WIPStation)cboDevices.SelectedItem).T133LeafID,
+                    stationInfo.T107LeafID);
             }
         }
 
@@ -589,25 +809,6 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                 edtOperatorCode.Focus();
                 return;
             }
-            if (pwos.Count <= 0)
-            {
-                if (XtraMessageBox.Show(
-                    "没有添加工单信息！\n    如果该炉次是试样，请忽略提示信息，" +
-                    "点击“Yes”按钮，否则请点击“No”按钮",
-                    "提问",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2) == DialogResult.No)
-                {
-                    XtraMessageBox.Show(
-                        "还没有添加工单信息，请至少增加一个生产工单！",
-                        "系统信息",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    btnPWONew.Focus();
-                    return;
-                }
-            }
             #endregion
 
             #region 记录生产开始
@@ -621,6 +822,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             {
                 int errCode = 0;
                 string errText = "";
+                currentBatchNo = ((BatchByEquipment)cboBatchNos.SelectedItem).BatchNumber;
 
                 IRAPMESBatchClient.Instance.usp_SaveFact_BatchProductionStart_QuenchAndTemper(
                     IRAPUser.Instance.CommunityID,
@@ -630,7 +832,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     0,
                     GenerateBatchProductionStartXML(pwos),
                     IRAPUser.Instance.SysLogID,
-                    out currentBatchNo,
+                    ref currentBatchNo,
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write(
@@ -664,6 +866,21 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
 
             prdtStatus = ProductionStatus.Busy;
             RefreshForm();
+        }
+
+        private void cboBatchNos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            grdvPWOs.BeginDataUpdate();
+            grdPWOs.DataSource = null;
+            grdvPWOs.EndDataUpdate();
+            vgrdMethodParams.Rows.Clear();
+
+            if (cboBatchNos.SelectedItem != null)
+            {
+                pwos = GetPWOWithBatchNo(((BatchByEquipment)cboBatchNos.SelectedItem).BatchNumber);
+                grdPWOs.DataSource = pwos;
+                grdvPWOs.BestFitColumns();
+            }
         }
 
         private void btnTerminate_Click(object sender, EventArgs e)
@@ -724,6 +941,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     lblProductTimeSpan.Text = "";
                     lblStartTime.Text = "";
 
+                    GetDevices();
                     grdPWOs.RefreshDataSource();
 
                     GetMethodStandards(0, 0, "");
@@ -796,6 +1014,7 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
                     lblProductTimeSpan.Text = "";
                     lblStartTime.Text = "";
 
+                    GetDevices();
                     grdPWOs.RefreshDataSource();
 
                     GetMethodStandards(0, 0, "");
@@ -810,41 +1029,15 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
             }
         }
 
-        private void btnPWONew_Click(object sender, EventArgs e)
-        {
-            EntityBatchPWO newPWO = new EntityBatchPWO();
-
-            using (Dialogs.frmPWOInProductionEditor_QuenchAndTemper formEditor =
-                new Dialogs.frmPWOInProductionEditor_QuenchAndTemper(
-                    EditStatus.New,
-                    stationInfo.T134LeafID,
-                    stationInfo.T216LeafID,
-                    0,
-                    pwos,
-                    ref newPWO))
-            {
-                if (formEditor.ShowDialog() == DialogResult.OK)
-                {
-                    pwos.Add(newPWO);
-                    grdvPWOs.BestFitColumns();
-                }
-            }
-        }
-
         private void btnPWOModify_Click(object sender, EventArgs e)
         {
             int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
             if (idx >= 0 && idx < pwos.Count)
             {
-                EntityBatchPWO pwo = pwos[idx];
+                BatchPWOInfo pwo = pwos[idx];
 
-                using (Dialogs.frmPWOInProductionEditor_QuenchAndTemper formEditor =
-                    new Dialogs.frmPWOInProductionEditor_QuenchAndTemper(
-                        EditStatus.Edit,
-                        stationInfo.T134LeafID,
-                        stationInfo.T216LeafID,
-                        0,
-                        pwos,
+                using (Dialogs.frmPWOInProductionEditor_Remark formEditor =
+                    new Dialogs.frmPWOInProductionEditor_Remark(
                         ref pwo))
                 {
                     if (formEditor.ShowDialog() == DialogResult.OK)
@@ -853,28 +1046,6 @@ namespace IRAP.Client.GUI.BatchSystem.UserControls
 
                         grdvPWOs.BestFitColumns();
                     }
-                }
-            }
-        }
-
-        private void btnPWORemove_Click(object sender, EventArgs e)
-        {
-            int idx = grdvPWOs.GetFocusedDataSourceRowIndex();
-            if (idx >= 0 && idx < pwos.Count)
-            {
-                if (
-                    XtraMessageBox.Show(
-                        string.Format(
-                            "是否要删除工单[{0}]的信息？",
-                            pwos[idx].PWONo),
-                        "系统信息",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question,
-                        MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {
-                    pwos.Remove(pwos[idx]);
-                    grdvPWOs.UpdateCurrentRow();
-                    grdvPWOs.BestFitColumns();
                 }
             }
         }
