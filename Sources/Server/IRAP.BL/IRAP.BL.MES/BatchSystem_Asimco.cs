@@ -492,6 +492,7 @@ namespace IRAP.BL.MES
             int t131LeafID,
             string operatorCode,
             string rsFactXML,
+            string batchNo,
             long sysLogID,
             out int errCode,
             out string errText)
@@ -514,16 +515,23 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@OperatorCode", DbType.String, operatorCode));
                 paramList.Add(new IRAPProcParameter("@RSFactXML", DbType.String, rsFactXML));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
-                paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, ParameterDirection.Output, 50));
+                paramList.Add(
+                    new IRAPProcParameter(
+                        "@BatchNumber",
+                        DbType.String,
+                        ParameterDirection.InputOutput,
+                        50)
+                    {
+                        Value = batchNo,
+                    });
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
                 WriteLog.Instance.Write(
-                    string.Format(
-                        "执行存储过程 IRAPMES..usp_SaveFact_BatchProductionStart_QuenchAndTemper，" +
-                        "参数：CommunityID={0}|T216LeafID={1}|T107LeafID={2}|" +
-                        "T131LeafID={3}|OperatorCode={4}|RSFactXML={5}|SysLogID={6}",
-                        communityID, t216LeafID, t107LeafID, t131LeafID, operatorCode,
-                        rsFactXML, sysLogID),
+                    "执行存储过程 IRAPMES..usp_SaveFact_BatchProductionStart_QuenchAndTemper，" +
+                    $"参数：CommunityID={communityID}|T216LeafID={t216LeafID}|" +
+                    $"T107LeafID={t107LeafID}|T131LeafID={t131LeafID}|" +
+                    $"OperatorCode={operatorCode}|RSFactXML={rsFactXML}|" +
+                    $"BatchNumber={batchNo}|SysLogID={sysLogID}",
                     strProcedureName);
                 #endregion
 

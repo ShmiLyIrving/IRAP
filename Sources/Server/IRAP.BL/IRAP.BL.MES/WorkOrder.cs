@@ -1190,20 +1190,12 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@OperatorCode", DbType.String, operatorCode));
                 paramList.Add(new IRAPProcParameter("@RSFactXML", DbType.String, rsFactXML));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
-                paramList.Add(
-                    new IRAPProcParameter(
-                        "@BatchNumber",
-                        DbType.String,
-                        ParameterDirection.InputOutput,
-                        50)
-                    {
-                        Value = batchNumber,
-                    });
+                paramList.Add(new IRAPProcParameter("@BatchNumber", DbType.String, batchNumber));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
                 WriteLog.Instance.Write(
                     string.Format(
-                        "执行存储过程 IRAPMES..usp_SaveFact_BatchProductionStart，" +
+                        "执行存储过程 IRAPMES..usp_SaveFact_BatchProductionStart_N，" +
                         "参数：CommunityID={0}|T216LeafID={1}|T107LeafID={2}|" +
                         "T131LeafID={3}|OperatorCode={4}|BatchNumber={5}|"+
                         "RSFactXML={6}|SysLogID={7}",
@@ -1216,7 +1208,7 @@ namespace IRAP.BL.MES
                 using (IRAPSQLConnection conn = new IRAPSQLConnection())
                 {
                     IRAPError error =
-                        conn.CallProc("IRAPMES..usp_SaveFact_BatchProductionStart", ref paramList);
+                        conn.CallProc("IRAPMES..usp_SaveFact_BatchProductionStart_N", ref paramList);
                     errCode = error.ErrCode;
                     errText = error.ErrText;
 
@@ -1245,7 +1237,7 @@ namespace IRAP.BL.MES
                 errCode = 99000;
                 errText =
                     string.Format(
-                        "调用 IRAPMES..usp_SaveFact_BatchProductionStart 过程发生异常：{0}",
+                        "调用 IRAPMES..usp_SaveFact_BatchProductionStart_N 过程发生异常：{0}",
                         error.Message);
                 return Json(new Hashtable());
             }
