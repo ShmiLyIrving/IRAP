@@ -366,10 +366,10 @@ namespace IRAP.Client.GUI.BatchSystem.Dialogs
                 return;
             }
 
-            if (edtQuantity1.Value <= 0)
+            if (edtQuantity1.Value + edtQuantity2.Value <= 0)
             {
                 XtraMessageBox.Show(
-                    "请输入当前工单的生产数量！",
+                    "当前工单的大头数量和小头数量之和不能为零！",
                     "系统信息",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

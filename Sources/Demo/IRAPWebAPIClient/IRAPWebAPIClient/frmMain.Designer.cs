@@ -43,18 +43,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.edtRequest = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.edtResponse = new DevExpress.XtraEditors.MemoEdit();
-            this.edtRequest = new DevExpress.XtraEditors.MemoEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtRequest.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtResponse.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtRequest.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -86,6 +86,7 @@
             this.btnExTest.TabIndex = 11;
             this.btnExTest.Text = "交易测试";
             this.btnExTest.UseVisualStyleBackColor = true;
+            this.btnExTest.Visible = false;
             this.btnExTest.Click += new System.EventHandler(this.btnExTest_Click);
             // 
             // btnSend
@@ -223,6 +224,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "请求报文";
             // 
+            // edtRequest
+            // 
+            this.edtRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.edtRequest.Location = new System.Drawing.Point(10, 26);
+            this.edtRequest.Name = "edtRequest";
+            this.edtRequest.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 10.5F);
+            this.edtRequest.Properties.Appearance.Options.UseFont = true;
+            this.edtRequest.Size = new System.Drawing.Size(778, 122);
+            this.edtRequest.TabIndex = 0;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.edtResponse);
@@ -245,16 +256,6 @@
             this.edtResponse.Size = new System.Drawing.Size(778, 280);
             this.edtResponse.TabIndex = 0;
             // 
-            // edtRequest
-            // 
-            this.edtRequest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.edtRequest.Location = new System.Drawing.Point(10, 26);
-            this.edtRequest.Name = "edtRequest";
-            this.edtRequest.Properties.Appearance.Font = new System.Drawing.Font("Courier New", 10.5F);
-            this.edtRequest.Properties.Appearance.Options.UseFont = true;
-            this.edtRequest.Size = new System.Drawing.Size(778, 122);
-            this.edtRequest.TabIndex = 0;
-            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -274,9 +275,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.edtRequest.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.edtResponse.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtRequest.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
