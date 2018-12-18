@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DPA\dpa_DBF_MO.cs" />
     <Compile Include="DPA\dpa_Imp_SmeltProductionPlan.cs" />
     <Compile Include="IRAP\STB006.cs" />
     <Compile Include="MDM\AndonCallPerson.cs" />

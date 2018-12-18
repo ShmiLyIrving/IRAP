@@ -1159,11 +1159,9 @@ namespace IRAP.BL.SSO
                             "FROM IRAP..stb006 WHERE PartitioningKey=@PartitioningKey";
 
                         if (userCode != "")
-                            strSQL +=
-                                string.Format(" AND UserCode='{0}'", userCode);
+                            strSQL += $" AND UserCode='{userCode}' OR CardNo='{userCode}'";
                         if (idCardNo != "")
-                            strSQL +=
-                                string.Format(" AND CardNo='{0}'", idCardNo);
+                            strSQL += $" AND CardNo='{idCardNo}' OR UserCode='{idCardNo}'";
 
                         IList<STB006> lstDatas =
                             conn.CallTableFunc<STB006>(strSQL, paramList);

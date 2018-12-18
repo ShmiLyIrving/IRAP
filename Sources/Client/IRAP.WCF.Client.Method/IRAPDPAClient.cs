@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections;
 using System.Reflection;
 
@@ -154,6 +152,121 @@ namespace IRAP.WCF.Client.Method
             }
         }
 
+        public void msp_InsertIntoDBF_MO(
+            List<dpa_DBF_MO> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("datas", datas);
+                    WriteLog.Instance.Write(
+                        "执行应用服务方法 msp_InsertIntoDBF_MO ",
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.DPA.dll",
+                        "IRAP.BL.DPA.IRAPDPA",
+                        "msp_InsertIntoDBF_MO",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void usp_PokaYoke_DBF_MONumber(
+            int communityID,
+            long importID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("importID", importID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format("执行存储过程 " +
+                            "usp_PokaYoke_DBF_MONumber，参数：" +
+                            "CommunityID={0}|ImportID={1}|SysLogID={2}",
+                            communityID, importID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.DPA.dll",
+                        "IRAP.BL.DPA.IRAPDPA",
+                        "usp_PokaYoke_DBF_MONumber",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
         /// <summary>
         /// 获取指定 ImportLogID 的导入记录
         /// </summary>
@@ -217,6 +330,192 @@ namespace IRAP.WCF.Client.Method
                     {
                         datas = rlt as List<dpa_Imp_SmeltProductionPlan>;
                     }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定 ImportID 的订单导入记录
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="importID">导入标识</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        /// <param name="datas">List&lt;pda_DBF_MO&gt;</param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void mfn_GetList_DBF_MO(
+            int communityID,
+            long importID,
+            long sysLogID,
+            ref List<dpa_DBF_MO> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("importID", importID);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    $"调用 mfn_GetList_DBF_MO 函数， " +
+                    $"参数：CommunityID={communityID}|"+
+                    $"ImportID={importID}|SysLogID={sysLogID}",
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.DPA.dll",
+                            "IRAP.BL.DPA.IRAPDPA",
+                            "mfn_GetList_DBF_MO",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<dpa_DBF_MO>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void usp_UploadMO(
+            int communityID,
+            long importID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                using (WCFClient client = new WCFClient())
+                {
+                    Hashtable hashParams = new Hashtable();
+
+                    #region 将函数参数加入 Hashtable 中
+                    hashParams.Add("communityID", communityID);
+                    hashParams.Add("importID", importID);
+                    hashParams.Add("sysLogID", sysLogID);
+                    WriteLog.Instance.Write(
+                        string.Format("执行存储过程 " +
+                            "usp_UploadMO，参数：" +
+                            "CommunityID={0}|ImportID={1}|SysLogID={2}",
+                            communityID, importID, sysLogID),
+                        strProcedureName);
+                    #endregion
+
+                    #region 调用应用服务过程，并解析返回值
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.DPA.dll",
+                        "IRAP.BL.DPA.IRAPDPA",
+                        "usp_UploadMO",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}",
+                            errCode,
+                            errText),
+                        strProcedureName);
+                    #endregion
+                }
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public void msp_Delete_DPA_DBFMOData(
+            int communityID,
+            long importID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+
+            try
+            {
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("importID", importID);
+                WriteLog.Instance.Write(
+                    $"执行 SQL: DELETE FROM IRAPDPA..dpa_DBF_MO "+
+                    $"WHERE ImportID ={importID}",
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.DPA.dll",
+                            "IRAP.BL.DPA.IRAPDPA",
+                            "msp_Delete_DPA_DBFMOData",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
                 }
                 #endregion
             }
