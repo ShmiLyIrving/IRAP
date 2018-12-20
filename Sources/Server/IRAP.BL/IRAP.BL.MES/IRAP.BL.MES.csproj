@@ -51,6 +51,7 @@
     <Compile Include="ManualInspecting.cs" />
     <Compile Include="OperatorSkill.cs" />
     <Compile Include="PokaYoke.cs" />
+    <Compile Include="AsimcoPrdtPackage.cs" />
     <Compile Include="ProductPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QC.cs" />

@@ -45,6 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asimco\BoxOfCarton.cs" />
+    <Compile Include="Asimco\Carton.cs" />
+    <Compile Include="Asimco\PackageClient.cs" />
+    <Compile Include="Asimco\PackageLine.cs" />
+    <Compile Include="Asimco\RePrintBoxNumber.cs" />
+    <Compile Include="Asimco\RePrintCartonNumber.cs" />
+    <Compile Include="Asimco\WaitConfirmPrint.cs" />
+    <Compile Include="Asimco\WaitPackageSO.cs" />
     <Compile Include="DPA\dpa_DBF_MO.cs" />
     <Compile Include="DPA\dpa_Imp_SmeltProductionPlan.cs" />
     <Compile Include="IRAP\STB006.cs" />
@@ -135,6 +143,7 @@
     <Compile Include="SSO\UserDetailInfo.cs" />
     <Compile Include="SSO\UserInfo.cs" />
     <Compile Include="MDM\SymbolInspecting.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="UTS\LinkedTreeTitle.cs" />
     <Compile Include="UTS\OperTypeInfo.cs" />
     <Compile Include="UTS\STB010.cs" />
