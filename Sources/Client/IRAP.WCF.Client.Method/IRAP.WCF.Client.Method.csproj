@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsimcoPackageClient.cs" />
     <Compile Include="IRAPAPSClient.cs" />
     <Compile Include="IRAPDPAClient.cs" />
     <Compile Include="IRAPFVSClient.cs" />

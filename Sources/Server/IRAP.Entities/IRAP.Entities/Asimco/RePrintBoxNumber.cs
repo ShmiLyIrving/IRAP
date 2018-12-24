@@ -60,6 +60,10 @@ namespace IRAP.Entities.Asimco
         /// </summary>
         public int T117LeafID { get; set; }
         /// <summary>
+        /// 打印份数
+        /// </summary>
+        public int PrintQty { get; set; }
+        /// <summary>
         /// 标签模板
         /// </summary>
         public string LabelTemplate { get; set; }

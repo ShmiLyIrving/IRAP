@@ -23,5 +23,10 @@ namespace IRAP.Entities.Asimco
         /// 产线名称
         /// </summary>
         public string T134Name { get; set; }
+
+        public override string ToString()
+        {
+            return $"[{T134Code}]{T134Name}";
+        }
     }
 }

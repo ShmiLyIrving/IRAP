@@ -31,5 +31,10 @@ namespace IRAP.Entities.Asimco
         /// 外箱包含内箱数量
         /// </summary>
         public long NumberOfBox { get; set; }
+
+        public override string ToString()
+        {
+            return T105Name;
+        }
     }
 }

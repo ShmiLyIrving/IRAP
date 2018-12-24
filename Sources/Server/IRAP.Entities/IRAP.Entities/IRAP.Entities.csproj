@@ -53,6 +53,7 @@
     <Compile Include="Asimco\RePrintCartonNumber.cs" />
     <Compile Include="Asimco\WaitConfirmPrint.cs" />
     <Compile Include="Asimco\WaitPackageSO.cs" />
+    <Compile Include="Asimco\WaitRePrintCarton.cs" />
     <Compile Include="DPA\dpa_DBF_MO.cs" />
     <Compile Include="DPA\dpa_Imp_SmeltProductionPlan.cs" />
     <Compile Include="IRAP\STB006.cs" />

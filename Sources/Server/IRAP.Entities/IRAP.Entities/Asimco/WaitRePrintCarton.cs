@@ -5,12 +5,20 @@ using System.Text;
 
 namespace IRAP.Entities.Asimco
 {
-    public class BoxOfCarton
+    public class WaitRePrintCarton
     {
         /// <summary>
         /// 序号
         /// </summary>
         public int Ordinal { get; set; }
+        /// <summary>
+        /// 事实号
+        /// </summary>
+        public long FactID { get; set; }
+        /// <summary>
+        /// 交易号
+        /// </summary>
+        public long TransactNo { get; set; }
         /// <summary>
         /// 外箱序号
         /// </summary>
@@ -24,45 +32,13 @@ namespace IRAP.Entities.Asimco
         /// </summary>
         public string CartonProductName { get; set; }
         /// <summary>
-        /// 内箱序号
+        /// 内箱数量
         /// </summary>
-        public int OrdinalOfCarton { get; set; }
+        public string BoxNumberOfCarton { get; set; }
         /// <summary>
-        /// 内箱标签号
+        /// 上次打印时间
         /// </summary>
-        public string BoxNumber { get; set; }
-        /// <summary>
-        /// 内箱零件代码（物料号）
-        /// </summary>
-        public string BoxMaterialNo { get; set; }
-        /// <summary>
-        /// 内箱零件名称
-        /// </summary>
-        public string BoxMaterialName { get; set; }
-        /// <summary>
-        /// 内箱零件数量
-        /// </summary>
-        public long MaterialQty { get; set; }
-        /// <summary>
-        /// 机型
-        /// </summary>
-        public string Model { get; set; }
-        /// <summary>
-        /// 图号（零件号）
-        /// </summary>
-        public string DrawingID { get; set; }
-        /// <summary>
-        /// 材质（环别）
-        /// </summary>
-        public string MaterialCategory { get; set; }
-        /// <summary>
-        /// 批次号
-        /// </summary>
-        public string LotNumber { get; set; }
-        /// <summary>
-        /// 筒号
-        /// </summary>
-        public string CylinderID { get; set; }
+        public string PrintDate { get; set; }
         /// <summary>
         /// 供应商代码（客户赋予的供应商代码）
         /// </summary>
@@ -79,10 +55,6 @@ namespace IRAP.Entities.Asimco
         /// 产线替代代码（包装线代码）
         /// </summary>
         public string T134AlternateCode { get; set; }
-        /// <summary>
-        /// 标签叶标识
-        /// </summary>
-        public int T117LeafID { get; set; }
         /// <summary>
         /// 打印份数
         /// </summary>
