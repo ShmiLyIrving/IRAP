@@ -42,7 +42,7 @@ namespace IRAP.Entities.Asimco
         /// <summary>
         /// 车间叶标识
         /// </summary>
-        public int T134LeafID { get; set; }
+        public int T134NodeID { get; set; }
         /// <summary>
         /// 车间/产线代码
         /// </summary>

@@ -1183,5 +1183,102 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        /// <summary>
+        /// 保存标签重打确认完成信息
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="factID"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult usp_SaveFact_PrintStatus(
+            int communityID,
+            long factID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                string msg = "执行存储过程 IRAPMES..usp_SaveFact_PrintStatus，参数：";
+                for (int i = 0; i < paramList.Count; i++)
+                {
+                    if (paramList[i].Direction != ParameterDirection.Output)
+                    {
+                        msg +=
+                          $"{paramList[i].ParameterName}=" +
+                          $"{paramList[i].Value.ToString()}|";
+                    }
+                }
+                WriteLog.Instance.Write(msg, strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error =
+                        conn.CallProc("IRAPMES..usp_SaveFact_PrintStatus", ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+
+                    Hashtable rtnParams = new Hashtable();
+                    if (errCode == 0)
+                    {
+                        foreach (IRAPProcParameter param in paramList)
+                        {
+                            if (param.Direction == ParameterDirection.InputOutput ||
+                                param.Direction == ParameterDirection.Output)
+                            {
+                                if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), 0);
+                                else
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
+                            }
+                        }
+
+                        string text = "";
+                        foreach (string key in rtnParams.Keys)
+                        {
+                            text += $"{key}={rtnParams[key]}|";
+                        }
+                        WriteLog.Instance.Write($"返回参数：{text}", strProcedureName);
+                    }
+                    else
+                    {
+                        WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
+                    }
+
+                    return Json(rtnParams);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText =
+                    string.Format(
+                        "调用 IRAPMES..usp_SaveFact_PrintStatus 过程发生异常：{0}",
+                        error.Message);
+                WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
+                return Json(new Hashtable());
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
