@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
+
+using IRAPShared;
 
 namespace IRAP.Entities.Asimco
 {
@@ -12,7 +15,7 @@ namespace IRAP.Entities.Asimco
         /// </summary>
         public int Ordinal { get; set; }
         /// <summary>
-        /// 外箱序号
+        /// 外箱序号（物料号）
         /// </summary>
         public string CartonNumber { get; set; }
         /// <summary>
@@ -26,7 +29,11 @@ namespace IRAP.Entities.Asimco
         /// <summary>
         /// 内箱数量
         /// </summary>
-        public long BoxQty { get; set; }
+        public long BoxCnt { get; set; }
+        /// <summary>
+        /// 外箱包含所有产品数量
+        /// </summary>
+        public long CartonQty { get; set; }
         /// <summary>
         /// 机型
         /// </summary>
@@ -67,9 +74,5 @@ namespace IRAP.Entities.Asimco
         /// 打印份数
         /// </summary>
         public int PrintQty { get; set; }
-        /// <summary>
-        /// 内箱标签信息
-        /// </summary>
-        public string BoxList { get; set; }
     }
 }

@@ -12,13 +12,13 @@ namespace IRAP.Entities.Asimco
         /// </summary>
         public int Ordinal { get; set; }
         /// <summary>
-        /// 销售订单号
+        /// 制造订单号
         /// </summary>
-        public string SONumber { get; set; }
+        public string MONumber { get; set; }
         /// <summary>
-        /// 销售订单行号
+        /// 制造订单行号
         /// </summary>
-        public int SOLineNo { get; set; }
+        public int MOLineNo { get; set; }
         /// <summary>
         /// 产品号
         /// </summary>

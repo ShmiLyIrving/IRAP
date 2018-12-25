@@ -128,8 +128,8 @@ namespace IRAP.BL.MES
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
-                List<WaitPackageSO> datas =
-                    new List<WaitPackageSO>();
+                List<PackageLine> datas =
+                    new List<PackageLine>();
 
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
@@ -143,7 +143,7 @@ namespace IRAP.BL.MES
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
                         string strSQL = "SELECT * " +
-                            "FROM IRAPMES..ufn_GetList_PackageLine(" +
+                            "FROM IRAPMDM..ufn_GetList_PackageLine(" +
                             "@CommunityID, @SysLogID) " +
                             "ORDER BY Ordinal";
 
@@ -156,8 +156,8 @@ namespace IRAP.BL.MES
                         }
                         WriteLog.Instance.Write(msg, strProcedureName);
 
-                        IList<WaitPackageSO> lstDatas =
-                            conn.CallTableFunc<WaitPackageSO>(strSQL, paramList);
+                        IList<PackageLine> lstDatas =
+                            conn.CallTableFunc<PackageLine>(strSQL, paramList);
                         datas = lstDatas.ToList();
 
                         errCode = 0;
@@ -171,6 +171,89 @@ namespace IRAP.BL.MES
                     errText =
                         string.Format(
                             "调用 IRAPMES..ufn_GetList_PackageLine 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取产品供给客户清单
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="moNumber">制造订单号</param>
+        /// <param name="moLineNo">制造订单行号</param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetList_PackageClient(
+            int communityID,
+            string moNumber,
+            int moLineNo,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<PackageClient> datas =
+                    new List<PackageClient>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@MONumber", DbType.String, moNumber));
+                paramList.Add(new IRAPProcParameter("@MOLineNo", DbType.Int32, moLineNo));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMDM..ufn_GetList_PackageClient(" +
+                            "@CommunityID, @MONumber, @MOLineNo, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<PackageClient> lstDatas =
+                            conn.CallTableFunc<PackageClient>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", lstDatas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetList_PackageClient 函数发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);
@@ -423,6 +506,83 @@ namespace IRAP.BL.MES
         }
 
         /// <summary>
+        /// 获取待重打的外箱清单列表
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetList_WaitRePrintCarton(
+            int communityID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<WaitRePrintCarton> datas =
+                    new List<WaitRePrintCarton>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetList_WaitRePrintCarton(" +
+                            "@CommunityID, @SysLogID) " +
+                            "ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<WaitRePrintCarton> lstDatas =
+                            conn.CallTableFunc<WaitRePrintCarton>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", lstDatas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用 IRAPMES..ufn_GetList_WaitRePrintCarton 函数发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 根据订单和产线，预打印标签供后面成套检验
         /// </summary>
         /// <param name="communityID">社区标识</param>
@@ -430,8 +590,9 @@ namespace IRAP.BL.MES
         /// <param name="moLineNo">销售订单行号</param>
         /// <param name="numberOfBox">内箱产品数量</param>
         /// <param name="cartonNumber">外箱数</param>
-        /// <param name="boxNumber">内箱数</param>
         /// <param name="t105LeafID">客户叶标识</param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="boxNumber">内箱数</param>
         /// <param name="sysLogID"></param>
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
@@ -442,8 +603,9 @@ namespace IRAP.BL.MES
             int moLineNo,
             long numberOfBox,
             long cartonNumber,
-            long boxNumber,
             int t105LeafID,
+            int t134LeafID,
+            long boxNumber,
             long sysLogID,
             out int errCode,
             out string errText)
@@ -461,6 +623,8 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@MOLineNo", DbType.Int32, moLineNo));
                 paramList.Add(new IRAPProcParameter("@NumberOfBox", DbType.Int64, numberOfBox));
                 paramList.Add(new IRAPProcParameter("@CartonNumber", DbType.Int64, cartonNumber));
+                paramList.Add(new IRAPProcParameter("@T105LeafID", DbType.Int32, t105LeafID));
+                paramList.Add(new IRAPProcParameter("@T134LeafID", DbType.Int32, t134LeafID));
                 paramList.Add(new IRAPProcParameter("@BoxNumber", DbType.Int64, boxNumber));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@TransactNo", DbType.String, ParameterDirection.InputOutput, 50));
@@ -470,7 +634,8 @@ namespace IRAP.BL.MES
                     "执行存储过程 IRAPMES..usp_SaveFact_PackagePrint，" +
                     $"参数：CommunityID={communityID}|MONumber={moNumber}|" +
                     $"MOLineNo={moLineNo}|NumberOfBox={numberOfBox}|" +
-                    $"CartonNumber={cartonNumber}|BoxNumber={boxNumber}|" +
+                    $"CartonNumber={cartonNumber}|T105LeafID={t105LeafID}|"+
+                    $"T134LeafID={t134LeafID}|BoxNumber={boxNumber}|" +
                     $"SysLogID={sysLogID}",
                     strProcedureName);
                 #endregion
@@ -911,6 +1076,7 @@ namespace IRAP.BL.MES
             int communityID,
             string moNumber,
             int moLineNo,
+            int t105LeafID,
             int cartonNumber,
             long sysLogID,
             out int errCode,
@@ -927,6 +1093,7 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
                 paramList.Add(new IRAPProcParameter("@MONumber", DbType.String, moNumber));
                 paramList.Add(new IRAPProcParameter("@MOLineNo", DbType.Int32, moLineNo));
+                paramList.Add(new IRAPProcParameter("@T105LeafID", DbType.Int32, t105LeafID));
                 paramList.Add(new IRAPProcParameter("@CartonNumber", DbType.Int32, cartonNumber));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
