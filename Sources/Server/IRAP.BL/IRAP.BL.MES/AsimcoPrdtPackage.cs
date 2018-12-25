@@ -143,7 +143,7 @@ namespace IRAP.BL.MES
                     using (IRAPSQLConnection conn = new IRAPSQLConnection())
                     {
                         string strSQL = "SELECT * " +
-                            "FROM IRAPMDM..ufn_GetList_PackageLine(" +
+                            "FROM IRAPMES..ufn_GetList_PackageLine(" +
                             "@CommunityID, @SysLogID) " +
                             "ORDER BY Ordinal";
 
@@ -727,9 +727,12 @@ namespace IRAP.BL.MES
                 string msg = "执行存储过程 IRAPMES..usp_RePrintBoxNumber，参数：";
                 for (int i = 0; i < paramList.Count; i++)
                 {
-                    msg +=
-                        $"{paramList[i].ParameterName}=" +
-                        $"{paramList[i].Value.ToString()}|";
+                    if (paramList[i].Direction != ParameterDirection.Output)
+                    {
+                        msg +=
+                            $"{paramList[i].ParameterName}=" +
+                            $"{paramList[i].Value.ToString()}|";
+                    }
                 }
                 WriteLog.Instance.Write(msg, strProcedureName);
                 #endregion
@@ -819,9 +822,12 @@ namespace IRAP.BL.MES
                 string msg = "执行存储过程 IRAPMES..usp_RePrintCartonNumber，参数：";
                 for (int i = 0; i < paramList.Count; i++)
                 {
-                    msg +=
-                        $"{paramList[i].ParameterName}=" +
-                        $"{paramList[i].Value.ToString()}|";
+                    if (paramList[i].Direction != ParameterDirection.Output)
+                    {
+                        msg +=
+                           $"{paramList[i].ParameterName}=" +
+                           $"{paramList[i].Value.ToString()}|";
+                    }
                 }
                 WriteLog.Instance.Write(msg, strProcedureName);
                 #endregion
@@ -898,16 +904,19 @@ namespace IRAP.BL.MES
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
-                paramList.Add(new IRAPProcParameter("@ParmXML", DbType.Xml, parmXML));
+                paramList.Add(new IRAPProcParameter("@ParmXML", DbType.String, parmXML));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
                 string msg = "执行存储过程 IRAPMES..usp_RequestReprint，参数：";
                 for (int i = 0; i < paramList.Count; i++)
                 {
-                    msg +=
-                        $"{paramList[i].ParameterName}=" +
-                        $"{paramList[i].Value.ToString()}|";
+                    if (paramList[i].Direction != ParameterDirection.Output)
+                    {
+                        msg +=
+                          $"{paramList[i].ParameterName}=" +
+                          $"{paramList[i].Value.ToString()}|";
+                    }
                 }
                 WriteLog.Instance.Write(msg, strProcedureName);
                 #endregion
@@ -989,19 +998,28 @@ namespace IRAP.BL.MES
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
             {
+                WriteLog.Instance.Write(
+                    $"communityID={communityID}|" +
+                    $"parmXML={parmXML}|" +
+                    $"sysLogID={sysLogID}",
+                    strProcedureName);
+
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
-                paramList.Add(new IRAPProcParameter("@ParmXML", DbType.Xml, parmXML));
+                paramList.Add(new IRAPProcParameter("@ParmXML", DbType.String, parmXML));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
                 string msg = "执行存储过程 IRAPMES..usp_SaveFact_PrintConfirm，参数：";
                 for (int i = 0; i < paramList.Count; i++)
                 {
-                    msg +=
-                        $"{paramList[i].ParameterName}=" +
-                        $"{paramList[i].Value.ToString()}|";
+                    if (paramList[i].Direction != ParameterDirection.Output)
+                    {
+                        msg +=
+                            $"{paramList[i].ParameterName}=" +
+                            $"{paramList[i].Value.ToString()}|";
+                    }
                 }
                 WriteLog.Instance.Write(msg, strProcedureName);
                 #endregion
@@ -1101,9 +1119,12 @@ namespace IRAP.BL.MES
                 string msg = "执行存储过程 IRAPMES..usp_PokaYoke_Pakcage，参数：";
                 for (int i = 0; i < paramList.Count; i++)
                 {
-                    msg +=
-                        $"{paramList[i].ParameterName}=" +
-                        $"{paramList[i].Value.ToString()}|";
+                    if (paramList[i].Direction != ParameterDirection.Output)
+                    {
+                        msg +=
+                          $"{paramList[i].ParameterName}=" +
+                          $"{paramList[i].Value.ToString()}|";
+                    }
                 }
                 WriteLog.Instance.Write(msg, strProcedureName);
                 #endregion

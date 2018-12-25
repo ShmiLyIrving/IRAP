@@ -28,14 +28,6 @@ namespace IRAP.Entities.Asimco
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>
-        /// 外箱数量
-        /// </summary>
-        public long NumberOfCarton { get; set; }
-        /// <summary>
-        /// 外箱包含内箱数量
-        /// </summary>
-        public long NumberOfBox { get; set; }
-        /// <summary>
         /// 订单总量
         /// </summary>
         public long PlanQty { get; set; }
