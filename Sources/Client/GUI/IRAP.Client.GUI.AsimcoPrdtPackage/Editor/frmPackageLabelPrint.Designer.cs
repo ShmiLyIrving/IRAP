@@ -29,22 +29,27 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.edtBoxNumber = new System.Windows.Forms.NumericUpDown();
+            this.edtCartonNumber = new System.Windows.Forms.NumericUpDown();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cboPackageLines = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboCustomers = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnLabelPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.cboPrinters = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtBoxNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtCartonNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPackageLines.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCustomers.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPrinters.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTipController
@@ -62,8 +67,8 @@
             this.groupControl1.Appearance.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 10.5F);
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.numericUpDown2);
-            this.groupControl1.Controls.Add(this.numericUpDown1);
+            this.groupControl1.Controls.Add(this.edtBoxNumber);
+            this.groupControl1.Controls.Add(this.edtCartonNumber);
             this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Location = new System.Drawing.Point(12, 123);
@@ -72,34 +77,35 @@
             this.groupControl1.TabIndex = 13;
             this.groupControl1.Text = "待打印标签数量";
             // 
-            // numericUpDown2
+            // edtBoxNumber
             // 
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this.edtBoxNumber.Increment = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.numericUpDown2.InterceptArrowKeys = false;
-            this.numericUpDown2.Location = new System.Drawing.Point(323, 35);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.ReadOnly = true;
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 23);
-            this.numericUpDown2.TabIndex = 10;
-            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.edtBoxNumber.InterceptArrowKeys = false;
+            this.edtBoxNumber.Location = new System.Drawing.Point(330, 35);
+            this.edtBoxNumber.Name = "edtBoxNumber";
+            this.edtBoxNumber.ReadOnly = true;
+            this.edtBoxNumber.Size = new System.Drawing.Size(120, 23);
+            this.edtBoxNumber.TabIndex = 10;
+            this.edtBoxNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // numericUpDown1
+            // edtCartonNumber
             // 
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.edtCartonNumber.Increment = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.numericUpDown1.InterceptArrowKeys = false;
-            this.numericUpDown1.Location = new System.Drawing.Point(76, 35);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 23);
-            this.numericUpDown1.TabIndex = 9;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.edtCartonNumber.InterceptArrowKeys = false;
+            this.edtCartonNumber.Location = new System.Drawing.Point(76, 35);
+            this.edtCartonNumber.Name = "edtCartonNumber";
+            this.edtCartonNumber.Size = new System.Drawing.Size(120, 23);
+            this.edtCartonNumber.TabIndex = 9;
+            this.edtCartonNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.edtCartonNumber.Validating += new System.ComponentModel.CancelEventHandler(this.edtCartonNumber_Validating);
             // 
             // labelControl5
             // 
@@ -149,24 +155,25 @@
             this.labelControl3.TabIndex = 11;
             this.labelControl3.Text = "分配的包装线：";
             // 
-            // comboBoxEdit1
+            // cboCustomers
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(12, 32);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.AppearanceDisabled.Font = new System.Drawing.Font("新宋体", 10.5F);
-            this.comboBoxEdit1.Properties.AppearanceDisabled.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.AppearanceDropDown.Font = new System.Drawing.Font("新宋体", 10.5F);
-            this.comboBoxEdit1.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.AppearanceFocused.Font = new System.Drawing.Font("新宋体", 10.5F);
-            this.comboBoxEdit1.Properties.AppearanceFocused.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("新宋体", 10.5F);
-            this.comboBoxEdit1.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cboCustomers.Location = new System.Drawing.Point(12, 32);
+            this.cboCustomers.Name = "cboCustomers";
+            this.cboCustomers.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCustomers.Properties.Appearance.Options.UseFont = true;
+            this.cboCustomers.Properties.AppearanceDisabled.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboCustomers.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cboCustomers.Properties.AppearanceDropDown.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboCustomers.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboCustomers.Properties.AppearanceFocused.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboCustomers.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cboCustomers.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboCustomers.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.cboCustomers.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(465, 20);
-            this.comboBoxEdit1.TabIndex = 10;
+            this.cboCustomers.Size = new System.Drawing.Size(465, 20);
+            this.cboCustomers.TabIndex = 10;
+            this.cboCustomers.SelectedIndexChanged += new System.EventHandler(this.cboCustomers_SelectedIndexChanged);
             // 
             // labelControl2
             // 
@@ -179,14 +186,15 @@
             // 
             // btnLabelPrint
             // 
-            this.btnLabelPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLabelPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLabelPrint.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLabelPrint.Appearance.Options.UseFont = true;
             this.btnLabelPrint.Location = new System.Drawing.Point(501, 22);
             this.btnLabelPrint.Name = "btnLabelPrint";
             this.btnLabelPrint.Size = new System.Drawing.Size(109, 41);
-            this.btnLabelPrint.TabIndex = 14;
+            this.btnLabelPrint.TabIndex = 15;
             this.btnLabelPrint.Text = "打印标签";
+            this.btnLabelPrint.Click += new System.EventHandler(this.btnLabelPrint_Click);
             // 
             // btnCancel
             // 
@@ -194,23 +202,59 @@
             this.btnCancel.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(501, 147);
+            this.btnCancel.Location = new System.Drawing.Point(501, 227);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(109, 41);
-            this.btnCancel.TabIndex = 15;
+            this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "关闭";
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupControl2.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.groupControl2.Appearance.Options.UseBackColor = true;
+            this.groupControl2.Appearance.Options.UseFont = true;
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
+            this.groupControl2.Controls.Add(this.cboPrinters);
+            this.groupControl2.Location = new System.Drawing.Point(12, 204);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(465, 66);
+            this.groupControl2.TabIndex = 14;
+            this.groupControl2.Text = "打印到";
+            // 
+            // cboPrinters
+            // 
+            this.cboPrinters.Location = new System.Drawing.Point(14, 33);
+            this.cboPrinters.Name = "cboPrinters";
+            this.cboPrinters.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPrinters.Properties.Appearance.Options.UseFont = true;
+            this.cboPrinters.Properties.AppearanceDisabled.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboPrinters.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cboPrinters.Properties.AppearanceDropDown.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboPrinters.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboPrinters.Properties.AppearanceFocused.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboPrinters.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cboPrinters.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboPrinters.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.cboPrinters.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboPrinters.Size = new System.Drawing.Size(436, 20);
+            this.cboPrinters.TabIndex = 11;
+            this.cboPrinters.SelectedIndexChanged += new System.EventHandler(this.cboPrinters_SelectedIndexChanged);
             // 
             // frmPackageLabelPrint
             // 
             this.Appearance.Options.UseFont = true;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(622, 205);
+            this.ClientSize = new System.Drawing.Size(622, 285);
+            this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLabelPrint);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.cboPackageLines);
             this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.comboBoxEdit1);
+            this.Controls.Add(this.cboCustomers);
             this.Controls.Add(this.labelControl2);
             this.Name = "frmPackageLabelPrint";
             this.Text = "";
@@ -218,10 +262,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtBoxNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtCartonNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPackageLines.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCustomers.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboPrinters.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,15 +277,17 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown edtBoxNumber;
+        private System.Windows.Forms.NumericUpDown edtCartonNumber;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.ComboBoxEdit cboPackageLines;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit cboCustomers;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton btnLabelPrint;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.ComboBoxEdit cboPrinters;
     }
 }

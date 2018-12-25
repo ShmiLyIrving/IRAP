@@ -30,7 +30,7 @@
         {
             this.grdPackageSOs = new DevExpress.XtraGrid.GridControl();
             this.grdvPackageSOs = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnOrdinal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -66,7 +66,7 @@
             this.grdvPackageSOs.Appearance.Row.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvPackageSOs.Appearance.Row.Options.UseFont = true;
             this.grdvPackageSOs.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
+            this.grdclmnOrdinal,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn7,
@@ -81,16 +81,16 @@
             this.grdvPackageSOs.OptionsView.RowAutoHeight = true;
             this.grdvPackageSOs.OptionsView.ShowGroupPanel = false;
             // 
-            // gridColumn1
+            // grdclmnOrdinal
             // 
-            this.gridColumn1.Caption = "订单号";
-            this.gridColumn1.FieldName = "MONumber";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn1.OptionsColumn.AllowMove = false;
-            this.gridColumn1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.grdclmnOrdinal.Caption = "序号";
+            this.grdclmnOrdinal.FieldName = "Ordinal";
+            this.grdclmnOrdinal.Name = "grdclmnOrdinal";
+            this.grdclmnOrdinal.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnOrdinal.OptionsColumn.AllowMove = false;
+            this.grdclmnOrdinal.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnOrdinal.Visible = true;
+            this.grdclmnOrdinal.VisibleIndex = 0;
             // 
             // gridColumn2
             // 
@@ -209,7 +209,7 @@
 
         private DevExpress.XtraGrid.GridControl grdPackageSOs;
         private DevExpress.XtraGrid.Views.Grid.GridView grdvPackageSOs;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnOrdinal;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;

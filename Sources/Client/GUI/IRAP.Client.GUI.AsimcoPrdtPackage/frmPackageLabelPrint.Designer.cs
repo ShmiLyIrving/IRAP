@@ -32,13 +32,19 @@
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.ucPackageLabelPrint = new IRAP.Client.GUI.AsimcoPrdtPackage.UserControls.ucPackageLabelPrint();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.ucPackageLabelConfirm = new IRAP.Client.GUI.AsimcoPrdtPackage.UserControls.ucPackageLabelConfirm();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.ucPackabeLabelReprint = new IRAP.Client.GUI.AsimcoPrdtPackage.UserControls.ucPackabeLabelReprint();
+            this.ucPackageLabelPrintAgain = new IRAP.Client.GUI.AsimcoPrdtPackage.UserControls.ucPackageLabelPrintAgain();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
             this.tcMain.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            this.xtraTabPage2.SuspendLayout();
+            this.xtraTabPage3.SuspendLayout();
+            this.xtraTabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblFuncName
@@ -100,21 +106,61 @@
             // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.ucPackageLabelConfirm);
             this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Padding = new System.Windows.Forms.Padding(5);
             this.xtraTabPage2.Size = new System.Drawing.Size(885, 410);
             this.xtraTabPage2.Text = "包装标签确认";
             // 
+            // ucPackageLabelConfirm
+            // 
+            this.ucPackageLabelConfirm.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.ucPackageLabelConfirm.Appearance.Options.UseFont = true;
+            this.ucPackageLabelConfirm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPackageLabelConfirm.Location = new System.Drawing.Point(5, 5);
+            this.ucPackageLabelConfirm.Name = "ucPackageLabelConfirm";
+            this.ucPackageLabelConfirm.Size = new System.Drawing.Size(875, 400);
+            this.ucPackageLabelConfirm.TabIndex = 0;
+            // 
             // xtraTabPage3
             // 
+            this.xtraTabPage3.Controls.Add(this.ucPackabeLabelReprint);
             this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Padding = new System.Windows.Forms.Padding(5);
             this.xtraTabPage3.Size = new System.Drawing.Size(885, 410);
             this.xtraTabPage3.Text = "包装标签重打";
             // 
             // xtraTabPage4
             // 
+            this.xtraTabPage4.Controls.Add(this.ucPackageLabelPrintAgain);
             this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Padding = new System.Windows.Forms.Padding(5);
             this.xtraTabPage4.Size = new System.Drawing.Size(885, 410);
             this.xtraTabPage4.Text = "包装标签补打";
+            // 
+            // ucPackabeLabelReprint
+            // 
+            this.ucPackabeLabelReprint.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.ucPackabeLabelReprint.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.ucPackabeLabelReprint.Appearance.Options.UseBackColor = true;
+            this.ucPackabeLabelReprint.Appearance.Options.UseFont = true;
+            this.ucPackabeLabelReprint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPackabeLabelReprint.Location = new System.Drawing.Point(5, 5);
+            this.ucPackabeLabelReprint.Name = "ucPackabeLabelReprint";
+            this.ucPackabeLabelReprint.Size = new System.Drawing.Size(875, 400);
+            this.ucPackabeLabelReprint.TabIndex = 0;
+            // 
+            // ucPackageLabelPrintAgain
+            // 
+            this.ucPackageLabelPrintAgain.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.ucPackageLabelPrintAgain.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.ucPackageLabelPrintAgain.Appearance.Options.UseBackColor = true;
+            this.ucPackageLabelPrintAgain.Appearance.Options.UseFont = true;
+            this.ucPackageLabelPrintAgain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPackageLabelPrintAgain.Location = new System.Drawing.Point(5, 5);
+            this.ucPackageLabelPrintAgain.Name = "ucPackageLabelPrintAgain";
+            this.ucPackageLabelPrintAgain.Size = new System.Drawing.Size(875, 400);
+            this.ucPackageLabelPrintAgain.TabIndex = 0;
             // 
             // frmPackageLabelPrint
             // 
@@ -130,6 +176,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
             this.tcMain.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            this.xtraTabPage2.ResumeLayout(false);
+            this.xtraTabPage3.ResumeLayout(false);
+            this.xtraTabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -142,5 +191,8 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
         private UserControls.ucPackageLabelPrint ucPackageLabelPrint;
+        private UserControls.ucPackageLabelConfirm ucPackageLabelConfirm;
+        private UserControls.ucPackabeLabelReprint ucPackabeLabelReprint;
+        private UserControls.ucPackageLabelPrintAgain ucPackageLabelPrintAgain;
     }
 }

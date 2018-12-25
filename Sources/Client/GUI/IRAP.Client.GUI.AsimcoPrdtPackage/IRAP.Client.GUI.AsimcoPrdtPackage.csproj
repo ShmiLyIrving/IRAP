@@ -41,6 +41,14 @@
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\FastReport\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Packages\FastReport\FastReport.Bars.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -77,11 +85,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucPackabeLabelReprint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPackabeLabelReprint.Designer.cs">
+      <DependentUpon>ucPackabeLabelReprint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPackageLabelConfirm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPackageLabelConfirm.Designer.cs">
+      <DependentUpon>ucPackageLabelConfirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucPackageLabelPrint.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\ucPackageLabelPrint.Designer.cs">
       <DependentUpon>ucPackageLabelPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPackageLabelPrintAgain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPackageLabelPrintAgain.Designer.cs">
+      <DependentUpon>ucPackageLabelPrintAgain.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -140,8 +166,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucPackabeLabelReprint.resx">
+      <DependentUpon>ucPackabeLabelReprint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucPackageLabelConfirm.resx">
+      <DependentUpon>ucPackageLabelConfirm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucPackageLabelPrint.resx">
       <DependentUpon>ucPackageLabelPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucPackageLabelPrintAgain.resx">
+      <DependentUpon>ucPackageLabelPrintAgain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\licenses.licx" />
   </ItemGroup>

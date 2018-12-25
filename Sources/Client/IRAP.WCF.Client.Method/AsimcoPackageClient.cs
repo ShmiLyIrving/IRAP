@@ -574,8 +574,9 @@ namespace IRAP.WCF.Client.Method
         /// <param name="moLineNo">销售订单行号</param>
         /// <param name="numberOfBox">内箱产品数量</param>
         /// <param name="cartonNumber">外箱数</param>
-        /// <param name="boxNumber">内箱数</param>
         /// <param name="t105LeafID">客户叶标识</param>
+        /// <param name="t134LeafID">产线叶标识</param>
+        /// <param name="boxNumber">内箱数</param>
         /// <param name="sysLogID"></param>
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
@@ -586,8 +587,9 @@ namespace IRAP.WCF.Client.Method
             int moLineNo,
             long numberOfBox,
             long cartonNumber,
-            long boxNumber,
             int t105LeafID,
+            int t134LeafID,
+            long boxNumber,
             long sysLogID,
             ref long transactNo,
             out int errCode,
@@ -610,6 +612,7 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("cartonNumber", cartonNumber);
                 hashParams.Add("boxNumber", boxNumber);
                 hashParams.Add("t105LeafID", t105LeafID);
+                hashParams.Add("t134LeafID", t134LeafID);
                 hashParams.Add("sysLogID", sysLogID);
 
                 string msg = $"调用 {MethodBase.GetCurrentMethod().Name} ，参数：";
@@ -975,6 +978,7 @@ namespace IRAP.WCF.Client.Method
         /// <param name="moLineNo">订单行号</param>
         /// <param name="cartonNumber">外箱数量</param>
         /// <param name="sysLogID"></param>
+        /// <param name="boxNumber">内箱数量（返回参数）</param>
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
         /// <returns></returns>
@@ -984,11 +988,14 @@ namespace IRAP.WCF.Client.Method
             int moLineNo,
             int cartonNumber,
             long sysLogID,
+            out int boxNumber,
             out int errCode,
             out string errText)
         {
             string strProcedureName =
                 $"{className}.{MethodBase.GetCurrentMethod().DeclaringType.FullName}";
+
+            boxNumber = 0;
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -1022,6 +1029,37 @@ namespace IRAP.WCF.Client.Method
                     WriteLog.Instance.Write(
                         $"({errCode}){errText}",
                         strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        if (rlt is Hashtable)
+                        {
+                            Hashtable rltHash = (Hashtable)rlt;
+
+                            #region 取返回值
+                            try
+                            {
+                                HashtableTools.Instance.GetValue(rltHash, "BoxNumber", out boxNumber);
+                                WriteLog.Instance.Write(
+                                    $"输出参数：BoxNumber={boxNumber}",
+                                    strProcedureName);
+                            }
+                            catch (Exception error)
+                            {
+                                errCode = -1003;
+                                errText = error.Message;
+                                WriteLog.Instance.Write(errText, strProcedureName);
+                                return;
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            errCode = -1002;
+                            errText = "应用服务 usp_PokaYoke_Pakcage 返回的不是 Hashtable！";
+                            WriteLog.Instance.Write(errText, strProcedureName);
+                        }
+                    }
                 }
                 #endregion
             }
