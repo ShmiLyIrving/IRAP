@@ -59,5 +59,29 @@ namespace IRAP.Entities.Asimco
         /// 打印份数
         /// </summary>
         public int PrintQty { get; set; }
+        /// <summary>
+        /// 外箱包含所有产品数量
+        /// </summary>
+        public long CartonQty { get; set; }
+        /// <summary>
+        /// 机型
+        /// </summary>
+        public string Model { get; set; }
+        /// <summary>
+        /// 图号（零件号）
+        /// </summary>
+        public string DrawingID { get; set; }
+        /// <summary>
+        /// 材质（环别）
+        /// </summary>
+        public string MaterialCategory { get; set; }
+        /// <summary>
+        /// 包装批次号
+        /// </summary>
+        public string LotNumber { get; set; }
+        /// <summary>
+        /// 标签模板叶标识
+        /// </summary>
+        public int T117LeafID { get; set; }
     }
 }

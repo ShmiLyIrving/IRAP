@@ -627,7 +627,7 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@T134LeafID", DbType.Int32, t134LeafID));
                 paramList.Add(new IRAPProcParameter("@BoxNumber", DbType.Int64, boxNumber));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
-                paramList.Add(new IRAPProcParameter("@TransactNo", DbType.String, ParameterDirection.InputOutput, 50));
+                paramList.Add(new IRAPProcParameter("@TransactNo", DbType.Int64, ParameterDirection.Output, 8));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
                 WriteLog.Instance.Write(
@@ -656,7 +656,9 @@ namespace IRAP.BL.MES
                             if (param.Direction == ParameterDirection.InputOutput ||
                                 param.Direction == ParameterDirection.Output)
                             {
-                                if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
+                                if ((param.DbType == DbType.Int32 ||
+                                    param.DbType == DbType.Int64) &&
+                                    param.Value == DBNull.Value)
                                     rtnParams.Add(param.ParameterName.Replace("@", ""), 0);
                                 else
                                     rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
@@ -1090,7 +1092,7 @@ namespace IRAP.BL.MES
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
         /// <returns></returns>
-        public IRAPJsonResult usp_PokaYoke_Pakcage(
+        public IRAPJsonResult usp_PokaYoke_Package(
             int communityID,
             string moNumber,
             int moLineNo,
@@ -1114,9 +1116,10 @@ namespace IRAP.BL.MES
                 paramList.Add(new IRAPProcParameter("@T105LeafID", DbType.Int32, t105LeafID));
                 paramList.Add(new IRAPProcParameter("@CartonNumber", DbType.Int32, cartonNumber));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                paramList.Add(new IRAPProcParameter("@BoxNumber", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
-                string msg = "执行存储过程 IRAPMES..usp_PokaYoke_Pakcage，参数：";
+                string msg = "执行存储过程 IRAPMES..usp_PokaYoke_Package，参数：";
                 for (int i = 0; i < paramList.Count; i++)
                 {
                     if (paramList[i].Direction != ParameterDirection.Output)
@@ -1133,7 +1136,7 @@ namespace IRAP.BL.MES
                 using (IRAPSQLConnection conn = new IRAPSQLConnection())
                 {
                     IRAPError error =
-                        conn.CallProc("IRAPMES..usp_PokaYoke_Pakcage", ref paramList);
+                        conn.CallProc("IRAPMES..usp_PokaYoke_Package", ref paramList);
                     errCode = error.ErrCode;
                     errText = error.ErrText;
 
@@ -1173,7 +1176,7 @@ namespace IRAP.BL.MES
                 errCode = 99000;
                 errText =
                     string.Format(
-                        "调用 IRAPMES..usp_PokaYoke_Pakcage 过程发生异常：{0}",
+                        "调用 IRAPMES..usp_PokaYoke_Package 过程发生异常：{0}",
                         error.Message);
                 WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
                 return Json(new Hashtable());
