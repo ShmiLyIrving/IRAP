@@ -10,6 +10,7 @@ using System.Drawing.Printing;
 using System.Configuration;
 
 using FastReport;
+using DevExpress.XtraEditors;
 
 using IRAP.Global;
 using IRAP.Client.Global;
@@ -54,7 +55,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
 
         public frmPackageLabelPrint(
             WaitPackageSO mo,
-            List<PackageLine> lines) : base()
+            List<PackageLine> lines) : this()
         {
             this.mo = mo;
 
@@ -131,7 +132,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             if (errCode != 0)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
-                    $"获取标签打印信息时发生错误：[{errText}]，请发起重打申请！");
+                    $"获取标签打印信息时发生错误，请发起重打申请！");
+                XtraMessageBox.Show(
+                    $"错误信息：{errText}",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
@@ -245,7 +251,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             if (errCode != 0)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
-                    $"获取标签打印信息时发生错误：[{errText}]，请发起重打申请！");
+                    $"获取标签打印信息时发生错误，请发起重打申请！");
+                XtraMessageBox.Show(
+                    $"错误信息：{errText}",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
@@ -298,6 +309,8 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                 }
             }
             #endregion
+
+            IRAPMessageBox.Instance.ShowInformation("标签打印完成。");
         }
 
         private void PrintBoxLabel(BoxOfCarton box, string labelTemplate)
@@ -385,9 +398,6 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             {
                 edtCartonNumber.Value = customer.NumberOfCarton;
                 edtBoxNumber.Value = customer.NumberOfBox;
-
-                edtCartonNumber.Minimum = 0;
-                edtCartonNumber.Maximum = customer.NumberOfCarton;
             }
         }
 
@@ -395,6 +405,31 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
         {
             if (!isProgramChanged)
             {
+                int t105LeafID = 0;
+                long maxNumberOfCarton = 0;
+                if (cboCustomers.SelectedItem == null)
+                {
+                    IRAPMessageBox.Instance.ShowErrorMessage(
+                        "未选择客户");
+                    return;
+                }
+                else
+                {
+                    t105LeafID =
+                        (cboCustomers.SelectedItem as PackageClient).T105LeafID;
+                    maxNumberOfCarton =
+                        (cboCustomers.SelectedItem as PackageClient).NumberOfCarton;
+                }
+
+                if (edtCartonNumber.Value > maxNumberOfCarton)
+                {
+                    IRAPMessageBox.Instance.ShowErrorMessage(
+                        $"外箱数量不能大于 [{maxNumberOfCarton}] ！");
+                    edtCartonNumber.Value = 0;
+                    e.Cancel = true;
+                    return;
+                }
+
                 string strProcedureName =
                     $"{className}.{MethodBase.GetCurrentMethod().Name}";
 
@@ -406,10 +441,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                     int cartonNumber = Convert.ToInt32(edtCartonNumber.Value);
                     int boxNumber = 0;
 
-                    AsimcoPackageClient.Instance.usp_PokaYoke_Pakcage(
+                    AsimcoPackageClient.Instance.usp_PokaYoke_Package(
                         IRAPUser.Instance.CommunityID,
                         mo.MONumber,
                         mo.MOLineNo,
+                        t105LeafID,
                         cartonNumber,
                         IRAPUser.Instance.SysLogID,
                         out boxNumber,
@@ -425,8 +461,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                     else
                     {
                         IRAPMessageBox.Instance.ShowErrorMessage(errText);
-                        edtCartonNumber.Value = mo.NumberOfCarton;
-                        edtBoxNumber.Value = mo.NumberOfBox;
+                        cboCustomers_SelectedIndexChanged(cboCustomers, null);
                     }
                 }
                 finally
@@ -441,11 +476,17 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             string strProcedureName =
                 $"{className}.{MethodBase.GetCurrentMethod().Name}";
 
+            long numberOfCarton = 0;
             if (cboCustomers.SelectedItem == null)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage("请选择客户！");
                 cboCustomers.Focus();
                 return;
+            }
+            else
+            {
+                PackageClient customer = cboCustomers.SelectedItem as PackageClient;
+                numberOfCarton = customer.NumberOfCarton;
             }
             if (cboPackageLines.SelectedItem == null)
             {
@@ -459,11 +500,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                 edtCartonNumber.Focus();
                 return;
             }
-            if (Convert.ToInt32( edtCartonNumber.Value) > mo.NumberOfCarton)
+            if (Convert.ToInt64(edtCartonNumber.Value) > numberOfCarton)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
-                    $"外箱数量不能大于 [{mo.NumberOfCarton}]");
-                edtCartonNumber.Value = mo.NumberOfCarton;
+                    $"外箱数量不能大于 [{numberOfCarton}]");
+                edtCartonNumber.Value = numberOfCarton;
                 edtCartonNumber.Focus();
                 return;
             }
@@ -507,6 +548,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                 {
                     WriteLog.Instance.Write($"得到打印交易号 [{transactNo}]。", strProcedureName);
                     PrintLabel(transactNo);
+
+                    btnCancel.PerformClick();
+                }
+                else
+                {
+                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
                 }
             }
             finally

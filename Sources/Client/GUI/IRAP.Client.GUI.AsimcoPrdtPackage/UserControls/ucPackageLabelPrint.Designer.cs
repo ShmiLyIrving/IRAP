@@ -30,7 +30,7 @@
         {
             this.grdPackageSOs = new DevExpress.XtraGrid.GridControl();
             this.grdvPackageSOs = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.grdclmnOrdinal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdclmnMONumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -66,7 +66,7 @@
             this.grdvPackageSOs.Appearance.Row.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdvPackageSOs.Appearance.Row.Options.UseFont = true;
             this.grdvPackageSOs.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.grdclmnOrdinal,
+            this.grdclmnMONumber,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn7,
@@ -81,16 +81,16 @@
             this.grdvPackageSOs.OptionsView.RowAutoHeight = true;
             this.grdvPackageSOs.OptionsView.ShowGroupPanel = false;
             // 
-            // grdclmnOrdinal
+            // grdclmnMONumber
             // 
-            this.grdclmnOrdinal.Caption = "序号";
-            this.grdclmnOrdinal.FieldName = "Ordinal";
-            this.grdclmnOrdinal.Name = "grdclmnOrdinal";
-            this.grdclmnOrdinal.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.grdclmnOrdinal.OptionsColumn.AllowMove = false;
-            this.grdclmnOrdinal.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.grdclmnOrdinal.Visible = true;
-            this.grdclmnOrdinal.VisibleIndex = 0;
+            this.grdclmnMONumber.Caption = "订单号";
+            this.grdclmnMONumber.FieldName = "MONumber";
+            this.grdclmnMONumber.Name = "grdclmnMONumber";
+            this.grdclmnMONumber.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnMONumber.OptionsColumn.AllowMove = false;
+            this.grdclmnMONumber.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.grdclmnMONumber.Visible = true;
+            this.grdclmnMONumber.VisibleIndex = 0;
             // 
             // gridColumn2
             // 
@@ -106,7 +106,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "产品名称";
-            this.gridColumn3.FieldName = "ProductdName";
+            this.gridColumn3.FieldName = "ProductName";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn3.OptionsColumn.AllowMove = false;
@@ -209,7 +209,7 @@
 
         private DevExpress.XtraGrid.GridControl grdPackageSOs;
         private DevExpress.XtraGrid.Views.Grid.GridView grdvPackageSOs;
-        private DevExpress.XtraGrid.Columns.GridColumn grdclmnOrdinal;
+        private DevExpress.XtraGrid.Columns.GridColumn grdclmnMONumber;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;

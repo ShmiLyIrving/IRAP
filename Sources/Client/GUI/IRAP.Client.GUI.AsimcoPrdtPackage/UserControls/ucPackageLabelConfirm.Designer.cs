@@ -68,7 +68,8 @@
             this.gpcPackageSOs.Padding = new System.Windows.Forms.Padding(5);
             this.gpcPackageSOs.Size = new System.Drawing.Size(748, 524);
             this.gpcPackageSOs.TabIndex = 2;
-            this.gpcPackageSOs.Text = "待待确认标签";
+            this.gpcPackageSOs.Text = "待确认标签";
+            this.gpcPackageSOs.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.gpcPackageSOs_CustomButtonClick);
             // 
             // grdPackageLabels
             // 

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Reflection;
 
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.ButtonsPanelControl;
 
 using IRAP.Global;
 using IRAP.Client.User;
@@ -50,19 +51,6 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     out errCode,
                     out errText);
                 WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
-#if DEBUG
-                List<ConfirmPackageLabel> rlt = new List<ConfirmPackageLabel>();
-                rlt.Add(
-                    new ConfirmPackageLabel()
-                    {
-                        Ordinal = 1,
-                        CartonProductNo = "123456789",
-                        BoxNumberOfCarton = "23",
-                        SupplyCode = "未知",
-                        PrintDate = "2018-12-25 10:23:32",
-                    });
-                return rlt;
-#else
                 if (errCode == 0)
                 {
                     List<ConfirmPackageLabel> rlt = new List<ConfirmPackageLabel>();
@@ -77,7 +65,6 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     IRAPMessageBox.Instance.ShowErrorMessage(errText);
                     return new List<ConfirmPackageLabel>();
                 }
-#endif
             }
             finally
             {
@@ -158,7 +145,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             if (GetSelectedPkgLabelCnt() <= 0)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
-                    "还未选择包装标签，请至少选择一个包装标签！");
+                    "还未勾选包装标签，请至少勾选一个包装标签！");
                 return;
             }
 
@@ -196,7 +183,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             if (GetSelectedPkgLabelCnt() <= 0)
             {
                 IRAPMessageBox.Instance.ShowErrorMessage(
-                    "还未选择包装标签，请至少选择一个包装标签！");
+                    "还未勾选包装标签，请至少勾选一个包装标签！");
                 return;
             }
             string strProcedureName =
@@ -225,6 +212,20 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void gpcPackageSOs_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
+        {
+            GroupBoxButton button = e.Button as GroupBoxButton;
+            switch (button.Caption)
+            {
+                case "刷新":
+                    RefreshPackageLabels();
+
+                    break;
+                default:
+                    break;
             }
         }
     }

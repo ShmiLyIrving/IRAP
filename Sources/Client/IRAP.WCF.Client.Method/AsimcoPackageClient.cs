@@ -596,7 +596,7 @@ namespace IRAP.WCF.Client.Method
             out string errText)
         {
             string strProcedureName =
-                $"{className}.{MethodBase.GetCurrentMethod().DeclaringType.FullName}";
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
 
             transactNo = 0;
 
@@ -859,7 +859,7 @@ namespace IRAP.WCF.Client.Method
             out string errText)
         {
             string strProcedureName =
-                $"{className}.{MethodBase.GetCurrentMethod().DeclaringType.FullName}";
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -923,7 +923,7 @@ namespace IRAP.WCF.Client.Method
             out string errText)
         {
             string strProcedureName =
-                $"{className}.{MethodBase.GetCurrentMethod().DeclaringType.FullName}";
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
             try
@@ -976,16 +976,18 @@ namespace IRAP.WCF.Client.Method
         /// <param name="communityID"></param>
         /// <param name="moNumber">订单号</param>
         /// <param name="moLineNo">订单行号</param>
+        /// <param name="t105LeafID">客户叶标识</param>
         /// <param name="cartonNumber">外箱数量</param>
         /// <param name="sysLogID"></param>
         /// <param name="boxNumber">内箱数量（返回参数）</param>
         /// <param name="errCode"></param>
         /// <param name="errText"></param>
         /// <returns></returns>
-        public void usp_PokaYoke_Pakcage(
+        public void usp_PokaYoke_Package(
             int communityID,
             string moNumber,
             int moLineNo,
+            int t105LeafID,
             int cartonNumber,
             long sysLogID,
             out int boxNumber,
@@ -993,7 +995,7 @@ namespace IRAP.WCF.Client.Method
             out string errText)
         {
             string strProcedureName =
-                $"{className}.{MethodBase.GetCurrentMethod().DeclaringType.FullName}";
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
 
             boxNumber = 0;
 
@@ -1005,6 +1007,7 @@ namespace IRAP.WCF.Client.Method
                 hashParams.Add("communityID", communityID);
                 hashParams.Add("moNumber", moNumber);
                 hashParams.Add("moLineNo", moLineNo);
+                hashParams.Add("t105LeafID", t105LeafID);
                 hashParams.Add("cartonNumber", cartonNumber);
                 hashParams.Add("sysLogID", sysLogID);
 
@@ -1056,10 +1059,73 @@ namespace IRAP.WCF.Client.Method
                         else
                         {
                             errCode = -1002;
-                            errText = "应用服务 usp_PokaYoke_Pakcage 返回的不是 Hashtable！";
+                            errText = $"应用服务 {MethodBase.GetCurrentMethod().Name} 返回的不是 Hashtable！";
                             WriteLog.Instance.Write(errText, strProcedureName);
                         }
                     }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 保存标签重打确认完成信息
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="factID">标签事实号</param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        public void usp_SaveFact_PrintStatus(
+            int communityID,
+            long factID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 将函数参数加入 Hashtable 中
+                Hashtable hashParams = new Hashtable();
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("factID", factID);
+                hashParams.Add("sysLogID", sysLogID);
+
+                string msg = $"调用 {MethodBase.GetCurrentMethod().Name} ，参数：";
+                foreach (string key in hashParams.Keys)
+                {
+                    msg += $"{key}={hashParams[key]}|";
+                }
+                WriteLog.Instance.Write(msg, strProcedureName);
+                #endregion
+
+                #region 调用应用服务过程，并解析返回值
+                using (WCFClient client = new WCFClient())
+                {
+                    object rlt = client.WCFRESTFul(
+                        "IRAP.BL.MES.dll",
+                        "IRAP.BL.MES.AsimcoPrdtPackage",
+                        MethodBase.GetCurrentMethod().Name,
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        $"({errCode}){errText}",
+                        strProcedureName);
                 }
                 #endregion
             }

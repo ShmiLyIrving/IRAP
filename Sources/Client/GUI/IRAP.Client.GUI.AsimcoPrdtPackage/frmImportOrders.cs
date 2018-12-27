@@ -14,12 +14,13 @@ using DevExpress.XtraEditors;
 using IRAP.Global;
 using IRAP.Client.User;
 using IRAP.Client.Global;
+using IRAP.Client.Global.GUI;
 using IRAP.Entities.DPA;
 using IRAP.WCF.Client.Method;
 
 namespace IRAP.Client.GUI.AsimcoPrdtPackage
 {
-    public partial class frmImportOrders : IRAP.Client.Global.GUI.frmCustomFuncBase
+    public partial class frmImportOrders : frmCustomFuncBase
     {
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
@@ -104,6 +105,13 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage
             string directory = fi.DirectoryName;
             string tableName = fi.Name;
 
+            if (tableName.Substring(0, 1) == "_")
+            {
+                IRAPMessageBox.Instance.ShowErrorMessage(
+                    "读取的文件名不能以 “_” 开头，请修改文件名后再读取！");
+                return datas;
+            }
+
             OleDbConnection conn = new OleDbConnection();
             string connStr =
                 $"Provider=VFPOLEDB.1;Data Source={directory};" +
@@ -163,14 +171,14 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage
                         {
                             PartitioningKey = partitioningKey,
                             ImportID = importID,
-                            MOSource = row["DDSOURCE_M"].ToString(),
-                            MOType = row["DDTYPE_I"].ToString(),
-                            MONumber = row["PICKDDH"].ToString(),
+                            MOSource = row["DDSOURCE_M"].ToString().Trim(),
+                            MOType = row["DDTYPE_I"].ToString().Trim(),
+                            MONumber = row["PICKDDH"].ToString().Trim(),
                             MOLineNo = Convert.ToInt32(row["LN_NO"].ToString()),
-                            MaterialCode = row["ITEM"].ToString(),
-                            Treasury = row["STK_75"].ToString(),
-                            Location = row["KW"].ToString(),
-                            LotNumber = row["LOT"].ToString(),
+                            MaterialCode = row["ITEM"].ToString().Trim(),
+                            Treasury = row["STK_75"].ToString().Trim(),
+                            Location = row["KW"].ToString().Trim(),
+                            LotNumber = row["LOT"].ToString().Trim(),
                             OrderQty = Convert.ToDecimal(row["STK_QTY"].ToString()),
                             ErrCode = -1,
                             ErrText = "未校验",
