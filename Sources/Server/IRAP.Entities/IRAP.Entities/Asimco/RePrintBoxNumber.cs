@@ -38,7 +38,7 @@ namespace IRAP.Entities.Asimco
         /// <summary>
         /// 批次号
         /// </summary>
-        public string LotNumbet { get; set; }
+        public string LotNumber { get; set; }
         /// <summary>
         /// 筒号
         /// </summary>
