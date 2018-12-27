@@ -12,9 +12,12 @@ using System.Configuration;
 
 using FastReport;
 using DevExpress.XtraEditors;
+using DevExpress.XtraBars.Docking2010;
+using DevExpress.XtraEditors.ButtonsPanelControl;
 
 using IRAP.Global;
 using IRAP.Client.User;
+using IRAP.Client.Global;
 using IRAP.Entities.Asimco;
 using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
@@ -26,17 +29,32 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
         private string className =
             MethodBase.GetCurrentMethod().DeclaringType.FullName;
 
-        private string printerName = "";
-
         public ucPackabeLabelReprint()
         {
             InitializeComponent();
 
+            for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+            {
+                cboPrinters.Properties.Items.Add(PrinterSettings.InstalledPrinters[i]);
+            }
+
             PrintDocument prntDoc = new PrintDocument();
-            printerName = prntDoc.PrinterSettings.PrinterName;
+            string printerName = prntDoc.PrinterSettings.PrinterName;
             if (ConfigurationManager.AppSettings["LabelPrinter"] != null)
             {
                 printerName = ConfigurationManager.AppSettings["LabelPrinter"];
+            }
+
+            if (cboPrinters.Properties.Items.Count > 0)
+            {
+                cboPrinters.SelectedIndex =
+                    cboPrinters.Properties.Items.IndexOf(printerName);
+            }
+            else
+            {
+                btnPrint.Enabled = false;
+                IRAPMessageBox.Instance.ShowErrorMessage(
+                    "当前电脑中没有安装打印机，无法打印标签！");
             }
         }
 
@@ -50,6 +68,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 $"{className}.{MethodBase.GetCurrentMethod().Name}";
 
             WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            TWaitting.Instance.ShowWaitForm("获取待重打的外包装标签清单");
             try
             {
                 int errCode = 0;
@@ -75,6 +94,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             }
             finally
             {
+                TWaitting.Instance.CloseWaitForm();
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
@@ -146,7 +166,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             #region 打印外包装标签
             PrinterSettings prntSettings = new PrinterSettings();
             prntSettings.Copies = Convert.ToInt16(cartonInfo.PrintQty);
-            prntSettings.PrinterName = printerName;
+            prntSettings.PrinterName = (string)cboPrinters.SelectedItem;
 
             rpt.Parameters.FindByName("Model").Value = cartonInfo.Model;
             rpt.Parameters.FindByName("DrawingID").Value = cartonInfo.DrawingID;
@@ -268,7 +288,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             #region 打印内包装标签
             PrinterSettings prntSettings = new PrinterSettings();
             prntSettings.Copies = Convert.ToInt16(box.PrintQty);
-            prntSettings.PrinterName = printerName;
+            prntSettings.PrinterName = (string)cboPrinters.SelectedItem;
 
             rpt.Parameters.FindByName("Model").Value = box.Model;
             rpt.Parameters.FindByName("DrawingID").Value = box.DrawingID;
@@ -347,6 +367,27 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             finally
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void cboPrinters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IRAPConst.Instance.SaveParams(
+                "LabelPrinter",
+                (string)cboPrinters.SelectedItem);
+        }
+
+        private void gpcPackageSOs_CustomButtonClick(object sender, BaseButtonEventArgs e)
+        {
+            GroupBoxButton button = e.Button as GroupBoxButton;
+            switch (button.Caption)
+            {
+                case "刷新":
+                    RefreshPackageLabels();
+
+                    break;
+                default:
+                    break;
             }
         }
     }

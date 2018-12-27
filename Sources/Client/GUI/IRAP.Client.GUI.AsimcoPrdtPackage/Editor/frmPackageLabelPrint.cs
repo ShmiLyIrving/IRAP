@@ -51,6 +51,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                 cboPrinters.SelectedIndex =
                     cboPrinters.Properties.Items.IndexOf(printerName);
             }
+            else
+            {
+                btnLabelPrint.Enabled = false;
+                IRAPMessageBox.Instance.ShowErrorMessage(
+                    "当前电脑没有安装打印机，无法打印标签");
+            }
         }
 
         public frmPackageLabelPrint(
@@ -149,11 +155,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                 return;
             }
 
+            int t117LeafID = 0;
+            string labelTemplate = "";
+
             foreach (Carton carton in cartons)
             {
-                int t117LeafID = 0;
-                string labelTemplate = "";
-
                 if (t117LeafID != carton.T117LeafID)
                 {
                     #region 根据 T117LeafID 获取标签打印模板
@@ -173,6 +179,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                         IRAPMessageBox.Instance.ShowErrorMessage(
                             $"无法获取到 [T117LeafID={carton.T117LeafID}] 的模板");
                         labelTemplate = "";
+                        return;
                     }
                     else
                     {
@@ -187,6 +194,8 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                     PrintCartonLabel(carton, labelTemplate);
                 }
             }
+
+            IRAPMessageBox.Instance.ShowInformation("标签打印完成。");
         }
 
         private void PrintCartonLabel(Carton cartonInfo, string labelTemplate)
@@ -224,7 +233,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             rpt.Parameters.FindByName("SupplyCode").Value = cartonInfo.SupplyCode;
             rpt.Parameters.FindByName("T134AlternateCode").Value = cartonInfo.T134AlternateCode;
             rpt.Parameters.FindByName("BarCode").Value =
-                $"{cartonInfo.CartonNumber}+" +
+                $"{cartonInfo.CartonProductNo}+" +
                 $"{cartonInfo.LotNumber}+" +
                 $"{cartonInfo.CartonQty.ToString()}";
 
@@ -270,11 +279,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             #endregion
 
             #region 打印内标签
+            int t117LeafID = 0;
+            string boxLabelTemplate = "";
+
             foreach (BoxOfCarton box in boxes)
             {
-                int t117LeafID = 0;
-                string boxLabelTemplate = "";
-
                 if (t117LeafID != box.T117LeafID)
                 {
                     #region 根据 T117LeafID 获取标签打印模板
@@ -309,8 +318,6 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
                 }
             }
             #endregion
-
-            IRAPMessageBox.Instance.ShowInformation("标签打印完成。");
         }
 
         private void PrintBoxLabel(BoxOfCarton box, string labelTemplate)

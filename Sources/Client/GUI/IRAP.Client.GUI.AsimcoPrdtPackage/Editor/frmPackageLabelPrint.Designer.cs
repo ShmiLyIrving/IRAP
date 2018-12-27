@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.edtBoxNumber = new System.Windows.Forms.NumericUpDown();
-            this.edtCartonNumber = new System.Windows.Forms.NumericUpDown();
+            this.edtBoxNumber = new DevExpress.XtraEditors.CalcEdit();
+            this.edtCartonNumber = new DevExpress.XtraEditors.CalcEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cboPackageLines = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -43,8 +43,8 @@
             this.cboPrinters = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edtBoxNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtCartonNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtBoxNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtCartonNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPackageLines.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomers.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -79,32 +79,26 @@
             // 
             // edtBoxNumber
             // 
-            this.edtBoxNumber.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.edtBoxNumber.InterceptArrowKeys = false;
-            this.edtBoxNumber.Location = new System.Drawing.Point(330, 35);
+            this.edtBoxNumber.EnterMoveNextControl = true;
+            this.edtBoxNumber.Location = new System.Drawing.Point(330, 34);
             this.edtBoxNumber.Name = "edtBoxNumber";
-            this.edtBoxNumber.ReadOnly = true;
-            this.edtBoxNumber.Size = new System.Drawing.Size(120, 23);
-            this.edtBoxNumber.TabIndex = 10;
-            this.edtBoxNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.edtBoxNumber.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.edtBoxNumber.Properties.Appearance.Options.UseFont = true;
+            this.edtBoxNumber.Properties.ReadOnly = true;
+            this.edtBoxNumber.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
+            this.edtBoxNumber.Size = new System.Drawing.Size(120, 20);
+            this.edtBoxNumber.TabIndex = 18;
             // 
             // edtCartonNumber
             // 
-            this.edtCartonNumber.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.edtCartonNumber.InterceptArrowKeys = false;
-            this.edtCartonNumber.Location = new System.Drawing.Point(76, 35);
+            this.edtCartonNumber.EnterMoveNextControl = true;
+            this.edtCartonNumber.Location = new System.Drawing.Point(76, 34);
             this.edtCartonNumber.Name = "edtCartonNumber";
-            this.edtCartonNumber.Size = new System.Drawing.Size(120, 23);
-            this.edtCartonNumber.TabIndex = 9;
-            this.edtCartonNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.edtCartonNumber.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.edtCartonNumber.Properties.Appearance.Options.UseFont = true;
+            this.edtCartonNumber.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
+            this.edtCartonNumber.Size = new System.Drawing.Size(150, 20);
+            this.edtCartonNumber.TabIndex = 17;
             this.edtCartonNumber.Validating += new System.ComponentModel.CancelEventHandler(this.edtCartonNumber_Validating);
             // 
             // labelControl5
@@ -262,8 +256,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edtBoxNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtCartonNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtBoxNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtCartonNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPackageLines.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomers.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
@@ -277,8 +271,6 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private System.Windows.Forms.NumericUpDown edtBoxNumber;
-        private System.Windows.Forms.NumericUpDown edtCartonNumber;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.ComboBoxEdit cboPackageLines;
@@ -289,5 +281,7 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.ComboBoxEdit cboPrinters;
+        private DevExpress.XtraEditors.CalcEdit edtCartonNumber;
+        private DevExpress.XtraEditors.CalcEdit edtBoxNumber;
     }
 }

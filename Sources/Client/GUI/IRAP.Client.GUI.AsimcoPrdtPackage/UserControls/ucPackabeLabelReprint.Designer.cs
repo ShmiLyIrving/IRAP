@@ -37,12 +37,17 @@
             this.grdclmnBoxNumberOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnSupplyCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.richkChoice = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.cboPrinters = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gpcPackageSOs)).BeginInit();
             this.gpcPackageSOs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPackageLabels)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPackageLabels)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.richkChoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPrinters.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gpcPackageSOs
@@ -60,12 +65,13 @@
             this.gpcPackageSOs.CustomHeaderButtons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
             new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("刷新", null)});
             this.gpcPackageSOs.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
-            this.gpcPackageSOs.Location = new System.Drawing.Point(13, 12);
+            this.gpcPackageSOs.Location = new System.Drawing.Point(13, 84);
             this.gpcPackageSOs.Name = "gpcPackageSOs";
             this.gpcPackageSOs.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcPackageSOs.Size = new System.Drawing.Size(748, 524);
+            this.gpcPackageSOs.Size = new System.Drawing.Size(748, 452);
             this.gpcPackageSOs.TabIndex = 3;
             this.gpcPackageSOs.Text = "待重打标签";
+            this.gpcPackageSOs.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.gpcPackageSOs_CustomButtonClick);
             // 
             // grdPackageLabels
             // 
@@ -75,7 +81,7 @@
             this.grdPackageLabels.Name = "grdPackageLabels";
             this.grdPackageLabels.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.richkChoice});
-            this.grdPackageLabels.Size = new System.Drawing.Size(734, 485);
+            this.grdPackageLabels.Size = new System.Drawing.Size(734, 413);
             this.grdPackageLabels.TabIndex = 2;
             this.grdPackageLabels.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvPackageLabels});
@@ -163,17 +169,56 @@
             this.richkChoice.AutoHeight = false;
             this.richkChoice.Name = "richkChoice";
             // 
-            // btnConfirm
+            // btnPrint
             // 
-            this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirm.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.Appearance.Options.UseFont = true;
-            this.btnConfirm.Location = new System.Drawing.Point(779, 14);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(90, 41);
-            this.btnConfirm.TabIndex = 11;
-            this.btnConfirm.Text = "打印标签";
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Appearance.Options.UseFont = true;
+            this.btnPrint.Location = new System.Drawing.Point(779, 14);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(90, 41);
+            this.btnPrint.TabIndex = 11;
+            this.btnPrint.Text = "打印标签";
+            this.btnPrint.Click += new System.EventHandler(this.btnConfirm_Click);
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl2.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupControl2.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.groupControl2.Appearance.Options.UseBackColor = true;
+            this.groupControl2.Appearance.Options.UseFont = true;
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
+            this.groupControl2.Controls.Add(this.cboPrinters);
+            this.groupControl2.Location = new System.Drawing.Point(13, 12);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(748, 66);
+            this.groupControl2.TabIndex = 1;
+            this.groupControl2.Text = "打印到";
+            // 
+            // cboPrinters
+            // 
+            this.cboPrinters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboPrinters.Location = new System.Drawing.Point(14, 33);
+            this.cboPrinters.Name = "cboPrinters";
+            this.cboPrinters.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPrinters.Properties.Appearance.Options.UseFont = true;
+            this.cboPrinters.Properties.AppearanceDisabled.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboPrinters.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cboPrinters.Properties.AppearanceDropDown.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboPrinters.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboPrinters.Properties.AppearanceFocused.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboPrinters.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cboPrinters.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("新宋体", 10.5F);
+            this.cboPrinters.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.cboPrinters.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboPrinters.Size = new System.Drawing.Size(719, 20);
+            this.cboPrinters.TabIndex = 11;
+            this.cboPrinters.SelectedIndexChanged += new System.EventHandler(this.cboPrinters_SelectedIndexChanged);
             // 
             // ucPackabeLabelReprint
             // 
@@ -182,7 +227,8 @@
             this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.groupControl2);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.gpcPackageSOs);
             this.Name = "ucPackabeLabelReprint";
             this.Size = new System.Drawing.Size(882, 551);
@@ -192,6 +238,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdPackageLabels)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPackageLabels)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.richkChoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboPrinters.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -207,6 +256,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnBoxNumberOfCarton;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnSupplyCode;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit richkChoice;
-        private DevExpress.XtraEditors.SimpleButton btnConfirm;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.ComboBoxEdit cboPrinters;
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Reflection;
 
 using DevExpress.XtraEditors;
+using DevExpress.XtraBars.Docking2010;
 using DevExpress.XtraEditors.ButtonsPanelControl;
 
 using IRAP.Global;
@@ -147,7 +148,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             }
         }
 
-        private void gpcPackageSOs_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
+        private void gpcPackageSOs_CustomButtonClick(object sender, BaseButtonEventArgs e)
         {
             GroupBoxButton button = e.Button as GroupBoxButton;
             switch (button.Caption)

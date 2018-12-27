@@ -206,6 +206,10 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 {
                     IRAPMessageBox.Instance.ShowErrorMessage(errText);
                 }
+                else
+                {
+                    IRAPMessageBox.Instance.ShowInformation(errText);
+                }
 
                 RefreshPackageLabels();
             }
