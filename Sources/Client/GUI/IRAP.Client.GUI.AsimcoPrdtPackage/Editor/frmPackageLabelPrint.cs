@@ -221,7 +221,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
 
             #region 打印外包装标签
             PrinterSettings prntSettings = new PrinterSettings();
-            prntSettings.Copies = Convert.ToInt16(mo.PrintedQty);
+            //prntSettings.Copies = Convert.ToInt16(cartonInfo.PrintQty);
             prntSettings.PrinterName = (string)cboPrinters.SelectedItem;
 
             rpt.Parameters.FindByName("Model").Value = cartonInfo.Model;
@@ -234,12 +234,15 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             rpt.Parameters.FindByName("T134AlternateCode").Value = cartonInfo.T134AlternateCode;
             rpt.Parameters.FindByName("BarCode").Value =
                 $"{cartonInfo.CartonProductNo}+" +
-                $"{cartonInfo.LotNumber}+" +
+                $"{cartonInfo.CartonNumber}+" +
                 $"{cartonInfo.CartonQty.ToString()}";
 
             if (rpt.Prepare())
             {
-                rpt.PrintPrepared(prntSettings);
+                for (int i = 0; i < cartonInfo.PrintQty; i++)
+                {
+                    rpt.PrintPrepared(prntSettings);
+                }
             }
             #endregion
 
@@ -343,7 +346,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
 
             #region 打印内包装标签
             PrinterSettings prntSettings = new PrinterSettings();
-            prntSettings.Copies = Convert.ToInt16(box.PrintQty);
+            //prntSettings.Copies = Convert.ToInt16(box.PrintQty);
             prntSettings.PrinterName = (string)cboPrinters.SelectedItem;
 
             rpt.Parameters.FindByName("Model").Value = box.Model;
@@ -359,7 +362,10 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
 
             if (rpt.Prepare())
             {
-                rpt.PrintPrepared(prntSettings);
+                for (int i = 0; i < box.PrintQty; i++)
+                {
+                    rpt.PrintPrepared(prntSettings);
+                }
             }
             #endregion
         }

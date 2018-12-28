@@ -165,7 +165,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
             #region 打印外包装标签
             PrinterSettings prntSettings = new PrinterSettings();
-            prntSettings.Copies = Convert.ToInt16(cartonInfo.PrintQty);
+            //prntSettings.Copies = Convert.ToInt16(cartonInfo.PrintQty);
             prntSettings.PrinterName = (string)cboPrinters.SelectedItem;
 
             rpt.Parameters.FindByName("Model").Value = cartonInfo.Model;
@@ -177,13 +177,16 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             rpt.Parameters.FindByName("SupplyCode").Value = cartonInfo.SupplyCode;
             rpt.Parameters.FindByName("T134AlternateCode").Value = cartonInfo.T134AlternateCode;
             rpt.Parameters.FindByName("BarCode").Value =
+                $"{cartonInfo.CartonProductNo}+" +
                 $"{cartonInfo.CartonNumber}+" +
-                $"{cartonInfo.LotNumber}+" +
                 $"{cartonInfo.CartonQty.ToString()}";
 
             if (rpt.Prepare())
             {
-                rpt.PrintPrepared(prntSettings);
+                for (int i = 0; i < cartonInfo.PrintQty; i++)
+                {
+                    rpt.PrintPrepared(prntSettings);
+                }
             }
             #endregion
 
@@ -287,7 +290,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
             #region 打印内包装标签
             PrinterSettings prntSettings = new PrinterSettings();
-            prntSettings.Copies = Convert.ToInt16(box.PrintQty);
+            //prntSettings.Copies = Convert.ToInt16(box.PrintQty);
             prntSettings.PrinterName = (string)cboPrinters.SelectedItem;
 
             rpt.Parameters.FindByName("Model").Value = box.Model;
@@ -303,7 +306,10 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
             if (rpt.Prepare())
             {
-                rpt.PrintPrepared(prntSettings);
+                for (int i = 0; i < box.PrintQty; i++)
+                {
+                    rpt.PrintPrepared(prntSettings);
+                }
             }
             #endregion
         }

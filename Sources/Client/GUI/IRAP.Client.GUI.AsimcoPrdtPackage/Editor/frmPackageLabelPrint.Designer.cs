@@ -137,6 +137,7 @@
             this.cboPackageLines.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.cboPackageLines.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboPackageLines.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboPackageLines.Size = new System.Drawing.Size(465, 20);
             this.cboPackageLines.TabIndex = 12;
             // 
@@ -165,6 +166,7 @@
             this.cboCustomers.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.cboCustomers.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboCustomers.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboCustomers.Size = new System.Drawing.Size(465, 20);
             this.cboCustomers.TabIndex = 10;
             this.cboCustomers.SelectedIndexChanged += new System.EventHandler(this.cboCustomers_SelectedIndexChanged);
@@ -233,6 +235,7 @@
             this.cboPrinters.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.cboPrinters.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboPrinters.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboPrinters.Size = new System.Drawing.Size(436, 20);
             this.cboPrinters.TabIndex = 11;
             this.cboPrinters.SelectedIndexChanged += new System.EventHandler(this.cboPrinters_SelectedIndexChanged);

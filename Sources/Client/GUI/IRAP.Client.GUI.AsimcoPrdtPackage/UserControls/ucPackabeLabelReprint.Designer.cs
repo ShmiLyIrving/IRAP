@@ -216,6 +216,7 @@
             this.cboPrinters.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.cboPrinters.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboPrinters.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboPrinters.Size = new System.Drawing.Size(719, 20);
             this.cboPrinters.TabIndex = 11;
             this.cboPrinters.SelectedIndexChanged += new System.EventHandler(this.cboPrinters_SelectedIndexChanged);

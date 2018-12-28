@@ -15,6 +15,7 @@ using DevExpress.XtraEditors;
 
 using IRAP.Global;
 using IRAP.Client.User;
+using IRAP.Client.Global;
 using IRAP.Entities.Asimco;
 using IRAP.Entities.MDM;
 using IRAP.WCF.Client.Method;
@@ -143,8 +144,8 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 }
 
                 PrinterSettings prntSettings = new PrinterSettings();
-                prntSettings.Copies = Convert.ToInt16(items[0].PrintQty);
                 prntSettings.PrinterName = (string)cboPrinters.SelectedItem;
+                //prntSettings.Copies = Convert.ToInt16(items[0].PrintQty);
 
                 rpt.Parameters.FindByName("Model").Value = items[0].Model;
                 rpt.Parameters.FindByName("DrawingID").Value = items[0].DrawingID;
@@ -159,7 +160,10 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
                 if (rpt.Prepare())
                 {
-                    rpt.PrintPrepared(prntSettings);
+                    for (int i = 0; i < items[0].PrintQty + 1; i++)
+                    {
+                        rpt.PrintPrepared(prntSettings);
+                    }
                 }
                 #endregion
             }
@@ -167,6 +171,221 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             {
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
+        }
+
+        private void rbByCartonNumber_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbByCartonNumber.Checked)
+            {
+                edtCartonNumber.Enabled = true;
+                edtMONumber.Enabled = false;
+                edtMOLineNo.Enabled = false;
+                edtCartonNumber.Focus();
+            }
+            else
+            {
+                edtCartonNumber.Enabled = false;
+                edtMONumber.Enabled = true;
+                edtMOLineNo.Enabled = true;
+                edtMONumber.Focus();
+            }
+        }
+
+        private void btnPrintCartonLabel_Click(object sender, EventArgs e)
+        {
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+            string cartonNumber = "";
+            string moNumber = "";
+            int moLineNo = 0;
+
+            if (rbByCartonNumber.Checked)
+            {
+                if (edtCartonNumber.Text.Trim() == "")
+                {
+                    IRAPMessageBox.Instance.ShowErrorMessage(
+                        "请输入外包装标签号！");
+                    edtCartonNumber.Focus();
+                    return;
+                }
+                else
+                {
+                    cartonNumber = edtCartonNumber.Text.Trim();
+                }
+            }
+            if (rbByMONumber.Checked)
+            {
+                if (edtMONumber.Text.Trim() == "")
+                {
+                    IRAPMessageBox.Instance.ShowErrorMessage("请输入订单号！");
+                    edtMONumber.Focus();
+                    return;
+                }
+                else
+                {
+                    moNumber = edtMONumber.Text.Trim();
+                }
+
+                int.TryParse(edtMOLineNo.Text.Trim(), out moLineNo);
+                if (moLineNo <= 0)
+                {
+                    IRAPMessageBox.Instance.ShowErrorMessage("请输入正确的订单行号！");
+                    edtMOLineNo.Focus();
+                    return;
+                }
+            }
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                List<RePrintCartonNumber> items = new List<RePrintCartonNumber>();
+
+                #region 获取外标签打印内容
+                AsimcoPackageClient.Instance.usp_RePrintCartonNumber(
+                    IRAPUser.Instance.CommunityID,
+                    moNumber,
+                    moLineNo,
+                    cartonNumber,
+                    IRAPUser.Instance.SysLogID,
+                    ref items,
+                    out errCode,
+                    out errText);
+                WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
+                if (errCode != 0)
+                {
+                    edtCartonNumber.Text = "";
+                    edtMONumber.Text = "";
+                    edtMOLineNo.Text = "";
+                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    if (rbByCartonNumber.Checked)
+                    {
+                        edtCartonNumber.Focus();
+                    }
+                    else
+                    {
+                        edtMONumber.Focus();
+                    }
+                    return;
+                }
+
+                if (items.Count == 0)
+                {
+                    edtCartonNumber.Text = "";
+                    edtMONumber.Text = "";
+                    edtMOLineNo.Text = "";
+                    IRAPMessageBox.Instance.ShowErrorMessage(
+                        $"没有找到需要打印的外标签信息！");
+                    if (rbByCartonNumber.Checked)
+                    {
+                        edtCartonNumber.Focus();
+                    }
+                    else
+                    {
+                        edtMONumber.Focus();
+                    }
+                    return;
+                }
+                #endregion
+
+                #region 打印外标签
+                int t117LeafID = 0;
+                string labelTemplate = "";
+
+                foreach (RePrintCartonNumber item in items)
+                {
+                    if (t117LeafID != item.T117LeafID)
+                    {
+                        #region 根据 T117LeafID 获取标签打印模板
+                        TemplateContent template = new TemplateContent();
+                        IRAPMDMClient.Instance.ufn_GetInfo_TemplateFMTStr(
+                            IRAPUser.Instance.CommunityID,
+                            item.T117LeafID,
+                            IRAPUser.Instance.SysLogID,
+                            ref template,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            $"({errCode}){errText}",
+                            strProcedureName);
+                        if (errCode != 0 || template.TemplateFMTStr.Trim() == "")
+                        {
+                            IRAPMessageBox.Instance.ShowErrorMessage(
+                                $"无法获取到 [T117LeafID={item.T117LeafID}] 的模板");
+                            labelTemplate = "";
+                            return;
+                        }
+                        else
+                        {
+                            t117LeafID = item.T117LeafID;
+                            labelTemplate = template.TemplateFMTStr;
+                        }
+                        #endregion
+                    }
+
+                    if (labelTemplate != "")
+                    {
+                        Report rpt = new Report();
+                        try
+                        {
+                            rpt.LoadFromString(labelTemplate);
+                        }
+                        catch (Exception error)
+                        {
+                            WriteLog.Instance.Write(
+                                $"外包装标签打印模板装载失败：{error.Message}，",
+                                strProcedureName);
+                            IRAPMessageBox.Instance.ShowErrorMessage(
+                                $"外包装标签打印模板装载失败：{error.Message}，\n" +
+                                "请联系系统开发人员！");
+                            return;
+                        }
+
+                        #region 打印外包装标签
+                        PrinterSettings prntSettings = new PrinterSettings();
+                        //prntSettings.Copies = Convert.ToInt16(item.PrintQty);
+                        prntSettings.PrinterName = (string)cboPrinters.SelectedItem;
+
+                        rpt.Parameters.FindByName("Model").Value = item.Model;
+                        rpt.Parameters.FindByName("DrawingID").Value = item.DrawingID;
+                        rpt.Parameters.FindByName("MaterialCategory").Value = item.MaterialCategory;
+                        rpt.Parameters.FindByName("CartonQty").Value = item.CartonQty;
+                        rpt.Parameters.FindByName("CartonProductNo").Value = item.CartonProductNo;
+                        rpt.Parameters.FindByName("LotNumber").Value = item.LotNumber;
+                        rpt.Parameters.FindByName("SupplyCode").Value = item.SupplyCode;
+                        rpt.Parameters.FindByName("T134AlternateCode").Value = item.T134AlternateCode;
+                        rpt.Parameters.FindByName("BarCode").Value =
+                            $"{item.CartonProductNo}+" +
+                            $"{item.CartonNumber}+" +
+                            $"{item.CartonQty.ToString()}";
+
+                        if (rpt.Prepare())
+                        {
+                            for (int i = 0; i < item.PrintQty; i++)
+                            {
+                                rpt.PrintPrepared(prntSettings);
+                            }
+                        }
+                        #endregion
+                    }
+                }
+                #endregion
+
+                IRAPMessageBox.Instance.ShowInformation("外标签打印完成。");
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void cboPrinters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IRAPConst.Instance.SaveParams(
+                "LabelPrinter",
+                (string)cboPrinters.SelectedItem);
         }
     }
 }
