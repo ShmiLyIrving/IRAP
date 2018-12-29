@@ -107,8 +107,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage
 
             if (tableName.Substring(0, 1) == "_")
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "读取的文件名不能以 “_” 开头，请修改文件名后再读取！");
+                XtraMessageBox.Show(
+                    "读取的文件名不能以 “_” 开头，请修改文件名后再读取！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return datas;
             }
 
@@ -278,8 +281,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage
                 }
                 catch (Exception error)
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(
-                        error.Message);
+                    XtraMessageBox.Show(
+                        error.Message,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return;
                 }
 

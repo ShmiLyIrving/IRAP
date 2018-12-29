@@ -26,7 +26,11 @@ namespace IRAP.Entities.Asimco
         /// <summary>
         /// 内箱数量
         /// </summary>
-        public long BoxQty { get; set; }
+        public long BoxCnt { get; set; }
+        /// <summary>
+        /// 外箱包含产品数量s
+        /// </summary>
+        public long CartonQty { get; set; }
         /// <summary>
         /// 机型
         /// </summary>

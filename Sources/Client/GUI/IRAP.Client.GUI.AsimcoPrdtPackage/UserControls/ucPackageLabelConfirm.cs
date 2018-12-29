@@ -62,7 +62,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 }
                 else
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return new List<ConfirmPackageLabel>();
                 }
             }
@@ -144,8 +148,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
         {
             if (GetSelectedPkgLabelCnt() <= 0)
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "还未勾选包装标签，请至少勾选一个包装标签！");
+                XtraMessageBox.Show(
+                    "还未勾选包装标签，请至少勾选一个包装标签！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
@@ -167,7 +174,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
                 if (errCode != 0)
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
 
                 RefreshPackageLabels();
@@ -182,8 +193,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
         {
             if (GetSelectedPkgLabelCnt() <= 0)
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "还未勾选包装标签，请至少勾选一个包装标签！");
+                XtraMessageBox.Show(
+                    "还未勾选包装标签，请至少勾选一个包装标签！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
             string strProcedureName =
@@ -204,11 +218,19 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
                 if (errCode != 0)
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else
                 {
-                    IRAPMessageBox.Instance.ShowInformation(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
                 RefreshPackageLabels();

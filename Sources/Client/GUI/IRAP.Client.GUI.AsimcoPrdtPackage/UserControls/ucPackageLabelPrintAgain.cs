@@ -54,8 +54,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             else
             {
                 btnPrintBoxLabel.Enabled = false;
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "当前电脑中没有安装打印机，无法打印标签！");
+                XtraMessageBox.Show(
+                    "当前电脑中没有安装打印机，无法打印标签！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -66,8 +69,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
             if (edtBoxNumber.Text.Trim() == "")
             {
-                IRAPMessageBox.Instance.ShowInformation(
-                    "请输入需要补打的内包装筒号");
+                XtraMessageBox.Show(
+                    "请输入需要补打的内包装筒号",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 edtBoxNumber.Focus();
                 return;
             }
@@ -91,7 +97,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 if (errCode!= 0)
                 {
                     edtBoxNumber.Text = "";
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     edtBoxNumber.Focus();
                     return;
                 }
@@ -99,8 +109,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 if (items.Count == 0)
                 {
                     edtBoxNumber.Text = "";
-                    IRAPMessageBox.Instance.ShowErrorMessage(
-                        $"没有找到筒号 [{edtBoxNumber.Text}] 的标签信息！");
+                    XtraMessageBox.Show(
+                        $"没有找到筒号 [{edtBoxNumber.Text}] 的标签信息！",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     edtBoxNumber.Focus();
                     return;
                 }
@@ -119,8 +132,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 if (errCode != 0 || template.TemplateFMTStr.Trim() == "")
                 {
                     edtBoxNumber.Text = "";
-                    IRAPMessageBox.Instance.ShowErrorMessage(
-                        $"无法获取到 [T117LeafID={items[0].T117LeafID}] 的模板");
+                    XtraMessageBox.Show(
+                        $"无法获取到 [T117LeafID={items[0].T117LeafID}] 的模板",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     edtBoxNumber.Focus();
                     return;
                 }
@@ -137,9 +153,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     WriteLog.Instance.Write(
                         $"内包装标签打印模板装载失败：{error.Message}，",
                         strProcedureName);
-                    IRAPMessageBox.Instance.ShowErrorMessage(
+                    XtraMessageBox.Show(
                         $"内包装标签打印模板装载失败：{error.Message}，\n" +
-                        "请联系系统开发人员，并发起重打申请！");
+                        "请联系系统开发人员，并发起重打申请！",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return;
                 }
 
@@ -160,10 +179,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
                 if (rpt.Prepare())
                 {
-                    for (int i = 0; i < items[0].PrintQty + 1; i++)
-                    {
-                        rpt.PrintPrepared(prntSettings);
-                    }
+                    rpt.PrintPrepared(prntSettings);
                 }
                 #endregion
             }
@@ -204,8 +220,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             {
                 if (edtCartonNumber.Text.Trim() == "")
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(
-                        "请输入外包装标签号！");
+                    XtraMessageBox.Show(
+                        "请输入外包装标签号！",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     edtCartonNumber.Focus();
                     return;
                 }
@@ -218,7 +237,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             {
                 if (edtMONumber.Text.Trim() == "")
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage("请输入订单号！");
+                    XtraMessageBox.Show(
+                        "请输入订单号！",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     edtMONumber.Focus();
                     return;
                 }
@@ -230,7 +253,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 int.TryParse(edtMOLineNo.Text.Trim(), out moLineNo);
                 if (moLineNo <= 0)
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage("请输入正确的订单行号！");
+                    XtraMessageBox.Show(
+                        "请输入正确的订单行号！",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     edtMOLineNo.Focus();
                     return;
                 }
@@ -259,7 +286,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     edtCartonNumber.Text = "";
                     edtMONumber.Text = "";
                     edtMOLineNo.Text = "";
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     if (rbByCartonNumber.Checked)
                     {
                         edtCartonNumber.Focus();
@@ -276,8 +307,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     edtCartonNumber.Text = "";
                     edtMONumber.Text = "";
                     edtMOLineNo.Text = "";
-                    IRAPMessageBox.Instance.ShowErrorMessage(
-                        $"没有找到需要打印的外标签信息！");
+                    XtraMessageBox.Show(
+                        $"没有找到需要打印的外标签信息！",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     if (rbByCartonNumber.Checked)
                     {
                         edtCartonNumber.Focus();
@@ -312,8 +346,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                             strProcedureName);
                         if (errCode != 0 || template.TemplateFMTStr.Trim() == "")
                         {
-                            IRAPMessageBox.Instance.ShowErrorMessage(
-                                $"无法获取到 [T117LeafID={item.T117LeafID}] 的模板");
+                            XtraMessageBox.Show(
+                                $"无法获取到 [T117LeafID={item.T117LeafID}] 的模板",
+                                "",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                             labelTemplate = "";
                             return;
                         }
@@ -337,9 +374,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                             WriteLog.Instance.Write(
                                 $"外包装标签打印模板装载失败：{error.Message}，",
                                 strProcedureName);
-                            IRAPMessageBox.Instance.ShowErrorMessage(
+                            XtraMessageBox.Show(
                                 $"外包装标签打印模板装载失败：{error.Message}，\n" +
-                                "请联系系统开发人员！");
+                                "请联系系统开发人员！",
+                                "",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                             return;
                         }
 
@@ -363,17 +403,18 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
                         if (rpt.Prepare())
                         {
-                            for (int i = 0; i < item.PrintQty; i++)
-                            {
-                                rpt.PrintPrepared(prntSettings);
-                            }
+                            rpt.PrintPrepared(prntSettings);
                         }
                         #endregion
                     }
                 }
                 #endregion
 
-                IRAPMessageBox.Instance.ShowInformation("外标签打印完成。");
+                XtraMessageBox.Show(
+                    "外标签打印完成。",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             finally
             {

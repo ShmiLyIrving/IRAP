@@ -96,6 +96,7 @@
             this.edtCartonNumber.Name = "edtCartonNumber";
             this.edtCartonNumber.Properties.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F);
             this.edtCartonNumber.Properties.Appearance.Options.UseFont = true;
+            this.edtCartonNumber.Properties.Precision = 0;
             this.edtCartonNumber.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.edtCartonNumber.Size = new System.Drawing.Size(150, 20);
             this.edtCartonNumber.TabIndex = 17;

@@ -63,7 +63,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
                 if (errCode != 0)
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
 
                 return datas;
@@ -100,7 +104,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
                 if (errCode != 0)
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
 
                 return datas;

@@ -53,8 +53,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             else
             {
                 btnPrint.Enabled = false;
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "当前电脑中没有安装打印机，无法打印标签！");
+                XtraMessageBox.Show(
+                    "当前电脑中没有安装打印机，无法打印标签！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -88,7 +91,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 }
                 else
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return new List<WaitRePrintCarton>();
                 }
             }
@@ -131,8 +138,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 strProcedureName);
             if (errCode != 0 || template.TemplateFMTStr.Trim() == "")
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    $"无法获取到 [T117LeafID={cartonInfo.T117LeafID}] 的模板");
+                XtraMessageBox.Show(
+                    $"无法获取到 [T117LeafID={cartonInfo.T117LeafID}] 的模板",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
             else
@@ -157,9 +167,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 WriteLog.Instance.Write(
                     $"外包装标签打印模板装载失败：{error.Message}，",
                     strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage(
+                XtraMessageBox.Show(
                     $"外包装标签打印模板装载失败：{error.Message}，\n" +
-                    "请联系系统开发人员，并发起重打申请！");
+                    "请联系系统开发人员，并发起重打申请！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
@@ -206,8 +219,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 strProcedureName);
             if (errCode != 0)
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    $"获取标签打印信息时发生错误，请发起重打申请！");
+                XtraMessageBox.Show(
+                    $"获取标签打印信息时发生错误，请发起重打申请！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 XtraMessageBox.Show(
                     $"错误信息：{errText}",
                     "",
@@ -218,9 +234,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
             if (boxes.Count == 0)
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
+                XtraMessageBox.Show(
                     $"未获取到外包装号 [{cartonInfo.CartonNumber}] 的内包装标签数据，" +
-                    "请联系系统开发人员，并发起重打申请！");
+                    "请联系系统开发人员，并发起重打申请！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
             #endregion
@@ -247,8 +266,11 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                         strProcedureName);
                     if (errCode != 0 || template.TemplateFMTStr.Trim() == "")
                     {
-                        IRAPMessageBox.Instance.ShowErrorMessage(
-                            $"无法获取到 [T117LeafID={box.T117LeafID}] 的模板");
+                        XtraMessageBox.Show(
+                            $"无法获取到 [T117LeafID={box.T117LeafID}] 的模板",
+                            "",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                         boxLabelTemplate = "";
                     }
                     else
@@ -282,9 +304,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 WriteLog.Instance.Write(
                     $"内包装标签打印模板装载失败：{error.Message}，",
                     strProcedureName);
-                IRAPMessageBox.Instance.ShowErrorMessage(
+                XtraMessageBox.Show(
                     $"内包装标签打印模板装载失败：{error.Message}，\n" +
-                    "请联系系统开发人员，并发起重打申请！");
+                    "请联系系统开发人员，并发起重打申请！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
@@ -330,14 +355,20 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
 
             if (items == null)
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "没有需要重打的包装标签！");
+                XtraMessageBox.Show(
+                    "没有需要重打的包装标签！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
             if (idx < 0)
             {
-                IRAPMessageBox.Instance.ShowErrorMessage(
-                    "请选择需要重打的包装标签！");
+                XtraMessageBox.Show(
+                    "请选择需要重打的包装标签！",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
@@ -361,11 +392,19 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 {
                     PrintLabel(items[idx]);
 
-                    IRAPMessageBox.Instance.ShowInformation("标签打印完成。");
+                    XtraMessageBox.Show(
+                        "标签打印完成。",
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
-                    IRAPMessageBox.Instance.ShowErrorMessage(errText);
+                    XtraMessageBox.Show(
+                        errText,
+                        "",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
 
                 RefreshPackageLabels();
