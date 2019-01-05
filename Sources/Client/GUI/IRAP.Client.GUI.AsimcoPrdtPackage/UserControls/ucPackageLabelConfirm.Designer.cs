@@ -41,6 +41,8 @@
             this.richkChoice = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
             this.btnRequestReprint = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSelectAll = new DevExpress.XtraEditors.SimpleButton();
+            this.btnUnselectAll = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gpcPackageSOs)).BeginInit();
             this.gpcPackageSOs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPackageLabels)).BeginInit();
@@ -205,12 +207,36 @@
             this.btnRequestReprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRequestReprint.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequestReprint.Appearance.Options.UseFont = true;
-            this.btnRequestReprint.Location = new System.Drawing.Point(779, 137);
+            this.btnRequestReprint.Location = new System.Drawing.Point(779, 194);
             this.btnRequestReprint.Name = "btnRequestReprint";
             this.btnRequestReprint.Size = new System.Drawing.Size(90, 41);
-            this.btnRequestReprint.TabIndex = 11;
+            this.btnRequestReprint.TabIndex = 13;
             this.btnRequestReprint.Text = "申请重打";
             this.btnRequestReprint.Click += new System.EventHandler(this.btnRequestReprint_Click);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelectAll.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAll.Appearance.Options.UseFont = true;
+            this.btnSelectAll.Location = new System.Drawing.Point(779, 71);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(90, 27);
+            this.btnSelectAll.TabIndex = 11;
+            this.btnSelectAll.Text = "全选";
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // btnUnselectAll
+            // 
+            this.btnUnselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnselectAll.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnselectAll.Appearance.Options.UseFont = true;
+            this.btnUnselectAll.Location = new System.Drawing.Point(779, 104);
+            this.btnUnselectAll.Name = "btnUnselectAll";
+            this.btnUnselectAll.Size = new System.Drawing.Size(90, 27);
+            this.btnUnselectAll.TabIndex = 12;
+            this.btnUnselectAll.Text = "全不选";
+            this.btnUnselectAll.Click += new System.EventHandler(this.btnUnselectAll_Click);
             // 
             // ucPackageLabelConfirm
             // 
@@ -219,6 +245,8 @@
             this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.btnUnselectAll);
+            this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.btnRequestReprint);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.gpcPackageSOs);
@@ -249,5 +277,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit richkChoice;
         private DevExpress.XtraEditors.SimpleButton btnConfirm;
         private DevExpress.XtraEditors.SimpleButton btnRequestReprint;
+        private DevExpress.XtraEditors.SimpleButton btnSelectAll;
+        private DevExpress.XtraEditors.SimpleButton btnUnselectAll;
     }
 }

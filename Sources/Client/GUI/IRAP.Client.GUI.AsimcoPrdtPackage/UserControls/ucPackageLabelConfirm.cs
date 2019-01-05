@@ -124,16 +124,14 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     {
                         rlt += "\n";
                     }
-                    else
-                    {
-                        rlt +=
-                            $"<Row Ordinal=\"{item.Ordinal}\" " +
-                            $"FactID=\"{item.FactID}\" " +
-                            $"TransactNo=\"{item.TransactNo}\" />";
-                    }
+
+                    rlt +=
+                        $"<Row Ordinal=\"{item.Ordinal}\" " +
+                        $"FactID=\"{item.FactID}\" " +
+                        $"TransactNo=\"{item.TransactNo}\" />";
                 }
             }
-            return $"<Param>{rlt}</Param>";
+            return $"<Param>\n{rlt}\n</Param>";
         }
 
         private void ucPackageLabelConfirm_Load(object sender, EventArgs e)
@@ -252,6 +250,36 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            List<ConfirmPackageLabel> datas =
+                grdPackageLabels.DataSource as List<ConfirmPackageLabel>;
+            if (datas != null)
+            {
+                grdvPackageLabels.BeginDataUpdate();
+                foreach (ConfirmPackageLabel data in datas)
+                {
+                    data.Choice = true;
+                }
+                grdvPackageLabels.EndDataUpdate();
+            }
+        }
+
+        private void btnUnselectAll_Click(object sender, EventArgs e)
+        {
+            List<ConfirmPackageLabel> datas =
+                grdPackageLabels.DataSource as List<ConfirmPackageLabel>;
+            if (datas != null)
+            {
+                grdvPackageLabels.BeginDataUpdate();
+                foreach (ConfirmPackageLabel data in datas)
+                {
+                    data.Choice = false;
+                }
+                grdvPackageLabels.EndDataUpdate();
             }
         }
     }
