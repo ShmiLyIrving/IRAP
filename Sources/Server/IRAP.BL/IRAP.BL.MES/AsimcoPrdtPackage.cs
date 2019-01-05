@@ -722,7 +722,7 @@ namespace IRAP.BL.MES
                 #region 创建数据库调用参数组，并赋值
                 IList<IDataParameter> paramList = new List<IDataParameter>();
                 paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
-                paramList.Add(new IRAPProcParameter("@BoxNumber", DbType.Int64, boxNumber));
+                paramList.Add(new IRAPProcParameter("@BoxNumber", DbType.String, boxNumber));
                 paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
                 paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
                 paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
@@ -742,8 +742,10 @@ namespace IRAP.BL.MES
                 #region 执行数据库函数或存储过程
                 using (IRAPSQLConnection conn = new IRAPSQLConnection())
                 {
+                    WriteLog.Instance.Write("调用开始", strProcedureName);
                     DataSet ds =
                         conn.CallProcEx("IRAPMES..usp_RePrintBoxNumber", ref paramList);
+                    WriteLog.Instance.Write("调用结束", strProcedureName);
 
                     List<RePrintBoxNumber> datas = new List<RePrintBoxNumber>();
                     if (ds.Tables.Count > 0)
