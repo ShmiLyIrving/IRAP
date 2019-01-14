@@ -107,9 +107,11 @@ namespace IRAP.Client.GUI.SCES
                 case 60010:
                 case 60030:
                     btnReprint.Visible = true;
+                    btnReprint1.Visible = true;
                     break;
                 default:
                     btnReprint.Visible = false;
+                    btnReprint1.Visible = false;
                     break;
             }
 
@@ -370,6 +372,145 @@ namespace IRAP.Client.GUI.SCES
                     TWaitting.Instance.CloseWaitForm();
                     WriteLog.Instance.WriteEndSplitter(strProcedureName);
                 }
+            }
+        }
+
+        private void btnSearchByMaterialCode_Click(object sender, EventArgs e)
+        {
+            if (edtSubMaterialCode.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(
+                    "请输入子项物料号",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                edtSubMaterialCode.Focus();
+                return;
+            }
+            string strProcedureName =
+                $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            TWaitting.Instance.ShowWaitForm("正在获取待配送的制造订单列表");
+            try
+            {
+                int errCode = 0;
+                string errText = "";
+                List<PWOToDeliverByMaterialCode> pwos =
+                    new List<PWOToDeliverByMaterialCode>();
+
+                try
+                {
+                    IRAPSCESClient.Instance.ufn_GetList_PWOToDeliverByMaterialCode(
+                        IRAPUser.Instance.CommunityID,
+                        edtSubMaterialCode.Text.Trim(),
+                        IRAPUser.Instance.SysLogID,
+                        ref pwos,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        $"({errCode}){errText}", strProcedureName);
+                    if (errCode == 0)
+                    {
+                        grdPWOs.DataSource = pwos;
+                        grdvPWOs.BestFitColumns();
+                        grdPWOs.MainView.LayoutChanged();
+
+                        if (pwos.Count <= 0)
+                        {
+                            XtraMessageBox.Show(
+                                $"未找到子项物料[{edtSubMaterialCode.Text.Trim()}]" +
+                                "的待配送订单",
+                                "",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(
+                            errText, 
+                            "系统信息",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                catch (Exception error)
+                {
+                    WriteLog.Instance.Write(error.Message, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                    XtraMessageBox.Show(
+                        error.Message,
+                        "系统信息",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            finally
+            {
+                TWaitting.Instance.CloseWaitForm();
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        private void btnDeliver1_Click(object sender, EventArgs e)
+        {
+            int index = grdvPWOs.GetFocusedDataSourceRowIndex();
+            if (index >= 0)
+            {
+                List<PWOToDeliverByMaterialCode> pwos =
+                    grdPWOs.DataSource as List<PWOToDeliverByMaterialCode>;
+                if (pwos != null)
+                {
+                    DstDeliveryStoreSite storeSite = null;
+                    for (int i = 0; i < cboDstStoreSites.Properties.Items.Count; i++)
+                    {
+                        storeSite =
+                            cboDstStoreSites.Properties.Items[i] as DstDeliveryStoreSite;
+                        if (storeSite.T173LeafID == pwos[index].T173LeafID)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            storeSite = null;
+                        }
+                    }
+
+                    if (storeSite== null)
+                    {
+                        XtraMessageBox.Show(
+                            $"您无权向{pwos[index].T173Name}配送该订单",
+                            "",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string opNode = ((MenuInfo)Tag).OpNode;
+                    using (frmMaterialsToDeliver showMaterisl =
+                        new frmMaterialsToDeliver(
+                            pwos[index].FactID,
+                            pwos[index].AF482PK,
+                            storeSite,
+                            opNode))
+                    {
+                        showMaterisl.ShowDialog();
+                    }
+
+                    btnSearchByMaterialCode.PerformClick();
+                }
+            }
+        }
+
+        private void edtSubMaterialCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (edtSubMaterialCode.Text.Trim() != "")
+                    btnSearchByMaterialCode.PerformClick();
             }
         }
     }

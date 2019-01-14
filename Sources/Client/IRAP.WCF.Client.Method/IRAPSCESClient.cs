@@ -218,6 +218,83 @@ namespace IRAP.WCF.Client.Method
         }
 
         /// <summary>
+        /// 获取待配送到指定目标仓储地址的制造订单列表
+        /// </summary>
+        /// <param name="communityID">社区标识</param>
+        /// <param name="subMaterialCode">子项物料号</param>
+        /// <param name="sysLogID">系统登录标识</param>
+        public void ufn_GetList_PWOToDeliverByMaterialCode(
+            int communityID,
+            string subMaterialCode,
+            long sysLogID,
+            ref List<PWOToDeliverByMaterialCode> datas,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+               string.Format(
+                   "{0}.{1}",
+                   className,
+                   MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                datas.Clear();
+
+                #region 将函数调用参数加入 HashTable 中
+                Hashtable hashParams = new Hashtable();
+
+                hashParams.Add("communityID", communityID);
+                hashParams.Add("subMaterialCode", subMaterialCode);
+                hashParams.Add("sysLogID", sysLogID);
+                WriteLog.Instance.Write(
+                    string.Format(
+                        "调用 ufn_GetList_PWOToDeliverByMaterialCode 函数， " +
+                        "参数：CommunityID={0}|SubMaterialCode={1}|SysLogID={2}",
+                        communityID,
+                        subMaterialCode,
+                        sysLogID),
+                    strProcedureName);
+                #endregion
+
+                #region 执行存储过程或者函数
+                using (WCFClient client = new WCFClient())
+                {
+
+                    object rlt =
+                        client.WCFRESTFul(
+                            "IRAP.BL.SCES.dll",
+                            "IRAP.BL.SCES.IRAPSCES",
+                            "ufn_GetList_PWOToDeliverByMaterialCode",
+                        hashParams,
+                        out errCode,
+                        out errText);
+                    WriteLog.Instance.Write(
+                        string.Format(
+                            "({0}){1}", errCode, errText),
+                        strProcedureName);
+
+                    if (errCode == 0)
+                    {
+                        datas = rlt as List<PWOToDeliverByMaterialCode>;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                WriteLog.Instance.Write(error.Message, strProcedureName);
+                errCode = -1001;
+                errText = error.Message;
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
         /// 获取工单物料配送指令单
         /// </summary>
         /// <param name="communityID">社区标识</param>

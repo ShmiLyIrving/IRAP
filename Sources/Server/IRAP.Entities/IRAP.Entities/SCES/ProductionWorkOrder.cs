@@ -257,4 +257,20 @@ namespace IRAP.Entities.SCES
             return rlt;
         }
     }
+
+    public class PWOToDeliverByMaterialCode : ProductionWorkOrderEx
+    {
+        /// <summary>
+        /// 目标仓储地点叶标识
+        /// </summary>
+        public int T173LeafID { get; set; }
+        /// <summary>
+        /// 目标仓储地点代码
+        /// </summary>
+        public string T173Code { get; set; }
+        /// <summary>
+        /// 目标仓储地点名称
+        /// </summary>
+        public string T173Name { get; set; }
+    }
 }
