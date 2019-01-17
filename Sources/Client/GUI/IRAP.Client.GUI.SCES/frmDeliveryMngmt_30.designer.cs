@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDeliveryMngmt_30));
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mitmDeliver = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSeprater = new System.Windows.Forms.ToolStripSeparator();
             this.mitmRefresh = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,7 +158,7 @@
             this.btnSyncMO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSyncMO.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.btnSyncMO.Appearance.Options.UseFont = true;
-            this.btnSyncMO.Location = new System.Drawing.Point(707, 178);
+            this.btnSyncMO.Location = new System.Drawing.Point(706, 178);
             this.btnSyncMO.Name = "btnSyncMO";
             this.btnSyncMO.Size = new System.Drawing.Size(108, 28);
             this.btnSyncMO.TabIndex = 4;
@@ -169,7 +170,7 @@
             this.btnReprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReprint.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.btnReprint.Appearance.Options.UseFont = true;
-            this.btnReprint.Location = new System.Drawing.Point(707, 345);
+            this.btnReprint.Location = new System.Drawing.Point(706, 343);
             this.btnReprint.Name = "btnReprint";
             this.btnReprint.Size = new System.Drawing.Size(108, 28);
             this.btnReprint.TabIndex = 5;
@@ -181,7 +182,7 @@
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.btnRefresh.Appearance.Options.UseFont = true;
-            this.btnRefresh.Location = new System.Drawing.Point(707, 126);
+            this.btnRefresh.Location = new System.Drawing.Point(706, 126);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(108, 28);
             this.btnRefresh.TabIndex = 3;
@@ -200,7 +201,7 @@
             this.groupControl1.Location = new System.Drawing.Point(9, 12);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl1.Size = new System.Drawing.Size(692, 65);
+            this.groupControl1.Size = new System.Drawing.Size(691, 65);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "目标仓储地点";
             // 
@@ -218,7 +219,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboDstStoreSites.Properties.DropDownItemHeight = 28;
             this.cboDstStoreSites.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboDstStoreSites.Size = new System.Drawing.Size(678, 28);
+            this.cboDstStoreSites.Size = new System.Drawing.Size(677, 28);
             this.cboDstStoreSites.TabIndex = 0;
             this.cboDstStoreSites.SelectedIndexChanged += new System.EventHandler(this.cboDstStoreSites_SelectedIndexChanged);
             // 
@@ -227,7 +228,7 @@
             this.btnDeliver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeliver.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.btnDeliver.Appearance.Options.UseFont = true;
-            this.btnDeliver.Location = new System.Drawing.Point(707, 83);
+            this.btnDeliver.Location = new System.Drawing.Point(706, 83);
             this.btnDeliver.Name = "btnDeliver";
             this.btnDeliver.Size = new System.Drawing.Size(108, 28);
             this.btnDeliver.TabIndex = 2;
@@ -247,7 +248,7 @@
             this.gpcAndonEvents.Location = new System.Drawing.Point(9, 83);
             this.gpcAndonEvents.Name = "gpcAndonEvents";
             this.gpcAndonEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.gpcAndonEvents.Size = new System.Drawing.Size(692, 290);
+            this.gpcAndonEvents.Size = new System.Drawing.Size(691, 288);
             this.gpcAndonEvents.TabIndex = 1;
             this.gpcAndonEvents.Text = "待处理的配料单列表";
             // 
@@ -259,7 +260,7 @@
             this.grdOrders.Location = new System.Drawing.Point(7, 28);
             this.grdOrders.MainView = this.grdvOrders;
             this.grdOrders.Name = "grdOrders";
-            this.grdOrders.Size = new System.Drawing.Size(678, 255);
+            this.grdOrders.Size = new System.Drawing.Size(677, 253);
             this.grdOrders.TabIndex = 1;
             this.grdOrders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvOrders});
@@ -575,7 +576,7 @@
             this.xtraTabPage1.Controls.Add(this.btnRefresh);
             this.xtraTabPage1.Controls.Add(this.btnDeliver);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(822, 381);
+            this.xtraTabPage1.Size = new System.Drawing.Size(821, 379);
             this.xtraTabPage1.Text = "按目标仓储地点";
             // 
             // xtraTabPage2
@@ -586,7 +587,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl3);
             this.xtraTabPage2.Controls.Add(this.groupControl2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(822, 381);
+            this.xtraTabPage2.Size = new System.Drawing.Size(821, 379);
             this.xtraTabPage2.Text = "按子项物料";
             // 
             // btnReprint1
@@ -594,7 +595,7 @@
             this.btnReprint1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReprint1.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.btnReprint1.Appearance.Options.UseFont = true;
-            this.btnReprint1.Location = new System.Drawing.Point(707, 345);
+            this.btnReprint1.Location = new System.Drawing.Point(706, 343);
             this.btnReprint1.Name = "btnReprint1";
             this.btnReprint1.Size = new System.Drawing.Size(108, 28);
             this.btnReprint1.TabIndex = 8;
@@ -606,7 +607,7 @@
             this.btnSearchByMaterialCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchByMaterialCode.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.btnSearchByMaterialCode.Appearance.Options.UseFont = true;
-            this.btnSearchByMaterialCode.Location = new System.Drawing.Point(707, 40);
+            this.btnSearchByMaterialCode.Location = new System.Drawing.Point(706, 40);
             this.btnSearchByMaterialCode.Name = "btnSearchByMaterialCode";
             this.btnSearchByMaterialCode.Size = new System.Drawing.Size(108, 28);
             this.btnSearchByMaterialCode.TabIndex = 2;
@@ -618,7 +619,7 @@
             this.btnDeliver1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeliver1.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
             this.btnDeliver1.Appearance.Options.UseFont = true;
-            this.btnDeliver1.Location = new System.Drawing.Point(707, 83);
+            this.btnDeliver1.Location = new System.Drawing.Point(706, 83);
             this.btnDeliver1.Name = "btnDeliver1";
             this.btnDeliver1.Size = new System.Drawing.Size(108, 28);
             this.btnDeliver1.TabIndex = 3;
@@ -638,7 +639,7 @@
             this.groupControl3.Location = new System.Drawing.Point(9, 83);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl3.Size = new System.Drawing.Size(692, 290);
+            this.groupControl3.Size = new System.Drawing.Size(691, 288);
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "待处理的配料单列表";
             // 
@@ -650,7 +651,7 @@
             this.grdPWOs.Location = new System.Drawing.Point(7, 28);
             this.grdPWOs.MainView = this.grdvPWOs;
             this.grdPWOs.Name = "grdPWOs";
-            this.grdPWOs.Size = new System.Drawing.Size(678, 255);
+            this.grdPWOs.Size = new System.Drawing.Size(677, 253);
             this.grdPWOs.TabIndex = 1;
             this.grdPWOs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdvPWOs});

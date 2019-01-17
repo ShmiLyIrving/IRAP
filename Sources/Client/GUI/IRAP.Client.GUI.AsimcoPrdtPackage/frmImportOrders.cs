@@ -8,6 +8,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Configuration;
 
 using DevExpress.XtraEditors;
 
@@ -105,16 +106,6 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage
             string directory = fi.DirectoryName;
             string tableName = fi.Name;
 
-            if (tableName.Substring(0, 1) == "_")
-            {
-                XtraMessageBox.Show(
-                    "读取的文件名不能以 “_” 开头，请修改文件名后再读取！",
-                    "",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return datas;
-            }
-
             OleDbConnection conn = new OleDbConnection();
             string connStr =
                 $"Provider=VFPOLEDB.1;Data Source={directory};" +
@@ -167,26 +158,23 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage
             long partitioningKey = IRAPUser.Instance.CommunityID * 10000;
             foreach (DataRow row in dt.Rows)
             {
-                if (row["ITEM"].ToString().Substring(0, 4) == "M-CP")
-                {
-                    datas.Add(
-                        new dpa_DBF_MO()
-                        {
-                            PartitioningKey = partitioningKey,
-                            ImportID = importID,
-                            MOSource = row["DDSOURCE_M"].ToString().Trim(),
-                            MOType = row["DDTYPE_I"].ToString().Trim(),
-                            MONumber = row["PICKDDH"].ToString().Trim(),
-                            MOLineNo = Convert.ToInt32(row["LN_NO"].ToString()),
-                            MaterialCode = row["ITEM"].ToString().Trim(),
-                            Treasury = row["STK_75"].ToString().Trim(),
-                            Location = row["KW"].ToString().Trim(),
-                            LotNumber = row["LOT"].ToString().Trim(),
-                            OrderQty = Convert.ToDecimal(row["STK_QTY"].ToString()),
-                            ErrCode = -1,
-                            ErrText = "未校验",
-                        });
-                }
+                datas.Add(
+                    new dpa_DBF_MO()
+                    {
+                        PartitioningKey = partitioningKey,
+                        ImportID = importID,
+                        MOSource = row["DDSOURCE_M"].ToString().Trim(),
+                        MOType = row["DDTYPE_I"].ToString().Trim(),
+                        MONumber = row["PICKDDH"].ToString().Trim(),
+                        MOLineNo = Convert.ToInt32(row["LN_NO"].ToString()),
+                        MaterialCode = row["ITEM"].ToString().Trim(),
+                        Treasury = row["STK_75"].ToString().Trim(),
+                        Location = row["KW"].ToString().Trim(),
+                        LotNumber = row["LOT"].ToString().Trim(),
+                        OrderQty = Convert.ToDecimal(row["STK_QTY"].ToString()),
+                        ErrCode = -1,
+                        ErrText = "未校验",
+                    });
             }
 
             return datas;
@@ -234,30 +222,38 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            string dbfFileName;
+            if (ConfigurationManager.AppSettings["DBFImportFileName"] != null)
             {
-                List<dpa_DBF_MO> datas = null;
-                try
-                {
-                    TWaitting.Instance.ShowWaitForm("正在读取导入的数据");
-                    datas = GetDataFromDBF(openFileDialog.FileName);
-                }
-                catch (Exception error)
-                {
-                    TWaitting.Instance.CloseWaitForm();
-                    XtraMessageBox.Show(
-                        error.Message,
-                        "提示信息",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-
-                grdImportData.DataSource = datas;
-                grdvImportData.BestFitColumns();
-
-                TWaitting.Instance.CloseWaitForm();
+                dbfFileName =
+                    ConfigurationManager.AppSettings["DBFImportFileName"];
             }
+            else
+            {
+                dbfFileName = "D:\\Pick\\_zxkwslz.dbf";
+            }
+
+            List<dpa_DBF_MO> datas = null;
+            try
+            {
+                TWaitting.Instance.ShowWaitForm("正在读取导入的数据");
+                datas = GetDataFromDBF(dbfFileName);
+            }
+            catch (Exception error)
+            {
+                TWaitting.Instance.CloseWaitForm();
+                XtraMessageBox.Show(
+                    error.Message,
+                    "提示信息",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            grdImportData.DataSource = datas;
+            grdvImportData.BestFitColumns();
+
+            TWaitting.Instance.CloseWaitForm();
         }
 
         private void btnValidate_Click(object sender, EventArgs e)

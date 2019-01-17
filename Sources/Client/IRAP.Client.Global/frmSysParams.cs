@@ -43,6 +43,16 @@ namespace IRAP.Client.Global
                     else
                         chkPrintWIPProductInfoTrack.Checked = false;
 
+                    if (ConfigurationManager.AppSettings["DBFImportFileName"] != null)
+                    {
+                        edtPkgDBFImportDictionary.Text =
+                            ConfigurationManager.AppSettings["DBFImportFileName"];
+                    }
+                    else
+                    {
+                        edtPkgDBFImportDictionary.Text = "D:\\Pick\\_zxkwslz.dbf";
+                    }
+
                     break;
             }
         }
@@ -69,6 +79,9 @@ namespace IRAP.Client.Global
                     IRAPConst.Instance.SaveParams(
                         "PrintProductInfoTrack",
                         chkPrintWIPProductInfoTrack.Checked.ToString());
+                    IRAPConst.Instance.SaveParams(
+                        "DBFImportFileName",
+                        edtPkgDBFImportDictionary.Text);
 
                     break;
             }
@@ -101,6 +114,19 @@ namespace IRAP.Client.Global
         private void frmSysParams_Shown(object sender, EventArgs e)
         {
             InitParams();
+        }
+
+        private void edtPkgDBFImportDictionary_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            if (e.Button.Caption == "浏览目录")
+            {
+                folderBrowserDialog.Description = "请选择包装订单文件所在的文件夹";
+                folderBrowserDialog.RootFolder = Environment.SpecialFolder.MyComputer;
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    edtPkgDBFImportDictionary.Text = folderBrowserDialog.SelectedPath;
+                }
+            }
         }
     }
 }

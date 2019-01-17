@@ -41,12 +41,16 @@
             this.tpSysParams = new DevExpress.XtraTab.XtraTabPage();
             this.chkMultInstance = new DevExpress.XtraEditors.CheckEdit();
             this.tpAsimcoParams = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.edtPkgDBFImportDictionary = new DevExpress.XtraEditors.ButtonEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.chkPrintWIPProductInfoTrack = new DevExpress.XtraEditors.CheckEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.chkPrintWIPProductInfoTrack = new DevExpress.XtraEditors.CheckEdit();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.tcParams)).BeginInit();
             this.tcParams.SuspendLayout();
             this.tpAndonParams.SuspendLayout();
@@ -60,11 +64,14 @@
             this.tpSysParams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkMultInstance.Properties)).BeginInit();
             this.tpAsimcoParams.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtPkgDBFImportDictionary.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPrintWIPProductInfoTrack.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPrintWIPProductInfoTrack.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTipController
@@ -215,12 +222,63 @@
             // 
             // tpAsimcoParams
             // 
+            this.tpAsimcoParams.Controls.Add(this.groupControl2);
             this.tpAsimcoParams.Controls.Add(this.chkPrintWIPProductInfoTrack);
             this.tpAsimcoParams.Name = "tpAsimcoParams";
             this.tpAsimcoParams.Padding = new System.Windows.Forms.Padding(10);
             this.tpAsimcoParams.PageVisible = false;
             this.tpAsimcoParams.Size = new System.Drawing.Size(683, 424);
             this.tpAsimcoParams.Text = "双环系统参数";
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl2.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupControl2.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.groupControl2.Appearance.Options.UseBackColor = true;
+            this.groupControl2.Appearance.Options.UseFont = true;
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
+            this.groupControl2.Controls.Add(this.edtPkgDBFImportDictionary);
+            this.groupControl2.Controls.Add(this.labelControl3);
+            this.groupControl2.Location = new System.Drawing.Point(10, 40);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(663, 79);
+            this.groupControl2.TabIndex = 1;
+            this.groupControl2.Text = "成品包装";
+            // 
+            // edtPkgDBFImportDictionary
+            // 
+            this.edtPkgDBFImportDictionary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.edtPkgDBFImportDictionary.Location = new System.Drawing.Point(132, 39);
+            this.edtPkgDBFImportDictionary.Name = "edtPkgDBFImportDictionary";
+            this.edtPkgDBFImportDictionary.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.edtPkgDBFImportDictionary.Properties.Appearance.Options.UseFont = true;
+            this.edtPkgDBFImportDictionary.Size = new System.Drawing.Size(521, 26);
+            this.edtPkgDBFImportDictionary.TabIndex = 1;
+            this.edtPkgDBFImportDictionary.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.edtPkgDBFImportDictionary_ButtonClick);
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.labelControl3.Location = new System.Drawing.Point(14, 42);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(112, 20);
+            this.labelControl3.TabIndex = 0;
+            this.labelControl3.Text = "订单导入文件名：";
+            // 
+            // chkPrintWIPProductInfoTrack
+            // 
+            this.chkPrintWIPProductInfoTrack.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkPrintWIPProductInfoTrack.Location = new System.Drawing.Point(10, 10);
+            this.chkPrintWIPProductInfoTrack.Name = "chkPrintWIPProductInfoTrack";
+            this.chkPrintWIPProductInfoTrack.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPrintWIPProductInfoTrack.Properties.Appearance.Options.UseFont = true;
+            this.chkPrintWIPProductInfoTrack.Properties.Caption = "打印产品信息跟踪卡";
+            this.chkPrintWIPProductInfoTrack.Size = new System.Drawing.Size(663, 24);
+            this.chkPrintWIPProductInfoTrack.TabIndex = 0;
             // 
             // panelControl1
             // 
@@ -277,16 +335,9 @@
             this.panelControl3.Size = new System.Drawing.Size(689, 5);
             this.panelControl3.TabIndex = 2;
             // 
-            // chkPrintWIPProductInfoTrack
+            // folderBrowserDialog
             // 
-            this.chkPrintWIPProductInfoTrack.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkPrintWIPProductInfoTrack.Location = new System.Drawing.Point(10, 10);
-            this.chkPrintWIPProductInfoTrack.Name = "chkPrintWIPProductInfoTrack";
-            this.chkPrintWIPProductInfoTrack.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPrintWIPProductInfoTrack.Properties.Appearance.Options.UseFont = true;
-            this.chkPrintWIPProductInfoTrack.Properties.Caption = "打印产品信息跟踪卡";
-            this.chkPrintWIPProductInfoTrack.Size = new System.Drawing.Size(663, 24);
-            this.chkPrintWIPProductInfoTrack.TabIndex = 0;
+            this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
             // frmSysParams
             // 
@@ -313,11 +364,15 @@
             this.tpSysParams.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkMultInstance.Properties)).EndInit();
             this.tpAsimcoParams.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtPkgDBFImportDictionary.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPrintWIPProductInfoTrack.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPrintWIPProductInfoTrack.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -343,5 +398,9 @@
         private DevExpress.XtraEditors.CheckEdit chkMultInstance;
         private DevExpress.XtraTab.XtraTabPage tpAsimcoParams;
         private DevExpress.XtraEditors.CheckEdit chkPrintWIPProductInfoTrack;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.ButtonEdit edtPkgDBFImportDictionary;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }

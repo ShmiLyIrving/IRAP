@@ -147,9 +147,9 @@
             this.labelControl3.Appearance.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Location = new System.Drawing.Point(12, 67);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(98, 14);
+            this.labelControl3.Size = new System.Drawing.Size(126, 14);
             this.labelControl3.TabIndex = 11;
-            this.labelControl3.Text = "分配的包装线：";
+            this.labelControl3.Text = "分配的包装线工位：";
             // 
             // cboCustomers
             // 
