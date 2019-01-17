@@ -182,6 +182,8 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     rpt.PrintPrepared(prntSettings);
                 }
                 #endregion
+
+                edtBoxNumber.Text = "";
             }
             finally
             {
@@ -397,8 +399,8 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                         rpt.Parameters.FindByName("SupplyCode").Value = item.SupplyCode;
                         rpt.Parameters.FindByName("T134AlternateCode").Value = item.T134AlternateCode;
                         rpt.Parameters.FindByName("BarCode").Value =
-                            $"{item.CartonProductNo}+" +
-                            $"{item.CartonNumber}+" +
+                            $"{item.CartonProductNo}/" +
+                            $"{item.CartonNumber}/" +
                             $"{item.CartonQty.ToString()}";
 
                         if (rpt.Prepare())
@@ -415,6 +417,10 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     "",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+
+                edtCartonNumber.Text = "";
+                edtMONumber.Text = "";
+                edtMOLineNo.Text = "";
             }
             finally
             {

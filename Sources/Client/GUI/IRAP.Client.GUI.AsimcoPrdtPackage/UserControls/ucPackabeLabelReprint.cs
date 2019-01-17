@@ -190,8 +190,8 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
             rpt.Parameters.FindByName("SupplyCode").Value = cartonInfo.SupplyCode;
             rpt.Parameters.FindByName("T134AlternateCode").Value = cartonInfo.T134AlternateCode;
             rpt.Parameters.FindByName("BarCode").Value =
-                $"{cartonInfo.CartonProductNo}+" +
-                $"{cartonInfo.CartonNumber}+" +
+                $"{cartonInfo.CartonProductNo}/" +
+                $"{cartonInfo.CartonNumber}/" +
                 $"{cartonInfo.CartonQty.ToString()}";
 
             if (rpt.Prepare())
