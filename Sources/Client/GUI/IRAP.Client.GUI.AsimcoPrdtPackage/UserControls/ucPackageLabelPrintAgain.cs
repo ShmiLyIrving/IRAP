@@ -169,7 +169,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                 rpt.Parameters.FindByName("Model").Value = items[0].Model;
                 rpt.Parameters.FindByName("DrawingID").Value = items[0].DrawingID;
                 rpt.Parameters.FindByName("MaterialCategory").Value = items[0].MaterialCategory;
-                rpt.Parameters.FindByName("BoxQty").Value = items[0].MaterialQty;
+                rpt.Parameters.FindByName("BoxQty").Value = $"{items[0].MaterialQty} {items[0].UnitOfMeasure}";
                 rpt.Parameters.FindByName("MaterialCode").Value = items[0].BoxMaterialNo;
                 rpt.Parameters.FindByName("LotNumber").Value = items[0].LotNumber;
                 rpt.Parameters.FindByName("CylinderID").Value = items[0].CylinderID;
@@ -182,6 +182,12 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     rpt.PrintPrepared(prntSettings);
                 }
                 #endregion
+
+                XtraMessageBox.Show(
+                    "内标签打印完成。",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
                 edtBoxNumber.Text = "";
             }
@@ -393,7 +399,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                         rpt.Parameters.FindByName("Model").Value = item.Model;
                         rpt.Parameters.FindByName("DrawingID").Value = item.DrawingID;
                         rpt.Parameters.FindByName("MaterialCategory").Value = item.MaterialCategory;
-                        rpt.Parameters.FindByName("CartonQty").Value = item.CartonQty;
+                        rpt.Parameters.FindByName("CartonQty").Value = $"{item.CartonQty} {item.UnitOfMeasure}";
                         rpt.Parameters.FindByName("CartonProductNo").Value = item.CartonProductNo;
                         rpt.Parameters.FindByName("LotNumber").Value = item.LotNumber;
                         rpt.Parameters.FindByName("SupplyCode").Value = item.SupplyCode;
@@ -416,7 +422,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.UserControls
                     "外标签打印完成。",
                     "",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Information);
 
                 edtCartonNumber.Text = "";
                 edtMONumber.Text = "";

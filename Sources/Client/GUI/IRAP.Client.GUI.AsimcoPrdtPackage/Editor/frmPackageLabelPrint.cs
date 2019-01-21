@@ -227,7 +227,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             rpt.Parameters.FindByName("Model").Value = cartonInfo.Model;
             rpt.Parameters.FindByName("DrawingID").Value = cartonInfo.DrawingID;
             rpt.Parameters.FindByName("MaterialCategory").Value = cartonInfo.MaterialCategory;
-            rpt.Parameters.FindByName("CartonQty").Value = cartonInfo.CartonQty;
+            rpt.Parameters.FindByName("CartonQty").Value = $"{cartonInfo.CartonQty} {cartonInfo.UnitOfMeasure}";
             rpt.Parameters.FindByName("CartonProductNo").Value = cartonInfo.CartonProductNo;
             rpt.Parameters.FindByName("LotNumber").Value = cartonInfo.LotNumber;
             rpt.Parameters.FindByName("SupplyCode").Value = cartonInfo.SupplyCode;
@@ -352,7 +352,7 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage.Editor
             rpt.Parameters.FindByName("Model").Value = box.Model;
             rpt.Parameters.FindByName("DrawingID").Value = box.DrawingID;
             rpt.Parameters.FindByName("MaterialCategory").Value = box.MaterialCategory;
-            rpt.Parameters.FindByName("BoxQty").Value = box.MaterialQty;
+            rpt.Parameters.FindByName("BoxQty").Value = $"{box.MaterialQty} {box.UnitOfMeasure}";
             rpt.Parameters.FindByName("MaterialCode").Value = box.BoxMaterialNo;
             rpt.Parameters.FindByName("LotNumber").Value = box.LotNumber;
             rpt.Parameters.FindByName("CylinderID").Value = box.CylinderID;

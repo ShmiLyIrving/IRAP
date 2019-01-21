@@ -71,5 +71,10 @@ namespace IRAP.Entities.Asimco
         /// 打印份数
         /// </summary>
         public int PrintQty { get; set; }
+        /// <summary>
+        /// 计量单位
+        /// </summary>
+        public string UnitOfMeasure { get; set; }
+        public string Carton102Code { get; set; }
     }
 }

@@ -83,5 +83,9 @@ namespace IRAP.Entities.Asimco
         /// 标签模板叶标识
         /// </summary>
         public int T117LeafID { get; set; }
+        /// <summary>
+        /// 计量单位
+        /// </summary>
+        public string UnitOfMeasure { get; set; }
     }
 }
