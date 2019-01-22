@@ -158,23 +158,41 @@ namespace IRAP.Client.GUI.AsimcoPrdtPackage
             long partitioningKey = IRAPUser.Instance.CommunityID * 10000;
             foreach (DataRow row in dt.Rows)
             {
-                datas.Add(
+                dpa_DBF_MO data =
                     new dpa_DBF_MO()
                     {
                         PartitioningKey = partitioningKey,
                         ImportID = importID,
-                        MOSource = row["DDSOURCE_M"].ToString().Trim(),
-                        MOType = row["DDTYPE_I"].ToString().Trim(),
-                        MONumber = row["PICKDDH"].ToString().Trim(),
-                        MOLineNo = Convert.ToInt32(row["LN_NO"].ToString()),
-                        MaterialCode = row["ITEM"].ToString().Trim(),
-                        Treasury = row["STK_75"].ToString().Trim(),
-                        Location = row["KW"].ToString().Trim(),
-                        LotNumber = row["LOT"].ToString().Trim(),
-                        OrderQty = Convert.ToDecimal(row["STK_QTY"].ToString()),
                         ErrCode = -1,
                         ErrText = "未校验",
-                    });
+                    };
+
+                if (row["DDSOURCE_M"] != null)
+                    data.MOSource = row["DDSOURCE_M"].ToString().Trim();
+                if (row["DDTYPE_I"] != null)
+                    data.MOType = row["DDTYPE_I"].ToString().Trim();
+                if (row["PICKDDH"] != null)
+                    data.MONumber = row["PICKDDH"].ToString().Trim();
+                try
+                {
+                    data.MOLineNo = Convert.ToInt32(row["LN_NO"].ToString());
+                }
+                catch { data.MOLineNo = 0; }
+                if (row["ITEM"] != null)
+                    data.MaterialCode = row["ITEM"].ToString().Trim();
+                if (row["STK_75"] != null)
+                    data.Treasury = row["STK_75"].ToString().Trim();
+                if (row["KW"] != null)
+                    data.Location = row["KW"].ToString().Trim();
+                if (row["LOT"] != null)
+                    data.LotNumber = row["LOT"].ToString().Trim();
+                try
+                {
+                    data.OrderQty = Convert.ToDecimal(row["STK_QTY"].ToString());
+                }
+                catch { data.OrderQty = 0; }
+
+                datas.Add(data);
             }
 
             return datas;
