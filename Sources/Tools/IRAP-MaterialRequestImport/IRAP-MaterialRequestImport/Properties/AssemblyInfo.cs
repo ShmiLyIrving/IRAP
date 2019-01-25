@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("江苏芍园科技有限责任公司")]
-[assembly: AssemblyProduct("IRAP 物料需求导入")]
+[assembly: AssemblyProduct("IRAP 物料需求导入工具程序")]
 [assembly: AssemblyCopyright("Copyright © Softland 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,6 +32,6 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("5.0.2.46")]
-[assembly: AssemblyFileVersion("5.0.0125.46")]
-[assembly: AssemblyInformationalVersion("5.0.2.46")]
+[assembly: AssemblyVersion("5.0.6.50")]
+[assembly: AssemblyFileVersion("5.0.0125.50")]
+[assembly: AssemblyInformationalVersion("5.0.6.50")]

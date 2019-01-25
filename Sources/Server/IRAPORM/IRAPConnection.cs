@@ -840,6 +840,7 @@ namespace IRAPORM
             }
             catch (SqlException err)
             {
+                WriteLocalMsg(err.Message, MsgType.error);
                 throw new IRAPException(9999, "保存数据异常！", err);
             }
 
@@ -931,6 +932,9 @@ namespace IRAPORM
             }
             catch (SqlException err)
             {
+                WriteLocalMsg(err.Message, MsgType.error);
+                WriteLocalMsg(err.StackTrace, MsgType.error);
+
                 if (_trans != null)
                 {
                     RollBack();

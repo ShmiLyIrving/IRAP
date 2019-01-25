@@ -268,7 +268,9 @@ namespace IRAP_MaterialRequestImport
 
         private void bbiDataValidate_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if ((grdData.DataSource as List<Tdpa_Log_MaterialReq>).Count <= 0)
+            List<Tdpa_Log_MaterialReq> datas =
+                grdData.DataSource as List<Tdpa_Log_MaterialReq>;
+            if (datas == null || datas.Count <= 0)
             {
                 XtraMessageBox.Show(
                     "没有读取到需要导入的物料需求数据",
@@ -290,7 +292,7 @@ namespace IRAP_MaterialRequestImport
                 {
                     TWaitting.Instance.ShowWaitForm("将读取到的数据上传到数据库中");
                     TDBHelper.Instance.msp_InsertIntoMaterialReq(
-                        grdData.DataSource as List<Tdpa_Log_MaterialReq>,
+                        datas,
                         out errCode,
                         out errText);
                     if (errCode != 0)
@@ -334,7 +336,7 @@ namespace IRAP_MaterialRequestImport
                     }
 
                     TWaitting.Instance.ShowWaitForm("获取校验结果");
-                    List<Tdpa_Log_MaterialReq> datas = 
+                    datas = 
                         TDBHelper.Instance.mfn_GetList_MaterialReq(
                             TIRAPUser.Instance.CommunityID,
                             TIRAPUser.Instance.SysLogID,
@@ -430,6 +432,14 @@ namespace IRAP_MaterialRequestImport
             finally
             {
 
+            }
+        }
+
+        private void bbiAbout_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            using (Dialogs.frmAboutBox about = new Dialogs.frmAboutBox())
+            {
+                about.ShowDialog();
             }
         }
     }

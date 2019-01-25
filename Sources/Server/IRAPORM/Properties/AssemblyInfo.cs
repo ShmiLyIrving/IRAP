@@ -32,10 +32,10 @@ using System.Resources;
 //
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
-[assembly: AssemblyVersion("6.0.113.115")]
+[assembly: AssemblyVersion("6.0.115.117")]
 //[assembly: AssemblyVersion("1.2.0.0")]
 //[assembly: AssemblyFileVersion("1.2.0.0")]
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = @"ServiceDlls/log4net.config", Watch = true)]
 [assembly: NeutralResourcesLanguageAttribute("zh-CHS")]
-[assembly: AssemblyFileVersion("6.0.0114.115")]
-[assembly: AssemblyInformationalVersion("6.0.113.115")]
+[assembly: AssemblyFileVersion("6.0.0122.117")]
+[assembly: AssemblyInformationalVersion("6.0.115.117")]

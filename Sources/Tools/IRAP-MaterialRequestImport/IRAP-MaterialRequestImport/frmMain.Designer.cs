@@ -42,9 +42,11 @@
             this.bsiUserInfo = new DevExpress.XtraBars.BarStaticItem();
             this.bsiDBAddress = new DevExpress.XtraBars.BarStaticItem();
             this.bsiVersion = new DevExpress.XtraBars.BarStaticItem();
+            this.bbiAbout = new DevExpress.XtraBars.BarButtonItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.pnlBody = new DevExpress.XtraEditors.PanelControl();
@@ -59,8 +61,6 @@
             this.grdclmnRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnErrText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.bbiAbout = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).BeginInit();
@@ -144,6 +144,14 @@
             this.bsiVersion.Name = "bsiVersion";
             this.bsiVersion.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
+            // bbiAbout
+            // 
+            this.bbiAbout.Caption = "　关于　";
+            this.bbiAbout.Id = 9;
+            this.bbiAbout.LargeImageIndex = 3;
+            this.bbiAbout.Name = "bbiAbout";
+            this.bbiAbout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiAbout_ItemClick);
+            // 
             // imageCollection
             // 
             this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
@@ -168,6 +176,11 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiDataUpload, true);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "物料需求";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiAbout);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // ribbonStatusBar
             // 
@@ -319,18 +332,6 @@
             // 
             this.openFileDialog.Filter = "物料需求文件(*.xls;*.xlsx)|*.xls;*.xlsx|所有文件(*.*)|*.*";
             this.openFileDialog.Title = "请选择物料需求数据文件";
-            // 
-            // bbiAbout
-            // 
-            this.bbiAbout.Caption = "　关于　";
-            this.bbiAbout.Id = 9;
-            this.bbiAbout.LargeImageIndex = 3;
-            this.bbiAbout.Name = "bbiAbout";
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.bbiAbout);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // frmMain
             // 
