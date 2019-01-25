@@ -59,6 +59,8 @@
             this.grdclmnRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdclmnErrText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.bbiAbout = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBody)).BeginInit();
@@ -83,10 +85,11 @@
             this.bbiDataUpload,
             this.bsiUserInfo,
             this.bsiDBAddress,
-            this.bsiVersion});
+            this.bsiVersion,
+            this.bbiAbout});
             this.ribbon.LargeImages = this.imageCollection;
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 9;
+            this.ribbon.MaxItemId = 10;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -148,11 +151,13 @@
             this.imageCollection.Images.SetKeyName(0, "import.png");
             this.imageCollection.Images.SetKeyName(1, "stock_task.png");
             this.imageCollection.Images.SetKeyName(2, "upload_database.png");
+            this.imageCollection.Images.SetKeyName(3, "kdeprint_printer_infos.png");
             // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "供应链系统";
             // 
@@ -315,6 +320,18 @@
             this.openFileDialog.Filter = "物料需求文件(*.xls;*.xlsx)|*.xls;*.xlsx|所有文件(*.*)|*.*";
             this.openFileDialog.Title = "请选择物料需求数据文件";
             // 
+            // bbiAbout
+            // 
+            this.bbiAbout.Caption = "　关于　";
+            this.bbiAbout.Id = 9;
+            this.bbiAbout.LargeImageIndex = 3;
+            this.bbiAbout.Name = "bbiAbout";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiAbout);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            // 
             // frmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -368,5 +385,7 @@
         private DevExpress.XtraBars.BarStaticItem bsiVersion;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private DevExpress.XtraGrid.Columns.GridColumn grdclmnOrdinal;
+        private DevExpress.XtraBars.BarButtonItem bbiAbout;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
     }
 }
