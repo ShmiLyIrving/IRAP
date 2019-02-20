@@ -713,5 +713,89 @@ namespace IRAP.BL.MES
                 WriteLog.Instance.WriteEndSplitter(strProcedureName);
             }
         }
+
+        public IRAPJsonResult usp_CancelDeliverMaterual(
+            int communityID,
+            long pwoIssuingFactID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@PWOIssuingFactID", DbType.Int64, pwoIssuingFactID));
+                paramList.Add(new IRAPProcParameter("@ErrCode", DbType.Int32, ParameterDirection.Output, 4));
+                paramList.Add(new IRAPProcParameter("@ErrText", DbType.String, ParameterDirection.Output, 400));
+                WriteLog.Instance.Write(
+                    "执行存储过程 IRAPMES..usp_CancelDeliverMaterual，" +
+                    $"参数：CommunityID={communityID}|PWOIssuingFactID={pwoIssuingFactID}",
+                    strProcedureName);
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                {
+                    IRAPError error =
+                        conn.CallProc(
+                            "IRAPMES..usp_CancelDeliverMaterual",
+                            ref paramList);
+                    errCode = error.ErrCode;
+                    errText = error.ErrText;
+
+                    Hashtable rtnParams = new Hashtable();
+                    if (errCode == 0)
+                    {
+                        foreach (IRAPProcParameter param in paramList)
+                        {
+                            if (param.Direction == ParameterDirection.InputOutput ||
+                                param.Direction == ParameterDirection.Output)
+                            {
+                                if (param.DbType == DbType.Int32 && param.Value == DBNull.Value)
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), 0);
+                                else
+                                    rtnParams.Add(param.ParameterName.Replace("@", ""), param.Value);
+                            }
+                        }
+
+                        string text = "";
+                        foreach (string key in rtnParams.Keys)
+                        {
+                            text += $"{key}={rtnParams[key]}|";
+                        }
+                        WriteLog.Instance.Write($"返回参数：{text}", strProcedureName);
+                    }
+                    else
+                    {
+                        WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
+                    }
+
+                    return Json(rtnParams);
+                }
+                #endregion
+            }
+            catch (Exception error)
+            {
+                errCode = 99000;
+                errText =
+                    string.Format(
+                        "调用 IRAPMES..usp_CancelDeliverMaterual 过程发生异常：{0}",
+                        error.Message);
+                WriteLog.Instance.Write($"({errCode}){errText}", strProcedureName);
+                return Json(new Hashtable());
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
     }
 }
