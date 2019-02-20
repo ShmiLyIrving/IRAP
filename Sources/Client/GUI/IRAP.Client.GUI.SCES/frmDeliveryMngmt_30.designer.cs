@@ -58,7 +58,9 @@
             this.report = new FastReport.Report();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.btnDeletePWO = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.btnDeletePWO1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnReprint1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearchByMaterialCode = new DevExpress.XtraEditors.SimpleButton();
             this.btnDeliver1 = new DevExpress.XtraEditors.SimpleButton();
@@ -569,6 +571,7 @@
             // 
             // xtraTabPage1
             // 
+            this.xtraTabPage1.Controls.Add(this.btnDeletePWO);
             this.xtraTabPage1.Controls.Add(this.btnReprint);
             this.xtraTabPage1.Controls.Add(this.btnSyncMO);
             this.xtraTabPage1.Controls.Add(this.groupControl1);
@@ -579,8 +582,21 @@
             this.xtraTabPage1.Size = new System.Drawing.Size(821, 379);
             this.xtraTabPage1.Text = "按目标仓储地点";
             // 
+            // btnDeletePWO
+            // 
+            this.btnDeletePWO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeletePWO.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
+            this.btnDeletePWO.Appearance.Options.UseFont = true;
+            this.btnDeletePWO.Location = new System.Drawing.Point(706, 259);
+            this.btnDeletePWO.Name = "btnDeletePWO";
+            this.btnDeletePWO.Size = new System.Drawing.Size(108, 28);
+            this.btnDeletePWO.TabIndex = 6;
+            this.btnDeletePWO.Text = "删除订单";
+            this.btnDeletePWO.Click += new System.EventHandler(this.btnDeletePWO_Click);
+            // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.btnDeletePWO1);
             this.xtraTabPage2.Controls.Add(this.btnReprint1);
             this.xtraTabPage2.Controls.Add(this.btnSearchByMaterialCode);
             this.xtraTabPage2.Controls.Add(this.btnDeliver1);
@@ -589,6 +605,18 @@
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(821, 379);
             this.xtraTabPage2.Text = "按子项物料";
+            // 
+            // btnDeletePWO1
+            // 
+            this.btnDeletePWO1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeletePWO1.Appearance.Font = new System.Drawing.Font("新宋体", 12F);
+            this.btnDeletePWO1.Appearance.Options.UseFont = true;
+            this.btnDeletePWO1.Location = new System.Drawing.Point(706, 259);
+            this.btnDeletePWO1.Name = "btnDeletePWO1";
+            this.btnDeletePWO1.Size = new System.Drawing.Size(108, 28);
+            this.btnDeletePWO1.TabIndex = 9;
+            this.btnDeletePWO1.Text = "删除订单";
+            this.btnDeletePWO1.Click += new System.EventHandler(this.btnDeletePWO1_Click);
             // 
             // btnReprint1
             // 
@@ -1049,5 +1077,7 @@
         private DevExpress.XtraEditors.SimpleButton btnDeliver1;
         private DevExpress.XtraEditors.SimpleButton btnReprint1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraEditors.SimpleButton btnDeletePWO;
+        private DevExpress.XtraEditors.SimpleButton btnDeletePWO1;
     }
 }

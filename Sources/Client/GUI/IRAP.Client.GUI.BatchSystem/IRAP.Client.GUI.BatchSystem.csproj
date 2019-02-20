@@ -175,6 +175,12 @@
     <Compile Include="frmRunningSPPModify.Designer.cs">
       <DependentUpon>frmRunningSPPModify.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTrackByLotNumber_GH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTrackByLotNumber_GH.Designer.cs">
+      <DependentUpon>frmTrackByLotNumber_GH.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSmeltProductionPlanImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRunningSPPModify.resx">
       <DependentUpon>frmRunningSPPModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTrackByLotNumber_GH.resx">
+      <DependentUpon>frmTrackByLotNumber_GH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSmeltProductionPlanImport.resx">
       <DependentUpon>frmSmeltProductionPlanImport.cs</DependentUpon>

@@ -1492,6 +1492,39 @@ namespace IRAP.Client.GUI.MESPDC.UserControls
             {
                 return;
             }
+
+            #region 要求操作员确认开炉的配料信息
+            BindingList<SmeltMaterialItemClient> datas =
+                grdBurdenInfo.DataSource as BindingList<SmeltMaterialItemClient>;
+            if (datas != null)
+            {
+                string strTemp = "";                
+                foreach (SmeltMaterialItemClient data in datas)
+                {
+                    if (data.LotNumber.Trim() != "")
+                    {
+                        strTemp +=
+                            $"\t代码:{data.T101Code}," +
+                            $"名称:{data.T101Name}," +
+                            $"批次号:{data.LotNumber}," +
+                            $"数量:{data.MaterialQuantity}\n";
+                    }
+                }
+
+                if (strTemp != "")
+                {
+                    if (XtraMessageBox.Show(
+                        "在开炉生产前，请先确认一下开炉配料是否完整：\n" +
+                        $"{strTemp}\n" +
+                        "如果开炉配料已填写完整，请点击“Yes”，否则请点击“否”",
+                        "请确认",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning) != DialogResult.Yes)
+                        return;
+                }
+            }
+            #endregion
+
             if (!StartProduction())
             {
                 return;

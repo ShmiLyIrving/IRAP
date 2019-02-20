@@ -513,5 +513,161 @@ namespace IRAP.Client.GUI.SCES
                     btnSearchByMaterialCode.PerformClick();
             }
         }
+
+        private void btnDeletePWO_Click(object sender, EventArgs e)
+        {
+            int index = grdvOrders.GetFocusedDataSourceRowIndex();
+            if (index >= 0)
+            {
+                if (XtraMessageBox.Show(
+                    "请确认是否要删除：\n"+
+                    $"      订单号：{orders[index].MONumber}\n"+
+                    $"      行  号：{orders[index].MOLineNo}\n"+
+                    "的订单？",
+                    "请确认",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string strProcedureName =
+                        $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+                    WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                    try
+                    {
+                        int errCode = 0;
+                        string errText = "";
+
+                        IRAPMESBatchClient.Instance.usp_CancelDeliverMaterual(
+                            IRAPUser.Instance.CommunityID,
+                            orders[index].FactID,
+                            out errCode,
+                            out errText);
+                        WriteLog.Instance.Write(
+                            $"({errCode}){errText}",
+                            strProcedureName);
+                        if (errCode == 0)
+                        {
+                            XtraMessageBox.Show(
+                                errText,
+                                "删除订单",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            XtraMessageBox.Show(
+                                errText,
+                                "删除订单",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception error)
+                    {
+                        WriteLog.Instance.Write(error.Message, strProcedureName);
+                        XtraMessageBox.Show(
+                            $"在删除订单时发生错误：{error.Message}",
+                            "出错啦",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                    }
+
+                    btnRefresh.PerformClick();
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show(
+                    "请选择一个订单！",
+                    "删除订单",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnDeletePWO1_Click(object sender, EventArgs e)
+        {
+            int index = grdvPWOs.GetFocusedDataSourceRowIndex();
+            
+            if (index >= 0)
+            {
+                List<PWOToDeliverByMaterialCode> pwos =
+                    grdPWOs.DataSource as List<PWOToDeliverByMaterialCode>;
+                if (pwos != null)
+                {
+                    if (XtraMessageBox.Show(
+                        "请确认是否要删除：\n" +
+                        $"      订单号：{pwos[index].MONumber}\n" +
+                        $"      行  号：{pwos[index].MOLineNo}\n" +
+                        "的订单？",
+                        "请确认",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        string strProcedureName =
+                            $"{className}.{MethodBase.GetCurrentMethod().Name}";
+
+                        WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+                        try
+                        {
+                            int errCode = 0;
+                            string errText = "";
+
+                            IRAPMESBatchClient.Instance.usp_CancelDeliverMaterual(
+                                IRAPUser.Instance.CommunityID,
+                                pwos[index].FactID,
+                                out errCode,
+                                out errText);
+                            WriteLog.Instance.Write(
+                                $"({errCode}){errText}",
+                                strProcedureName);
+                            if (errCode == 0)
+                            {
+                                XtraMessageBox.Show(
+                                    errText,
+                                    "删除订单",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                XtraMessageBox.Show(
+                                    errText,
+                                    "删除订单",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            WriteLog.Instance.Write(error.Message, strProcedureName);
+                            XtraMessageBox.Show(
+                                $"在删除订单时发生错误：{error.Message}",
+                                "出错啦",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            WriteLog.Instance.WriteEndSplitter(strProcedureName);
+                        }
+
+                        btnSearchByMaterialCode.PerformClick();
+                    }
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show(
+                    "请选择一个订单！",
+                    "删除订单",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
     }
 }
