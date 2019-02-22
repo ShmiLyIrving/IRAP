@@ -38,7 +38,7 @@ namespace IRAPPrinterServer
 
             string param_PDFPrinter = SystemParams.Instance.PDFPrinter;
             lblPDFPrinterStatus.Text =
-                $"[{param_PDFPrinter}]打印机未安装，某些打印功能无法使用";
+                $"[{param_PDFPrinter}]打印机未安装，无法生成 PDF 文件";
             lblPDFPrinterStatus.ForeColor = Color.Red;
             SystemParams.Instance.CanPrintToPDF = false;
             foreach (string prtName in PrinterSettings.InstalledPrinters)
@@ -86,7 +86,6 @@ namespace IRAPPrinterServer
             edtFilterString.Text = SystemParams.Instance.FilterString;
 
             chkGenPDFtoPrint.Checked = SystemParams.Instance.GenPDFAndPrintMode;
-
         }
 
         private void edtBrokeURI_Validated(object sender, EventArgs e)

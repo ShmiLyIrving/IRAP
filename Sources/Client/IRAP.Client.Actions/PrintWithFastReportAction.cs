@@ -5,8 +5,10 @@ using System.Reflection;
 using System.Drawing.Printing;
 using System.Data;
 using System.Text;
+using System.IO;
 
 using FastReport;
+using Spire.Pdf;
 
 using IRAP.Global;
 using IRAP.WCF.Client.Method;
@@ -24,11 +26,19 @@ namespace IRAP.Client.Actions
         private string dataSource = "";
         private string sqlCmd = "";
 
+        private string tempFilePath = "";
+
         public PrintWithFastReportAction(
             XmlNode actionParams,
             ExtendEventHandler extendAction) :
             base(actionParams, extendAction)
         {
+            tempFilePath = $"{AppDomain.CurrentDomain.BaseDirectory}temp\\";
+            if (!Directory.Exists(tempFilePath))
+            {
+                Directory.CreateDirectory(tempFilePath);
+            }
+
             if (actionParams.Attributes["DataSource"] == null)
             {
                 dataSource = "CUSTOM";
@@ -131,7 +141,11 @@ namespace IRAP.Client.Actions
                 report.Parameters.FindByName(paramName).Value = paramValue;
         }
 
-        public void DoAction()
+        public void DoAction(
+            bool printerMode,
+            bool canGenerate,
+            string generatePrinterName,
+            string printerName)
         {
             string strProcedureName =
                 string.Format(
@@ -169,15 +183,47 @@ namespace IRAP.Client.Actions
                                 if (prntSettings == null)
                                 {
                                     prntSettings = new PrinterSettings();
-                                    //report.ShowPrintDialog(out prntSettings);
                                 }
 
-                                for (int j = 1; j <= datas[i].Cnt; j++)
+                                if (printerMode && canGenerate)
                                 {
-                                    WriteLog.Instance.Write(
-                                        string.Format("正在打印第{0}个标签的第{1}份拷贝。", i, j),
-                                        strProcedureName);
+                                    #region 生成 PDF 文件后静默打印 PDF 文件
+                                    prntSettings.PrinterName = generatePrinterName;
+                                    prntSettings.PrintToFile = true;
+                                    prntSettings.PrintFileName =
+                                        $"{tempFilePath}{Guid.NewGuid().ToString()}.pdf";
                                     report.PrintPrepared(prntSettings);
+
+                                    PdfDocument doc = new PdfDocument();
+                                    doc.LoadFromFile(
+                                        prntSettings.PrintFileName,
+                                        FileFormat.PDF);
+                                    doc.PrintSettings.PrintController = new StandardPrintController();
+                                    doc.PrintSettings.PrinterName = printerName;
+
+                                    for (int j = 1; i <= datas[i].Cnt; j++)
+                                    {
+                                        WriteLog.Instance.Write(
+                                            string.Format("正在打印第{0}个标签的第{1}份拷贝。", i, j),
+                                            strProcedureName);
+                                        doc.Print();
+                                    }
+
+                                    doc.Close();
+
+                                    File.Delete(prntSettings.PrintFileName);
+                                    #endregion
+                                }
+                                else
+                                {
+
+                                    for (int j = 1; j <= datas[i].Cnt; j++)
+                                    {
+                                        WriteLog.Instance.Write(
+                                            string.Format("正在打印第{0}个标签的第{1}份拷贝。", i, j),
+                                            strProcedureName);
+                                        report.PrintPrepared(prntSettings);
+                                    }
                                 }
                             }
                         }
@@ -225,20 +271,42 @@ namespace IRAP.Client.Actions
 
                         if (report.Prepare())
                         {
-                            //if (prntSettings == null)
-                            //{
-                            //    prntSettings = new PrinterSettings();
-                            //    report.ShowPrintDialog(out prntSettings);
-                            //}
-
-                            //report.PrintPrepared(prntSettings);
-                            try
+                            if (prntSettings == null)
                             {
-                                report.PrintPrepared();
+                                prntSettings = new PrinterSettings();
                             }
-                            catch (Exception error)
+
+                            if (printerMode && canGenerate)
                             {
-                                throw new Exception(string.Format("打印时出错：{0}", error.Message));
+                                #region 生成 PDF 文件后静默打印 PDF 文件
+                                prntSettings.PrinterName = generatePrinterName;
+                                prntSettings.PrintToFile = true;
+                                prntSettings.PrintFileName =
+                                    $"{tempFilePath}{Guid.NewGuid().ToString()}.pdf";
+                                report.PrintPrepared(prntSettings);
+
+                                PdfDocument doc = new PdfDocument();
+                                doc.LoadFromFile(
+                                    prntSettings.PrintFileName,
+                                    FileFormat.PDF);
+                                doc.PrintSettings.PrintController = new StandardPrintController();
+                                doc.PrintSettings.PrinterName = printerName;
+                                doc.Print();
+                                doc.Close();
+
+                                File.Delete(prntSettings.PrintFileName);
+                                #endregion
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    report.PrintPrepared();
+                                }
+                                catch (Exception error)
+                                {
+                                    throw new Exception(string.Format("打印时出错：{0}", error.Message));
+                                }
                             }
                         }
                         #endregion

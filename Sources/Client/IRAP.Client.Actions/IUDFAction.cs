@@ -7,6 +7,10 @@ namespace IRAP.Client.Actions
 {
     public interface IUDFAction
     {
-        void DoAction();
+        void DoAction(
+            bool printerMode,
+            bool canGenerate,
+            string generatePrinterName,
+            string printerName);
     }
 }

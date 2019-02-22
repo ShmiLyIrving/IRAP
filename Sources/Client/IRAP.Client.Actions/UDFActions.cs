@@ -7,7 +7,13 @@ namespace IRAP.Client.Actions
 {
     public class UDFActions
     {
-        public static void DoActions(string actionParams, ExtendEventHandler extendAction)
+        public static void DoActions(
+            string actionParams, 
+            bool printerMode,
+            bool canGenerate,
+            string generatePrinterName,
+            string printerName,
+            ExtendEventHandler extendAction)
         {
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(actionParams);
@@ -28,7 +34,11 @@ namespace IRAP.Client.Actions
 
                         try
                         {
-                            action.DoAction();
+                            action.DoAction(
+                                printerMode,
+                                canGenerate,
+                                generatePrinterName,
+                                printerName);
                         }
                         catch (Exception error)
                         {
@@ -40,7 +50,11 @@ namespace IRAP.Client.Actions
         }
 
         public static void DoActions(
-            XmlNode xmlNode, 
+            XmlNode xmlNode,
+            bool printerMode,
+            bool canGenerate,
+            string generatePrinterName,
+            string printerName,
             ExtendEventHandler extendAction)
         {
             foreach (XmlNode node in xmlNode.SelectNodes("ROOT/Action"))
@@ -59,7 +73,11 @@ namespace IRAP.Client.Actions
 
                         try
                         {
-                            action.DoAction();
+                            action.DoAction(
+                                printerMode,
+                                canGenerate,
+                                generatePrinterName,
+                                printerName);
                         }
                         catch (Exception error)
                         {
