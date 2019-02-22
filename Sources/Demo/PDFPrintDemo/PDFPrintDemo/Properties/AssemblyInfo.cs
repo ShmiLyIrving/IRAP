@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("IRAP.Client.GUI.MESPDC")]
+[assembly: AssemblyTitle("PDFPrintDemo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("江苏芍园科技有限责任公司")]
-[assembly: AssemblyProduct("IRAP.Client.GUI.MESPDC")]
-[assembly: AssemblyCopyright("Copyright © Softland 2016")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("PDFPrintDemo")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("0d5f3a99-2460-482a-aa57-5a2be82995d4")]
+[assembly: Guid("9124cdce-d95f-42a6-a30b-733db1c2b705")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
@@ -31,8 +31,6 @@ using System.Runtime.InteropServices;
 //
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
-[assembly: AssemblyVersion("6.2.57.269")]
-//[assembly: AssemblyVersion("1.0.0.0")]
-//[assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: AssemblyInformationalVersion("6.2.57.269")]
-[assembly: AssemblyFileVersion("6.2.0221.269")]
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
