@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7B31B532-0CA4-451A-A9AB-AE49277FB003}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{9124CDCE-D95F-42A6-A30B-733DB1C2B705}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRAP.Client.Actions</RootNamespace>
-    <AssemblyName>IRAP.Client.Actions</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>PDFPrintDemo</RootNamespace>
+    <AssemblyName>PDFPrintDemo</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -20,74 +22,82 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Packages\FastReport\FastReport.dll</HintPath>
+    <Reference Include="FastReport">
+      <HintPath>..\..\..\..\Packages\FastReport\FastReport.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Packages\FastReport\FastReport.Bars.dll</HintPath>
+    <Reference Include="FastReport.Bars">
+      <HintPath>..\..\..\..\Packages\FastReport\FastReport.Bars.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Editor, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Packages\FastReport\FastReport.Editor.dll</HintPath>
+    <Reference Include="FastReport.Editor">
+      <HintPath>..\..\..\..\Packages\FastReport\FastReport.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Spire.License, Version=1.3.7.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\..\Tools\IRAPPrinterServer_60010\packages\Spire.PDF.5.2.3\lib\net40\Spire.License.dll</HintPath>
+      <HintPath>..\packages\Spire.PDF.5.2.3\lib\net40\Spire.License.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Spire.Pdf, Version=5.2.3.2040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\Tools\IRAPPrinterServer_60010\packages\Spire.PDF.5.2.3\lib\net40\Spire.Pdf.dll</HintPath>
+      <HintPath>..\packages\Spire.PDF.5.2.3\lib\net40\Spire.Pdf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomAction.cs" />
-    <Compile Include="CustomActionFactory.cs" />
-    <Compile Include="ExtendEventHandler.cs" />
-    <Compile Include="IUDFAction.cs" />
-    <Compile Include="IUDFActionFactory.cs" />
-    <Compile Include="PrintWithFastReportAction.cs" />
-    <Compile Include="PrintWithFastReportFactory.cs" />
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemplateData.cs" />
-    <Compile Include="UDFActions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="IRAP.Client.Actions.cd" />
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\WIPTransferTrackSheet.frx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Global\IRAP.Global\IRAP.Global.csproj">
-      <Project>{325ffd07-7491-45c3-86f3-85f7def4c726}</Project>
-      <Name>IRAP.Global</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IRAP.WCF.Client.Method\IRAP.WCF.Client.Method.csproj">
-      <Project>{6f4ad952-871c-4594-bbe7-8c7ea61b63be}</Project>
-      <Name>IRAP.WCF.Client.Method</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
