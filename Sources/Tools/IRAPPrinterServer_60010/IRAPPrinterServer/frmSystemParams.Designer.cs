@@ -44,9 +44,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.edtFilterString = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.gpbGenPDFAndPrintMode = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblPDFPrinterStatus = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cboPrinter = new System.Windows.Forms.ComboBox();
+            this.chkGenPDFtoPrint = new System.Windows.Forms.CheckBox();
             this.gpxESBParams.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.gpbGenPDFAndPrintMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpxESBParams
@@ -148,11 +155,53 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
+            // gpbGenPDFAndPrintMode
+            // 
+            this.gpbGenPDFAndPrintMode.Controls.Add(this.chkGenPDFtoPrint);
+            this.gpbGenPDFAndPrintMode.Controls.Add(this.cboPrinter);
+            this.gpbGenPDFAndPrintMode.Controls.Add(this.label4);
+            this.gpbGenPDFAndPrintMode.Controls.Add(this.lblPDFPrinterStatus);
+            this.gpbGenPDFAndPrintMode.Controls.Add(this.label3);
+            resources.ApplyResources(this.gpbGenPDFAndPrintMode, "gpbGenPDFAndPrintMode");
+            this.gpbGenPDFAndPrintMode.Name = "gpbGenPDFAndPrintMode";
+            this.gpbGenPDFAndPrintMode.TabStop = false;
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // lblPDFPrinterStatus
+            // 
+            resources.ApplyResources(this.lblPDFPrinterStatus, "lblPDFPrinterStatus");
+            this.lblPDFPrinterStatus.Name = "lblPDFPrinterStatus";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // cboPrinter
+            // 
+            this.cboPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPrinter.FormattingEnabled = true;
+            resources.ApplyResources(this.cboPrinter, "cboPrinter");
+            this.cboPrinter.Name = "cboPrinter";
+            this.cboPrinter.SelectedIndexChanged += new System.EventHandler(this.cboPrinter_SelectedIndexChanged);
+            // 
+            // chkGenPDFtoPrint
+            // 
+            resources.ApplyResources(this.chkGenPDFtoPrint, "chkGenPDFtoPrint");
+            this.chkGenPDFtoPrint.Name = "chkGenPDFtoPrint";
+            this.chkGenPDFtoPrint.UseVisualStyleBackColor = true;
+            this.chkGenPDFtoPrint.CheckedChanged += new System.EventHandler(this.chkGenPDFtoPrint_CheckedChanged);
+            // 
             // frmSystemParams
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.gpbGenPDFAndPrintMode);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -171,6 +220,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.gpbGenPDFAndPrintMode.ResumeLayout(false);
+            this.gpbGenPDFAndPrintMode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,5 +244,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox edtFilterString;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox gpbGenPDFAndPrintMode;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblPDFPrinterStatus;
+        private System.Windows.Forms.ComboBox cboPrinter;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkGenPDFtoPrint;
     }
 }

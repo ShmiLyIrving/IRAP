@@ -236,6 +236,8 @@ namespace IRAPPrinterServer
         {
             if (canClosed)
             {
+                notifyIcon.Dispose();
+
                 e.Cancel = false;
             }
             else
