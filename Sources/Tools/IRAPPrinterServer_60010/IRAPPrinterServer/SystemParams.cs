@@ -8,9 +8,8 @@ namespace IRAPPrinterServer
 {
     internal class SystemParams
     {
+        #region 单例类
         private static SystemParams _instance = null;
-
-        public SystemParams() { }
 
         public static SystemParams Instance
         {
@@ -21,6 +20,9 @@ namespace IRAPPrinterServer
                 return _instance;
             }
         }
+        #endregion
+
+        public SystemParams() { }
 
         /// <summary>
         /// 是否记录日志
@@ -62,6 +64,37 @@ namespace IRAPPrinterServer
         {
             get { return GetString("FilterString"); }
             set { SaveParams("FilterString", value); }
+        }
+
+        /// <summary>
+        /// 生成 PDF 文件后再打印模式
+        /// </summary>
+        public bool GenPDFAndPrintMode
+        {
+            get { return GetBoolean("GenPDFAndPrint"); }
+            set { SaveParams("GenPDFAndPrint", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 打印生成 PDF 文件的打印机名称(常量)
+        /// </summary>
+        public string PDFPrinter
+        {
+            get { return "Microsoft Print To PDF"; }
+        }
+
+        /// <summary>
+        /// 能否打印输出为 PDF 文件
+        /// </summary>
+        public bool CanPrintToPDF { get; set; } = false;
+
+        /// <summary>
+        /// 打印输出的打印机名称
+        /// </summary>
+        public string PrinterName
+        {
+            get { return GetString("PrinterName"); }
+            set { SaveParams("PrinterName", value); }
         }
 
         private void SaveParams(string key, string value)

@@ -71,10 +71,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apache.NMS">
-      <HintPath>..\..\..\..\..\..\Apache.NMS-1.7.1\net-4.0\release\Apache.NMS.dll</HintPath>
+      <HintPath>..\..\..\..\Packages\Apache.NMS.1.6.0\net-4.0\release\Apache.NMS.dll</HintPath>
     </Reference>
     <Reference Include="Apache.NMS.ActiveMQ">
-      <HintPath>..\..\..\..\..\..\Apache.NMS.ActiveMQ-1.7.2\build\net-4.0\release\Apache.NMS.ActiveMQ.dll</HintPath>
+      <HintPath>..\..\..\..\Packages\Apache.NMS.ActiveMQ-1.6.5\build\net-4.0\release\Apache.NMS.ActiveMQ.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
