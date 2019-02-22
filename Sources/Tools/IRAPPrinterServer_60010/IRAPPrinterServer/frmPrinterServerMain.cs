@@ -189,6 +189,10 @@ namespace IRAPPrinterServer
                         {
                             UDFActions.DoActions(
                                 node,
+                                SystemParams.Instance.GenPDFAndPrintMode,
+                                SystemParams.Instance.CanPrintToPDF,
+                                SystemParams.Instance.PDFPrinter,
+                                SystemParams.Instance.PrinterName,
                                 null);
                         }
                     }

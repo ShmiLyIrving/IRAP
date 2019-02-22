@@ -45,11 +45,11 @@
             this.edtFilterString = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gpbGenPDFAndPrintMode = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblPDFPrinterStatus = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cboPrinter = new System.Windows.Forms.ComboBox();
             this.chkGenPDFtoPrint = new System.Windows.Forms.CheckBox();
+            this.cboPrinter = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblPDFPrinterStatus = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.gpxESBParams.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -166,20 +166,12 @@
             this.gpbGenPDFAndPrintMode.Name = "gpbGenPDFAndPrintMode";
             this.gpbGenPDFAndPrintMode.TabStop = false;
             // 
-            // label3
+            // chkGenPDFtoPrint
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // lblPDFPrinterStatus
-            // 
-            resources.ApplyResources(this.lblPDFPrinterStatus, "lblPDFPrinterStatus");
-            this.lblPDFPrinterStatus.Name = "lblPDFPrinterStatus";
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
+            resources.ApplyResources(this.chkGenPDFtoPrint, "chkGenPDFtoPrint");
+            this.chkGenPDFtoPrint.Name = "chkGenPDFtoPrint";
+            this.chkGenPDFtoPrint.UseVisualStyleBackColor = true;
+            this.chkGenPDFtoPrint.CheckedChanged += new System.EventHandler(this.chkGenPDFtoPrint_CheckedChanged);
             // 
             // cboPrinter
             // 
@@ -189,12 +181,20 @@
             this.cboPrinter.Name = "cboPrinter";
             this.cboPrinter.SelectedIndexChanged += new System.EventHandler(this.cboPrinter_SelectedIndexChanged);
             // 
-            // chkGenPDFtoPrint
+            // label4
             // 
-            resources.ApplyResources(this.chkGenPDFtoPrint, "chkGenPDFtoPrint");
-            this.chkGenPDFtoPrint.Name = "chkGenPDFtoPrint";
-            this.chkGenPDFtoPrint.UseVisualStyleBackColor = true;
-            this.chkGenPDFtoPrint.CheckedChanged += new System.EventHandler(this.chkGenPDFtoPrint_CheckedChanged);
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // lblPDFPrinterStatus
+            // 
+            resources.ApplyResources(this.lblPDFPrinterStatus, "lblPDFPrinterStatus");
+            this.lblPDFPrinterStatus.Name = "lblPDFPrinterStatus";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
             // 
             // frmSystemParams
             // 
