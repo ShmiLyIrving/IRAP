@@ -46,12 +46,12 @@
       <HintPath>..\..\..\Packages\FastReport\FastReport.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Spire.License, Version=1.3.7.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\..\Tools\IRAPPrinterServer_60010\packages\Spire.PDF.5.2.3\lib\net40\Spire.License.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Spire.License.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Pdf, Version=5.2.3.2040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\Tools\IRAPPrinterServer_60010\packages\Spire.PDF.5.2.3\lib\net40\Spire.Pdf.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Spire.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,6 +88,10 @@
       <Project>{6f4ad952-871c-4594-bbe7-8c7ea61b63be}</Project>
       <Name>IRAP.WCF.Client.Method</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Spire.License.dll" />
+    <Content Include="Spire.Pdf.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

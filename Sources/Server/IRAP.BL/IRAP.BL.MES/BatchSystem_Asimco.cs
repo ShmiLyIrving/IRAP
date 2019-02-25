@@ -10,6 +10,7 @@ using IRAP.Global;
 using IRAPORM;
 using IRAPShared;
 using IRAP.Entities.MES;
+using IRAP.Entities.Asimco;
 
 namespace IRAP.BL.MES
 {
@@ -169,6 +170,501 @@ namespace IRAP.BL.MES
                     errText = 
                         string.Format(
                             "调用函数 IRAPMES..ufn_GetList_SmeltBatchPWONo 发生异常：{0}", 
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 原材料信息追溯(钢环)
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="t102Code"></param>
+        /// <param name="lotNumber"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetTrack_Product(
+            int communityID,
+            string t102Code,
+            string lotNumber,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<GetTrack_Product> datas = 
+                    new List<GetTrack_Product>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@T102Code", DbType.String, t102Code));
+                paramList.Add(new IRAPProcParameter("@LotNumber", DbType.String, lotNumber));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetTrack_Product(" +
+                            "@CommunityID, @T102Code, @LotNumber, "+
+                            "@SysLogID) ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<GetTrack_Product> lstDatas =
+                            conn.CallTableFunc<GetTrack_Product>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用函数 IRAPMES..ufn_GetTrack_Product 发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 加工工序信息追溯(钢环)
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="wfInstanceID"></param>
+        /// <param name="lotNumber"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetTrack_ProcedureProcess(
+            int communityID,
+            string wfInstanceID,
+            string lotNumber,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<GetTrack_ProcedureProcess> datas =
+                    new List<GetTrack_ProcedureProcess>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@WFInstsanceID", DbType.String, wfInstanceID));
+                paramList.Add(new IRAPProcParameter("@LotNumber", DbType.String, lotNumber));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetTrack_ProcedureProcess(" +
+                            "@CommunityID, @WFInstanceID, @LotNumber, " +
+                            "@SysLogID) ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<GetTrack_ProcedureProcess> lstDatas =
+                            conn.CallTableFunc<GetTrack_ProcedureProcess>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用函数 IRAPMES..ufn_GetTrack_ProcedureProcess 发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 生产参数查询
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="factID"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetFactList_Method(
+            int communityID,
+            long factID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<GetFactList_Method> datas =
+                    new List<GetFactList_Method>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetFactList_Method(" +
+                            "@CommunityID, @FactID, " +
+                            "@SysLogID) ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<GetFactList_Method> lstDatas =
+                            conn.CallTableFunc<GetFactList_Method>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用函数 IRAPMES..ufn_GetFactList_Method 发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 质量检查结果查询
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="factID"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetFactList_Inspect(
+            int communityID,
+            long factID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<GetFactList_Inspect> datas =
+                    new List<GetFactList_Inspect>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetFactList_Inspect(" +
+                            "@CommunityID, @FactID, " +
+                            "@SysLogID) ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<GetFactList_Inspect> lstDatas =
+                            conn.CallTableFunc<GetFactList_Inspect>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用函数 IRAPMES..ufn_GetFactList_Inspect 发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 批次出入库信息
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="wfInstanceID"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetFact_StorageRecord(
+            int communityID,
+            string wfInstanceID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<GetFact_StorageRecord> datas =
+                    new List<GetFact_StorageRecord>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@WFInstanceID", DbType.String, wfInstanceID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetFact_StorageRecord(" +
+                            "@CommunityID, @WFInstanceID, " +
+                            "@SysLogID) ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<GetFact_StorageRecord> lstDatas =
+                            conn.CallTableFunc<GetFact_StorageRecord>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用函数 IRAPMES..ufn_GetFact_StorageRecord 发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        public IRAPJsonResult ufn_GetFact_Material(
+            int communityID,
+            string skuid,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<GetFact_StorageRecord> datas =
+                    new List<GetFact_StorageRecord>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@SKUID", DbType.String, skuid));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetFact_Material(" +
+                            "@CommunityID, @SKUID, " +
+                            "@SysLogID) ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<GetFact_StorageRecord> lstDatas =
+                            conn.CallTableFunc<GetFact_StorageRecord>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用函数 IRAPMES..ufn_GetFact_Material 发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);

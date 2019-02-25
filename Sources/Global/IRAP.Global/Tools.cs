@@ -501,5 +501,35 @@ namespace IRAP.Global
             int tmp = 0;
             return int.TryParse(text, out tmp);
         }
+
+        /// <summary>
+        /// 判断文件是否被占用
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static bool IsFileInUsing(string fileName)
+        {
+            bool inUsing = true;
+
+            FileStream fs = null;
+            try
+            {
+                fs =
+                    new FileStream(
+                        fileName,
+                        FileMode.Open,
+                        FileAccess.Read,
+                        FileShare.None);
+                inUsing = false;
+            }
+            catch { }
+            finally
+            {
+                if (fs != null)
+                    fs.Close();
+            }
+
+            return inUsing;
+        }
     }
 }
