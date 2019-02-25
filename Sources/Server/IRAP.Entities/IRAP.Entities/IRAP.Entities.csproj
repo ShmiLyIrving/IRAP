@@ -47,6 +47,12 @@
   <ItemGroup>
     <Compile Include="Asimco\BoxOfCarton.cs" />
     <Compile Include="Asimco\Carton.cs" />
+    <Compile Include="Asimco\GetFactList_Inspect.cs" />
+    <Compile Include="Asimco\GetFactList_Method.cs" />
+    <Compile Include="Asimco\GetFact_Material.cs" />
+    <Compile Include="Asimco\GetFact_StorageRecord.cs" />
+    <Compile Include="Asimco\GetTrack_ProcedureProcess.cs" />
+    <Compile Include="Asimco\GetTrack_Product.cs" />
     <Compile Include="Asimco\PackageClient.cs" />
     <Compile Include="Asimco\PackageLine.cs" />
     <Compile Include="Asimco\RePrintBoxNumber.cs" />

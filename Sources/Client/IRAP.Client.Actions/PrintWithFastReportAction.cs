@@ -6,6 +6,8 @@ using System.Drawing.Printing;
 using System.Data;
 using System.Text;
 using System.IO;
+using System.Threading;
+using System.Windows.Forms;
 
 using FastReport;
 using Spire.Pdf;
@@ -194,6 +196,12 @@ namespace IRAP.Client.Actions
                                         $"{tempFilePath}{Guid.NewGuid().ToString()}.pdf";
                                     report.PrintPrepared(prntSettings);
 
+                                    while (Tools.IsFileInUsing(prntSettings.PrintFileName))
+                                    {
+                                        Thread.Sleep(100);
+                                        Application.DoEvents();
+                                    }
+
                                     PdfDocument doc = new PdfDocument();
                                     doc.LoadFromFile(
                                         prntSettings.PrintFileName,
@@ -210,6 +218,12 @@ namespace IRAP.Client.Actions
                                     }
 
                                     doc.Close();
+
+                                    while (Tools.IsFileInUsing(prntSettings.PrintFileName))
+                                    {
+                                        Thread.Sleep(100);
+                                        Application.DoEvents();
+                                    }
 
                                     File.Delete(prntSettings.PrintFileName);
                                     #endregion
@@ -285,6 +299,12 @@ namespace IRAP.Client.Actions
                                     $"{tempFilePath}{Guid.NewGuid().ToString()}.pdf";
                                 report.PrintPrepared(prntSettings);
 
+                                while (Tools.IsFileInUsing(prntSettings.PrintFileName))
+                                {
+                                    Thread.Sleep(100);
+                                    Application.DoEvents();
+                                }
+
                                 PdfDocument doc = new PdfDocument();
                                 doc.LoadFromFile(
                                     prntSettings.PrintFileName,
@@ -293,6 +313,12 @@ namespace IRAP.Client.Actions
                                 doc.PrintSettings.PrinterName = printerName;
                                 doc.Print();
                                 doc.Close();
+
+                                while (Tools.IsFileInUsing(prntSettings.PrintFileName))
+                                {
+                                    Thread.Sleep(100);
+                                    Application.DoEvents();
+                                }
 
                                 File.Delete(prntSettings.PrintFileName);
                                 #endregion
