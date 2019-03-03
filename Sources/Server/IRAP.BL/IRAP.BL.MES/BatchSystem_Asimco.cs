@@ -605,6 +605,15 @@ namespace IRAP.BL.MES
             }
         }
 
+        /// <summary>
+        /// 原材料信息追溯
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="skuid"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
         public IRAPJsonResult ufn_GetFact_Material(
             int communityID,
             string skuid,
@@ -665,6 +674,92 @@ namespace IRAP.BL.MES
                     errText =
                         string.Format(
                             "调用函数 IRAPMES..ufn_GetFact_Material 发生异常：{0}",
+                            error.Message);
+                    WriteLog.Instance.Write(errText, strProcedureName);
+                    WriteLog.Instance.Write(error.StackTrace, strProcedureName);
+                }
+                #endregion
+
+                return Json(datas);
+            }
+            finally
+            {
+                WriteLog.Instance.WriteEndSplitter(strProcedureName);
+            }
+        }
+
+        /// <summary>
+        /// 获取检验报告
+        /// </summary>
+        /// <param name="communityID"></param>
+        /// <param name="rf31PK"></param>
+        /// <param name="factID"></param>
+        /// <param name="sysLogID"></param>
+        /// <param name="errCode"></param>
+        /// <param name="errText"></param>
+        /// <returns></returns>
+        public IRAPJsonResult ufn_GetIQCReport(
+            int communityID,
+            long rf31PK,
+            long factID,
+            long sysLogID,
+            out int errCode,
+            out string errText)
+        {
+            string strProcedureName =
+                string.Format(
+                    "{0}.{1}",
+                    className,
+                    MethodBase.GetCurrentMethod().Name);
+
+            WriteLog.Instance.WriteBeginSplitter(strProcedureName);
+            try
+            {
+                List<GetIQCReport> datas =
+                    new List<GetIQCReport>();
+
+                #region 创建数据库调用参数组，并赋值
+                IList<IDataParameter> paramList = new List<IDataParameter>();
+                paramList.Add(new IRAPProcParameter("@CommunityID", DbType.Int32, communityID));
+                paramList.Add(new IRAPProcParameter("@RF31PK", DbType.Int64, rf31PK));
+                paramList.Add(new IRAPProcParameter("@FactID", DbType.Int64, factID));
+                paramList.Add(new IRAPProcParameter("@SysLogID", DbType.Int64, sysLogID));
+                #endregion
+
+                #region 执行数据库函数或存储过程
+                try
+                {
+                    using (IRAPSQLConnection conn = new IRAPSQLConnection())
+                    {
+                        string strSQL = "SELECT * " +
+                            "FROM IRAPMES..ufn_GetIQCReport(" +
+                            "@CommunityID, @RF31PK, @FactID, " +
+                            "@SysLogID) ORDER BY Ordinal";
+
+                        string msg = $"{strSQL} 参数：";
+                        for (int i = 0; i < paramList.Count; i++)
+                        {
+                            msg +=
+                                $"{paramList[i].ParameterName}=" +
+                                $"{paramList[i].Value.ToString()}|";
+                        }
+                        WriteLog.Instance.Write(msg, strProcedureName);
+
+                        IList<GetIQCReport> lstDatas =
+                            conn.CallTableFunc<GetIQCReport>(strSQL, paramList);
+                        datas = lstDatas.ToList();
+
+                        errCode = 0;
+                        errText = string.Format("调用成功！共获得 {0} 条记录", datas.Count);
+                        WriteLog.Instance.Write(errText, strProcedureName);
+                    }
+                }
+                catch (Exception error)
+                {
+                    errCode = 99000;
+                    errText =
+                        string.Format(
+                            "调用函数 IRAPMES..ufn_GetIQCReport 发生异常：{0}",
                             error.Message);
                     WriteLog.Instance.Write(errText, strProcedureName);
                     WriteLog.Instance.Write(error.StackTrace, strProcedureName);

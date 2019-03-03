@@ -51,6 +51,7 @@
     <Compile Include="Asimco\GetFactList_Method.cs" />
     <Compile Include="Asimco\GetFact_Material.cs" />
     <Compile Include="Asimco\GetFact_StorageRecord.cs" />
+    <Compile Include="Asimco\GetIQCReport.cs" />
     <Compile Include="Asimco\GetTrack_ProcedureProcess.cs" />
     <Compile Include="Asimco\GetTrack_Product.cs" />
     <Compile Include="Asimco\PackageClient.cs" />

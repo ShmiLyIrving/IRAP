@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="12/14/2018 20:14:03" ReportInfo.Modified="01/17/2019 10:29:28" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/14/2018 20:14:03" ReportInfo.Modified="03/01/2019 15:51:46" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,8 +36,8 @@ namespace FastReport
     <Parameter Name="T134AlternateCode" DataType="System.String"/>
     <Parameter Name="BarCode" DataType="System.String"/>
   </Dictionary>
-  <ReportPage Name="Page1" PaperWidth="96" PaperHeight="46" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
-    <DataBand Name="Data1" Width="362.88" Height="173.88">
+  <ReportPage Name="Page1" PaperWidth="100" PaperHeight="60" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
+    <DataBand Name="Data1" Width="378" Height="226.8">
       <TextObject Name="Text1" Left="18.9" Top="18.9" Width="66.15" Height="11.34" Text="机  型：" Font="黑体, 8pt"/>
       <TextObject Name="Text2" Left="18.9" Top="37.8" Width="66.15" Height="11.34" Text="零件号：" Font="黑体, 8pt"/>
       <TextObject Name="Text3" Left="18.9" Top="56.7" Width="66.15" Height="11.34" Text="环  别：" Font="黑体, 8pt"/>
