@@ -30,10 +30,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRAP.Entity.SSO", "..\..\Server\IRAP.Entities\IRAP.Entity.SSO\IRAP.Entity.SSO.csproj", "{DA96959D-CDD1-4533-B5E8-CF235C2D1C61}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

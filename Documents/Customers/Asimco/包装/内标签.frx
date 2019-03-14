@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="12/14/2018 20:14:03" ReportInfo.Modified="03/01/2019 15:51:32" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/14/2018 20:14:03" ReportInfo.Modified="03/04/2019 16:50:10" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,7 +30,7 @@ namespace FastReport
     <Parameter Name="Model" DataType="System.String"/>
     <Parameter Name="DrawingID" DataType="System.String"/>
     <Parameter Name="MaterialCategory" DataType="System.String"/>
-    <Parameter Name="BoxQty" DataType="System.String"/>
+    <Parameter Name="BoxQty" DataType="System.Int32"/>
     <Parameter Name="MaterialCode" DataType="System.String"/>
     <Parameter Name="LotNumber" DataType="System.String"/>
     <Parameter Name="CylinderID" DataType="System.String"/>
@@ -38,26 +38,26 @@ namespace FastReport
     <Parameter Name="T134AlternateCode" DataType="System.String"/>
     <Parameter Name="BarCode" DataType="System.String"/>
   </Dictionary>
-  <ReportPage Name="Page1" PaperWidth="100" PaperHeight="60" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
-    <DataBand Name="Data1" Width="378" Height="226.8">
-      <TextObject Name="Text1" Left="18.9" Top="15.12" Width="66.15" Height="11.34" Text="机  型：" Font="黑体, 8pt"/>
-      <TextObject Name="Text2" Left="18.9" Top="32.13" Width="66.15" Height="11.34" Text="零件号：" Font="黑体, 8pt"/>
-      <TextObject Name="Text3" Left="18.9" Top="49.14" Width="66.15" Height="11.34" Text="环  别：" Font="黑体, 8pt"/>
-      <BarcodeObject Name="Barcode" Left="292.95" Top="77.49" Width="56.7" Height="56.7" AutoSize="false" Text="123456" ShowText="false" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
-      <TextObject Name="Text4" Left="85.05" Top="13.23" Width="207.9" Height="15.12" Text="[Model]" VertAlign="Center" Font="黑体, 10pt"/>
-      <TextObject Name="Text5" Left="18.9" Top="66.15" Width="66.15" Height="11.34" Text="数  量：" Font="黑体, 8pt"/>
-      <TextObject Name="Text6" Left="18.9" Top="81.27" Width="66.15" Height="11.34" Text="物料号：" Font="黑体, 8pt"/>
-      <TextObject Name="Text7" Left="18.9" Top="100.17" Width="52.92" Height="11.34" Text="批次号：" Font="黑体, 8pt"/>
-      <TextObject Name="Text8" Left="18.9" Top="119.07" Width="66.15" Height="11.34" Text="筒  号：" Font="黑体, 8pt"/>
-      <TextObject Name="Text9" Left="18.9" Top="132.3" Width="66.15" Height="11.34" Text="供应商：" Font="黑体, 8pt"/>
-      <TextObject Name="Text10" Left="85.05" Top="30.24" Width="207.9" Height="15.12" Text="[DrawingID]" VertAlign="Center" Font="黑体, 10pt"/>
-      <TextObject Name="Text11" Left="85.05" Top="47.25" Width="207.9" Height="15.12" Text="[MaterialCategory]" VertAlign="Center" Font="黑体, 10pt"/>
-      <TextObject Name="Text12" Left="85.05" Top="64.26" Width="207.9" Height="15.12" Text="[BoxQty]" VertAlign="Center" Font="黑体, 10pt"/>
-      <TextObject Name="Text13" Left="85.05" Top="81.27" Width="207.9" Height="11.34" Text="[MaterialCode]" VertAlign="Center" Font="黑体, 8pt"/>
-      <TextObject Name="Text14" Left="60.48" Top="94.5" Width="232.47" Height="22.68" Text="[LotNumber]" VertAlign="Center" Font="黑体, 8pt"/>
-      <TextObject Name="Text15" Left="85.05" Top="119.07" Width="207.9" Height="11.34" Text="[CylinderID]" VertAlign="Center" Font="黑体, 8pt"/>
-      <TextObject Name="Text16" Left="85.05" Top="132.3" Width="207.9" Height="11.34" Text="[SupplyCode]" VertAlign="Center" Font="黑体, 8pt"/>
-      <TextObject Name="Text17" Left="18.9" Top="149.31" Width="41.58" Height="13.23" Text="[T134AlternateCode]" HorzAlign="Center" Font="黑体, 10pt"/>
+  <ReportPage Name="Page1" PaperWidth="100" PaperHeight="60" LeftMargin="2" TopMargin="2" RightMargin="2" BottomMargin="2" MirrorMargins="true" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
+    <DataBand Name="Data1" Width="362.88" Height="211.68">
+      <TextObject Name="Text1" Left="7.56" Top="11.34" Width="52.92" Height="11.34" Text="机  型：" Font="黑体, 8pt"/>
+      <TextObject Name="Text2" Left="7.56" Top="32.13" Width="52.92" Height="11.34" Text="零件号：" Font="黑体, 8pt"/>
+      <TextObject Name="Text3" Left="7.56" Top="52.92" Width="52.92" Height="11.34" Text="环  别：" Font="黑体, 8pt"/>
+      <BarcodeObject Name="Barcode" Left="292.95" Top="100.17" Width="56.7" Height="56.7" AutoSize="false" Text="123456" ShowText="false" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <TextObject Name="Text4" Left="45.36" Top="8.69" Width="207.9" Height="17.01" Text="[Model]" VertAlign="Center" Font="黑体, 12pt"/>
+      <TextObject Name="Text5" Left="7.56" Top="73.71" Width="52.92" Height="11.34" Text="数  量：" Font="黑体, 8pt"/>
+      <TextObject Name="Text6" Left="7.56" Top="92.61" Width="52.92" Height="11.34" Text="物料号：" Font="黑体, 8pt"/>
+      <TextObject Name="Text7" Left="7.56" Top="115.29" Width="52.92" Height="11.34" Text="批次号：" Font="黑体, 8pt"/>
+      <TextObject Name="Text8" Left="7.56" Top="139.86" Width="52.92" Height="11.34" Text="筒  号：" Font="黑体, 8pt"/>
+      <TextObject Name="Text9" Left="7.56" Top="160.65" Width="52.92" Height="11.34" Text="供应商：" Font="黑体, 8pt"/>
+      <TextObject Name="Text10" Left="45.36" Top="30.24" Width="207.9" Height="17.01" Text="[DrawingID]" VertAlign="Center" Font="黑体, 12pt"/>
+      <TextObject Name="Text11" Left="45.36" Top="51.03" Width="207.9" Height="17.01" Text="[MaterialCategory]" VertAlign="Center" Font="黑体, 12pt"/>
+      <TextObject Name="Text12" Left="45.36" Top="71.82" Width="207.9" Height="17.01" Text="[BoxQty]" VertAlign="Center" Font="黑体, 12pt"/>
+      <TextObject Name="Text13" Left="45.36" Top="90.72" Width="207.9" Height="13.23" Text="[MaterialCode]" Font="黑体, 10pt"/>
+      <TextObject Name="Text14" Left="45.36" Top="105.84" Width="245.7" Height="30.24" Text="[LotNumber]" VertAlign="Center" Font="黑体, 10pt"/>
+      <TextObject Name="Text15" Left="45.36" Top="137.97" Width="207.9" Height="13.23" Text="[CylinderID]" Font="黑体, 10pt"/>
+      <TextObject Name="Text16" Left="45.36" Top="158.76" Width="207.9" Height="13.23" Text="[SupplyCode]" Font="黑体, 10pt"/>
+      <TextObject Name="Text17" Left="18.9" Top="183.33" Width="41.58" Height="13.23" Text="[T134AlternateCode]" HorzAlign="Center" Font="黑体, 10pt"/>
     </DataBand>
   </ReportPage>
 </Report>

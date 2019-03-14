@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="12/14/2018 20:14:03" ReportInfo.Modified="03/01/2019 15:51:46" ReportInfo.CreatorVersion="2013.2.5.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/14/2018 20:14:03" ReportInfo.Modified="03/04/2019 16:27:11" ReportInfo.CreatorVersion="2013.2.5.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,24 +36,24 @@ namespace FastReport
     <Parameter Name="T134AlternateCode" DataType="System.String"/>
     <Parameter Name="BarCode" DataType="System.String"/>
   </Dictionary>
-  <ReportPage Name="Page1" PaperWidth="100" PaperHeight="60" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
-    <DataBand Name="Data1" Width="378" Height="226.8">
-      <TextObject Name="Text1" Left="18.9" Top="18.9" Width="66.15" Height="11.34" Text="机  型：" Font="黑体, 8pt"/>
-      <TextObject Name="Text2" Left="18.9" Top="37.8" Width="66.15" Height="11.34" Text="零件号：" Font="黑体, 8pt"/>
-      <TextObject Name="Text3" Left="18.9" Top="56.7" Width="66.15" Height="11.34" Text="环  别：" Font="黑体, 8pt"/>
+  <ReportPage Name="Page1" PaperWidth="100" PaperHeight="60" LeftMargin="2" TopMargin="2" RightMargin="2" BottomMargin="2" MirrorMargins="true" FirstPageSource="15" OtherPagesSource="15" StartPageEvent="Page1_StartPage">
+    <DataBand Name="Data1" Width="362.88" Height="211.68">
+      <TextObject Name="Text1" Left="11.34" Top="11.34" Width="52.92" Height="11.34" Text="机  型：" Font="黑体, 8pt"/>
+      <TextObject Name="Text2" Left="11.34" Top="37.8" Width="66.15" Height="11.34" Text="零件号：" Font="黑体, 8pt"/>
+      <TextObject Name="Text3" Left="11.34" Top="62.37" Width="66.15" Height="11.34" Text="环  别：" Font="黑体, 8pt"/>
       <BarcodeObject Name="Barcode" Left="292.95" Top="77.49" Width="56.7" Height="56.7" AutoSize="false" Text="DataSource.BarCode" ShowText="false" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
-      <TextObject Name="Text4" Left="85.05" Top="17.01" Width="207.9" Height="15.12" Text="[Model]" Font="黑体, 12pt"/>
-      <TextObject Name="Text5" Left="18.9" Top="75.6" Width="66.15" Height="11.34" Text="数  量：" Font="黑体, 8pt"/>
-      <TextObject Name="Text6" Left="18.9" Top="92.61" Width="66.15" Height="11.34" Text="物料号：" Font="黑体, 8pt"/>
-      <TextObject Name="Text7" Left="18.9" Top="109.62" Width="66.15" Height="11.34" Text="批次号：" Font="黑体, 8pt"/>
-      <TextObject Name="Text9" Left="18.9" Top="126.63" Width="66.15" Height="11.34" Text="供应商：" Font="黑体, 8pt"/>
-      <TextObject Name="Text10" Left="85.05" Top="35.91" Width="207.9" Height="15.12" Text="[DrawingID]" Font="黑体, 12pt"/>
-      <TextObject Name="Text11" Left="85.05" Top="54.81" Width="207.9" Height="15.12" Text="[MaterialCategory]" Font="黑体, 12pt"/>
-      <TextObject Name="Text12" Left="85.05" Top="73.71" Width="207.9" Height="15.12" Text="[CartonQty]" Font="黑体, 12pt"/>
-      <TextObject Name="Text13" Left="85.05" Top="92.61" Width="207.9" Height="11.34" Text="[CartonProductNo]" Font="黑体, 8pt"/>
-      <TextObject Name="Text14" Left="85.05" Top="109.62" Width="207.9" Height="11.34" Text="[LotNumber]" Font="黑体, 8pt"/>
-      <TextObject Name="Text16" Left="85.05" Top="126.63" Width="207.9" Height="11.34" Text="[SupplyCode]" Font="黑体, 8pt"/>
-      <TextObject Name="Text17" Left="18.9" Top="149.31" Width="41.58" Height="13.23" Text="[T134AlternateCode]" HorzAlign="Center" Font="黑体, 10pt"/>
+      <TextObject Name="Text4" Left="58.59" Top="7.56" Width="255.15" Height="18.9" Text="[Model]" Font="黑体, 14pt"/>
+      <TextObject Name="Text5" Left="11.34" Top="86.94" Width="66.15" Height="11.34" Text="数  量：" Font="黑体, 8pt"/>
+      <TextObject Name="Text6" Left="11.34" Top="103.95" Width="66.15" Height="11.34" Text="物料号：" Font="黑体, 8pt"/>
+      <TextObject Name="Text7" Left="11.34" Top="122.85" Width="66.15" Height="11.34" Text="批次号：" Font="黑体, 8pt"/>
+      <TextObject Name="Text9" Left="11.34" Top="141.75" Width="66.15" Height="11.34" Text="供应商：" Font="黑体, 8pt"/>
+      <TextObject Name="Text10" Left="58.59" Top="32.13" Width="255.15" Height="18.9" Text="[DrawingID]" Font="黑体, 14pt"/>
+      <TextObject Name="Text11" Left="58.59" Top="56.7" Width="255.15" Height="18.9" Text="[MaterialCategory]" Font="黑体, 14pt"/>
+      <TextObject Name="Text12" Left="58.59" Top="81.27" Width="226.8" Height="18.9" Text="[CartonQty]" Font="黑体, 14pt"/>
+      <TextObject Name="Text13" Left="58.59" Top="102.06" Width="226.8" Height="15.12" Text="[CartonProductNo]" Font="黑体, 11pt"/>
+      <TextObject Name="Text14" Left="58.59" Top="120.96" Width="226.8" Height="15.12" Text="[LotNumber]" Font="黑体, 11pt"/>
+      <TextObject Name="Text16" Left="58.59" Top="139.86" Width="226.8" Height="15.12" Text="[SupplyCode]" Font="黑体, 11pt"/>
+      <TextObject Name="Text17" Left="18.9" Top="170.1" Width="41.58" Height="13.23" Text="[T134AlternateCode]" HorzAlign="Center" Font="黑体, 10pt"/>
     </DataBand>
   </ReportPage>
 </Report>
